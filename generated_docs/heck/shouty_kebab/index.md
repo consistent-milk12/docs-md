@@ -19,7 +19,7 @@
 struct AsShoutyKebabCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/shouty_kebab.rs:41`](../../../.source_1765894658/heck-0.5.0/src/shouty_kebab.rs#L41)*
+*Defined in [`heck-0.5.0/src/shouty_kebab.rs:41`](../../../.source_1765900590/heck-0.5.0/src/shouty_kebab.rs#L41)*
 
 This wrapper performs a kebab case conversion in `fmt::Display`.
 
@@ -89,7 +89,7 @@ assert_eq!(format!("{}", AsShoutyKebabCase(sentence)), "WE-ARE-GOING-TO-INHERIT-
 trait ToShoutyKebabCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/shouty_kebab.rs:20-23`](../../../.source_1765894658/heck-0.5.0/src/shouty_kebab.rs#L20-L23)*
+*Defined in [`heck-0.5.0/src/shouty_kebab.rs:20-23`](../../../.source_1765900590/heck-0.5.0/src/shouty_kebab.rs#L20-L23)*
 
 This trait defines a shouty kebab case conversion.
 
@@ -107,7 +107,7 @@ assert_eq!(sentence.to_shouty_kebab_case(), "WE-ARE-GOING-TO-INHERIT-THE-EARTH")
 
 #### Required Methods
 
-- `fn to_shouty_kebab_case(&self) -> <Self as >::Owned`
+- `fn ToShoutyKebabCase::to_shouty_kebab_case(&self) -> <Self as >::Owned`
 
   Convert this type to shouty kebab case.
 

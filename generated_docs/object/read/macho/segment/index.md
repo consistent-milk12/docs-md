@@ -45,7 +45,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:20-27`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L20-L27)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:20-27`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L20-L27)*
 
 An iterator for the segments in a [`MachOFile`](../index.md).
 
@@ -120,7 +120,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:55-62`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L55-L62)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:55-62`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L55-L62)*
 
 A segment in a [`MachOFile`](../index.md).
 
@@ -214,7 +214,7 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:161-168`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L161-L168)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:161-168`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L161-L168)*
 
 #### Fields
 
@@ -296,9 +296,34 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 trait Segment: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:172-229`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L172-L229)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:172-229`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L172-L229)*
 
 A trait for generic access to [`macho::SegmentCommand32`](../../../macho/index.md) and [`macho::SegmentCommand64`](../../../macho/index.md).
+
+<details>
+<summary><strong>Methods (16)</strong> - click to expand</summary>
+
+**Required:**
+- [`Segment::from_command`](#fn-segmentfrom-command)
+- [`Segment::cmd`](#fn-segmentcmd)
+- [`Segment::cmdsize`](#fn-segmentcmdsize)
+- [`Segment::segname`](#fn-segmentsegname)
+- [`Segment::vmaddr`](#fn-segmentvmaddr)
+- [`Segment::vmsize`](#fn-segmentvmsize)
+- [`Segment::fileoff`](#fn-segmentfileoff)
+- [`Segment::filesize`](#fn-segmentfilesize)
+- [`Segment::maxprot`](#fn-segmentmaxprot)
+- [`Segment::initprot`](#fn-segmentinitprot)
+- [`Segment::nsects`](#fn-segmentnsects)
+- [`Segment::flags`](#fn-segmentflags)
+
+**Provided:**
+- [`Segment::name`](#fn-segmentname)
+- [`Segment::file_range`](#fn-segmentfile-range)
+- [`Segment::data`](#fn-segmentdata)
+- [`Segment::sections`](#fn-segmentsections)
+
+</details>
 
 #### Associated Types
 
@@ -310,47 +335,47 @@ A trait for generic access to [`macho::SegmentCommand32`](../../../macho/index.m
 
 #### Required Methods
 
-- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>`
+- `fn Segment::from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>`
 
-- `fn cmd(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::cmd(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn cmdsize(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::cmdsize(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn segname(&self) -> &[u8; 16]`
+- `fn Segment::segname(&self) -> &[u8; 16]`
 
-- `fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Segment::vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Segment::vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Segment::fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Segment::filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn maxprot(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::maxprot(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn initprot(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::initprot(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn nsects(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::nsects(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn flags(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::flags(&self, endian: <Self as >::Endian) -> u32`
 
 #### Provided Methods
 
-- `fn name(&self) -> &[u8]`
+- `fn Segment::name(&self) -> &[u8]`
 
   Return the `segname` bytes up until the null terminator.
 
-- `fn file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
+- `fn Segment::file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
 
   Return the offset and size of the segment in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
+- `fn Segment::data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
 
   Get the segment data from the file data.
   
   Returns `Err` for invalid values.
 
-- `fn sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, section_data: R) -> Result<&'data [<Self as >::Section]>`
+- `fn Segment::sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, section_data: R) -> Result<&'data [<Self as >::Section]>`
 
   Get the array of sections from the data following the segment command.
   
@@ -369,7 +394,7 @@ A trait for generic access to [`macho::SegmentCommand32`](../../../macho/index.m
 type MachOSegmentIterator32<'data, 'file, Endian, R> = MachOSegmentIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:12-13`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L12-L13)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:12-13`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L12-L13)*
 
 An iterator for the segments in a [`MachOFile32`](super::MachOFile32).
 
@@ -379,7 +404,7 @@ An iterator for the segments in a [`MachOFile32`](super::MachOFile32).
 type MachOSegmentIterator64<'data, 'file, Endian, R> = MachOSegmentIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:15-16`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:15-16`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L15-L16)*
 
 An iterator for the segments in a [`MachOFile64`](super::MachOFile64).
 
@@ -389,7 +414,7 @@ An iterator for the segments in a [`MachOFile64`](super::MachOFile64).
 type MachOSegment32<'data, 'file, Endian, R> = MachOSegment<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:45-46`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L45-L46)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:45-46`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L45-L46)*
 
 A segment in a [`MachOFile32`](super::MachOFile32).
 
@@ -399,7 +424,7 @@ A segment in a [`MachOFile32`](super::MachOFile32).
 type MachOSegment64<'data, 'file, Endian, R> = MachOSegment<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:48-49`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L48-L49)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:48-49`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L48-L49)*
 
 A segment in a [`MachOFile64`](super::MachOFile64).
 

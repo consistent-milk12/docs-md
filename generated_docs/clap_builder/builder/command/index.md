@@ -59,7 +59,7 @@ struct Command {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
 
 Build a command-line interface.
 
@@ -111,7 +111,7 @@ let m = Command::new("My Program")
   
   See also [`command!`](crate::command!) and [`crate_name!`](crate::crate_name!).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -124,7 +124,7 @@ let m = Command::new("My Program")
 
   Adds an [argument] to the list of valid possibilities.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -150,7 +150,7 @@ let m = Command::new("My Program")
 
   Adds multiple [arguments] to the list of valid possibilities.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -167,11 +167,11 @@ let m = Command::new("My Program")
 
   Allows one to mutate an [`Arg`](../arg/index.md) after it's been added to a [`Command`](#command).
   
-  # Panics
+  ##### Panics
   
   If the argument is undefined
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -200,7 +200,7 @@ let m = Command::new("My Program")
   
   This does not affect the built-in `--help` or `--version` arguments.
   
-  # Examples
+  ##### Examples
   
   ```ignore
   use clap_builder as clap;
@@ -236,11 +236,11 @@ let m = Command::new("My Program")
 
   Allows one to mutate an [`ArgGroup`](../arg_group/index.md) after it's been added to a [`Command`](#command).
   
-  # Panics
+  ##### Panics
   
   If the argument is undefined
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -264,11 +264,11 @@ let m = Command::new("My Program")
   This can be useful for modifying auto-generated arguments of nested subcommands with
   `Command::mut_arg`.
   
-  # Panics
+  ##### Panics
   
   If the subcommand is undefined
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -294,7 +294,7 @@ let m = Command::new("My Program")
   
   This does not affect the built-in `--help` or `--version` arguments.
   
-  # Examples
+  ##### Examples
   
   ```ignore
   use clap_builder as clap;
@@ -341,7 +341,7 @@ let m = Command::new("My Program")
   - Ensure exclusion between arguments.
   - Extract a value from a group instead of determining exactly which argument was used.
   
-  # Examples
+  ##### Examples
   
   The following example demonstrates using an [`ArgGroup`](../arg_group/index.md) to ensure that one, and only one,
   of the arguments from the specified group is present at runtime.
@@ -364,7 +364,7 @@ let m = Command::new("My Program")
 
   Adds multiple [`ArgGroup`](../arg_group/index.md)s to the [`Command`](#command) at once.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -398,7 +398,7 @@ let m = Command::new("My Program")
   - The argument the user passes in
   - Programmatically looking up the subcommand
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -416,7 +416,7 @@ let m = Command::new("My Program")
 
   Adds multiple subcommands to the list of valid possibilities.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -436,7 +436,7 @@ let m = Command::new("My Program")
   This is useful for large applications to delay definitions of subcommands until they are
   being invoked.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -463,7 +463,7 @@ let m = Command::new("My Program")
   **Note:** This will not help with asserts in [`ArgMatches`](../../parser/matches/arg_matches/index.md), those will need exhaustive
   testing of your CLI.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -493,11 +493,11 @@ let m = Command::new("My Program")
   **Note:** this will ensure the `Command` has been sufficiently `built` for any
   relevant context, including usage.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -510,11 +510,11 @@ let m = Command::new("My Program")
 
   Parse `env::args_os`, `exiting` on failure.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -531,11 +531,11 @@ let m = Command::new("My Program")
   
   Like `Command::get_matches` but doesn't consume the `Command`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -560,11 +560,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -593,11 +593,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -631,11 +631,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -679,11 +679,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -707,11 +707,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -728,11 +728,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -752,11 +752,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -778,11 +778,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -802,11 +802,11 @@ let m = Command::new("My Program")
   
   See also `Command::render_long_version`.
   
-  ### Coloring
+  ###### Coloring
   
   This function does not try to color the message nor it inserts any [ANSI escape codes].
   
-  ### Examples
+  ###### Examples
   
   ```rust
   use clap_builder as clap;
@@ -825,11 +825,11 @@ let m = Command::new("My Program")
   
   See also `Command::render_version`.
   
-  ### Coloring
+  ###### Coloring
   
   This function does not try to color the message nor it inserts any [ANSI escape codes].
   
-  ### Examples
+  ###### Examples
   
   ```rust
   use clap_builder as clap;
@@ -848,11 +848,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  ### Examples
+  ###### Examples
   
   ```rust
   use clap_builder as clap;
@@ -949,7 +949,7 @@ let m = Command::new("My Program")
 struct TermWidth(usize);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5260`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/command.rs#L5260)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5260`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/command.rs#L5260)*
 
 #### Trait Implementations
 
@@ -1026,7 +1026,7 @@ struct TermWidth(usize);
 struct MaxTermWidth(usize);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5266`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/command.rs#L5266)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5266`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/command.rs#L5266)*
 
 #### Trait Implementations
 
@@ -1105,7 +1105,7 @@ struct MaxTermWidth(usize);
 trait Captures<'a> { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:4933`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/command.rs#L4933)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:4933`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/command.rs#L4933)*
 
 A workaround:
 <https://github.com/rust-lang/rust/issues/34511#issuecomment-373423999>
@@ -1120,7 +1120,7 @@ A workaround:
 trait AppExt: Extension { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5256`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/command.rs#L5256)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5256`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/command.rs#L5256)*
 
 #### Implementors
 
@@ -1138,7 +1138,7 @@ where
     I: Iterator<Item = T>
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5273-5284`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/command.rs#L5273-L5284)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5273-5284`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/command.rs#L5273-L5284)*
 
 Returns the first two elements of an iterator as an `Option<(T, T)>`.
 

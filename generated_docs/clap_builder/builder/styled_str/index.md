@@ -18,7 +18,7 @@
 struct StyledStr(String);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
+*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
 
 Terminal-styling container
 

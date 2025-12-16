@@ -55,7 +55,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:24-30`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L24-L30)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:24-30`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L24-L30)*
 
 An iterator over a incomplete tuple.
 
@@ -165,7 +165,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:78-85`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L78-L85)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:78-85`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L78-L85)*
 
 An iterator that groups the items in tuples of a specific size.
 
@@ -285,7 +285,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:166-173`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L166-L173)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:166-173`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L166-L173)*
 
 An iterator over all contiguous windows that produces tuples of a specific size.
 
@@ -393,7 +393,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:247-254`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L247-L254)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:247-254`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L247-L254)*
 
 An iterator over all windows, wrapping back to the first elements when the
 window would otherwise exceed the length of the iterator, producing tuples
@@ -499,7 +499,7 @@ information.
 trait HomogeneousTuple: TupleCollect { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:15`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L15)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:15`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L15)*
 
 Implemented for homogeneous tuples of size up to 12.
 
@@ -513,7 +513,7 @@ Implemented for homogeneous tuples of size up to 12.
 trait TupleCollect: Sized { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:306-326`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L306-L326)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:306-326`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L306-L326)*
 
 #### Associated Types
 
@@ -523,17 +523,17 @@ trait TupleCollect: Sized { ... }
 
 #### Required Methods
 
-- `fn collect_from_iter<I>(iter: I, buf: &mut <Self as >::Buffer) -> Option<Self>`
+- `fn TupleCollect::collect_from_iter<I>(iter: I, buf: &mut <Self as >::Buffer) -> Option<Self>`
 
-- `fn collect_from_iter_no_buf<I>(iter: I) -> Option<Self>`
+- `fn TupleCollect::collect_from_iter_no_buf<I>(iter: I) -> Option<Self>`
 
-- `fn num_items() -> usize`
+- `fn TupleCollect::num_items() -> usize`
 
-- `fn left_shift_push(&mut self, item: <Self as >::Item)`
+- `fn TupleCollect::left_shift_push(&mut self, item: <Self as >::Item)`
 
 #### Provided Methods
 
-- `fn buffer_len(buf: &<Self as >::Buffer) -> usize`
+- `fn TupleCollect::buffer_len(buf: &<Self as >::Buffer) -> usize`
 
 #### Implementors
 
@@ -561,7 +561,7 @@ where
     T: HomogeneousTuple
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:88-97`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L88-L97)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:88-97`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L88-L97)*
 
 Create a new tuples iterator.
 
@@ -571,7 +571,7 @@ Create a new tuples iterator.
 fn add_then_div(n: usize, a: usize, d: usize) -> Option<usize>
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:128-131`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L128-L131)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:128-131`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L128-L131)*
 
 `(n + a) / d` avoiding overflow when possible, returns `None` if it overflows.
 
@@ -585,7 +585,7 @@ where
     <T as >::Item: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:176-183`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L176-L183)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:176-183`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L176-L183)*
 
 Create a new tuple windows iterator.
 
@@ -599,15 +599,15 @@ where
     <T as >::Item: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:256-266`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L256-L266)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:256-266`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L256-L266)*
 
 ## Macros
 
 ### `rev_for_each_ident!`
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:328-334`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L328-L334)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:328-334`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L328-L334)*
 
 ### `impl_tuple_collect!`
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:336-400`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L336-L400)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:336-400`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L336-L400)*
 

@@ -38,7 +38,7 @@ struct Regex {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:82-96`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/regex.rs#L82-L96)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:82-96`](../../../../.source_1765900590/regex-automata-0.4.13/src/hybrid/regex.rs#L82-L96)*
 
 A regular expression that uses hybrid NFA/DFAs (also called "lazy DFAs")
 for searching.
@@ -122,7 +122,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If you want a non-default configuration, then use the [`Builder`](#builder) to
   set your own configuration.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{hybrid::regex::Regex, Match};
@@ -141,7 +141,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Like `new`, but parses multiple patterns into a single "multi regex."
   This similarly uses the default regex configuration.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{hybrid::regex::Regex, Match};
@@ -167,7 +167,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine to avoid needing to import the
   [`Builder`](#builder) type in common cases.
   
-  # Example
+  ##### Example
   
   This example shows how to use the builder to disable UTF-8 mode
   everywhere.
@@ -213,7 +213,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   `Regex` has been configured to "give up" after it has cleared the cache
   a certain number of times.
   
-  # Example
+  ##### Example
   
   This shows how to re-purpose a cache for use with a different `Regex`.
   
@@ -300,7 +300,7 @@ struct FindMatches<'r, 'c, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:569-573`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/regex.rs#L569-L573)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:569-573`](../../../../.source_1765900590/regex-automata-0.4.13/src/hybrid/regex.rs#L569-L573)*
 
 An iterator over all non-overlapping matches for an infallible search.
 
@@ -383,7 +383,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:601-604`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/regex.rs#L601-L604)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:601-604`](../../../../.source_1765900590/regex-automata-0.4.13/src/hybrid/regex.rs#L601-L604)*
 
 A cache represents a partially computed forward and reverse DFA.
 
@@ -423,7 +423,7 @@ panics or incorrect results.
   `Regex` has been configured to "give up" after it has cleared the cache
   a certain number of times.
   
-  # Example
+  ##### Example
   
   This shows how to re-purpose a cache for use with a different `Regex`.
   
@@ -563,7 +563,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:767-769`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/regex.rs#L767-L769)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:767-769`](../../../../.source_1765900590/regex-automata-0.4.13/src/hybrid/regex.rs#L767-L769)*
 
 A builder for a regex based on a hybrid NFA/DFA.
 
@@ -661,7 +661,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Since this routine provides the DFAs to the builder, there is no
   opportunity to apply other configuration options.
   
-  # Example
+  ##### Example
   
   This shows how to build individual lazy forward and reverse DFAs, and
   then combine them into a single `Regex`.

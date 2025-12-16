@@ -28,7 +28,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L17-L24)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L17-L24)*
 
 An iterator over the notes in an ELF section or segment.
 
@@ -125,7 +125,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L109-L116)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L109-L116)*
 
 A parsed [`NoteHeader`](../index.md).
 
@@ -225,7 +225,7 @@ struct GnuPropertyIterator<'data, Endian: endian::Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L235-L239)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L235-L239)*
 
 An iterator for the properties in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 
@@ -307,7 +307,7 @@ struct GnuProperty<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L277-L280)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L277-L280)*
 
 A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 
@@ -380,7 +380,7 @@ A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 trait NoteHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L185-L191)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L185-L191)*
 
 A trait for generic access to [`elf::NoteHeader32`](../../../elf/index.md) and [`elf::NoteHeader64`](../../../elf/index.md).
 
@@ -390,11 +390,11 @@ A trait for generic access to [`elf::NoteHeader32`](../../../elf/index.md) and [
 
 #### Required Methods
 
-- `fn n_namesz(&self, endian: <Self as >::Endian) -> u32`
+- `fn NoteHeader::n_namesz(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn n_descsz(&self, endian: <Self as >::Endian) -> u32`
+- `fn NoteHeader::n_descsz(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn n_type(&self, endian: <Self as >::Endian) -> u32`
+- `fn NoteHeader::n_type(&self, endian: <Self as >::Endian) -> u32`
 
 #### Implementors
 

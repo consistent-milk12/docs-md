@@ -25,7 +25,7 @@ struct ArgGroup {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
 
 Specifies a logical group of [arguments]
 
@@ -99,7 +99,7 @@ assert_eq!(matches
   The name will be used to get values from the group or refer to the group inside of conflict
   and requirement rules.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -112,7 +112,7 @@ assert_eq!(matches
 
   Sets the group name.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -125,7 +125,7 @@ assert_eq!(matches
 
   Adds an [argument] to this group by name
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -151,7 +151,7 @@ assert_eq!(matches
 
   Adds multiple [arguments] to this group by name
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -176,7 +176,7 @@ assert_eq!(matches
 
   Getters for all args. It will return a vector of `Id`
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -191,9 +191,9 @@ assert_eq!(matches
 
 - <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
 
-  Allows more than one of the [`Arg`](../arg/index.md)s in this group to be used. (Default: `false`)
+  Allows more than one of the [`Arg`](../../index.md)s in this group to be used. (Default: `false`)
   
-  # Examples
+  ##### Examples
   
   Notice in this example we use *both* the `-f` and `-c` flags which are both part of the
   group
@@ -242,7 +242,7 @@ assert_eq!(matches
   Return true if the group allows more than one of the arguments
   in this group to be used. (Default: `false`)
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -263,7 +263,7 @@ assert_eq!(matches
   
   <div class="warning">
   
-  **NOTE:** This setting only applies to the current [`Command`](../command/index.md) / [`Subcommand`](../../derive/index.md)s, and not
+  **NOTE:** This setting only applies to the current [`Command`](../../index.md) / [`Subcommand`](../../derive/index.md)s, and not
   globally.
   
   </div>
@@ -277,7 +277,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -315,7 +315,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -356,7 +356,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -400,7 +400,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -438,7 +438,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;

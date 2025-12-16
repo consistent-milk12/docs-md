@@ -22,7 +22,7 @@ struct Backoff {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:80-82`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/backoff.rs#L80-L82)*
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:80-82`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/backoff.rs#L80-L82)*
 
 Performs exponential backoff in spin loops.
 
@@ -100,7 +100,7 @@ fn blocking_wait(ready: &AtomicBool) {
 
   Creates a new `Backoff`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::Backoff;
@@ -112,7 +112,7 @@ fn blocking_wait(ready: &AtomicBool) {
 
   Resets the `Backoff`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::Backoff;
@@ -130,7 +130,7 @@ fn blocking_wait(ready: &AtomicBool) {
   
   The processor may yield using the *YIELD* or *PAUSE* instruction.
   
-  # Examples
+  ##### Examples
   
   Backing off in a lock-free loop:
   
@@ -170,7 +170,7 @@ fn blocking_wait(ready: &AtomicBool) {
   block the current thread using a different synchronization mechanism instead.
   
   
-  # Examples
+  ##### Examples
   
   Waiting for an [`AtomicBool`](#atomicbool) to become `true`:
   
@@ -207,7 +207,7 @@ fn blocking_wait(ready: &AtomicBool) {
 
   Returns `true` if exponential backoff has completed and blocking the thread is advised.
   
-  # Examples
+  ##### Examples
   
   Waiting for an [`AtomicBool`](#atomicbool) to become `true` and parking the thread after a long wait:
   
@@ -302,12 +302,12 @@ fn blocking_wait(ready: &AtomicBool) {
 const SPIN_LIMIT: u32 = 6u32;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:5`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/backoff.rs#L5)*
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:5`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/backoff.rs#L5)*
 
 ### `YIELD_LIMIT`
 ```rust
 const YIELD_LIMIT: u32 = 10u32;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:6`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/backoff.rs#L6)*
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:6`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/backoff.rs#L6)*
 

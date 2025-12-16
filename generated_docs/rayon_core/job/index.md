@@ -40,7 +40,7 @@ struct JobRef {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:33-36`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L33-L36)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:33-36`](../../../.source_1765900590/rayon-core-1.13.0/src/job.rs#L33-L36)*
 
 Effectively a Job trait object. Each JobRef **must** be executed
 exactly once, or else data may leak.
@@ -136,7 +136,7 @@ where
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:72-81`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L72-L81)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:72-81`](../../../.source_1765900590/rayon-core-1.13.0/src/job.rs#L72-L81)*
 
 A job that will be owned by a stack slot. This means that when it
 executes it need not free any heap data, the cleanup occurs when
@@ -222,7 +222,7 @@ where
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:132-137`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L132-L137)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:132-137`](../../../.source_1765900590/rayon-core-1.13.0/src/job.rs#L132-L137)*
 
 Represents a job stored in the heap. Used to implement
 `scope`. Unlike `StackJob`, when executed, `HeapJob` simply
@@ -314,7 +314,7 @@ where
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:175-180`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L175-L180)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:175-180`](../../../.source_1765900590/rayon-core-1.13.0/src/job.rs#L175-L180)*
 
 Represents a job stored in an `Arc` -- like `HeapJob`, but may
 be turned into multiple `JobRef`s and called multiple times.
@@ -400,7 +400,7 @@ struct JobFifo {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:238-240`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L238-L240)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:238-240`](../../../.source_1765900590/rayon-core-1.13.0/src/job.rs#L238-L240)*
 
 Indirect queue to provide FIFO job priority.
 
@@ -481,7 +481,7 @@ enum JobResult<T> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:9-13`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L9-L13)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:9-13`](../../../.source_1765900590/rayon-core-1.13.0/src/job.rs#L9-L13)*
 
 #### Implementations
 
@@ -557,7 +557,7 @@ enum JobResult<T> {
 trait Job { ... }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:20-25`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L20-L25)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:20-25`](../../../.source_1765900590/rayon-core-1.13.0/src/job.rs#L20-L25)*
 
 A `Job` is used to advertise work for other threads that they may
 want to steal. In accordance with time honored tradition, jobs are
@@ -567,7 +567,7 @@ deque is managed by the `thread_pool` module.
 
 #### Required Methods
 
-- `fn execute(this: *const ())`
+- `fn Job::execute(this: *const ())`
 
   Unsafe: this may be called from a different thread than the one
   which scheduled the job, so the implementer must ensure the

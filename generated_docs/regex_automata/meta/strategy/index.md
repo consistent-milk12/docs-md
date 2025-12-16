@@ -42,7 +42,7 @@ struct Pre<P> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:189-192`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/strategy.rs#L189-L192)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:189-192`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/strategy.rs#L189-L192)*
 
 #### Implementations
 
@@ -147,7 +147,7 @@ struct Core {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:443-453`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/strategy.rs#L443-L453)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:443-453`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/strategy.rs#L443-L453)*
 
 #### Implementations
 
@@ -240,7 +240,7 @@ struct ReverseAnchored {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:904-906`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/strategy.rs#L904-L906)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:904-906`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/strategy.rs#L904-L906)*
 
 #### Implementations
 
@@ -324,7 +324,7 @@ struct ReverseSuffix {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1116-1119`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/strategy.rs#L1116-L1119)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1116-1119`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/strategy.rs#L1116-L1119)*
 
 #### Implementations
 
@@ -415,7 +415,7 @@ struct ReverseInner {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1494-1500`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/strategy.rs#L1494-L1500)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1494-1500`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/strategy.rs#L1494-L1500)*
 
 #### Implementations
 
@@ -502,7 +502,7 @@ struct ReverseInner {
 trait Strategy: Debug + Send + Sync + RefUnwindSafe + UnwindSafe + 'static { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:40-76`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/strategy.rs#L40-L76)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:40-76`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/strategy.rs#L40-L76)*
 
 A trait that represents a single meta strategy. Its main utility is in
 providing a way to do dynamic dispatch over a few choices.
@@ -519,27 +519,44 @@ though. It's a worthwhile experiment to try. Probably the most interesting
 benchmark to run in such a case would be one with a high match count. That
 is, a benchmark to test the overall latency of a search call.
 
+<details>
+<summary><strong>Methods (10)</strong> - click to expand</summary>
+
+**Required:**
+- [`Strategy::group_info`](#fn-strategygroup-info)
+- [`Strategy::create_cache`](#fn-strategycreate-cache)
+- [`Strategy::reset_cache`](#fn-strategyreset-cache)
+- [`Strategy::is_accelerated`](#fn-strategyis-accelerated)
+- [`Strategy::memory_usage`](#fn-strategymemory-usage)
+- [`Strategy::search`](#fn-strategysearch)
+- [`Strategy::search_half`](#fn-strategysearch-half)
+- [`Strategy::is_match`](#fn-strategyis-match)
+- [`Strategy::search_slots`](#fn-strategysearch-slots)
+- [`Strategy::which_overlapping_matches`](#fn-strategywhich-overlapping-matches)
+
+</details>
+
 #### Required Methods
 
-- `fn group_info(&self) -> &GroupInfo`
+- `fn Strategy::group_info(&self) -> &GroupInfo`
 
-- `fn create_cache(&self) -> Cache`
+- `fn Strategy::create_cache(&self) -> Cache`
 
-- `fn reset_cache(&self, cache: &mut Cache)`
+- `fn Strategy::reset_cache(&self, cache: &mut Cache)`
 
-- `fn is_accelerated(&self) -> bool`
+- `fn Strategy::is_accelerated(&self) -> bool`
 
-- `fn memory_usage(&self) -> usize`
+- `fn Strategy::memory_usage(&self) -> usize`
 
-- `fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
+- `fn Strategy::search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
 
-- `fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
+- `fn Strategy::search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
 
-- `fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool`
+- `fn Strategy::is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool`
 
-- `fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+- `fn Strategy::search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
 
-- `fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
+- `fn Strategy::which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
 
 #### Implementors
 
@@ -557,7 +574,7 @@ is, a benchmark to test the overall latency of a search call.
 fn new(info: &crate::meta::regex::RegexInfo, hirs: &[&regex_syntax::hir::Hir]) -> Result<alloc::sync::Arc<dyn Strategy>, crate::meta::error::BuildError>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:78-186`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/strategy.rs#L78-L186)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:78-186`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/strategy.rs#L78-L186)*
 
 ### `copy_match_to_slots`
 
@@ -565,7 +582,7 @@ fn new(info: &crate::meta::regex::RegexInfo, hirs: &[&regex_syntax::hir::Hir]) -
 fn copy_match_to_slots(m: crate::util::search::Match, slots: &mut [Option<crate::util::primitives::NonMaxUsize>])
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1896-1905`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/strategy.rs#L1896-L1905)*
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1896-1905`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/strategy.rs#L1896-L1905)*
 
 Copies the offsets in the given match to the corresponding positions in
 `slots`.

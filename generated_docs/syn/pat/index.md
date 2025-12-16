@@ -72,7 +72,7 @@ struct PatConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L385-L393)*
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
@@ -174,7 +174,7 @@ struct PatLit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L493-L500)*
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L493-L500)*
 
 A literal in place of an expression: `1`, `"foo"`.
 
@@ -276,7 +276,7 @@ struct PatMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L513-L520)*
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L513-L520)*
 
 A macro invocation expression: `format!("{}", q)`.
 
@@ -379,7 +379,7 @@ struct PatPath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L558-L569)*
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L558-L569)*
 
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
@@ -486,7 +486,7 @@ struct PatRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L571-L580)*
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L571-L580)*
 
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
@@ -591,7 +591,7 @@ struct PatIdent {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:104-117`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L104-L117)*
+*Defined in [`syn-2.0.111/src/pat.rs:104-117`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L104-L117)*
 
 A pattern that binds a new variable: `ref mut binding @ SUBPATTERN`.
 
@@ -693,7 +693,7 @@ struct PatOr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:119-127`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L119-L127)*
+*Defined in [`syn-2.0.111/src/pat.rs:119-127`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L119-L127)*
 
 A pattern that matches any one of a set of cases.
 
@@ -792,7 +792,7 @@ struct PatParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:129-137`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L129-L137)*
+*Defined in [`syn-2.0.111/src/pat.rs:129-137`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L129-L137)*
 
 A parenthesized pattern: `(A | B)`.
 
@@ -892,7 +892,7 @@ struct PatReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:139-148`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L139-L148)*
+*Defined in [`syn-2.0.111/src/pat.rs:139-148`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L139-L148)*
 
 A reference pattern: `&mut var`.
 
@@ -990,7 +990,7 @@ struct PatRest {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:150-157`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L150-L157)*
+*Defined in [`syn-2.0.111/src/pat.rs:150-157`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L150-L157)*
 
 The dots in a tuple or slice pattern: `[0, 1, ..]`.
 
@@ -1089,7 +1089,7 @@ struct PatSlice {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:159-167`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L159-L167)*
+*Defined in [`syn-2.0.111/src/pat.rs:159-167`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L159-L167)*
 
 A dynamically sized slice pattern: `[a, b, ref i @ .., y, z]`.
 
@@ -1191,7 +1191,7 @@ struct PatStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:169-180`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L169-L180)*
+*Defined in [`syn-2.0.111/src/pat.rs:169-180`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L169-L180)*
 
 A struct or struct variant pattern: `Variant { x, y, .. }`.
 
@@ -1290,7 +1290,7 @@ struct PatTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:182-190`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L182-L190)*
+*Defined in [`syn-2.0.111/src/pat.rs:182-190`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L182-L190)*
 
 A tuple pattern: `(a, b)`.
 
@@ -1391,7 +1391,7 @@ struct PatTupleStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:192-202`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L192-L202)*
+*Defined in [`syn-2.0.111/src/pat.rs:192-202`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L192-L202)*
 
 A tuple struct or tuple variant pattern: `Variant(x, y, .., z)`.
 
@@ -1491,7 +1491,7 @@ struct PatType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:204-213`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L204-L213)*
+*Defined in [`syn-2.0.111/src/pat.rs:204-213`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L204-L213)*
 
 A type ascription pattern: `foo: f64`.
 
@@ -1593,7 +1593,7 @@ struct PatWild {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:215-222`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L215-L222)*
+*Defined in [`syn-2.0.111/src/pat.rs:215-222`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L215-L222)*
 
 A pattern that matches any value: `_`.
 
@@ -1693,7 +1693,7 @@ struct FieldPat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:224-236`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L224-L236)*
+*Defined in [`syn-2.0.111/src/pat.rs:224-236`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L224-L236)*
 
 A single field in a struct pattern.
 
@@ -1807,7 +1807,7 @@ enum Pat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:15-102`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L15-L102)*
+*Defined in [`syn-2.0.111/src/pat.rs:15-102`](../../../.source_1765900590/syn-2.0.111/src/pat.rs#L15-L102)*
 
 A pattern in a local binding, function signature, match expression, or
 various other places.

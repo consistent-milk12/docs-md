@@ -130,7 +130,7 @@ struct ExprArray {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L269-L277)*
+*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L269-L277)*
 
 A slice literal expression: `[a, b, c, d]`.
 
@@ -234,7 +234,7 @@ struct ExprAssign {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L279-L288)*
+*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L279-L288)*
 
 An assignment expression: `a = compute()`.
 
@@ -338,7 +338,7 @@ struct ExprAsync {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L290-L299)*
+*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L290-L299)*
 
 An async block: `async { ... }`.
 
@@ -442,7 +442,7 @@ struct ExprAwait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L301-L310)*
+*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L301-L310)*
 
 An await expression: `fut.await`.
 
@@ -546,7 +546,7 @@ struct ExprBinary {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L312-L321)*
+*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L312-L321)*
 
 A binary operation: `a + b`, `a += b`.
 
@@ -649,7 +649,7 @@ struct ExprBlock {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L323-L331)*
+*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L323-L331)*
 
 A blocked scope: `{ ... }`.
 
@@ -753,7 +753,7 @@ struct ExprBreak {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L333-L343)*
+*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L333-L343)*
 
 A `break`, with an optional label to break and an optional
 expression.
@@ -858,7 +858,7 @@ struct ExprCall {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L345-L354)*
+*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L345-L354)*
 
 A function call expression: `invoke(a, b)`.
 
@@ -962,7 +962,7 @@ struct ExprCast {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L356-L365)*
+*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L356-L365)*
 
 A cast expression: `foo as f64`.
 
@@ -1073,7 +1073,7 @@ struct ExprClosure {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L367-L383)*
+*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L367-L383)*
 
 A closure expression: `|a, b| a + b`.
 
@@ -1176,7 +1176,7 @@ struct ExprConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L385-L393)*
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
@@ -1279,7 +1279,7 @@ struct ExprContinue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L395-L403)*
+*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L395-L403)*
 
 A `continue`, with an optional label.
 
@@ -1383,7 +1383,7 @@ struct ExprField {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L405-L415)*
+*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L405-L415)*
 
 Access of a named struct field (`obj.k`) or unnamed tuple struct
 field (`obj.0`).
@@ -1491,7 +1491,7 @@ struct ExprForLoop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L417-L429)*
+*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L417-L429)*
 
 A for loop: `for pat in expr { ... }`.
 
@@ -1594,7 +1594,7 @@ struct ExprGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L431-L443)*
+*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L431-L443)*
 
 An expression contained within invisible delimiters.
 
@@ -1699,7 +1699,7 @@ struct ExprIf {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L445-L459)*
+*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L445-L459)*
 
 An `if` expression with an optional `else` block: `if expr { ... }
 else { ... }`.
@@ -1807,7 +1807,7 @@ struct ExprIndex {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L461-L470)*
+*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L461-L470)*
 
 A square bracketed indexing expression: `vector[2]`.
 
@@ -1909,7 +1909,7 @@ struct ExprInfer {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L472-L479)*
+*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L472-L479)*
 
 The inferred value of a const generic argument, denoted `_`.
 
@@ -2014,7 +2014,7 @@ struct ExprLet {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L481-L491)*
+*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L481-L491)*
 
 A `let` guard: `let Some(x) = opt`.
 
@@ -2116,7 +2116,7 @@ struct ExprLit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L493-L500)*
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L493-L500)*
 
 A literal in place of an expression: `1`, `"foo"`.
 
@@ -2220,7 +2220,7 @@ struct ExprLoop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L502-L511)*
+*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L502-L511)*
 
 Conditionless loop: `loop { ... }`.
 
@@ -2322,7 +2322,7 @@ struct ExprMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L513-L520)*
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L513-L520)*
 
 A macro invocation expression: `format!("{}", q)`.
 
@@ -2427,7 +2427,7 @@ struct ExprMatch {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L522-L532)*
+*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L522-L532)*
 
 A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
@@ -2534,7 +2534,7 @@ struct ExprMethodCall {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L534-L546)*
+*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L534-L546)*
 
 A method call expression: `x.foo::<T>(a, b)`.
 
@@ -2637,7 +2637,7 @@ struct ExprParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L548-L556)*
+*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L548-L556)*
 
 A parenthesized expression: `(a + b)`.
 
@@ -2740,7 +2740,7 @@ struct ExprPath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L558-L569)*
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L558-L569)*
 
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
@@ -2847,7 +2847,7 @@ struct ExprRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L571-L580)*
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L571-L580)*
 
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
@@ -2952,7 +2952,7 @@ struct ExprRawAddr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L582-L592)*
+*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L582-L592)*
 
 Address-of operation: `&raw const place` or `&raw mut place`.
 
@@ -3056,7 +3056,7 @@ struct ExprReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L594-L603)*
+*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L594-L603)*
 
 A referencing operation: `&a` or `&mut a`.
 
@@ -3161,7 +3161,7 @@ struct ExprRepeat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L605-L615)*
+*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L605-L615)*
 
 An array literal constructed from one repeated element: `[0u8; N]`.
 
@@ -3264,7 +3264,7 @@ struct ExprReturn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L617-L625)*
+*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L617-L625)*
 
 A `return`, with an optional value to be returned.
 
@@ -3371,7 +3371,7 @@ struct ExprStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L627-L642)*
+*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L627-L642)*
 
 A struct literal expression: `Point { x: 1, y: 1 }`.
 
@@ -3477,7 +3477,7 @@ struct ExprTry {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L644-L652)*
+*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L644-L652)*
 
 A try-expression: `expr?`.
 
@@ -3580,7 +3580,7 @@ struct ExprTryBlock {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L654-L662)*
+*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L654-L662)*
 
 A try block: `try { ... }`.
 
@@ -3683,7 +3683,7 @@ struct ExprTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L664-L672)*
+*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L664-L672)*
 
 A tuple expression: `(a, b, c, d)`.
 
@@ -3786,7 +3786,7 @@ struct ExprUnary {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L674-L682)*
+*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L674-L682)*
 
 A unary operation: `!x`, `*x`.
 
@@ -3889,7 +3889,7 @@ struct ExprUnsafe {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L684-L692)*
+*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L684-L692)*
 
 An unsafe block: `unsafe { ... }`.
 
@@ -3994,7 +3994,7 @@ struct ExprWhile {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L694-L704)*
+*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L694-L704)*
 
 A while loop: `while expr { ... }`.
 
@@ -4097,7 +4097,7 @@ struct ExprYield {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L706-L714)*
+*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L706-L714)*
 
 A yield expression: `yield expr`.
 
@@ -4199,7 +4199,7 @@ struct Index {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1049-L1056)*
+*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L1049-L1056)*
 
 The index of an unnamed tuple struct field.
 
@@ -4305,7 +4305,7 @@ struct FieldValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1093-L1106)*
+*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L1093-L1106)*
 
 A field-value pair in a struct literal.
 
@@ -4410,7 +4410,7 @@ struct Label {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1109-L1116)*
+*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L1109-L1116)*
 
 A lifetime labeling a `for`, `while`, or `loop`.
 
@@ -4512,7 +4512,7 @@ struct Arm {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1119-L1146)*
+*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L1119-L1146)*
 
 One arm of a `match` expression: `0..=10 => { return true; }`.
 
@@ -4670,7 +4670,7 @@ enum Expr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L35-L267)*
+*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L35-L267)*
 
 A Rust expression.
 
@@ -5175,7 +5175,7 @@ enum Member {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L971-L981)*
+*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L971-L981)*
 
 A struct or tuple struct field accessed in a struct literal or field
 expression.
@@ -5294,7 +5294,7 @@ enum RangeLimits {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1149-L1158)*
+*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L1149-L1158)*
 
 Limit types of a range, inclusive or exclusive.
 
@@ -5408,7 +5408,7 @@ enum PointerMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1161-L1169)*
+*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../../.source_1765900590/syn-2.0.111/src/expr.rs#L1161-L1169)*
 
 Mutability of a raw pointer (`*const T`, `*mut T`), in which non-mutable
 isn't the implicit default.

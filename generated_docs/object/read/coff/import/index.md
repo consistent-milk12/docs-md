@@ -32,7 +32,7 @@ struct ImportFile<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:20-26`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/import.rs#L20-L26)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:20-26`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/import.rs#L20-L26)*
 
 A Windows short form description of a symbol to import.
 
@@ -143,7 +143,7 @@ struct ImportObjectData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:200-204`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/import.rs#L200-L204)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:200-204`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/import.rs#L200-L204)*
 
 The data following [`pe::ImportObjectHeader`](../../../pe/index.md).
 
@@ -235,7 +235,7 @@ enum ImportName<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:114-119`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/import.rs#L114-L119)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:114-119`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/import.rs#L114-L119)*
 
 The name or ordinal to import from a DLL.
 
@@ -330,7 +330,7 @@ enum ImportType {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:123-130`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/import.rs#L123-L130)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:123-130`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/import.rs#L123-L130)*
 
 The kind of import symbol.
 

@@ -91,7 +91,7 @@ struct ChunkBy<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:142-145`](../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L142-L145)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:142-145`](../../../.source_1765900590/rayon-1.11.0/src/slice/chunk_by.rs#L142-L145)*
 
 Parallel iterator over slice in (non-overlapping) chunks separated by a predicate.
 
@@ -202,7 +202,7 @@ struct ChunkByMut<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:199-202`](../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L199-L202)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:199-202`](../../../.source_1765900590/rayon-1.11.0/src/slice/chunk_by.rs#L199-L202)*
 
 Parallel iterator over slice in (non-overlapping) mutable chunks
 separated by a predicate.
@@ -298,7 +298,7 @@ struct Chunks<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:6-9`](../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L6-L9)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:6-9`](../../../.source_1765900590/rayon-1.11.0/src/slice/chunks.rs#L6-L9)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice
 
@@ -417,7 +417,7 @@ struct ChunksExact<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:92-96`](../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L92-L96)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:92-96`](../../../.source_1765900590/rayon-1.11.0/src/slice/chunks.rs#L92-L96)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice
 
@@ -542,7 +542,7 @@ struct ChunksExactMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:273-277`](../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L273-L277)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:273-277`](../../../.source_1765900590/rayon-1.11.0/src/slice/chunks.rs#L273-L277)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice
 
@@ -671,7 +671,7 @@ struct ChunksMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:193-196`](../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L193-L196)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:193-196`](../../../.source_1765900590/rayon-1.11.0/src/slice/chunks.rs#L193-L196)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice
 
@@ -773,7 +773,7 @@ struct RChunks<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:6-9`](../../../.source_1765894658/rayon-1.11.0/src/slice/rchunks.rs#L6-L9)*
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:6-9`](../../../.source_1765900590/rayon-1.11.0/src/slice/rchunks.rs#L6-L9)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice, starting at the end.
 
@@ -892,7 +892,7 @@ struct RChunksExact<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:92-96`](../../../.source_1765894658/rayon-1.11.0/src/slice/rchunks.rs#L92-L96)*
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:92-96`](../../../.source_1765900590/rayon-1.11.0/src/slice/rchunks.rs#L92-L96)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice, starting at the end.
 
@@ -1017,7 +1017,7 @@ struct RChunksExactMut<'data, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:272-276`](../../../.source_1765894658/rayon-1.11.0/src/slice/rchunks.rs#L272-L276)*
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:272-276`](../../../.source_1765900590/rayon-1.11.0/src/slice/rchunks.rs#L272-L276)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice, starting at the end.
 
@@ -1146,7 +1146,7 @@ struct RChunksMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:192-195`](../../../.source_1765894658/rayon-1.11.0/src/slice/rchunks.rs#L192-L195)*
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:192-195`](../../../.source_1765900590/rayon-1.11.0/src/slice/rchunks.rs#L192-L195)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice, starting at the end.
 
@@ -1247,7 +1247,7 @@ struct Iter<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:801-803`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L801-L803)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:801-803`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L801-L803)*
 
 Parallel iterator over immutable items in a slice
 
@@ -1360,7 +1360,7 @@ struct IterProducer<'data, T: Sync> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:846-848`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L846-L848)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:846-848`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L846-L848)*
 
 #### Trait Implementations
 
@@ -1438,7 +1438,7 @@ struct Windows<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:866-869`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L866-L869)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:866-869`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L866-L869)*
 
 Parallel iterator over immutable overlapping windows of a slice
 
@@ -1552,7 +1552,7 @@ struct WindowsProducer<'data, T: Sync> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:916-919`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L916-L919)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:916-919`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L916-L919)*
 
 #### Trait Implementations
 
@@ -1629,7 +1629,7 @@ struct IterMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:948-950`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L948-L950)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:948-950`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L948-L950)*
 
 Parallel iterator over mutable items in a slice
 
@@ -1726,7 +1726,7 @@ struct IterMutProducer<'data, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:987-989`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L987-L989)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:987-989`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L987-L989)*
 
 #### Trait Implementations
 
@@ -1804,7 +1804,7 @@ struct Split<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:1009-1012`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L1009-L1012)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:1009-1012`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L1009-L1012)*
 
 Parallel iterator over slices separated by a predicate
 
@@ -1908,7 +1908,7 @@ struct SplitInclusive<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:1047-1050`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L1047-L1050)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:1047-1050`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L1047-L1050)*
 
 Parallel iterator over slices separated by a predicate,
 including the matched part as a terminator.
@@ -2013,7 +2013,7 @@ struct SplitMut<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:1135-1138`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L1135-L1138)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:1135-1138`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L1135-L1138)*
 
 Parallel iterator over mutable slices separated by a predicate
 
@@ -2101,7 +2101,7 @@ struct SplitInclusiveMut<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:1166-1169`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L1166-L1169)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:1166-1169`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L1166-L1169)*
 
 Parallel iterator over mutable slices separated by a predicate,
 including the matched part as a terminator.
@@ -2189,25 +2189,25 @@ including the matched part as a terminator.
 trait ParallelSlice<T: Sync> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:29-199`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L29-L199)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:29-199`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L29-L199)*
 
 Parallel extensions for slices.
 
 #### Required Methods
 
-- `fn as_parallel_slice(&self) -> &[T]`
+- `fn ParallelSlice::as_parallel_slice(&self) -> &[T]`
 
   Returns a plain slice, which is used to implement the rest of the
   parallel methods.
 
 #### Provided Methods
 
-- `fn par_split<P>(&self, separator: P) -> Split<'_, T, P>`
+- `fn ParallelSlice::par_split<P>(&self, separator: P) -> Split<'_, T, P>`
 
   Returns a parallel iterator over subslices separated by elements that
   match the separator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2218,12 +2218,12 @@ Parallel extensions for slices.
   assert_eq!(products, [6, 64, 162]);
   ```
 
-- `fn par_split_inclusive<P>(&self, separator: P) -> SplitInclusive<'_, T, P>`
+- `fn ParallelSlice::par_split_inclusive<P>(&self, separator: P) -> SplitInclusive<'_, T, P>`
 
   Returns a parallel iterator over subslices separated by elements that
   match the separator, including the matched part as a terminator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2234,12 +2234,12 @@ Parallel extensions for slices.
   assert_eq!(lengths, [4, 4, 3]);
   ```
 
-- `fn par_windows(&self, window_size: usize) -> Windows<'_, T>`
+- `fn ParallelSlice::par_windows(&self, window_size: usize) -> Windows<'_, T>`
 
   Returns a parallel iterator over all contiguous windows of length
   `window_size`. The windows overlap.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2247,7 +2247,7 @@ Parallel extensions for slices.
   assert_eq!(vec![[1, 2], [2, 3]], windows);
   ```
 
-- `fn par_chunks(&self, chunk_size: usize) -> Chunks<'_, T>`
+- `fn ParallelSlice::par_chunks(&self, chunk_size: usize) -> Chunks<'_, T>`
 
   Returns a parallel iterator over at most `chunk_size` elements of
   `self` at a time. The chunks do not overlap.
@@ -2256,7 +2256,7 @@ Parallel extensions for slices.
   `chunk_size`, the last chunk may be shorter than `chunk_size`.  All
   other chunks will have that exact length.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2264,7 +2264,7 @@ Parallel extensions for slices.
   assert_eq!(chunks, vec![&[1, 2][..], &[3, 4], &[5]]);
   ```
 
-- `fn par_chunks_exact(&self, chunk_size: usize) -> ChunksExact<'_, T>`
+- `fn ParallelSlice::par_chunks_exact(&self, chunk_size: usize) -> ChunksExact<'_, T>`
 
   Returns a parallel iterator over `chunk_size` elements of
   `self` at a time. The chunks do not overlap.
@@ -2273,7 +2273,7 @@ Parallel extensions for slices.
   last up to `chunk_size-1` elements will be omitted and can be
   retrieved from the remainder function of the iterator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2281,7 +2281,7 @@ Parallel extensions for slices.
   assert_eq!(chunks, vec![&[1, 2][..], &[3, 4]]);
   ```
 
-- `fn par_rchunks(&self, chunk_size: usize) -> RChunks<'_, T>`
+- `fn ParallelSlice::par_rchunks(&self, chunk_size: usize) -> RChunks<'_, T>`
 
   Returns a parallel iterator over at most `chunk_size` elements of `self` at a time,
   starting at the end. The chunks do not overlap.
@@ -2290,7 +2290,7 @@ Parallel extensions for slices.
   `chunk_size`, the last chunk may be shorter than `chunk_size`.  All
   other chunks will have that exact length.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2298,7 +2298,7 @@ Parallel extensions for slices.
   assert_eq!(chunks, vec![&[4, 5][..], &[2, 3], &[1]]);
   ```
 
-- `fn par_rchunks_exact(&self, chunk_size: usize) -> RChunksExact<'_, T>`
+- `fn ParallelSlice::par_rchunks_exact(&self, chunk_size: usize) -> RChunksExact<'_, T>`
 
   Returns a parallel iterator over `chunk_size` elements of `self` at a time,
   starting at the end. The chunks do not overlap.
@@ -2307,7 +2307,7 @@ Parallel extensions for slices.
   last up to `chunk_size-1` elements will be omitted and can be
   retrieved from the remainder function of the iterator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2315,7 +2315,7 @@ Parallel extensions for slices.
   assert_eq!(chunks, vec![&[4, 5][..], &[2, 3]]);
   ```
 
-- `fn par_chunk_by<F>(&self, pred: F) -> ChunkBy<'_, T, F>`
+- `fn ParallelSlice::par_chunk_by<F>(&self, pred: F) -> ChunkBy<'_, T, F>`
 
   Returns a parallel iterator over the slice producing non-overlapping runs
   of elements using the predicate to separate them.
@@ -2324,7 +2324,7 @@ Parallel extensions for slices.
   it means the predicate is called on `slice[0]` and `slice[1]`
   then on `slice[1]` and `slice[2]` and so on.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2344,25 +2344,49 @@ Parallel extensions for slices.
 trait ParallelSliceMut<T: Send> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/mod.rs:209-754`](../../../.source_1765894658/rayon-1.11.0/src/slice/mod.rs#L209-L754)*
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:209-754`](../../../.source_1765900590/rayon-1.11.0/src/slice/mod.rs#L209-L754)*
 
 Parallel extensions for mutable slices.
 
+<details>
+<summary><strong>Methods (15)</strong> - click to expand</summary>
+
+**Required:**
+- [`ParallelSliceMut::as_parallel_slice_mut`](#fn-parallelslicemutas-parallel-slice-mut)
+
+**Provided:**
+- [`ParallelSliceMut::par_split_mut`](#fn-parallelslicemutpar-split-mut)
+- [`ParallelSliceMut::par_split_inclusive_mut`](#fn-parallelslicemutpar-split-inclusive-mut)
+- [`ParallelSliceMut::par_chunks_mut`](#fn-parallelslicemutpar-chunks-mut)
+- [`ParallelSliceMut::par_chunks_exact_mut`](#fn-parallelslicemutpar-chunks-exact-mut)
+- [`ParallelSliceMut::par_rchunks_mut`](#fn-parallelslicemutpar-rchunks-mut)
+- [`ParallelSliceMut::par_rchunks_exact_mut`](#fn-parallelslicemutpar-rchunks-exact-mut)
+- [`ParallelSliceMut::par_sort`](#fn-parallelslicemutpar-sort)
+- [`ParallelSliceMut::par_sort_by`](#fn-parallelslicemutpar-sort-by)
+- [`ParallelSliceMut::par_sort_by_key`](#fn-parallelslicemutpar-sort-by-key)
+- [`ParallelSliceMut::par_sort_by_cached_key`](#fn-parallelslicemutpar-sort-by-cached-key)
+- [`ParallelSliceMut::par_sort_unstable`](#fn-parallelslicemutpar-sort-unstable)
+- [`ParallelSliceMut::par_sort_unstable_by`](#fn-parallelslicemutpar-sort-unstable-by)
+- [`ParallelSliceMut::par_sort_unstable_by_key`](#fn-parallelslicemutpar-sort-unstable-by-key)
+- [`ParallelSliceMut::par_chunk_by_mut`](#fn-parallelslicemutpar-chunk-by-mut)
+
+</details>
+
 #### Required Methods
 
-- `fn as_parallel_slice_mut(&mut self) -> &mut [T]`
+- `fn ParallelSliceMut::as_parallel_slice_mut(&mut self) -> &mut [T]`
 
   Returns a plain mutable slice, which is used to implement the rest of
   the parallel methods.
 
 #### Provided Methods
 
-- `fn par_split_mut<P>(&mut self, separator: P) -> SplitMut<'_, T, P>`
+- `fn ParallelSliceMut::par_split_mut<P>(&mut self, separator: P) -> SplitMut<'_, T, P>`
 
   Returns a parallel iterator over mutable subslices separated by
   elements that match the separator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2372,12 +2396,12 @@ Parallel extensions for mutable slices.
   assert_eq!(array, [3, 2, 1, 0, 8, 4, 2, 0, 9, 6, 3]);
   ```
 
-- `fn par_split_inclusive_mut<P>(&mut self, separator: P) -> SplitInclusiveMut<'_, T, P>`
+- `fn ParallelSliceMut::par_split_inclusive_mut<P>(&mut self, separator: P) -> SplitInclusiveMut<'_, T, P>`
 
   Returns a parallel iterator over mutable subslices separated by elements
   that match the separator, including the matched part as a terminator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2387,7 +2411,7 @@ Parallel extensions for mutable slices.
   assert_eq!(array, [0, 3, 2, 1, 0, 8, 4, 2, 9, 6, 3]);
   ```
 
-- `fn par_chunks_mut(&mut self, chunk_size: usize) -> ChunksMut<'_, T>`
+- `fn ParallelSliceMut::par_chunks_mut(&mut self, chunk_size: usize) -> ChunksMut<'_, T>`
 
   Returns a parallel iterator over at most `chunk_size` elements of
   `self` at a time. The chunks are mutable and do not overlap.
@@ -2396,7 +2420,7 @@ Parallel extensions for mutable slices.
   `chunk_size`, the last chunk may be shorter than `chunk_size`.  All
   other chunks will have that exact length.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2406,7 +2430,7 @@ Parallel extensions for mutable slices.
   assert_eq!(array, [2, 1, 4, 3, 5]);
   ```
 
-- `fn par_chunks_exact_mut(&mut self, chunk_size: usize) -> ChunksExactMut<'_, T>`
+- `fn ParallelSliceMut::par_chunks_exact_mut(&mut self, chunk_size: usize) -> ChunksExactMut<'_, T>`
 
   Returns a parallel iterator over `chunk_size` elements of
   `self` at a time. The chunks are mutable and do not overlap.
@@ -2415,7 +2439,7 @@ Parallel extensions for mutable slices.
   last up to `chunk_size-1` elements will be omitted and can be
   retrieved from the remainder function of the iterator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2425,7 +2449,7 @@ Parallel extensions for mutable slices.
   assert_eq!(array, [3, 2, 1, 4, 5]);
   ```
 
-- `fn par_rchunks_mut(&mut self, chunk_size: usize) -> RChunksMut<'_, T>`
+- `fn ParallelSliceMut::par_rchunks_mut(&mut self, chunk_size: usize) -> RChunksMut<'_, T>`
 
   Returns a parallel iterator over at most `chunk_size` elements of `self` at a time,
   starting at the end. The chunks are mutable and do not overlap.
@@ -2434,7 +2458,7 @@ Parallel extensions for mutable slices.
   `chunk_size`, the last chunk may be shorter than `chunk_size`.  All
   other chunks will have that exact length.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2444,7 +2468,7 @@ Parallel extensions for mutable slices.
   assert_eq!(array, [1, 3, 2, 5, 4]);
   ```
 
-- `fn par_rchunks_exact_mut(&mut self, chunk_size: usize) -> RChunksExactMut<'_, T>`
+- `fn ParallelSliceMut::par_rchunks_exact_mut(&mut self, chunk_size: usize) -> RChunksExactMut<'_, T>`
 
   Returns a parallel iterator over `chunk_size` elements of `self` at a time,
   starting at the end. The chunks are mutable and do not overlap.
@@ -2453,7 +2477,7 @@ Parallel extensions for mutable slices.
   last up to `chunk_size-1` elements will be omitted and can be
   retrieved from the remainder function of the iterator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2463,7 +2487,7 @@ Parallel extensions for mutable slices.
   assert_eq!(array, [1, 2, 5, 4, 3]);
   ```
 
-- `fn par_sort(&mut self)`
+- `fn ParallelSliceMut::par_sort(&mut self)`
 
   Sorts the slice in parallel.
   
@@ -2473,7 +2497,7 @@ Parallel extensions for mutable slices.
   sorting and it doesn't allocate auxiliary memory.
   See [`par_sort_unstable`](#method.par_sort_unstable).
   
-  # Current implementation
+  ##### Current implementation
   
   The current algorithm is an adaptive merge sort inspired by
   [timsort](https://en.wikipedia.org/wiki/Timsort).
@@ -2488,7 +2512,7 @@ Parallel extensions for mutable slices.
   or descending runs are concatenated. Finally, the remaining chunks are merged together using
   parallel subdivision of chunks and parallel merge operation.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2499,7 +2523,7 @@ Parallel extensions for mutable slices.
   assert_eq!(v, [-5, -3, 1, 2, 4]);
   ```
 
-- `fn par_sort_by<F>(&mut self, compare: F)`
+- `fn ParallelSliceMut::par_sort_by<F>(&mut self, compare: F)`
 
   Sorts the slice in parallel with a comparator function.
   
@@ -2527,7 +2551,7 @@ Parallel extensions for mutable slices.
   sorting and it doesn't allocate auxiliary memory.
   See [`par_sort_unstable_by`](#method.par_sort_unstable_by).
   
-  # Current implementation
+  ##### Current implementation
   
   The current algorithm is an adaptive merge sort inspired by
   [timsort](https://en.wikipedia.org/wiki/Timsort).
@@ -2542,7 +2566,7 @@ Parallel extensions for mutable slices.
   or descending runs are concatenated. Finally, the remaining chunks are merged together using
   parallel subdivision of chunks and parallel merge operation.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2556,7 +2580,7 @@ Parallel extensions for mutable slices.
   assert_eq!(v, [5, 4, 3, 2, 1]);
   ```
 
-- `fn par_sort_by_key<K, F>(&mut self, f: F)`
+- `fn ParallelSliceMut::par_sort_by_key<K, F>(&mut self, f: F)`
 
   Sorts the slice in parallel with a key extraction function.
   
@@ -2571,7 +2595,7 @@ Parallel extensions for mutable slices.
   sorting and it doesn't allocate auxiliary memory.
   See [`par_sort_unstable_by_key`](#method.par_sort_unstable_by_key).
   
-  # Current implementation
+  ##### Current implementation
   
   The current algorithm is an adaptive merge sort inspired by
   [timsort](https://en.wikipedia.org/wiki/Timsort).
@@ -2586,7 +2610,7 @@ Parallel extensions for mutable slices.
   or descending runs are concatenated. Finally, the remaining chunks are merged together using
   parallel subdivision of chunks and parallel merge operation.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2597,7 +2621,7 @@ Parallel extensions for mutable slices.
   assert_eq!(v, [1, 2, -3, 4, -5]);
   ```
 
-- `fn par_sort_by_cached_key<K, F>(&mut self, f: F)`
+- `fn ParallelSliceMut::par_sort_by_cached_key<K, F>(&mut self, f: F)`
 
   Sorts the slice in parallel with a key extraction function.
   
@@ -2612,7 +2636,7 @@ Parallel extensions for mutable slices.
   basic operations), [`par_sort_by_key`](#method.par_sort_by_key) is likely to be
   faster.
   
-  # Current implementation
+  ##### Current implementation
   
   The current algorithm is based on [pattern-defeating quicksort][pdqsort] by Orson Peters,
   which combines the fast average case of randomized quicksort with the fast worst case of
@@ -2627,7 +2651,7 @@ Parallel extensions for mutable slices.
   calls. The partitioning phase is sequential, but the two recursive calls are performed in
   parallel. Finally, after sorting the cached keys, the item positions are updated sequentially.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2638,14 +2662,14 @@ Parallel extensions for mutable slices.
   assert!(v == [-3, -5, 2, 32, 4]);
   ```
 
-- `fn par_sort_unstable(&mut self)`
+- `fn ParallelSliceMut::par_sort_unstable(&mut self)`
 
   Sorts the slice in parallel, but might not preserve the order of equal elements.
   
   This sort is unstable (i.e., may reorder equal elements), in-place
   (i.e., does not allocate), and *O*(*n* \* log(*n*)) worst-case.
   
-  # Current implementation
+  ##### Current implementation
   
   The current algorithm is based on [pattern-defeating quicksort][pdqsort] by Orson Peters,
   which combines the fast average case of randomized quicksort with the fast worst case of
@@ -2660,7 +2684,7 @@ Parallel extensions for mutable slices.
   calls. The partitioning phase is sequential, but the two recursive calls are performed in
   parallel.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2671,7 +2695,7 @@ Parallel extensions for mutable slices.
   assert_eq!(v, [-5, -3, 1, 2, 4]);
   ```
 
-- `fn par_sort_unstable_by<F>(&mut self, compare: F)`
+- `fn ParallelSliceMut::par_sort_unstable_by<F>(&mut self, compare: F)`
 
   Sorts the slice in parallel with a comparator function, but might not preserve the order of
   equal elements.
@@ -2697,7 +2721,7 @@ Parallel extensions for mutable slices.
   assert_eq!(floats, [1.0, 2.0, 3.0, 4.0, 5.0]);
   ```
   
-  # Current implementation
+  ##### Current implementation
   
   The current algorithm is based on [pattern-defeating quicksort][pdqsort] by Orson Peters,
   which combines the fast average case of randomized quicksort with the fast worst case of
@@ -2712,7 +2736,7 @@ Parallel extensions for mutable slices.
   calls. The partitioning phase is sequential, but the two recursive calls are performed in
   parallel.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2726,7 +2750,7 @@ Parallel extensions for mutable slices.
   assert_eq!(v, [5, 4, 3, 2, 1]);
   ```
 
-- `fn par_sort_unstable_by_key<K, F>(&mut self, f: F)`
+- `fn ParallelSliceMut::par_sort_unstable_by_key<K, F>(&mut self, f: F)`
 
   Sorts the slice in parallel with a key extraction function, but might not preserve the order
   of equal elements.
@@ -2735,7 +2759,7 @@ Parallel extensions for mutable slices.
   (i.e., does not allocate), and *O*(m \* *n* \* log(*n*)) worst-case,
   where the key function is *O*(*m*).
   
-  # Current implementation
+  ##### Current implementation
   
   The current algorithm is based on [pattern-defeating quicksort][pdqsort] by Orson Peters,
   which combines the fast average case of randomized quicksort with the fast worst case of
@@ -2751,7 +2775,7 @@ Parallel extensions for mutable slices.
   calls. The partitioning phase is sequential, but the two recursive calls are performed in
   parallel.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;
@@ -2762,7 +2786,7 @@ Parallel extensions for mutable slices.
   assert_eq!(v, [1, 2, -3, 4, -5]);
   ```
 
-- `fn par_chunk_by_mut<F>(&mut self, pred: F) -> ChunkByMut<'_, T, F>`
+- `fn ParallelSliceMut::par_chunk_by_mut<F>(&mut self, pred: F) -> ChunkByMut<'_, T, F>`
 
   Returns a parallel iterator over the slice producing non-overlapping mutable
   runs of elements using the predicate to separate them.
@@ -2771,7 +2795,7 @@ Parallel extensions for mutable slices.
   it means the predicate is called on `slice[0]` and `slice[1]`
   then on `slice[1]` and `slice[2]` and so on.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rayon::prelude::*;

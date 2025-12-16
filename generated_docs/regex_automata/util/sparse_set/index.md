@@ -38,7 +38,7 @@ struct SparseSets {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:36-39`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/sparse_set.rs#L36-L39)*
+*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:36-39`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/sparse_set.rs#L36-L39)*
 
 A pair of sparse sets.
 
@@ -153,7 +153,7 @@ struct SparseSet {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:91-106`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/sparse_set.rs#L91-L106)*
+*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:91-106`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/sparse_set.rs#L91-L106)*
 
 A sparse set used for representing ordered NFA states.
 
@@ -317,7 +317,7 @@ other properties listed above are extremely useful.
 struct SparseSetIter<'a>(core::slice::Iter<'a, crate::util::primitives::StateID>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:230`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/sparse_set.rs#L230)*
+*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:230`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/sparse_set.rs#L230)*
 
 An iterator over all elements in a sparse set.
 

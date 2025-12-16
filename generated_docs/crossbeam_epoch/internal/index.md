@@ -62,7 +62,7 @@ struct Bag {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:63-67`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L63-L67)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:63-67`](../../../.source_1765900590/crossbeam-epoch-0.9.18/src/internal.rs#L63-L67)*
 
 A bag of deferred functions.
 
@@ -89,7 +89,7 @@ A bag of deferred functions.
   Returns `Ok(())` if successful, and `Err(deferred)` for the given `deferred` if the bag is
   full.
   
-  # Safety
+  ##### Safety
   
   It should be safe for another thread to execute the given function.
 
@@ -175,7 +175,7 @@ struct SealedBag {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:138-141`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L138-L141)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:138-141`](../../../.source_1765900590/crossbeam-epoch-0.9.18/src/internal.rs#L138-L141)*
 
 A pair of an epoch and a bag.
 
@@ -260,7 +260,7 @@ struct Global {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:156-165`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L156-L165)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:156-165`](../../../.source_1765900590/crossbeam-epoch-0.9.18/src/internal.rs#L156-L165)*
 
 The global data for a garbage collector.
 
@@ -380,7 +380,7 @@ struct Local {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:271-296`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L271-L296)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:271-296`](../../../.source_1765900590/crossbeam-epoch-0.9.18/src/internal.rs#L271-L296)*
 
 Participant for garbage collection.
 
@@ -442,7 +442,7 @@ Participant for garbage collection.
 
   Adds `deferred` to the thread-local bag.
   
-  # Safety
+  ##### Safety
   
   It should be safe for another thread to execute the given function.
 
@@ -542,7 +542,7 @@ Participant for garbage collection.
 const MAX_OBJECTS: usize = 64usize;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:57`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L57)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:57`](../../../.source_1765900590/crossbeam-epoch-0.9.18/src/internal.rs#L57)*
 
 Maximum number of objects a bag can contain.
 

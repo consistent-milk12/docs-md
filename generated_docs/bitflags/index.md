@@ -294,7 +294,7 @@ struct Flag<B> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:15-18`](../../.source_1765894658/bitflags-2.10.0/src/traits.rs#L15-L18)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:15-18`](../../.source_1765900590/bitflags-2.10.0/src/traits.rs#L15-L18)*
 
 A defined flags value that may be named or unnamed.
 
@@ -386,7 +386,7 @@ A defined flags value that may be named or unnamed.
 trait Bits: Clone + Copy + PartialEq + BitAnd<Output = Self> + BitOr<Output = Self> + BitXor<Output = Self> + Not<Output = Self> + Sized + 'static { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:346-362`](../../.source_1765894658/bitflags-2.10.0/src/traits.rs#L346-L362)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:346-362`](../../.source_1765900590/bitflags-2.10.0/src/traits.rs#L346-L362)*
 
 A bits type that can be used as storage for a flags type.
 
@@ -417,7 +417,7 @@ A bits type that can be used as storage for a flags type.
 trait Flags: Sized + 'static { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:132-341`](../../.source_1765894658/bitflags-2.10.0/src/traits.rs#L132-L341)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:132-341`](../../.source_1765900590/bitflags-2.10.0/src/traits.rs#L132-L341)*
 
 A set of defined flags using a bits type as storage.
 
@@ -485,6 +485,41 @@ bitflags! {
 assert_eq!(3, defined_flags::<MyFlags>());
 ```
 
+<details>
+<summary><strong>Methods (26)</strong> - click to expand</summary>
+
+**Required:**
+- [`Flags::bits`](#fn-flagsbits)
+- [`Flags::from_bits_retain`](#fn-flagsfrom-bits-retain)
+
+**Provided:**
+- [`Flags::empty`](#fn-flagsempty)
+- [`Flags::all`](#fn-flagsall)
+- [`Flags::contains_unknown_bits`](#fn-flagscontains-unknown-bits)
+- [`Flags::from_bits`](#fn-flagsfrom-bits)
+- [`Flags::from_bits_truncate`](#fn-flagsfrom-bits-truncate)
+- [`Flags::from_name`](#fn-flagsfrom-name)
+- [`Flags::iter`](#fn-flagsiter)
+- [`Flags::iter_names`](#fn-flagsiter-names)
+- [`Flags::iter_defined_names`](#fn-flagsiter-defined-names)
+- [`Flags::is_empty`](#fn-flagsis-empty)
+- [`Flags::is_all`](#fn-flagsis-all)
+- [`Flags::intersects`](#fn-flagsintersects)
+- [`Flags::contains`](#fn-flagscontains)
+- [`Flags::truncate`](#fn-flagstruncate)
+- [`Flags::insert`](#fn-flagsinsert)
+- [`Flags::remove`](#fn-flagsremove)
+- [`Flags::toggle`](#fn-flagstoggle)
+- [`Flags::set`](#fn-flagsset)
+- [`Flags::clear`](#fn-flagsclear)
+- [`Flags::intersection`](#fn-flagsintersection)
+- [`Flags::union`](#fn-flagsunion)
+- [`Flags::difference`](#fn-flagsdifference)
+- [`Flags::symmetric_difference`](#fn-flagssymmetric-difference)
+- [`Flags::complement`](#fn-flagscomplement)
+
+</details>
+
 #### Associated Types
 
 - `type Bits: 1`
@@ -495,128 +530,128 @@ assert_eq!(3, defined_flags::<MyFlags>());
 
 #### Required Methods
 
-- `fn bits(&self) -> <Self as >::Bits`
+- `fn Flags::bits(&self) -> <Self as >::Bits`
 
   Get the underlying bits value.
   
   The returned value is exactly the bits set in this flags value.
 
-- `fn from_bits_retain(bits: <Self as >::Bits) -> Self`
+- `fn Flags::from_bits_retain(bits: <Self as >::Bits) -> Self`
 
   Convert from a bits value exactly.
 
 #### Provided Methods
 
-- `fn empty() -> Self`
+- `fn Flags::empty() -> Self`
 
   Get a flags value with all bits unset.
 
-- `fn all() -> Self`
+- `fn Flags::all() -> Self`
 
   Get a flags value with all known bits set.
 
-- `fn contains_unknown_bits(&self) -> bool`
+- `fn Flags::contains_unknown_bits(&self) -> bool`
 
   This method will return `true` if any unknown bits are set.
 
-- `fn from_bits(bits: <Self as >::Bits) -> Option<Self>`
+- `fn Flags::from_bits(bits: <Self as >::Bits) -> Option<Self>`
 
   Convert from a bits value.
   
   This method will return `None` if any unknown bits are set.
 
-- `fn from_bits_truncate(bits: <Self as >::Bits) -> Self`
+- `fn Flags::from_bits_truncate(bits: <Self as >::Bits) -> Self`
 
   Convert from a bits value, unsetting any unknown bits.
 
-- `fn from_name(name: &str) -> Option<Self>`
+- `fn Flags::from_name(name: &str) -> Option<Self>`
 
   Get a flags value with the bits of a flag with the given name set.
   
   This method will return `None` if `name` is empty or doesn't
   correspond to any named flag.
 
-- `fn iter(&self) -> iter::Iter<Self>`
+- `fn Flags::iter(&self) -> iter::Iter<Self>`
 
   Yield a set of contained flags values.
   
   Each yielded flags value will correspond to a defined named flag. Any unknown bits
   will be yielded together as a final flags value.
 
-- `fn iter_names(&self) -> iter::IterNames<Self>`
+- `fn Flags::iter_names(&self) -> iter::IterNames<Self>`
 
   Yield a set of contained named flags values.
   
   This method is like `Flags::iter`, except only yields bits in contained named flags.
   Any unknown bits, or bits not corresponding to a contained flag will not be yielded.
 
-- `fn iter_defined_names() -> iter::IterDefinedNames<Self>`
+- `fn Flags::iter_defined_names() -> iter::IterDefinedNames<Self>`
 
   Yield a set of all named flags defined by `Self::FLAGS`.
 
-- `fn is_empty(&self) -> bool`
+- `fn Flags::is_empty(&self) -> bool`
 
   Whether all bits in this flags value are unset.
 
-- `fn is_all(&self) -> bool`
+- `fn Flags::is_all(&self) -> bool`
 
   Whether all known bits in this flags value are set.
 
-- `fn intersects(&self, other: Self) -> bool`
+- `fn Flags::intersects(&self, other: Self) -> bool`
 
   Whether any set bits in a source flags value are also set in a target flags value.
 
-- `fn contains(&self, other: Self) -> bool`
+- `fn Flags::contains(&self, other: Self) -> bool`
 
   Whether all set bits in a source flags value are also set in a target flags value.
 
-- `fn truncate(&mut self)`
+- `fn Flags::truncate(&mut self)`
 
   Remove any unknown bits from the flags.
 
-- `fn insert(&mut self, other: Self)`
+- `fn Flags::insert(&mut self, other: Self)`
 
   The bitwise or (`|`) of the bits in two flags values.
 
-- `fn remove(&mut self, other: Self)`
+- `fn Flags::remove(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
   
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
   `remove` won't truncate `other`, but the `!` operator will.
 
-- `fn toggle(&mut self, other: Self)`
+- `fn Flags::toggle(&mut self, other: Self)`
 
   The bitwise exclusive-or (`^`) of the bits in two flags values.
 
-- `fn set(&mut self, other: Self, value: bool)`
+- `fn Flags::set(&mut self, other: Self, value: bool)`
 
   Call `Flags::insert` when `value` is `true` or `Flags::remove` when `value` is `false`.
 
-- `fn clear(&mut self)`
+- `fn Flags::clear(&mut self)`
 
   Unsets all bits in the flags.
 
-- `fn intersection(self, other: Self) -> Self`
+- `fn Flags::intersection(self, other: Self) -> Self`
 
   The bitwise and (`&`) of the bits in two flags values.
 
-- `fn union(self, other: Self) -> Self`
+- `fn Flags::union(self, other: Self) -> Self`
 
   The bitwise or (`|`) of the bits in two flags values.
 
-- `fn difference(self, other: Self) -> Self`
+- `fn Flags::difference(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
   
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
   `difference` won't truncate `other`, but the `!` operator will.
 
-- `fn symmetric_difference(self, other: Self) -> Self`
+- `fn Flags::symmetric_difference(self, other: Self) -> Self`
 
   The bitwise exclusive-or (`^`) of the bits in two flags values.
 
-- `fn complement(self) -> Self`
+- `fn Flags::complement(self) -> Self`
 
   The bitwise negation (`!`) of the bits in a flags value, truncating the result.
 
@@ -624,7 +659,7 @@ assert_eq!(3, defined_flags::<MyFlags>());
 
 ### `bitflags!`
 
-*Defined in [`bitflags-2.10.0/src/lib.rs:456-597`](../../.source_1765894658/bitflags-2.10.0/src/lib.rs#L456-L597)*
+*Defined in [`bitflags-2.10.0/src/lib.rs:456-597`](../../.source_1765900590/bitflags-2.10.0/src/lib.rs#L456-L597)*
 
 Generate a flags type.
 
@@ -754,7 +789,7 @@ bitflags! {
 
 ### `bitflags_match!`
 
-*Defined in [`bitflags-2.10.0/src/lib.rs:817-827`](../../.source_1765894658/bitflags-2.10.0/src/lib.rs#L817-L827)*
+*Defined in [`bitflags-2.10.0/src/lib.rs:817-827`](../../.source_1765900590/bitflags-2.10.0/src/lib.rs#L817-L827)*
 
 A macro that matches flags values, similar to Rust's `match` statement.
 

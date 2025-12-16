@@ -296,7 +296,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 struct Error(&'static str);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:116`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L116)*
+*Defined in [`object-0.37.3/src/read/mod.rs:116`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L116)*
 
 The error type used within the read module.
 
@@ -387,7 +387,7 @@ The error type used within the read module.
 struct SectionIndex(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:389`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L389)*
+*Defined in [`object-0.37.3/src/read/mod.rs:389`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L389)*
 
 The index used to identify a section in a file.
 
@@ -480,7 +480,7 @@ The index used to identify a section in a file.
 struct SymbolIndex(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:399`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L399)*
+*Defined in [`object-0.37.3/src/read/mod.rs:399`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L399)*
 
 The index used to identify a symbol in a symbol table.
 
@@ -575,7 +575,7 @@ struct SymbolMap<T: SymbolMapEntry> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:451-453`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L451-L453)*
+*Defined in [`object-0.37.3/src/read/mod.rs:451-453`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L451-L453)*
 
 A map from addresses to symbol information.
 
@@ -673,7 +673,7 @@ struct SymbolMapName<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:485-488`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L485-L488)*
+*Defined in [`object-0.37.3/src/read/mod.rs:485-488`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L485-L488)*
 
 The type used for entries in a [`SymbolMap`](../index.md) that maps from addresses to names.
 
@@ -779,7 +779,7 @@ struct ObjectMap<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:522-525`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L522-L525)*
+*Defined in [`object-0.37.3/src/read/mod.rs:522-525`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L522-L525)*
 
 A map from addresses to symbol names and object files.
 
@@ -877,7 +877,7 @@ struct ObjectMapEntry<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:550-555`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L550-L555)*
+*Defined in [`object-0.37.3/src/read/mod.rs:550-555`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L550-L555)*
 
 A symbol in an [`ObjectMap`](../index.md).
 
@@ -997,7 +997,7 @@ struct ObjectMapFile<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:600-603`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L600-L603)*
+*Defined in [`object-0.37.3/src/read/mod.rs:600-603`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L600-L603)*
 
 An object file name in an [`ObjectMap`](../index.md).
 
@@ -1097,7 +1097,7 @@ struct Import<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:628-632`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L628-L632)*
+*Defined in [`object-0.37.3/src/read/mod.rs:628-632`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L628-L632)*
 
 An imported symbol.
 
@@ -1193,7 +1193,7 @@ struct Export<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:652-656`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L652-L656)*
+*Defined in [`object-0.37.3/src/read/mod.rs:652-656`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L652-L656)*
 
 An exported symbol.
 
@@ -1290,7 +1290,7 @@ struct CodeView<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:674-678`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L674-L678)*
+*Defined in [`object-0.37.3/src/read/mod.rs:674-678`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L674-L678)*
 
 PDB information from the debug directory in a PE file.
 
@@ -1393,7 +1393,7 @@ struct Relocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:716-724`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L716-L724)*
+*Defined in [`object-0.37.3/src/read/mod.rs:716-724`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L716-L724)*
 
 A relocation entry.
 
@@ -1490,7 +1490,7 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 struct RelocationMap(alloc::collections::btree_map::BTreeMap<u64, RelocationMapEntry>);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:790`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L790)*
+*Defined in [`object-0.37.3/src/read/mod.rs:790`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L790)*
 
 A map from section offsets to relocation information.
 
@@ -1576,7 +1576,7 @@ struct RelocationMapEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:871-874`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L871-L874)*
+*Defined in [`object-0.37.3/src/read/mod.rs:871-874`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L871-L874)*
 
 #### Trait Implementations
 
@@ -1664,7 +1664,7 @@ struct CompressedFileRange {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:898-907`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L898-L907)*
+*Defined in [`object-0.37.3/src/read/mod.rs:898-907`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L898-L907)*
 
 A range in a file that may be compressed.
 
@@ -1783,7 +1783,7 @@ struct CompressedData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:947-954`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L947-L954)*
+*Defined in [`object-0.37.3/src/read/mod.rs:947-954`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L947-L954)*
 
 Data that may be compressed.
 
@@ -1900,7 +1900,7 @@ struct ReadCache<R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L31-L33)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../.source_1765900590/object-0.37.3/src/read/read_cache.rs#L31-L33)*
 
 An implementation of [`ReadRef`](#readref) for data in a stream that implements
 `Read + Seek`.
@@ -1999,7 +1999,7 @@ struct ReadCacheInternal<R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L36-L41)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../.source_1765900590/object-0.37.3/src/read/read_cache.rs#L36-L41)*
 
 #### Implementations
 
@@ -2066,7 +2066,7 @@ struct ReadCacheRange<'a, R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L172-L176)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../.source_1765900590/object-0.37.3/src/read/read_cache.rs#L172-L176)*
 
 An implementation of [`ReadRef`](#readref) for a range of data in a stream that
 implements `Read + Seek`.
@@ -2150,7 +2150,7 @@ Shares an underlying [`ReadCache`](#readcache) with a lifetime of `'a`.
 struct Bytes<'data>(&'data [u8]);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L16)*
+*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../.source_1765900590/object-0.37.3/src/read/util.rs#L16)*
 
 A newtype for byte slices.
 
@@ -2321,7 +2321,7 @@ It has these important features:
 struct DebugByte(u8);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L222)*
+*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../.source_1765900590/object-0.37.3/src/read/util.rs#L222)*
 
 #### Trait Implementations
 
@@ -2374,7 +2374,7 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L230)*
+*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../.source_1765900590/object-0.37.3/src/read/util.rs#L230)*
 
 #### Trait Implementations
 
@@ -2427,7 +2427,7 @@ struct DebugLen(usize);
 struct ByteString<'data>(&'data [u8]);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L244)*
+*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../.source_1765900590/object-0.37.3/src/read/util.rs#L244)*
 
 A newtype for byte strings.
 
@@ -2523,7 +2523,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L274-L282)*
+*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../.source_1765900590/object-0.37.3/src/read/util.rs#L274-L282)*
 
 A table of zero-terminated strings.
 
@@ -2614,7 +2614,7 @@ struct SegmentIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L532-L534)*
+*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L532-L534)*
 
 An iterator for the loadable segments in a [`File`](#file).
 
@@ -2685,7 +2685,7 @@ struct Segment<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L574-L576)*
+*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L574-L576)*
 
 A loadable segment in a [`File`](#file).
 
@@ -2766,7 +2766,7 @@ struct SectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L665-L667)*
+*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L665-L667)*
 
 An iterator for the sections in a [`File`](#file).
 
@@ -2837,7 +2837,7 @@ struct Section<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L708-L710)*
+*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L708-L710)*
 
 A section in a [`File`](#file).
 
@@ -2936,7 +2936,7 @@ struct ComdatIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L843-L845)*
+*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L843-L845)*
 
 An iterator for the COMDAT section groups in a [`File`](#file).
 
@@ -3007,7 +3007,7 @@ struct Comdat<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L885-L887)*
+*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L885-L887)*
 
 A COMDAT section group in a [`File`](#file).
 
@@ -3082,7 +3082,7 @@ struct ComdatSectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L959-L961)*
+*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L959-L961)*
 
 An iterator for the sections in a [`Comdat`](#comdat).
 
@@ -3155,7 +3155,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1001-L1006)*
+*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1001-L1006)*
 
 A symbol table in a [`File`](#file).
 
@@ -3228,7 +3228,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1085-L1090)*
+*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1085-L1090)*
 
 An iterator for the symbols in a [`SymbolTable`](#symboltable).
 
@@ -3301,7 +3301,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1165-L1170)*
+*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1165-L1170)*
 
 An symbol in a [`SymbolTable`](#symboltable).
 
@@ -3396,7 +3396,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1301-L1306)*
+*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1301-L1306)*
 
 An iterator for the dynamic relocation entries in a [`File`](#file).
 
@@ -3467,7 +3467,7 @@ struct SectionRelocationIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1338-L1340)*
+*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1338-L1340)*
 
 An iterator for the relocation entries in a [`Section`](#section).
 
@@ -3536,7 +3536,7 @@ An iterator for the relocation entries in a [`Section`](#section).
 struct NoDynamicRelocationIterator;
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:580`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L580)*
+*Defined in [`object-0.37.3/src/read/traits.rs:580`](../../../.source_1765900590/object-0.37.3/src/read/traits.rs#L580)*
 
 An iterator for files that don't have dynamic relocations.
 
@@ -3623,7 +3623,7 @@ enum FileKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:198-281`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L198-L281)*
+*Defined in [`object-0.37.3/src/read/mod.rs:198-281`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L198-L281)*
 
 A file format kind.
 
@@ -3818,7 +3818,7 @@ enum ObjectKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:374-385`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L374-L385)*
+*Defined in [`object-0.37.3/src/read/mod.rs:374-385`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L374-L385)*
 
 An object kind.
 
@@ -3934,7 +3934,7 @@ enum SymbolSection {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:410-423`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L410-L423)*
+*Defined in [`object-0.37.3/src/read/mod.rs:410-423`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L410-L423)*
 
 The section where an [`ObjectSymbol`](#objectsymbol) is defined.
 
@@ -4057,7 +4057,7 @@ enum RelocationTarget {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:703-710`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L703-L710)*
+*Defined in [`object-0.37.3/src/read/mod.rs:703-710`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L703-L710)*
 
 The target referenced by a [`Relocation`](../index.md).
 
@@ -4161,7 +4161,7 @@ enum CompressionFormat {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:879-892`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L879-L892)*
+*Defined in [`object-0.37.3/src/read/mod.rs:879-892`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L879-L892)*
 
 A data compression format.
 
@@ -4305,7 +4305,7 @@ enum Architecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:5-45`](../../../.source_1765894658/object-0.37.3/src/common.rs#L5-L45)*
+*Defined in [`object-0.37.3/src/common.rs:5-45`](../../../.source_1765900590/object-0.37.3/src/common.rs#L5-L45)*
 
 A CPU architecture.
 
@@ -4401,7 +4401,7 @@ enum SubArchitecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:51-54`](../../../.source_1765894658/object-0.37.3/src/common.rs#L51-L54)*
+*Defined in [`object-0.37.3/src/common.rs:51-54`](../../../.source_1765900590/object-0.37.3/src/common.rs#L51-L54)*
 
 A CPU sub-architecture.
 
@@ -4491,7 +4491,7 @@ enum AddressSize {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:109-114`](../../../.source_1765894658/object-0.37.3/src/common.rs#L109-L114)*
+*Defined in [`object-0.37.3/src/common.rs:109-114`](../../../.source_1765900590/object-0.37.3/src/common.rs#L109-L114)*
 
 The size of an address value for an architecture.
 
@@ -4591,7 +4591,7 @@ enum BinaryFormat {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:128-135`](../../../.source_1765894658/object-0.37.3/src/common.rs#L128-L135)*
+*Defined in [`object-0.37.3/src/common.rs:128-135`](../../../.source_1765900590/object-0.37.3/src/common.rs#L128-L135)*
 
 A binary file format.
 
@@ -4704,7 +4704,7 @@ enum SectionKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:155-247`](../../../.source_1765894658/object-0.37.3/src/common.rs#L155-L247)*
+*Defined in [`object-0.37.3/src/common.rs:155-247`](../../../.source_1765900590/object-0.37.3/src/common.rs#L155-L247)*
 
 The kind of a section.
 
@@ -4934,7 +4934,7 @@ enum ComdatKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:264-291`](../../../.source_1765894658/object-0.37.3/src/common.rs#L264-L291)*
+*Defined in [`object-0.37.3/src/common.rs:264-291`](../../../.source_1765900590/object-0.37.3/src/common.rs#L264-L291)*
 
 The selection kind for a COMDAT section group.
 
@@ -5072,7 +5072,7 @@ enum SymbolKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:296-311`](../../../.source_1765894658/object-0.37.3/src/common.rs#L296-L311)*
+*Defined in [`object-0.37.3/src/common.rs:296-311`](../../../.source_1765900590/object-0.37.3/src/common.rs#L296-L311)*
 
 The kind of a symbol.
 
@@ -5192,7 +5192,7 @@ enum SymbolScope {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:315-324`](../../../.source_1765894658/object-0.37.3/src/common.rs#L315-L324)*
+*Defined in [`object-0.37.3/src/common.rs:315-324`](../../../.source_1765900590/object-0.37.3/src/common.rs#L315-L324)*
 
 A symbol scope.
 
@@ -5307,7 +5307,7 @@ enum RelocationKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:343-366`](../../../.source_1765894658/object-0.37.3/src/common.rs#L343-L366)*
+*Defined in [`object-0.37.3/src/common.rs:343-366`](../../../.source_1765900590/object-0.37.3/src/common.rs#L343-L366)*
 
 The operation used to calculate the result of the relocation.
 
@@ -5466,7 +5466,7 @@ enum RelocationEncoding {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:374-447`](../../../.source_1765894658/object-0.37.3/src/common.rs#L374-L447)*
+*Defined in [`object-0.37.3/src/common.rs:374-447`](../../../.source_1765900590/object-0.37.3/src/common.rs#L374-L447)*
 
 Information about how the result of the relocation operation is encoded in the place.
 
@@ -5662,7 +5662,7 @@ enum FileFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:452-479`](../../../.source_1765894658/object-0.37.3/src/common.rs#L452-L479)*
+*Defined in [`object-0.37.3/src/common.rs:452-479`](../../../.source_1765900590/object-0.37.3/src/common.rs#L452-L479)*
 
 File flags that are specific to each file format.
 
@@ -5782,7 +5782,7 @@ enum SegmentFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:484-506`](../../../.source_1765894658/object-0.37.3/src/common.rs#L484-L506)*
+*Defined in [`object-0.37.3/src/common.rs:484-506`](../../../.source_1765900590/object-0.37.3/src/common.rs#L484-L506)*
 
 Segment flags that are specific to each file format.
 
@@ -5899,7 +5899,7 @@ enum SectionFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:511-534`](../../../.source_1765894658/object-0.37.3/src/common.rs#L511-L534)*
+*Defined in [`object-0.37.3/src/common.rs:511-534`](../../../.source_1765900590/object-0.37.3/src/common.rs#L511-L534)*
 
 Section flags that are specific to each file format.
 
@@ -6025,7 +6025,7 @@ enum SymbolFlags<Section, Symbol> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:539-578`](../../../.source_1765894658/object-0.37.3/src/common.rs#L539-L578)*
+*Defined in [`object-0.37.3/src/common.rs:539-578`](../../../.source_1765900590/object-0.37.3/src/common.rs#L539-L578)*
 
 Symbol flags that are specific to each file format.
 
@@ -6153,7 +6153,7 @@ enum RelocationFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:583-619`](../../../.source_1765894658/object-0.37.3/src/common.rs#L583-L619)*
+*Defined in [`object-0.37.3/src/common.rs:583-619`](../../../.source_1765900590/object-0.37.3/src/common.rs#L583-L619)*
 
 Relocation fields that are specific to each file format and architecture.
 
@@ -6271,7 +6271,7 @@ enum File<'data, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L213-L236)*
+*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L213-L236)*
 
 An object file that can be any supported file format.
 
@@ -6435,7 +6435,7 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L537-L560)*
+*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L537-L560)*
 
 #### Trait Implementations
 
@@ -6499,7 +6499,7 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L579-L602)*
+*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L579-L602)*
 
 #### Trait Implementations
 
@@ -6563,7 +6563,7 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L671-L694)*
+*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L671-L694)*
 
 #### Trait Implementations
 
@@ -6627,7 +6627,7 @@ enum SectionInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L712-L735)*
+*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L712-L735)*
 
 #### Trait Implementations
 
@@ -6687,7 +6687,7 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L848-L871)*
+*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L848-L871)*
 
 #### Trait Implementations
 
@@ -6751,7 +6751,7 @@ enum ComdatInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L889-L912)*
+*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L889-L912)*
 
 #### Trait Implementations
 
@@ -6811,7 +6811,7 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L964-L987)*
+*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L964-L987)*
 
 #### Trait Implementations
 
@@ -6877,7 +6877,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1009-L1055)*
+*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1009-L1055)*
 
 #### Trait Implementations
 
@@ -6943,7 +6943,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1093-L1149)*
+*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1093-L1149)*
 
 #### Trait Implementations
 
@@ -7009,7 +7009,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1172-L1218)*
+*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1172-L1218)*
 
 #### Trait Implementations
 
@@ -7064,7 +7064,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1309-L1320)*
+*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1309-L1320)*
 
 #### Trait Implementations
 
@@ -7128,7 +7128,7 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1343-L1366)*
+*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L1343-L1366)*
 
 #### Trait Implementations
 
@@ -7183,11 +7183,11 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 trait ReadError<T> { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:133-135`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L133-L135)*
+*Defined in [`object-0.37.3/src/read/mod.rs:133-135`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L133-L135)*
 
 #### Required Methods
 
-- `fn read_error(self, error: &'static str) -> Result<T>`
+- `fn ReadError::read_error(self, error: &'static str) -> Result<T>`
 
 #### Implementors
 
@@ -7201,13 +7201,13 @@ trait ReadError<T> { ... }
 trait SymbolMapEntry { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:440-443`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L440-L443)*
+*Defined in [`object-0.37.3/src/read/mod.rs:440-443`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L440-L443)*
 
 An entry in a [`SymbolMap`](../index.md).
 
 #### Required Methods
 
-- `fn address(&self) -> u64`
+- `fn SymbolMapEntry::address(&self) -> u64`
 
   The symbol address.
 
@@ -7222,7 +7222,7 @@ An entry in a [`SymbolMap`](../index.md).
 trait ReadRef<'a>: Clone + Copy { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_ref.rs:49-124`](../../../.source_1765894658/object-0.37.3/src/read/read_ref.rs#L49-L124)*
+*Defined in [`object-0.37.3/src/read/read_ref.rs:49-124`](../../../.source_1765900590/object-0.37.3/src/read/read_ref.rs#L49-L124)*
 
 A trait for reading references to [`Pod`](../index.md) types from a block of data.
 
@@ -7261,17 +7261,17 @@ the size that was read.
 
 #### Required Methods
 
-- `fn len(self) -> result::Result<u64, ()>`
+- `fn ReadRef::len(self) -> result::Result<u64, ()>`
 
   The total size of the block of data.
 
-- `fn read_bytes_at(self, offset: u64, size: u64) -> result::Result<&'a [u8], ()>`
+- `fn ReadRef::read_bytes_at(self, offset: u64, size: u64) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a `u8` slice at the given offset.
   
   Returns an error if offset or size are out of bounds.
 
-- `fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> result::Result<&'a [u8], ()>`
+- `fn ReadRef::read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a delimited `u8` slice which starts at range.start.
   
@@ -7282,13 +7282,13 @@ the size that was read.
 
 #### Provided Methods
 
-- `fn read_bytes(self, offset: &mut u64, size: u64) -> result::Result<&'a [u8], ()>`
+- `fn ReadRef::read_bytes(self, offset: &mut u64, size: u64) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a `u8` slice at the given offset, and update the offset.
   
   Returns an error if offset or size are out of bounds.
 
-- `fn read<T: Pod>(self, offset: &mut u64) -> result::Result<&'a T, ()>`
+- `fn ReadRef::read<T: Pod>(self, offset: &mut u64) -> result::Result<&'a T, ()>`
 
   Get a reference to a `Pod` type at the given offset, and update the offset.
   
@@ -7300,7 +7300,7 @@ the size that was read.
   the alignment can be satisfied. Alternatively, only use this method with
   types that do not need alignment (see the `unaligned` feature of this crate).
 
-- `fn read_at<T: Pod>(self, offset: u64) -> result::Result<&'a T, ()>`
+- `fn ReadRef::read_at<T: Pod>(self, offset: u64) -> result::Result<&'a T, ()>`
 
   Get a reference to a `Pod` type at the given offset.
   
@@ -7308,7 +7308,7 @@ the size that was read.
   
   Also see the `read` method for information regarding alignment of `T`.
 
-- `fn read_slice<T: Pod>(self, offset: &mut u64, count: usize) -> result::Result<&'a [T], ()>`
+- `fn ReadRef::read_slice<T: Pod>(self, offset: &mut u64, count: usize) -> result::Result<&'a [T], ()>`
 
   Get a reference to a slice of a `Pod` type at the given offset, and update the offset.
   
@@ -7316,7 +7316,7 @@ the size that was read.
   
   Also see the `read` method for information regarding alignment of `T`.
 
-- `fn read_slice_at<T: Pod>(self, offset: u64, count: usize) -> result::Result<&'a [T], ()>`
+- `fn ReadRef::read_slice_at<T: Pod>(self, offset: u64, count: usize) -> result::Result<&'a [T], ()>`
 
   Get a reference to a slice of a `Pod` type at the given offset.
   
@@ -7336,7 +7336,7 @@ the size that was read.
 trait ReadCacheOps { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L222-L242)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../.source_1765900590/object-0.37.3/src/read/read_cache.rs#L222-L242)*
 
 Operations required to implement [`ReadCache`](#readcache).
 
@@ -7346,25 +7346,25 @@ A blanket implementation is provided for all types that implement
 
 #### Required Methods
 
-- `fn len(&mut self) -> Result<u64, ()>`
+- `fn ReadCacheOps::len(&mut self) -> Result<u64, ()>`
 
   Return the length of the stream.
   
   Equivalent to `std::io::Seek::seek(SeekFrom::End(0))`.
 
-- `fn seek(&mut self, pos: u64) -> Result<u64, ()>`
+- `fn ReadCacheOps::seek(&mut self, pos: u64) -> Result<u64, ()>`
 
   Seek to the given position in the stream.
   
   Equivalent to `std::io::Seek::seek` with `SeekFrom::Start(pos)`.
 
-- `fn read(&mut self, buf: &mut [u8]) -> Result<usize, ()>`
+- `fn ReadCacheOps::read(&mut self, buf: &mut [u8]) -> Result<usize, ()>`
 
   Read up to `buf.len()` bytes into `buf`.
   
   Equivalent to `std::io::Read::read`.
 
-- `fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), ()>`
+- `fn ReadCacheOps::read_exact(&mut self, buf: &mut [u8]) -> Result<(), ()>`
 
   Read exactly `buf.len()` bytes into `buf`.
   
@@ -7376,11 +7376,53 @@ A blanket implementation is provided for all types that implement
 trait Object<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:15-335`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L15-L335)*
+*Defined in [`object-0.37.3/src/read/traits.rs:15-335`](../../../.source_1765900590/object-0.37.3/src/read/traits.rs#L15-L335)*
 
 An object file.
 
 This is the primary trait for the unified read API.
+
+<details>
+<summary><strong>Methods (33)</strong> - click to expand</summary>
+
+**Required:**
+- [`Object::architecture`](#fn-objectarchitecture)
+- [`Object::is_little_endian`](#fn-objectis-little-endian)
+- [`Object::is_64`](#fn-objectis-64)
+- [`Object::kind`](#fn-objectkind)
+- [`Object::segments`](#fn-objectsegments)
+- [`Object::section_by_name_bytes`](#fn-objectsection-by-name-bytes)
+- [`Object::section_by_index`](#fn-objectsection-by-index)
+- [`Object::sections`](#fn-objectsections)
+- [`Object::comdats`](#fn-objectcomdats)
+- [`Object::symbol_table`](#fn-objectsymbol-table)
+- [`Object::symbol_by_index`](#fn-objectsymbol-by-index)
+- [`Object::symbols`](#fn-objectsymbols)
+- [`Object::dynamic_symbol_table`](#fn-objectdynamic-symbol-table)
+- [`Object::dynamic_symbols`](#fn-objectdynamic-symbols)
+- [`Object::dynamic_relocations`](#fn-objectdynamic-relocations)
+- [`Object::imports`](#fn-objectimports)
+- [`Object::exports`](#fn-objectexports)
+- [`Object::has_debug_symbols`](#fn-objecthas-debug-symbols)
+- [`Object::relative_address_base`](#fn-objectrelative-address-base)
+- [`Object::entry`](#fn-objectentry)
+- [`Object::flags`](#fn-objectflags)
+
+**Provided:**
+- [`Object::sub_architecture`](#fn-objectsub-architecture)
+- [`Object::endianness`](#fn-objectendianness)
+- [`Object::section_by_name`](#fn-objectsection-by-name)
+- [`Object::symbol_by_name`](#fn-objectsymbol-by-name)
+- [`Object::symbol_by_name_bytes`](#fn-objectsymbol-by-name-bytes)
+- [`Object::symbol_map`](#fn-objectsymbol-map)
+- [`Object::object_map`](#fn-objectobject-map)
+- [`Object::mach_uuid`](#fn-objectmach-uuid)
+- [`Object::build_id`](#fn-objectbuild-id)
+- [`Object::gnu_debuglink`](#fn-objectgnu-debuglink)
+- [`Object::gnu_debugaltlink`](#fn-objectgnu-debugaltlink)
+- [`Object::pdb_info`](#fn-objectpdb-info)
+
+</details>
 
 #### Associated Types
 
@@ -7406,23 +7448,23 @@ This is the primary trait for the unified read API.
 
 #### Required Methods
 
-- `fn architecture(&self) -> Architecture`
+- `fn Object::architecture(&self) -> Architecture`
 
   Get the architecture type of the file.
 
-- `fn is_little_endian(&self) -> bool`
+- `fn Object::is_little_endian(&self) -> bool`
 
   Return true if the file is little endian, false if it is big endian.
 
-- `fn is_64(&self) -> bool`
+- `fn Object::is_64(&self) -> bool`
 
   Return true if the file can contain 64-bit addresses.
 
-- `fn kind(&self) -> ObjectKind`
+- `fn Object::kind(&self) -> ObjectKind`
 
   Return the kind of this object.
 
-- `fn segments(&self) -> <Self as >::SegmentIterator`
+- `fn Object::segments(&self) -> <Self as >::SegmentIterator`
 
   Get an iterator for the loadable segments in the file.
   
@@ -7431,11 +7473,11 @@ This is the primary trait for the unified read API.
   or [`LC_SEGMENT_64`](crate::macho::LC_SEGMENT_64).
   For PE, this is all sections.
 
-- `fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<<Self as >::Section>`
+- `fn Object::section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<<Self as >::Section>`
 
   Like `Self::section_by_name`, but allows names that are not UTF-8.
 
-- `fn section_by_index(&self, index: SectionIndex) -> Result<<Self as >::Section>`
+- `fn Object::section_by_index(&self, index: SectionIndex) -> Result<<Self as >::Section>`
 
   Get the section at the given index.
   
@@ -7445,19 +7487,19 @@ This is the primary trait for the unified read API.
   
   Returns an error if the index is invalid.
 
-- `fn sections(&self) -> <Self as >::SectionIterator`
+- `fn Object::sections(&self) -> <Self as >::SectionIterator`
 
   Get an iterator for the sections in the file.
 
-- `fn comdats(&self) -> <Self as >::ComdatIterator`
+- `fn Object::comdats(&self) -> <Self as >::ComdatIterator`
 
   Get an iterator for the COMDAT section groups in the file.
 
-- `fn symbol_table(&self) -> Option<<Self as >::SymbolTable>`
+- `fn Object::symbol_table(&self) -> Option<<Self as >::SymbolTable>`
 
   Get the debugging symbol table, if any.
 
-- `fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>`
+- `fn Object::symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>`
 
   Get the debugging symbol at the given index.
   
@@ -7465,7 +7507,7 @@ This is the primary trait for the unified read API.
   
   Returns an error if the index is invalid.
 
-- `fn symbols(&self) -> <Self as >::SymbolIterator`
+- `fn Object::symbols(&self) -> <Self as >::SymbolIterator`
 
   Get an iterator for the debugging symbols in the file.
   
@@ -7473,14 +7515,14 @@ This is the primary trait for the unified read API.
   
   For Mach-O files, this does not include STAB entries.
 
-- `fn dynamic_symbol_table(&self) -> Option<<Self as >::SymbolTable>`
+- `fn Object::dynamic_symbol_table(&self) -> Option<<Self as >::SymbolTable>`
 
   Get the dynamic linking symbol table, if any.
   
   Only ELF has a separate dynamic linking symbol table.
   Consider using `Self::exports` or `Self::imports` instead.
 
-- `fn dynamic_symbols(&self) -> <Self as >::SymbolIterator`
+- `fn Object::dynamic_symbols(&self) -> <Self as >::SymbolIterator`
 
   Get an iterator for the dynamic linking symbols in the file.
   
@@ -7490,7 +7532,7 @@ This is the primary trait for the unified read API.
   Other file formats will return an empty iterator.
   Consider using `Self::exports` or `Self::imports` instead.
 
-- `fn dynamic_relocations(&self) -> Option<<Self as >::DynamicRelocationIterator>`
+- `fn Object::dynamic_relocations(&self) -> Option<<Self as >::DynamicRelocationIterator>`
 
   Get the dynamic relocations for this file.
   
@@ -7498,38 +7540,38 @@ This is the primary trait for the unified read API.
   
   Only ELF has dynamic relocations.
 
-- `fn imports(&self) -> Result<Vec<Import<'data>>>`
+- `fn Object::imports(&self) -> Result<Vec<Import<'data>>>`
 
   Get the imported symbols.
 
-- `fn exports(&self) -> Result<Vec<Export<'data>>>`
+- `fn Object::exports(&self) -> Result<Vec<Export<'data>>>`
 
   Get the exported symbols that expose both a name and an address.
   
   Some file formats may provide other kinds of symbols that can be retrieved using
   the low level API.
 
-- `fn has_debug_symbols(&self) -> bool`
+- `fn Object::has_debug_symbols(&self) -> bool`
 
   Return true if the file contains DWARF debug information sections, false if not.
 
-- `fn relative_address_base(&self) -> u64`
+- `fn Object::relative_address_base(&self) -> u64`
 
   Get the base address used for relative virtual addresses.
   
   Currently this is only non-zero for PE.
 
-- `fn entry(&self) -> u64`
+- `fn Object::entry(&self) -> u64`
 
   Get the virtual address of the entry point of the binary.
 
-- `fn flags(&self) -> FileFlags`
+- `fn Object::flags(&self) -> FileFlags`
 
   File flags that are specific to each file format.
 
 #### Provided Methods
 
-- `fn sub_architecture(&self) -> Option<SubArchitecture>`
+- `fn Object::sub_architecture(&self) -> Option<SubArchitecture>`
 
   Get the sub-architecture type of the file if known.
   
@@ -7537,11 +7579,11 @@ This is the primary trait for the unified read API.
   sub-architectures, the file does not explicitly specify a
   sub-architecture, or the sub-architecture is currently unrecognized.
 
-- `fn endianness(&self) -> Endianness`
+- `fn Object::endianness(&self) -> Endianness`
 
   Get the endianness of the file.
 
-- `fn section_by_name(&self, section_name: &str) -> Option<<Self as >::Section>`
+- `fn Object::section_by_name(&self, section_name: &str) -> Option<<Self as >::Section>`
 
   Get the section named `section_name`, if such a section exists.
   
@@ -7560,44 +7602,44 @@ This is the primary trait for the unified read API.
   
   This method skips over sections with invalid names.
 
-- `fn symbol_by_name<'file>(self: &'file Self, symbol_name: &str) -> Option<<Self as >::Symbol>`
+- `fn Object::symbol_by_name<'file>(self: &'file Self, symbol_name: &str) -> Option<<Self as >::Symbol>`
 
   Get the symbol named `symbol_name`, if the symbol exists.
 
-- `fn symbol_by_name_bytes<'file>(self: &'file Self, symbol_name: &[u8]) -> Option<<Self as >::Symbol>`
+- `fn Object::symbol_by_name_bytes<'file>(self: &'file Self, symbol_name: &[u8]) -> Option<<Self as >::Symbol>`
 
   Like `Self::symbol_by_name`, but allows names that are not UTF-8.
 
-- `fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>`
+- `fn Object::symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>`
 
   Construct a map from addresses to symbol names.
   
   The map will only contain defined text and data symbols.
   The dynamic symbol table will only be used if there are no debugging symbols.
 
-- `fn object_map(&self) -> ObjectMap<'data>`
+- `fn Object::object_map(&self) -> ObjectMap<'data>`
 
   Construct a map from addresses to symbol names and object file names.
   
   This is derived from Mach-O STAB entries.
 
-- `fn mach_uuid(&self) -> Result<Option<[u8; 16]>>`
+- `fn Object::mach_uuid(&self) -> Result<Option<[u8; 16]>>`
 
   The UUID from a Mach-O [`LC_UUID`](crate::macho::LC_UUID) load command.
 
-- `fn build_id(&self) -> Result<Option<&'data [u8]>>`
+- `fn Object::build_id(&self) -> Result<Option<&'data [u8]>>`
 
   The build ID from an ELF [`NT_GNU_BUILD_ID`](crate::elf::NT_GNU_BUILD_ID) note.
 
-- `fn gnu_debuglink(&self) -> Result<Option<(&'data [u8], u32)>>`
+- `fn Object::gnu_debuglink(&self) -> Result<Option<(&'data [u8], u32)>>`
 
   The filename and CRC from a `.gnu_debuglink` section.
 
-- `fn gnu_debugaltlink(&self) -> Result<Option<(&'data [u8], &'data [u8])>>`
+- `fn Object::gnu_debugaltlink(&self) -> Result<Option<(&'data [u8], &'data [u8])>>`
 
   The filename and build ID from a `.gnu_debugaltlink` section.
 
-- `fn pdb_info(&self) -> Result<Option<CodeView<'_>>>`
+- `fn Object::pdb_info(&self) -> Result<Option<CodeView<'_>>>`
 
   The filename and GUID from the PE CodeView section.
 
@@ -7616,7 +7658,7 @@ This is the primary trait for the unified read API.
 trait ObjectSegment<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:340-374`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L340-L374)*
+*Defined in [`object-0.37.3/src/read/traits.rs:340-374`](../../../.source_1765900590/object-0.37.3/src/read/traits.rs#L340-L374)*
 
 A loadable segment in an [`Object`](#object).
 
@@ -7624,46 +7666,46 @@ This trait is part of the unified read API.
 
 #### Required Methods
 
-- `fn address(&self) -> u64`
+- `fn ObjectSegment::address(&self) -> u64`
 
   Returns the virtual address of the segment.
 
-- `fn size(&self) -> u64`
+- `fn ObjectSegment::size(&self) -> u64`
 
   Returns the size of the segment in memory.
 
-- `fn align(&self) -> u64`
+- `fn ObjectSegment::align(&self) -> u64`
 
   Returns the alignment of the segment in memory.
 
-- `fn file_range(&self) -> (u64, u64)`
+- `fn ObjectSegment::file_range(&self) -> (u64, u64)`
 
   Returns the offset and size of the segment in the file.
 
-- `fn data(&self) -> Result<&'data [u8]>`
+- `fn ObjectSegment::data(&self) -> Result<&'data [u8]>`
 
   Returns a reference to the file contents of the segment.
   
   The length of this data may be different from the size of the
   segment in memory.
 
-- `fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>`
+- `fn ObjectSegment::data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>`
 
   Return the segment data in the given range.
   
   Returns `Ok(None)` if the segment does not contain the given range.
 
-- `fn name_bytes(&self) -> Result<Option<&[u8]>>`
+- `fn ObjectSegment::name_bytes(&self) -> Result<Option<&[u8]>>`
 
   Returns the name of the segment.
 
-- `fn name(&self) -> Result<Option<&str>>`
+- `fn ObjectSegment::name(&self) -> Result<Option<&str>>`
 
   Returns the name of the segment.
   
   Returns an error if the name is not UTF-8.
 
-- `fn flags(&self) -> SegmentFlags`
+- `fn ObjectSegment::flags(&self) -> SegmentFlags`
 
   Return the flags of segment.
 
@@ -7682,11 +7724,38 @@ This trait is part of the unified read API.
 trait ObjectSection<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:379-462`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L379-L462)*
+*Defined in [`object-0.37.3/src/read/traits.rs:379-462`](../../../.source_1765900590/object-0.37.3/src/read/traits.rs#L379-L462)*
 
 A section in an [`Object`](#object).
 
 This trait is part of the unified read API.
+
+<details>
+<summary><strong>Methods (18)</strong> - click to expand</summary>
+
+**Required:**
+- [`ObjectSection::index`](#fn-objectsectionindex)
+- [`ObjectSection::address`](#fn-objectsectionaddress)
+- [`ObjectSection::size`](#fn-objectsectionsize)
+- [`ObjectSection::align`](#fn-objectsectionalign)
+- [`ObjectSection::file_range`](#fn-objectsectionfile-range)
+- [`ObjectSection::data`](#fn-objectsectiondata)
+- [`ObjectSection::data_range`](#fn-objectsectiondata-range)
+- [`ObjectSection::compressed_file_range`](#fn-objectsectioncompressed-file-range)
+- [`ObjectSection::compressed_data`](#fn-objectsectioncompressed-data)
+- [`ObjectSection::name_bytes`](#fn-objectsectionname-bytes)
+- [`ObjectSection::name`](#fn-objectsectionname)
+- [`ObjectSection::segment_name_bytes`](#fn-objectsectionsegment-name-bytes)
+- [`ObjectSection::segment_name`](#fn-objectsectionsegment-name)
+- [`ObjectSection::kind`](#fn-objectsectionkind)
+- [`ObjectSection::relocations`](#fn-objectsectionrelocations)
+- [`ObjectSection::relocation_map`](#fn-objectsectionrelocation-map)
+- [`ObjectSection::flags`](#fn-objectsectionflags)
+
+**Provided:**
+- [`ObjectSection::uncompressed_data`](#fn-objectsectionuncompressed-data)
+
+</details>
 
 #### Associated Types
 
@@ -7694,27 +7763,27 @@ This trait is part of the unified read API.
 
 #### Required Methods
 
-- `fn index(&self) -> SectionIndex`
+- `fn ObjectSection::index(&self) -> SectionIndex`
 
   Returns the section index.
 
-- `fn address(&self) -> u64`
+- `fn ObjectSection::address(&self) -> u64`
 
   Returns the address of the section.
 
-- `fn size(&self) -> u64`
+- `fn ObjectSection::size(&self) -> u64`
 
   Returns the size of the section in memory.
 
-- `fn align(&self) -> u64`
+- `fn ObjectSection::align(&self) -> u64`
 
   Returns the alignment of the section in memory.
 
-- `fn file_range(&self) -> Option<(u64, u64)>`
+- `fn ObjectSection::file_range(&self) -> Option<(u64, u64)>`
 
   Returns offset and size of on-disk segment (if any).
 
-- `fn data(&self) -> Result<&'data [u8]>`
+- `fn ObjectSection::data(&self) -> Result<&'data [u8]>`
 
   Returns the raw contents of the section.
   
@@ -7723,7 +7792,7 @@ This trait is part of the unified read API.
   
   This does not do any decompression.
 
-- `fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>`
+- `fn ObjectSection::data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>`
 
   Return the raw contents of the section data in the given range.
   
@@ -7731,55 +7800,55 @@ This trait is part of the unified read API.
   
   Returns `Ok(None)` if the section does not contain the given range.
 
-- `fn compressed_file_range(&self) -> Result<CompressedFileRange>`
+- `fn ObjectSection::compressed_file_range(&self) -> Result<CompressedFileRange>`
 
   Returns the potentially compressed file range of the section,
   along with information about the compression.
 
-- `fn compressed_data(&self) -> Result<CompressedData<'data>>`
+- `fn ObjectSection::compressed_data(&self) -> Result<CompressedData<'data>>`
 
   Returns the potentially compressed contents of the section,
   along with information about the compression.
 
-- `fn name_bytes(&self) -> Result<&'data [u8]>`
+- `fn ObjectSection::name_bytes(&self) -> Result<&'data [u8]>`
 
   Returns the name of the section.
 
-- `fn name(&self) -> Result<&'data str>`
+- `fn ObjectSection::name(&self) -> Result<&'data str>`
 
   Returns the name of the section.
   
   Returns an error if the name is not UTF-8.
 
-- `fn segment_name_bytes(&self) -> Result<Option<&[u8]>>`
+- `fn ObjectSection::segment_name_bytes(&self) -> Result<Option<&[u8]>>`
 
   Returns the name of the segment for this section.
 
-- `fn segment_name(&self) -> Result<Option<&str>>`
+- `fn ObjectSection::segment_name(&self) -> Result<Option<&str>>`
 
   Returns the name of the segment for this section.
   
   Returns an error if the name is not UTF-8.
 
-- `fn kind(&self) -> SectionKind`
+- `fn ObjectSection::kind(&self) -> SectionKind`
 
   Return the kind of this section.
 
-- `fn relocations(&self) -> <Self as >::RelocationIterator`
+- `fn ObjectSection::relocations(&self) -> <Self as >::RelocationIterator`
 
   Get the relocations for this section.
 
-- `fn relocation_map(&self) -> Result<RelocationMap>`
+- `fn ObjectSection::relocation_map(&self) -> Result<RelocationMap>`
 
   Construct a relocation map for this section.
 
-- `fn flags(&self) -> SectionFlags`
+- `fn ObjectSection::flags(&self) -> SectionFlags`
 
   Section flags that are specific to each file format.
 
 #### Provided Methods
 
-- `fn uncompressed_data(&self) -> Result<Cow<'data, [u8]>>`
+- `fn ObjectSection::uncompressed_data(&self) -> Result<Cow<'data, [u8]>>`
 
   Returns the uncompressed contents of the section.
   
@@ -7804,7 +7873,7 @@ This trait is part of the unified read API.
 trait ObjectComdat<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:467-487`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L467-L487)*
+*Defined in [`object-0.37.3/src/read/traits.rs:467-487`](../../../.source_1765900590/object-0.37.3/src/read/traits.rs#L467-L487)*
 
 A COMDAT section group in an [`Object`](#object).
 
@@ -7816,25 +7885,25 @@ This trait is part of the unified read API.
 
 #### Required Methods
 
-- `fn kind(&self) -> ComdatKind`
+- `fn ObjectComdat::kind(&self) -> ComdatKind`
 
   Returns the COMDAT selection kind.
 
-- `fn symbol(&self) -> SymbolIndex`
+- `fn ObjectComdat::symbol(&self) -> SymbolIndex`
 
   Returns the index of the symbol used for the name of COMDAT section group.
 
-- `fn name_bytes(&self) -> Result<&'data [u8]>`
+- `fn ObjectComdat::name_bytes(&self) -> Result<&'data [u8]>`
 
   Returns the name of the COMDAT section group.
 
-- `fn name(&self) -> Result<&'data str>`
+- `fn ObjectComdat::name(&self) -> Result<&'data str>`
 
   Returns the name of the COMDAT section group.
   
   Returns an error if the name is not UTF-8.
 
-- `fn sections(&self) -> <Self as >::SectionIterator`
+- `fn ObjectComdat::sections(&self) -> <Self as >::SectionIterator`
 
   Get the sections in this section group.
 
@@ -7853,7 +7922,7 @@ This trait is part of the unified read API.
 trait ObjectSymbolTable<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:492-510`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L492-L510)*
+*Defined in [`object-0.37.3/src/read/traits.rs:492-510`](../../../.source_1765900590/object-0.37.3/src/read/traits.rs#L492-L510)*
 
 A symbol table in an [`Object`](#object).
 
@@ -7867,13 +7936,13 @@ This trait is part of the unified read API.
 
 #### Required Methods
 
-- `fn symbols(&self) -> <Self as >::SymbolIterator`
+- `fn ObjectSymbolTable::symbols(&self) -> <Self as >::SymbolIterator`
 
   Get an iterator for the symbols in the table.
   
   This may skip over symbols that are malformed or unsupported.
 
-- `fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>`
+- `fn ObjectSymbolTable::symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>`
 
   Get the symbol at the given index.
   
@@ -7895,86 +7964,111 @@ This trait is part of the unified read API.
 trait ObjectSymbol<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:515-576`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L515-L576)*
+*Defined in [`object-0.37.3/src/read/traits.rs:515-576`](../../../.source_1765900590/object-0.37.3/src/read/traits.rs#L515-L576)*
 
 A symbol table entry in an [`Object`](#object).
 
 This trait is part of the unified read API.
 
+<details>
+<summary><strong>Methods (16)</strong> - click to expand</summary>
+
+**Required:**
+- [`ObjectSymbol::index`](#fn-objectsymbolindex)
+- [`ObjectSymbol::name_bytes`](#fn-objectsymbolname-bytes)
+- [`ObjectSymbol::name`](#fn-objectsymbolname)
+- [`ObjectSymbol::address`](#fn-objectsymboladdress)
+- [`ObjectSymbol::size`](#fn-objectsymbolsize)
+- [`ObjectSymbol::kind`](#fn-objectsymbolkind)
+- [`ObjectSymbol::section`](#fn-objectsymbolsection)
+- [`ObjectSymbol::is_undefined`](#fn-objectsymbolis-undefined)
+- [`ObjectSymbol::is_definition`](#fn-objectsymbolis-definition)
+- [`ObjectSymbol::is_common`](#fn-objectsymbolis-common)
+- [`ObjectSymbol::is_weak`](#fn-objectsymbolis-weak)
+- [`ObjectSymbol::scope`](#fn-objectsymbolscope)
+- [`ObjectSymbol::is_global`](#fn-objectsymbolis-global)
+- [`ObjectSymbol::is_local`](#fn-objectsymbolis-local)
+- [`ObjectSymbol::flags`](#fn-objectsymbolflags)
+
+**Provided:**
+- [`ObjectSymbol::section_index`](#fn-objectsymbolsection-index)
+
+</details>
+
 #### Required Methods
 
-- `fn index(&self) -> SymbolIndex`
+- `fn ObjectSymbol::index(&self) -> SymbolIndex`
 
   The index of the symbol.
 
-- `fn name_bytes(&self) -> Result<&'data [u8]>`
+- `fn ObjectSymbol::name_bytes(&self) -> Result<&'data [u8]>`
 
   The name of the symbol.
 
-- `fn name(&self) -> Result<&'data str>`
+- `fn ObjectSymbol::name(&self) -> Result<&'data str>`
 
   The name of the symbol.
   
   Returns an error if the name is not UTF-8.
 
-- `fn address(&self) -> u64`
+- `fn ObjectSymbol::address(&self) -> u64`
 
   The address of the symbol. May be zero if the address is unknown.
 
-- `fn size(&self) -> u64`
+- `fn ObjectSymbol::size(&self) -> u64`
 
   The size of the symbol. May be zero if the size is unknown.
 
-- `fn kind(&self) -> SymbolKind`
+- `fn ObjectSymbol::kind(&self) -> SymbolKind`
 
   Return the kind of this symbol.
 
-- `fn section(&self) -> SymbolSection`
+- `fn ObjectSymbol::section(&self) -> SymbolSection`
 
   Returns the section where the symbol is defined.
 
-- `fn is_undefined(&self) -> bool`
+- `fn ObjectSymbol::is_undefined(&self) -> bool`
 
   Return true if the symbol is undefined.
 
-- `fn is_definition(&self) -> bool`
+- `fn ObjectSymbol::is_definition(&self) -> bool`
 
   Return true if the symbol is a definition of a function or data object
   that has a known address.
   
   This is primarily used to implement `Object::symbol_map`.
 
-- `fn is_common(&self) -> bool`
+- `fn ObjectSymbol::is_common(&self) -> bool`
 
   Return true if the symbol is common data.
   
   Note: does not check for [`SymbolSection::Section`](../index.md) with [`SectionKind::Common`](../index.md).
 
-- `fn is_weak(&self) -> bool`
+- `fn ObjectSymbol::is_weak(&self) -> bool`
 
   Return true if the symbol is weak.
 
-- `fn scope(&self) -> SymbolScope`
+- `fn ObjectSymbol::scope(&self) -> SymbolScope`
 
   Returns the symbol scope.
 
-- `fn is_global(&self) -> bool`
+- `fn ObjectSymbol::is_global(&self) -> bool`
 
   Return true if the symbol visible outside of the compilation unit.
   
   This treats [`SymbolScope::Unknown`](../index.md) as global.
 
-- `fn is_local(&self) -> bool`
+- `fn ObjectSymbol::is_local(&self) -> bool`
 
   Return true if the symbol is only visible within the compilation unit.
 
-- `fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>`
+- `fn ObjectSymbol::flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>`
 
   Symbol flags that are specific to each file format.
 
 #### Provided Methods
 
-- `fn section_index(&self) -> Option<SectionIndex>`
+- `fn ObjectSymbol::section_index(&self) -> Option<SectionIndex>`
 
   Returns the section index for the section containing this symbol.
   
@@ -7996,7 +8090,7 @@ This trait is part of the unified read API.
 fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L213-L220)*
+*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../.source_1765900590/object-0.37.3/src/read/util.rs#L213-L220)*
 
 ### `align`
 
@@ -8004,7 +8098,7 @@ fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 fn align(offset: usize, size: usize) -> usize
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L254-L256)*
+*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../.source_1765900590/object-0.37.3/src/read/util.rs#L254-L256)*
 
 ### `data_range`
 
@@ -8012,7 +8106,7 @@ fn align(offset: usize, size: usize) -> usize
 fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> Option<&[u8]>
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L259-L268)*
+*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../.source_1765900590/object-0.37.3/src/read/util.rs#L259-L268)*
 
 ## Type Aliases
 
@@ -8022,7 +8116,7 @@ fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> 
 type Result<T> = result::Result<T, Error>;
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:131`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L131)*
+*Defined in [`object-0.37.3/src/read/mod.rs:131`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L131)*
 
 The result type used within the read module.
 
@@ -8032,7 +8126,7 @@ The result type used within the read module.
 type NativeFile<'data, R> = elf::ElfFile64<'data, crate::endian::Endianness, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:171`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L171)*
+*Defined in [`object-0.37.3/src/read/mod.rs:171`](../../../.source_1765900590/object-0.37.3/src/read/mod.rs#L171)*
 
 The native executable file for the target platform.
 
@@ -8042,13 +8136,13 @@ The native executable file for the target platform.
 type Result<T> = result::Result<T, ()>;
 ```
 
-*Defined in [`object-0.37.3/src/read/read_ref.rs:9`](../../../.source_1765894658/object-0.37.3/src/read/read_ref.rs#L9)*
+*Defined in [`object-0.37.3/src/read/read_ref.rs:9`](../../../.source_1765900590/object-0.37.3/src/read/read_ref.rs#L9)*
 
 ## Macros
 
 ### `with_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L30-L57)*
+*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L30-L57)*
 
 Evaluate an expression on the contents of a file format enum.
 
@@ -8056,27 +8150,27 @@ This is a hack to avoid virtual calls.
 
 ### `with_inner_mut!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L59-L86)*
+*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L59-L86)*
 
 ### `map_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L89-L116)*
+*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L89-L116)*
 
 Like `with_inner!`, but wraps the result in another enum.
 
 ### `map_inner_option!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L119-L146)*
+*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L119-L146)*
 
 Like `map_inner!`, but the result is a Result or Option.
 
 ### `map_inner_option_mut!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L148-L175)*
+*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L148-L175)*
 
 ### `next_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L178-L205)*
+*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../.source_1765900590/object-0.37.3/src/read/any.rs#L178-L205)*
 
 Call `next` for a file format iterator.
 

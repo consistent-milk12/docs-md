@@ -21,7 +21,7 @@ size is constant and known at compile-time, into an [`Either`](../index.md) vari
 trait IntoEither: Sized { ... }
 ```
 
-*Defined in [`either-1.15.0/src/into_either.rs:14-62`](../../../.source_1765894658/either-1.15.0/src/into_either.rs#L14-L62)*
+*Defined in [`either-1.15.0/src/into_either.rs:14-62`](../../../.source_1765900590/either-1.15.0/src/into_either.rs#L14-L62)*
 
 Provides methods for converting a type `Self` into either a [`Left`](../index.md) or [`Right`](../index.md)
 variant of [`Either<Self, Self>`](Either).
@@ -34,14 +34,14 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 
 #### Provided Methods
 
-- `fn into_either(self, into_left: bool) -> Either<Self, Self>`
+- `fn IntoEither::into_either(self, into_left: bool) -> Either<Self, Self>`
 
   Converts `self` into a [`Left`](../index.md) variant of [`Either<Self, Self>`](Either)
   if `into_left` is `true`.
   Converts `self` into a [`Right`](../index.md) variant of [`Either<Self, Self>`](Either)
   otherwise.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::{IntoEither, Left, Right};
@@ -51,14 +51,14 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
   assert_eq!(x.into_either(false), Right(x));
   ```
 
-- `fn into_either_with<F>(self, into_left: F) -> Either<Self, Self>`
+- `fn IntoEither::into_either_with<F>(self, into_left: F) -> Either<Self, Self>`
 
   Converts `self` into a [`Left`](../index.md) variant of [`Either<Self, Self>`](Either)
   if `into_left(&self)` returns `true`.
   Converts `self` into a [`Right`](../index.md) variant of [`Either<Self, Self>`](Either)
   otherwise.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::{IntoEither, Left, Right};

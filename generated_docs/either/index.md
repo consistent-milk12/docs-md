@@ -67,7 +67,7 @@ struct IterEither<L, R> {
 }
 ```
 
-*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../.source_1765894658/either-1.15.0/src/iterator.rs#L19-L21)*
+*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../.source_1765900590/either-1.15.0/src/iterator.rs#L19-L21)*
 
 Iterator that maps left or right iterators to corresponding `Either`-wrapped items.
 
@@ -209,7 +209,7 @@ enum Either<L, R> {
 }
 ```
 
-*Defined in [`either-1.15.0/src/lib.rs:49-54`](../../.source_1765894658/either-1.15.0/src/lib.rs#L49-L54)*
+*Defined in [`either-1.15.0/src/lib.rs:49-54`](../../.source_1765900590/either-1.15.0/src/lib.rs#L49-L54)*
 
 The enum `Either` with variants `Left` and `Right` is a general purpose
 sum type with two cases.
@@ -602,7 +602,7 @@ preference.
   the result of a function call, it is recommended to use
   `left_or_else`, which is lazily evaluated.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -617,7 +617,7 @@ preference.
 
   Return left or a default
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -632,7 +632,7 @@ preference.
 
   Returns left value or computes it from a closure
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -651,7 +651,7 @@ preference.
   the result of a function call, it is recommended to use
   `right_or_else`, which is lazily evaluated.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -666,7 +666,7 @@ preference.
 
   Return right or a default
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -681,7 +681,7 @@ preference.
 
   Returns right value or computes it from a closure
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -696,7 +696,7 @@ preference.
 
   Returns the left value
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -704,7 +704,7 @@ preference.
   assert_eq!(left.unwrap_left(), 3);
   ```
   
-  # Panics
+  ##### Panics
   
   When `Either` is a `Right` value
   
@@ -718,7 +718,7 @@ preference.
 
   Returns the right value
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -726,7 +726,7 @@ preference.
   assert_eq!(right.unwrap_right(), 3);
   ```
   
-  # Panics
+  ##### Panics
   
   When `Either` is a `Left` value
   
@@ -740,7 +740,7 @@ preference.
 
   Returns the left value
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -748,7 +748,7 @@ preference.
   assert_eq!(left.expect_left("value was Right"), 3);
   ```
   
-  # Panics
+  ##### Panics
   
   When `Either` is a `Right` value
   
@@ -762,7 +762,7 @@ preference.
 
   Returns the right value
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -770,7 +770,7 @@ preference.
   assert_eq!(right.expect_right("value was Left"), 3);
   ```
   
-  # Panics
+  ##### Panics
   
   When `Either` is a `Left` value
   
@@ -784,7 +784,7 @@ preference.
 
   Convert the contained value into `T`
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::*;
@@ -1036,7 +1036,7 @@ preference.
 trait IntoEither: Sized { ... }
 ```
 
-*Defined in [`either-1.15.0/src/into_either.rs:14-62`](../../.source_1765894658/either-1.15.0/src/into_either.rs#L14-L62)*
+*Defined in [`either-1.15.0/src/into_either.rs:14-62`](../../.source_1765900590/either-1.15.0/src/into_either.rs#L14-L62)*
 
 Provides methods for converting a type `Self` into either a [`Left`](#left) or [`Right`](#right)
 variant of [`Either<Self, Self>`](Either).
@@ -1049,14 +1049,14 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 
 #### Provided Methods
 
-- `fn into_either(self, into_left: bool) -> Either<Self, Self>`
+- `fn IntoEither::into_either(self, into_left: bool) -> Either<Self, Self>`
 
   Converts `self` into a [`Left`](#left) variant of [`Either<Self, Self>`](Either)
   if `into_left` is `true`.
   Converts `self` into a [`Right`](#right) variant of [`Either<Self, Self>`](Either)
   otherwise.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::{IntoEither, Left, Right};
@@ -1066,14 +1066,14 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
   assert_eq!(x.into_either(false), Right(x));
   ```
 
-- `fn into_either_with<F>(self, into_left: F) -> Either<Self, Self>`
+- `fn IntoEither::into_either_with<F>(self, into_left: F) -> Either<Self, Self>`
 
   Converts `self` into a [`Left`](#left) variant of [`Either<Self, Self>`](Either)
   if `into_left(&self)` returns `true`.
   Converts `self` into a [`Right`](#right) variant of [`Either<Self, Self>`](Either)
   otherwise.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use either::{IntoEither, Left, Right};
@@ -1099,7 +1099,7 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 fn _unsized_ref_propagation()
 ```
 
-*Defined in [`either-1.15.0/src/lib.rs:1540-1553`](../../.source_1765894658/either-1.15.0/src/lib.rs#L1540-L1553)*
+*Defined in [`either-1.15.0/src/lib.rs:1540-1553`](../../.source_1765900590/either-1.15.0/src/lib.rs#L1540-L1553)*
 
 ### `_unsized_std_propagation`
 
@@ -1107,27 +1107,27 @@ fn _unsized_ref_propagation()
 fn _unsized_std_propagation()
 ```
 
-*Defined in [`either-1.15.0/src/lib.rs:1557-1561`](../../.source_1765894658/either-1.15.0/src/lib.rs#L1557-L1561)*
+*Defined in [`either-1.15.0/src/lib.rs:1557-1561`](../../.source_1765900590/either-1.15.0/src/lib.rs#L1557-L1561)*
 
 ## Macros
 
 ### `map_either!`
 
-*Defined in [`either-1.15.0/src/lib.rs:133-140`](../../.source_1765894658/either-1.15.0/src/lib.rs#L133-L140)*
+*Defined in [`either-1.15.0/src/lib.rs:133-140`](../../.source_1765900590/either-1.15.0/src/lib.rs#L133-L140)*
 
 ### `impl_specific_ref_and_mut!`
 
-*Defined in [`either-1.15.0/src/lib.rs:1257-1277`](../../.source_1765894658/either-1.15.0/src/lib.rs#L1257-L1277)*
+*Defined in [`either-1.15.0/src/lib.rs:1257-1277`](../../.source_1765900590/either-1.15.0/src/lib.rs#L1257-L1277)*
 
 ### `check_t!`
 
-*Defined in [`either-1.15.0/src/lib.rs:1526-1537`](../../.source_1765894658/either-1.15.0/src/lib.rs#L1526-L1537)*
+*Defined in [`either-1.15.0/src/lib.rs:1526-1537`](../../.source_1765900590/either-1.15.0/src/lib.rs#L1526-L1537)*
 
 A helper macro to check if AsRef and AsMut are implemented for a given type.
 
 ### `for_both!`
 
-*Defined in [`either-1.15.0/src/lib.rs:81-88`](../../.source_1765894658/either-1.15.0/src/lib.rs#L81-L88)*
+*Defined in [`either-1.15.0/src/lib.rs:81-88`](../../.source_1765900590/either-1.15.0/src/lib.rs#L81-L88)*
 
 Evaluate the provided expression for both [`Either::Left`](#eitherleft) and [`Either::Right`](#eitherright).
 
@@ -1156,7 +1156,7 @@ fn main() {
 
 ### `try_left!`
 
-*Defined in [`either-1.15.0/src/lib.rs:113-120`](../../.source_1765894658/either-1.15.0/src/lib.rs#L113-L120)*
+*Defined in [`either-1.15.0/src/lib.rs:113-120`](../../.source_1765900590/either-1.15.0/src/lib.rs#L113-L120)*
 
 Macro for unwrapping the left side of an [`Either`](#either), which fails early
 with the opposite side. Can only be used in functions that return
@@ -1183,7 +1183,7 @@ fn main() {
 
 ### `try_right!`
 
-*Defined in [`either-1.15.0/src/lib.rs:124-131`](../../.source_1765894658/either-1.15.0/src/lib.rs#L124-L131)*
+*Defined in [`either-1.15.0/src/lib.rs:124-131`](../../.source_1765900590/either-1.15.0/src/lib.rs#L124-L131)*
 
 Dual to [`try_left!`](#try-left), see its documentation for more information.
 

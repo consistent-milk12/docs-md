@@ -66,7 +66,7 @@ output/
 
   Create a new flat generator.
   
-  # Arguments
+  ##### Arguments
   
   * `ctx` - Shared generator context
   * `output_dir` - Directory to write markdown files to
@@ -90,7 +90,7 @@ output/
 
   Recursively generate nested module files with flattened names.
   
-  # Arguments
+  ##### Arguments
   
   * `item` - The module item to generate
   * `prefix` - Accumulated path prefix (e.g., "`parent__child`")

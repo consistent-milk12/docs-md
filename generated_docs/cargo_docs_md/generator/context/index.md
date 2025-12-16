@@ -110,7 +110,7 @@ This struct is passed to all rendering components and provides:
   
   Builds the path map, impl map, and link registry needed for generation.
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `args` - CLI arguments containing output path, format, and options
@@ -149,7 +149,7 @@ This struct is passed to all rendering components and provides:
   By default, all items are included. If `--exclude-private`
   is set, only public items are included.
   
-  # Visibility Levels
+  ##### Visibility Levels
   
   - `Public` - Always included
   - `Crate`, `Restricted`, `Default` - Included by default, excluded with `--exclude-private`
@@ -282,33 +282,33 @@ Provides read-only access to the crate structure, items, and impl blocks.
 
 #### Required Methods
 
-- `fn krate(&self) -> &Crate`
+- `fn ItemAccess::krate(&self) -> &Crate`
 
   Get the crate being documented.
 
-- `fn crate_name(&self) -> &str`
+- `fn ItemAccess::crate_name(&self) -> &str`
 
   Get the crate name.
 
-- `fn get_item(&self, id: &Id) -> Option<&Item>`
+- `fn ItemAccess::get_item(&self, id: &Id) -> Option<&Item>`
 
   Get an item by its ID.
 
-- `fn get_impls(&self, id: &Id) -> Option<&[&Impl]>`
+- `fn ItemAccess::get_impls(&self, id: &Id) -> Option<&[&Impl]>`
 
   Get impl blocks for a type.
 
-- `fn crate_version(&self) -> Option<&str>`
+- `fn ItemAccess::crate_version(&self) -> Option<&str>`
 
   Get the crate version for display in headers.
 
-- `fn render_config(&self) -> &RenderConfig`
+- `fn ItemAccess::render_config(&self) -> &RenderConfig`
 
   Get the rendering configuration.
 
 #### Provided Methods
 
-- `fn source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
+- `fn ItemAccess::source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
 
   Get source path config for a specific file.
   
@@ -334,15 +334,15 @@ Determines which items should be included in the generated documentation.
 
 #### Required Methods
 
-- `fn should_include_item(&self, item: &Item) -> bool`
+- `fn ItemFilter::should_include_item(&self, item: &Item) -> bool`
 
   Check if an item should be included based on visibility.
 
-- `fn include_private(&self) -> bool`
+- `fn ItemFilter::include_private(&self) -> bool`
 
   Whether private items should be included.
 
-- `fn include_blanket_impls(&self) -> bool`
+- `fn ItemFilter::include_blanket_impls(&self) -> bool`
 
   Whether blanket trait implementations should be included.
   
@@ -367,34 +367,34 @@ Handles intra-doc link resolution and markdown link generation.
 
 #### Required Methods
 
-- `fn link_registry(&self) -> Option<&LinkRegistry>`
+- `fn LinkResolver::link_registry(&self) -> Option<&LinkRegistry>`
 
   Get the link registry for single-crate mode.
   
   Returns `None` in multi-crate mode where `UnifiedLinkRegistry` is used instead.
 
-- `fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
+- `fn LinkResolver::process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
   Process documentation string with intra-doc link resolution.
   
   Transforms `` [`Type`](../../index.md) `` style links in doc comments into proper
   markdown links. Also strips duplicate titles and reference definitions.
   
-  # Arguments
+  ##### Arguments
   
   * `item` - The item whose docs to process (provides docs and links map)
   * `current_file` - Path of the current file (for relative link calculation)
 
-- `fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
+- `fn LinkResolver::create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
   Create a markdown link to an item.
   
-  # Arguments
+  ##### Arguments
   
   * `id` - The item ID to link to
   * `current_file` - Path of the current file (for relative link calculation)
   
-  # Returns
+  ##### Returns
   
   A markdown link like `[`Name`](path/to/item.md)`, or `None` if the item
   cannot be linked.

@@ -57,11 +57,11 @@ non-lossy.
 trait U8 { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:25-27`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/int.rs#L25-L27)*
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:25-27`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/int.rs#L25-L27)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn U8::as_usize(self) -> usize`
 
 #### Implementors
 
@@ -73,15 +73,15 @@ trait U8 { ... }
 trait U16 { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:35-39`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/int.rs#L35-L39)*
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:35-39`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/int.rs#L35-L39)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn U16::as_usize(self) -> usize`
 
-- `fn low_u8(self) -> u8`
+- `fn U16::low_u8(self) -> u8`
 
-- `fn high_u8(self) -> u8`
+- `fn U16::high_u8(self) -> u8`
 
 #### Implementors
 
@@ -93,17 +93,17 @@ trait U16 { ... }
 trait U32 { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:55-60`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/int.rs#L55-L60)*
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:55-60`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/int.rs#L55-L60)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn U32::as_usize(self) -> usize`
 
-- `fn low_u8(self) -> u8`
+- `fn U32::low_u8(self) -> u8`
 
-- `fn low_u16(self) -> u16`
+- `fn U32::low_u16(self) -> u16`
 
-- `fn high_u16(self) -> u16`
+- `fn U32::high_u16(self) -> u16`
 
 #### Implementors
 
@@ -115,19 +115,19 @@ trait U32 { ... }
 trait U64 { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:88-94`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/int.rs#L88-L94)*
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:88-94`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/int.rs#L88-L94)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn U64::as_usize(self) -> usize`
 
-- `fn low_u8(self) -> u8`
+- `fn U64::low_u8(self) -> u8`
 
-- `fn low_u16(self) -> u16`
+- `fn U64::low_u16(self) -> u16`
 
-- `fn low_u32(self) -> u32`
+- `fn U64::low_u32(self) -> u32`
 
-- `fn high_u32(self) -> u32`
+- `fn U64::high_u32(self) -> u32`
 
 #### Implementors
 
@@ -139,15 +139,15 @@ trait U64 { ... }
 trait I8 { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:125-129`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/int.rs#L125-L129)*
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:125-129`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/int.rs#L125-L129)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn I8::as_usize(self) -> usize`
 
-- `fn to_bits(self) -> u8`
+- `fn I8::to_bits(self) -> u8`
 
-- `fn from_bits(n: u8) -> i8`
+- `fn I8::from_bits(n: u8) -> i8`
 
 #### Implementors
 
@@ -159,15 +159,15 @@ trait I8 { ... }
 trait I32 { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:152-156`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/int.rs#L152-L156)*
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:152-156`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/int.rs#L152-L156)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn I32::as_usize(self) -> usize`
 
-- `fn to_bits(self) -> u32`
+- `fn I32::to_bits(self) -> u32`
 
-- `fn from_bits(n: u32) -> i32`
+- `fn I32::from_bits(n: u32) -> i32`
 
 #### Implementors
 
@@ -179,15 +179,15 @@ trait I32 { ... }
 trait I64 { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:179-183`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/int.rs#L179-L183)*
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:179-183`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/int.rs#L179-L183)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn I64::as_usize(self) -> usize`
 
-- `fn to_bits(self) -> u64`
+- `fn I64::to_bits(self) -> u64`
 
-- `fn from_bits(n: u64) -> i64`
+- `fn I64::from_bits(n: u64) -> i64`
 
 #### Implementors
 
@@ -199,17 +199,17 @@ trait I64 { ... }
 trait Usize { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:206-211`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/int.rs#L206-L211)*
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:206-211`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/int.rs#L206-L211)*
 
 #### Required Methods
 
-- `fn as_u8(self) -> u8`
+- `fn Usize::as_u8(self) -> u8`
 
-- `fn as_u16(self) -> u16`
+- `fn Usize::as_u16(self) -> u16`
 
-- `fn as_u32(self) -> u32`
+- `fn Usize::as_u32(self) -> u32`
 
-- `fn as_u64(self) -> u64`
+- `fn Usize::as_u64(self) -> u64`
 
 #### Implementors
 
@@ -221,11 +221,11 @@ trait Usize { ... }
 trait Pointer { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/int.rs:270-272`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/int.rs#L270-L272)*
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:270-272`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/int.rs#L270-L272)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn Pointer::as_usize(self) -> usize`
 
 #### Implementors
 

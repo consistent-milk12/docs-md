@@ -83,7 +83,7 @@ See `examples/is_stderr.rs` for a runnable example and compare the output of:
 struct Handle(imp::Handle);
 ```
 
-*Defined in [`same-file-1.0.6/src/lib.rs:109`](../../.source_1765894658/same-file-1.0.6/src/lib.rs#L109)*
+*Defined in [`same-file-1.0.6/src/lib.rs:109`](../../.source_1765900590/same-file-1.0.6/src/lib.rs#L109)*
 
 A handle to a file that can be tested for equality with other handles.
 
@@ -110,13 +110,13 @@ implementation details.
   Note that the underlying [`File`](#file) is opened in read-only mode on all
   platforms.
   
-  # Errors
+  ##### Errors
   This method will return an `io::Error` if the path cannot
   be opened, or the file's metadata cannot be obtained.
   The most common reasons for this are: the path does not
   exist, or there were not enough permissions.
   
-  # Examples
+  ##### Examples
   Check that two paths are not the same file:
   
   ```rust,no_run
@@ -139,12 +139,12 @@ implementation details.
 
   Construct a handle from a file.
   
-  # Errors
+  ##### Errors
   This method will return an `io::Error` if the metadata for
   the given [`File`](#file) cannot be obtained.
   
   
-  # Examples
+  ##### Examples
   Check that two files are not in fact the same file:
   
   ```rust,no_run
@@ -173,11 +173,11 @@ implementation details.
 
   Construct a handle from stdin.
   
-  # Errors
+  ##### Errors
   This method will return an `io::Error` if stdin cannot
   be opened due to any I/O-related reason.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::error::Error;
@@ -236,29 +236,29 @@ implementation details.
 
   Construct a handle from stdout.
   
-  # Errors
+  ##### Errors
   This method will return an `io::Error` if stdout cannot
   be opened due to any I/O-related reason.
   
-  # Examples
+  ##### Examples
   See the example for `stdin()`.
 
 - <span id="handle-stderr"></span>`fn stderr() -> io::Result<Handle>` — [`Handle`](#handle)
 
   Construct a handle from stderr.
   
-  # Errors
+  ##### Errors
   This method will return an `io::Error` if stderr cannot
   be opened due to any I/O-related reason.
   
-  # Examples
+  ##### Examples
   See the example for `stdin()`.
 
 - <span id="handle-as-file"></span>`fn as_file(&self) -> &File`
 
   Return a reference to the underlying file.
   
-  # Examples
+  ##### Examples
   Ensure that the target file is not the same as the source one,
   and copy the data to it:
   
@@ -297,7 +297,7 @@ implementation details.
 
   Return a mutable reference to the underlying file.
   
-  # Examples
+  ##### Examples
   See the example for `as_file()`.
 
 - <span id="handle-dev"></span>`fn dev(&self) -> u64`
@@ -388,7 +388,7 @@ where
     Q: AsRef<std::path::Path>
 ```
 
-*Defined in [`same-file-1.0.6/src/lib.rs:370-376`](../../.source_1765894658/same-file-1.0.6/src/lib.rs#L370-L376)*
+*Defined in [`same-file-1.0.6/src/lib.rs:370-376`](../../.source_1765900590/same-file-1.0.6/src/lib.rs#L370-L376)*
 
 Returns true if the two file paths may correspond to the same file.
 

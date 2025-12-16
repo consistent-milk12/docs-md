@@ -45,7 +45,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
 
 The configuration used for a Thompson NFA compiler.
 
@@ -112,7 +112,7 @@ The configuration used for a Thompson NFA compiler.
   
   This is enabled by default.
   
-  # Example
+  ##### Example
   
   This example shows how UTF-8 mode can impact the match spans that may
   be reported in certain cases.
@@ -183,7 +183,7 @@ The configuration used for a Thompson NFA compiler.
   
   This is disabled by default.
   
-  # Example
+  ##### Example
   
   This example shows how to build a DFA from a reverse NFA, and then use
   the DFA to search backwards.
@@ -232,7 +232,7 @@ The configuration used for a Thompson NFA compiler.
   
   There is no size limit by default.
   
-  # Example
+  ##### Example
   
   This example demonstrates how Unicode mode can greatly increase the
   size of the NFA.
@@ -281,7 +281,7 @@ The configuration used for a Thompson NFA compiler.
   This is disabled by default because it can increase compile times
   quite a bit if you aren't building a full DFA.
   
-  # Example
+  ##### Example
   
   This example shows that NFA shrinking can lead to substantial space
   savings in some cases. Notice that, as noted above, we build a reverse
@@ -320,7 +320,7 @@ The configuration used for a Thompson NFA compiler.
   
   This is enabled by default.
   
-  # Example
+  ##### Example
   
   This example demonstrates that some regex engines, like the Pike VM,
   require capturing states to be present in the NFA to report match
@@ -365,7 +365,7 @@ The configuration used for a Thompson NFA compiler.
   match. Otherwise, the `PikeVM` could use much more memory than is
   necessary.
   
-  # Example
+  ##### Example
   
   This example demonstrates that some regex engines, like the Pike VM,
   require capturing states to be present in the NFA to report match
@@ -418,7 +418,7 @@ The configuration used for a Thompson NFA compiler.
   `(?m:^)` and `(?m:$)` assertions can have their line terminator changed
   from the default of `\n` to any other byte.
   
-  # Example
+  ##### Example
   
   This shows how to change the line terminator for multi-line assertions.
   
@@ -572,7 +572,7 @@ struct Compiler {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
 
 A builder for compiling an NFA from a regex's high-level intermediate
 representation (HIR).
@@ -694,7 +694,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   the NFA would exceed the integer representations used. (For example,
   too many states might plausibly occur on a 16-bit target.)
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
@@ -719,7 +719,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   When matches are returned, the pattern ID corresponds to the index of
   the pattern in the slice given.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
@@ -751,7 +751,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   exceed the integer representations used. (For example, too many states
   might plausibly occur on a 16-bit target.)
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
@@ -785,7 +785,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   When matches are returned, the pattern ID corresponds to the index of
   the pattern in the slice given.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
@@ -821,7 +821,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Apply the given NFA configuration options to this builder.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::nfa::thompson::NFA;
@@ -845,7 +845,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   from a pattern string. If an NFA is built from an HIR, then all syntax
   settings are ignored.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::NFA, util::syntax};
@@ -928,7 +928,7 @@ struct ThompsonRef {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1722-1725`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1722-L1725)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1722-1725`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1722-L1725)*
 
 A value that represents the result of compiling a sub-expression of a
 regex's HIR. Specifically, this represents a sub-graph of the NFA that
@@ -1007,7 +1007,7 @@ struct Utf8Compiler<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1748-1752`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1748-L1752)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1748-1752`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1748-L1752)*
 
 A UTF-8 compiler based on Daciuk's algorithm for compiling minimal DFAs
 from a lexicographically sorted sequence of strings in linear time.
@@ -1106,7 +1106,7 @@ struct Utf8State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1755-1758`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1755-L1758)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1755-1758`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1755-L1758)*
 
 #### Implementations
 
@@ -1184,7 +1184,7 @@ struct Utf8Node {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1761-1764`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1761-L1764)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1761-1764`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1761-L1764)*
 
 #### Implementations
 
@@ -1260,7 +1260,7 @@ struct Utf8LastTransition {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1767-1770`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1767-L1770)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1767-1770`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1767-L1770)*
 
 #### Trait Implementations
 
@@ -1335,7 +1335,7 @@ enum WhichCaptures {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
 
 A configuration indicating which kinds of
 [`State::Capture`](crate::nfa::thompson::State::Capture) states to include.

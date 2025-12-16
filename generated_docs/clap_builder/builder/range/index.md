@@ -21,7 +21,7 @@ struct ValueRange {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
+*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
 
 Values per occurrence for an argument
 
@@ -39,11 +39,11 @@ Values per occurrence for an argument
 
   Create a range
   
-  # Panics
+  ##### Panics
   
   If the end is less than the start (debug builds)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -77,7 +77,7 @@ Values per occurrence for an argument
 
   Report whether the argument takes any values (ie is a flag)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;

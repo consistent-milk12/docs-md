@@ -37,7 +37,7 @@ struct Searcher<'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/iter.rs:147-156`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/iter.rs#L147-L156)*
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:147-156`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/iter.rs#L147-L156)*
 
 A searcher for creating iterators and performing lower level iteration.
 
@@ -210,13 +210,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is like `try_advance_half`, except errors are converted into
   panics.
   
-  # Panics
+  ##### Panics
   
   If the given closure returns an error, then this panics. This is useful
   when you know your underlying regex engine has been configured to not
   return an error.
   
-  # Example
+  ##### Example
   
   This example shows how to use a `Searcher` to iterate over all matches
   when using a DFA, which only provides "half" matches.
@@ -297,13 +297,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   This is like `try_advance`, except errors are converted into panics.
   
-  # Panics
+  ##### Panics
   
   If the given closure returns an error, then this panics. This is useful
   when you know your underlying regex engine has been configured to not
   return an error.
   
-  # Example
+  ##### Example
   
   This example shows how to use a `Searcher` to iterate over all matches
   when using a regex based on lazy DFAs:
@@ -415,7 +415,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   engine is configured to never return an error, consider calling
   `TryHalfMatchesIter::infallible` to convert errors into panics.
   
-  # Example
+  ##### Example
   
   This example shows how to use a `Searcher` to create a proper
   iterator over half matches.
@@ -459,7 +459,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   engine is configured to never return an error, consider calling
   `TryMatchesIter::infallible` to convert errors into panics.
   
-  # Example
+  ##### Example
   
   This example shows how to use a `Searcher` to create a proper
   iterator over matches.
@@ -512,7 +512,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   different constructors, which change which kind of information is
   available to query in exchange for search performance.
   
-  # Example
+  ##### Example
   
   This example shows how to use a `Searcher` to create a proper iterator
   over `Captures` values, which provides access to all capturing group
@@ -657,7 +657,7 @@ struct TryHalfMatchesIter<'h, F> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/iter.rs:699-702`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/iter.rs#L699-L702)*
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:699-702`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/iter.rs#L699-L702)*
 
 An iterator over all non-overlapping half matches for a fallible search.
 
@@ -761,7 +761,7 @@ This iterator is created by `Searcher::into_half_matches_iter`.
 struct HalfMatchesIter<'h, F>(TryHalfMatchesIter<'h, F>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/iter.rs:765`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/iter.rs#L765)*
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:765`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/iter.rs#L765)*
 
 An iterator over all non-overlapping half matches for an infallible search.
 
@@ -861,7 +861,7 @@ struct TryMatchesIter<'h, F> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/iter.rs:814-817`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/iter.rs#L814-L817)*
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:814-817`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/iter.rs#L814-L817)*
 
 An iterator over all non-overlapping matches for a fallible search.
 
@@ -965,7 +965,7 @@ This iterator is created by `Searcher::into_matches_iter`.
 struct MatchesIter<'h, F>(TryMatchesIter<'h, F>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/iter.rs:879`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/iter.rs#L879)*
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:879`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/iter.rs#L879)*
 
 An iterator over all non-overlapping matches for an infallible search.
 
@@ -1065,7 +1065,7 @@ struct TryCapturesIter<'h, F> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/iter.rs:929-933`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/iter.rs#L929-L933)*
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:929-933`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/iter.rs#L929-L933)*
 
 An iterator over all non-overlapping captures for a fallible search.
 
@@ -1161,7 +1161,7 @@ This iterator is created by `Searcher::into_captures_iter`.
 struct CapturesIter<'h, F>(TryCapturesIter<'h, F>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/iter.rs:1003`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/iter.rs#L1003)*
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:1003`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/iter.rs#L1003)*
 
 An iterator over all non-overlapping captures for an infallible search.
 

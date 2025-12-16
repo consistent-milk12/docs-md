@@ -70,7 +70,7 @@ for nested navigation.
 
   Create a new TOC entry.
   
-  # Arguments
+  ##### Arguments
   
   * `title` - Display title for the entry
   * `anchor` - Anchor link target (without `#`)
@@ -79,7 +79,7 @@ for nested navigation.
 
   Create a new TOC entry with children.
   
-  # Arguments
+  ##### Arguments
   
   * `title` - Display title for the entry
   * `anchor` - Anchor link target (without `#`)
@@ -200,7 +200,7 @@ modules with unnecessary navigation.
 
   Create a new TOC generator with the given threshold.
   
-  # Arguments
+  ##### Arguments
   
   * `threshold` - Minimum number of items required to generate a TOC
 
@@ -210,11 +210,11 @@ modules with unnecessary navigation.
   
   Returns `None` if the total item count is below the threshold.
   
-  # Arguments
+  ##### Arguments
   
   * `entries` - Top-level TOC entries (typically section headings)
   
-  # Returns
+  ##### Returns
   
   A formatted markdown string with the TOC, or `None` if below threshold.
 

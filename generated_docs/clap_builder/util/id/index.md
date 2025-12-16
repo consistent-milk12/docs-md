@@ -18,7 +18,7 @@
 struct Id(crate::builder::Str);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../../../.source_1765894658/clap_builder-4.5.53/src/util/id.rs#L11)*
+*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../../../.source_1765900590/clap_builder-4.5.53/src/util/id.rs#L11)*
 
 `Arg` or `ArgGroup` identifier
 

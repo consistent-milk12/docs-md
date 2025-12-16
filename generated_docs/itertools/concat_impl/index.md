@@ -21,7 +21,7 @@ where
     <I as >::Item: Extend<<<I as IntoIterator>::Item as IntoIterator>::Item> + IntoIterator + Default
 ```
 
-*Defined in [`itertools-0.14.0/src/concat_impl.rs:15-27`](../../../.source_1765894658/itertools-0.14.0/src/concat_impl.rs#L15-L27)*
+*Defined in [`itertools-0.14.0/src/concat_impl.rs:15-27`](../../../.source_1765900590/itertools-0.14.0/src/concat_impl.rs#L15-L27)*
 
 Combine all an iterator's elements into one element by using `Extend`.
 

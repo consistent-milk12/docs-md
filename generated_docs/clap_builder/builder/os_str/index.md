@@ -25,7 +25,7 @@ struct OsStr {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
+*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
 
 A UTF-8-encoded fixed string
 

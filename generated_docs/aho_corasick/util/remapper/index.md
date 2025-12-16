@@ -23,7 +23,7 @@ struct Remapper {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:67-84`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/remapper.rs#L67-L84)*
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:67-84`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/remapper.rs#L67-L84)*
 
 Remapper is an abstraction the manages the remapping of state IDs in a
 finite state machine. This is useful when one wants to shuffle states into
@@ -135,7 +135,7 @@ struct IndexMapper {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:177-182`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/remapper.rs#L177-L182)*
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:177-182`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/remapper.rs#L177-L182)*
 
 A simple type for mapping between state indices and state IDs.
 
@@ -228,7 +228,7 @@ identity.
 trait Remappable: core::fmt::Debug { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:28-54`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/remapper.rs#L28-L54)*
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:28-54`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/remapper.rs#L28-L54)*
 
 Remappable is a tightly coupled abstraction that facilitates remapping
 state identifiers in DFAs.
@@ -256,11 +256,11 @@ DFAs are partitioned.
 
 #### Required Methods
 
-- `fn state_len(&self) -> usize`
+- `fn Remappable::state_len(&self) -> usize`
 
   Return the total number of states.
 
-- `fn swap_states(&mut self, id1: StateID, id2: StateID)`
+- `fn Remappable::swap_states(&mut self, id1: StateID, id2: StateID)`
 
   Swap the states pointed to by the given IDs. The underlying finite
   state machine should be mutated such that all of the transitions in
@@ -279,7 +279,7 @@ DFAs are partitioned.
   should be used to guarantee that `remap` is called at the appropriate
   time.
 
-- `fn remap(&mut self, map: impl Fn(StateID) -> StateID)`
+- `fn Remappable::remap(&mut self, map: impl Fn(StateID) -> StateID)`
 
   This must remap every single state ID in the underlying value according
   to the function given. For example, in a DFA, this should remap every

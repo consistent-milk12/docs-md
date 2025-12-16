@@ -66,7 +66,7 @@ Summary
 
   Create a new summary generator.
   
-  # Arguments
+  ##### Arguments
   
   * `crates` - Collection of parsed crates
   * `output_dir` - Directory to write SUMMARY.md
@@ -76,7 +76,7 @@ Summary
 
   Generate the SUMMARY.md file.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the file cannot be written.
 

@@ -28,11 +28,12 @@ struct RenderConfig {
     pub hide_trivial_derives: bool,
     pub method_anchors: bool,
     pub full_method_docs: bool,
+    pub large_trait_threshold: Option<usize>,
     pub include_source: SourceConfig,
 }
 ```
 
-*Defined in `src/generator/config.rs:14-39`*
+*Defined in `src/generator/config.rs:14-48`*
 
 Configuration options for markdown rendering.
 
@@ -65,6 +66,16 @@ Configuration options for markdown rendering.
   When `false` (default), method docs in impl blocks show only the first
   paragraph (up to the first blank line). When `true`, the complete
   documentation is included.
+
+- **`large_trait_threshold`**: `Option<usize>`
+
+  Threshold for generating separate method pages for large traits/impls.
+  
+  When a trait or impl block has more methods than this threshold,
+  separate markdown pages will be generated for each method, with the
+  main page linking to them. Set to `None` to disable this feature.
+  
+  Default: `None` (disabled)
 
 - **`include_source`**: `SourceConfig`
 
@@ -169,7 +180,7 @@ struct SourceConfig {
 }
 ```
 
-*Defined in `src/generator/config.rs:49-68`*
+*Defined in `src/generator/config.rs:58-77`*
 
 Configuration for source code integration.
 

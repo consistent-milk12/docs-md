@@ -42,7 +42,7 @@ struct Lookahead1<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:63-67`](../../../.source_1765894658/syn-2.0.111/src/lookahead.rs#L63-L67)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:63-67`](../../../.source_1765900590/syn-2.0.111/src/lookahead.rs#L63-L67)*
 
 Support for checking the next token in a stream to decide how to parse.
 
@@ -103,7 +103,7 @@ impl Parse for GenericParam {
   Looks at the next token in the parse stream to determine whether it
   matches the requested type of token.
   
-  # Syntax
+  ##### Syntax
   
   Note that this method does not use turbofish syntax. Pass the peek type
   inside of parentheses.
@@ -169,7 +169,7 @@ impl Parse for GenericParam {
 struct CommaSeparated<'a>(&'a [&'a str]);
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:150`](../../../.source_1765894658/syn-2.0.111/src/lookahead.rs#L150)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:150`](../../../.source_1765900590/syn-2.0.111/src/lookahead.rs#L150)*
 
 #### Trait Implementations
 
@@ -226,7 +226,7 @@ struct CommaSeparated<'a>(&'a [&'a str]);
 struct End;
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:310`](../../../.source_1765894658/syn-2.0.111/src/lookahead.rs#L310)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:310`](../../../.source_1765900590/syn-2.0.111/src/lookahead.rs#L310)*
 
 Pseudo-token used for peeking the end of a parse stream.
 
@@ -437,7 +437,7 @@ enum TokenMarker {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:338`](../../../.source_1765894658/syn-2.0.111/src/lookahead.rs#L338)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:338`](../../../.source_1765900590/syn-2.0.111/src/lookahead.rs#L338)*
 
 #### Trait Implementations
 
@@ -488,7 +488,7 @@ enum TokenMarker {
 trait Peek: Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:174-178`](../../../.source_1765894658/syn-2.0.111/src/lookahead.rs#L174-L178)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:174-178`](../../../.source_1765900590/syn-2.0.111/src/lookahead.rs#L174-L178)*
 
 Types that can be parsed by looking at just one token.
 
@@ -512,7 +512,7 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 fn new(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>) -> Lookahead1<'_>
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:69-75`](../../../.source_1765894658/syn-2.0.111/src/lookahead.rs#L69-L75)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:69-75`](../../../.source_1765900590/syn-2.0.111/src/lookahead.rs#L69-L75)*
 
 ### `peek_impl`
 
@@ -520,5 +520,5 @@ fn new(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>) -> Lookahead
 fn peek_impl(lookahead: &Lookahead1<'_>, peek: fn(crate::buffer::Cursor<'_>) -> bool, display: fn() -> &'static str) -> bool
 ```
 
-*Defined in [`syn-2.0.111/src/lookahead.rs:77-87`](../../../.source_1765894658/syn-2.0.111/src/lookahead.rs#L77-L87)*
+*Defined in [`syn-2.0.111/src/lookahead.rs:77-87`](../../../.source_1765900590/syn-2.0.111/src/lookahead.rs#L77-L87)*
 

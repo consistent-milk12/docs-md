@@ -63,7 +63,7 @@ Types for compile-time and run-time endianness.
 struct LittleEndian;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:317`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L317)*
+*Defined in [`object-0.37.3/src/endian.rs:317`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L317)*
 
 Compile-time little endian byte order.
 
@@ -158,7 +158,7 @@ Compile-time little endian byte order.
 struct BigEndian;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:344`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L344)*
+*Defined in [`object-0.37.3/src/endian.rs:344`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L344)*
 
 Compile-time big endian byte order.
 
@@ -253,7 +253,7 @@ Compile-time big endian byte order.
 struct U16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:620`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L620)*
+*Defined in [`object-0.37.3/src/endian.rs:620`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L620)*
 
 An unaligned `u16` value with an externally specified endianness of type `E`.
 
@@ -370,7 +370,7 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 struct U32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:647`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L647)*
+*Defined in [`object-0.37.3/src/endian.rs:647`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L647)*
 
 An unaligned `u32` value with an externally specified endianness of type `E`.
 
@@ -487,7 +487,7 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 struct U64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:674`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L674)*
+*Defined in [`object-0.37.3/src/endian.rs:674`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L674)*
 
 An unaligned `u64` value with an externally specified endianness of type `E`.
 
@@ -604,7 +604,7 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 struct I16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:701`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L701)*
+*Defined in [`object-0.37.3/src/endian.rs:701`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L701)*
 
 An unaligned `i16` value with an externally specified endianness of type `E`.
 
@@ -721,7 +721,7 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 struct I32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:728`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L728)*
+*Defined in [`object-0.37.3/src/endian.rs:728`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L728)*
 
 An unaligned `i32` value with an externally specified endianness of type `E`.
 
@@ -838,7 +838,7 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 struct I64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:755`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L755)*
+*Defined in [`object-0.37.3/src/endian.rs:755`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L755)*
 
 An unaligned `i64` value with an externally specified endianness of type `E`.
 
@@ -960,7 +960,7 @@ enum Endianness {
 }
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:278-283`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L278-L283)*
+*Defined in [`object-0.37.3/src/endian.rs:278-283`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L278-L283)*
 
 An endianness that is selectable at run-time.
 
@@ -1067,7 +1067,7 @@ An endianness that is selectable at run-time.
 trait Endian: Debug + Default + Clone + Copy + PartialEq + Eq + 'static { ... }
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:13-274`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L13-L274)*
+*Defined in [`object-0.37.3/src/endian.rs:13-274`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L13-L274)*
 
 A trait for using an endianness specification.
 
@@ -1076,123 +1076,160 @@ the native endianness of the target machine.
 
 This trait does not require that the endianness is known at compile time.
 
+<details>
+<summary><strong>Methods (28)</strong> - click to expand</summary>
+
+**Required:**
+- [`Endian::from_big_endian`](#fn-endianfrom-big-endian)
+- [`Endian::is_big_endian`](#fn-endianis-big-endian)
+
+**Provided:**
+- [`Endian::from_little_endian`](#fn-endianfrom-little-endian)
+- [`Endian::is_little_endian`](#fn-endianis-little-endian)
+- [`Endian::read_u16`](#fn-endianread-u16)
+- [`Endian::read_u32`](#fn-endianread-u32)
+- [`Endian::read_u64`](#fn-endianread-u64)
+- [`Endian::read_i16`](#fn-endianread-i16)
+- [`Endian::read_i32`](#fn-endianread-i32)
+- [`Endian::read_i64`](#fn-endianread-i64)
+- [`Endian::read_u16_bytes`](#fn-endianread-u16-bytes)
+- [`Endian::read_u32_bytes`](#fn-endianread-u32-bytes)
+- [`Endian::read_u64_bytes`](#fn-endianread-u64-bytes)
+- [`Endian::read_i16_bytes`](#fn-endianread-i16-bytes)
+- [`Endian::read_i32_bytes`](#fn-endianread-i32-bytes)
+- [`Endian::read_i64_bytes`](#fn-endianread-i64-bytes)
+- [`Endian::write_u16`](#fn-endianwrite-u16)
+- [`Endian::write_u32`](#fn-endianwrite-u32)
+- [`Endian::write_u64`](#fn-endianwrite-u64)
+- [`Endian::write_i16`](#fn-endianwrite-i16)
+- [`Endian::write_i32`](#fn-endianwrite-i32)
+- [`Endian::write_i64`](#fn-endianwrite-i64)
+- [`Endian::write_u16_bytes`](#fn-endianwrite-u16-bytes)
+- [`Endian::write_u32_bytes`](#fn-endianwrite-u32-bytes)
+- [`Endian::write_u64_bytes`](#fn-endianwrite-u64-bytes)
+- [`Endian::write_i16_bytes`](#fn-endianwrite-i16-bytes)
+- [`Endian::write_i32_bytes`](#fn-endianwrite-i32-bytes)
+- [`Endian::write_i64_bytes`](#fn-endianwrite-i64-bytes)
+
+</details>
+
 #### Required Methods
 
-- `fn from_big_endian(big_endian: bool) -> Option<Self>`
+- `fn Endian::from_big_endian(big_endian: bool) -> Option<Self>`
 
   Construct a specification for the endianness of some values.
   
   Returns `None` if the type does not support specifying the given endianness.
 
-- `fn is_big_endian(self) -> bool`
+- `fn Endian::is_big_endian(self) -> bool`
 
   Return true for big endian byte order.
 
 #### Provided Methods
 
-- `fn from_little_endian(little_endian: bool) -> Option<Self>`
+- `fn Endian::from_little_endian(little_endian: bool) -> Option<Self>`
 
   Construct a specification for the endianness of some values.
   
   Returns `None` if the type does not support specifying the given endianness.
 
-- `fn is_little_endian(self) -> bool`
+- `fn Endian::is_little_endian(self) -> bool`
 
   Return true for little endian byte order.
 
-- `fn read_u16(self, n: u16) -> u16`
+- `fn Endian::read_u16(self, n: u16) -> u16`
 
   Converts an unsigned 16 bit integer to native endian.
 
-- `fn read_u32(self, n: u32) -> u32`
+- `fn Endian::read_u32(self, n: u32) -> u32`
 
   Converts an unsigned 32 bit integer to native endian.
 
-- `fn read_u64(self, n: u64) -> u64`
+- `fn Endian::read_u64(self, n: u64) -> u64`
 
   Converts an unsigned 64 bit integer to native endian.
 
-- `fn read_i16(self, n: i16) -> i16`
+- `fn Endian::read_i16(self, n: i16) -> i16`
 
   Converts a signed 16 bit integer to native endian.
 
-- `fn read_i32(self, n: i32) -> i32`
+- `fn Endian::read_i32(self, n: i32) -> i32`
 
   Converts a signed 32 bit integer to native endian.
 
-- `fn read_i64(self, n: i64) -> i64`
+- `fn Endian::read_i64(self, n: i64) -> i64`
 
   Converts a signed 64 bit integer to native endian.
 
-- `fn read_u16_bytes(self, n: [u8; 2]) -> u16`
+- `fn Endian::read_u16_bytes(self, n: [u8; 2]) -> u16`
 
   Converts an unaligned unsigned 16 bit integer to native endian.
 
-- `fn read_u32_bytes(self, n: [u8; 4]) -> u32`
+- `fn Endian::read_u32_bytes(self, n: [u8; 4]) -> u32`
 
   Converts an unaligned unsigned 32 bit integer to native endian.
 
-- `fn read_u64_bytes(self, n: [u8; 8]) -> u64`
+- `fn Endian::read_u64_bytes(self, n: [u8; 8]) -> u64`
 
   Converts an unaligned unsigned 64 bit integer to native endian.
 
-- `fn read_i16_bytes(self, n: [u8; 2]) -> i16`
+- `fn Endian::read_i16_bytes(self, n: [u8; 2]) -> i16`
 
   Converts an unaligned signed 16 bit integer to native endian.
 
-- `fn read_i32_bytes(self, n: [u8; 4]) -> i32`
+- `fn Endian::read_i32_bytes(self, n: [u8; 4]) -> i32`
 
   Converts an unaligned signed 32 bit integer to native endian.
 
-- `fn read_i64_bytes(self, n: [u8; 8]) -> i64`
+- `fn Endian::read_i64_bytes(self, n: [u8; 8]) -> i64`
 
   Converts an unaligned signed 64 bit integer to native endian.
 
-- `fn write_u16(self, n: u16) -> u16`
+- `fn Endian::write_u16(self, n: u16) -> u16`
 
   Converts an unsigned 16 bit integer from native endian.
 
-- `fn write_u32(self, n: u32) -> u32`
+- `fn Endian::write_u32(self, n: u32) -> u32`
 
   Converts an unsigned 32 bit integer from native endian.
 
-- `fn write_u64(self, n: u64) -> u64`
+- `fn Endian::write_u64(self, n: u64) -> u64`
 
   Converts an unsigned 64 bit integer from native endian.
 
-- `fn write_i16(self, n: i16) -> i16`
+- `fn Endian::write_i16(self, n: i16) -> i16`
 
   Converts a signed 16 bit integer from native endian.
 
-- `fn write_i32(self, n: i32) -> i32`
+- `fn Endian::write_i32(self, n: i32) -> i32`
 
   Converts a signed 32 bit integer from native endian.
 
-- `fn write_i64(self, n: i64) -> i64`
+- `fn Endian::write_i64(self, n: i64) -> i64`
 
   Converts a signed 64 bit integer from native endian.
 
-- `fn write_u16_bytes(self, n: u16) -> [u8; 2]`
+- `fn Endian::write_u16_bytes(self, n: u16) -> [u8; 2]`
 
   Converts an unaligned unsigned 16 bit integer from native endian.
 
-- `fn write_u32_bytes(self, n: u32) -> [u8; 4]`
+- `fn Endian::write_u32_bytes(self, n: u32) -> [u8; 4]`
 
   Converts an unaligned unsigned 32 bit integer from native endian.
 
-- `fn write_u64_bytes(self, n: u64) -> [u8; 8]`
+- `fn Endian::write_u64_bytes(self, n: u64) -> [u8; 8]`
 
   Converts an unaligned unsigned 64 bit integer from native endian.
 
-- `fn write_i16_bytes(self, n: i16) -> [u8; 2]`
+- `fn Endian::write_i16_bytes(self, n: i16) -> [u8; 2]`
 
   Converts an unaligned signed 16 bit integer from native endian.
 
-- `fn write_i32_bytes(self, n: i32) -> [u8; 4]`
+- `fn Endian::write_i32_bytes(self, n: i32) -> [u8; 4]`
 
   Converts an unaligned signed 32 bit integer from native endian.
 
-- `fn write_i64_bytes(self, n: i64) -> [u8; 8]`
+- `fn Endian::write_i64_bytes(self, n: i64) -> [u8; 8]`
 
   Converts an unaligned signed 64 bit integer from native endian.
 
@@ -1210,7 +1247,7 @@ This trait does not require that the endianness is known at compile time.
 type NativeEndian = LittleEndian;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:371`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L371)*
+*Defined in [`object-0.37.3/src/endian.rs:371`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L371)*
 
 The native endianness for the target platform.
 
@@ -1220,7 +1257,7 @@ The native endianness for the target platform.
 type U16<E> = U16Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:595`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L595)*
+*Defined in [`object-0.37.3/src/endian.rs:595`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L595)*
 
 A `u16` value with an externally specified endianness of type `E`.
 
@@ -1230,7 +1267,7 @@ A `u16` value with an externally specified endianness of type `E`.
 type U32<E> = U32Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:599`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L599)*
+*Defined in [`object-0.37.3/src/endian.rs:599`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L599)*
 
 A `u32` value with an externally specified endianness of type `E`.
 
@@ -1240,7 +1277,7 @@ A `u32` value with an externally specified endianness of type `E`.
 type U64<E> = U64Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:603`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L603)*
+*Defined in [`object-0.37.3/src/endian.rs:603`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L603)*
 
 A `u64` value with an externally specified endianness of type `E`.
 
@@ -1250,7 +1287,7 @@ A `u64` value with an externally specified endianness of type `E`.
 type I16<E> = I16Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:607`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L607)*
+*Defined in [`object-0.37.3/src/endian.rs:607`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L607)*
 
 An `i16` value with an externally specified endianness of type `E`.
 
@@ -1260,7 +1297,7 @@ An `i16` value with an externally specified endianness of type `E`.
 type I32<E> = I32Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:611`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L611)*
+*Defined in [`object-0.37.3/src/endian.rs:611`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L611)*
 
 An `i32` value with an externally specified endianness of type `E`.
 
@@ -1270,7 +1307,7 @@ An `i32` value with an externally specified endianness of type `E`.
 type I64<E> = I64Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:615`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L615)*
+*Defined in [`object-0.37.3/src/endian.rs:615`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L615)*
 
 An `i64` value with an externally specified endianness of type `E`.
 
@@ -1278,5 +1315,5 @@ An `i64` value with an externally specified endianness of type `E`.
 
 ### `unsafe_impl_endian_pod!`
 
-*Defined in [`object-0.37.3/src/endian.rs:387-393`](../../../.source_1765894658/object-0.37.3/src/endian.rs#L387-L393)*
+*Defined in [`object-0.37.3/src/endian.rs:387-393`](../../../.source_1765900590/object-0.37.3/src/endian.rs#L387-L393)*
 

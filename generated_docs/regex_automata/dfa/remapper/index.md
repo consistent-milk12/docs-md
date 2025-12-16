@@ -28,7 +28,7 @@ struct Remapper {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:68-85`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/remapper.rs#L68-L85)*
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:68-85`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/remapper.rs#L68-L85)*
 
 Remapper is an abstraction the manages the remapping of state IDs in a
 finite state machine. This is useful when one wants to shuffle states into
@@ -135,7 +135,7 @@ struct IndexMapper {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:169-174`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/remapper.rs#L169-L174)*
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:169-174`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/remapper.rs#L169-L174)*
 
 A simple type for mapping between state indices and state IDs.
 
@@ -224,7 +224,7 @@ indices.
 trait Remappable: core::fmt::Debug { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:28-55`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/remapper.rs#L28-L55)*
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:28-55`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/remapper.rs#L28-L55)*
 
 Remappable is a tightly coupled abstraction that facilitates remapping
 state identifiers in DFAs.
@@ -252,16 +252,16 @@ DFAs are partitioned.
 
 #### Required Methods
 
-- `fn state_len(&self) -> usize`
+- `fn Remappable::state_len(&self) -> usize`
 
   Return the total number of states.
 
-- `fn stride2(&self) -> usize`
+- `fn Remappable::stride2(&self) -> usize`
 
   Return the power-of-2 exponent that yields the stride. The pertinent
   laws here are, where N=stride2: 2^N=stride and len(alphabet) <= stride.
 
-- `fn swap_states(&mut self, id1: StateID, id2: StateID)`
+- `fn Remappable::swap_states(&mut self, id1: StateID, id2: StateID)`
 
   Swap the states pointed to by the given IDs. The underlying finite
   state machine should be mutated such that all of the transitions in
@@ -280,7 +280,7 @@ DFAs are partitioned.
   should be used to guarantee that `remap` is called at the appropriate
   time.
 
-- `fn remap(&mut self, map: impl Fn(StateID) -> StateID)`
+- `fn Remappable::remap(&mut self, map: impl Fn(StateID) -> StateID)`
 
   This must remap every single state ID in the underlying value according
   to the function given. For example, in a DFA, this should remap every

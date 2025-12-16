@@ -185,7 +185,7 @@ struct Dispatch {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
 
 `Dispatch` trace data to a [`Subscriber`](../subscriber/index.md).
 
@@ -446,7 +446,7 @@ struct WeakDispatch {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:172-174`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L172-L174)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:172-174`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L172-L174)*
 
 `WeakDispatch` is a version of [`Dispatch`](#dispatch) that holds a non-owning reference
 to a [`Subscriber`](../subscriber/index.md).
@@ -474,7 +474,7 @@ This type is analogous to the `std::sync::Weak` type, but for a
   
   Returns `None` if the referenced `Dispatch` has already been dropped.
   
-  ## Examples
+  ###### Examples
   
   ```rust
   use tracing_core::subscriber::NoSubscriber;
@@ -559,7 +559,7 @@ struct State {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:212-223`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L212-L223)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:212-223`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L212-L223)*
 
 The dispatch state of a thread.
 
@@ -638,7 +638,7 @@ The dispatch state of a thread.
 struct Entered<'a>(&'a State);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:229`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L229)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:229`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L229)*
 
 While this guard is active, additional calls to subscriber functions on
 the default dispatcher will not be able to access the dispatch context.
@@ -699,7 +699,7 @@ Dropping the guard will allow the dispatch context to be re-entered.
 struct DefaultGuard(Option<Dispatch>);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:236`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L236)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:236`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L236)*
 
 A guard that resets the current default dispatcher to the prior
 default dispatcher when dropped.
@@ -761,7 +761,7 @@ struct SetGlobalDefaultError {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:345-347`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L345-L347)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:345-347`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L345-L347)*
 
 Returned if setting the global dispatcher fails.
 
@@ -830,7 +830,7 @@ Returned if setting the global dispatcher fails.
 struct Registrar(Kind<alloc::sync::Weak<dyn Subscriber + Send + Sync>>);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:458`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L458)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:458`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L458)*
 
 #### Implementations
 
@@ -888,7 +888,7 @@ enum Kind<T> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:177-180`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L177-L180)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:177-180`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L177-L180)*
 
 #### Implementations
 
@@ -959,7 +959,7 @@ enum Kind<T> {
 fn with_default<T>(dispatcher: &Dispatch, f: impl FnOnce() -> T) -> T
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:254-261`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L254-L261)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:254-261`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L254-L261)*
 
 Sets this dispatch as the default for the duration of a closure.
 
@@ -981,7 +981,7 @@ The default dispatcher is used when creating a new [`span`](../span/index.md) or
 fn set_default(dispatcher: &Dispatch) -> DefaultGuard
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:276-281`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L276-L281)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:276-281`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L276-L281)*
 
 Sets the dispatch as the default dispatch for the duration of the lifetime
 of the returned DefaultGuard
@@ -999,7 +999,7 @@ of the returned DefaultGuard
 fn set_global_default(dispatcher: Dispatch) -> Result<(), SetGlobalDefaultError>
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:299-332`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L299-L332)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:299-332`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L299-L332)*
 
 Sets this dispatch as the global default for the duration of the entire program.
 Will be used as a fallback if no thread-local dispatch has been set in a thread
@@ -1025,7 +1025,7 @@ where
     F: FnMut(&Dispatch) -> T
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:379-398`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L379-L398)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:379-398`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L379-L398)*
 
 Executes a closure with a reference to this thread's current [dispatcher](#dispatcher).
 
@@ -1040,7 +1040,7 @@ with `Dispatch::none` rather than the previously set dispatcher.
 fn get_global() -> &'static Dispatch
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:446-455`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L446-L455)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:446-455`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L446-L455)*
 
 ## Constants
 
@@ -1049,26 +1049,26 @@ fn get_global() -> &'static Dispatch
 const CURRENT_STATE: thread::LocalKey<State>;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:183-190`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L183-L190)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:183-190`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L183-L190)*
 
 ### `UNINITIALIZED`
 ```rust
 const UNINITIALIZED: usize = 0usize;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:198`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L198)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:198`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L198)*
 
 ### `INITIALIZING`
 ```rust
 const INITIALIZING: usize = 1usize;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:199`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L199)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:199`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L199)*
 
 ### `INITIALIZED`
 ```rust
 const INITIALIZED: usize = 2usize;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:200`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L200)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:200`](../../../.source_1765900590/tracing-core-0.1.35/src/dispatcher.rs#L200)*
 

@@ -18,20 +18,20 @@
 trait ToTokens { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../../.source_1765894658/quote-1.0.42/src/to_tokens.rs#L9-L72)*
+*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../../.source_1765900590/quote-1.0.42/src/to_tokens.rs#L9-L72)*
 
 Types that can be interpolated inside a `quote!` invocation.
 
 #### Required Methods
 
-- `fn to_tokens(&self, tokens: &mut TokenStream)`
+- `fn ToTokens::to_tokens(&self, tokens: &mut TokenStream)`
 
   Write `self` to the given `TokenStream`.
   
   The token append methods provided by the [`TokenStreamExt`](../ext/index.md) extension
   trait may be useful for implementing `ToTokens`.
   
-  # Example
+  ##### Example
   
   Example implementation for a struct representing Rust paths like
   `std::cmp::PartialEq`:
@@ -69,14 +69,14 @@ Types that can be interpolated inside a `quote!` invocation.
 
 #### Provided Methods
 
-- `fn to_token_stream(&self) -> TokenStream`
+- `fn ToTokens::to_token_stream(&self) -> TokenStream`
 
   Convert `self` directly into a `TokenStream` object.
   
   This method is implicitly implemented using `to_tokens`, and acts as a
   convenience method for consumers of the `ToTokens` trait.
 
-- `fn into_token_stream(self) -> TokenStream`
+- `fn ToTokens::into_token_stream(self) -> TokenStream`
 
   Convert `self` directly into a `TokenStream` object.
   

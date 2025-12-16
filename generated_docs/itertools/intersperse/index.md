@@ -36,7 +36,7 @@
 struct IntersperseElementSimple<Item>(Item);
 ```
 
-*Defined in [`itertools-0.14.0/src/intersperse.rs:9`](../../../.source_1765894658/itertools-0.14.0/src/intersperse.rs#L9)*
+*Defined in [`itertools-0.14.0/src/intersperse.rs:9`](../../../.source_1765900590/itertools-0.14.0/src/intersperse.rs#L9)*
 
 #### Trait Implementations
 
@@ -117,7 +117,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/intersperse.rs:51-61`](../../../.source_1765894658/itertools-0.14.0/src/intersperse.rs#L51-L61)*
+*Defined in [`itertools-0.14.0/src/intersperse.rs:51-61`](../../../.source_1765900590/itertools-0.14.0/src/intersperse.rs#L51-L61)*
 
 An iterator adaptor to insert a particular value created by a function
 between each element of the adapted iterator.
@@ -233,11 +233,11 @@ See [`.intersperse_with()`](crate::Itertools::intersperse_with) for more informa
 trait IntersperseElement<Item> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/intersperse.rs:4-6`](../../../.source_1765894658/itertools-0.14.0/src/intersperse.rs#L4-L6)*
+*Defined in [`itertools-0.14.0/src/intersperse.rs:4-6`](../../../.source_1765900590/itertools-0.14.0/src/intersperse.rs#L4-L6)*
 
 #### Required Methods
 
-- `fn generate(&mut self) -> Item`
+- `fn IntersperseElement::generate(&mut self) -> Item`
 
 #### Implementors
 
@@ -254,7 +254,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/intersperse.rs:28-33`](../../../.source_1765894658/itertools-0.14.0/src/intersperse.rs#L28-L33)*
+*Defined in [`itertools-0.14.0/src/intersperse.rs:28-33`](../../../.source_1765900590/itertools-0.14.0/src/intersperse.rs#L28-L33)*
 
 Create a new Intersperse iterator
 
@@ -266,7 +266,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/intersperse.rs:64-73`](../../../.source_1765894658/itertools-0.14.0/src/intersperse.rs#L64-L73)*
+*Defined in [`itertools-0.14.0/src/intersperse.rs:64-73`](../../../.source_1765900590/itertools-0.14.0/src/intersperse.rs#L64-L73)*
 
 Create a new `IntersperseWith` iterator
 
@@ -278,7 +278,7 @@ Create a new `IntersperseWith` iterator
 type Intersperse<I> = IntersperseWith<I, IntersperseElementSimple<<I as Iterator>::Item>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/intersperse.rs:25`](../../../.source_1765894658/itertools-0.14.0/src/intersperse.rs#L25)*
+*Defined in [`itertools-0.14.0/src/intersperse.rs:25`](../../../.source_1765900590/itertools-0.14.0/src/intersperse.rs#L25)*
 
 An iterator adaptor to insert a particular value
 between each element of the adapted iterator.

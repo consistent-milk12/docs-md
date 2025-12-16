@@ -25,7 +25,7 @@ struct DebugMacinfo<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:11-13`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L11-L13)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:11-13`](../../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L11-L13)*
 
 The raw contents of the `.debug_macinfo` section.
 
@@ -129,7 +129,7 @@ struct DebugMacro<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:104-106`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L104-L106)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:104-106`](../../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L104-L106)*
 
 The raw contents of the `.debug_macro` section.
 
@@ -235,7 +235,7 @@ struct MacroUnitHeader<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:197-202`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L197-L202)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:197-202`](../../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L197-L202)*
 
 #### Fields
 
@@ -326,7 +326,7 @@ struct MacroIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:327-331`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L327-L331)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:327-331`](../../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L327-L331)*
 
 Iterator over the entries in the `.debug_macro` section.
 
@@ -413,7 +413,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:244-258`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L244-L258)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:244-258`](../../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L244-L258)*
 
 A string in a macro entry.
 
@@ -544,7 +544,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:277-323`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L277-L323)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:277-323`](../../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L277-L323)*
 
 an Entry in the `.debug_macro` section.
 

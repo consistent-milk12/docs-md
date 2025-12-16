@@ -25,7 +25,7 @@ struct IntoIter<T, A: Allocator> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
 
 An iterator that moves out of a vector.
 
@@ -45,7 +45,7 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
   Returns the remaining items of this iterator as a slice.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let vec = vec!['a', 'b', 'c'];
@@ -59,7 +59,7 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
   Returns the remaining items of this iterator as a mutable slice.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let vec = vec!['a', 'b', 'c'];

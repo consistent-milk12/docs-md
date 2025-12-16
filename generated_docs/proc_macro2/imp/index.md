@@ -55,7 +55,7 @@ struct DeferredTokenStream {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:31-34`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L31-L34)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:31-34`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L31-L34)*
 
 #### Implementations
 
@@ -135,7 +135,7 @@ enum TokenStream {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:21-24`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L21-L24)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:21-24`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L21-L24)*
 
 #### Implementations
 
@@ -258,7 +258,7 @@ enum LexError {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:36-43`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L36-L43)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:36-43`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L36-L43)*
 
 #### Implementations
 
@@ -326,7 +326,7 @@ enum TokenTreeIter {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:312-315`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L312-L315)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:312-315`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L312-L315)*
 
 #### Trait Implementations
 
@@ -410,7 +410,7 @@ enum Span {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:370-373`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L370-L373)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:370-373`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L370-L373)*
 
 #### Implementations
 
@@ -514,7 +514,7 @@ enum Group {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:558-561`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L558-L561)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:558-561`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L558-L561)*
 
 #### Implementations
 
@@ -622,7 +622,7 @@ enum Ident {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:663-666`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L663-L666)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:663-666`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L663-L666)*
 
 #### Implementations
 
@@ -734,7 +734,7 @@ enum Literal {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:758-761`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L758-L761)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:758-761`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L758-L761)*
 
 #### Implementations
 
@@ -901,7 +901,7 @@ enum Literal {
 fn mismatch(line: u32) -> never
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:46-56`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L46-L56)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:46-56`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L46-L56)*
 
 ### `into_compiler_token`
 
@@ -909,7 +909,7 @@ fn mismatch(line: u32) -> never
 fn into_compiler_token(token: crate::TokenTree) -> proc_macro::TokenTree
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:161-176`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L161-L176)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:161-176`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L161-L176)*
 
 ### `debug_span_field_if_nontrivial`
 
@@ -917,7 +917,7 @@ fn into_compiler_token(token: crate::TokenTree) -> proc_macro::TokenTree
 fn debug_span_field_if_nontrivial(debug: &mut fmt::DebugStruct<'_, '_>, span: Span)
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:548-555`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L548-L555)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:548-555`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L548-L555)*
 
 ### `invalidate_current_thread_spans`
 
@@ -925,15 +925,15 @@ fn debug_span_field_if_nontrivial(debug: &mut fmt::DebugStruct<'_, '_>, span: Sp
 fn invalidate_current_thread_spans()
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:976-984`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L976-L984)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:976-984`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L976-L984)*
 
 ## Macros
 
 ### `suffixed_numbers!`
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:763-773`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L763-L773)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:763-773`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L763-L773)*
 
 ### `unsuffixed_integers!`
 
-*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:775-785`](../../../.source_1765894658/proc-macro2-1.0.103/src/wrapper.rs#L775-L785)*
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:775-785`](../../../.source_1765900590/proc-macro2-1.0.103/src/wrapper.rs#L775-L785)*
 

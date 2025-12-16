@@ -19,7 +19,7 @@
 struct AsLowerCamelCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/lower_camel.rs:44`](../../../.source_1765894658/heck-0.5.0/src/lower_camel.rs#L44)*
+*Defined in [`heck-0.5.0/src/lower_camel.rs:44`](../../../.source_1765900590/heck-0.5.0/src/lower_camel.rs#L44)*
 
 This wrapper performs a lower camel case conversion in `fmt::Display`.
 
@@ -89,7 +89,7 @@ assert_eq!(format!("{}", AsLowerCamelCase(sentence)), "itIsWeWhoBuiltThesePalace
 trait ToLowerCamelCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/lower_camel.rs:23-26`](../../../.source_1765894658/heck-0.5.0/src/lower_camel.rs#L23-L26)*
+*Defined in [`heck-0.5.0/src/lower_camel.rs:23-26`](../../../.source_1765900590/heck-0.5.0/src/lower_camel.rs#L23-L26)*
 
 This trait defines a lower camel case conversion.
 
@@ -107,7 +107,7 @@ assert_eq!(sentence.to_lower_camel_case(), "itIsWeWhoBuiltThesePalacesAndCities"
 
 #### Required Methods
 
-- `fn to_lower_camel_case(&self) -> <Self as >::Owned`
+- `fn ToLowerCamelCase::to_lower_camel_case(&self) -> <Self as >::Owned`
 
   Convert this type to lower camel case.
 

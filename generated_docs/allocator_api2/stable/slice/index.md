@@ -18,17 +18,17 @@
 trait SliceExt<T> { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/slice.rs:7-67`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/slice.rs#L7-L67)*
+*Defined in [`allocator-api2-0.2.21/src/stable/slice.rs:7-67`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/slice.rs#L7-L67)*
 
 Slice methods that use `Box` and `Vec` from this crate.
 
 #### Required Methods
 
-- `fn to_vec_in<A: Allocator>(&self, alloc: A) -> Vec<T, A>`
+- `fn SliceExt::to_vec_in<A: Allocator>(&self, alloc: A) -> Vec<T, A>`
 
   Copies `self` into a new `Vec` with an allocator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![feature(allocator_api)]
@@ -40,15 +40,15 @@ Slice methods that use `Box` and `Vec` from this crate.
   // Here, `s` and `x` can be modified independently.
   ```
 
-- `fn repeat(&self, n: usize) -> Vec<T, Global>`
+- `fn SliceExt::repeat(&self, n: usize) -> Vec<T, Global>`
 
   Creates a vector by copying a slice `n` times.
   
-  # Panics
+  ##### Panics
   
   This function will panic if the capacity would overflow.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -65,11 +65,11 @@ Slice methods that use `Box` and `Vec` from this crate.
 
 #### Provided Methods
 
-- `fn to_vec(&self) -> Vec<T, Global>`
+- `fn SliceExt::to_vec(&self) -> Vec<T, Global>`
 
   Copies `self` into a new `Vec`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let s = [10, 40, 30];

@@ -257,7 +257,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:12-23`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L12-L23)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:12-23`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L12-L23)*
 
 A parsed representation of the dyld shared cache.
 
@@ -369,7 +369,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:214-221`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L214-L221)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:214-221`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L214-L221)*
 
 The data for one file in the cache.
 
@@ -440,7 +440,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:256-263`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L256-L263)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:256-263`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L256-L263)*
 
 An iterator over all the images (dylibs) in the dyld shared cache.
 
@@ -515,7 +515,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:283-290`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L283-L290)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:283-290`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L283-L290)*
 
 One image (dylib) from inside the dyld shared cache.
 
@@ -596,7 +596,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:343-351`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L343-L351)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:343-351`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L343-L351)*
 
 An iterator over all the mappings for one subcache in a dyld shared cache.
 
@@ -672,7 +672,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:384-392`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L384-L392)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:384-392`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L384-L392)*
 
 Information about a mapping.
 
@@ -780,7 +780,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:558-564`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L558-L564)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:558-564`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L558-L564)*
 
 An iterator over relocations in a mapping
 
@@ -867,7 +867,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:605-629`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L605-L629)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:605-629`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L605-L629)*
 
 #### Fields
 
@@ -955,7 +955,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:713-730`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L713-L730)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:713-730`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L713-L730)*
 
 #### Fields
 
@@ -1035,7 +1035,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:810-827`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L810-L827)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:810-827`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L810-L827)*
 
 #### Fields
 
@@ -1106,7 +1106,7 @@ struct DyldRelocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:896-906`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L896-L906)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:896-906`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L896-L906)*
 
 A cache mapping relocation.
 
@@ -1182,7 +1182,7 @@ struct DyldRelocationAuth {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:921-928`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L921-L928)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:921-928`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L921-L928)*
 
 Pointer authentication data.
 
@@ -1256,7 +1256,7 @@ struct MachOFatFile<'data, Fat: FatArch> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:25-28`](../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L25-L28)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:25-28`](../../../../.source_1765900590/object-0.37.3/src/read/macho/fat.rs#L25-L28)*
 
 A Mach-O universal binary.
 
@@ -1355,7 +1355,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:37-49`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L37-L49)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:37-49`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L37-L49)*
 
 A partially parsed Mach-O file.
 
@@ -1534,7 +1534,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:527-534`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L527-L534)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:527-534`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L527-L534)*
 
 An iterator for the COMDAT section groups in a [`MachOFile`](#machofile).
 
@@ -1610,7 +1610,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:561-568`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L561-L568)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:561-568`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L561-L568)*
 
 A COMDAT section group in a [`MachOFile`](#machofile).
 
@@ -1688,7 +1688,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:621-628`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L621-L628)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:621-628`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L621-L628)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile`](#machofile).
 
@@ -1763,7 +1763,7 @@ struct LoadCommandIterator<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../.source_1765894658/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../.source_1765900590/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
 
 An iterator for the load commands from a [`MachHeader`](#machheader).
 
@@ -1868,7 +1868,7 @@ struct LoadCommandData<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../.source_1765894658/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../.source_1765900590/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
 
 The data for a [`macho::LoadCommand`](../../macho/index.md).
 
@@ -2016,7 +2016,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:20-27`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L20-L27)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:20-27`](../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L20-L27)*
 
 An iterator for the segments in a [`MachOFile`](#machofile).
 
@@ -2091,7 +2091,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:55-62`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L55-L62)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:55-62`](../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L55-L62)*
 
 A segment in a [`MachOFile`](#machofile).
 
@@ -2185,7 +2185,7 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:161-168`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L161-L168)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:161-168`](../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L161-L168)*
 
 #### Fields
 
@@ -2271,7 +2271,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:22-29`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L22-L29)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:22-29`](../../../../.source_1765900590/object-0.37.3/src/read/macho/section.rs#L22-L29)*
 
 An iterator for the sections in a [`MachOFile`](#machofile).
 
@@ -2346,7 +2346,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:68-75`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L68-L75)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:68-75`](../../../../.source_1765900590/object-0.37.3/src/read/macho/section.rs#L68-L75)*
 
 A section in a [`MachOFile`](#machofile).
 
@@ -2466,7 +2466,7 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:241-250`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L241-L250)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:241-250`](../../../../.source_1765900590/object-0.37.3/src/read/macho/section.rs#L241-L250)*
 
 #### Fields
 
@@ -2555,7 +2555,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:23-29`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L23-L29)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:23-29`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L23-L29)*
 
 A table of symbol entries in a Mach-O file.
 
@@ -2673,7 +2673,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:184-190`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L184-L190)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:184-190`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L184-L190)*
 
 A symbol table in a [`MachOFile`](#machofile).
 
@@ -2764,7 +2764,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:225-232`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L225-L232)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:225-232`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L225-L232)*
 
 An iterator for the symbols in a [`MachOFile`](#machofile).
 
@@ -2846,7 +2846,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:294-302`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L294-L302)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:294-302`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L294-L302)*
 
 A symbol in a [`MachOFile`](#machofile).
 
@@ -2973,7 +2973,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/relocation.rs:20-27`](../../../../.source_1765894658/object-0.37.3/src/read/macho/relocation.rs#L20-L27)*
+*Defined in [`object-0.37.3/src/read/macho/relocation.rs:20-27`](../../../../.source_1765900590/object-0.37.3/src/read/macho/relocation.rs#L20-L27)*
 
 An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 
@@ -3047,7 +3047,7 @@ enum DyldSubCacheSlice<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:31-36`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L31-L36)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:31-36`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L31-L36)*
 
 A slice of structs describing each subcache.
 
@@ -3136,7 +3136,7 @@ enum DyldCacheMappingSlice<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:331-336`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L331-L336)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:331-336`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L331-L336)*
 
 The array of mappings for a single dyld cache file.
 
@@ -3227,7 +3227,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:354-360`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L354-L360)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:354-360`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L354-L360)*
 
 #### Trait Implementations
 
@@ -3285,7 +3285,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:395-401`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L395-L401)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:395-401`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L395-L401)*
 
 #### Trait Implementations
 
@@ -3367,7 +3367,7 @@ enum DyldCacheSlideInfo<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:539-554`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L539-L554)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:539-554`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L539-L554)*
 
 The slide info for a dyld cache mapping, including variable length arrays.
 
@@ -3448,7 +3448,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:585-594`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L585-L594)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:585-594`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L585-L594)*
 
 #### Trait Implementations
 
@@ -3506,7 +3506,7 @@ enum RelocationStateV2 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:597-602`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L597-L602)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:597-602`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L597-L602)*
 
 #### Trait Implementations
 
@@ -3588,7 +3588,7 @@ enum RelocationStateV3 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:707-710`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L707-L710)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:707-710`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L707-L710)*
 
 #### Trait Implementations
 
@@ -3670,7 +3670,7 @@ enum RelocationStateV5 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:804-807`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L804-L807)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:804-807`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L804-L807)*
 
 #### Trait Implementations
 
@@ -3783,7 +3783,7 @@ enum LoadCommandVariant<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../.source_1765894658/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../.source_1765900590/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
 
 A [`macho::LoadCommand`](../../macho/index.md) that has been interpreted according to its `cmd` field.
 
@@ -3996,7 +3996,7 @@ A [`macho::LoadCommand`](../../macho/index.md) that has been interpreted accordi
 trait FatArch: Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:59-90`](../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L59-L90)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:59-90`](../../../../.source_1765900590/object-0.37.3/src/read/macho/fat.rs#L59-L90)*
 
 A trait for generic access to [`macho::FatArch32`](../../macho/index.md) and [`macho::FatArch64`](../../macho/index.md).
 
@@ -4010,23 +4010,23 @@ A trait for generic access to [`macho::FatArch32`](../../macho/index.md) and [`m
 
 #### Required Methods
 
-- `fn cputype(&self) -> u32`
+- `fn FatArch::cputype(&self) -> u32`
 
-- `fn cpusubtype(&self) -> u32`
+- `fn FatArch::cpusubtype(&self) -> u32`
 
-- `fn offset(&self) -> <Self as >::Word`
+- `fn FatArch::offset(&self) -> <Self as >::Word`
 
-- `fn size(&self) -> <Self as >::Word`
+- `fn FatArch::size(&self) -> <Self as >::Word`
 
-- `fn align(&self) -> u32`
+- `fn FatArch::align(&self) -> u32`
 
 #### Provided Methods
 
-- `fn architecture(&self) -> Architecture`
+- `fn FatArch::architecture(&self) -> Architecture`
 
-- `fn file_range(&self) -> (u64, u64)`
+- `fn FatArch::file_range(&self) -> (u64, u64)`
 
-- `fn data<'data, R: ReadRef<'data>>(&self, file: R) -> Result<&'data [u8]>`
+- `fn FatArch::data<'data, R: ReadRef<'data>>(&self, file: R) -> Result<&'data [u8]>`
 
 #### Implementors
 
@@ -4039,9 +4039,33 @@ A trait for generic access to [`macho::FatArch32`](../../macho/index.md) and [`m
 trait MachHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:644-723`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L644-L723)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:644-723`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L644-L723)*
 
 A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and [`macho::MachHeader64`](../../macho/index.md).
+
+<details>
+<summary><strong>Methods (15)</strong> - click to expand</summary>
+
+**Required:**
+- [`MachHeader::is_type_64`](#fn-machheaderis-type-64)
+- [`MachHeader::is_big_endian`](#fn-machheaderis-big-endian)
+- [`MachHeader::is_little_endian`](#fn-machheaderis-little-endian)
+- [`MachHeader::magic`](#fn-machheadermagic)
+- [`MachHeader::cputype`](#fn-machheadercputype)
+- [`MachHeader::cpusubtype`](#fn-machheadercpusubtype)
+- [`MachHeader::filetype`](#fn-machheaderfiletype)
+- [`MachHeader::ncmds`](#fn-machheaderncmds)
+- [`MachHeader::sizeofcmds`](#fn-machheadersizeofcmds)
+- [`MachHeader::flags`](#fn-machheaderflags)
+
+**Provided:**
+- [`MachHeader::parse`](#fn-machheaderparse)
+- [`MachHeader::is_supported`](#fn-machheaderis-supported)
+- [`MachHeader::endian`](#fn-machheaderendian)
+- [`MachHeader::load_commands`](#fn-machheaderload-commands)
+- [`MachHeader::uuid`](#fn-machheaderuuid)
+
+</details>
 
 #### Associated Types
 
@@ -4057,49 +4081,49 @@ A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and 
 
 #### Required Methods
 
-- `fn is_type_64(&self) -> bool`
+- `fn MachHeader::is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
   
   This is a property of the type, not a value in the header data.
 
-- `fn is_big_endian(&self) -> bool`
+- `fn MachHeader::is_big_endian(&self) -> bool`
 
   Return true if the `magic` field signifies big-endian.
 
-- `fn is_little_endian(&self) -> bool`
+- `fn MachHeader::is_little_endian(&self) -> bool`
 
   Return true if the `magic` field signifies little-endian.
 
-- `fn magic(&self) -> u32`
+- `fn MachHeader::magic(&self) -> u32`
 
-- `fn cputype(&self, endian: <Self as >::Endian) -> u32`
+- `fn MachHeader::cputype(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn cpusubtype(&self, endian: <Self as >::Endian) -> u32`
+- `fn MachHeader::cpusubtype(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn filetype(&self, endian: <Self as >::Endian) -> u32`
+- `fn MachHeader::filetype(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn ncmds(&self, endian: <Self as >::Endian) -> u32`
+- `fn MachHeader::ncmds(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32`
+- `fn MachHeader::sizeofcmds(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn flags(&self, endian: <Self as >::Endian) -> u32`
+- `fn MachHeader::flags(&self, endian: <Self as >::Endian) -> u32`
 
 #### Provided Methods
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<&'data Self>`
+- `fn MachHeader::parse<'data, R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<&'data Self>`
 
   Read the file header.
   
   Also checks that the magic field in the file header is a supported format.
 
-- `fn is_supported(&self) -> bool`
+- `fn MachHeader::is_supported(&self) -> bool`
 
-- `fn endian(&self) -> Result<<Self as >::Endian>`
+- `fn MachHeader::endian(&self) -> Result<<Self as >::Endian>`
 
-- `fn load_commands<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, header_offset: u64) -> Result<LoadCommandIterator<'data, <Self as >::Endian>>`
+- `fn MachHeader::load_commands<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, header_offset: u64) -> Result<LoadCommandIterator<'data, <Self as >::Endian>>`
 
-- `fn uuid<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, header_offset: u64) -> Result<Option<[u8; 16]>>`
+- `fn MachHeader::uuid<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, header_offset: u64) -> Result<Option<[u8; 16]>>`
 
   Return the UUID from the `LC_UUID` load command, if one is present.
 
@@ -4114,9 +4138,34 @@ A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and 
 trait Segment: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:172-229`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L172-L229)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:172-229`](../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L172-L229)*
 
 A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) and [`macho::SegmentCommand64`](../../macho/index.md).
+
+<details>
+<summary><strong>Methods (16)</strong> - click to expand</summary>
+
+**Required:**
+- [`Segment::from_command`](#fn-segmentfrom-command)
+- [`Segment::cmd`](#fn-segmentcmd)
+- [`Segment::cmdsize`](#fn-segmentcmdsize)
+- [`Segment::segname`](#fn-segmentsegname)
+- [`Segment::vmaddr`](#fn-segmentvmaddr)
+- [`Segment::vmsize`](#fn-segmentvmsize)
+- [`Segment::fileoff`](#fn-segmentfileoff)
+- [`Segment::filesize`](#fn-segmentfilesize)
+- [`Segment::maxprot`](#fn-segmentmaxprot)
+- [`Segment::initprot`](#fn-segmentinitprot)
+- [`Segment::nsects`](#fn-segmentnsects)
+- [`Segment::flags`](#fn-segmentflags)
+
+**Provided:**
+- [`Segment::name`](#fn-segmentname)
+- [`Segment::file_range`](#fn-segmentfile-range)
+- [`Segment::data`](#fn-segmentdata)
+- [`Segment::sections`](#fn-segmentsections)
+
+</details>
 
 #### Associated Types
 
@@ -4128,47 +4177,47 @@ A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) 
 
 #### Required Methods
 
-- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>`
+- `fn Segment::from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>`
 
-- `fn cmd(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::cmd(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn cmdsize(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::cmdsize(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn segname(&self) -> &[u8; 16]`
+- `fn Segment::segname(&self) -> &[u8; 16]`
 
-- `fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Segment::vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Segment::vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Segment::fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Segment::filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn maxprot(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::maxprot(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn initprot(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::initprot(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn nsects(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::nsects(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn flags(&self, endian: <Self as >::Endian) -> u32`
+- `fn Segment::flags(&self, endian: <Self as >::Endian) -> u32`
 
 #### Provided Methods
 
-- `fn name(&self) -> &[u8]`
+- `fn Segment::name(&self) -> &[u8]`
 
   Return the `segname` bytes up until the null terminator.
 
-- `fn file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
+- `fn Segment::file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
 
   Return the offset and size of the segment in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
+- `fn Segment::data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
 
   Get the segment data from the file data.
   
   Returns `Err` for invalid values.
 
-- `fn sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, section_data: R) -> Result<&'data [<Self as >::Section]>`
+- `fn Segment::sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, section_data: R) -> Result<&'data [<Self as >::Section]>`
 
   Get the array of sections from the data following the segment command.
   
@@ -4185,9 +4234,32 @@ A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) 
 trait Section: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:285-354`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L285-L354)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:285-354`](../../../../.source_1765900590/object-0.37.3/src/read/macho/section.rs#L285-L354)*
 
 A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`macho::Section64`](../../macho/index.md).
+
+<details>
+<summary><strong>Methods (14)</strong> - click to expand</summary>
+
+**Required:**
+- [`Section::sectname`](#fn-sectionsectname)
+- [`Section::segname`](#fn-sectionsegname)
+- [`Section::addr`](#fn-sectionaddr)
+- [`Section::size`](#fn-sectionsize)
+- [`Section::offset`](#fn-sectionoffset)
+- [`Section::align`](#fn-sectionalign)
+- [`Section::reloff`](#fn-sectionreloff)
+- [`Section::nreloc`](#fn-sectionnreloc)
+- [`Section::flags`](#fn-sectionflags)
+
+**Provided:**
+- [`Section::name`](#fn-sectionname)
+- [`Section::segment_name`](#fn-sectionsegment-name)
+- [`Section::file_range`](#fn-sectionfile-range)
+- [`Section::data`](#fn-sectiondata)
+- [`Section::relocations`](#fn-sectionrelocations)
+
+</details>
 
 #### Associated Types
 
@@ -4197,48 +4269,48 @@ A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`m
 
 #### Required Methods
 
-- `fn sectname(&self) -> &[u8; 16]`
+- `fn Section::sectname(&self) -> &[u8; 16]`
 
-- `fn segname(&self) -> &[u8; 16]`
+- `fn Section::segname(&self) -> &[u8; 16]`
 
-- `fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Section::addr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Section::size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn offset(&self, endian: <Self as >::Endian) -> u32`
+- `fn Section::offset(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn align(&self, endian: <Self as >::Endian) -> u32`
+- `fn Section::align(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn reloff(&self, endian: <Self as >::Endian) -> u32`
+- `fn Section::reloff(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn nreloc(&self, endian: <Self as >::Endian) -> u32`
+- `fn Section::nreloc(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn flags(&self, endian: <Self as >::Endian) -> u32`
+- `fn Section::flags(&self, endian: <Self as >::Endian) -> u32`
 
 #### Provided Methods
 
-- `fn name(&self) -> &[u8]`
+- `fn Section::name(&self) -> &[u8]`
 
   Return the `sectname` bytes up until the null terminator.
 
-- `fn segment_name(&self) -> &[u8]`
+- `fn Section::segment_name(&self) -> &[u8]`
 
   Return the `segname` bytes up until the null terminator.
 
-- `fn file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
+- `fn Section::file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
   
   Returns `None` for sections that have no data in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
+- `fn Section::data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
 
   Return the section data.
   
   Returns `Ok(&[])` if the section has no data.
   Returns `Err` for invalid values.
 
-- `fn relocations<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [macho::Relocation<<Self as >::Endian>]>`
+- `fn Section::relocations<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [macho::Relocation<<Self as >::Endian>]>`
 
   Return the relocation array.
   
@@ -4255,9 +4327,28 @@ A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`m
 trait Nlist: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:457-504`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L457-L504)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:457-504`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L457-L504)*
 
 A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`macho::Nlist64`](../../macho/index.md).
+
+<details>
+<summary><strong>Methods (10)</strong> - click to expand</summary>
+
+**Required:**
+- [`Nlist::n_strx`](#fn-nlistn-strx)
+- [`Nlist::n_type`](#fn-nlistn-type)
+- [`Nlist::n_sect`](#fn-nlistn-sect)
+- [`Nlist::n_desc`](#fn-nlistn-desc)
+- [`Nlist::n_value`](#fn-nlistn-value)
+
+**Provided:**
+- [`Nlist::name`](#fn-nlistname)
+- [`Nlist::is_stab`](#fn-nlistis-stab)
+- [`Nlist::is_undefined`](#fn-nlistis-undefined)
+- [`Nlist::is_definition`](#fn-nlistis-definition)
+- [`Nlist::library_ordinal`](#fn-nlistlibrary-ordinal)
+
+</details>
 
 #### Associated Types
 
@@ -4267,35 +4358,35 @@ A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`mac
 
 #### Required Methods
 
-- `fn n_strx(&self, endian: <Self as >::Endian) -> u32`
+- `fn Nlist::n_strx(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn n_type(&self) -> u8`
+- `fn Nlist::n_type(&self) -> u8`
 
-- `fn n_sect(&self) -> u8`
+- `fn Nlist::n_sect(&self) -> u8`
 
-- `fn n_desc(&self, endian: <Self as >::Endian) -> u16`
+- `fn Nlist::n_desc(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Nlist::n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 #### Provided Methods
 
-- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
+- `fn Nlist::name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
-- `fn is_stab(&self) -> bool`
+- `fn Nlist::is_stab(&self) -> bool`
 
   Return true if this is a STAB symbol.
   
   This determines the meaning of the `n_type` field.
 
-- `fn is_undefined(&self) -> bool`
+- `fn Nlist::is_undefined(&self) -> bool`
 
   Return true if this is an undefined symbol.
 
-- `fn is_definition(&self) -> bool`
+- `fn Nlist::is_definition(&self) -> bool`
 
   Return true if the symbol is a definition of a function or data object.
 
-- `fn library_ordinal(&self, endian: <Self as >::Endian) -> u8`
+- `fn Nlist::library_ordinal(&self, endian: <Self as >::Endian) -> u8`
 
   Return the library ordinal.
   
@@ -4315,7 +4406,7 @@ A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`mac
 type MachOFatFile32<'data> = MachOFatFile<'data, macho::FatArch32>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:12`](../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L12)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:12`](../../../../.source_1765900590/object-0.37.3/src/read/macho/fat.rs#L12)*
 
 A 32-bit Mach-O universal binary.
 
@@ -4328,7 +4419,7 @@ to [`crate::FileKind::MachOFat32`](../../index.md).
 type MachOFatFile64<'data> = MachOFatFile<'data, macho::FatArch64>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:18`](../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L18)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:18`](../../../../.source_1765900590/object-0.37.3/src/read/macho/fat.rs#L18)*
 
 A 64-bit Mach-O universal binary.
 
@@ -4341,7 +4432,7 @@ to [`crate::FileKind::MachOFat64`](../../index.md).
 type MachOFile32<'data, Endian, R> = MachOFile<'data, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:24-25`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L24-L25)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:24-25`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L24-L25)*
 
 A 32-bit Mach-O object file.
 
@@ -4354,7 +4445,7 @@ to [`crate::FileKind::MachO32`](../../index.md).
 type MachOFile64<'data, Endian, R> = MachOFile<'data, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:30-31`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L30-L31)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:30-31`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L30-L31)*
 
 A 64-bit Mach-O object file.
 
@@ -4367,7 +4458,7 @@ to [`crate::FileKind::MachO64`](../../index.md).
 type MachOComdatIterator32<'data, 'file, Endian, R> = MachOComdatIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:517-518`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L517-L518)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:517-518`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L517-L518)*
 
 An iterator for the COMDAT section groups in a [`MachOFile64`](#machofile64).
 
@@ -4377,7 +4468,7 @@ An iterator for the COMDAT section groups in a [`MachOFile64`](#machofile64).
 type MachOComdatIterator64<'data, 'file, Endian, R> = MachOComdatIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:520-521`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L520-L521)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:520-521`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L520-L521)*
 
 An iterator for the COMDAT section groups in a [`MachOFile64`](#machofile64).
 
@@ -4387,7 +4478,7 @@ An iterator for the COMDAT section groups in a [`MachOFile64`](#machofile64).
 type MachOComdat32<'data, 'file, Endian, R> = MachOComdat<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:550-551`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L550-L551)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:550-551`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L550-L551)*
 
 A COMDAT section group in a [`MachOFile32`](#machofile32).
 
@@ -4397,7 +4488,7 @@ A COMDAT section group in a [`MachOFile32`](#machofile32).
 type MachOComdat64<'data, 'file, Endian, R> = MachOComdat<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:554-555`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L554-L555)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:554-555`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L554-L555)*
 
 A COMDAT section group in a [`MachOFile64`](#machofile64).
 
@@ -4407,7 +4498,7 @@ A COMDAT section group in a [`MachOFile64`](#machofile64).
 type MachOComdatSectionIterator32<'data, 'file, Endian, R> = MachOComdatSectionIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:611-612`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L611-L612)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:611-612`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L611-L612)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile32`](#machofile32).
 
@@ -4417,7 +4508,7 @@ An iterator for the sections in a COMDAT section group in a [`MachOFile32`](#mac
 type MachOComdatSectionIterator64<'data, 'file, Endian, R> = MachOComdatSectionIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:614-615`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L614-L615)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:614-615`](../../../../.source_1765900590/object-0.37.3/src/read/macho/file.rs#L614-L615)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile64`](#machofile64).
 
@@ -4427,7 +4518,7 @@ An iterator for the sections in a COMDAT section group in a [`MachOFile64`](#mac
 type MachOSegmentIterator32<'data, 'file, Endian, R> = MachOSegmentIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:12-13`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L12-L13)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:12-13`](../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L12-L13)*
 
 An iterator for the segments in a [`MachOFile32`](super::MachOFile32).
 
@@ -4437,7 +4528,7 @@ An iterator for the segments in a [`MachOFile32`](super::MachOFile32).
 type MachOSegmentIterator64<'data, 'file, Endian, R> = MachOSegmentIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:15-16`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:15-16`](../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L15-L16)*
 
 An iterator for the segments in a [`MachOFile64`](super::MachOFile64).
 
@@ -4447,7 +4538,7 @@ An iterator for the segments in a [`MachOFile64`](super::MachOFile64).
 type MachOSegment32<'data, 'file, Endian, R> = MachOSegment<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:45-46`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L45-L46)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:45-46`](../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L45-L46)*
 
 A segment in a [`MachOFile32`](super::MachOFile32).
 
@@ -4457,7 +4548,7 @@ A segment in a [`MachOFile32`](super::MachOFile32).
 type MachOSegment64<'data, 'file, Endian, R> = MachOSegment<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:48-49`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L48-L49)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:48-49`](../../../../.source_1765900590/object-0.37.3/src/read/macho/segment.rs#L48-L49)*
 
 A segment in a [`MachOFile64`](super::MachOFile64).
 
@@ -4467,7 +4558,7 @@ A segment in a [`MachOFile64`](super::MachOFile64).
 type MachOSectionIterator32<'data, 'file, Endian, R> = MachOSectionIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:15-16`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:15-16`](../../../../.source_1765900590/object-0.37.3/src/read/macho/section.rs#L15-L16)*
 
 An iterator for the sections in a [`MachOFile32`](super::MachOFile32).
 
@@ -4477,7 +4568,7 @@ An iterator for the sections in a [`MachOFile32`](super::MachOFile32).
 type MachOSectionIterator64<'data, 'file, Endian, R> = MachOSectionIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:18-19`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L18-L19)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:18-19`](../../../../.source_1765900590/object-0.37.3/src/read/macho/section.rs#L18-L19)*
 
 An iterator for the sections in a [`MachOFile64`](super::MachOFile64).
 
@@ -4487,7 +4578,7 @@ An iterator for the sections in a [`MachOFile64`](super::MachOFile64).
 type MachOSection32<'data, 'file, Endian, R> = MachOSection<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:58-59`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L58-L59)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:58-59`](../../../../.source_1765900590/object-0.37.3/src/read/macho/section.rs#L58-L59)*
 
 A section in a [`MachOFile32`](super::MachOFile32).
 
@@ -4497,7 +4588,7 @@ A section in a [`MachOFile32`](super::MachOFile32).
 type MachOSection64<'data, 'file, Endian, R> = MachOSection<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:61-62`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L61-L62)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:61-62`](../../../../.source_1765900590/object-0.37.3/src/read/macho/section.rs#L61-L62)*
 
 A section in a [`MachOFile64`](super::MachOFile64).
 
@@ -4507,7 +4598,7 @@ A section in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbolTable32<'data, 'file, Endian, R> = MachOSymbolTable<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:176-177`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L176-L177)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:176-177`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L176-L177)*
 
 A symbol table in a [`MachOFile32`](super::MachOFile32).
 
@@ -4517,7 +4608,7 @@ A symbol table in a [`MachOFile32`](super::MachOFile32).
 type MachOSymbolTable64<'data, 'file, Endian, R> = MachOSymbolTable<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:179-180`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L179-L180)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:179-180`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L179-L180)*
 
 A symbol table in a [`MachOFile64`](super::MachOFile64).
 
@@ -4527,7 +4618,7 @@ A symbol table in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbolIterator32<'data, 'file, Endian, R> = MachOSymbolIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:218-219`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L218-L219)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:218-219`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L218-L219)*
 
 An iterator for the symbols in a [`MachOFile32`](super::MachOFile32).
 
@@ -4537,7 +4628,7 @@ An iterator for the symbols in a [`MachOFile32`](super::MachOFile32).
 type MachOSymbolIterator64<'data, 'file, Endian, R> = MachOSymbolIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:221-222`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L221-L222)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:221-222`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L221-L222)*
 
 An iterator for the symbols in a [`MachOFile64`](super::MachOFile64).
 
@@ -4547,7 +4638,7 @@ An iterator for the symbols in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbol32<'data, 'file, Endian, R> = MachOSymbol<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:284-285`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L284-L285)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:284-285`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L284-L285)*
 
 A symbol in a [`MachOFile32`](super::MachOFile32).
 
@@ -4557,7 +4648,7 @@ A symbol in a [`MachOFile32`](super::MachOFile32).
 type MachOSymbol64<'data, 'file, Endian, R> = MachOSymbol<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:287-288`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L287-L288)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:287-288`](../../../../.source_1765900590/object-0.37.3/src/read/macho/symbol.rs#L287-L288)*
 
 A symbol in a [`MachOFile64`](super::MachOFile64).
 
@@ -4567,7 +4658,7 @@ A symbol in a [`MachOFile64`](super::MachOFile64).
 type MachORelocationIterator32<'data, 'file, Endian, R> = MachORelocationIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/relocation.rs:13-14`](../../../../.source_1765894658/object-0.37.3/src/read/macho/relocation.rs#L13-L14)*
+*Defined in [`object-0.37.3/src/read/macho/relocation.rs:13-14`](../../../../.source_1765900590/object-0.37.3/src/read/macho/relocation.rs#L13-L14)*
 
 An iterator for the relocations in a [`MachOSection32`](super::MachOSection32).
 
@@ -4577,7 +4668,7 @@ An iterator for the relocations in a [`MachOSection32`](super::MachOSection32).
 type MachORelocationIterator64<'data, 'file, Endian, R> = MachORelocationIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/relocation.rs:16-17`](../../../../.source_1765894658/object-0.37.3/src/read/macho/relocation.rs#L16-L17)*
+*Defined in [`object-0.37.3/src/read/macho/relocation.rs:16-17`](../../../../.source_1765900590/object-0.37.3/src/read/macho/relocation.rs#L16-L17)*
 
 An iterator for the relocations in a [`MachOSection64`](super::MachOSection64).
 
@@ -4588,19 +4679,19 @@ An iterator for the relocations in a [`MachOSection64`](super::MachOSection64).
 const MIN_HEADER_SIZE_SUBCACHES_V1: u32 = 456u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:39`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L39)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:39`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L39)*
 
 ### `MIN_HEADER_SIZE_SUBCACHES_V2`
 ```rust
 const MIN_HEADER_SIZE_SUBCACHES_V2: u32 = 464u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:42`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L42)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:42`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L42)*
 
 ### `MIN_HEADER_SIZE_MAPPINGS_V2`
 ```rust
 const MIN_HEADER_SIZE_MAPPINGS_V2: u32 = 320u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:339`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L339)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:339`](../../../../.source_1765900590/object-0.37.3/src/read/macho/dyld_cache.rs#L339)*
 

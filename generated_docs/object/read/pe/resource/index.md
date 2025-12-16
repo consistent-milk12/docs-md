@@ -24,7 +24,7 @@ struct ResourceDirectory<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:12-14`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L12-L14)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:12-14`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/resource.rs#L12-L14)*
 
 The `.rsrc` section of a PE file.
 
@@ -112,7 +112,7 @@ struct ResourceDirectoryTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:30-35`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L30-L35)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:30-35`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/resource.rs#L30-L35)*
 
 A table of resource entries.
 
@@ -199,7 +199,7 @@ struct ResourceName {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:143-145`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L143-L145)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:143-145`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/resource.rs#L143-L145)*
 
 A resource name.
 
@@ -291,7 +291,7 @@ enum ResourceDirectoryEntryData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:112-117`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L112-L117)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:112-117`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/resource.rs#L112-L117)*
 
 Data associated with a resource directory entry.
 
@@ -389,7 +389,7 @@ enum ResourceNameOrId {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:183-188`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L183-L188)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:183-188`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/resource.rs#L183-L188)*
 
 A resource name or ID.
 

@@ -19,7 +19,7 @@
 struct ProcMacroAutoTraits(core::marker::PhantomData<alloc::rc::Rc<()>>);
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/marker.rs:12`](../../../.source_1765894658/proc-macro2-1.0.103/src/marker.rs#L12)*
+*Defined in [`proc-macro2-1.0.103/src/marker.rs:12`](../../../.source_1765900590/proc-macro2-1.0.103/src/marker.rs#L12)*
 
 #### Trait Implementations
 
@@ -91,5 +91,5 @@ struct ProcMacroAutoTraits(core::marker::PhantomData<alloc::rc::Rc<()>>);
 const MARKER: ProcMacroAutoTraits;
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/marker.rs:14`](../../../.source_1765894658/proc-macro2-1.0.103/src/marker.rs#L14)*
+*Defined in [`proc-macro2-1.0.103/src/marker.rs:14`](../../../.source_1765900590/proc-macro2-1.0.103/src/marker.rs#L14)*
 

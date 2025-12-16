@@ -21,7 +21,7 @@ struct WaitGroup {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
 
 Enables threads to synchronize the beginning or end of some computation.
 
@@ -71,7 +71,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Creates a new wait group and returns the single reference to it.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::WaitGroup;
@@ -83,7 +83,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Drops this reference and waits until all other references are dropped.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::WaitGroup;
@@ -182,7 +182,7 @@ struct Inner {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:51-54`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L51-L54)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:51-54`](../../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L51-L54)*
 
 Inner state of a `WaitGroup`.
 

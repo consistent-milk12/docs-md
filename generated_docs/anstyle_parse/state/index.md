@@ -47,7 +47,7 @@ enum Action {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:59-77`](../../../.source_1765894658/anstyle-parse-0.2.7/src/state/definitions.rs#L59-L77)*
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:59-77`](../../../.source_1765900590/anstyle-parse-0.2.7/src/state/definitions.rs#L59-L77)*
 
 #### Trait Implementations
 
@@ -147,7 +147,7 @@ enum State {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:8-26`](../../../.source_1765894658/anstyle-parse-0.2.7/src/state/definitions.rs#L8-L26)*
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:8-26`](../../../.source_1765900590/anstyle-parse-0.2.7/src/state/definitions.rs#L8-L26)*
 
 #### Trait Implementations
 
@@ -232,7 +232,7 @@ enum State {
 const fn state_change(state: State, byte: u8) -> (State, Action)
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/state/mod.rs:25-35`](../../../.source_1765894658/anstyle-parse-0.2.7/src/state/mod.rs#L25-L35)*
+*Defined in [`anstyle-parse-0.2.7/src/state/mod.rs:25-35`](../../../.source_1765900590/anstyle-parse-0.2.7/src/state/mod.rs#L25-L35)*
 
 Transition to next [`State`](definitions/index.md)
 
@@ -251,5 +251,5 @@ Note: When [`State::Anywhere`](../index.md) is returned, revert back to the prio
 const fn state_change_(state: State, byte: u8) -> u8
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/state/mod.rs:38-43`](../../../.source_1765894658/anstyle-parse-0.2.7/src/state/mod.rs#L38-L43)*
+*Defined in [`anstyle-parse-0.2.7/src/state/mod.rs:38-43`](../../../.source_1765900590/anstyle-parse-0.2.7/src/state/mod.rs#L38-L43)*
 

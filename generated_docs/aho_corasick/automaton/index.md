@@ -76,7 +76,7 @@ struct Prefilter {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../.source_1765900590/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
 
 A prefilter for accelerating a search.
 
@@ -173,7 +173,7 @@ much else. If you have a use case for more APIs, please submit an issue.
 struct StateID(SmallIndex);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:734`](../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L734)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:734`](../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L734)*
 
 The identifier of a finite automaton state.
 
@@ -400,7 +400,7 @@ panics or silent logical errors.
 struct StateIDError(SmallIndexError);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
 
 This error occurs when an ID could not be constructed.
 
@@ -506,7 +506,7 @@ struct OverlappingState {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:782-811`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L782-L811)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:782-811`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L782-L811)*
 
 Represents the current state of an overlapping search.
 
@@ -690,7 +690,7 @@ struct FindIter<'a, 'h, A> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:844-855`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L844-L855)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:844-855`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L844-L855)*
 
 An iterator of non-overlapping matches in a particular haystack.
 
@@ -835,7 +835,7 @@ struct FindOverlappingIter<'a, 'h, A> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:954-958`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L954-L958)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:954-958`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L954-L958)*
 
 An iterator of overlapping matches in a particular haystack.
 
@@ -920,7 +920,7 @@ struct StreamFindIter<'a, A, R> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:991-993`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L991-L993)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:991-993`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L991-L993)*
 
 An iterator that reports matches in a stream.
 
@@ -1014,7 +1014,7 @@ struct StreamChunkIter<'a, A, R> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1036-1063`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L1036-L1063)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1036-1063`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L1036-L1063)*
 
 An iterator that reports matches in a stream.
 
@@ -1176,7 +1176,7 @@ enum Candidate {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../.source_1765900590/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
 
 A candidate is the result of running a prefilter on a haystack at a
 particular position.
@@ -1293,7 +1293,7 @@ enum StreamChunk<'r> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1251-1256`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L1251-L1256)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1251-1256`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L1251-L1256)*
 
 A single chunk yielded by the stream chunk iterator.
 
@@ -1362,7 +1362,7 @@ The `'r` lifetime refers to the lifetime of the stream chunk iterator.
 trait Automaton: private::Sealed { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:198-637`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L198-L637)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:198-637`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L198-L637)*
 
 A trait that abstracts over Aho-Corasick automata.
 
@@ -1526,23 +1526,58 @@ assert_eq!(Some(Match::must(0, 0..7)), find(&nfa, b"samwise")?);
 Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
+<details>
+<summary><strong>Methods (26)</strong> - click to expand</summary>
+
+**Required:**
+- [`Automaton::start_state`](#fn-automatonstart-state)
+- [`Automaton::next_state`](#fn-automatonnext-state)
+- [`Automaton::is_special`](#fn-automatonis-special)
+- [`Automaton::is_dead`](#fn-automatonis-dead)
+- [`Automaton::is_match`](#fn-automatonis-match)
+- [`Automaton::is_start`](#fn-automatonis-start)
+- [`Automaton::match_kind`](#fn-automatonmatch-kind)
+- [`Automaton::match_len`](#fn-automatonmatch-len)
+- [`Automaton::match_pattern`](#fn-automatonmatch-pattern)
+- [`Automaton::patterns_len`](#fn-automatonpatterns-len)
+- [`Automaton::pattern_len`](#fn-automatonpattern-len)
+- [`Automaton::min_pattern_len`](#fn-automatonmin-pattern-len)
+- [`Automaton::max_pattern_len`](#fn-automatonmax-pattern-len)
+- [`Automaton::memory_usage`](#fn-automatonmemory-usage)
+- [`Automaton::prefilter`](#fn-automatonprefilter)
+
+**Provided:**
+- [`Automaton::try_find`](#fn-automatontry-find)
+- [`Automaton::try_find_overlapping`](#fn-automatontry-find-overlapping)
+- [`Automaton::try_find_iter`](#fn-automatontry-find-iter)
+- [`Automaton::try_find_overlapping_iter`](#fn-automatontry-find-overlapping-iter)
+- [`Automaton::try_replace_all`](#fn-automatontry-replace-all)
+- [`Automaton::try_replace_all_bytes`](#fn-automatontry-replace-all-bytes)
+- [`Automaton::try_replace_all_with`](#fn-automatontry-replace-all-with)
+- [`Automaton::try_replace_all_with_bytes`](#fn-automatontry-replace-all-with-bytes)
+- [`Automaton::try_stream_find_iter`](#fn-automatontry-stream-find-iter)
+- [`Automaton::try_stream_replace_all`](#fn-automatontry-stream-replace-all)
+- [`Automaton::try_stream_replace_all_with`](#fn-automatontry-stream-replace-all-with)
+
+</details>
+
 #### Required Methods
 
-- `fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>`
+- `fn Automaton::start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>`
 
   Returns the starting state for the given anchor mode.
   
   Upon success, the state ID returned is guaranteed to be valid for
   this automaton.
   
-  # Errors
+  ##### Errors
   
   This returns an error when the given search configuration is not
   supported by the underlying automaton. For example, if the underlying
   automaton only supports unanchored searches but the given configuration
   was set to an anchored search, then this must return an error.
 
-- `fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID`
+- `fn Automaton::next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID`
 
   Performs a state transition from `sid` for `byte` and returns the next
   state.
@@ -1556,7 +1591,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   through the automaton depending on whether the search is anchored or
   not.
   
-  # Panics
+  ##### Panics
   
   This routine may panic or return incorrect results when the given state
   ID is invalid. A state ID is valid if and only if:
@@ -1570,7 +1605,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Implementations may panic on unsupported values of `anchored`, but are
   not required to do so.
 
-- `fn is_special(&self, sid: StateID) -> bool`
+- `fn Automaton::is_special(&self, sid: StateID) -> bool`
 
   Returns true if the given ID represents a "special" state. A special
   state is a dead, match or start state.
@@ -1582,7 +1617,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   This has unspecified behavior when given an invalid state ID.
 
-- `fn is_dead(&self, sid: StateID) -> bool`
+- `fn Automaton::is_dead(&self, sid: StateID) -> bool`
 
   Returns true if the given ID represents a dead state.
   
@@ -1593,7 +1628,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   This has unspecified behavior when given an invalid state ID.
 
-- `fn is_match(&self, sid: StateID) -> bool`
+- `fn Automaton::is_match(&self, sid: StateID) -> bool`
 
   Returns true if the given ID represents a match state.
   
@@ -1607,7 +1642,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   This has unspecified behavior when given an invalid state ID.
 
-- `fn is_start(&self, sid: StateID) -> bool`
+- `fn Automaton::is_start(&self, sid: StateID) -> bool`
 
   Returns true if the given ID represents a start state.
   
@@ -1625,18 +1660,18 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   This has unspecified behavior when given an invalid state ID.
 
-- `fn match_kind(&self) -> MatchKind`
+- `fn Automaton::match_kind(&self) -> MatchKind`
 
   Returns the match semantics that this automaton was built with.
 
-- `fn match_len(&self, sid: StateID) -> usize`
+- `fn Automaton::match_len(&self, sid: StateID) -> usize`
 
   Returns the total number of matches for the given state ID.
   
   This has unspecified behavior if the given ID does not refer to a match
   state.
 
-- `fn match_pattern(&self, sid: StateID, index: usize) -> PatternID`
+- `fn Automaton::match_pattern(&self, sid: StateID, index: usize) -> PatternID`
 
   Returns the pattern ID for the match state given by `sid` at the
   `index` given.
@@ -1649,11 +1684,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
   state, or if the index is greater than or equal to the total number of
   matches in this match state.
 
-- `fn patterns_len(&self) -> usize`
+- `fn Automaton::patterns_len(&self) -> usize`
 
   Returns the total number of patterns compiled into this automaton.
 
-- `fn pattern_len(&self, pid: PatternID) -> usize`
+- `fn Automaton::pattern_len(&self, pid: PatternID) -> usize`
 
   Returns the length of the pattern for the given ID.
   
@@ -1661,20 +1696,20 @@ Ok::<(), Box<dyn std::error::Error>>(())
   ID. A pattern ID is valid if and only if it is less than
   `Automaton::patterns_len`.
 
-- `fn min_pattern_len(&self) -> usize`
+- `fn Automaton::min_pattern_len(&self) -> usize`
 
   Returns the length, in bytes, of the shortest pattern in this
   automaton.
 
-- `fn max_pattern_len(&self) -> usize`
+- `fn Automaton::max_pattern_len(&self) -> usize`
 
   Returns the length, in bytes, of the longest pattern in this automaton.
 
-- `fn memory_usage(&self) -> usize`
+- `fn Automaton::memory_usage(&self) -> usize`
 
   Returns the heap memory usage, in bytes, used by this automaton.
 
-- `fn prefilter(&self) -> Option<&Prefilter>`
+- `fn Automaton::prefilter(&self) -> Option<&Prefilter>`
 
   Returns a prefilter, if available, that can be used to accelerate
   searches for this automaton.
@@ -1689,7 +1724,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Provided Methods
 
-- `fn try_find(&self, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
+- `fn Automaton::try_find(&self, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
 
   Executes a non-overlapping search with this automaton using the given
   configuration.
@@ -1698,7 +1733,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_find`](crate::AhoCorasick::try_find)
   for more documentation and examples.
 
-- `fn try_find_overlapping(&self, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
+- `fn Automaton::try_find_overlapping(&self, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
 
   Executes a overlapping search with this automaton using the given
   configuration.
@@ -1707,7 +1742,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_find_overlapping`](crate::AhoCorasick::try_find_overlapping)
   for more documentation and examples.
 
-- `fn try_find_iter<'a, 'h>(self: &'a Self, input: Input<'h>) -> Result<FindIter<'a, 'h, Self>, MatchError>`
+- `fn Automaton::try_find_iter<'a, 'h>(self: &'a Self, input: Input<'h>) -> Result<FindIter<'a, 'h, Self>, MatchError>`
 
   Returns an iterator of non-overlapping matches with this automaton
   using the given configuration.
@@ -1716,7 +1751,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_find_iter`](crate::AhoCorasick::try_find_iter)
   for more documentation and examples.
 
-- `fn try_find_overlapping_iter<'a, 'h>(self: &'a Self, input: Input<'h>) -> Result<FindOverlappingIter<'a, 'h, Self>, MatchError>`
+- `fn Automaton::try_find_overlapping_iter<'a, 'h>(self: &'a Self, input: Input<'h>) -> Result<FindOverlappingIter<'a, 'h, Self>, MatchError>`
 
   Returns an iterator of overlapping matches with this automaton
   using the given configuration.
@@ -1725,7 +1760,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_find_overlapping_iter`](crate::AhoCorasick::try_find_overlapping_iter)
   for more documentation and examples.
 
-- `fn try_replace_all<B>(&self, haystack: &str, replace_with: &[B]) -> Result<String, MatchError>`
+- `fn Automaton::try_replace_all<B>(&self, haystack: &str, replace_with: &[B]) -> Result<String, MatchError>`
 
   Replaces all non-overlapping matches in `haystack` with
   strings from `replace_with` depending on the pattern that
@@ -1736,7 +1771,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_replace_all`](crate::AhoCorasick::try_replace_all)
   for more documentation and examples.
 
-- `fn try_replace_all_bytes<B>(&self, haystack: &[u8], replace_with: &[B]) -> Result<Vec<u8>, MatchError>`
+- `fn Automaton::try_replace_all_bytes<B>(&self, haystack: &[u8], replace_with: &[B]) -> Result<Vec<u8>, MatchError>`
 
   Replaces all non-overlapping matches in `haystack` with
   strings from `replace_with` depending on the pattern that
@@ -1747,7 +1782,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_replace_all_bytes`](crate::AhoCorasick::try_replace_all_bytes)
   for more documentation and examples.
 
-- `fn try_replace_all_with<F>(&self, haystack: &str, dst: &mut String, replace_with: F) -> Result<(), MatchError>`
+- `fn Automaton::try_replace_all_with<F>(&self, haystack: &str, dst: &mut String, replace_with: F) -> Result<(), MatchError>`
 
   Replaces all non-overlapping matches in `haystack` by calling the
   `replace_with` closure given.
@@ -1756,7 +1791,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_replace_all_with`](crate::AhoCorasick::try_replace_all_with)
   for more documentation and examples.
 
-- `fn try_replace_all_with_bytes<F>(&self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F) -> Result<(), MatchError>`
+- `fn Automaton::try_replace_all_with_bytes<F>(&self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F) -> Result<(), MatchError>`
 
   Replaces all non-overlapping matches in `haystack` by calling the
   `replace_with` closure given.
@@ -1765,7 +1800,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_replace_all_with_bytes`](crate::AhoCorasick::try_replace_all_with_bytes)
   for more documentation and examples.
 
-- `fn try_stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> Result<StreamFindIter<'a, Self, R>, MatchError>`
+- `fn Automaton::try_stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> Result<StreamFindIter<'a, Self, R>, MatchError>`
 
   Returns an iterator of non-overlapping matches with this automaton
   from the stream given.
@@ -1774,7 +1809,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_stream_find_iter`](crate::AhoCorasick::try_stream_find_iter)
   for more documentation and examples.
 
-- `fn try_stream_replace_all<R, W, B>(&self, rdr: R, wtr: W, replace_with: &[B]) -> std::io::Result<()>`
+- `fn Automaton::try_stream_replace_all<R, W, B>(&self, rdr: R, wtr: W, replace_with: &[B]) -> std::io::Result<()>`
 
   Replaces all non-overlapping matches in `rdr` with strings from
   `replace_with` depending on the pattern that matched, and writes the
@@ -1785,7 +1820,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   [`AhoCorasick::try_stream_replace_all`](crate::AhoCorasick::try_stream_replace_all)
   for more documentation and examples.
 
-- `fn try_stream_replace_all_with<R, W, F>(&self, rdr: R, wtr: W, replace_with: F) -> std::io::Result<()>`
+- `fn Automaton::try_stream_replace_all_with<R, W, F>(&self, rdr: R, wtr: W, replace_with: F) -> std::io::Result<()>`
 
   Replaces all non-overlapping matches in `rdr` by calling the
   `replace_with` closure given and writing the result to `wtr`.
@@ -1809,7 +1844,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 fn try_find_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>) -> Result<Option<crate::util::search::Match>, crate::util::error::MatchError>
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1259-1282`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L1259-L1282)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1259-1282`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L1259-L1282)*
 
 ### `try_find_fwd_imp`
 
@@ -1817,7 +1852,7 @@ fn try_find_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Inp
 fn try_find_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, pre: Option<&Prefilter>, anchored: crate::util::search::Anchored, earliest: bool) -> Result<Option<crate::util::search::Match>, crate::util::error::MatchError>
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1285-1420`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L1285-L1420)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1285-1420`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L1285-L1420)*
 
 ### `try_find_overlapping_fwd`
 
@@ -1825,7 +1860,7 @@ fn try_find_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search:
 fn try_find_overlapping_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, state: &mut OverlappingState) -> Result<(), crate::util::error::MatchError>
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1423-1440`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L1423-L1440)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1423-1440`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L1423-L1440)*
 
 ### `try_find_overlapping_fwd_imp`
 
@@ -1833,7 +1868,7 @@ fn try_find_overlapping_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util:
 fn try_find_overlapping_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, pre: Option<&Prefilter>, state: &mut OverlappingState) -> Result<(), crate::util::error::MatchError>
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1443-1537`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L1443-L1537)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1443-1537`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L1443-L1537)*
 
 ### `get_match`
 
@@ -1841,7 +1876,7 @@ fn try_find_overlapping_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::u
 fn get_match<A: Automaton + ?Sized>(aut: &A, sid: StateID, index: usize, at: usize) -> crate::util::search::Match
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1540-1549`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L1540-L1549)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1540-1549`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L1540-L1549)*
 
 ### `fmt_state_indicator`
 
@@ -1849,7 +1884,7 @@ fn get_match<A: Automaton + ?Sized>(aut: &A, sid: StateID, index: usize, at: usi
 fn fmt_state_indicator<A: Automaton>(f: &mut core::fmt::Formatter<'_>, aut: A, id: StateID) -> core::fmt::Result
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1558-1577`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L1558-L1577)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1558-1577`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L1558-L1577)*
 
 Write a prefix "state" indicator for fmt::Debug impls. It always writes
 exactly two printable bytes to the given formatter.
@@ -1865,7 +1900,7 @@ overlapping is that of match and start states.)
 fn sparse_transitions<'a>(it: impl Iterator<Item = (u8, StateID)> + 'a) -> impl Iterator<Item = (u8, u8, StateID)> + 'a
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1583-1608`](../../../.source_1765894658/aho-corasick-1.1.4/src/automaton.rs#L1583-L1608)*
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1583-1608`](../../../.source_1765900590/aho-corasick-1.1.4/src/automaton.rs#L1583-L1608)*
 
 Return an iterator of transitions in a sparse format given an iterator
 of all explicitly defined transitions. The iterator yields ranges of

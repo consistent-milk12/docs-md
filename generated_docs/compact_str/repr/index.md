@@ -65,7 +65,7 @@
 struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:44-57`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L44-L57)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:44-57`](../../../.source_1765900590/compact_str-0.9.0/src/repr/mod.rs#L44-L57)*
 
 #### Implementations
 
@@ -86,7 +86,7 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
   Create a [`Repr`](#repr) from a slice of bytes that is UTF-8, without validating that it is indeed
   UTF-8
   
-  # Safety
+  ##### Safety
   
   * The caller must guarantee that `buf` is valid UTF-8.
 
@@ -143,14 +143,14 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
   Return a mutable reference to the entirely underlying buffer
   
-  # Safety
+  ##### Safety
   * Callers must guarantee that any modifications made to the buffer are valid UTF-8
 
 - <span id="repr-set-len"></span>`unsafe fn set_len(&mut self, len: usize)`
 
   Sets the length of the string that our underlying buffer contains
   
-  # Safety
+  ##### Safety
   * `len` bytes in the buffer must be valid UTF-8
   * If the underlying buffer is stored inline, `len` must be <= MAX_SIZE
 
@@ -192,7 +192,7 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
   Reinterprets a [`Repr`](#repr) as a [`HeapBuffer`](heap/index.md)
   
-  # SAFETY
+  ##### SAFETY
   * The caller must guarantee that the provided [`Repr`](#repr) is actually a [`HeapBuffer`](heap/index.md) by
     checking the discriminant.
   
@@ -204,7 +204,7 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
   Reinterprets a `&mut Repr` as a `&mut HeapBuffer`
   
-  # SAFETY
+  ##### SAFETY
   * The caller must guarantee that the provided [`Repr`](#repr) is actually a [`HeapBuffer`](heap/index.md) by
     checking the discriminant.
   
@@ -216,7 +216,7 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
   Reinterprets a `&Repr` as a `&HeapBuffer`
   
-  # SAFETY
+  ##### SAFETY
   * The caller must guarantee that the provided [`Repr`](#repr) is actually a [`HeapBuffer`](heap/index.md) by
     checking the discriminant.
   
@@ -228,7 +228,7 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
   Reinterprets a `&mut Repr` as an `&mut InlineBuffer`
   
-  # SAFETY
+  ##### SAFETY
   * The caller must guarantee that the provided [`Repr`](#repr) is actually an [`InlineBuffer`](inline/index.md) by
     checking the discriminant.
   
@@ -321,7 +321,7 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 fn ensure_read(value: usize) -> usize
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:841-863`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L841-L863)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:841-863`](../../../.source_1765900590/compact_str-0.9.0/src/repr/mod.rs#L841-L863)*
 
 Returns the supplied value, and ensures that the value is eagerly loaded into a register.
 
@@ -332,7 +332,7 @@ Returns the supplied value, and ensures that the value is eagerly loaded into a 
 const MAX_SIZE: usize = 24usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:32`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L32)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:32`](../../../.source_1765900590/compact_str-0.9.0/src/repr/mod.rs#L32)*
 
 The max size of a string we can fit inline
 
@@ -341,7 +341,7 @@ The max size of a string we can fit inline
 const HEAP_MASK: u8 = 216u8;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:34`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L34)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:34`](../../../.source_1765900590/compact_str-0.9.0/src/repr/mod.rs#L34)*
 
 Used as a discriminant to identify different variants
 
@@ -350,7 +350,7 @@ Used as a discriminant to identify different variants
 const STATIC_STR_MASK: u8 = 217u8;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:36`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L36)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:36`](../../../.source_1765900590/compact_str-0.9.0/src/repr/mod.rs#L36)*
 
 Used for `StaticStr` variant
 
@@ -359,7 +359,7 @@ Used for `StaticStr` variant
 const LENGTH_MASK: u8 = 192u8;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:39`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L39)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:39`](../../../.source_1765900590/compact_str-0.9.0/src/repr/mod.rs#L39)*
 
 When our string is stored inline, we represent the length of the string in the last byte, offset
 by `LENGTH_MASK`
@@ -369,5 +369,5 @@ by `LENGTH_MASK`
 const EMPTY: Repr;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:41`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L41)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:41`](../../../.source_1765900590/compact_str-0.9.0/src/repr/mod.rs#L41)*
 

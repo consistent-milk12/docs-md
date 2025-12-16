@@ -26,7 +26,7 @@ where
     I: Iterator { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/iter_index.rs:22-34`](../../../.source_1765894658/itertools-0.14.0/src/iter_index.rs#L22-L34)*
+*Defined in [`itertools-0.14.0/src/iter_index.rs:22-34`](../../../.source_1765900590/itertools-0.14.0/src/iter_index.rs#L22-L34)*
 
 Used by `Itertools::get` to know which iterator
 to turn different ranges into.
@@ -37,7 +37,7 @@ to turn different ranges into.
 
 #### Required Methods
 
-- `fn index(self, from: I) -> <Self as >::Output`
+- `fn IteratorIndex::index(self, from: I) -> <Self as >::Output`
 
   Returns an adapted iterator for the current index.
   
@@ -64,5 +64,5 @@ where
     R: IteratorIndex<<I as >::IntoIter>
 ```
 
-*Defined in [`itertools-0.14.0/src/iter_index.rs:110-116`](../../../.source_1765894658/itertools-0.14.0/src/iter_index.rs#L110-L116)*
+*Defined in [`itertools-0.14.0/src/iter_index.rs:110-116`](../../../.source_1765900590/itertools-0.14.0/src/iter_index.rs#L110-L116)*
 

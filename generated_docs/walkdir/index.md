@@ -158,7 +158,7 @@ struct DirEntry {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../.source_1765894658/walkdir-2.5.0/src/dent.rs#L35-L59)*
+*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../.source_1765900590/walkdir-2.5.0/src/dent.rs#L35-L59)*
 
 A directory entry.
 
@@ -253,14 +253,14 @@ operations operate on the symbolic link.
   This will follow symbolic links if and only if the [`WalkDir`](#walkdir) value
   has `follow_links` enabled.
   
-  # Platform behavior
+  ##### Platform behavior
   
   This always calls `std::fs::symlink_metadata`.
   
   If this entry is a symbolic link and `follow_links` is enabled, then
   `std::fs::metadata` is called instead.
   
-  # Errors
+  ##### Errors
   
   Similar to `std::fs::metadata`, returns errors for path values that
   the program does not have permissions to access or if the path does not
@@ -380,7 +380,7 @@ struct Error {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../.source_1765894658/walkdir-2.5.0/src/error.rs#L28-L31)*
+*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../.source_1765900590/walkdir-2.5.0/src/error.rs#L28-L31)*
 
 An error produced by recursively walking a directory.
 
@@ -448,7 +448,7 @@ accessing the underlying error data in a structured form.
   > [`impl From<Error> for std::io::Error`][impl] which contains additional context about the
   error.
   
-  # Example
+  ##### Example
   
   ```rust,no_run
   use std::io;
@@ -575,7 +575,7 @@ struct WalkDir {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:234-237`](../../.source_1765894658/walkdir-2.5.0/src/lib.rs#L234-L237)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:234-237`](../../.source_1765900590/walkdir-2.5.0/src/lib.rs#L234-L237)*
 
 A builder to create an iterator for recursively walking a directory.
 
@@ -727,7 +727,7 @@ error is reported.
   Note that this value does not impact the number of system calls made by
   an exhausted iterator.
   
-  # Platform behavior
+  ##### Platform behavior
   
   On Windows, if `follow_links` is enabled, then this limit is not
   respected. In particular, the maximum number of file descriptors opened
@@ -792,7 +792,7 @@ error is reported.
   before yielding the directory itself. This is useful when, e.g. you
   want to recursively delete a directory.
   
-  # Example
+  ##### Example
   
   Assume the following directory tree:
   
@@ -918,7 +918,7 @@ struct WalkDirOptions {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:239-255`](../../.source_1765894658/walkdir-2.5.0/src/lib.rs#L239-L255)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:239-255`](../../.source_1765900590/walkdir-2.5.0/src/lib.rs#L239-L255)*
 
 #### Trait Implementations
 
@@ -980,7 +980,7 @@ struct IntoIter {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:566-606`](../../.source_1765894658/walkdir-2.5.0/src/lib.rs#L566-L606)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:566-606`](../../.source_1765900590/walkdir-2.5.0/src/lib.rs#L566-L606)*
 
 An iterator for recursively descending into a directory.
 
@@ -1208,7 +1208,7 @@ The order of elements yielded by this iterator is unspecified.
 
   Advances the iterator and returns the next value.
   
-  # Errors
+  ##### Errors
   
   If the iterator fails to retrieve the next value, this method returns
   an error value. The error will be wrapped in an Option::Some.
@@ -1233,7 +1233,7 @@ struct Ancestor {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:611-620`](../../.source_1765894658/walkdir-2.5.0/src/lib.rs#L611-L620)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:611-620`](../../.source_1765900590/walkdir-2.5.0/src/lib.rs#L611-L620)*
 
 An ancestor is an item in the directory tree traversed by walkdir, and is
 used to check for loops in the tree when traversing symlinks.
@@ -1309,7 +1309,7 @@ struct FilterEntry<I, P> {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:1055-1058`](../../.source_1765894658/walkdir-2.5.0/src/lib.rs#L1055-L1058)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:1055-1058`](../../.source_1765900590/walkdir-2.5.0/src/lib.rs#L1055-L1058)*
 
 A recursive directory iterator that skips entries.
 
@@ -1476,7 +1476,7 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
   Advances the iterator and returns the next value.
   
-  # Errors
+  ##### Errors
   
   If the iterator fails to retrieve the next value, this method returns
   an error value. The error will be wrapped in an `Option::Some`.
@@ -1507,7 +1507,7 @@ enum DirList {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:661-677`](../../.source_1765894658/walkdir-2.5.0/src/lib.rs#L661-L677)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:661-677`](../../.source_1765900590/walkdir-2.5.0/src/lib.rs#L661-L677)*
 
 A sequence of unconsumed directory entries.
 
@@ -1609,13 +1609,13 @@ proceeds over a `Vec<fs::DirEntry>`.
 trait DirEntryExt { ... }
 ```
 
-*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../.source_1765894658/walkdir-2.5.0/src/dent.rs#L339-L343)*
+*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../.source_1765900590/walkdir-2.5.0/src/dent.rs#L339-L343)*
 
 Unix-specific extension methods for `walkdir::DirEntry`
 
 #### Required Methods
 
-- `fn ino(&self) -> u64`
+- `fn DirEntryExt::ino(&self) -> u64`
 
   Returns the underlying `d_ino` field in the contained `dirent`
   structure.
@@ -1632,7 +1632,7 @@ Unix-specific extension methods for `walkdir::DirEntry`
 type Result<T> = ::std::result::Result<T, Error>;
 ```
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:157`](../../.source_1765894658/walkdir-2.5.0/src/lib.rs#L157)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:157`](../../.source_1765900590/walkdir-2.5.0/src/lib.rs#L157)*
 
 A result type for walkdir operations.
 
@@ -1649,7 +1649,7 @@ automatically convert to an `io::Result` when using the `try!` macro.
 
 ### `itry!`
 
-*Defined in [`walkdir-2.5.0/src/lib.rs:137-144`](../../.source_1765894658/walkdir-2.5.0/src/lib.rs#L137-L144)*
+*Defined in [`walkdir-2.5.0/src/lib.rs:137-144`](../../.source_1765900590/walkdir-2.5.0/src/lib.rs#L137-L144)*
 
 Like try, but for iterators that return `Option<Result<_, _>>`.
 

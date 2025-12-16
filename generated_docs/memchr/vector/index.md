@@ -27,7 +27,7 @@
 struct SensibleMoveMask(u32);
 ```
 
-*Defined in [`memchr-2.7.6/src/vector.rs:118`](../../../.source_1765894658/memchr-2.7.6/src/vector.rs#L118)*
+*Defined in [`memchr-2.7.6/src/vector.rs:118`](../../../.source_1765900590/memchr-2.7.6/src/vector.rs#L118)*
 
 This is a "sensible" movemask implementation where each bit represents
 whether the most significant bit is set in each corresponding lane of a
@@ -135,7 +135,7 @@ movemask instructions. But neon has no such native equivalent.
 trait Vector: Copy + core::fmt::Debug { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/vector.rs:17-66`](../../../.source_1765894658/memchr-2.7.6/src/vector.rs#L17-L66)*
+*Defined in [`memchr-2.7.6/src/vector.rs:17-66`](../../../.source_1765900590/memchr-2.7.6/src/vector.rs#L17-L66)*
 
 A trait for describing vector operations used by vectorized searchers.
 
@@ -166,50 +166,50 @@ with target_feature.)
 
 #### Required Methods
 
-- `fn splat(byte: u8) -> Self`
+- `fn Vector::splat(byte: u8) -> Self`
 
   Create a vector with 8-bit lanes with the given byte repeated into each
   lane.
 
-- `fn load_aligned(data: *const u8) -> Self`
+- `fn Vector::load_aligned(data: *const u8) -> Self`
 
   Read a vector-size number of bytes from the given pointer. The pointer
   must be aligned to the size of the vector.
   
-  # Safety
+  ##### Safety
   
   Callers must guarantee that at least `BYTES` bytes are readable from
   `data` and that `data` is aligned to a `BYTES` boundary.
 
-- `fn load_unaligned(data: *const u8) -> Self`
+- `fn Vector::load_unaligned(data: *const u8) -> Self`
 
   Read a vector-size number of bytes from the given pointer. The pointer
   does not need to be aligned.
   
-  # Safety
+  ##### Safety
   
   Callers must guarantee that at least `BYTES` bytes are readable from
   `data`.
 
-- `fn movemask(self) -> <Self as >::Mask`
+- `fn Vector::movemask(self) -> <Self as >::Mask`
 
   _mm_movemask_epi8 or _mm256_movemask_epi8
 
-- `fn cmpeq(self, vector2: Self) -> Self`
+- `fn Vector::cmpeq(self, vector2: Self) -> Self`
 
   _mm_cmpeq_epi8 or _mm256_cmpeq_epi8
 
-- `fn and(self, vector2: Self) -> Self`
+- `fn Vector::and(self, vector2: Self) -> Self`
 
   _mm_and_si128 or _mm256_and_si256
 
-- `fn or(self, vector2: Self) -> Self`
+- `fn Vector::or(self, vector2: Self) -> Self`
 
   _mm_or or _mm256_or_si256
 
 #### Provided Methods
 
-- `fn movemask_will_have_non_zero(self) -> bool`
+- `fn Vector::movemask_will_have_non_zero(self) -> bool`
 
   Returns true if and only if `Self::movemask` would return a mask that
   contains at least one non-zero bit.
@@ -225,7 +225,7 @@ with target_feature.)
 trait MoveMask: Copy + core::fmt::Debug { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/vector.rs:82-108`](../../../.source_1765894658/memchr-2.7.6/src/vector.rs#L82-L108)*
+*Defined in [`memchr-2.7.6/src/vector.rs:82-108`](../../../.source_1765900590/memchr-2.7.6/src/vector.rs#L82-L108)*
 
 A trait that abstracts over a vector-to-scalar operation called
 "move mask."
@@ -244,37 +244,37 @@ representation with this trait and define the operations we actually need.
 
 #### Required Methods
 
-- `fn all_zeros_except_least_significant(n: usize) -> Self`
+- `fn MoveMask::all_zeros_except_least_significant(n: usize) -> Self`
 
   Return a mask that is all zeros except for the least significant `n`
   lanes in a corresponding vector.
 
-- `fn has_non_zero(self) -> bool`
+- `fn MoveMask::has_non_zero(self) -> bool`
 
   Returns true if and only if this mask has a a non-zero bit anywhere.
 
-- `fn count_ones(self) -> usize`
+- `fn MoveMask::count_ones(self) -> usize`
 
   Returns the number of bits set to 1 in this mask.
 
-- `fn and(self, other: Self) -> Self`
+- `fn MoveMask::and(self, other: Self) -> Self`
 
   Does a bitwise `and` operation between `self` and `other`.
 
-- `fn or(self, other: Self) -> Self`
+- `fn MoveMask::or(self, other: Self) -> Self`
 
   Does a bitwise `or` operation between `self` and `other`.
 
-- `fn clear_least_significant_bit(self) -> Self`
+- `fn MoveMask::clear_least_significant_bit(self) -> Self`
 
   Returns a mask that is equivalent to `self` but with the least
   significant 1-bit set to 0.
 
-- `fn first_offset(self) -> usize`
+- `fn MoveMask::first_offset(self) -> usize`
 
   Returns the offset of the first non-zero lane this mask represents.
 
-- `fn last_offset(self) -> usize`
+- `fn MoveMask::last_offset(self) -> usize`
 
   Returns the offset of the last non-zero lane this mask represents.
 

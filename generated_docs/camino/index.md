@@ -5,7 +5,7 @@ UTF-8 encoded paths.
 `camino` is an extension of the `std::path` module that adds new [`Utf8PathBuf`](#utf8pathbuf) and [`Utf8Path`](#utf8path)
 types. These are like the standard library's [`PathBuf`](#pathbuf) and `Path` types, except they are
 guaranteed to only contain UTF-8 encoded data. Therefore, they expose the ability to get their
-contents as strings, they implement [`Display`](#display), etc.
+contents as strings, they implement `Display`, etc.
 
 The `std::path` types are not guaranteed to be valid UTF-8. This is the right decision for the standard library,
 since it must be as general as possible. However, on all platforms, non-Unicode paths are vanishingly uncommon for a
@@ -96,7 +96,7 @@ as valid UTF-8 from there on, avoiding repeated lossy and confusing conversions.
 struct Utf8PathBuf(PathBuf);
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:112`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L112)*
+*Defined in [`camino-1.2.2/src/lib.rs:112`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L112)*
 
 An owned, mutable UTF-8 path (akin to [`String`](#string)).
 
@@ -148,7 +148,7 @@ Which method works best depends on what kind of situation you're in.
   
   *On Rust 1.91 or newer, this is a `const fn`.*
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8PathBuf;
@@ -165,7 +165,7 @@ Which method works best depends on what kind of situation you're in.
   For a version that returns a type that implements `std::error::Error`,
   see [`TryFrom<&PathBuf>`][tryfrom].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8PathBuf;
@@ -195,7 +195,7 @@ Which method works best depends on what kind of situation you're in.
   For a version that returns a type that implements `std::error::Error`, use the
   `TryFrom<OsString>` impl.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(osstring_from_str)] {
@@ -225,7 +225,7 @@ Which method works best depends on what kind of situation you're in.
   This is equivalent to the [`From<Utf8PathBuf> for PathBuf`][`from`](../serde_json/value/from/index.md) implementation,
   but may aid in type inference.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8PathBuf;
@@ -245,7 +245,7 @@ Which method works best depends on what kind of situation you're in.
   Creates a new [`Utf8PathBuf`](#utf8pathbuf) with a given capacity used to create the internal [`PathBuf`](#pathbuf).
   See `with_capacity` defined on [`PathBuf`](#pathbuf).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8PathBuf;
@@ -263,7 +263,7 @@ Which method works best depends on what kind of situation you're in.
 
   Coerces to a [`Utf8Path`](#utf8path) slice.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -300,7 +300,7 @@ Which method works best depends on what kind of situation you're in.
     replaces everything except for the prefix (if any) of `self`.
   * if `path` has a prefix but no root, it replaces `self`.
   
-  # Examples
+  ##### Examples
   
   Pushing a relative path extends the existing path:
   
@@ -329,7 +329,7 @@ Which method works best depends on what kind of situation you're in.
   Returns `false` and does nothing if `self.parent` is [`None`](#none).
   Otherwise, returns `true`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -354,7 +354,7 @@ Which method works best depends on what kind of situation you're in.
   (That is, it will have the same parent.)
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8PathBuf;
@@ -379,7 +379,7 @@ Which method works best depends on what kind of situation you're in.
   it is replaced.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -402,18 +402,18 @@ Which method works best depends on what kind of situation you're in.
   
   *Requires Rust 1.91 or newer.*
   
-  # Panics
+  ##### Panics
   
   Panics if the passed extension contains a path separator (see
   `is_separator`).
   
-  # Caveats
+  ##### Caveats
   
   The appended `extension` may contain dots and will be used in its entirety,
   but only the part after the final dot will be reflected in `self.extension`.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -431,7 +431,7 @@ Which method works best depends on what kind of situation you're in.
 
   Consumes the [`Utf8PathBuf`](#utf8pathbuf), yielding its internal [`String`](#string) storage.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8PathBuf;
@@ -445,7 +445,7 @@ Which method works best depends on what kind of situation you're in.
 
   Consumes the [`Utf8PathBuf`](#utf8pathbuf), yielding its internal [`OsString`](#osstring) storage.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8PathBuf;
@@ -643,7 +643,7 @@ Which method works best depends on what kind of situation you're in.
 struct Utf8Path(Path);
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:658`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L658)*
+*Defined in [`camino-1.2.2/src/lib.rs:658`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L658)*
 
 A slice of a UTF-8 path (akin to [`str`](#str)).
 
@@ -682,7 +682,7 @@ assert_eq!(extension, Some("txt"));
   
   This is a cost-free conversion.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -710,7 +710,7 @@ assert_eq!(extension, Some("txt"));
   For a version that returns a type that implements `std::error::Error`,
   see [`TryFrom<&Path>`][tryfrom].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -740,7 +740,7 @@ assert_eq!(extension, Some("txt"));
   For a version that returns a type that implements `std::error::Error`, use the
   [`TryFrom<&OsStr>`][tryfrom] impl.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -766,7 +766,7 @@ assert_eq!(extension, Some("txt"));
   This is equivalent to the [`AsRef<Path> for Utf8PathBuf`][asref] implementation,
   but may aid in type inference.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -788,7 +788,7 @@ assert_eq!(extension, Some("txt"));
   Unlike `Path::to_str`, this always returns a slice because the contents
   of a [`Utf8Path`](#utf8path) are guaranteed to be valid UTF-8.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -801,7 +801,7 @@ assert_eq!(extension, Some("txt"));
 
   Yields the underlying `OsStr` slice.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -814,7 +814,7 @@ assert_eq!(extension, Some("txt"));
 
   Converts a [`Utf8Path`](#utf8path) to an owned [`Utf8PathBuf`](#utf8pathbuf).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -834,7 +834,7 @@ assert_eq!(extension, Some("txt"));
   * On Windows, a path is absolute if it has a prefix and starts with the
     root: `C:\windows` is absolute, while `C:temp` and `\temp` are not.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -848,7 +848,7 @@ assert_eq!(extension, Some("txt"));
   
   See `is_absolute`'s documentation for more details.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -867,7 +867,7 @@ assert_eq!(extension, Some("txt"));
       * has a prefix followed by a separator, e.g., `C:\windows` but not `C:windows`
       * has any non-disk prefix, e.g., `\\server\share`
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -881,7 +881,7 @@ assert_eq!(extension, Some("txt"));
   
   Returns [`None`](#none) if the path terminates in a root or prefix.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -905,7 +905,7 @@ assert_eq!(extension, Some("txt"));
   [`None`](#none), the iterator will do likewise. The iterator will always yield at least one value,
   namely `&self`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -933,7 +933,7 @@ assert_eq!(extension, Some("txt"));
   
   Returns [`None`](#none) if the path terminates in `..`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -950,12 +950,12 @@ assert_eq!(extension, Some("txt"));
 
   Returns a path that, when joined onto `base`, yields `self`.
   
-  # Errors
+  ##### Errors
   
   If `base` is not a prefix of `self` (i.e., `starts_with`
   returns `false`), returns `Err`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -981,7 +981,7 @@ assert_eq!(extension, Some("txt"));
   
   Only considers whole path components to match.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -1006,7 +1006,7 @@ assert_eq!(extension, Some("txt"));
   
   Only considers whole path components to match.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -1032,7 +1032,7 @@ assert_eq!(extension, Some("txt"));
   * The entire file name if the file name begins with `.` and has no other `.`s within;
   * Otherwise, the portion of the file name before the final `.`
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -1055,7 +1055,7 @@ assert_eq!(extension, Some("txt"));
   
   *Requires Rust 1.91 or newer.*
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -1075,7 +1075,7 @@ assert_eq!(extension, Some("txt"));
   * [`None`](#none), if the file name begins with `.` and has no other `.`s within;
   * Otherwise, the portion of the file name after the final `.`
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -1090,7 +1090,7 @@ assert_eq!(extension, Some("txt"));
   
   See `Utf8PathBuf::push` for more details on what it means to adjoin a path.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -1104,7 +1104,7 @@ assert_eq!(extension, Some("txt"));
   
   See `PathBuf::push` for more details on what it means to adjoin a path.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -1119,7 +1119,7 @@ assert_eq!(extension, Some("txt"));
   
   See `Utf8PathBuf::set_file_name` for more details.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -1137,7 +1137,7 @@ assert_eq!(extension, Some("txt"));
   
   See `Utf8PathBuf::set_extension` for more details.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -1159,7 +1159,7 @@ assert_eq!(extension, Some("txt"));
   
   *Requires Rust 1.91 or newer.*
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Path, Utf8PathBuf};
@@ -1192,7 +1192,7 @@ assert_eq!(extension, Some("txt"));
   and `a/b/../c` are distinct, to account for the possibility that `b`
   is a symbolic link (so its parent isn't `a`).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::{Utf8Component, Utf8Path};
@@ -1213,7 +1213,7 @@ assert_eq!(extension, Some("txt"));
   For more information about the particulars of how the path is separated
   into components, see `components`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -1234,7 +1234,7 @@ assert_eq!(extension, Some("txt"));
   
   This is an alias to `fs::metadata`.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1250,7 +1250,7 @@ assert_eq!(extension, Some("txt"));
   
   This is an alias to `fs::symlink_metadata`.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1271,7 +1271,7 @@ assert_eq!(extension, Some("txt"));
   
   This is an alias to `fs::canonicalize`.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1290,7 +1290,7 @@ assert_eq!(extension, Some("txt"));
   version that does not attempt to do this conversion, see
   [`canonicalize`](Self::canonicalize).
   
-  # Errors
+  ##### Errors
   
   The I/O operation may return an error: see the `fs::canonicalize`
   documentation for more.
@@ -1299,7 +1299,7 @@ assert_eq!(extension, Some("txt"));
   [`ErrorKind`](io::ErrorKind) set to [`InvalidData`](io::ErrorKind::InvalidData)
   and the payload set to a [`FromPathBufError`](#frompathbuferror).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::{Utf8Path, Utf8PathBuf};
@@ -1318,7 +1318,7 @@ assert_eq!(extension, Some("txt"));
   
   This is an alias to `fs::read_link`.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1334,7 +1334,7 @@ assert_eq!(extension, Some("txt"));
   This method attempts to convert the resulting [`PathBuf`](#pathbuf) into a [`Utf8PathBuf`](#utf8pathbuf). For a
   version that does not attempt to do this conversion, see [`read_link`](Self::read_link).
   
-  # Errors
+  ##### Errors
   
   The I/O operation may return an error: see the `fs::read_link`
   documentation for more.
@@ -1343,7 +1343,7 @@ assert_eq!(extension, Some("txt"));
   [`ErrorKind`](io::ErrorKind) set to [`InvalidData`](io::ErrorKind::InvalidData)
   and the payload set to a [`FromPathBufError`](#frompathbuferror).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1361,7 +1361,7 @@ assert_eq!(extension, Some("txt"));
   
   This is an alias to `fs::read_dir`.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1381,7 +1381,7 @@ assert_eq!(extension, Some("txt"));
   The iterator will yield instances of `io::Result``<`[`Utf8DirEntry`](#utf8direntry)`>`. New
   errors may be encountered after an iterator is initially constructed.
   
-  # Errors
+  ##### Errors
   
   The I/O operation may return an error: see the `fs::read_dir`
   documentation for more.
@@ -1390,7 +1390,7 @@ assert_eq!(extension, Some("txt"));
   [`ErrorKind`](io::ErrorKind) set to [`InvalidData`](io::ErrorKind::InvalidData)
   and the payload set to a [`FromPathBufError`](#frompathbuferror).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1416,14 +1416,14 @@ assert_eq!(extension, Some("txt"));
   If you cannot access the directory containing the file, e.g., because of a
   permission error, this will return `false`.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
   assert!(!Utf8Path::new("does_not_exist.txt").exists());
   ```
   
-  # See Also
+  ##### See Also
   
   This is a convenience function that coerces errors to false. If you want to
   check errors, call `fs::metadata`.
@@ -1443,7 +1443,7 @@ assert_eq!(extension, Some("txt"));
   prevent time-of-check to time-of-use (TOCTOU) bugs. You should only use it in scenarios
   where those bugs are not an issue.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1465,7 +1465,7 @@ assert_eq!(extension, Some("txt"));
   If you cannot access the directory containing the file, e.g., because of a
   permission error, this will return `false`.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1473,7 +1473,7 @@ assert_eq!(extension, Some("txt"));
   assert_eq!(Utf8Path::new("a_file.txt").is_file(), true);
   ```
   
-  # See Also
+  ##### See Also
   
   This is a convenience function that coerces errors to false. If you want to
   check errors, call `fs::metadata` and handle its `Result`. Then call
@@ -1495,7 +1495,7 @@ assert_eq!(extension, Some("txt"));
   If you cannot access the directory containing the file, e.g., because of a
   permission error, this will return `false`.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1503,7 +1503,7 @@ assert_eq!(extension, Some("txt"));
   assert_eq!(Utf8Path::new("a_file.txt").is_dir(), false);
   ```
   
-  # See Also
+  ##### See Also
   
   This is a convenience function that coerces errors to false. If you want to
   check errors, call `fs::metadata` and handle its `Result`. Then call
@@ -1519,7 +1519,7 @@ assert_eq!(extension, Some("txt"));
   If you cannot access the directory containing the file, e.g., because of a
   permission error, this will return false.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -1531,7 +1531,7 @@ assert_eq!(extension, Some("txt"));
   assert_eq!(link_path.exists(), false);
   ```
   
-  # See Also
+  ##### See Also
   
   This is a convenience function that coerces errors to false. If you want to
   check errors, call `Utf8Path::symlink_metadata` and handle its `Result`. Then call
@@ -1635,7 +1635,7 @@ assert_eq!(extension, Some("txt"));
 struct Utf8Ancestors<'a>(Ancestors<'a>);
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:1757`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L1757)*
+*Defined in [`camino-1.2.2/src/lib.rs:1757`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L1757)*
 
 An iterator over [`Utf8Path`](#utf8path) and its ancestors.
 
@@ -1740,7 +1740,7 @@ for ancestor in path.ancestors() {
 struct Utf8Components<'a>(Components<'a>);
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:1800`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L1800)*
+*Defined in [`camino-1.2.2/src/lib.rs:1800`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L1800)*
 
 An iterator over the [`Utf8Component`](#utf8component)s of a [`Utf8Path`](#utf8path).
 
@@ -1766,7 +1766,7 @@ for component in path.components() {
 
   Extracts a slice corresponding to the portion of the path remaining for iteration.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -1887,7 +1887,7 @@ struct Iter<'a> {
 }
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:1893-1895`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L1893-L1895)*
+*Defined in [`camino-1.2.2/src/lib.rs:1893-1895`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L1893-L1895)*
 
 An iterator over the [`Utf8Component`](#utf8component)s of a [`Utf8Path`](#utf8path), as [`str`](#str) slices.
 
@@ -1901,7 +1901,7 @@ See its documentation for more.
 
   Extracts a slice corresponding to the portion of the path remaining for iteration.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -2004,7 +2004,7 @@ See its documentation for more.
 struct Utf8PrefixComponent<'a>(PrefixComponent<'a>);
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:2248`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L2248)*
+*Defined in [`camino-1.2.2/src/lib.rs:2248`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L2248)*
 
 A structure wrapping a Windows path prefix as well as its unparsed string
 representation.
@@ -2155,7 +2155,7 @@ struct ReadDirUtf8 {
 }
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:2328-2330`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L2328-L2330)*
+*Defined in [`camino-1.2.2/src/lib.rs:2328-2330`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L2328-L2330)*
 
 Iterator over the entries in a directory.
 
@@ -2243,7 +2243,7 @@ struct Utf8DirEntry {
 }
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:2347-2350`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L2347-L2350)*
+*Defined in [`camino-1.2.2/src/lib.rs:2347-2350`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L2347-L2350)*
 
 Entries returned by the [`ReadDirUtf8`](#readdirutf8) iterator.
 
@@ -2261,7 +2261,7 @@ entry can be inspected via methods to learn about the full path or possibly othe
   The full path is created by joining the original path to `read_dir`
   with the filename of this entry.
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use camino::Utf8Path;
@@ -2292,13 +2292,13 @@ entry can be inspected via methods to learn about the full path or possibly othe
   This function will not traverse symlinks if this entry points at a symlink. To traverse
   symlinks use `Utf8Path::metadata` or `fs::File::metadata`.
   
-  # Platform-specific behavior
+  ##### Platform-specific behavior
   
   On Windows this function is cheap to call (no extra system calls
   needed), but on Unix platforms this function is the equivalent of
   calling `symlink_metadata` on the path.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -2325,13 +2325,13 @@ entry can be inspected via methods to learn about the full path or possibly othe
   This function will not traverse symlinks if this entry points at a
   symlink.
   
-  # Platform-specific behavior
+  ##### Platform-specific behavior
   
   On Windows and most Unix platforms this function is free (no extra
   system calls needed), but some Unix platforms may require the equivalent
   call to `symlink_metadata` to learn about the target file type.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -2356,7 +2356,7 @@ entry can be inspected via methods to learn about the full path or possibly othe
   Returns the bare file name of this directory entry without any other
   leading path component.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -2435,7 +2435,7 @@ struct FromPathBufError {
 }
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:2816-2819`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L2816-L2819)*
+*Defined in [`camino-1.2.2/src/lib.rs:2816-2819`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L2816-L2819)*
 
 A possible error value while converting a [`PathBuf`](#pathbuf) to a [`Utf8PathBuf`](#utf8pathbuf).
 
@@ -2580,7 +2580,7 @@ assert_eq!(err.into_path_buf(), non_unicode_path);
 struct FromPathError(());
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:2897`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L2897)*
+*Defined in [`camino-1.2.2/src/lib.rs:2897`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L2897)*
 
 A possible error value while converting a `Path` to a [`Utf8Path`](#utf8path).
 
@@ -2711,7 +2711,7 @@ struct FromOsStringError {
 }
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:2957-2960`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L2957-L2960)*
+*Defined in [`camino-1.2.2/src/lib.rs:2957-2960`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L2957-L2960)*
 
 A possible error value while converting a [`OsString`](#osstring) to a [`Utf8PathBuf`](#utf8pathbuf).
 
@@ -2858,7 +2858,7 @@ assert_eq!(err.into_os_string(), non_unicode_string);
 struct FromOsStrError(());
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:3038`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L3038)*
+*Defined in [`camino-1.2.2/src/lib.rs:3038`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L3038)*
 
 A possible error value while converting a `OsStr` to a [`Utf8Path`](#utf8path).
 
@@ -2992,7 +2992,7 @@ enum Utf8Component<'a> {
 }
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:2003-2028`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L2003-L2028)*
+*Defined in [`camino-1.2.2/src/lib.rs:2003-2028`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L2003-L2028)*
 
 A single component of a path.
 
@@ -3057,7 +3057,7 @@ assert_eq!(&components, &[
 
   Extracts the underlying [`str`](#str) slice.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -3071,7 +3071,7 @@ assert_eq!(&components, &[
 
   Extracts the underlying `OsStr` slice.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Path;
@@ -3189,7 +3189,7 @@ enum Utf8Prefix<'a> {
 }
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:2155-2189`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L2155-L2189)*
+*Defined in [`camino-1.2.2/src/lib.rs:2155-2189`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L2155-L2189)*
 
 Windows path prefixes, e.g., `C:` or `\\server\share`.
 
@@ -3271,7 +3271,7 @@ assert_eq!(Disk(b'C'), get_path_prefix(r"C:\Users\Rust\Pictures\Ferris"));
 
   Determines if the prefix is verbatim, i.e., begins with `\\?\`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use camino::Utf8Prefix::*;
@@ -3375,7 +3375,7 @@ assert_eq!(Disk(b'C'), get_path_prefix(r"C:\Users\Rust\Pictures\Ferris"));
 fn absolute_utf8<P: AsRef<Path>>(path: P) -> io::Result<Utf8PathBuf>
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:3511-3521`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L3511-L3521)*
+*Defined in [`camino-1.2.2/src/lib.rs:3511-3521`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L3511-L3521)*
 
 Makes the path absolute without accessing the filesystem, converting it to a [`Utf8PathBuf`](#utf8pathbuf).
 
@@ -3454,23 +3454,23 @@ Note that this [may change in the future][changes].
 unsafe fn str_assume_utf8(string: &std::ffi::OsStr) -> &str
 ```
 
-*Defined in [`camino-1.2.2/src/lib.rs:3525-3544`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L3525-L3544)*
+*Defined in [`camino-1.2.2/src/lib.rs:3525-3544`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L3525-L3544)*
 
 ## Macros
 
 ### `impl_cmp!`
 
-*Defined in [`camino-1.2.2/src/lib.rs:3248-3282`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L3248-L3282)*
+*Defined in [`camino-1.2.2/src/lib.rs:3248-3282`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L3248-L3282)*
 
 ### `impl_cmp_std_path!`
 
-*Defined in [`camino-1.2.2/src/lib.rs:3290-3324`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L3290-L3324)*
+*Defined in [`camino-1.2.2/src/lib.rs:3290-3324`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L3290-L3324)*
 
 ### `impl_cmp_str!`
 
-*Defined in [`camino-1.2.2/src/lib.rs:3339-3373`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L3339-L3373)*
+*Defined in [`camino-1.2.2/src/lib.rs:3339-3373`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L3339-L3373)*
 
 ### `impl_cmp_os_str!`
 
-*Defined in [`camino-1.2.2/src/lib.rs:3388-3422`](../../.source_1765894658/camino-1.2.2/src/lib.rs#L3388-L3422)*
+*Defined in [`camino-1.2.2/src/lib.rs:3388-3422`](../../.source_1765900590/camino-1.2.2/src/lib.rs#L3388-L3422)*
 

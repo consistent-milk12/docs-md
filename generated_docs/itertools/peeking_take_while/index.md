@@ -26,7 +26,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:113-119`](../../../.source_1765894658/itertools-0.14.0/src/peeking_take_while.rs#L113-L119)*
+*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:113-119`](../../../.source_1765900590/itertools-0.14.0/src/peeking_take_while.rs#L113-L119)*
 
 An iterator adaptor that takes items while a closure returns `true`.
 
@@ -114,7 +114,7 @@ for more information.
 trait PeekingNext: Iterator { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:15-23`](../../../.source_1765894658/itertools-0.14.0/src/peeking_take_while.rs#L15-L23)*
+*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:15-23`](../../../.source_1765900590/itertools-0.14.0/src/peeking_take_while.rs#L15-L23)*
 
 An iterator that allows peeking at an element before deciding to accept it.
 
@@ -127,7 +127,7 @@ by reference iterator (`std::slice::Iter`).
 
 #### Required Methods
 
-- `fn peeking_next<F>(&mut self, accept: F) -> Option<<Self as >::Item>`
+- `fn PeekingNext::peeking_next<F>(&mut self, accept: F) -> Option<<Self as >::Item>`
 
   Pass a reference to the next iterator element to the closure `accept`;
   if `accept` returns `true`, return it as the next element,
@@ -164,7 +164,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:129-134`](../../../.source_1765894658/itertools-0.14.0/src/peeking_take_while.rs#L129-L134)*
+*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:129-134`](../../../.source_1765900590/itertools-0.14.0/src/peeking_take_while.rs#L129-L134)*
 
 Create a `PeekingTakeWhile`
 
@@ -172,5 +172,5 @@ Create a `PeekingTakeWhile`
 
 ### `peeking_next_by_clone!`
 
-*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:167-185`](../../../.source_1765894658/itertools-0.14.0/src/peeking_take_while.rs#L167-L185)*
+*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:167-185`](../../../.source_1765900590/itertools-0.14.0/src/peeking_take_while.rs#L167-L185)*
 

@@ -328,7 +328,7 @@ struct ProgressDrawTarget {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../.source_1765900590/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
 
 Target for draw operations
 
@@ -481,7 +481,7 @@ device.
 struct BinaryBytes(u64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:64`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L64)*
+*Defined in [`indicatif-0.18.3/src/format.rs:64`](../../.source_1765900590/indicatif-0.18.3/src/format.rs#L64)*
 
 Formats bytes for human readability using ISO/IEC prefixes
 
@@ -555,7 +555,7 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 struct DecimalBytes(u64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:49`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L49)*
+*Defined in [`indicatif-0.18.3/src/format.rs:49`](../../.source_1765900590/indicatif-0.18.3/src/format.rs#L49)*
 
 Formats bytes for human readability using SI prefixes
 
@@ -629,7 +629,7 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 struct FormattedDuration(std::time::Duration);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:15`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L15)*
+*Defined in [`indicatif-0.18.3/src/format.rs:15`](../../.source_1765900590/indicatif-0.18.3/src/format.rs#L15)*
 
 Wraps an std duration for human basic formatting.
 
@@ -692,7 +692,7 @@ Wraps an std duration for human basic formatting.
 struct HumanBytes(u64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:34`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L34)*
+*Defined in [`indicatif-0.18.3/src/format.rs:34`](../../.source_1765900590/indicatif-0.18.3/src/format.rs#L34)*
 
 Formats bytes for human readability
 
@@ -766,7 +766,7 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 struct HumanCount(u64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:68`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L68)*
+*Defined in [`indicatif-0.18.3/src/format.rs:68`](../../.source_1765900590/indicatif-0.18.3/src/format.rs#L68)*
 
 Formats counts for human readability using commas
 
@@ -829,7 +829,7 @@ Formats counts for human readability using commas
 struct HumanDuration(std::time::Duration);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:19`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L19)*
+*Defined in [`indicatif-0.18.3/src/format.rs:19`](../../.source_1765900590/indicatif-0.18.3/src/format.rs#L19)*
 
 Wraps an std duration for human readable formatting.
 
@@ -892,7 +892,7 @@ Wraps an std duration for human readable formatting.
 struct HumanFloatCount(f64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:72`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L72)*
+*Defined in [`indicatif-0.18.3/src/format.rs:72`](../../.source_1765900590/indicatif-0.18.3/src/format.rs#L72)*
 
 Formats counts for human readability using commas for floats
 
@@ -958,7 +958,7 @@ struct ProgressBarIter<T> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../.source_1765894658/indicatif-0.18.3/src/iter.rs#L62-L65)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../.source_1765900590/indicatif-0.18.3/src/iter.rs#L62-L65)*
 
 Wraps an iterator to display its progress.
 
@@ -1111,7 +1111,7 @@ struct MultiProgress {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L18-L20)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../.source_1765900590/indicatif-0.18.3/src/multi.rs#L18-L20)*
 
 Manages multiple progress bars from different threads
 
@@ -1321,7 +1321,7 @@ struct ProgressBar {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/progress_bar.rs:25-29`](../../.source_1765894658/indicatif-0.18.3/src/progress_bar.rs#L25-L29)*
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:25-29`](../../.source_1765900590/indicatif-0.18.3/src/progress_bar.rs#L25-L29)*
 
 A progress bar or spinner
 
@@ -1772,7 +1772,7 @@ struct WeakProgressBar {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/progress_bar.rs:651-655`](../../.source_1765894658/indicatif-0.18.3/src/progress_bar.rs#L651-L655)*
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:651-655`](../../.source_1765900590/indicatif-0.18.3/src/progress_bar.rs#L651-L655)*
 
 A weak reference to a [`ProgressBar`](progress_bar/index.md).
 
@@ -1865,7 +1865,7 @@ struct ProgressState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../.source_1765894658/indicatif-0.18.3/src/state.rs#L242-L251)*
+*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../.source_1765900590/indicatif-0.18.3/src/state.rs#L242-L251)*
 
 The state of a progress bar at a moment in time.
 
@@ -1957,7 +1957,7 @@ struct ProgressStyle {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:23-31`](../../.source_1765894658/indicatif-0.18.3/src/style.rs#L23-L31)*
+*Defined in [`indicatif-0.18.3/src/style.rs:23-31`](../../.source_1765900590/indicatif-0.18.3/src/style.rs#L23-L31)*
 
 #### Implementations
 
@@ -2103,7 +2103,7 @@ enum MultiProgressAlignment {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L505-L509)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../.source_1765900590/indicatif-0.18.3/src/multi.rs#L505-L509)*
 
 Vertical alignment of a multi progress.
 
@@ -2201,7 +2201,7 @@ enum ProgressFinish {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../.source_1765894658/indicatif-0.18.3/src/state.rs#L615-L637)*
+*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../.source_1765900590/indicatif-0.18.3/src/state.rs#L615-L637)*
 
 Behavior of a progress bar when it is finished
 
@@ -2318,34 +2318,34 @@ where
     Self: Sized + Iterator { ... }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../.source_1765894658/indicatif-0.18.3/src/iter.rs#L18-L58)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../.source_1765900590/indicatif-0.18.3/src/iter.rs#L18-L58)*
 
 Wraps an iterator to display its progress.
 
 #### Required Methods
 
-- `fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<Self>`
+- `fn ProgressIterator::progress_with(self, progress: ProgressBar) -> ProgressBarIter<Self>`
 
   Wrap an iterator with a custom progress bar.
 
 #### Provided Methods
 
-- `fn try_progress(self) -> Option<ProgressBarIter<Self>>`
+- `fn ProgressIterator::try_progress(self) -> Option<ProgressBarIter<Self>>`
 
   Wrap an iterator with default styling. Uses `Iterator::size_hint()` to get length.
   Returns `Some(..)` only if `size_hint.1` is `Some`. If you want to create a progress bar
   even if `size_hint.1` returns [`None`](#none) use [`progress_count()`](ProgressIterator::progress_count)
   or [`progress_with()`](ProgressIterator::progress_with) instead.
 
-- `fn progress(self) -> ProgressBarIter<Self>`
+- `fn ProgressIterator::progress(self) -> ProgressBarIter<Self>`
 
   Wrap an iterator with default styling.
 
-- `fn progress_count(self, len: u64) -> ProgressBarIter<Self>`
+- `fn ProgressIterator::progress_count(self, len: u64) -> ProgressBarIter<Self>`
 
   Wrap an iterator with an explicit element count.
 
-- `fn progress_with_style(self, style: crate::ProgressStyle) -> ProgressBarIter<Self>`
+- `fn ProgressIterator::progress_with_style(self, style: crate::ProgressStyle) -> ProgressBarIter<Self>`
 
   Wrap an iterator with a progress bar and style it.
 
@@ -2359,52 +2359,71 @@ Wraps an iterator to display its progress.
 trait TermLike: Debug + Send + Sync { ... }
 ```
 
-*Defined in [`indicatif-0.18.3/src/term_like.rs:11-37`](../../.source_1765894658/indicatif-0.18.3/src/term_like.rs#L11-L37)*
+*Defined in [`indicatif-0.18.3/src/term_like.rs:11-37`](../../.source_1765900590/indicatif-0.18.3/src/term_like.rs#L11-L37)*
 
 A trait for minimal terminal-like behavior.
 
 Anything that implements this trait can be used a draw target via `ProgressDrawTarget::term_like`.
 
 
+<details>
+<summary><strong>Methods (10)</strong> - click to expand</summary>
+
+**Required:**
+- [`TermLike::width`](#fn-termlikewidth)
+- [`TermLike::move_cursor_up`](#fn-termlikemove-cursor-up)
+- [`TermLike::move_cursor_down`](#fn-termlikemove-cursor-down)
+- [`TermLike::move_cursor_right`](#fn-termlikemove-cursor-right)
+- [`TermLike::move_cursor_left`](#fn-termlikemove-cursor-left)
+- [`TermLike::write_line`](#fn-termlikewrite-line)
+- [`TermLike::write_str`](#fn-termlikewrite-str)
+- [`TermLike::clear_line`](#fn-termlikeclear-line)
+- [`TermLike::flush`](#fn-termlikeflush)
+
+**Provided:**
+- [`TermLike::height`](#fn-termlikeheight)
+
+</details>
+
 #### Required Methods
 
-- `fn width(&self) -> u16`
+- `fn TermLike::width(&self) -> u16`
 
   Return the terminal width
 
-- `fn move_cursor_up(&self, n: usize) -> io::Result<()>`
+- `fn TermLike::move_cursor_up(&self, n: usize) -> io::Result<()>`
 
   Move the cursor up by `n` lines
 
-- `fn move_cursor_down(&self, n: usize) -> io::Result<()>`
+- `fn TermLike::move_cursor_down(&self, n: usize) -> io::Result<()>`
 
   Move the cursor down by `n` lines
 
-- `fn move_cursor_right(&self, n: usize) -> io::Result<()>`
+- `fn TermLike::move_cursor_right(&self, n: usize) -> io::Result<()>`
 
   Move the cursor right by `n` chars
 
-- `fn move_cursor_left(&self, n: usize) -> io::Result<()>`
+- `fn TermLike::move_cursor_left(&self, n: usize) -> io::Result<()>`
 
   Move the cursor left by `n` chars
 
-- `fn write_line(&self, s: &str) -> io::Result<()>`
+- `fn TermLike::write_line(&self, s: &str) -> io::Result<()>`
 
   Write a string and add a newline.
 
-- `fn write_str(&self, s: &str) -> io::Result<()>`
+- `fn TermLike::write_str(&self, s: &str) -> io::Result<()>`
 
   Write a string
 
-- `fn clear_line(&self) -> io::Result<()>`
+- `fn TermLike::clear_line(&self) -> io::Result<()>`
 
   Clear the current line and reset the cursor to beginning of the line
 
-- `fn flush(&self) -> io::Result<()>`
+- `fn TermLike::flush(&self) -> io::Result<()>`
 
 #### Provided Methods
 
-- `fn height(&self) -> u16`
+- `fn TermLike::height(&self) -> u16`
 
   Return the terminal height
 

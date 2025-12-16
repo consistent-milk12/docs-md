@@ -29,7 +29,7 @@ enum WordSplitter {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../../.source_1765894658/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../../.source_1765900590/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
 
 The `WordSplitter` enum describes where words can be split.
 
@@ -125,7 +125,7 @@ details.
   splitting on hyphens. This way, `word.split_at(idx)` will
   break the word into two well-formed pieces.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use textwrap::WordSplitter;
@@ -209,7 +209,7 @@ where
     I: IntoIterator<Item = crate::core::Word<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_splitters.rs:169-206`](../../../.source_1765894658/textwrap-0.16.2/src/word_splitters.rs#L169-L206)*
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:169-206`](../../../.source_1765900590/textwrap-0.16.2/src/word_splitters.rs#L169-L206)*
 
 Split words into smaller words according to the split points given
 by `word_splitter`.

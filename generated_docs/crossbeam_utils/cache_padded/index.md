@@ -20,7 +20,7 @@ struct CachePadded<T> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/cache_padded.rs:148-150`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/cache_padded.rs#L148-L150)*
+*Defined in [`crossbeam-utils-0.8.21/src/cache_padded.rs:148-150`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/cache_padded.rs#L148-L150)*
 
 Pads and aligns a value to the length of a cache line.
 
@@ -87,7 +87,7 @@ struct Queue<T> {
 
   Pads and aligns a value to the length of a cache line.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::CachePadded;
@@ -99,7 +99,7 @@ struct Queue<T> {
 
   Returns the inner value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::CachePadded;

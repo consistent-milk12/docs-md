@@ -22,7 +22,7 @@ enum Forward {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/forward.rs:9-12`](../../../.source_1765894658/miette-derive-7.6.0/src/forward.rs#L9-L12)*
+*Defined in [`miette-derive-7.6.0/src/forward.rs:9-12`](../../../.source_1765900590/miette-derive-7.6.0/src/forward.rs#L9-L12)*
 
 #### Implementations
 
@@ -92,7 +92,7 @@ enum WhichFn {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/forward.rs:33-42`](../../../.source_1765894658/miette-derive-7.6.0/src/forward.rs#L33-L42)*
+*Defined in [`miette-derive-7.6.0/src/forward.rs:33-42`](../../../.source_1765900590/miette-derive-7.6.0/src/forward.rs#L33-L42)*
 
 #### Implementations
 

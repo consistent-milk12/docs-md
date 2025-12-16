@@ -22,7 +22,7 @@ Unix-specific extensions to wrappers in `fs_err` for `std::fs` types.
 trait FileExt: crate::Sealed { ... }
 ```
 
-*Defined in [`fs-err-3.2.1/src/os/unix.rs:26-31`](../../../../../.source_1765894658/fs-err-3.2.1/src/os/unix.rs#L26-L31)*
+*Defined in [`fs-err-3.2.1/src/os/unix.rs:26-31`](../../../../../.source_1765900590/fs-err-3.2.1/src/os/unix.rs#L26-L31)*
 
 Wrapper for [`std::os::unix::fs::FileExt`](https://doc.rust-lang.org/std/os/unix/fs/trait.FileExt.html).
 
@@ -31,11 +31,11 @@ This trait is sealed and can not be implemented by other crates.
 
 #### Required Methods
 
-- `fn read_at(&self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
+- `fn FileExt::read_at(&self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
 
   Wrapper for [`FileExt::read_at`](https://doc.rust-lang.org/std/os/unix/fs/trait.FileExt.html#tymethod.read_at)
 
-- `fn write_at(&self, buf: &[u8], offset: u64) -> io::Result<usize>`
+- `fn FileExt::write_at(&self, buf: &[u8], offset: u64) -> io::Result<usize>`
 
   Wrapper for [`FileExt::write_at`](https://doc.rust-lang.org/std/os/unix/fs/trait.FileExt.html#tymethod.write_at)
 
@@ -49,7 +49,7 @@ This trait is sealed and can not be implemented by other crates.
 trait OpenOptionsExt: crate::Sealed { ... }
 ```
 
-*Defined in [`fs-err-3.2.1/src/os/unix.rs:37-42`](../../../../../.source_1765894658/fs-err-3.2.1/src/os/unix.rs#L37-L42)*
+*Defined in [`fs-err-3.2.1/src/os/unix.rs:37-42`](../../../../../.source_1765900590/fs-err-3.2.1/src/os/unix.rs#L37-L42)*
 
 Wrapper for [`std::os::unix::fs::OpenOptionsExt`](https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html)
 
@@ -58,11 +58,11 @@ This trait is sealed and can not be implemented by other crates.
 
 #### Required Methods
 
-- `fn mode(&mut self, mode: u32) -> &mut Self`
+- `fn OpenOptionsExt::mode(&mut self, mode: u32) -> &mut Self`
 
   Wrapper for [`OpenOptionsExt::mode`](https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html#tymethod.mode)
 
-- `fn custom_flags(&mut self, flags: i32) -> &mut Self`
+- `fn OpenOptionsExt::custom_flags(&mut self, flags: i32) -> &mut Self`
 
   Wrapper for [`OpenOptionsExt::custom_flags`](https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html#tymethod.custom_flags)
 
@@ -78,7 +78,7 @@ This trait is sealed and can not be implemented by other crates.
 fn symlink<P: AsRef<std::path::Path>, Q: AsRef<std::path::Path>>(original: P, link: Q) -> io::Result<()>
 ```
 
-*Defined in [`fs-err-3.2.1/src/os/unix.rs:14-20`](../../../../../.source_1765894658/fs-err-3.2.1/src/os/unix.rs#L14-L20)*
+*Defined in [`fs-err-3.2.1/src/os/unix.rs:14-20`](../../../../../.source_1765900590/fs-err-3.2.1/src/os/unix.rs#L14-L20)*
 
 Creates a new symbolic link on the filesystem.
 

@@ -55,7 +55,7 @@ struct LabeledSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L250-L255)*
+*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L250-L255)*
 
 A labeled [`SourceSpan`](../index.md).
 
@@ -81,7 +81,7 @@ A labeled [`SourceSpan`](../index.md).
 
   Makes a new label at specified span
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::LabeledSpan;
   
@@ -97,7 +97,7 @@ A labeled [`SourceSpan`](../index.md).
 
   Makes a new label that points at a specific offset.
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::LabeledSpan;
   
@@ -113,7 +113,7 @@ A labeled [`SourceSpan`](../index.md).
 
   Makes a new label without text, that underlines a specific span.
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::LabeledSpan;
   
@@ -231,7 +231,7 @@ struct MietteSpanContents<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L458-L473)*
+*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L458-L473)*
 
 Basic implementation of the [`SpanContents`](../index.md) trait, for convenience.
 
@@ -337,7 +337,7 @@ struct SourceSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L549-L554)*
+*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L549-L554)*
 
 Span within a [`SourceCode`](../index.md)
 
@@ -461,7 +461,7 @@ Span within a [`SourceCode`](../index.md)
 struct SourceOffset(ByteOffset);
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L673)*
+*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L673)*
 
 Newtype that represents the [`ByteOffset`](../index.md) from the beginning of a [`SourceCode`](../index.md)
 
@@ -590,7 +590,7 @@ enum Severity {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L189-L198)*
+*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L189-L198)*
 
 [`Diagnostic`](../index.md) severity. Intended to be used by
 [`ReportHandler`](crate::ReportHandler)s to change the way different
@@ -704,7 +704,7 @@ enum Severity {
 trait Diagnostic: std::error::Error { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L20-L70)*
+*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L20-L70)*
 
 Adds rich metadata to your Error that can be used by
 [`Report`](crate::Report) to print really nice and human-friendly error
@@ -712,7 +712,7 @@ messages.
 
 #### Provided Methods
 
-- `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- `fn Diagnostic::code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
   Unique diagnostic code that can be used to look up more information
   about this `Diagnostic`. Ideally also globally unique, and documented
@@ -720,7 +720,7 @@ messages.
   format (`foo::bar::baz`) is recommended, but more classic codes like
   `E0123` or enums will work just fine.
 
-- `fn severity(&self) -> Option<Severity>`
+- `fn Diagnostic::severity(&self) -> Option<Severity>`
 
   Diagnostic severity. This may be used by
   [`ReportHandler`](crate::ReportHandler)s to change the display format
@@ -728,29 +728,29 @@ messages.
   
   If `None`, reporters should treat this as [`Severity::Error`](../index.md).
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- `fn Diagnostic::help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
   Additional help text related to this `Diagnostic`. Do you have any
   advice for the poor soul who's just run into this issue?
 
-- `fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- `fn Diagnostic::url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
   URL to visit for a more detailed explanation/help about this
   `Diagnostic`.
 
-- `fn source_code(&self) -> Option<&dyn SourceCode>`
+- `fn Diagnostic::source_code(&self) -> Option<&dyn SourceCode>`
 
   Source code to apply this `Diagnostic`'s `Diagnostic::labels` to.
 
-- `fn labels(&self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>`
+- `fn Diagnostic::labels(&self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>`
 
   Labels to apply to this `Diagnostic`'s `Diagnostic::source_code`
 
-- `fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>`
+- `fn Diagnostic::related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>`
 
   Additional related `Diagnostic`s.
 
-- `fn diagnostic_source(&self) -> Option<&dyn Diagnostic>`
+- `fn Diagnostic::diagnostic_source(&self) -> Option<&dyn Diagnostic>`
 
   The cause of the error.
 
@@ -774,7 +774,7 @@ messages.
 trait SourceCode: Send + Sync { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L236-L245)*
+*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L236-L245)*
 
 Represents readable source code of some sort.
 
@@ -788,7 +788,7 @@ gigabytes or larger in size.
 
 #### Required Methods
 
-- `fn read_span<'a>(self: &'a Self, span: &SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>`
+- `fn SourceCode::read_span<'a>(self: &'a Self, span: &SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>`
 
   Read the bytes for a specific span from this `SourceCode`, keeping a
   certain number of lines before and after the span as context.
@@ -811,7 +811,7 @@ gigabytes or larger in size.
 trait SpanContents<'a> { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L426-L452)*
+*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L426-L452)*
 
 Contents of a [`SourceCode`](../index.md) covered by [`SourceSpan`](../index.md).
 
@@ -819,35 +819,35 @@ Includes line and column information to optimize highlight calculations.
 
 #### Required Methods
 
-- `fn data(&self) -> &'a [u8]`
+- `fn SpanContents::data(&self) -> &'a [u8]`
 
   Reference to the data inside the associated span, in bytes.
 
-- `fn span(&self) -> &SourceSpan`
+- `fn SpanContents::span(&self) -> &SourceSpan`
 
   [`SourceSpan`](../index.md) representing the span covered by this `SpanContents`.
 
-- `fn line(&self) -> usize`
+- `fn SpanContents::line(&self) -> usize`
 
   The 0-indexed line in the associated [`SourceCode`](../index.md) where the data
   begins.
 
-- `fn column(&self) -> usize`
+- `fn SpanContents::column(&self) -> usize`
 
   The 0-indexed column in the associated [`SourceCode`](../index.md) where the data
   begins, relative to `line`.
 
-- `fn line_count(&self) -> usize`
+- `fn SpanContents::line_count(&self) -> usize`
 
   Total number of lines covered by this `SpanContents`.
 
 #### Provided Methods
 
-- `fn name(&self) -> Option<&str>`
+- `fn SpanContents::name(&self) -> Option<&str>`
 
   An optional (file?) name for the container of this `SpanContents`.
 
-- `fn language(&self) -> Option<&str>`
+- `fn SpanContents::language(&self) -> Option<&str>`
 
   Optional method. The language name for this source code, if any.
   This is used to drive syntax highlighting.
@@ -866,7 +866,7 @@ Includes line and column information to optimize highlight calculations.
 type ByteOffset = usize;
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L666)*
+*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L666)*
 
 "Raw" type for the byte offset from the beginning of a [`SourceCode`](../index.md).
 
@@ -874,9 +874,9 @@ type ByteOffset = usize;
 
 ### `box_error_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L72-L86)*
+*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L72-L86)*
 
 ### `box_borrow_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L94-L104)*
+*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../../.source_1765900590/miette-7.6.0/src/protocol.rs#L94-L104)*
 

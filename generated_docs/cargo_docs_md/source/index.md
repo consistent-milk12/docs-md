@@ -493,7 +493,7 @@ Collector for gathering dependency sources.
 
   Create a new collector for the current directory.
   
-  # Errors
+  ##### Errors
   
   Returns an error if cargo metadata cannot be loaded.
 
@@ -501,7 +501,7 @@ Collector for gathering dependency sources.
 
   Create a new collector from a specific manifest path.
   
-  # Errors
+  ##### Errors
   
   Returns an error if cargo metadata cannot be loaded.
 
@@ -509,7 +509,7 @@ Collector for gathering dependency sources.
 
   Collect all dependency sources.
   
-  # Errors
+  ##### Errors
   
   Returns an error if collection fails.
 
@@ -759,7 +759,7 @@ or by using `cargo metadata` to find exact paths for dependencies.
 
   Create a new `SourceLocator` with the default registry path.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the home directory cannot be determined.
 
@@ -774,7 +774,7 @@ or by using `cargo metadata` to find exact paths for dependencies.
   This enables more accurate source location by using the exact
   paths from cargo's dependency resolution.
   
-  # Errors
+  ##### Errors
   
   Returns an error if cargo metadata cannot be loaded.
 
@@ -782,7 +782,7 @@ or by using `cargo metadata` to find exact paths for dependencies.
 
   Load cargo metadata from the current directory.
   
-  # Errors
+  ##### Errors
   
   Returns an error if cargo metadata cannot be loaded.
 
@@ -793,7 +793,7 @@ or by using `cargo metadata` to find exact paths for dependencies.
   First tries to use cargo metadata if available, then falls back
   to scanning the registry directory.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the source cannot be found.
 
@@ -824,7 +824,7 @@ or by using `cargo metadata` to find exact paths for dependencies.
   Returns a list of (name, version, path) tuples for all dependencies
   that have sources in the registry.
   
-  # Errors
+  ##### Errors
   
   Returns an error if metadata hasn't been loaded.
 
@@ -834,7 +834,7 @@ or by using `cargo metadata` to find exact paths for dependencies.
   
   Returns a list of (name, version) tuples.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the registry cannot be read.
 
@@ -943,7 +943,7 @@ Parser for Rust source code using `syn`.
 
   Parse an entire crate starting from its root.
   
-  # Errors
+  ##### Errors
   
   Returns an error if any source file cannot be parsed.
 
@@ -1025,7 +1025,7 @@ Parser for Rust source code using `syn`.
   
   Useful for quick parsing of individual files.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the file cannot be read or parsed.
 

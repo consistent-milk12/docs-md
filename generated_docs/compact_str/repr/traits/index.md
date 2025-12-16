@@ -20,13 +20,13 @@
 trait IntoRepr { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/traits.rs:10-12`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/traits.rs#L10-L12)*
+*Defined in [`compact_str-0.9.0/src/repr/traits.rs:10-12`](../../../../.source_1765900590/compact_str-0.9.0/src/repr/traits.rs#L10-L12)*
 
 Defines how to _efficiently_ create a [`Repr`](../index.md) from `self`
 
 #### Required Methods
 
-- `fn into_repr(self) -> Result<Repr, ToCompactStringError>`
+- `fn IntoRepr::into_repr(self) -> Result<Repr, ToCompactStringError>`
 
 #### Implementors
 
@@ -66,12 +66,12 @@ Defines how to _efficiently_ create a [`Repr`](../index.md) from `self`
 const FALSE: super::Repr;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/traits.rs:6`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/traits.rs#L6)*
+*Defined in [`compact_str-0.9.0/src/repr/traits.rs:6`](../../../../.source_1765900590/compact_str-0.9.0/src/repr/traits.rs#L6)*
 
 ### `TRUE`
 ```rust
 const TRUE: super::Repr;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/traits.rs:7`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/traits.rs#L7)*
+*Defined in [`compact_str-0.9.0/src/repr/traits.rs:7`](../../../../.source_1765900590/compact_str-0.9.0/src/repr/traits.rs#L7)*
 

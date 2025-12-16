@@ -28,7 +28,7 @@ struct FoldHasher<'a> {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/fast.rs:14-19`](../../../.source_1765894658/foldhash-0.2.0/src/fast.rs#L14-L19)*
+*Defined in [`foldhash-0.2.0/src/fast.rs:14-19`](../../../.source_1765900590/foldhash-0.2.0/src/fast.rs#L14-L19)*
 
 A `Hasher` instance implementing foldhash, optimized for speed.
 
@@ -121,7 +121,7 @@ struct RandomState {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/fast.rs:127-130`](../../../.source_1765894658/foldhash-0.2.0/src/fast.rs#L127-L130)*
+*Defined in [`foldhash-0.2.0/src/fast.rs:127-130`](../../../.source_1765900590/foldhash-0.2.0/src/fast.rs#L127-L130)*
 
 A `BuildHasher` for [`fast::FoldHasher`](FoldHasher) that is randomly initialized.
 
@@ -197,7 +197,7 @@ struct SeedableRandomState {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/fast.rs:157-160`](../../../.source_1765894658/foldhash-0.2.0/src/fast.rs#L157-L160)*
+*Defined in [`foldhash-0.2.0/src/fast.rs:157-160`](../../../.source_1765900590/foldhash-0.2.0/src/fast.rs#L157-L160)*
 
 A `BuildHasher` for [`fast::FoldHasher`](FoldHasher) that is randomly
 initialized by default, but can also be initialized with a specific seed.
@@ -291,7 +291,7 @@ struct FixedState {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/fast.rs:213-215`](../../../.source_1765894658/foldhash-0.2.0/src/fast.rs#L213-L215)*
+*Defined in [`foldhash-0.2.0/src/fast.rs:213-215`](../../../.source_1765900590/foldhash-0.2.0/src/fast.rs#L213-L215)*
 
 A `BuildHasher` for [`fast::FoldHasher`](FoldHasher) that always has the same fixed seed.
 

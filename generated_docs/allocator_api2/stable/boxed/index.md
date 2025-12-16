@@ -163,7 +163,7 @@ is not allowed. For more guidance on working with box from unsafe code, see
 struct Box<T: ?Sized, A: Allocator>(super::unique::Unique<T>, A);
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:177`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/boxed.rs#L177)*
+*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:177`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/boxed.rs#L177)*
 
 A pointer type for heap allocation.
 
@@ -177,7 +177,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
   
   This doesn't actually allocate if `T` is zero-sized.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let five = Box::new(5);
@@ -187,7 +187,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
   Constructs a new box with uninitialized contents.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![feature(new_uninit)]
@@ -212,7 +212,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
   See [`MaybeUninit::zeroed`][zeroed] for examples of correct and incorrect usage
   of this method.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![feature(new_uninit)]
@@ -240,7 +240,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
   
   This doesn't actually allocate if `T` is zero-sized.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![feature(allocator_api)]
@@ -254,7 +254,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
   Constructs a new box with uninitialized contents on the heap,
   returning an error if the allocation fails
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![feature(allocator_api, new_uninit)]
@@ -280,7 +280,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
   See [`MaybeUninit::zeroed`][zeroed] for examples of correct and incorrect usage
   of this method.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![feature(allocator_api, new_uninit)]
@@ -326,7 +326,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
   Returns a new box with a `clone()` of this box's contents.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let x = Box::new(5);
@@ -343,7 +343,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
   Copies `source`'s contents into `self` without creating a new allocation.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let x = Box::new(5);
@@ -564,7 +564,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 trait BoxIter { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:1903-1906`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/boxed.rs#L1903-L1906)*
+*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:1903-1906`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/boxed.rs#L1903-L1906)*
 
 #### Associated Types
 
@@ -572,7 +572,7 @@ trait BoxIter { ... }
 
 #### Required Methods
 
-- `fn last(self) -> Option<<Self as >::Item>`
+- `fn BoxIter::last(self) -> Option<<Self as >::Item>`
 
 #### Implementors
 

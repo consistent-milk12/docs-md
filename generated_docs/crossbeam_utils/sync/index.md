@@ -58,7 +58,7 @@ struct Parker {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
 
 A thread parking primitive.
 
@@ -112,7 +112,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Creates a new `Parker`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -124,7 +124,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Blocks the current thread until the token is made available.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -143,7 +143,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Blocks the current thread until the token is made available, but only for a limited time.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::time::Duration;
@@ -159,7 +159,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Blocks the current thread until the token is made available, or until a certain deadline.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::time::{Duration, Instant};
@@ -178,7 +178,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
   
   The returned [`Unparker`](parker/index.md) doesn't have to be used by reference - it can also be cloned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -197,7 +197,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Converts a `Parker` into a raw pointer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -211,11 +211,11 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Converts a raw pointer into a `Parker`.
   
-  # Safety
+  ##### Safety
   
   This method is safe to use only with pointers returned by `Parker::into_raw`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -284,7 +284,7 @@ struct Unparker {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
 
 Unparks a thread parked by the associated [`Parker`](parker/index.md).
 
@@ -297,7 +297,7 @@ Unparks a thread parked by the associated [`Parker`](parker/index.md).
   This method will wake up the thread blocked on `park` or `park_timeout`, if there is
   any.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::thread;
@@ -322,7 +322,7 @@ Unparks a thread parked by the associated [`Parker`](parker/index.md).
 
   Converts an `Unparker` into a raw pointer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::{Parker, Unparker};
@@ -337,11 +337,11 @@ Unparks a thread parked by the associated [`Parker`](parker/index.md).
 
   Converts a raw pointer into an `Unparker`.
   
-  # Safety
+  ##### Safety
   
   This method is safe to use only with pointers returned by `Unparker::into_raw`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::{Parker, Unparker};
@@ -427,7 +427,7 @@ struct ShardedLock<T: ?Sized> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:78-84`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L78-L84)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:78-84`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L78-L84)*
 
 A sharded reader-writer lock.
 
@@ -491,7 +491,7 @@ let lock = ShardedLock::new(5);
 
   Creates a new sharded reader-writer lock.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::ShardedLock;
@@ -503,12 +503,12 @@ let lock = ShardedLock::new(5);
 
   Consumes this lock, returning the underlying data.
   
-  # Errors
+  ##### Errors
   
   This method will return an error if the lock is poisoned. A lock gets poisoned when a write
   operation panics.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::ShardedLock;
@@ -588,7 +588,7 @@ struct ShardedLockReadGuard<'a, T: ?Sized> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:486-490`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L486-L490)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:486-490`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L486-L490)*
 
 A guard used to release the shared read access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
 
@@ -666,7 +666,7 @@ struct ShardedLockWriteGuard<'a, T: ?Sized> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:518-521`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L518-L521)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:518-521`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L518-L521)*
 
 A guard used to release the exclusive write access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
 
@@ -751,7 +751,7 @@ struct WaitGroup {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
 
 Enables threads to synchronize the beginning or end of some computation.
 
@@ -801,7 +801,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Creates a new wait group and returns the single reference to it.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::WaitGroup;
@@ -813,7 +813,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Drops this reference and waits until all other references are dropped.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::WaitGroup;

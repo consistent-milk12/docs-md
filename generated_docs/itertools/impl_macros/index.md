@@ -20,17 +20,17 @@ Implementation's internal macros
 
 ### `debug_fmt_fields!`
 
-*Defined in [`itertools-0.14.0/src/impl_macros.rs:4-14`](../../../.source_1765894658/itertools-0.14.0/src/impl_macros.rs#L4-L14)*
+*Defined in [`itertools-0.14.0/src/impl_macros.rs:4-14`](../../../.source_1765900590/itertools-0.14.0/src/impl_macros.rs#L4-L14)*
 
 ### `clone_fields!`
 
-*Defined in [`itertools-0.14.0/src/impl_macros.rs:16-25`](../../../.source_1765894658/itertools-0.14.0/src/impl_macros.rs#L16-L25)*
+*Defined in [`itertools-0.14.0/src/impl_macros.rs:16-25`](../../../.source_1765900590/itertools-0.14.0/src/impl_macros.rs#L16-L25)*
 
 ### `ignore_ident!`
 
-*Defined in [`itertools-0.14.0/src/impl_macros.rs:27-29`](../../../.source_1765894658/itertools-0.14.0/src/impl_macros.rs#L27-L29)*
+*Defined in [`itertools-0.14.0/src/impl_macros.rs:27-29`](../../../.source_1765900590/itertools-0.14.0/src/impl_macros.rs#L27-L29)*
 
 ### `count_ident!`
 
-*Defined in [`itertools-0.14.0/src/impl_macros.rs:31-34`](../../../.source_1765894658/itertools-0.14.0/src/impl_macros.rs#L31-L34)*
+*Defined in [`itertools-0.14.0/src/impl_macros.rs:31-34`](../../../.source_1765900590/itertools-0.14.0/src/impl_macros.rs#L31-L34)*
 

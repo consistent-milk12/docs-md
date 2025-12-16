@@ -21,13 +21,13 @@ Extensions to the parsing API with niche applicability.
 trait Speculative { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/discouraged.rs:13-165`](../../../../.source_1765894658/syn-2.0.111/src/discouraged.rs#L13-L165)*
+*Defined in [`syn-2.0.111/src/discouraged.rs:13-165`](../../../../.source_1765900590/syn-2.0.111/src/discouraged.rs#L13-L165)*
 
 Extensions to the `ParseStream` API to support speculative parsing.
 
 #### Required Methods
 
-- `fn advance_to(&self, fork: &Self)`
+- `fn Speculative::advance_to(&self, fork: &Self)`
 
   Advance this parse stream to the position of a forked parse stream.
   
@@ -49,7 +49,7 @@ Extensions to the `ParseStream` API to support speculative parsing.
   repetition, bypassing the need to involve the downsides associated with
   speculative parsing.
   
-  # Example
+  ##### Example
   
   There has been chatter about the possibility of making the colons in the
   turbofish syntax like `path::to::<T>` no longer required by accepting
@@ -124,7 +124,7 @@ Extensions to the `ParseStream` API to support speculative parsing.
   syn::parse_str::<PathSegment>("a<b,c>").unwrap();
   ```
   
-  # Drawbacks
+  ##### Drawbacks
   
   The main drawback of this style of speculative parsing is in error
   presentation. Even if the lookahead is the "correct" parse, the error
@@ -165,12 +165,12 @@ Extensions to the `ParseStream` API to support speculative parsing.
   possible, displaying reasonable errors becomes much more simple.
   
   
-  # Performance
+  ##### Performance
   
   This method performs a cheap fixed amount of work that does not depend
   on how far apart the two streams are positioned.
   
-  # Panics
+  ##### Panics
   
   The forked stream in the argument of `advance_to` must have been
   obtained by forking `self`. Attempting to advance to any other stream
@@ -186,14 +186,14 @@ Extensions to the `ParseStream` API to support speculative parsing.
 trait AnyDelimiter { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/discouraged.rs:205-209`](../../../../.source_1765894658/syn-2.0.111/src/discouraged.rs#L205-L209)*
+*Defined in [`syn-2.0.111/src/discouraged.rs:205-209`](../../../../.source_1765900590/syn-2.0.111/src/discouraged.rs#L205-L209)*
 
 Extensions to the `ParseStream` API to support manipulating invisible
 delimiters the same as if they were visible.
 
 #### Required Methods
 
-- `fn parse_any_delimiter(&self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>`
+- `fn AnyDelimiter::parse_any_delimiter(&self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>`
 
   Returns the delimiter, the span of the delimiter token, and the nested
   contents for further parsing.

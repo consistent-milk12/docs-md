@@ -66,7 +66,7 @@ struct Buffer<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:27-33`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L27-L33)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:27-33`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L27-L33)*
 
 A buffer that holds tasks in a worker queue.
 
@@ -200,7 +200,7 @@ struct Inner<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:110-119`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L110-L119)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:110-119`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L110-L119)*
 
 Internal queue data shared between the worker and stealers.
 
@@ -299,7 +299,7 @@ struct Worker<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
 
 A worker queue.
 
@@ -368,7 +368,7 @@ assert_eq!(w.pop(), Some(2));
   
   Tasks are pushed and popped from opposite ends.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -382,7 +382,7 @@ assert_eq!(w.pop(), Some(2));
   
   Tasks are pushed and popped from the same end.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -396,7 +396,7 @@ assert_eq!(w.pop(), Some(2));
   
   The returned stealer can be shared among threads and cloned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -448,7 +448,7 @@ assert_eq!(w.pop(), Some(2));
 
   Pushes a task into the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -462,7 +462,7 @@ assert_eq!(w.pop(), Some(2));
 
   Pops a task from the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -546,7 +546,7 @@ struct Stealer<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
 
 A stealer handle of a worker queue.
 
@@ -617,7 +617,7 @@ assert_eq!(s.steal(), Steal::Empty);
 
   Steals a task from the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Steal, Worker};
@@ -638,7 +638,7 @@ assert_eq!(s.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -664,7 +664,7 @@ assert_eq!(s.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than the given limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -701,7 +701,7 @@ assert_eq!(s.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Steal, Worker};
@@ -727,7 +727,7 @@ assert_eq!(s.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than the given limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Steal, Worker};
@@ -846,7 +846,7 @@ struct Slot<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1198-1204`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1198-L1204)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1198-1204`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1198-L1204)*
 
 A slot in a block.
 
@@ -930,7 +930,7 @@ struct Block<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1219-1225`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1219-L1225)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1219-1225`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1219-L1225)*
 
 A block in a linked list.
 
@@ -1026,7 +1026,7 @@ struct Position<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1289-1295`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1289-L1295)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1289-1295`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1289-L1295)*
 
 A position in a queue.
 
@@ -1105,7 +1105,7 @@ struct Injector<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
 
 An injector queue.
 
@@ -1146,7 +1146,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Creates a new injector queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Injector;
@@ -1158,7 +1158,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Pushes a task into the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Injector;
@@ -1172,7 +1172,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Steals a task from the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Steal};
@@ -1193,7 +1193,7 @@ assert_eq!(q.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Worker};
@@ -1217,7 +1217,7 @@ assert_eq!(q.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Worker};
@@ -1252,7 +1252,7 @@ assert_eq!(q.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Steal, Worker};
@@ -1275,7 +1275,7 @@ assert_eq!(q.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than the given limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Steal, Worker};
@@ -1307,7 +1307,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Returns `true` if the queue is empty.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Injector;
@@ -1323,7 +1323,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Returns the number of tasks in the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Injector;
@@ -1419,7 +1419,7 @@ enum Flavor {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:145-151`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L145-L151)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:145-151`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L145-L151)*
 
 Worker queue flavor: FIFO or LIFO.
 
@@ -1528,7 +1528,7 @@ enum Steal<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
 
 Possible outcomes of a steal operation.
 
@@ -1569,7 +1569,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
   Returns `true` if the queue was empty at the time of stealing.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};
@@ -1584,7 +1584,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
   Returns `true` if at least one task was stolen.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};
@@ -1599,7 +1599,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
   Returns `true` if the steal operation needs to be retried.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};
@@ -1614,7 +1614,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
   Returns the result of the operation, if successful.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};
@@ -1635,7 +1635,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
   * If both steals were unsuccessful but any resulted in `Retry`, then `Retry` is returned.
   * If both resulted in `None`, then `None` is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};
@@ -1750,68 +1750,68 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 const MIN_CAP: usize = 64usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:16`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L16)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:16`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L16)*
 
 ### `MAX_BATCH`
 ```rust
 const MAX_BATCH: usize = 32usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:18`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L18)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:18`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L18)*
 
 ### `FLUSH_THRESHOLD_BYTES`
 ```rust
 const FLUSH_THRESHOLD_BYTES: usize = 1_024usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:21`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L21)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:21`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L21)*
 
 ### `WRITE`
 ```rust
 const WRITE: usize = 1usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1184`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1184)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1184`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1184)*
 
 ### `READ`
 ```rust
 const READ: usize = 2usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1185`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1185)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1185`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1185)*
 
 ### `DESTROY`
 ```rust
 const DESTROY: usize = 4usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1186`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1186)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1186`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1186)*
 
 ### `LAP`
 ```rust
 const LAP: usize = 64usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1189`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1189)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1189`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1189)*
 
 ### `BLOCK_CAP`
 ```rust
 const BLOCK_CAP: usize = 63usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1191`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1191)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1191`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1191)*
 
 ### `SHIFT`
 ```rust
 const SHIFT: usize = 1usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1193`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1193)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1193`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1193)*
 
 ### `HAS_NEXT`
 ```rust
 const HAS_NEXT: usize = 1usize;
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1195`](../../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1195)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1195`](../../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1195)*
 

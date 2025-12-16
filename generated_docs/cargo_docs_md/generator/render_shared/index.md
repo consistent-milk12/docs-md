@@ -60,7 +60,7 @@ absolute cargo registry paths to relative links pointing to the local
 
   Create a new source path config.
   
-  # Arguments
+  ##### Arguments
   
   * `source_dir` - Full path to the `.source_*` directory
   * `current_file` - Path of the current markdown file relative to output dir
@@ -280,7 +280,7 @@ Unit struct to organize path related utility functions related to renderer funct
   
   Uses `Cow<str>` to avoid allocation when no changes are needed.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use cargo_docs_md::generator::render_shared::RendererUtils;
@@ -300,7 +300,7 @@ Unit struct to organize path related utility functions related to renderer funct
   
   Uses `Cow<str>` to avoid allocation when no changes are needed.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use cargo_docs_md::generator::render_shared::RendererUtils;
@@ -319,7 +319,7 @@ Unit struct to organize path related utility functions related to renderer funct
   Handles `Option<Id>` fields from rustdoc's representation of tuple structs/variants
   (where `None` indicates a private field).
   
-  # Arguments
+  ##### Arguments
   
   * `out` - Output buffer to write to
   * `fields` - Slice of optional field IDs from rustdoc
@@ -420,7 +420,7 @@ Unit struct to organize trait related functions.
   Avoids intermediate `Vec` allocation for trait supertrait bounds.
   Writes nothing if bounds are empty.
   
-  # Arguments
+  ##### Arguments
   
   * `out` - Output buffer to write to
   * `bounds` - Slice of generic bounds from the trait
@@ -433,26 +433,48 @@ Unit struct to organize trait related functions.
   Produces a heading with the trait name and generics, followed by a Rust
   code block showing the trait signature with supertraits.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `name` - The trait name
   * `t` - The trait data from rustdoc
   * `type_renderer` - Type renderer for generics and bounds
 
-- <span id="traitrenderer-render-trait-item"></span>`fn render_trait_item<F>(md: &mut String, item: &Item, type_renderer: &TypeRenderer<'_>, process_docs: F)` — [`TypeRenderer`](../../types/index.md#typerenderer)
+- <span id="traitrenderer-render-trait-methods-toc"></span>`fn render_trait_methods_toc(trait_name: &str, items: &CategorizedTraitItems<'_>, threshold: usize) -> String` — [`CategorizedTraitItems`](#categorizedtraititems)
+
+  Generate a sub-table of contents for traits with many methods.
+  
+  When a trait has more methods than the threshold, this generates a clickable
+  TOC at the start of the trait section to help navigate to specific methods.
+  
+  ##### Arguments
+  
+  * `trait_name` - The trait name for anchor generation
+  * `items` - Categorized trait items (required methods, provided methods, etc.)
+  * `threshold` - Minimum number of methods to generate a TOC (default: 10)
+  
+  ##### Returns
+  
+  A markdown string with the TOC, or empty string if below threshold.
+
+- <span id="traitrenderer-render-trait-item"></span>`fn render_trait_item<F>(md: &mut String, item: &Item, type_renderer: &TypeRenderer<'_>, process_docs: F, full_method_docs: bool, trait_name: Option<&str>)` — [`TypeRenderer`](../../types/index.md#typerenderer)
 
   Render a single trait item (method, associated type, or constant).
   
   Each item is rendered as a bullet point with its signature in backticks.
-  For methods, the first line of documentation is included.
+  For methods, documentation is included based on the `full_method_docs` flag.
   
-  # Arguments
+  When `trait_name` is provided, methods are rendered with a qualified name
+  (e.g., `Itertools::coalesce`) to provide better sense of place in long documents.
+  
+  ##### Arguments
   
   * `md` - Output markdown string
   * `item` - The trait item (function, assoc type, or assoc const)
   * `type_renderer` - Type renderer for types
   * `process_docs` - Closure to process documentation with intra-doc link resolution
+  * `full_method_docs` - If true, include full docs; otherwise extract summary
+  * `trait_name` - Optional trait name for qualified method names (e.g., "Itertools")
 
 #### Trait Implementations
 
@@ -523,7 +545,7 @@ Unit struct to organize trait related functions.
 struct RendererInternals;
 ```
 
-*Defined in `src/generator/render_shared.rs:418`*
+*Defined in `src/generator/render_shared.rs:510`*
 
 Unit struct containing renderer functions.
 Helpful because free functions are annoying.
@@ -537,7 +559,7 @@ Helpful because free functions are annoying.
   Produces a heading with the struct name and generics, followed by a Rust
   code block showing the struct definition.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `name` - The struct name (may differ from item.name for re-exports)
@@ -552,7 +574,7 @@ Helpful because free functions are annoying.
   Produces a "Fields" section with each documented field as a bullet point
   showing the field name, type, and documentation.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `fields` - Field IDs from the struct
@@ -567,7 +589,7 @@ Helpful because free functions are annoying.
   Produces a heading with the enum name and generics, followed by a Rust
   code block showing the enum definition with all variants.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `name` - The enum name (may differ from item.name for re-exports)
@@ -587,7 +609,7 @@ Helpful because free functions are annoying.
   
   Produces a "Variants" section with each documented variant as a bullet point.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `variants` - Variant IDs from the enum
@@ -601,7 +623,7 @@ Helpful because free functions are annoying.
   Produces a heading with the function name, followed by a Rust code block
   showing the full signature with modifiers (const, async, unsafe).
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `name` - The function name
@@ -615,7 +637,7 @@ Helpful because free functions are annoying.
   Produces a heading with the constant name, followed by a Rust code block
   showing `const NAME: Type = value;`.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `name` - The constant name
@@ -630,7 +652,7 @@ Helpful because free functions are annoying.
   Produces a heading with the alias name and generics, followed by a Rust
   code block showing `type Name<T> = TargetType;`.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `name` - The type alias name
@@ -644,7 +666,7 @@ Helpful because free functions are annoying.
   Produces a heading with the macro name and `!` suffix.
   Note: We don't show macro rules since rustdoc JSON doesn't provide them.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `name` - The macro name
@@ -656,7 +678,7 @@ Helpful because free functions are annoying.
   This renders all methods, associated constants, and associated types
   within an impl block as bullet points.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `impl_block` - The impl block to render items from
@@ -678,6 +700,31 @@ Helpful because free functions are annoying.
   
   This ensures important code examples are never lost while keeping summaries
   concise for methods without examples.
+
+- <span id="rendererinternals-adjust-heading-levels"></span>`fn adjust_heading_levels(docs: &str, depth_offset: usize) -> String`
+
+  Adjust heading levels in documentation to maintain proper hierarchy.
+  
+  When documentation containing markdown headings (like `# Examples`) is embedded
+  under an item rendered at a certain heading level, the headings in the docs
+  need to be adjusted to be subordinate to the container.
+  
+  For example, if a method's documentation contains `# Examples` and the method
+  is rendered under an H4 section (`#### Provided Methods`), the `# Examples`
+  should become `##### Examples` (or deeper) to maintain proper hierarchy.
+  
+  ##### Arguments
+  
+  * `docs` - The documentation string potentially containing markdown headings
+  * `depth_offset` - Number of `#` symbols to add to each heading (typically 4-5)
+  
+  ##### Example
+  
+  ```ignore
+  let docs = "Some text\n# Examples\n```rust\ncode\n```";
+  let adjusted = adjust_heading_levels(docs, 4);
+  // adjusted = "Some text\n##### Examples\n```rust\ncode\n```"
+  ```
 
 - <span id="rendererinternals-render-function-type-links-inline"></span>`fn render_function_type_links_inline<L>(md: &mut String, f: &rustdoc_types::Function, type_renderer: TypeRenderer<'_>, create_link: &L)` — [`TypeRenderer`](../../types/index.md#typerenderer)
 
@@ -708,11 +755,11 @@ Helpful because free functions are annoying.
   Produces HTML that creates a collapsible section in markdown. Use with
   `render_collapsible_end` to close the block.
   
-  # Arguments
+  ##### Arguments
   
   * `summary` - The text to display in the summary line (clickable header)
   
-  # Example
+  ##### Example
   
   ```rust
   use cargo_docs_md::generator::render_shared::RendererInternals;
@@ -728,7 +775,7 @@ Helpful because free functions are annoying.
   
   Returns a static string to close a block opened with `render_collapsible_start`.
   
-  # Example
+  ##### Example
   
   ```rust
   use cargo_docs_md::generator::render_shared::RendererInternals;
@@ -750,22 +797,22 @@ Helpful because free functions are annoying.
   If `source_path_config` is provided, generates a clickable markdown link
   relative to the current file's location.
   
-  # Arguments
+  ##### Arguments
   
   * `span` - The source span from the item
   * `source_path_config` - Optional configuration for path transformation
   
-  # Returns
+  ##### Returns
   
   A formatted markdown string with the source location, or empty string if span is None.
   
-  # Example Output (without config)
+  ##### Example Output (without config)
   
   ```text
   *Defined in `/home/user/.cargo/registry/src/.../serde-1.0.228/src/lib.rs:10-25`*
   ```
   
-  # Example Output (with config, depth=2)
+  ##### Example Output (with config, depth=2)
   
   ```text
   *Defined in [`serde-1.0.228/src/lib.rs:10-25`](../../.source_xxx/serde-1.0.228/src/lib.rs#L10-L25)*
@@ -778,7 +825,7 @@ Helpful because free functions are annoying.
   Produces a heading with the union name and generics, followed by a Rust
   code block showing the union definition with all fields.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `name` - The union name (may differ from item.name for re-exports)
@@ -793,7 +840,7 @@ Helpful because free functions are annoying.
   Creates a "Fields" section with each field's name, type, and documentation.
   Only renders if at least one field has documentation.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `fields` - Field IDs from the union
@@ -808,7 +855,7 @@ Helpful because free functions are annoying.
   Produces a heading with the static name, followed by a Rust
   code block showing the static definition.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - Output markdown string
   * `name` - The static name (may differ from item.name for re-exports)
@@ -886,7 +933,7 @@ Helpful because free functions are annoying.
 trait DocsProcessor { ... }
 ```
 
-*Defined in `src/generator/render_shared.rs:1385-1388`*
+*Defined in `src/generator/render_shared.rs:1545-1548`*
 
 Check if a render context can resolve documentation.
 
@@ -894,7 +941,7 @@ This trait provides a unified way to process docs from different contexts.
 
 #### Required Methods
 
-- `fn process_item_docs(&self, item: &Item) -> Option<String>`
+- `fn DocsProcessor::process_item_docs(&self, item: &Item) -> Option<String>`
 
   Process documentation for an item, resolving intra-doc links.
 

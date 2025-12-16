@@ -21,7 +21,7 @@ struct OnceLock<T> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/once_lock.rs:9-14`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/once_lock.rs#L9-L14)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/once_lock.rs:9-14`](../../../../.source_1765900590/crossbeam-epoch-0.9.18/src/sync/once_lock.rs#L9-L14)*
 
 #### Implementations
 
@@ -38,7 +38,7 @@ struct OnceLock<T> {
   initializing functions, but it is guaranteed that only one function
   will be executed.
   
-  # Panics
+  ##### Panics
   
   If `f` panics, the panic is propagated to the caller, and the cell
   remains uninitialized.
@@ -51,7 +51,7 @@ struct OnceLock<T> {
 
 - <span id="oncelock-get-unchecked"></span>`unsafe fn get_unchecked(&self) -> &T`
 
-  # Safety
+  ##### Safety
   
   The value must be initialized
 

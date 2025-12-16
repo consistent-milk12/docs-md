@@ -23,7 +23,7 @@ where
     Compare: FnMut(&<I as >::Item, &<I as >::Item, &K, &K) -> std::cmp::Ordering
 ```
 
-*Defined in [`itertools-0.14.0/src/extrema_set.rs:5-37`](../../../.source_1765894658/itertools-0.14.0/src/extrema_set.rs#L5-L37)*
+*Defined in [`itertools-0.14.0/src/extrema_set.rs:5-37`](../../../.source_1765900590/itertools-0.14.0/src/extrema_set.rs#L5-L37)*
 
 Implementation guts for `min_set`, `min_set_by`, and `min_set_by_key`.
 
@@ -37,7 +37,7 @@ where
     Compare: FnMut(&<I as >::Item, &<I as >::Item, &K, &K) -> std::cmp::Ordering
 ```
 
-*Defined in [`itertools-0.14.0/src/extrema_set.rs:40-49`](../../../.source_1765894658/itertools-0.14.0/src/extrema_set.rs#L40-L49)*
+*Defined in [`itertools-0.14.0/src/extrema_set.rs:40-49`](../../../.source_1765900590/itertools-0.14.0/src/extrema_set.rs#L40-L49)*
 
 Implementation guts for `ax_set`, `max_set_by`, and `max_set_by_key`.
 

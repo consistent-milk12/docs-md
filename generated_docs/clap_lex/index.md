@@ -159,7 +159,7 @@ struct SeekFrom<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/function.rs:67-74`](../../.source_1765894658/addr2line-0.25.1/src/function.rs#L67-L74)*
+*Defined in [`addr2line-0.25.1/src/function.rs:67-74`](../../.source_1765900590/addr2line-0.25.1/src/function.rs#L67-L74)*
 
 *Re-exported from `addr2line`*
 
@@ -234,7 +234,7 @@ struct RawArgs {
 }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/lib.rs:129-131`](../../.source_1765894658/clap_lex-0.7.6/src/lib.rs#L129-L131)*
+*Defined in [`clap_lex-0.7.6/src/lib.rs:129-131`](../../.source_1765900590/clap_lex-0.7.6/src/lib.rs#L129-L131)*
 
 Command-line arguments
 
@@ -249,7 +249,7 @@ Command-line arguments
   
   </div>
   
-  # Example
+  ##### Example
   
   ```rust,no_run
   use std::path::PathBuf;
@@ -264,7 +264,7 @@ Command-line arguments
 - <span id="rawargs-new"></span>`fn new(iter: impl IntoIterator<Item = impl Into<OsString>>) -> Self`
 
   
-  # Example
+  ##### Example
   
   ```rust,no_run
   use std::path::PathBuf;
@@ -280,7 +280,7 @@ Command-line arguments
 
   Create a cursor for walking the arguments
   
-  # Example
+  ##### Example
   
   ```rust,no_run
   use std::path::PathBuf;
@@ -312,7 +312,7 @@ Command-line arguments
 
   Return all remaining raw arguments, advancing the cursor to the end
   
-  # Example
+  ##### Example
   
   ```rust,no_run
   use std::path::PathBuf;
@@ -417,7 +417,7 @@ struct ArgCursor {
 }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/lib.rs:276-278`](../../.source_1765894658/clap_lex-0.7.6/src/lib.rs#L276-L278)*
+*Defined in [`clap_lex-0.7.6/src/lib.rs:276-278`](../../.source_1765900590/clap_lex-0.7.6/src/lib.rs#L276-L278)*
 
 Position within [`RawArgs`](#rawargs)
 
@@ -510,7 +510,7 @@ struct ParsedArg<'s> {
 }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/lib.rs:288-290`](../../.source_1765894658/clap_lex-0.7.6/src/lib.rs#L288-L290)*
+*Defined in [`clap_lex-0.7.6/src/lib.rs:288-290`](../../.source_1765900590/clap_lex-0.7.6/src/lib.rs#L288-L290)*
 
 Command-line Argument
 
@@ -670,7 +670,7 @@ struct ShortFlags<'s> {
 }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/lib.rs:399-403`](../../.source_1765894658/clap_lex-0.7.6/src/lib.rs#L399-L403)*
+*Defined in [`clap_lex-0.7.6/src/lib.rs:399-403`](../../.source_1765900590/clap_lex-0.7.6/src/lib.rs#L399-L403)*
 
 Walk through short flags within a [`ParsedArg`](#parsedarg)
 
@@ -785,27 +785,27 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 trait OsStrExt: private::Sealed { ... }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/ext.rs:4-183`](../../.source_1765894658/clap_lex-0.7.6/src/ext.rs#L4-L183)*
+*Defined in [`clap_lex-0.7.6/src/ext.rs:4-183`](../../.source_1765900590/clap_lex-0.7.6/src/ext.rs#L4-L183)*
 
 String-like methods for [`OsStr`](#osstr)
 
 #### Required Methods
 
-- `fn try_str(&self) -> Result<&str, std::str::Utf8Error>`
+- `fn OsStrExt::try_str(&self) -> Result<&str, std::str::Utf8Error>`
 
   Converts to a string slice.
   
   The `Utf8Error` is guaranteed to have a valid UTF8 boundary
   in its `valid_up_to()`
 
-- `fn contains(&self, needle: &str) -> bool`
+- `fn OsStrExt::contains(&self, needle: &str) -> bool`
 
   Returns `true` if the given pattern matches a sub-slice of
   this string slice.
   
   Returns `false` if it does not.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_lex::OsStrExt as _;
@@ -815,14 +815,14 @@ String-like methods for [`OsStr`](#osstr)
   assert!(!bananas.contains("apples"));
   ```
 
-- `fn find(&self, needle: &str) -> Option<usize>`
+- `fn OsStrExt::find(&self, needle: &str) -> Option<usize>`
 
   Returns the byte index of the first character of this string slice that
   matches the pattern.
   
   Returns [`None`](#none) if the pattern doesn't match.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_lex::OsStrExt as _;
@@ -842,7 +842,7 @@ String-like methods for [`OsStr`](#osstr)
   assert_eq!(s.find("1"), None);
   ```
 
-- `fn strip_prefix(&self, prefix: &str) -> Option<&OsStr>`
+- `fn OsStrExt::strip_prefix(&self, prefix: &str) -> Option<&OsStr>`
 
   Returns a string slice with the prefix removed.
   
@@ -851,7 +851,7 @@ String-like methods for [`OsStr`](#osstr)
   
   If the string does not start with `prefix`, returns `None`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::ffi::OsStr;
@@ -861,14 +861,14 @@ String-like methods for [`OsStr`](#osstr)
   assert_eq!(OsStr::new("foofoo").strip_prefix("foo"), Some(OsStr::new("foo")));
   ```
 
-- `fn starts_with(&self, prefix: &str) -> bool`
+- `fn OsStrExt::starts_with(&self, prefix: &str) -> bool`
 
   Returns `true` if the given pattern matches a prefix of this
   string slice.
   
   Returns `false` if it does not.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_lex::OsStrExt as _;
@@ -878,12 +878,12 @@ String-like methods for [`OsStr`](#osstr)
   assert!(!bananas.starts_with("nana"));
   ```
 
-- `fn split<'s, 'n>(self: &'s Self, needle: &'n str) -> Split<'s, 'n>`
+- `fn OsStrExt::split<'s, 'n>(self: &'s Self, needle: &'n str) -> Split<'s, 'n>`
 
   An iterator over substrings of this string slice, separated by
   characters matched by a pattern.
   
-  # Examples
+  ##### Examples
   
   Simple patterns:
   
@@ -965,12 +965,12 @@ String-like methods for [`OsStr`](#osstr)
   
   Use `split_whitespace` for this behavior.
 
-- `fn split_once(&self, needle: &str) -> Option<(&OsStr, &OsStr)>`
+- `fn OsStrExt::split_once(&self, needle: &str) -> Option<(&OsStr, &OsStr)>`
 
   Splits the string on the first occurrence of the specified delimiter and
   returns prefix before delimiter and suffix after delimiter.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::ffi::OsStr;
@@ -993,7 +993,7 @@ String-like methods for [`OsStr`](#osstr)
 fn split_nonutf8_once(b: &std::ffi::OsStr) -> (&str, Option<&std::ffi::OsStr>)
 ```
 
-*Defined in [`clap_lex-0.7.6/src/lib.rs:479-490`](../../.source_1765894658/clap_lex-0.7.6/src/lib.rs#L479-L490)*
+*Defined in [`clap_lex-0.7.6/src/lib.rs:479-490`](../../.source_1765900590/clap_lex-0.7.6/src/lib.rs#L479-L490)*
 
 ### `is_number`
 
@@ -1001,5 +1001,5 @@ fn split_nonutf8_once(b: &std::ffi::OsStr) -> (&str, Option<&std::ffi::OsStr>)
 fn is_number(arg: &str) -> bool
 ```
 
-*Defined in [`clap_lex-0.7.6/src/lib.rs:492-522`](../../.source_1765894658/clap_lex-0.7.6/src/lib.rs#L492-L522)*
+*Defined in [`clap_lex-0.7.6/src/lib.rs:492-522`](../../.source_1765900590/clap_lex-0.7.6/src/lib.rs#L492-L522)*
 

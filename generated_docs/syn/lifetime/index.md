@@ -28,7 +28,7 @@ struct Lifetime {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../../.source_1765894658/syn-2.0.111/src/lifetime.rs#L18-L21)*
+*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../../.source_1765900590/syn-2.0.111/src/lifetime.rs#L18-L21)*
 
 A Rust lifetime: `'a`.
 
@@ -45,11 +45,11 @@ Lifetime names must conform to the following rules:
 
 - <span id="lifetime-new"></span>`fn new(symbol: &str, span: Span) -> Self`
 
-  # Panics
+  ##### Panics
   
   Panics if the lifetime does not conform to the bulleted rules above.
   
-  # Invocation
+  ##### Invocation
   
   ```rust
   use proc_macro2::Span;

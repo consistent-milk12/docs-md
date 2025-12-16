@@ -27,15 +27,15 @@ we put them in a private modules so they're not actually reachable in our public
 trait RangeInteger: Sized + Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/range_inclusive.rs:97-105`](../../../../.source_1765894658/rayon-1.11.0/src/range_inclusive.rs#L97-L105)*
+*Defined in [`rayon-1.11.0/src/range_inclusive.rs:97-105`](../../../../.source_1765900590/rayon-1.11.0/src/range_inclusive.rs#L97-L105)*
 
 Implementation details of `ParallelIterator for Iter<Self>`
 
 #### Required Methods
 
-- `fn drive_unindexed<C>(iter: Iter<Self>, consumer: C) -> <C as >::Result`
+- `fn RangeInteger::drive_unindexed<C>(iter: Iter<Self>, consumer: C) -> <C as >::Result`
 
-- `fn opt_len(iter: &Iter<Self>) -> Option<usize>`
+- `fn RangeInteger::opt_len(iter: &Iter<Self>) -> Option<usize>`
 
 #### Implementors
 
@@ -58,17 +58,17 @@ Implementation details of `ParallelIterator for Iter<Self>`
 trait IndexedRangeInteger: RangeInteger { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/range_inclusive.rs:108-120`](../../../../.source_1765894658/rayon-1.11.0/src/range_inclusive.rs#L108-L120)*
+*Defined in [`rayon-1.11.0/src/range_inclusive.rs:108-120`](../../../../.source_1765900590/rayon-1.11.0/src/range_inclusive.rs#L108-L120)*
 
 Implementation details of `IndexedParallelIterator for Iter<Self>`
 
 #### Required Methods
 
-- `fn drive<C>(iter: Iter<Self>, consumer: C) -> <C as >::Result`
+- `fn IndexedRangeInteger::drive<C>(iter: Iter<Self>, consumer: C) -> <C as >::Result`
 
-- `fn len(iter: &Iter<Self>) -> usize`
+- `fn IndexedRangeInteger::len(iter: &Iter<Self>) -> usize`
 
-- `fn with_producer<CB>(iter: Iter<Self>, callback: CB) -> <CB as >::Output`
+- `fn IndexedRangeInteger::with_producer<CB>(iter: Iter<Self>, callback: CB) -> <CB as >::Output`
 
 #### Implementors
 

@@ -44,7 +44,7 @@
 struct MergeLte;
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:15`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L15)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:15`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L15)*
 
 #### Trait Implementations
 
@@ -131,7 +131,7 @@ struct MergeBy<I: Iterator, J: Iterator, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:56-60`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L56-L60)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:56-60`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L56-L60)*
 
 An iterator adaptor that merges the two base iterators in ascending order.
 If both base iterators are sorted (ascending), the result is sorted.
@@ -237,7 +237,7 @@ See [`.merge_by()`](crate::Itertools::merge_by) for more information.
 struct MergeFuncLR<F, T>(F, std::marker::PhantomData<T>);
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:102`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L102)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:102`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L102)*
 
 #### Trait Implementations
 
@@ -322,7 +322,7 @@ struct MergeFuncLR<F, T>(F, std::marker::PhantomData<T>);
 trait FuncLR<L, R> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:104-106`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L104-L106)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:104-106`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L104-L106)*
 
 #### Associated Types
 
@@ -338,7 +338,7 @@ trait FuncLR<L, R> { ... }
 trait OrderingOrBool<L, R> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:112-121`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L112-L121)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:112-121`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L112-L121)*
 
 #### Associated Types
 
@@ -346,13 +346,13 @@ trait OrderingOrBool<L, R> { ... }
 
 #### Required Methods
 
-- `fn left(left: L) -> <Self as >::MergeResult`
+- `fn OrderingOrBool::left(left: L) -> <Self as >::MergeResult`
 
-- `fn right(right: R) -> <Self as >::MergeResult`
+- `fn OrderingOrBool::right(right: R) -> <Self as >::MergeResult`
 
-- `fn merge(&mut self, left: L, right: R) -> (Option<Either<L, R>>, <Self as >::MergeResult)`
+- `fn OrderingOrBool::merge(&mut self, left: L, right: R) -> (Option<Either<L, R>>, <Self as >::MergeResult)`
 
-- `fn size_hint(left: (usize, Option<usize>), right: (usize, Option<usize>)) -> (usize, Option<usize>)`
+- `fn OrderingOrBool::size_hint(left: (usize, Option<usize>), right: (usize, Option<usize>)) -> (usize, Option<usize>)`
 
 #### Implementors
 
@@ -372,7 +372,7 @@ where
     <I as >::Item: PartialOrd
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:37-47`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L37-L47)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:37-47`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L37-L47)*
 
 Create an iterator that merges elements in `i` and `j`.
 
@@ -396,7 +396,7 @@ where
     J: IntoIterator<Item = <I as >::Item>
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:63-73`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L63-L73)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:63-73`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L63-L73)*
 
 Create a `MergeBy` iterator.
 
@@ -410,7 +410,7 @@ where
     F: FnMut(&<I as >::Item, &<J as >::Item) -> T
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:78-93`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L78-L93)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:78-93`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L78-L93)*
 
 Return an iterator adaptor that merge-joins items from the two base iterators in ascending order.
 
@@ -424,7 +424,7 @@ Return an iterator adaptor that merge-joins items from the two base iterators in
 type Merge<I, J> = MergeBy<I, J, MergeLte>;
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:23`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L23)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:23`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L23)*
 
 An iterator adaptor that merges the two base iterators in ascending order.
 If both base iterators are sorted (ascending), the result is sorted.
@@ -439,7 +439,7 @@ See [`.merge()`](crate::Itertools::merge_by) for more information.
 type MergeJoinBy<I, J, F> = MergeBy<I, J, MergeFuncLR<F, <F as FuncLR>::T>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:98-99`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L98-L99)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:98-99`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L98-L99)*
 
 An iterator adaptor that merge-joins items from the two base iterators in ascending order.
 

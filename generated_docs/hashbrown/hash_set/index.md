@@ -53,7 +53,7 @@ struct HashSet<T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L114-L116)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L114-L116)*
 
 A hash set implemented as a `HashMap` where the value is `()`.
 
@@ -159,7 +159,7 @@ let viking_names: HashSet<&'static str> =
   The hash set is initially created with a capacity of 0, so it will not allocate until it
   is first inserted into.
   
-  # HashDoS resistance
+  ##### HashDoS resistance
   
   The `hash_builder` normally use a fixed key by default and that does
   not allow the `HashSet` to be protected against attacks such as `HashDoS`.
@@ -169,7 +169,7 @@ let viking_names: HashSet<&'static str> =
   [`with_hasher`](HashSet::with_hasher) method.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -183,7 +183,7 @@ let viking_names: HashSet<&'static str> =
   The hash set will be able to hold at least `capacity` elements without
   reallocating. If `capacity` is 0, the hash set will not allocate.
   
-  # HashDoS resistance
+  ##### HashDoS resistance
   
   The `hash_builder` normally use a fixed key by default and that does
   not allow the `HashSet` to be protected against attacks such as `HashDoS`.
@@ -193,7 +193,7 @@ let viking_names: HashSet<&'static str> =
   [`with_capacity_and_hasher`](HashSet::with_capacity_and_hasher) method.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -215,7 +215,7 @@ let viking_names: HashSet<&'static str> =
 
   Returns the intersection of `self` and `rhs` as a new `HashSet<T, S>`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -240,7 +240,7 @@ let viking_names: HashSet<&'static str> =
 
   Modifies this set to contain the intersection of `self` and `rhs`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -267,7 +267,7 @@ let viking_names: HashSet<&'static str> =
 
   Returns the union of `self` and `rhs` as a new `HashSet<T, S>`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -292,7 +292,7 @@ let viking_names: HashSet<&'static str> =
 
   Modifies this set to contain the union of `self` and `rhs`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -319,7 +319,7 @@ let viking_names: HashSet<&'static str> =
 
   Returns the symmetric difference of `self` and `rhs` as a new `HashSet<T, S>`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -344,7 +344,7 @@ let viking_names: HashSet<&'static str> =
 
   Modifies this set to contain the symmetric difference of `self` and `rhs`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -440,7 +440,7 @@ let viking_names: HashSet<&'static str> =
 
   Returns the difference of `self` and `rhs` as a new `HashSet<T, S>`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -465,7 +465,7 @@ let viking_names: HashSet<&'static str> =
 
   Modifies this set to contain the difference of `self` and `rhs`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -512,7 +512,7 @@ struct Iter<'a, K> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1647-1649`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1647-L1649)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1647-1649`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L1647-L1649)*
 
 An iterator over the items of a `HashSet`.
 
@@ -618,7 +618,7 @@ struct IntoIter<K, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1658-1660`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1658-L1660)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1658-1660`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L1658-L1660)*
 
 An owning iterator over the items of a `HashSet`.
 
@@ -708,7 +708,7 @@ struct Drain<'a, K, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1669-1671`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1669-L1671)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1669-1671`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L1669-L1671)*
 
 A draining iterator over the items of a `HashSet`.
 
@@ -795,7 +795,7 @@ struct ExtractIf<'a, K, F, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1681-1684`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1681-L1684)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1681-1684`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L1681-L1684)*
 
 A draining iterator over entries of a `HashSet` which don't satisfy the predicate `f`.
 
@@ -872,7 +872,7 @@ struct Intersection<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1693-1698`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1693-L1698)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1693-1698`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L1693-L1698)*
 
 A lazy iterator producing elements in the intersection of `HashSet`s.
 
@@ -971,7 +971,7 @@ struct Difference<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1707-1712`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1707-L1712)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1707-1712`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L1707-L1712)*
 
 A lazy iterator producing elements in the difference of `HashSet`s.
 
@@ -1069,7 +1069,7 @@ struct SymmetricDifference<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1721-1723`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1721-L1723)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1721-1723`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L1721-L1723)*
 
 A lazy iterator producing elements in the symmetric difference of `HashSet`s.
 
@@ -1167,7 +1167,7 @@ struct Union<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1732-1734`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1732-L1734)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1732-1734`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L1732-L1734)*
 
 A lazy iterator producing elements in the union of `HashSet`s.
 
@@ -1265,7 +1265,7 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:2301-2303`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L2301-L2303)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:2301-2303`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L2301-L2303)*
 
 A view into an occupied entry in a `HashSet`.
 It is part of the [`Entry`](../hash_table/index.md) enum.
@@ -1308,7 +1308,7 @@ assert_eq!(set.len(), 2);
 
   Gets a reference to the value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_set::{Entry, HashSet};
@@ -1327,7 +1327,7 @@ assert_eq!(set.len(), 2);
   Takes the value out of the entry, and returns it.
   Keeps the allocated memory for reuse.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -1402,7 +1402,7 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:2339-2341`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L2339-L2341)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:2339-2341`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L2339-L2341)*
 
 A view into a vacant entry in a `HashSet`.
 It is part of the [`Entry`](../hash_table/index.md) enum.
@@ -1436,7 +1436,7 @@ assert!(set.contains("b") && set.len() == 2);
   Gets a reference to the value that would be used when inserting
   through the `VacantEntry`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -1449,7 +1449,7 @@ assert!(set.contains("b") && set.len() == 2);
 
   Take ownership of the value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_set::{Entry, HashSet};
@@ -1466,7 +1466,7 @@ assert!(set.contains("b") && set.len() == 2);
 
   Sets the value of the entry with the `VacantEntry`'s value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -1538,7 +1538,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:2221-2254`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L2221-L2254)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:2221-2254`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L2221-L2254)*
 
 A view into a single entry in a set, which may either be vacant or occupied.
 
@@ -1615,7 +1615,7 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 
   Sets the value of the entry, and returns an `OccupiedEntry`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -1630,7 +1630,7 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 
   Ensures a value is in the entry by inserting if it was vacant.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -1651,7 +1651,7 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 
   Returns a reference to this entry's value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -1717,5 +1717,5 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 fn assert_covariance()
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:2541-2574`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L2541-L2574)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:2541-2574`](../../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L2541-L2574)*
 

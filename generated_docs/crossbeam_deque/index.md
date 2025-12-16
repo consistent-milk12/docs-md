@@ -109,7 +109,7 @@ struct Injector<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
 
 An injector queue.
 
@@ -150,7 +150,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Creates a new injector queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Injector;
@@ -162,7 +162,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Pushes a task into the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Injector;
@@ -176,7 +176,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Steals a task from the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Steal};
@@ -197,7 +197,7 @@ assert_eq!(q.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Worker};
@@ -221,7 +221,7 @@ assert_eq!(q.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Worker};
@@ -256,7 +256,7 @@ assert_eq!(q.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Steal, Worker};
@@ -279,7 +279,7 @@ assert_eq!(q.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than the given limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Injector, Steal, Worker};
@@ -311,7 +311,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Returns `true` if the queue is empty.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Injector;
@@ -327,7 +327,7 @@ assert_eq!(q.steal(), Steal::Empty);
 
   Returns the number of tasks in the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Injector;
@@ -421,7 +421,7 @@ struct Stealer<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
 
 A stealer handle of a worker queue.
 
@@ -492,7 +492,7 @@ assert_eq!(s.steal(), Steal::Empty);
 
   Steals a task from the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Steal, Worker};
@@ -513,7 +513,7 @@ assert_eq!(s.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -539,7 +539,7 @@ assert_eq!(s.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than the given limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -576,7 +576,7 @@ assert_eq!(s.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than some constant limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Steal, Worker};
@@ -602,7 +602,7 @@ assert_eq!(s.steal(), Steal::Empty);
   How many tasks exactly will be stolen is not specified. That said, this method will try to
   steal around half of the tasks in the queue, but also not more than the given limit.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::{Steal, Worker};
@@ -723,7 +723,7 @@ struct Worker<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
 
 A worker queue.
 
@@ -792,7 +792,7 @@ assert_eq!(w.pop(), Some(2));
   
   Tasks are pushed and popped from opposite ends.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -806,7 +806,7 @@ assert_eq!(w.pop(), Some(2));
   
   Tasks are pushed and popped from the same end.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -820,7 +820,7 @@ assert_eq!(w.pop(), Some(2));
   
   The returned stealer can be shared among threads and cloned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -872,7 +872,7 @@ assert_eq!(w.pop(), Some(2));
 
   Pushes a task into the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -886,7 +886,7 @@ assert_eq!(w.pop(), Some(2));
 
   Pops a task from the queue.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Worker;
@@ -973,7 +973,7 @@ enum Steal<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../.source_1765900590/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
 
 Possible outcomes of a steal operation.
 
@@ -1014,7 +1014,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
   Returns `true` if the queue was empty at the time of stealing.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};
@@ -1029,7 +1029,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
   Returns `true` if at least one task was stolen.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};
@@ -1044,7 +1044,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
   Returns `true` if the steal operation needs to be retried.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};
@@ -1059,7 +1059,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
   Returns the result of the operation, if successful.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};
@@ -1080,7 +1080,7 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
   * If both steals were unsuccessful but any resulted in `Retry`, then `Retry` is returned.
   * If both resulted in `None`, then `None` is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_deque::Steal::{Empty, Retry, Success};

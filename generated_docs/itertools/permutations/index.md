@@ -24,7 +24,7 @@ struct Permutations<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/permutations.rs:16-19`](../../../.source_1765894658/itertools-0.14.0/src/permutations.rs#L16-L19)*
+*Defined in [`itertools-0.14.0/src/permutations.rs:16-19`](../../../.source_1765900590/itertools-0.14.0/src/permutations.rs#L16-L19)*
 
 An iterator adaptor that iterates through all the `k`-permutations of the
 elements from an iterator.
@@ -138,7 +138,7 @@ enum PermutationState {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/permutations.rs:30-42`](../../../.source_1765894658/itertools-0.14.0/src/permutations.rs#L30-L42)*
+*Defined in [`itertools-0.14.0/src/permutations.rs:30-42`](../../../.source_1765900590/itertools-0.14.0/src/permutations.rs#L30-L42)*
 
 #### Variants
 
@@ -233,7 +233,7 @@ enum PermutationState {
 fn permutations<I: Iterator>(iter: I, k: usize) -> Permutations<I>
 ```
 
-*Defined in [`itertools-0.14.0/src/permutations.rs:52-57`](../../../.source_1765894658/itertools-0.14.0/src/permutations.rs#L52-L57)*
+*Defined in [`itertools-0.14.0/src/permutations.rs:52-57`](../../../.source_1765900590/itertools-0.14.0/src/permutations.rs#L52-L57)*
 
 ### `advance`
 
@@ -241,5 +241,5 @@ fn permutations<I: Iterator>(iter: I, k: usize) -> Permutations<I>
 fn advance(indices: &mut [usize], cycles: &mut [usize]) -> bool
 ```
 
-*Defined in [`itertools-0.14.0/src/permutations.rs:140-156`](../../../.source_1765894658/itertools-0.14.0/src/permutations.rs#L140-L156)*
+*Defined in [`itertools-0.14.0/src/permutations.rs:140-156`](../../../.source_1765900590/itertools-0.14.0/src/permutations.rs#L140-L156)*
 

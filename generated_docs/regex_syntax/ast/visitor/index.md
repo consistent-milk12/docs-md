@@ -39,7 +39,7 @@ struct HeapVisitor<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:124-132`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L124-L132)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:124-132`](../../../../.source_1765900590/regex-syntax-0.8.8/src/ast/visitor.rs#L124-L132)*
 
 HeapVisitor visits every item in an `Ast` recursively using constant stack
 size and a heap size proportional to the size of the `Ast`.
@@ -156,7 +156,7 @@ enum Frame<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:136-159`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L136-L159)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:136-159`](../../../../.source_1765900590/regex-syntax-0.8.8/src/ast/visitor.rs#L136-L159)*
 
 Represents a single stack frame while performing structural induction over
 an `Ast`.
@@ -254,7 +254,7 @@ enum ClassFrame<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:163-184`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L163-L184)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:163-184`](../../../../.source_1765900590/regex-syntax-0.8.8/src/ast/visitor.rs#L163-L184)*
 
 Represents a single stack frame while performing structural induction over
 a character class.
@@ -341,7 +341,7 @@ enum ClassInduct<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:195-198`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L195-L198)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:195-198`](../../../../.source_1765900590/regex-syntax-0.8.8/src/ast/visitor.rs#L195-L198)*
 
 A representation of the inductive step when performing structural induction
 over a character class.
@@ -412,7 +412,7 @@ syntax, which is not possible.)
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../../.source_1765900590/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
 
 A trait for visiting an abstract syntax tree (AST) in depth first order.
 
@@ -430,6 +430,26 @@ complex. Unless you specifically need it, you might be able to use the much
 simpler [high-level intermediate representation](crate::hir::Hir) and its
 [corresponding `Visitor` trait](crate::hir::Visitor) instead.
 
+<details>
+<summary><strong>Methods (11)</strong> - click to expand</summary>
+
+**Required:**
+- [`Visitor::finish`](#fn-visitorfinish)
+
+**Provided:**
+- [`Visitor::start`](#fn-visitorstart)
+- [`Visitor::visit_pre`](#fn-visitorvisit-pre)
+- [`Visitor::visit_post`](#fn-visitorvisit-post)
+- [`Visitor::visit_alternation_in`](#fn-visitorvisit-alternation-in)
+- [`Visitor::visit_concat_in`](#fn-visitorvisit-concat-in)
+- [`Visitor::visit_class_set_item_pre`](#fn-visitorvisit-class-set-item-pre)
+- [`Visitor::visit_class_set_item_post`](#fn-visitorvisit-class-set-item-post)
+- [`Visitor::visit_class_set_binary_op_pre`](#fn-visitorvisit-class-set-binary-op-pre)
+- [`Visitor::visit_class_set_binary_op_post`](#fn-visitorvisit-class-set-binary-op-post)
+- [`Visitor::visit_class_set_binary_op_in`](#fn-visitorvisit-class-set-binary-op-in)
+
+</details>
+
 #### Associated Types
 
 - `type Output`
@@ -438,59 +458,59 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 
 #### Required Methods
 
-- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
+- `fn Visitor::finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
   yields the result of visiting the AST or an error.
 
 #### Provided Methods
 
-- `fn start(&mut self)`
+- `fn Visitor::start(&mut self)`
 
   This method is called before beginning traversal of the AST.
 
-- `fn visit_pre(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_pre(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Ast` before descending into child `Ast`
   nodes.
 
-- `fn visit_post(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_post(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Ast` after descending all of its child
   `Ast` nodes.
 
-- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of an
   [`Alternation`](ast::Alternation).
 
-- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of a concatenation.
 
-- `fn visit_class_set_item_pre(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_class_set_item_pre(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
 
   This method is called on every [`ClassSetItem`](ast::ClassSetItem)
   before descending into child nodes.
 
-- `fn visit_class_set_item_post(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_class_set_item_post(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
 
   This method is called on every [`ClassSetItem`](ast::ClassSetItem)
   after descending into child nodes.
 
-- `fn visit_class_set_binary_op_pre(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_class_set_binary_op_pre(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called on every
   [`ClassSetBinaryOp`](ast::ClassSetBinaryOp) before descending into
   child nodes.
 
-- `fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called on every
   [`ClassSetBinaryOp`](ast::ClassSetBinaryOp) after descending into child
   nodes.
 
-- `fn visit_class_set_binary_op_in(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_class_set_binary_op_in(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called between the left hand and right hand child nodes
   of a [`ClassSetBinaryOp`](ast::ClassSetBinaryOp).
@@ -509,7 +529,7 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 fn visit<V: Visitor>(ast: &crate::ast::Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../../.source_1765900590/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
 
 Executes an implementation of `Visitor` in constant stack space.
 

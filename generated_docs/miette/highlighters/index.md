@@ -40,7 +40,7 @@ Currently supported syntax highlighters and their feature flags:
 struct MietteHighlighter(std::sync::Arc<dyn Highlighter + Send + Sync>);
 ```
 
-*Defined in [`miette-7.6.0/src/highlighters/mod.rs:67`](../../../.source_1765894658/miette-7.6.0/src/highlighters/mod.rs#L67)*
+*Defined in [`miette-7.6.0/src/highlighters/mod.rs:67`](../../../.source_1765900590/miette-7.6.0/src/highlighters/mod.rs#L67)*
 
 Arcified trait object for Highlighter. Used internally by [`GraphicalReportHandler`](../handlers/index.md)
 
@@ -133,7 +133,7 @@ Wrapping the trait object in this way allows us to implement `Debug` and `Clone`
 struct BlankHighlighter;
 ```
 
-*Defined in [`miette-7.6.0/src/highlighters/blank.rs:10`](../../../.source_1765894658/miette-7.6.0/src/highlighters/blank.rs#L10)*
+*Defined in [`miette-7.6.0/src/highlighters/blank.rs:10`](../../../.source_1765900590/miette-7.6.0/src/highlighters/blank.rs#L10)*
 
 The default syntax highlighter. It applies `Style::default()` to input text.
 This is used by default when no syntax highlighting features are enabled.
@@ -215,7 +215,7 @@ This is used by default when no syntax highlighting features are enabled.
 struct BlankHighlighterState;
 ```
 
-*Defined in [`miette-7.6.0/src/highlighters/blank.rs:30`](../../../.source_1765894658/miette-7.6.0/src/highlighters/blank.rs#L30)*
+*Defined in [`miette-7.6.0/src/highlighters/blank.rs:30`](../../../.source_1765900590/miette-7.6.0/src/highlighters/blank.rs#L30)*
 
 The default highlighter state. It applies `Style::default()` to input text.
 This is used by default when no syntax highlighting features are enabled.
@@ -295,13 +295,13 @@ This is used by default when no syntax highlighting features are enabled.
 trait Highlighter { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/highlighters/mod.rs:28-44`](../../../.source_1765894658/miette-7.6.0/src/highlighters/mod.rs#L28-L44)*
+*Defined in [`miette-7.6.0/src/highlighters/mod.rs:28-44`](../../../.source_1765900590/miette-7.6.0/src/highlighters/mod.rs#L28-L44)*
 
 A syntax highlighter for highlighting miette [`SourceCode`](crate::SourceCode) snippets.
 
 #### Required Methods
 
-- `fn start_highlighter_state<'h>(self: &'h Self, source: &dyn SpanContents<'_>) -> Box<dyn HighlighterState>`
+- `fn Highlighter::start_highlighter_state<'h>(self: &'h Self, source: &dyn SpanContents<'_>) -> Box<dyn HighlighterState>`
 
    Creates a new [`HighlighterState`](#highlighterstate) to begin parsing and highlighting
   a [`SpanContents`](../index.md).
@@ -325,7 +325,7 @@ A syntax highlighter for highlighting miette [`SourceCode`](crate::SourceCode) s
 trait HighlighterState { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/highlighters/mod.rs:56-60`](../../../.source_1765894658/miette-7.6.0/src/highlighters/mod.rs#L56-L60)*
+*Defined in [`miette-7.6.0/src/highlighters/mod.rs:56-60`](../../../.source_1765900590/miette-7.6.0/src/highlighters/mod.rs#L56-L60)*
 
 A stateful highlighter that incrementally highlights lines of a particular
 source code.
@@ -340,7 +340,7 @@ mutable parsing and highlighting state.
 
 #### Required Methods
 
-- `fn highlight_line<'s>(&mut self, line: &'s str) -> Vec<Styled<&'s str>>`
+- `fn HighlighterState::highlight_line<'s>(&mut self, line: &'s str) -> Vec<Styled<&'s str>>`
 
   Highlight an individual line from the source code by returning a vector of [Styled]
   regions.

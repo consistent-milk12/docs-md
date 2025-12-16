@@ -604,7 +604,7 @@ enables `alloc` and `nfa-thompson`.
 struct PatternID(SmallIndex);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L736)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../.source_1765900590/regex-automata-0.4.13/src/util/primitives.rs#L736)*
 
 The identifier of a regex pattern, represented by a [`SmallIndex`](util/primitives/index.md).
 
@@ -821,7 +821,7 @@ struct Input<'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:102-107`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L102-L107)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:102-107`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L102-L107)*
 
 The parameters for a regex search including the haystack to search.
 
@@ -936,12 +936,12 @@ results in no match being reported.
   
   Note that `Input::range` overrides this method and vice versa.
   
-  # Panics
+  ##### Panics
   
   This panics if the given span does not correspond to valid bounds in
   the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   This example shows how the span of the search can impact whether a
   match is reported or not. This is particularly relevant for look-around
@@ -1013,7 +1013,7 @@ results in no match being reported.
   
   Note that `Input::span` overrides this method and vice versa.
   
-  # Panics
+  ##### Panics
   
   This routine will panic if the given range could not be converted
   to a valid `Range`. For example, this would panic when given
@@ -1023,7 +1023,7 @@ results in no match being reported.
   This also panics if the given range does not correspond to valid bounds
   in the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1078,7 +1078,7 @@ results in no match being reported.
   Note that the [`Anchored::Pattern`](#anchoredpattern) mode is like `Anchored::Yes`,
   except it only reports matches for a particular pattern.
   
-  # Example
+  ##### Example
   
   This demonstrates the differences between an anchored search and
   a pattern that begins with `^` (as described in the above warning
@@ -1153,7 +1153,7 @@ results in no match being reported.
   
   This is disabled by default.
   
-  # Example
+  ##### Example
   
   This example shows the difference between "earliest" searching and
   normal searching.
@@ -1190,12 +1190,12 @@ results in no match being reported.
   a [`Span`](#span) may be given directly, one may also provide a
   `std::ops::Range<usize>`.
   
-  # Panics
+  ##### Panics
   
   This panics if the given span does not correspond to valid bounds in
   the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1218,7 +1218,7 @@ results in no match being reported.
   then the most likely outcome is that the actual search execution will
   panic.
   
-  # Panics
+  ##### Panics
   
   This routine will panic if the given range could not be converted
   to a valid `Range`. For example, this would panic when given
@@ -1228,7 +1228,7 @@ results in no match being reported.
   This also panics if the given span does not correspond to valid bounds
   in the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1246,13 +1246,13 @@ results in no match being reported.
   This is a convenience routine for only mutating the start of a span
   without having to set the entire span.
   
-  # Panics
+  ##### Panics
   
   This panics if the span resulting from the new start position does not
   correspond to valid bounds in the haystack or the termination of a
   search.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1270,13 +1270,13 @@ results in no match being reported.
   This is a convenience routine for only mutating the end of a span
   without having to set the entire span.
   
-  # Panics
+  ##### Panics
   
   This panics if the span resulting from the new end position does not
   correspond to valid bounds in the haystack or the termination of a
   search.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1294,7 +1294,7 @@ results in no match being reported.
   This is like `Input::anchored`, except it mutates the search
   configuration in place.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{Anchored, Input, PatternID};
@@ -1314,7 +1314,7 @@ results in no match being reported.
   This is like `Input::earliest`, except it mutates the search
   configuration in place.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1329,7 +1329,7 @@ results in no match being reported.
 
   Return a borrow of the underlying haystack as a slice of bytes.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1348,7 +1348,7 @@ results in no match being reported.
   an offset that is less than or equal to `Input::end`. Otherwise,
   the offset is one greater than `Input::end`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1369,7 +1369,7 @@ results in no match being reported.
   This is guaranteed to return an offset that is a valid exclusive end
   bound for this input's haystack.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1391,7 +1391,7 @@ results in no match being reported.
   When `Input::is_done` is `false`, the span returned is guaranteed
   to correspond to valid bounds for this input's haystack.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{Input, Span};
@@ -1410,7 +1410,7 @@ results in no match being reported.
   When `Input::is_done` is `false`, the range returned is guaranteed
   to correspond to valid bounds for this input's haystack.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1425,7 +1425,7 @@ results in no match being reported.
   
   If no anchored mode was set, then it defaults to [`Anchored::No`](#anchoredno).
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{Anchored, Input, PatternID};
@@ -1442,7 +1442,7 @@ results in no match being reported.
 
   Return whether this search should execute in "earliest" mode.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1459,7 +1459,7 @@ results in no match being reported.
   This occurs when the start position of this search is greater than the
   end position of the search.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::Input;
@@ -1480,7 +1480,7 @@ results in no match being reported.
   If the haystack is not valid UTF-8, then the behavior of this routine
   is unspecified.
   
-  # Example
+  ##### Example
   
   This shows where codepoint boundaries do and don't exist in valid
   UTF-8.
@@ -1566,7 +1566,7 @@ struct Span {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:807-812`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L807-L812)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:807-812`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L807-L812)*
 
 A representation of a span reported by a regex engine.
 
@@ -1716,7 +1716,7 @@ struct HalfMatch {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:924-932`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L924-L932)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:924-932`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L924-L932)*
 
 A representation of "half" of a match reported by a DFA.
 
@@ -1858,7 +1858,7 @@ struct Match {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:985-990`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L985-L990)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:985-990`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L985-L990)*
 
 A representation of a match reported by a regex engine.
 
@@ -1893,11 +1893,11 @@ start offset as less than or equal to its end offset.
   a [`Span`](#span) may be given directly, one may also provide a
   `std::ops::Range<usize>`.
   
-  # Panics
+  ##### Panics
   
   This panics if `end < start`.
   
-  # Example
+  ##### Example
   
   This shows how to create a match for the first pattern in a regex
   object using convenient range syntax.
@@ -1923,11 +1923,11 @@ start offset as less than or equal to its end offset.
   [`PatternID`](util/primitives/index.md). This panics if the given `usize` is not representable
   as a `PatternID`.
   
-  # Panics
+  ##### Panics
   
   This panics if `end < start` or if `pattern > PatternID::MAX`.
   
-  # Example
+  ##### Example
   
   This shows how to create a match for the third pattern in a regex
   object using convenient range syntax.
@@ -2069,7 +2069,7 @@ struct PatternSet {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1149-1172`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1149-L1172)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1149-1172`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L1149-L1172)*
 
 A set of `PatternID`s.
 
@@ -2142,7 +2142,7 @@ assert!(set.is_empty());
   The given capacity typically corresponds to (at least) the number of
   patterns in a compiled regex object.
   
-  # Panics
+  ##### Panics
   
   This panics if the given capacity exceeds `PatternID::LIMIT`. This is
   impossible if you use the `pattern_len()` method as defined on any of
@@ -2168,7 +2168,7 @@ assert!(set.is_empty());
   
   Use `PatternSet::try_insert` for a fallible version of this routine.
   
-  # Panics
+  ##### Panics
   
   This panics if this pattern set has insufficient capacity to
   store the given pattern ID.
@@ -2180,7 +2180,7 @@ assert!(set.is_empty());
   
   If the pattern identifier is already in this set, then this is a no-op.
   
-  # Errors
+  ##### Errors
   
   This returns an error if this pattern set has insufficient capacity to
   store the given pattern ID.
@@ -2301,7 +2301,7 @@ struct PatternSetInsertError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1335-1338`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1335-L1338)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1335-1338`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L1335-L1338)*
 
 An error that occurs when a `PatternID` failed to insert into a
 `PatternSet`.
@@ -2390,7 +2390,7 @@ struct PatternSetIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1364-1366`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1364-L1366)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1364-1366`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L1364-L1366)*
 
 An iterator over all pattern identifiers in a [`PatternSet`](#patternset).
 
@@ -2486,7 +2486,7 @@ This iterator is created by the `PatternSet::iter` method.
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1778-1781`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1778-L1781)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1778-1781`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L1778-L1781)*
 
 An error indicating that a search stopped before reporting whether a
 match exists or not.
@@ -2674,7 +2674,7 @@ enum Anchored {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1501-1516`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1501-L1516)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1501-1516`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L1501-L1516)*
 
 The type of anchored search to perform.
 
@@ -2800,7 +2800,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true if and only if this anchor mode corresponds to any kind of
   anchored search.
   
-  # Example
+  ##### Example
   
   This examples shows that both `Anchored::Yes` and `Anchored::Pattern`
   are considered anchored searches.
@@ -2818,7 +2818,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns the pattern ID associated with this configuration if it is an
   anchored search for a specific pattern. Otherwise `None` is returned.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{Anchored, PatternID};
@@ -2910,7 +2910,7 @@ enum MatchKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1698-1721`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1698-L1721)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1698-1721`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L1698-L1721)*
 
 The kind of match semantics to use for a regex pattern.
 
@@ -3158,7 +3158,7 @@ enum MatchErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1849-1890`](../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1849-L1890)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1849-1890`](../../.source_1765900590/regex-automata-0.4.13/src/util/search.rs#L1849-L1890)*
 
 The underlying kind of a [`MatchError`](#matcherror).
 

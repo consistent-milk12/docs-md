@@ -31,7 +31,7 @@ struct Finder<V> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:35-40`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/packedpair.rs#L35-L40)*
+*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:35-40`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/generic/packedpair.rs#L35-L40)*
 
 A generic architecture dependent "packed pair" finder.
 
@@ -59,7 +59,7 @@ to inline calls into routines marked with
   exact matches of `needle` or act as a prefilter and report candidate
   positions of `needle`.
   
-  # Safety
+  ##### Safety
   
   Callers must ensure that whatever vector type this routine is called
   with is supported by the current environment.
@@ -72,11 +72,11 @@ to inline calls into routines marked with
   should be the same as the needle that this finder was initialized
   with.
   
-  # Panics
+  ##### Panics
   
   When `haystack.len()` is less than `Finder::min_haystack_len`.
   
-  # Safety
+  ##### Safety
   
   Since this is meant to be used with vector functions, callers need to
   specialize this inside of a function with a `target_feature` attribute.
@@ -92,11 +92,11 @@ to inline calls into routines marked with
   returned, if they are a match, correspond to the starting offset of
   `needle` in the given `haystack`.
   
-  # Panics
+  ##### Panics
   
   When `haystack.len()` is less than `Finder::min_haystack_len`.
   
-  # Safety
+  ##### Safety
   
   Since this is meant to be used with vector functions, callers need to
   specialize this inside of a function with a `target_feature` attribute.
@@ -118,7 +118,7 @@ to inline calls into routines marked with
   last load in the main loop. The mask lets us avoid visiting positions
   that have already been discarded as matches.
   
-  # Safety
+  ##### Safety
   
   It must be safe to do an unaligned read of size(V) bytes starting at
   both (cur + self.index1) and (cur + self.index2). It must also be safe
@@ -131,7 +131,7 @@ to inline calls into routines marked with
   When an occurrence is found, memcmp is run to check if a match occurs
   at the corresponding position.
   
-  # Safety
+  ##### Safety
   
   It must be safe to do an unaligned read of size(V) bytes starting at
   both (cur + self.index1) and (cur + self.index2). It must also be safe
@@ -221,7 +221,7 @@ to inline calls into routines marked with
 unsafe fn matched(start: *const u8, cur: *const u8, chunki: usize) -> usize
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:312-314`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/packedpair.rs#L312-L314)*
+*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:312-314`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/generic/packedpair.rs#L312-L314)*
 
 Accepts a chunk-relative offset and returns a haystack relative offset.
 

@@ -81,14 +81,14 @@ into the `rustdoc_types::Crate` structure.
   The file should be generated with `cargo doc --output-format json`.
   Parse a JSON string into a Crate structure.
   
-  # Errors
+  ##### Errors
   Returns an error if it faills to parse the JSON.
 
 - <span id="parser-parse-file"></span>`fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
 
   Parse a JSON file.
   
-  # Errors
+  ##### Errors
   Returns error if fails to read the JSON file.
 
 - <span id="parser-parse-json-string"></span>`fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
@@ -99,20 +99,20 @@ into the `rustdoc_types::Crate` structure.
   caller wants to emphasize that they're parsing string content rather
   than a file path.
   
-  # Arguments
+  ##### Arguments
   
   * `content` - The raw JSON string to parse
   
-  # Returns
+  ##### Returns
   
   A parsed `Crate` structure containing all documentation data.
   
-  # Errors
+  ##### Errors
   
   Returns `Error::JsonParse` if the JSON is invalid or doesn't match
   the expected rustdoc JSON schema.
   
-  # Schema Compatibility
+  ##### Schema Compatibility
   
   The `rustdoc-types` crate version must match the rustdoc JSON format
   version. Mismatches can cause parsing failures or missing fields.

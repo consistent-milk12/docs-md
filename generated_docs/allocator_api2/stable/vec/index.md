@@ -108,7 +108,7 @@ struct Splice<'a, I: Iterator + 'a, A: Allocator + 'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
 
 A splicing iterator for `Vec`.
 
@@ -205,7 +205,7 @@ struct Drain<'a, T: 'a, A: Allocator + 'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
 
 A draining iterator for `Vec<T>`.
 
@@ -340,7 +340,7 @@ struct IntoIter<T, A: Allocator> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
 
 An iterator that moves out of a vector.
 
@@ -360,7 +360,7 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
   Returns the remaining items of this iterator as a slice.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let vec = vec!['a', 'b', 'c'];
@@ -374,7 +374,7 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
   Returns the remaining items of this iterator as a mutable slice.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let vec = vec!['a', 'b', 'c'];
@@ -500,7 +500,7 @@ struct Vec<T, A: Allocator> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:348-351`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/mod.rs#L348-L351)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:348-351`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/vec/mod.rs#L348-L351)*
 
 A contiguous growable array type, written as `Vec<T>`, short for 'vector'.
 
@@ -756,7 +756,7 @@ The order has changed in the past and may change again.
   
   The vector will not allocate until elements are pushed onto it.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unused_mut)]
@@ -783,11 +783,11 @@ The order has changed in the past and may change again.
   and the capacity will always be `usize::MAX`.
   
   
-  # Panics
+  ##### Panics
   
   Panics if the new capacity exceeds `isize::MAX` bytes.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let mut vec = Vec::with_capacity(10);
@@ -818,7 +818,7 @@ The order has changed in the past and may change again.
 
   Creates a `Vec<T>` directly from a pointer, a capacity, and a length.
   
-  # Safety
+  ##### Safety
   
   This is highly unsafe, due to the number of invariants that aren't
   checked:
@@ -859,7 +859,7 @@ The order has changed in the past and may change again.
   function.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::ptr;
@@ -1023,7 +1023,7 @@ The order has changed in the past and may change again.
   the vector (from start to end). The vector cannot be used after calling
   this.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let v = vec!["a".to_string(), "b".to_string()];
@@ -1080,7 +1080,7 @@ The order has changed in the past and may change again.
 struct ExtendElement<T>(T);
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2481`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2481)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2481`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2481)*
 
 #### Trait Implementations
 
@@ -1137,13 +1137,13 @@ struct ExtendElement<T>(T);
 trait ExtendWith<T> { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2476-2479`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2476-L2479)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2476-2479`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2476-L2479)*
 
 #### Required Methods
 
-- `fn next(&mut self) -> T`
+- `fn ExtendWith::next(&mut self) -> T`
 
-- `fn last(self) -> T`
+- `fn ExtendWith::last(self) -> T`
 
 #### Implementors
 

@@ -23,7 +23,7 @@ struct RelocateReader<R: Reader<Offset = usize>, T: Relocate<<R as >::Offset>> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/relocate.rs:23-27`](../../../../.source_1765894658/gimli-0.32.3/src/read/relocate.rs#L23-L27)*
+*Defined in [`gimli-0.32.3/src/read/relocate.rs:23-27`](../../../../.source_1765900590/gimli-0.32.3/src/read/relocate.rs#L23-L27)*
 
 A `Reader` which applies relocations to addresses and offsets.
 
@@ -146,17 +146,17 @@ It is generally not used for reading sections in an executable file.
 trait Relocate<T: ReaderOffset> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/relocate.rs:9-15`](../../../../.source_1765894658/gimli-0.32.3/src/read/relocate.rs#L9-L15)*
+*Defined in [`gimli-0.32.3/src/read/relocate.rs:9-15`](../../../../.source_1765900590/gimli-0.32.3/src/read/relocate.rs#L9-L15)*
 
 Trait for relocating addresses and offsets while reading a section.
 
 #### Required Methods
 
-- `fn relocate_address(&self, offset: T, value: u64) -> Result<u64>`
+- `fn Relocate::relocate_address(&self, offset: T, value: u64) -> Result<u64>`
 
   Relocate an address which was read from the given section offset.
 
-- `fn relocate_offset(&self, offset: T, value: T) -> Result<T>`
+- `fn Relocate::relocate_offset(&self, offset: T, value: T) -> Result<T>`
 
   Relocate a value which was read from the given section offset.
 

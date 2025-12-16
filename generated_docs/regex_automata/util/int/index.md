@@ -65,11 +65,11 @@ explicitly want to panic or when we want to return an error for overflow.
 trait U8 { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/int.rs:48-50`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/int.rs#L48-L50)*
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:48-50`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/int.rs#L48-L50)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn U8::as_usize(self) -> usize`
 
 #### Implementors
 
@@ -81,15 +81,15 @@ trait U8 { ... }
 trait U16 { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/int.rs:58-62`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/int.rs#L58-L62)*
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:58-62`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/int.rs#L58-L62)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn U16::as_usize(self) -> usize`
 
-- `fn low_u8(self) -> u8`
+- `fn U16::low_u8(self) -> u8`
 
-- `fn high_u8(self) -> u8`
+- `fn U16::high_u8(self) -> u8`
 
 #### Implementors
 
@@ -101,17 +101,17 @@ trait U16 { ... }
 trait U32 { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/int.rs:78-83`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/int.rs#L78-L83)*
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:78-83`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/int.rs#L78-L83)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn U32::as_usize(self) -> usize`
 
-- `fn low_u8(self) -> u8`
+- `fn U32::low_u8(self) -> u8`
 
-- `fn low_u16(self) -> u16`
+- `fn U32::low_u16(self) -> u16`
 
-- `fn high_u16(self) -> u16`
+- `fn U32::high_u16(self) -> u16`
 
 #### Implementors
 
@@ -123,19 +123,19 @@ trait U32 { ... }
 trait U64 { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/int.rs:110-116`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/int.rs#L110-L116)*
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:110-116`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/int.rs#L110-L116)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn U64::as_usize(self) -> usize`
 
-- `fn low_u8(self) -> u8`
+- `fn U64::low_u8(self) -> u8`
 
-- `fn low_u16(self) -> u16`
+- `fn U64::low_u16(self) -> u16`
 
-- `fn low_u32(self) -> u32`
+- `fn U64::low_u32(self) -> u32`
 
-- `fn high_u32(self) -> u32`
+- `fn U64::high_u32(self) -> u32`
 
 #### Implementors
 
@@ -147,15 +147,15 @@ trait U64 { ... }
 trait I32 { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/int.rs:147-151`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/int.rs#L147-L151)*
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:147-151`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/int.rs#L147-L151)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn I32::as_usize(self) -> usize`
 
-- `fn to_bits(self) -> u32`
+- `fn I32::to_bits(self) -> u32`
 
-- `fn from_bits(n: u32) -> i32`
+- `fn I32::from_bits(n: u32) -> i32`
 
 #### Implementors
 
@@ -167,17 +167,17 @@ trait I32 { ... }
 trait Usize { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/int.rs:174-179`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/int.rs#L174-L179)*
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:174-179`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/int.rs#L174-L179)*
 
 #### Required Methods
 
-- `fn as_u8(self) -> u8`
+- `fn Usize::as_u8(self) -> u8`
 
-- `fn as_u16(self) -> u16`
+- `fn Usize::as_u16(self) -> u16`
 
-- `fn as_u32(self) -> u32`
+- `fn Usize::as_u32(self) -> u32`
 
-- `fn as_u64(self) -> u64`
+- `fn Usize::as_u64(self) -> u64`
 
 #### Implementors
 
@@ -189,11 +189,11 @@ trait Usize { ... }
 trait Pointer { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/int.rs:238-240`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/int.rs#L238-L240)*
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:238-240`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/int.rs#L238-L240)*
 
 #### Required Methods
 
-- `fn as_usize(self) -> usize`
+- `fn Pointer::as_usize(self) -> usize`
 
 #### Implementors
 

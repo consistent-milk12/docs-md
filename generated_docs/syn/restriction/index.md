@@ -32,7 +32,7 @@ struct VisRestricted {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../../.source_1765894658/syn-2.0.111/src/restriction.rs#L27-L37)*
+*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../../.source_1765900590/syn-2.0.111/src/restriction.rs#L27-L37)*
 
 A visibility level restricted to some path: `pub(self)` or
 `pub(super)` or `pub(crate)` or `pub(in some::module)`.
@@ -134,7 +134,7 @@ enum Visibility {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../../.source_1765894658/syn-2.0.111/src/restriction.rs#L4-L25)*
+*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../../.source_1765900590/syn-2.0.111/src/restriction.rs#L4-L25)*
 
 The visibility level of an item: inherited or `pub` or
 `pub(restricted)`.
@@ -256,7 +256,7 @@ enum FieldMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../../.source_1765894658/syn-2.0.111/src/restriction.rs#L39-L57)*
+*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../../.source_1765900590/syn-2.0.111/src/restriction.rs#L39-L57)*
 
 Unused, but reserved for RFC 3323 restrictions.
 

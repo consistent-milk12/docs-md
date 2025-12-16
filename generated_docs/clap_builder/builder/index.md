@@ -147,7 +147,7 @@ struct Str {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
+*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
 
 A UTF-8-encoded fixed string
 
@@ -315,7 +315,7 @@ struct Arg {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
 
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
@@ -367,7 +367,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -391,7 +391,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   (`disable_help_flag`,
   `disable_version_flag`) and define your own.
   
-  # Examples
+  ##### Examples
   
   When calling `short`, use a single valid UTF-8 character which will allow using the
   argument via a single hyphen (`-`) such as `-c`:
@@ -445,7 +445,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   To set `long` use a word containing valid UTF-8. If you supply a double leading
   `--` such as `--config` they will be stripped. Hyphens in the middle of the word, however,
@@ -474,7 +474,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden arguments as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -497,7 +497,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden arguments as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -520,7 +520,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden subcommands as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -545,7 +545,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden subcommands as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -569,7 +569,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::alias`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -591,7 +591,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::short_alias`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -613,7 +613,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::aliases`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -635,7 +635,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::short_aliases`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -684,13 +684,13 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Panics
+  ##### Panics
   
-  [`Command`](command/index.md) will `panic!` if indexes are skipped (such as defining `index(1)` and `index(3)`
+  [`Command`](../index.md) will `panic!` if indexes are skipped (such as defining `index(1)` and `index(3)`
   but not `index(2)`, or a positional argument is defined as multiple and is not the highest
   index (debug builds)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -746,7 +746,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -779,7 +779,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   <div class="warning">
   
-  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](command/index.md#dont-collapse-args-in-usage) because failing
+  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](../index.md#dont-collapse-args-in-usage) because failing
   to set this can make the usage string very confusing.
   
   </div>
@@ -800,13 +800,13 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   **WARNING:** Using this setting *and* having child subcommands is not
   recommended with the exception of *also* using
-  [`crate::Command::args_conflicts_with_subcommands`](command/index.md#args-conflicts-with-subcommands)
-  (or [`crate::Command::subcommand_negates_reqs`](command/index.md#subcommand-negates-reqs) if the argument marked `Last` is also
+  [`crate::Command::args_conflicts_with_subcommands`](../index.md#args-conflicts-with-subcommands)
+  (or [`crate::Command::subcommand_negates_reqs`](../index.md#subcommand-negates-reqs) if the argument marked `Last` is also
   marked `Arg::required`)
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -874,7 +874,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   is if the operation is destructive in nature, and the user is essentially proving to you,
   "Yes, I know what I'm doing."
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -931,7 +931,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -986,7 +986,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
   This argument must be passed alone; it conflicts with all other arguments.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1031,7 +1031,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   Assume an application with two subcommands, and you'd like to define a
   `--verbose` flag that can be called on any of the subcommands and parent, but you don't
@@ -1163,7 +1163,7 @@ struct ArgGroup {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
 
 Specifies a logical group of [arguments]
 
@@ -1237,7 +1237,7 @@ assert_eq!(matches
   The name will be used to get values from the group or refer to the group inside of conflict
   and requirement rules.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1250,7 +1250,7 @@ assert_eq!(matches
 
   Sets the group name.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1263,7 +1263,7 @@ assert_eq!(matches
 
   Adds an [argument] to this group by name
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1289,7 +1289,7 @@ assert_eq!(matches
 
   Adds multiple [arguments] to this group by name
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1314,7 +1314,7 @@ assert_eq!(matches
 
   Getters for all args. It will return a vector of `Id`
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -1329,9 +1329,9 @@ assert_eq!(matches
 
 - <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
 
-  Allows more than one of the [`Arg`](arg/index.md)s in this group to be used. (Default: `false`)
+  Allows more than one of the [`Arg`](../index.md)s in this group to be used. (Default: `false`)
   
-  # Examples
+  ##### Examples
   
   Notice in this example we use *both* the `-f` and `-c` flags which are both part of the
   group
@@ -1380,7 +1380,7 @@ assert_eq!(matches
   Return true if the group allows more than one of the arguments
   in this group to be used. (Default: `false`)
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -1401,7 +1401,7 @@ assert_eq!(matches
   
   <div class="warning">
   
-  **NOTE:** This setting only applies to the current [`Command`](command/index.md) / [`Subcommand`](../derive/index.md)s, and not
+  **NOTE:** This setting only applies to the current [`Command`](../index.md) / [`Subcommand`](../derive/index.md)s, and not
   globally.
   
   </div>
@@ -1415,7 +1415,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1453,7 +1453,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1494,7 +1494,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1538,7 +1538,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1576,7 +1576,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1720,7 +1720,7 @@ struct Command {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
 
 Build a command-line interface.
 
@@ -1772,7 +1772,7 @@ let m = Command::new("My Program")
   
   See also [`command!`](crate::command!) and [`crate_name!`](crate::crate_name!).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1785,7 +1785,7 @@ let m = Command::new("My Program")
 
   Adds an [argument] to the list of valid possibilities.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1811,7 +1811,7 @@ let m = Command::new("My Program")
 
   Adds multiple [arguments] to the list of valid possibilities.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1828,11 +1828,11 @@ let m = Command::new("My Program")
 
   Allows one to mutate an [`Arg`](arg/index.md) after it's been added to a [`Command`](command/index.md).
   
-  # Panics
+  ##### Panics
   
   If the argument is undefined
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1861,7 +1861,7 @@ let m = Command::new("My Program")
   
   This does not affect the built-in `--help` or `--version` arguments.
   
-  # Examples
+  ##### Examples
   
   ```ignore
   use clap_builder as clap;
@@ -1897,11 +1897,11 @@ let m = Command::new("My Program")
 
   Allows one to mutate an [`ArgGroup`](arg_group/index.md) after it's been added to a [`Command`](command/index.md).
   
-  # Panics
+  ##### Panics
   
   If the argument is undefined
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1925,11 +1925,11 @@ let m = Command::new("My Program")
   This can be useful for modifying auto-generated arguments of nested subcommands with
   `Command::mut_arg`.
   
-  # Panics
+  ##### Panics
   
   If the subcommand is undefined
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1955,7 +1955,7 @@ let m = Command::new("My Program")
   
   This does not affect the built-in `--help` or `--version` arguments.
   
-  # Examples
+  ##### Examples
   
   ```ignore
   use clap_builder as clap;
@@ -2002,7 +2002,7 @@ let m = Command::new("My Program")
   - Ensure exclusion between arguments.
   - Extract a value from a group instead of determining exactly which argument was used.
   
-  # Examples
+  ##### Examples
   
   The following example demonstrates using an [`ArgGroup`](arg_group/index.md) to ensure that one, and only one,
   of the arguments from the specified group is present at runtime.
@@ -2025,7 +2025,7 @@ let m = Command::new("My Program")
 
   Adds multiple [`ArgGroup`](arg_group/index.md)s to the [`Command`](command/index.md) at once.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2059,7 +2059,7 @@ let m = Command::new("My Program")
   - The argument the user passes in
   - Programmatically looking up the subcommand
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2077,7 +2077,7 @@ let m = Command::new("My Program")
 
   Adds multiple subcommands to the list of valid possibilities.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2097,7 +2097,7 @@ let m = Command::new("My Program")
   This is useful for large applications to delay definitions of subcommands until they are
   being invoked.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2124,7 +2124,7 @@ let m = Command::new("My Program")
   **Note:** This will not help with asserts in [`ArgMatches`](../parser/matches/arg_matches/index.md), those will need exhaustive
   testing of your CLI.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2154,11 +2154,11 @@ let m = Command::new("My Program")
   **Note:** this will ensure the `Command` has been sufficiently `built` for any
   relevant context, including usage.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2171,11 +2171,11 @@ let m = Command::new("My Program")
 
   Parse `env::args_os`, `exiting` on failure.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -2192,11 +2192,11 @@ let m = Command::new("My Program")
   
   Like `Command::get_matches` but doesn't consume the `Command`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -2221,11 +2221,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -2254,11 +2254,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -2292,11 +2292,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -2340,11 +2340,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -2368,11 +2368,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2389,11 +2389,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2413,11 +2413,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2439,11 +2439,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2463,11 +2463,11 @@ let m = Command::new("My Program")
   
   See also `Command::render_long_version`.
   
-  ### Coloring
+  ###### Coloring
   
   This function does not try to color the message nor it inserts any [ANSI escape codes].
   
-  ### Examples
+  ###### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2486,11 +2486,11 @@ let m = Command::new("My Program")
   
   See also `Command::render_version`.
   
-  ### Coloring
+  ###### Coloring
   
   This function does not try to color the message nor it inserts any [ANSI escape codes].
   
-  ### Examples
+  ###### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2509,11 +2509,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  ### Examples
+  ###### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2612,7 +2612,7 @@ struct OsStr {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
+*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
 
 A UTF-8-encoded fixed string
 
@@ -2749,7 +2749,7 @@ struct PossibleValue {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
+*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
 
 A possible value of an argument.
 
@@ -2799,7 +2799,7 @@ let cfg = Arg::new("config")
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2817,7 +2817,7 @@ let cfg = Arg::new("config")
   This is typically displayed in completions (where supported) and should be a short, one-line
   description.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2834,7 +2834,7 @@ let cfg = Arg::new("config")
   This is an alternative to hiding through `Arg::hide_possible_values(true)`, if you only
   want to hide some values.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2848,7 +2848,7 @@ let cfg = Arg::new("config")
 
   Sets a *hidden* alias for this argument value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2862,7 +2862,7 @@ let cfg = Arg::new("config")
 
   Sets multiple *hidden* aliases for this argument value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2954,7 +2954,7 @@ struct ValueRange {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
+*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
 
 Values per occurrence for an argument
 
@@ -2972,11 +2972,11 @@ Values per occurrence for an argument
 
   Create a range
   
-  # Panics
+  ##### Panics
   
   If the end is less than the start (debug builds)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -3010,7 +3010,7 @@ Values per occurrence for an argument
 
   Report whether the argument takes any values (ie is a flag)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -3135,7 +3135,7 @@ Values per occurrence for an argument
 struct StyledStr(String);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
+*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
 
 Terminal-styling container
 
@@ -3314,7 +3314,7 @@ struct Styles {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
+*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
 
 Terminal styling definitions
 
@@ -3457,7 +3457,7 @@ struct BoolValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
 
 Implementation for `ValueParser::bool`
 
@@ -3557,7 +3557,7 @@ struct BoolishValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
 
 Parse bool-like string values
 
@@ -3697,7 +3697,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 struct EnumValueParser<E: crate::ValueEnum + Clone + Send + Sync + 'static>(std::marker::PhantomData<E>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
 
 Parse an `ValueEnum` value.
 
@@ -3828,7 +3828,7 @@ struct FalseyValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
 
 Parse false-like string values, everything else is `true`
 
@@ -3967,7 +3967,7 @@ struct MapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -4059,7 +4059,7 @@ struct NonEmptyStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
 
 Parse non-empty string values
 
@@ -4186,7 +4186,7 @@ struct OsStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
 
 Implementation for `ValueParser::os_string`
 
@@ -4284,7 +4284,7 @@ struct PathBufValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
 
 Implementation for `ValueParser::path_buf`
 
@@ -4381,7 +4381,7 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 struct PossibleValuesParser(Vec<super::PossibleValue>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
 
 Verify the value is from an enumerated set of `PossibleValue`.
 
@@ -4513,7 +4513,7 @@ struct RangedI64ValueParser<T: TryFrom<i64> + Clone + Send + Sync> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
 
 Parse number that fall within a range of values
 
@@ -4660,7 +4660,7 @@ struct RangedU64ValueParser<T: TryFrom<u64>> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
 
 Parse number that fall within a range of values
 
@@ -4797,7 +4797,7 @@ struct StringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
 
 Implementation for `ValueParser::string`
 
@@ -4897,7 +4897,7 @@ struct TryMapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -4989,7 +4989,7 @@ struct UnknownArgumentValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
 
 When encountered, report `ErrorKind::UnknownArgument`
 
@@ -5118,7 +5118,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::UnknownArgument);
 struct ValueParser(ValueParserInner);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
 
 Parse/validate argument values
 
@@ -5187,7 +5187,7 @@ assert_eq!(port, 3001);
   - [`RangedI64ValueParser`](value_parser/index.md) and [`RangedU64ValueParser`](value_parser/index.md)
   - [`NonEmptyStringValueParser`](value_parser/index.md)
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -5221,7 +5221,7 @@ assert_eq!(port, 3001);
   - [`BoolishValueParser`](value_parser/index.md) for different human readable bool representations
   - [`FalseyValueParser`](value_parser/index.md) for assuming non-false is true
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -5247,7 +5247,7 @@ assert_eq!(port, 3001);
   See also:
   - [`NonEmptyStringValueParser`](value_parser/index.md)
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -5268,7 +5268,7 @@ assert_eq!(port, 3001);
 
   `OsString` parser for argument values
   
-  # Example
+  ##### Example
   
   ```rust
   #[cfg(unix)] {
@@ -5299,7 +5299,7 @@ assert_eq!(port, 3001);
 
   `PathBuf` parser for argument values
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -5403,7 +5403,7 @@ enum ArgAction {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
 
 Behavior of arguments when they are encountered while parsing
 
@@ -5864,7 +5864,7 @@ enum ArgPredicate {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
 
 Operations to perform on argument values
 
@@ -5958,7 +5958,7 @@ enum Resettable<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
 
 Clearable builder value
 
@@ -6102,7 +6102,7 @@ enum ValueHint {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
 
 Provide shell with hint on how to complete an argument.
 
@@ -6290,13 +6290,13 @@ Overview of which hints are supported by which shell:
 trait IntoResettable<T> { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
 
 Convert to the intended resettable type
 
 #### Required Methods
 
-- `fn into_resettable(self) -> Resettable<T>`
+- `fn IntoResettable::into_resettable(self) -> Resettable<T>`
 
   Convert to the intended resettable type
 
@@ -6321,7 +6321,7 @@ Convert to the intended resettable type
 trait TypedValueParser: Clone + Send + Sync + 'static { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
 
 Parse/validate argument values
 
@@ -6381,7 +6381,7 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 
 #### Required Methods
 
-- `fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>`
+- `fn TypedValueParser::parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
   
@@ -6389,36 +6389,36 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 
 #### Provided Methods
 
-- `fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
+- `fn TypedValueParser::parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
   
   When `arg` is `None`, an external subcommand value is being parsed.
 
-- `fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>`
+- `fn TypedValueParser::parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
   
   When `arg` is `None`, an external subcommand value is being parsed.
 
-- `fn parse_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
+- `fn TypedValueParser::parse_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
   
   When `arg` is `None`, an external subcommand value is being parsed.
 
-- `fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
+- `fn TypedValueParser::possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
 
   Reflect on enumerated value properties
   
   Error checking should not be done with this; it is mostly targeted at user-facing
   applications like errors and completion.
 
-- `fn map<T, F>(self, func: F) -> MapValueParser<Self, F>`
+- `fn TypedValueParser::map<T, F>(self, func: F) -> MapValueParser<Self, F>`
 
   Adapt a `TypedValueParser` from one value to another
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -6454,11 +6454,11 @@ impl clap::builder::TypedValueParser for CustomValueParser {
   );
   ```
 
-- `fn try_map<T, E, F>(self, func: F) -> TryMapValueParser<Self, F>`
+- `fn TypedValueParser::try_map<T, E, F>(self, func: F) -> TryMapValueParser<Self, F>`
 
   Adapt a `TypedValueParser` from one value to another
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -6523,7 +6523,7 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 trait ValueParserFactory { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
 
 Register a type with [`value_parser!`][crate::value_parser!]
 
@@ -6567,7 +6567,7 @@ let parser: CustomValueParser = clap::value_parser!(Custom);
 
 #### Required Methods
 
-- `fn value_parser() -> <Self as >::Parser`
+- `fn ValueParserFactory::value_parser() -> <Self as >::Parser`
 
   Create the specified `Self::Parser`
 

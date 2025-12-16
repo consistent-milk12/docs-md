@@ -31,7 +31,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:35-45`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L35-L45)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:35-45`](../../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L35-L45)*
 
 A partially parsed XCOFF file.
 
@@ -186,9 +186,31 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 trait FileHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:306-387`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L306-L387)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:306-387`](../../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L306-L387)*
 
 A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) and [`xcoff::FileHeader64`](../../../xcoff/index.md).
+
+<details>
+<summary><strong>Methods (13)</strong> - click to expand</summary>
+
+**Required:**
+- [`FileHeader::is_type_64`](#fn-fileheaderis-type-64)
+- [`FileHeader::f_magic`](#fn-fileheaderf-magic)
+- [`FileHeader::f_nscns`](#fn-fileheaderf-nscns)
+- [`FileHeader::f_timdat`](#fn-fileheaderf-timdat)
+- [`FileHeader::f_symptr`](#fn-fileheaderf-symptr)
+- [`FileHeader::f_nsyms`](#fn-fileheaderf-nsyms)
+- [`FileHeader::f_opthdr`](#fn-fileheaderf-opthdr)
+- [`FileHeader::f_flags`](#fn-fileheaderf-flags)
+
+**Provided:**
+- [`FileHeader::parse`](#fn-fileheaderparse)
+- [`FileHeader::is_supported`](#fn-fileheaderis-supported)
+- [`FileHeader::aux_header`](#fn-fileheaderaux-header)
+- [`FileHeader::sections`](#fn-fileheadersections)
+- [`FileHeader::symbols`](#fn-fileheadersymbols)
+
+</details>
 
 #### Associated Types
 
@@ -208,43 +230,43 @@ A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) a
 
 #### Required Methods
 
-- `fn is_type_64(&self) -> bool`
+- `fn FileHeader::is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
 
-- `fn f_magic(&self) -> u16`
+- `fn FileHeader::f_magic(&self) -> u16`
 
-- `fn f_nscns(&self) -> u16`
+- `fn FileHeader::f_nscns(&self) -> u16`
 
-- `fn f_timdat(&self) -> u32`
+- `fn FileHeader::f_timdat(&self) -> u32`
 
-- `fn f_symptr(&self) -> <Self as >::Word`
+- `fn FileHeader::f_symptr(&self) -> <Self as >::Word`
 
-- `fn f_nsyms(&self) -> u32`
+- `fn FileHeader::f_nsyms(&self) -> u32`
 
-- `fn f_opthdr(&self) -> u16`
+- `fn FileHeader::f_opthdr(&self) -> u16`
 
-- `fn f_flags(&self) -> u16`
+- `fn FileHeader::f_flags(&self) -> u16`
 
 #### Provided Methods
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>`
+- `fn FileHeader::parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>`
 
   Read the file header.
   
   Also checks that the magic field in the file header is a supported format.
 
-- `fn is_supported(&self) -> bool`
+- `fn FileHeader::is_supported(&self) -> bool`
 
-- `fn aux_header<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<Option<&'data <Self as >::AuxHeader>>`
+- `fn FileHeader::aux_header<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<Option<&'data <Self as >::AuxHeader>>`
 
   Read the auxiliary file header.
 
-- `fn sections<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<SectionTable<'data, Self>>`
+- `fn FileHeader::sections<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<SectionTable<'data, Self>>`
 
   Read the section table.
 
-- `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> Result<SymbolTable<'data, Self, R>>`
+- `fn FileHeader::symbols<'data, R: ReadRef<'data>>(&self, data: R) -> Result<SymbolTable<'data, Self, R>>`
 
   Return the symbol table.
 
@@ -259,9 +281,46 @@ A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) a
 trait AuxHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:475-508`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L475-L508)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:475-508`](../../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L475-L508)*
 
 A trait for generic access to [`xcoff::AuxHeader32`](../../../xcoff/index.md) and [`xcoff::AuxHeader64`](../../../xcoff/index.md).
+
+<details>
+<summary><strong>Methods (30)</strong> - click to expand</summary>
+
+**Required:**
+- [`AuxHeader::o_mflag`](#fn-auxheadero-mflag)
+- [`AuxHeader::o_vstamp`](#fn-auxheadero-vstamp)
+- [`AuxHeader::o_tsize`](#fn-auxheadero-tsize)
+- [`AuxHeader::o_dsize`](#fn-auxheadero-dsize)
+- [`AuxHeader::o_bsize`](#fn-auxheadero-bsize)
+- [`AuxHeader::o_entry`](#fn-auxheadero-entry)
+- [`AuxHeader::o_text_start`](#fn-auxheadero-text-start)
+- [`AuxHeader::o_data_start`](#fn-auxheadero-data-start)
+- [`AuxHeader::o_toc`](#fn-auxheadero-toc)
+- [`AuxHeader::o_snentry`](#fn-auxheadero-snentry)
+- [`AuxHeader::o_sntext`](#fn-auxheadero-sntext)
+- [`AuxHeader::o_sndata`](#fn-auxheadero-sndata)
+- [`AuxHeader::o_sntoc`](#fn-auxheadero-sntoc)
+- [`AuxHeader::o_snloader`](#fn-auxheadero-snloader)
+- [`AuxHeader::o_snbss`](#fn-auxheadero-snbss)
+- [`AuxHeader::o_algntext`](#fn-auxheadero-algntext)
+- [`AuxHeader::o_algndata`](#fn-auxheadero-algndata)
+- [`AuxHeader::o_modtype`](#fn-auxheadero-modtype)
+- [`AuxHeader::o_cpuflag`](#fn-auxheadero-cpuflag)
+- [`AuxHeader::o_cputype`](#fn-auxheadero-cputype)
+- [`AuxHeader::o_maxstack`](#fn-auxheadero-maxstack)
+- [`AuxHeader::o_maxdata`](#fn-auxheadero-maxdata)
+- [`AuxHeader::o_debugger`](#fn-auxheadero-debugger)
+- [`AuxHeader::o_textpsize`](#fn-auxheadero-textpsize)
+- [`AuxHeader::o_datapsize`](#fn-auxheadero-datapsize)
+- [`AuxHeader::o_stackpsize`](#fn-auxheadero-stackpsize)
+- [`AuxHeader::o_flags`](#fn-auxheadero-flags)
+- [`AuxHeader::o_sntdata`](#fn-auxheadero-sntdata)
+- [`AuxHeader::o_sntbss`](#fn-auxheadero-sntbss)
+- [`AuxHeader::o_x64flags`](#fn-auxheadero-x64flags)
+
+</details>
 
 #### Associated Types
 
@@ -269,65 +328,65 @@ A trait for generic access to [`xcoff::AuxHeader32`](../../../xcoff/index.md) an
 
 #### Required Methods
 
-- `fn o_mflag(&self) -> u16`
+- `fn AuxHeader::o_mflag(&self) -> u16`
 
-- `fn o_vstamp(&self) -> u16`
+- `fn AuxHeader::o_vstamp(&self) -> u16`
 
-- `fn o_tsize(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_tsize(&self) -> <Self as >::Word`
 
-- `fn o_dsize(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_dsize(&self) -> <Self as >::Word`
 
-- `fn o_bsize(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_bsize(&self) -> <Self as >::Word`
 
-- `fn o_entry(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_entry(&self) -> <Self as >::Word`
 
-- `fn o_text_start(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_text_start(&self) -> <Self as >::Word`
 
-- `fn o_data_start(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_data_start(&self) -> <Self as >::Word`
 
-- `fn o_toc(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_toc(&self) -> <Self as >::Word`
 
-- `fn o_snentry(&self) -> u16`
+- `fn AuxHeader::o_snentry(&self) -> u16`
 
-- `fn o_sntext(&self) -> u16`
+- `fn AuxHeader::o_sntext(&self) -> u16`
 
-- `fn o_sndata(&self) -> u16`
+- `fn AuxHeader::o_sndata(&self) -> u16`
 
-- `fn o_sntoc(&self) -> u16`
+- `fn AuxHeader::o_sntoc(&self) -> u16`
 
-- `fn o_snloader(&self) -> u16`
+- `fn AuxHeader::o_snloader(&self) -> u16`
 
-- `fn o_snbss(&self) -> u16`
+- `fn AuxHeader::o_snbss(&self) -> u16`
 
-- `fn o_algntext(&self) -> u16`
+- `fn AuxHeader::o_algntext(&self) -> u16`
 
-- `fn o_algndata(&self) -> u16`
+- `fn AuxHeader::o_algndata(&self) -> u16`
 
-- `fn o_modtype(&self) -> u16`
+- `fn AuxHeader::o_modtype(&self) -> u16`
 
-- `fn o_cpuflag(&self) -> u8`
+- `fn AuxHeader::o_cpuflag(&self) -> u8`
 
-- `fn o_cputype(&self) -> u8`
+- `fn AuxHeader::o_cputype(&self) -> u8`
 
-- `fn o_maxstack(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_maxstack(&self) -> <Self as >::Word`
 
-- `fn o_maxdata(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_maxdata(&self) -> <Self as >::Word`
 
-- `fn o_debugger(&self) -> u32`
+- `fn AuxHeader::o_debugger(&self) -> u32`
 
-- `fn o_textpsize(&self) -> u8`
+- `fn AuxHeader::o_textpsize(&self) -> u8`
 
-- `fn o_datapsize(&self) -> u8`
+- `fn AuxHeader::o_datapsize(&self) -> u8`
 
-- `fn o_stackpsize(&self) -> u8`
+- `fn AuxHeader::o_stackpsize(&self) -> u8`
 
-- `fn o_flags(&self) -> u8`
+- `fn AuxHeader::o_flags(&self) -> u8`
 
-- `fn o_sntdata(&self) -> u16`
+- `fn AuxHeader::o_sntdata(&self) -> u16`
 
-- `fn o_sntbss(&self) -> u16`
+- `fn AuxHeader::o_sntbss(&self) -> u16`
 
-- `fn o_x64flags(&self) -> Option<u16>`
+- `fn AuxHeader::o_x64flags(&self) -> Option<u16>`
 
 #### Implementors
 
@@ -342,7 +401,7 @@ A trait for generic access to [`xcoff::AuxHeader32`](../../../xcoff/index.md) an
 type XcoffFile32<'data, R> = XcoffFile<'data, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:24`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L24)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:24`](../../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L24)*
 
 A 32-bit XCOFF object file.
 
@@ -355,7 +414,7 @@ to [`crate::FileKind::Xcoff32`](../../../index.md).
 type XcoffFile64<'data, R> = XcoffFile<'data, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:29`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L29)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:29`](../../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L29)*
 
 A 64-bit XCOFF object file.
 

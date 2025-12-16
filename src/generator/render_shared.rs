@@ -323,10 +323,82 @@ impl TraitRenderer {
         _ = writeln!(md, "```\n");
     }
 
+    /// Generate a sub-table of contents for traits with many methods.
+    ///
+    /// When a trait has more methods than the threshold, this generates a clickable
+    /// TOC at the start of the trait section to help navigate to specific methods.
+    ///
+    /// # Arguments
+    ///
+    /// * `trait_name` - The trait name for anchor generation
+    /// * `items` - Categorized trait items (required methods, provided methods, etc.)
+    /// * `threshold` - Minimum number of methods to generate a TOC (default: 10)
+    ///
+    /// # Returns
+    ///
+    /// A markdown string with the TOC, or empty string if below threshold.
+    #[must_use]
+    pub fn render_trait_methods_toc(
+        trait_name: &str,
+        items: &CategorizedTraitItems,
+        threshold: usize,
+    ) -> String {
+        // Count total methods
+        let total_methods = items.required_methods.len() + items.provided_methods.len();
+
+        // Skip if below threshold
+        if total_methods < threshold {
+            return String::new();
+        }
+
+        let mut toc = String::new();
+        _ = writeln!(toc, "<details>");
+        _ = writeln!(
+            toc,
+            "<summary><strong>Methods ({total_methods})</strong> - click to expand</summary>\n"
+        );
+
+        // Required methods section
+        if !items.required_methods.is_empty() {
+            _ = writeln!(toc, "**Required:**");
+            for method in &items.required_methods {
+                if let Some(name) = method.name.as_deref() {
+                    // Generate anchor matching the method rendering format
+                    let anchor = crate::linker::AnchorUtils::slugify_anchor(&format!(
+                        "fn-{trait_name}{name}"
+                    ));
+                    _ = writeln!(toc, "- [`{trait_name}::{name}`](#{anchor})");
+                }
+            }
+            _ = writeln!(toc);
+        }
+
+        // Provided methods section
+        if !items.provided_methods.is_empty() {
+            _ = writeln!(toc, "**Provided:**");
+            for method in &items.provided_methods {
+                if let Some(name) = method.name.as_deref() {
+                    let anchor = crate::linker::AnchorUtils::slugify_anchor(&format!(
+                        "fn-{trait_name}{name}"
+                    ));
+                    _ = writeln!(toc, "- [`{trait_name}::{name}`](#{anchor})");
+                }
+            }
+            _ = writeln!(toc);
+        }
+
+        _ = writeln!(toc, "</details>\n");
+
+        toc
+    }
+
     /// Render a single trait item (method, associated type, or constant).
     ///
     /// Each item is rendered as a bullet point with its signature in backticks.
     /// For methods, documentation is included based on the `full_method_docs` flag.
+    ///
+    /// When `trait_name` is provided, methods are rendered with a qualified name
+    /// (e.g., `Itertools::coalesce`) to provide better sense of place in long documents.
     ///
     /// # Arguments
     ///
@@ -335,12 +407,14 @@ impl TraitRenderer {
     /// * `type_renderer` - Type renderer for types
     /// * `process_docs` - Closure to process documentation with intra-doc link resolution
     /// * `full_method_docs` - If true, include full docs; otherwise extract summary
+    /// * `trait_name` - Optional trait name for qualified method names (e.g., "Itertools")
     pub fn render_trait_item<F>(
         md: &mut String,
         item: &Item,
         type_renderer: &TypeRenderer,
         process_docs: F,
         full_method_docs: bool,
+        trait_name: Option<&str>,
     ) where
         F: Fn(&Item) -> Option<String>,
     {
@@ -368,10 +442,16 @@ impl TraitRenderer {
                     .map(|ty| format!(" -> {}", type_renderer.render_type(ty)))
                     .unwrap_or_default();
 
+                // Format method name with optional trait prefix for better navigation
+                let qualified_name = trait_name.map_or_else(
+                    || name.to_string(),
+                    |trait_n| format!("{trait_n}::{name}"),
+                );
+
                 _ = write!(
                     md,
                     "- `fn {}{}({}){}`",
-                    name,
+                    qualified_name,
                     generics,
                     params.join(", "),
                     ret
@@ -382,9 +462,12 @@ impl TraitRenderer {
                     let summary =
                         RendererInternals::extract_method_summary(&docs, full_method_docs);
                     if !summary.is_empty() {
+                        // Adjust heading levels: trait methods are under H4 sections,
+                        // so embedded headings need +4 offset (H1 -> H5)
+                        let adjusted = RendererInternals::adjust_heading_levels(&summary, 4);
                         // Add blank line before docs, then indent each line
-                        _ = write!(md, "\n");
-                        for line in summary.lines() {
+                        _ = writeln!(md);
+                        for line in adjusted.lines() {
                             _ = write!(md, "\n  {line}");
                         }
                     }
@@ -877,9 +960,12 @@ impl RendererInternals {
                         {
                             let summary = Self::extract_method_summary(&docs, full_method_docs);
                             if !summary.is_empty() {
+                                // Adjust heading levels: impl methods are under H4/H5 sections,
+                                // so embedded headings need +4 offset (H1 -> H5)
+                                let adjusted = Self::adjust_heading_levels(&summary, 4);
                                 // Add blank line before docs, then indent each line
-                                _ = write!(md, "\n");
-                                for line in summary.lines() {
+                                _ = writeln!(md);
+                                for line in adjusted.lines() {
                                     _ = write!(md, "\n  {line}");
                                 }
                             }
@@ -975,6 +1061,70 @@ impl RendererInternals {
             .join("\n");
 
         first_paragraph
+    }
+
+    /// Adjust heading levels in documentation to maintain proper hierarchy.
+    ///
+    /// When documentation containing markdown headings (like `# Examples`) is embedded
+    /// under an item rendered at a certain heading level, the headings in the docs
+    /// need to be adjusted to be subordinate to the container.
+    ///
+    /// For example, if a method's documentation contains `# Examples` and the method
+    /// is rendered under an H4 section (`#### Provided Methods`), the `# Examples`
+    /// should become `##### Examples` (or deeper) to maintain proper hierarchy.
+    ///
+    /// # Arguments
+    ///
+    /// * `docs` - The documentation string potentially containing markdown headings
+    /// * `depth_offset` - Number of `#` symbols to add to each heading (typically 4-5)
+    ///
+    /// # Example
+    ///
+    /// ```ignore
+    /// let docs = "Some text\n# Examples\n```rust\ncode\n```";
+    /// let adjusted = adjust_heading_levels(docs, 4);
+    /// // adjusted = "Some text\n##### Examples\n```rust\ncode\n```"
+    /// ```
+    #[must_use]
+    pub fn adjust_heading_levels(docs: &str, depth_offset: usize) -> String {
+        // Don't process if no offset needed
+        if depth_offset == 0 {
+            return docs.to_string();
+        }
+
+        let mut result = String::with_capacity(docs.len() + docs.lines().count() * depth_offset);
+        let mut in_code_block = false;
+
+        for line in docs.lines() {
+            // Track code block boundaries to avoid modifying headings inside code blocks
+            if line.trim_start().starts_with("```") {
+                in_code_block = !in_code_block;
+                result.push_str(line);
+                result.push('\n');
+                continue;
+            }
+
+            // Only adjust headings outside code blocks
+            if !in_code_block && line.starts_with('#') {
+                // Count existing heading level
+                let hash_count = line.chars().take_while(|c| *c == '#').count();
+                // Cap the total heading level at 6 (maximum markdown heading)
+                let new_level = (hash_count + depth_offset).min(6);
+                // Write adjusted heading
+                result.push_str(&"#".repeat(new_level));
+                result.push_str(&line[hash_count..]);
+            } else {
+                result.push_str(line);
+            }
+            result.push('\n');
+        }
+
+        // Remove trailing newline if original didn't have one
+        if !docs.ends_with('\n') && result.ends_with('\n') {
+            result.pop();
+        }
+
+        result
     }
 
     /// Render type links for a function signature inline (for impl methods).
@@ -1913,6 +2063,106 @@ mod tests {
 
             // Should have one item, missing ID is skipped
             assert_eq!(result.required_methods.len(), 1);
+        }
+    }
+
+    mod adjust_heading_levels_tests {
+        use super::RendererInternals;
+
+        #[test]
+        fn no_change_with_zero_offset() {
+            let docs = "# Heading\nSome text";
+            let result = RendererInternals::adjust_heading_levels(docs, 0);
+            assert_eq!(result, docs);
+        }
+
+        #[test]
+        fn adjusts_h1_by_offset() {
+            let docs = "# Examples";
+            let result = RendererInternals::adjust_heading_levels(docs, 4);
+            assert_eq!(result, "##### Examples");
+        }
+
+        #[test]
+        fn adjusts_multiple_heading_levels() {
+            let docs = "# H1\n## H2\n### H3";
+            let result = RendererInternals::adjust_heading_levels(docs, 2);
+            assert_eq!(result, "### H1\n#### H2\n##### H3");
+        }
+
+        #[test]
+        fn caps_at_h6() {
+            let docs = "# Heading\n## Another\n### Deep";
+            let result = RendererInternals::adjust_heading_levels(docs, 5);
+            // H1 + 5 = H6, H2 + 5 = H6 (capped), H3 + 5 = H6 (capped)
+            assert_eq!(result, "###### Heading\n###### Another\n###### Deep");
+        }
+
+        #[test]
+        fn preserves_text_without_headings() {
+            let docs = "Some text\nMore text\n\nParagraph";
+            let result = RendererInternals::adjust_heading_levels(docs, 4);
+            assert_eq!(result, docs);
+        }
+
+        #[test]
+        fn preserves_headings_in_code_blocks() {
+            let docs = "Text\n```rust\n# This is a comment\n## Also a comment\n```\nMore text";
+            let result = RendererInternals::adjust_heading_levels(docs, 4);
+            // Headings inside code blocks should NOT be adjusted
+            assert_eq!(
+                result,
+                "Text\n```rust\n# This is a comment\n## Also a comment\n```\nMore text"
+            );
+        }
+
+        #[test]
+        fn handles_mixed_content() {
+            let docs = "Description\n\n# Examples\n\n```rust\ncode()\n```\n\n# Safety\n\nBe careful!";
+            let result = RendererInternals::adjust_heading_levels(docs, 4);
+            assert_eq!(
+                result,
+                "Description\n\n##### Examples\n\n```rust\ncode()\n```\n\n##### Safety\n\nBe careful!"
+            );
+        }
+
+        #[test]
+        fn preserves_trailing_newline() {
+            let docs = "# Heading\n";
+            let result = RendererInternals::adjust_heading_levels(docs, 2);
+            assert_eq!(result, "### Heading\n");
+        }
+
+        #[test]
+        fn no_trailing_newline_when_original_lacks_it() {
+            let docs = "# Heading";
+            let result = RendererInternals::adjust_heading_levels(docs, 2);
+            assert_eq!(result, "### Heading");
+        }
+
+        #[test]
+        fn handles_indented_code_blocks() {
+            let docs = "Text\n  ```\n  # Not a heading\n  ```\n# Real heading";
+            let result = RendererInternals::adjust_heading_levels(docs, 3);
+            // The indented ``` should still be recognized as code fence
+            assert_eq!(
+                result,
+                "Text\n  ```\n  # Not a heading\n  ```\n#### Real heading"
+            );
+        }
+
+        #[test]
+        fn handles_empty_string() {
+            let docs = "";
+            let result = RendererInternals::adjust_heading_levels(docs, 4);
+            assert_eq!(result, "");
+        }
+
+        #[test]
+        fn handles_heading_with_formatting() {
+            let docs = "# `code` and **bold** heading";
+            let result = RendererInternals::adjust_heading_levels(docs, 3);
+            assert_eq!(result, "#### `code` and **bold** heading");
         }
     }
 }

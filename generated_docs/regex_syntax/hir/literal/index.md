@@ -94,7 +94,7 @@ struct Extractor {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:147-153`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/literal.rs#L147-L153)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:147-153`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/literal.rs#L147-L153)*
 
 Extracts prefix or suffix literal sequences from [`Hir`](../index.md) expressions.
 
@@ -227,7 +227,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This prevents classes like `[A-Z]` or `\pL` from getting turned into
   huge and likely unproductive sequences of literals.
   
-  # Example
+  ##### Example
   
   This example shows how this limit can be lowered to decrease the tolerance
   for character classes being turned into literal sequences.
@@ -263,7 +263,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   With this limit set, repetitions that exceed it will be stopped and any
   literals extracted up to that point will be made inexact.
   
-  # Example
+  ##### Example
   
   This shows how to decrease the limit and compares it with the default.
   
@@ -298,7 +298,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   With this limit set, literals that exceed it will be made inexact and
   thus prevented from growing.
   
-  # Example
+  ##### Example
   
   This shows how to decrease the limit and compares it with the default.
   
@@ -337,7 +337,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   thus represents a "catch all" for avoiding locally small sequences from
   combining into large sequences.
   
-  # Example
+  ##### Example
   
   This example shows how reducing the limit will change the literal
   sequence returned.
@@ -518,7 +518,7 @@ struct Seq {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:733-745`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/literal.rs#L733-L745)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:733-745`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/literal.rs#L733-L745)*
 
 A sequence of literals.
 
@@ -692,7 +692,7 @@ assert_eq!(expected, seq);
   `Seq::dedup` for how deduplication deals with exact and inexact
   literals.
   
-  # Example
+  ##### Example
   
   This example shows basic usage and how exact and inexact literals
   interact.
@@ -806,7 +806,7 @@ assert_eq!(expected, seq);
   `Seq::dedup` for how deduplication deals with exact and inexact
   literals.
   
-  # Example
+  ##### Example
   
   This example shows basic usage and how exact and inexact literals
   interact.
@@ -914,7 +914,7 @@ assert_eq!(expected, seq);
   any leftmost-first or "preference" order match semantics will be
   preserved.
   
-  # Example
+  ##### Example
   
   This example shows basic usage.
   
@@ -969,7 +969,7 @@ assert_eq!(expected, seq);
   any leftmost-first or "preference" order match semantics will be
   preserved.
   
-  # Example
+  ##### Example
   
   This example shows basic usage.
   
@@ -1012,7 +1012,7 @@ assert_eq!(expected, seq);
   
   Deduping an infinite sequence is a no-op.
   
-  # Example
+  ##### Example
   
   This example shows how literals that are duplicate byte strings but
   are not equivalent with respect to exactness are resolved.
@@ -1040,7 +1040,7 @@ assert_eq!(expected, seq);
   samwise]`. Under preference order semantics, the latter sequence will
   never match `samwise` where as the first sequence can.
   
-  # Example
+  ##### Example
   
   This example shows basic usage.
   
@@ -1059,7 +1059,7 @@ assert_eq!(expected, seq);
   
   The order of the sequence itself is preserved.
   
-  # Example
+  ##### Example
   
   This example shows basic usage.
   
@@ -1083,7 +1083,7 @@ assert_eq!(expected, seq);
   
   This is a no-op on seqs that are empty or not finite.
   
-  # Example
+  ##### Example
   
   This example shows the difference between `{sam, samwise}` and
   `{samwise, sam}`.
@@ -1134,7 +1134,7 @@ assert_eq!(expected, seq);
   remain. If a literal has less than or equal to `len` bytes, then it
   remains unchanged. Otherwise, it is trimmed and made inexact.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_syntax::hir::literal::{Literal, Seq};
@@ -1156,7 +1156,7 @@ assert_eq!(expected, seq);
   remain. If a literal has less than or equal to `len` bytes, then it
   remains unchanged. Otherwise, it is trimmed and made inexact.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_syntax::hir::literal::{Literal, Seq};
@@ -1234,7 +1234,7 @@ assert_eq!(expected, seq);
   If the seq matches any literal or other contains no literals, then
   there is no meaningful prefix and this returns `None`.
   
-  # Example
+  ##### Example
   
   This shows some example seqs and their longest common prefix.
   
@@ -1263,7 +1263,7 @@ assert_eq!(expected, seq);
   If the seq matches any literal or other contains no literals, then
   there is no meaningful suffix and this returns `None`.
   
-  # Example
+  ##### Example
   
   This shows some example seqs and their longest common suffix.
   
@@ -1323,7 +1323,7 @@ assert_eq!(expected, seq);
   The `Seq::optimize_for_suffix_by_preference` does the same thing, but
   for suffixes.
   
-  # Example
+  ##### Example
   
   This shows how optimization might transform a sequence. Note that
   the specific behavior is not a documented guarantee. The heuristics
@@ -1350,7 +1350,7 @@ assert_eq!(expected, seq);
   ]), seq);
   ```
   
-  # Example: optimization may make the sequence infinite
+  ##### Example: optimization may make the sequence infinite
   
   If the heuristics deem that the sequence could cause a very high false
   positive rate, then it may make the sequence infinite, effectively
@@ -1491,7 +1491,7 @@ struct Literal {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2049-2052`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/literal.rs#L2049-L2052)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2049-2052`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/literal.rs#L2049-L2052)*
 
 A single literal extracted from an [`Hir`](../index.md) expression.
 
@@ -1669,7 +1669,7 @@ struct PreferenceTrie {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2203-2216`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/literal.rs#L2203-L2216)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2203-2216`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/literal.rs#L2203-L2216)*
 
 A "preference" trie that rejects literals that will never match when
 executing a leftmost first or "preference" search.
@@ -1798,7 +1798,7 @@ struct State {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2220-2225`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/literal.rs#L2220-L2225)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2220-2225`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/literal.rs#L2220-L2225)*
 
 A single state in a trie. Uses a sparse representation for its transitions.
 
@@ -1870,7 +1870,7 @@ enum ExtractKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:640-649`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/literal.rs#L640-L649)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:640-649`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/literal.rs#L640-L649)*
 
 The kind of literals to extract from an [`Hir`](../index.md) expression.
 
@@ -1973,7 +1973,7 @@ The default extraction kind is `Prefix`.
 fn rank(byte: u8) -> u8
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2319-2321`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/literal.rs#L2319-L2321)*
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2319-2321`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/literal.rs#L2319-L2321)*
 
 Returns the "rank" of the given byte.
 

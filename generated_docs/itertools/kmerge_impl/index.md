@@ -47,7 +47,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:16-22`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L16-L22)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:16-22`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L16-L22)*
 
 Head element and Tail iterator pair
 
@@ -142,7 +142,7 @@ The meanings of `PartialOrd` and `Ord` are reversed so as to turn the heap used 
 struct KMergeByLt;
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:113`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L113)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:113`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L113)*
 
 #### Trait Implementations
 
@@ -222,7 +222,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:157-163`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L157-L163)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:157-163`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L157-L163)*
 
 An iterator adaptor that merges an abitrary number of base iterators
 according to an ordering function.
@@ -327,11 +327,11 @@ information.
 trait KMergePredicate<T> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:108-110`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L108-L110)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:108-110`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L108-L110)*
 
 #### Required Methods
 
-- `fn kmerge_pred(&mut self, a: &T, b: &T) -> bool`
+- `fn KMergePredicate::kmerge_pred(&mut self, a: &T, b: &T) -> bool`
 
 #### Implementors
 
@@ -348,7 +348,7 @@ where
     S: FnMut(&T, &T) -> bool
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:60-67`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L60-L67)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:60-67`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L60-L67)*
 
 Make `data` a heap (min-heap w.r.t the sorting).
 
@@ -360,7 +360,7 @@ where
     S: FnMut(&T, &T) -> bool
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:70-98`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L70-L98)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:70-98`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L70-L98)*
 
 Sift down element at `index` (`heap` is a min-heap wrt the ordering)
 
@@ -374,7 +374,7 @@ where
     <<I as IntoIterator>::Item as IntoIterator>::Item: PartialOrd
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:140-147`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L140-L147)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:140-147`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L140-L147)*
 
 Create an iterator that merges elements of the contained iterators using
 the ordering function.
@@ -400,7 +400,7 @@ where
     F: KMergePredicate<<<I as IntoIterator>::Item as IntoIterator>::Item>
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:176-191`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L176-L191)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:176-191`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L176-L191)*
 
 Create an iterator that merges elements of the contained iterators.
 
@@ -414,7 +414,7 @@ Create an iterator that merges elements of the contained iterators.
 type KMerge<I> = KMergeBy<I, KMergeByLt>;
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:106`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L106)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:106`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L106)*
 
 An iterator adaptor that merges an abitrary number of base iterators in ascending order.
 If all base iterators are sorted (ascending), the result is sorted.

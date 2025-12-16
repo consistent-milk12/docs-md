@@ -49,7 +49,7 @@ struct OnceNonZeroUsize {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:43-45`](../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L43-L45)*
+*Defined in [`once_cell-1.21.3/src/race.rs:43-45`](../../../.source_1765900590/once_cell-1.21.3/src/race.rs#L43-L45)*
 
 A thread-safe cell which can be written to only once.
 
@@ -68,7 +68,7 @@ A thread-safe cell which can be written to only once.
   Get the reference to the underlying value, without checking if the cell
   is initialized.
   
-  # Safety
+  ##### Safety
   
   Caller must ensure that the cell is in initialized state, and that
   the contents are acquired by (synchronized to) this thread.
@@ -160,7 +160,7 @@ struct OnceBool {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:167-169`](../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L167-L169)*
+*Defined in [`once_cell-1.21.3/src/race.rs:167-169`](../../../.source_1765900590/once_cell-1.21.3/src/race.rs#L167-L169)*
 
 A thread-safe cell which can be written to only once.
 
@@ -262,7 +262,7 @@ struct OnceRef<'a, T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:232-235`](../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L232-L235)*
+*Defined in [`once_cell-1.21.3/src/race.rs:232-235`](../../../.source_1765900590/once_cell-1.21.3/src/race.rs#L232-L235)*
 
 A thread-safe cell which can be written to only once.
 
@@ -384,7 +384,7 @@ struct OnceBox<T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:361-364`](../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L361-L364)*
+*Defined in [`once_cell-1.21.3/src/race.rs:361-364`](../../../.source_1765900590/once_cell-1.21.3/src/race.rs#L361-L364)*
 
 A thread-safe cell which can be written to only once.
 

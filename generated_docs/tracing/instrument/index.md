@@ -26,7 +26,7 @@ struct WithDispatch<T> {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/instrument.rs:236-252`](../../../.source_1765894658/tracing-0.1.43/src/instrument.rs#L236-L252)*
+*Defined in [`tracing-0.1.43/src/instrument.rs:236-252`](../../../.source_1765900590/tracing-0.1.43/src/instrument.rs#L236-L252)*
 
 A `Future` that has been instrumented with a `tracing` [`Subscriber`](../../tracing_core/subscriber/index.md).
 
@@ -153,7 +153,7 @@ struct Instrumented<T> {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/instrument.rs:254-288`](../../../.source_1765894658/tracing-0.1.43/src/instrument.rs#L254-L288)*
+*Defined in [`tracing-0.1.43/src/instrument.rs:254-288`](../../../.source_1765900590/tracing-0.1.43/src/instrument.rs#L254-L288)*
 
 A `Future` that has been instrumented with a `tracing` [`Span`](../span/index.md).
 
@@ -287,7 +287,7 @@ trait's documentation for details.
 trait Instrument: Sized { ... }
 ```
 
-*Defined in [`tracing-0.1.43/src/instrument.rs:20-131`](../../../.source_1765894658/tracing-0.1.43/src/instrument.rs#L20-L131)*
+*Defined in [`tracing-0.1.43/src/instrument.rs:20-131`](../../../.source_1765900590/tracing-0.1.43/src/instrument.rs#L20-L131)*
 
 Attaches spans to a `std::future::Future`.
 
@@ -297,7 +297,7 @@ instrumented with a `tracing` [`span`](../span/index.md).
 
 #### Provided Methods
 
-- `fn instrument(self, span: Span) -> Instrumented<Self>`
+- `fn Instrument::instrument(self, span: Span) -> Instrumented<Self>`
 
   Instruments this type with the provided [`Span`](../span/index.md), returning an
   `Instrumented` wrapper.
@@ -305,7 +305,7 @@ instrumented with a `tracing` [`span`](../span/index.md).
   The attached [`Span`](../span/index.md) will be [entered] every time the instrumented
   `Future` is polled or `Drop`ped.
   
-  # Examples
+  ##### Examples
   
   Instrumenting a future:
   
@@ -363,7 +363,7 @@ instrumented with a `tracing` [`span`](../span/index.md).
   
   
 
-- `fn in_current_span(self) -> Instrumented<Self>`
+- `fn Instrument::in_current_span(self) -> Instrumented<Self>`
 
   Instruments this type with the [current] [`Span`](../span/index.md), returning an
   `Instrumented` wrapper.
@@ -373,7 +373,7 @@ instrumented with a `tracing` [`span`](../span/index.md).
   
   This can be used to propagate the current span when spawning a new future.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use tracing::Instrument;
@@ -408,14 +408,14 @@ instrumented with a `tracing` [`span`](../span/index.md).
 trait WithSubscriber: Sized { ... }
 ```
 
-*Defined in [`tracing-0.1.43/src/instrument.rs:136-234`](../../../.source_1765894658/tracing-0.1.43/src/instrument.rs#L136-L234)*
+*Defined in [`tracing-0.1.43/src/instrument.rs:136-234`](../../../.source_1765900590/tracing-0.1.43/src/instrument.rs#L136-L234)*
 
 Extension trait allowing futures to be instrumented with
 a `tracing` [`Subscriber`](crate::Subscriber).
 
 #### Provided Methods
 
-- `fn with_subscriber<S>(self, subscriber: S) -> WithDispatch<Self>`
+- `fn WithSubscriber::with_subscriber<S>(self, subscriber: S) -> WithDispatch<Self>`
 
   Attaches the provided [`Subscriber`](../../tracing_core/subscriber/index.md) to this type, returning a
   [`WithDispatch`](#withdispatch) wrapper.
@@ -423,7 +423,7 @@ a `tracing` [`Subscriber`](crate::Subscriber).
   The attached [`Subscriber`](../../tracing_core/subscriber/index.md) will be set as the [`default`](../../crossbeam_epoch/default/index.md) when the returned
   `Future` is polled.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use tracing::subscriber::NoSubscriber as MySubscriber;
@@ -455,7 +455,7 @@ a `tracing` [`Subscriber`](crate::Subscriber).
   
   
 
-- `fn with_current_subscriber(self) -> WithDispatch<Self>`
+- `fn WithSubscriber::with_current_subscriber(self) -> WithDispatch<Self>`
 
   Attaches the current [`default`](../../crossbeam_epoch/default/index.md) [`Subscriber`](../../tracing_core/subscriber/index.md) to this type, returning a
   [`WithDispatch`](#withdispatch) wrapper.
@@ -466,7 +466,7 @@ a `tracing` [`Subscriber`](crate::Subscriber).
   This can be used to propagate the current dispatcher context when
   spawning a new future that may run on a different thread.
   
-  # Examples
+  ##### Examples
   
   ```rust
   mod tokio {

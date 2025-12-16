@@ -42,7 +42,7 @@ struct CombinationsGeneric<I: Iterator, Idx> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations.rs:36-40`](../../../.source_1765894658/itertools-0.14.0/src/combinations.rs#L36-L40)*
+*Defined in [`itertools-0.14.0/src/combinations.rs:36-40`](../../../.source_1765900590/itertools-0.14.0/src/combinations.rs#L36-L40)*
 
 An iterator to iterate through all the `k`-length combinations in an iterator.
 
@@ -187,7 +187,7 @@ See [`.combinations()`](crate::Itertools::combinations) and [`.array_combination
 trait PoolIndex<T>: BorrowMut<[usize]> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations.rs:44-54`](../../../.source_1765894658/itertools-0.14.0/src/combinations.rs#L44-L54)*
+*Defined in [`itertools-0.14.0/src/combinations.rs:44-54`](../../../.source_1765900590/itertools-0.14.0/src/combinations.rs#L44-L54)*
 
 A type holding indices of elements in a pool or buffer of items from an inner iterator
 and used to pick out different combinations in a generic way.
@@ -198,11 +198,11 @@ and used to pick out different combinations in a generic way.
 
 #### Required Methods
 
-- `fn extract_item<I: Iterator<Item = T>>(&self, pool: &LazyBuffer<I>) -> <Self as >::Item`
+- `fn PoolIndex::extract_item<I: Iterator<Item = T>>(&self, pool: &LazyBuffer<I>) -> <Self as >::Item`
 
 #### Provided Methods
 
-- `fn len(&self) -> usize`
+- `fn PoolIndex::len(&self) -> usize`
 
 #### Implementors
 
@@ -219,7 +219,7 @@ where
     <I as >::Item: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations.rs:17-22`](../../../.source_1765894658/itertools-0.14.0/src/combinations.rs#L17-L22)*
+*Defined in [`itertools-0.14.0/src/combinations.rs:17-22`](../../../.source_1765900590/itertools-0.14.0/src/combinations.rs#L17-L22)*
 
 Create a new `Combinations` from a clonable iterator.
 
@@ -231,7 +231,7 @@ where
     <I as >::Item: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations.rs:25-30`](../../../.source_1765894658/itertools-0.14.0/src/combinations.rs#L25-L30)*
+*Defined in [`itertools-0.14.0/src/combinations.rs:25-30`](../../../.source_1765900590/itertools-0.14.0/src/combinations.rs#L25-L30)*
 
 Create a new `ArrayCombinations` from a clonable iterator.
 
@@ -241,7 +241,7 @@ Create a new `ArrayCombinations` from a clonable iterator.
 fn remaining_for(n: usize, first: bool, indices: &[usize]) -> Option<usize>
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations.rs:279-308`](../../../.source_1765894658/itertools-0.14.0/src/combinations.rs#L279-L308)*
+*Defined in [`itertools-0.14.0/src/combinations.rs:279-308`](../../../.source_1765900590/itertools-0.14.0/src/combinations.rs#L279-L308)*
 
 For a given size `n`, return the count of remaining combinations or None if it would overflow.
 
@@ -253,7 +253,7 @@ For a given size `n`, return the count of remaining combinations or None if it w
 type Combinations<I> = CombinationsGeneric<I, alloc::vec::Vec<usize>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations.rs:12`](../../../.source_1765894658/itertools-0.14.0/src/combinations.rs#L12)*
+*Defined in [`itertools-0.14.0/src/combinations.rs:12`](../../../.source_1765900590/itertools-0.14.0/src/combinations.rs#L12)*
 
 Iterator for `Vec` valued combinations returned by [`.combinations()`](crate::Itertools::combinations)
 
@@ -263,7 +263,7 @@ Iterator for `Vec` valued combinations returned by [`.combinations()`](crate::It
 type ArrayCombinations<I, const K: usize> = CombinationsGeneric<I, [usize; K]>;
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations.rs:14`](../../../.source_1765894658/itertools-0.14.0/src/combinations.rs#L14)*
+*Defined in [`itertools-0.14.0/src/combinations.rs:14`](../../../.source_1765900590/itertools-0.14.0/src/combinations.rs#L14)*
 
 Iterator for const generic combinations returned by [`.array_combinations()`](crate::Itertools::array_combinations)
 

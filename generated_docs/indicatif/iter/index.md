@@ -22,7 +22,7 @@ struct ProgressBarIter<T> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../../.source_1765894658/indicatif-0.18.3/src/iter.rs#L62-L65)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../../.source_1765900590/indicatif-0.18.3/src/iter.rs#L62-L65)*
 
 Wraps an iterator to display its progress.
 
@@ -177,34 +177,34 @@ where
     Self: Sized + Iterator { ... }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../../.source_1765894658/indicatif-0.18.3/src/iter.rs#L18-L58)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../../.source_1765900590/indicatif-0.18.3/src/iter.rs#L18-L58)*
 
 Wraps an iterator to display its progress.
 
 #### Required Methods
 
-- `fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<Self>`
+- `fn ProgressIterator::progress_with(self, progress: ProgressBar) -> ProgressBarIter<Self>`
 
   Wrap an iterator with a custom progress bar.
 
 #### Provided Methods
 
-- `fn try_progress(self) -> Option<ProgressBarIter<Self>>`
+- `fn ProgressIterator::try_progress(self) -> Option<ProgressBarIter<Self>>`
 
   Wrap an iterator with default styling. Uses `Iterator::size_hint()` to get length.
   Returns `Some(..)` only if `size_hint.1` is `Some`. If you want to create a progress bar
   even if `size_hint.1` returns [`None`](#none) use [`progress_count()`](ProgressIterator::progress_count)
   or [`progress_with()`](ProgressIterator::progress_with) instead.
 
-- `fn progress(self) -> ProgressBarIter<Self>`
+- `fn ProgressIterator::progress(self) -> ProgressBarIter<Self>`
 
   Wrap an iterator with default styling.
 
-- `fn progress_count(self, len: u64) -> ProgressBarIter<Self>`
+- `fn ProgressIterator::progress_count(self, len: u64) -> ProgressBarIter<Self>`
 
   Wrap an iterator with an explicit element count.
 
-- `fn progress_with_style(self, style: crate::ProgressStyle) -> ProgressBarIter<Self>`
+- `fn ProgressIterator::progress_with_style(self, style: crate::ProgressStyle) -> ProgressBarIter<Self>`
 
   Wrap an iterator with a progress bar and style it.
 

@@ -56,7 +56,7 @@ Utility functions to work with impl's and generics
   Returns `true` if the impl is for one of the commonly derived traits
   `(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use rustdoc_types::Impl;
@@ -86,7 +86,7 @@ Utility functions to work with impl's and generics
   the `for_` type is actually generic. When the impl is instantiated for a
   concrete type like `TocEntry`, we hide the generics.
   
-  # Examples
+  ##### Examples
   
   ```text
   // Generic type - returns true
@@ -119,7 +119,7 @@ Utility functions to work with impl's and generics
   `impl<...>`. Generics that only appear in where clauses should not be shown in
   the impl header since the where clause itself is not rendered.
   
-  # Examples
+  ##### Examples
   
   ```text
   impl<T: Sized> IntoEither for T
@@ -142,7 +142,7 @@ Utility functions to work with impl's and generics
 
   Extract all generic parameter names visible in an impl block's signature.
   
-  # Why This Is Needed
+  ##### Why This Is Needed
   
   Rustdoc JSON stores impl generics in two places that can have DIFFERENT names:
   - `impl_block.generics.params` - the declared params (e.g., `T` from `impl<T>`)
@@ -155,7 +155,7 @@ Utility functions to work with impl's and generics
   Into JSON where `generics.params` has `T` but `for_` has `StyledObject<D>`.
   If we blindly use `generics.params`, we'd render `impl<T> ToString for StyledObject<D>`.
   
-  # Solution
+  ##### Solution
   
   Extract generics from what's VISIBLE in the signature:
   1. The `for_` type: `Foo<T>` → extracts `T`
@@ -167,7 +167,7 @@ Utility functions to work with impl's and generics
   **Note:** For rendering the impl header, use `extract_impl_signature_generics` instead,
   which excludes where clause generics.
   
-  # Examples
+  ##### Examples
   
   ```text
   impl<T> Clone for Wrapper<T>
@@ -192,7 +192,7 @@ Utility functions to work with impl's and generics
   Recursively traverses the type structure to find all `Type::Generic` variants.
   This handles all the ways generics can be nested in complex types.
   
-  # Type Tree Visualization
+  ##### Type Tree Visualization
   
   ```text
   HashMap<K, Vec<T>>
@@ -210,7 +210,7 @@ Utility functions to work with impl's and generics
   
   Generic arguments come in three forms:
   
-  # Forms
+  ##### Forms
   
   ```text
   AngleBracketed: Vec<T, U>           → args: [T, U], constraints: []
@@ -239,7 +239,7 @@ Utility functions to work with impl's and generics
   We only care about `TraitBound` (not `Outlives` like `'a: 'b`).
   From the trait bound, we extract any generic args on the trait itself.
   
-  # Example
+  ##### Example
   
   ```text
   where T: Iterator<Item = U>
@@ -251,7 +251,7 @@ Utility functions to work with impl's and generics
 
   Check if an impl has associated types referencing generics NOT visible in the signature.
   
-  # The Problem
+  ##### The Problem
   
   Some impl blocks have generics that only appear in associated types, not in the
   visible signature. When rendered, this produces confusing output:
@@ -261,14 +261,14 @@ Utility functions to work with impl's and generics
       type Item = <I as Iterator>::Item   ← Where does `I` come from?
   ```
   
-  # Detection Strategy
+  ##### Detection Strategy
   
   1. Extract "visible" generics from: `for_` type, trait path, where clause
   2. Extract "declared" generics from: `impl_block.generics.params`
   3. Compute "hidden" = declared - visible
   4. Check if any associated type references a hidden generic
   
-  # Examples
+  ##### Examples
   
   ```text
   // FILTER THIS - `I` is hidden but used in associated type
@@ -405,7 +405,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
   Create a new impl renderer with the given context.
   
-  # Arguments
+  ##### Arguments
   
   * `ctx` - Render context (implements `RenderContext` trait)
   * `current_file` - Path of the current file (for relative link calculation)
@@ -427,7 +427,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   1. **Implementations** - Inherent impls (methods defined directly on the type)
   2. **Trait Implementations** - Trait impls (`impl Trait for Type`)
   
-  # Impl Block Categories
+  ##### Impl Block Categories
   
   - **Inherent**: `impl MyType { fn method(&self) {} }`
   - **Trait**: `impl Clone for MyType { ... }`

@@ -25,7 +25,7 @@ struct Recompositions<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:27-33`](../../../.source_1765894658/unicode-normalization-0.1.25/src/recompose.rs#L27-L33)*
+*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:27-33`](../../../.source_1765900590/unicode-normalization-0.1.25/src/recompose.rs#L27-L33)*
 
 External iterator for a string recomposition's characters.
 
@@ -152,7 +152,7 @@ enum RecompositionState {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:19-23`](../../../.source_1765894658/unicode-normalization-0.1.25/src/recompose.rs#L19-L23)*
+*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:19-23`](../../../.source_1765900590/unicode-normalization-0.1.25/src/recompose.rs#L19-L23)*
 
 #### Trait Implementations
 

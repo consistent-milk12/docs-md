@@ -51,7 +51,7 @@ struct IdsRef<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1384-1386`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1384-L1386)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1384-1386`](../../../../.source_1765900590/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1384-L1386)*
 
 Iterate over `Arg` and `ArgGroup` [`Id`](../../util/id/index.md)s via `ArgMatches::ids`.
 
@@ -167,7 +167,7 @@ struct RawValues<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1569-1573`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1569-L1573)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1569-1573`](../../../../.source_1765900590/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1569-L1573)*
 
 Iterate over raw argument values via `ArgMatches::get_raw`.
 
@@ -292,7 +292,7 @@ struct Values<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1428-1432`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1428-L1432)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1428-1432`](../../../../.source_1765900590/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1428-L1432)*
 
 Iterate over multiple values for an argument via `ArgMatches::remove_many`.
 
@@ -411,7 +411,7 @@ struct ValuesRef<'a, T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1496-1500`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1496-L1500)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1496-1500`](../../../../.source_1765900590/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1496-L1500)*
 
 Iterate over multiple values for an argument via `ArgMatches::get_many`.
 
@@ -533,7 +533,7 @@ struct ArgMatches {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../../../.source_1765900590/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
 
 Container for parse results.
 
@@ -601,12 +601,12 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_get_one`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -629,11 +629,11 @@ if matches.contains_id("out") {
 
   Gets the value of a specific `ArgAction::Count` flag
   
-  # Panic
+  ##### Panic
   
   If the argument's action is not `ArgAction::Count`
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -657,11 +657,11 @@ if matches.contains_id("out") {
 
   Gets the value of a specific `ArgAction::SetTrue` or `ArgAction::SetFalse` flag
   
-  # Panic
+  ##### Panic
   
   If the argument's action is not `ArgAction::SetTrue` or `ArgAction::SetFalse`
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -692,12 +692,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_get_many`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -730,12 +730,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panics
+  ##### Panics
   
   If the argument definition and access mismatch (debug builds). To handle this case programmatically, see
   `ArgMatches::try_get_occurrences`.
   
-  # Examples
+  ##### Examples
   ```rust
   use clap_builder as clap;
   use clap::{Command,Arg, ArgAction, value_parser};
@@ -761,12 +761,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_get_raw`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(unix)] {
@@ -807,12 +807,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_get_raw_occurrences`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(unix)] {
@@ -863,12 +863,12 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_remove_one`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -896,12 +896,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_remove_many`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -932,12 +932,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_remove_occurrences`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -965,12 +965,12 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If `id` is not a valid argument or group name (debug builds).  To handle this case programmatically, see
   `ArgMatches::try_contains_id`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -990,7 +990,7 @@ if matches.contains_id("out") {
 
   Iterate over `Arg` and `ArgGroup` [`Id`](../../util/id/index.md)s via `ArgMatches::ids`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1018,7 +1018,7 @@ if matches.contains_id("out") {
   See `ArgMatches::subcommand_name()` or `ArgMatches::subcommand()` to check if a
   subcommand was present on the command line.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1041,11 +1041,11 @@ if matches.contains_id("out") {
 
   Report where argument value came from
   
-  # Panics
+  ##### Panics
   
   If `id` is not a valid argument or group id (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1086,11 +1086,11 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If `id` is not a valid argument or group id (debug builds).
   
-  # Examples
+  ##### Examples
   
   The argv indices are listed in the comments below. See how they correspond to the clap
   indices. Note that if it's not listed in a clap index, this is because it's not saved in
@@ -1233,11 +1233,11 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If `id` is not a valid argument or group id (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1380,7 +1380,7 @@ struct Indices<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1842-1845`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1842-L1845)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1842-1845`](../../../../.source_1765900590/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1842-L1845)*
 
 Iterate over indices for where an argument appeared when parsing, via `ArgMatches::indices_of`
 
@@ -1503,7 +1503,7 @@ enum ValueSource {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/value_source.rs:4-11`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/value_source.rs#L4-L11)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/value_source.rs:4-11`](../../../../.source_1765900590/clap_builder-4.5.53/src/parser/matches/value_source.rs#L4-L11)*
 
 Origin of the argument's value
 

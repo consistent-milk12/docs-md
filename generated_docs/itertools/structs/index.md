@@ -167,7 +167,7 @@ where
     <I as >::Item: Clone;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:18-21`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/multi_product.rs#L18-L21)*
+*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:18-21`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/multi_product.rs#L18-L21)*
 
 An iterator adaptor that iterates over the cartesian product of
 multiple iterators of type `I`.
@@ -273,7 +273,7 @@ struct Batching<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:479-482`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L479-L482)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:479-482`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L479-L482)*
 
 A “meta iterator adaptor”. Its closure receives a reference to the iterator
 and may pick off as many elements as it likes, to produce the next iterator element.
@@ -374,7 +374,7 @@ struct FilterMapOk<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:975-978`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L975-L978)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:975-978`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L975-L978)*
 
 An iterator adapter to filter and apply a transformation on values within a nested `Result::Ok`.
 
@@ -482,7 +482,7 @@ struct FilterOk<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:878-881`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L878-L881)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:878-881`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L878-L881)*
 
 An iterator adapter to filter values within a nested `Result::Ok`.
 
@@ -591,7 +591,7 @@ struct Interleave<I, J> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:28-32`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L28-L32)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:28-32`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L28-L32)*
 
 An iterator adaptor that alternates elements from two iterators until both
 run out.
@@ -702,7 +702,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:123-131`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L123-L131)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:123-131`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L123-L131)*
 
 An iterator adaptor that alternates elements from the two iterators until
 one of them runs out.
@@ -810,7 +810,7 @@ struct Positions<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1080-1083`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L1080-L1083)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1080-1083`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L1080-L1083)*
 
 An iterator adapter to get the positions of each element that matches a predicate.
 
@@ -920,7 +920,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:360-371`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L360-L371)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:360-371`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L360-L371)*
 
 An iterator adaptor that iterates over the cartesian product of
 the element sets of two iterators `I` and `J`.
@@ -1037,7 +1037,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:243-249`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L243-L249)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:243-249`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L243-L249)*
 
 An iterator adaptor that allows putting back a single
 item to the front of the iterator.
@@ -1168,7 +1168,7 @@ struct TakeWhileRef<'a, I: 'a, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:513-516`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L513-L516)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:513-516`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L513-L516)*
 
 An iterator adaptor that borrows from a `Clone`-able iterator
 to only pick off elements while the predicate returns `true`.
@@ -1256,7 +1256,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:616-623`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L616-L623)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:616-623`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L616-L623)*
 
 An iterator to iterate through all combinations in a `Clone`-able iterator that produces tuples
 of a specific size.
@@ -1364,7 +1364,7 @@ struct Update<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1171-1174`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L1171-L1174)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1171-1174`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L1171-L1174)*
 
 An iterator adapter to apply a mutating function to each element before yielding it.
 
@@ -1475,7 +1475,7 @@ struct WhileSome<I> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:566-568`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L566-L568)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:566-568`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L566-L568)*
 
 An iterator adaptor that filters `Option<A>` iterator elements
 and produces `A`. Stops on the first `None` encountered.
@@ -1582,7 +1582,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations_with_replacement.rs:15-23`](../../../.source_1765894658/itertools-0.14.0/src/combinations_with_replacement.rs#L15-L23)*
+*Defined in [`itertools-0.14.0/src/combinations_with_replacement.rs:15-23`](../../../.source_1765900590/itertools-0.14.0/src/combinations_with_replacement.rs#L15-L23)*
 
 An iterator to iterate through all the `n`-length combinations in an iterator, with replacement.
 
@@ -1696,7 +1696,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/exactly_one_err.rs:20-26`](../../../.source_1765894658/itertools-0.14.0/src/exactly_one_err.rs#L20-L26)*
+*Defined in [`itertools-0.14.0/src/exactly_one_err.rs:20-26`](../../../.source_1765900590/itertools-0.14.0/src/exactly_one_err.rs#L20-L26)*
 
 Iterator returned for the error case of `Itertools::exactly_one()`
 This iterator yields exactly the same elements as the input iterator.
@@ -1827,7 +1827,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/flatten_ok.rs:24-32`](../../../.source_1765894658/itertools-0.14.0/src/flatten_ok.rs#L24-L32)*
+*Defined in [`itertools-0.14.0/src/flatten_ok.rs:24-32`](../../../.source_1765900590/itertools-0.14.0/src/flatten_ok.rs#L24-L32)*
 
 An iterator adaptor that flattens `Result::Ok` values and
 allows `Result::Err` values through unchanged.
@@ -1934,7 +1934,7 @@ struct Format<'a, I> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/format.rs:23-27`](../../../.source_1765894658/itertools-0.14.0/src/format.rs#L23-L27)*
+*Defined in [`itertools-0.14.0/src/format.rs:23-27`](../../../.source_1765900590/itertools-0.14.0/src/format.rs#L23-L27)*
 
 Format all iterator elements lazily, separated by `sep`.
 
@@ -2062,7 +2062,7 @@ struct FormatWith<'a, I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/format.rs:10-14`](../../../.source_1765894658/itertools-0.14.0/src/format.rs#L10-L14)*
+*Defined in [`itertools-0.14.0/src/format.rs:10-14`](../../../.source_1765900590/itertools-0.14.0/src/format.rs#L10-L14)*
 
 Format all iterator elements lazily, separated by `sep`.
 
@@ -2161,7 +2161,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:580-588`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L580-L588)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:580-588`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L580-L588)*
 
 An iterator for the elements in a single chunk.
 
@@ -2245,7 +2245,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:304-312`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L304-L312)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:304-312`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L304-L312)*
 
 `ChunkBy` is the storage for the lazy grouping operation.
 
@@ -2333,7 +2333,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:549-555`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L549-L555)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:549-555`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L549-L555)*
 
 An iterator that yields the Chunk iterators.
 
@@ -2431,7 +2431,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:419-429`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L419-L429)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:419-429`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L419-L429)*
 
 An iterator for the elements in a single group.
 
@@ -2517,7 +2517,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:378-386`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L378-L386)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:378-386`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L378-L386)*
 
 An iterator that yields the Group iterators.
 
@@ -2600,7 +2600,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:496-504`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L496-L504)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:496-504`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L496-L504)*
 
 `ChunkLazy` is the storage for a lazy chunking operation.
 
@@ -2701,7 +2701,7 @@ struct GroupingMap<I> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/grouping_map.rs:59-61`](../../../.source_1765894658/itertools-0.14.0/src/grouping_map.rs#L59-L61)*
+*Defined in [`itertools-0.14.0/src/grouping_map.rs:59-61`](../../../.source_1765900590/itertools-0.14.0/src/grouping_map.rs#L59-L61)*
 
 `GroupingMap` is an intermediate struct for efficient group-and-fold operations.
 It groups elements by their key and at the same time fold each group
@@ -3202,7 +3202,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/intersperse.rs:51-61`](../../../.source_1765894658/itertools-0.14.0/src/intersperse.rs#L51-L61)*
+*Defined in [`itertools-0.14.0/src/intersperse.rs:51-61`](../../../.source_1765900590/itertools-0.14.0/src/intersperse.rs#L51-L61)*
 
 An iterator adaptor to insert a particular value created by a function
 between each element of the adapted iterator.
@@ -3321,7 +3321,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:157-163`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L157-L163)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:157-163`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L157-L163)*
 
 An iterator adaptor that merges an abitrary number of base iterators
 according to an ordering function.
@@ -3428,7 +3428,7 @@ struct MergeBy<I: Iterator, J: Iterator, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:56-60`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L56-L60)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:56-60`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L56-L60)*
 
 An iterator adaptor that merges the two base iterators in ascending order.
 If both base iterators are sorted (ascending), the result is sorted.
@@ -3540,7 +3540,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/multipeek_impl.rs:11-18`](../../../.source_1765894658/itertools-0.14.0/src/multipeek_impl.rs#L11-L18)*
+*Defined in [`itertools-0.14.0/src/multipeek_impl.rs:11-18`](../../../.source_1765900590/itertools-0.14.0/src/multipeek_impl.rs#L11-L18)*
 
 See [`multipeek()`](../multipeek_impl/index.md) for more information.
 
@@ -3654,7 +3654,7 @@ struct PadUsing<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/pad_tail.rs:12-17`](../../../.source_1765894658/itertools-0.14.0/src/pad_tail.rs#L12-L17)*
+*Defined in [`itertools-0.14.0/src/pad_tail.rs:12-17`](../../../.source_1765900590/itertools-0.14.0/src/pad_tail.rs#L12-L17)*
 
 An iterator adaptor that pads a sequence to a minimum length by filling
 missing elements using a closure.
@@ -3771,7 +3771,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/peek_nth.rs:9-15`](../../../.source_1765894658/itertools-0.14.0/src/peek_nth.rs#L9-L15)*
+*Defined in [`itertools-0.14.0/src/peek_nth.rs:9-15`](../../../.source_1765900590/itertools-0.14.0/src/peek_nth.rs#L9-L15)*
 
 See [`peek_nth()`](../peek_nth/index.md) for more information.
 
@@ -3789,7 +3789,7 @@ See [`peek_nth()`](../peek_nth/index.md) for more information.
 
   Returns a reference to the `nth` value without advancing the iterator.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -3815,7 +3815,7 @@ See [`peek_nth()`](../peek_nth/index.md) for more information.
 
   Returns a mutable reference to the `nth` value without advancing the iterator.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -3959,7 +3959,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:113-119`](../../../.source_1765894658/itertools-0.14.0/src/peeking_take_while.rs#L113-L119)*
+*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:113-119`](../../../.source_1765900590/itertools-0.14.0/src/peeking_take_while.rs#L113-L119)*
 
 An iterator adaptor that takes items while a closure returns `true`.
 
@@ -4048,7 +4048,7 @@ struct Permutations<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/permutations.rs:16-19`](../../../.source_1765894658/itertools-0.14.0/src/permutations.rs#L16-L19)*
+*Defined in [`itertools-0.14.0/src/permutations.rs:16-19`](../../../.source_1765900590/itertools-0.14.0/src/permutations.rs#L16-L19)*
 
 An iterator adaptor that iterates through all the `k`-permutations of the
 elements from an iterator.
@@ -4149,7 +4149,7 @@ struct Powerset<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/powerset.rs:14-16`](../../../.source_1765894658/itertools-0.14.0/src/powerset.rs#L14-L16)*
+*Defined in [`itertools-0.14.0/src/powerset.rs:14-16`](../../../.source_1765900590/itertools-0.14.0/src/powerset.rs#L14-L16)*
 
 An iterator to iterate through the powerset of the elements from an iterator.
 
@@ -4260,7 +4260,7 @@ struct ProcessResults<'a, I, E: 'a> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/process_results_impl.rs:11-14`](../../../.source_1765894658/itertools-0.14.0/src/process_results_impl.rs#L11-L14)*
+*Defined in [`itertools-0.14.0/src/process_results_impl.rs:11-14`](../../../.source_1765900590/itertools-0.14.0/src/process_results_impl.rs#L11-L14)*
 
 An iterator that produces only the `T` values as long as the
 inner iterator produces `Ok(T)`.
@@ -4358,7 +4358,7 @@ struct PutBackN<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/put_back_n_impl.rs:11-14`](../../../.source_1765894658/itertools-0.14.0/src/put_back_n_impl.rs#L11-L14)*
+*Defined in [`itertools-0.14.0/src/put_back_n_impl.rs:11-14`](../../../.source_1765900590/itertools-0.14.0/src/put_back_n_impl.rs#L11-L14)*
 
 An iterator adaptor that allows putting multiple
 items in front of the iterator.
@@ -4484,7 +4484,7 @@ struct RcIter<I> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/rciter_impl.rs:8-11`](../../../.source_1765894658/itertools-0.14.0/src/rciter_impl.rs#L8-L11)*
+*Defined in [`itertools-0.14.0/src/rciter_impl.rs:8-11`](../../../.source_1765900590/itertools-0.14.0/src/rciter_impl.rs#L8-L11)*
 
 A wrapper for `Rc<RefCell<I>>`, that implements the `Iterator` trait.
 
@@ -4594,7 +4594,7 @@ struct RepeatN<A> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/repeatn.rs:8-11`](../../../.source_1765894658/itertools-0.14.0/src/repeatn.rs#L8-L11)*
+*Defined in [`itertools-0.14.0/src/repeatn.rs:8-11`](../../../.source_1765900590/itertools-0.14.0/src/repeatn.rs#L8-L11)*
 
 An iterator that produces *n* repetitions of an element.
 
@@ -4710,7 +4710,7 @@ struct Iterate<St, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/sources.rs:96-99`](../../../.source_1765894658/itertools-0.14.0/src/sources.rs#L96-L99)*
+*Defined in [`itertools-0.14.0/src/sources.rs:96-99`](../../../.source_1765900590/itertools-0.14.0/src/sources.rs#L96-L99)*
 
 An iterator that infinitely applies function to value and yields results.
 
@@ -4811,7 +4811,7 @@ struct Unfold<St, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/sources.rs:72-76`](../../../.source_1765894658/itertools-0.14.0/src/sources.rs#L72-L76)*
+*Defined in [`itertools-0.14.0/src/sources.rs:72-76`](../../../.source_1765900590/itertools-0.14.0/src/sources.rs#L72-L76)*
 
 See [`unfold`](crate::unfold) for more information.
 
@@ -4914,7 +4914,7 @@ struct TakeWhileInclusive<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/take_while_inclusive.rs:12-16`](../../../.source_1765894658/itertools-0.14.0/src/take_while_inclusive.rs#L12-L16)*
+*Defined in [`itertools-0.14.0/src/take_while_inclusive.rs:12-16`](../../../.source_1765900590/itertools-0.14.0/src/take_while_inclusive.rs#L12-L16)*
 
 An iterator adaptor that consumes elements while the given predicate is
 `true`, including the element for which the predicate first returned
@@ -5029,7 +5029,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tee.rs:21-27`](../../../.source_1765894658/itertools-0.14.0/src/tee.rs#L21-L27)*
+*Defined in [`itertools-0.14.0/src/tee.rs:21-27`](../../../.source_1765900590/itertools-0.14.0/src/tee.rs#L21-L27)*
 
 One half of an iterator pair where both return the same elements.
 
@@ -5118,7 +5118,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:247-254`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L247-L254)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:247-254`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L247-L254)*
 
 An iterator over all windows, wrapping back to the first elements when the
 window would otherwise exceed the length of the iterator, producing tuples
@@ -5227,7 +5227,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:24-30`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L24-L30)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:24-30`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L24-L30)*
 
 An iterator over a incomplete tuple.
 
@@ -5337,7 +5337,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:166-173`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L166-L173)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:166-173`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L166-L173)*
 
 An iterator over all contiguous windows that produces tuples of a specific size.
 
@@ -5445,7 +5445,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tuple_impl.rs:78-85`](../../../.source_1765894658/itertools-0.14.0/src/tuple_impl.rs#L78-L85)*
+*Defined in [`itertools-0.14.0/src/tuple_impl.rs:78-85`](../../../.source_1765900590/itertools-0.14.0/src/tuple_impl.rs#L78-L85)*
 
 An iterator that groups the items in tuples of a specific size.
 
@@ -5564,7 +5564,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/unique_impl.rs:160-166`](../../../.source_1765894658/itertools-0.14.0/src/unique_impl.rs#L160-L166)*
+*Defined in [`itertools-0.14.0/src/unique_impl.rs:160-166`](../../../.source_1765900590/itertools-0.14.0/src/unique_impl.rs#L160-L166)*
 
 An iterator adapter to filter out duplicate elements.
 
@@ -5673,7 +5673,7 @@ struct UniqueBy<I: Iterator, V, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/unique_impl.rs:12-19`](../../../.source_1765894658/itertools-0.14.0/src/unique_impl.rs#L12-L19)*
+*Defined in [`itertools-0.14.0/src/unique_impl.rs:12-19`](../../../.source_1765900590/itertools-0.14.0/src/unique_impl.rs#L12-L19)*
 
 An iterator adapter to filter out duplicate elements.
 
@@ -5783,7 +5783,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/with_position.rs:10-16`](../../../.source_1765894658/itertools-0.14.0/src/with_position.rs#L10-L16)*
+*Defined in [`itertools-0.14.0/src/with_position.rs:10-16`](../../../.source_1765900590/itertools-0.14.0/src/with_position.rs#L10-L16)*
 
 An iterator adaptor that wraps each element in an [`Position`](../with_position/index.md).
 
@@ -5891,7 +5891,7 @@ struct ZipEq<I, J> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/zip_eq_impl.rs:9-12`](../../../.source_1765894658/itertools-0.14.0/src/zip_eq_impl.rs#L9-L12)*
+*Defined in [`itertools-0.14.0/src/zip_eq_impl.rs:9-12`](../../../.source_1765900590/itertools-0.14.0/src/zip_eq_impl.rs#L9-L12)*
 
 An iterator which iterates two other iterators simultaneously
 and panic if they have different lengths.
@@ -5994,7 +5994,7 @@ struct ZipLongest<T, U> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/zip_longest.rs:18-21`](../../../.source_1765894658/itertools-0.14.0/src/zip_longest.rs#L18-L21)*
+*Defined in [`itertools-0.14.0/src/zip_longest.rs:18-21`](../../../.source_1765900590/itertools-0.14.0/src/zip_longest.rs#L18-L21)*
 
 An iterator which iterates two other iterators simultaneously
 and wraps the elements in [`EitherOrBoth`](../either_or_both/index.md).
@@ -6104,7 +6104,7 @@ struct Zip<T> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/ziptuple.rs:6-8`](../../../.source_1765894658/itertools-0.14.0/src/ziptuple.rs#L6-L8)*
+*Defined in [`itertools-0.14.0/src/ziptuple.rs:6-8`](../../../.source_1765900590/itertools-0.14.0/src/ziptuple.rs#L6-L8)*
 
 See [`multizip`](../ziptuple/index.md) for more information.
 
@@ -6207,7 +6207,7 @@ See [`multizip`](../ziptuple/index.md) for more information.
 type Coalesce<I, F> = CoalesceBy<I, F, NoCount>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:141`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L141)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:141`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L141)*
 
 An iterator adaptor that may join together adjacent elements.
 
@@ -6219,7 +6219,7 @@ See [`.coalesce()`](crate::Itertools::coalesce) for more information.
 type Dedup<I> = DedupBy<I, DedupEq>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:224`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L224)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:224`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L224)*
 
 An iterator adaptor that removes repeated duplicates.
 
@@ -6231,7 +6231,7 @@ See [`.dedup()`](crate::Itertools::dedup) for more information.
 type DedupBy<I, Pred> = CoalesceBy<I, DedupPred2CoalescePred<Pred>, NoCount>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:167`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L167)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:167`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L167)*
 
 An iterator adaptor that removes repeated duplicates, determining equality using a comparison function.
 
@@ -6243,7 +6243,7 @@ See [`.dedup_by()`](crate::Itertools::dedup_by) or [`.dedup()`](crate::Itertools
 type DedupByWithCount<I, Pred> = CoalesceBy<I, DedupPredWithCount2CoalescePred<Pred>, WithCount>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:239-240`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L239-L240)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:239-240`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L239-L240)*
 
 An iterator adaptor that removes repeated duplicates, while keeping a count of how many
 repeated elements were present. This will determine equality using a comparison function.
@@ -6257,7 +6257,7 @@ See [`.dedup_by_with_count()`](crate::Itertools::dedup_by_with_count) or
 type DedupWithCount<I> = DedupByWithCount<I, DedupEq>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:266`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L266)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:266`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L266)*
 
 An iterator adaptor that removes repeated duplicates, while keeping a count of how many
 repeated elements were present.
@@ -6270,7 +6270,7 @@ See [`.dedup_with_count()`](crate::Itertools::dedup_with_count) for more informa
 type MapInto<I, R> = MapSpecialCase<I, MapSpecialCaseFnInto<R>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:102`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L102)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:102`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L102)*
 
 An iterator adapter to apply `Into` conversion to each element.
 
@@ -6282,7 +6282,7 @@ See [`.map_into()`](crate::Itertools::map_into) for more information.
 type MapOk<I, F> = MapSpecialCase<I, MapSpecialCaseFnOk<F>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:68`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L68)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:68`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L68)*
 
 An iterator adapter to apply a transformation within a nested `Result::Ok`.
 
@@ -6294,7 +6294,7 @@ See [`.map_ok()`](crate::Itertools::map_ok) for more information.
 type ArrayCombinations<I, const K: usize> = CombinationsGeneric<I, [usize; K]>;
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations.rs:14`](../../../.source_1765894658/itertools-0.14.0/src/combinations.rs#L14)*
+*Defined in [`itertools-0.14.0/src/combinations.rs:14`](../../../.source_1765900590/itertools-0.14.0/src/combinations.rs#L14)*
 
 Iterator for const generic combinations returned by [`.array_combinations()`](crate::Itertools::array_combinations)
 
@@ -6304,7 +6304,7 @@ Iterator for const generic combinations returned by [`.array_combinations()`](cr
 type Combinations<I> = CombinationsGeneric<I, alloc::vec::Vec<usize>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations.rs:12`](../../../.source_1765894658/itertools-0.14.0/src/combinations.rs#L12)*
+*Defined in [`itertools-0.14.0/src/combinations.rs:12`](../../../.source_1765900590/itertools-0.14.0/src/combinations.rs#L12)*
 
 Iterator for `Vec` valued combinations returned by [`.combinations()`](crate::Itertools::combinations)
 
@@ -6314,7 +6314,7 @@ Iterator for `Vec` valued combinations returned by [`.combinations()`](crate::It
 type ConsTuples<I> = crate::adaptors::map::MapSpecialCase<I, ConsTuplesFn>;
 ```
 
-*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:27`](../../../.source_1765894658/itertools-0.14.0/src/cons_tuples_impl.rs#L27)*
+*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:27`](../../../.source_1765900590/itertools-0.14.0/src/cons_tuples_impl.rs#L27)*
 
 An iterator that maps an iterator of tuples like
 `((A, B), C)` to an iterator of `(A, B, C)`.
@@ -6327,7 +6327,7 @@ Used by the `iproduct!()` macro.
 type Duplicates<I> = private::DuplicatesBy<I, <I as Iterator>::Item, private::ById>;
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:207`](../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L207)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:207`](../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L207)*
 
 An iterator adapter to filter out duplicate elements.
 
@@ -6339,7 +6339,7 @@ See [`.duplicates()`](crate::Itertools::duplicates) for more information.
 type DuplicatesBy<I, V, F> = private::DuplicatesBy<I, V, private::ByFn<F>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:192`](../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L192)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:192`](../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L192)*
 
 An iterator adapter to filter for duplicate elements.
 
@@ -6351,7 +6351,7 @@ See [`.duplicates_by()`](crate::Itertools::duplicates_by) for more information.
 type GroupBy<K, I, F> = ChunkBy<K, I, F>;
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:288`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L288)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:288`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L288)*
 
 See [`ChunkBy`](crate::structs::ChunkBy).
 
@@ -6361,7 +6361,7 @@ See [`ChunkBy`](crate::structs::ChunkBy).
 type GroupingMapBy<I, F> = GroupingMap<crate::adaptors::map::MapSpecialCase<I, GroupingMapFn<F>>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/grouping_map.rs:50`](../../../.source_1765894658/itertools-0.14.0/src/grouping_map.rs#L50)*
+*Defined in [`itertools-0.14.0/src/grouping_map.rs:50`](../../../.source_1765900590/itertools-0.14.0/src/grouping_map.rs#L50)*
 
 `GroupingMapBy` is an intermediate struct for efficient group-and-fold operations.
 
@@ -6373,7 +6373,7 @@ See [`GroupingMap`](../grouping_map/index.md) for more informations.
 type Intersperse<I> = IntersperseWith<I, IntersperseElementSimple<<I as Iterator>::Item>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/intersperse.rs:25`](../../../.source_1765894658/itertools-0.14.0/src/intersperse.rs#L25)*
+*Defined in [`itertools-0.14.0/src/intersperse.rs:25`](../../../.source_1765900590/itertools-0.14.0/src/intersperse.rs#L25)*
 
 An iterator adaptor to insert a particular value
 between each element of the adapted iterator.
@@ -6390,7 +6390,7 @@ See [`.intersperse()`](crate::Itertools::intersperse) for more information.
 type KMerge<I> = KMergeBy<I, KMergeByLt>;
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:106`](../../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L106)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:106`](../../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L106)*
 
 An iterator adaptor that merges an abitrary number of base iterators in ascending order.
 If all base iterators are sorted (ascending), the result is sorted.
@@ -6405,7 +6405,7 @@ See [`.kmerge()`](crate::Itertools::kmerge) for more information.
 type Merge<I, J> = MergeBy<I, J, MergeLte>;
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:23`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L23)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:23`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L23)*
 
 An iterator adaptor that merges the two base iterators in ascending order.
 If both base iterators are sorted (ascending), the result is sorted.
@@ -6420,7 +6420,7 @@ See [`.merge()`](crate::Itertools::merge_by) for more information.
 type MergeJoinBy<I, J, F> = MergeBy<I, J, MergeFuncLR<F, <F as FuncLR>::T>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/merge_join.rs:98-99`](../../../.source_1765894658/itertools-0.14.0/src/merge_join.rs#L98-L99)*
+*Defined in [`itertools-0.14.0/src/merge_join.rs:98-99`](../../../.source_1765900590/itertools-0.14.0/src/merge_join.rs#L98-L99)*
 
 An iterator adaptor that merge-joins items from the two base iterators in ascending order.
 

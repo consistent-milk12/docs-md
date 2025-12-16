@@ -28,7 +28,7 @@ struct Input<'h> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
 
 The configuration and the haystack to use for an Aho-Corasick search.
 
@@ -127,12 +127,12 @@ assert_eq!(
   
   Note that `Input::range` overrides this method and vice versa.
   
-  # Panics
+  ##### Panics
   
   This panics if the given span does not correspond to valid bounds in
   the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   This example shows how the span of the search can impact whether a
   match is reported or not.
@@ -164,7 +164,7 @@ assert_eq!(
   
   Note that `Input::span` overrides this method and vice versa.
   
-  # Panics
+  ##### Panics
   
   This routine will panic if the given range could not be converted
   to a valid [`Range`](). For example, this would panic when given
@@ -174,7 +174,7 @@ assert_eq!(
   This routine also panics if the given range does not correspond to
   valid bounds in the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -197,7 +197,7 @@ assert_eq!(
   
   By default, the anchored mode is [`Anchored::No`](../../index.md).
   
-  # Support for anchored searches
+  ##### Support for anchored searches
   
   Anchored or unanchored searches might not always be available,
   depending on the type of searcher used and its configuration:
@@ -220,7 +220,7 @@ assert_eq!(
   an unsupported anchor mode, then an error will be returned. For calls
   to infallible search methods, a panic will result.
   
-  # Example
+  ##### Example
   
   This demonstrates the differences between an anchored search and
   an unanchored search. Notice that we build our `AhoCorasick` searcher
@@ -278,7 +278,7 @@ assert_eq!(
   
   This is disabled by default.
   
-  # Example
+  ##### Example
   
   This example shows the difference between "earliest" searching and
   normal leftmost searching.
@@ -318,12 +318,12 @@ assert_eq!(
   a [`Span`](#span) may be given directly, one may also provide a
   `std::ops::Range<usize>`.
   
-  # Panics
+  ##### Panics
   
   This panics if the given span does not correspond to valid bounds in
   the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -341,7 +341,7 @@ assert_eq!(
   This is like the `Input::range` method, except this mutates the
   span in place.
   
-  # Panics
+  ##### Panics
   
   This routine will panic if the given range could not be converted
   to a valid [`Range`](). For example, this would panic when given
@@ -351,7 +351,7 @@ assert_eq!(
   This routine also panics if the given range does not correspond to
   valid bounds in the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -369,12 +369,12 @@ assert_eq!(
   This is a convenience routine for only mutating the start of a span
   without having to set the entire span.
   
-  # Panics
+  ##### Panics
   
   This panics if the given span does not correspond to valid bounds in
   the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -392,12 +392,12 @@ assert_eq!(
   This is a convenience routine for only mutating the end of a span
   without having to set the entire span.
   
-  # Panics
+  ##### Panics
   
   This panics if the given span does not correspond to valid bounds in
   the haystack or the termination of a search.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -415,7 +415,7 @@ assert_eq!(
   This is like `Input::anchored`, except it mutates the search
   configuration in place.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::{Anchored, Input};
@@ -434,7 +434,7 @@ assert_eq!(
   This is like `Input::earliest`, except it mutates the search
   configuration in place.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -449,7 +449,7 @@ assert_eq!(
 
   Return a borrow of the underlying haystack as a slice of bytes.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -464,7 +464,7 @@ assert_eq!(
   
   This is a convenience routine for `search.get_span().start()`.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -482,7 +482,7 @@ assert_eq!(
   
   This is a convenience routine for `search.get_span().end()`.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -501,7 +501,7 @@ assert_eq!(
   If one was not explicitly set, then the span corresponds to the entire
   range of the haystack.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::{Input, Span};
@@ -517,7 +517,7 @@ assert_eq!(
   If one was not explicitly set, then the span corresponds to the entire
   range of the haystack.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -532,7 +532,7 @@ assert_eq!(
   
   If no anchored mode was set, then it defaults to [`Anchored::No`](../../index.md).
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::{Anchored, Input};
@@ -548,7 +548,7 @@ assert_eq!(
 
   Return whether this search should execute in "earliest" mode.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -565,7 +565,7 @@ assert_eq!(
   This occurs precisely when the start position of this search is greater
   than the end position of the search.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Input;
@@ -648,7 +648,7 @@ struct Span {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
 
 A representation of a range in a haystack.
 
@@ -802,7 +802,7 @@ struct Match {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
 
 A representation of a match reported by an Aho-Corasick searcher.
 
@@ -837,11 +837,11 @@ offset as less than or equal to its end offset.
   a [`Span`](#span) may be given directly, one may also provide a
   `std::ops::Range<usize>`.
   
-  # Panics
+  ##### Panics
   
   This panics if `end < start`.
   
-  # Example
+  ##### Example
   
   This shows how to create a match for the first pattern in an
   Aho-Corasick searcher using convenient range syntax.
@@ -867,11 +867,11 @@ offset as less than or equal to its end offset.
   [`PatternID`](../primitives/index.md). This panics if the given `usize` is not representable
   as a `PatternID`.
   
-  # Panics
+  ##### Panics
   
   This panics if `end < start` or if `pattern > PatternID::MAX`.
   
-  # Example
+  ##### Example
   
   This shows how to create a match for the third pattern in an
   Aho-Corasick searcher using convenient range syntax.
@@ -1019,7 +1019,7 @@ enum Anchored {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
 
 The type of anchored search to perform.
 
@@ -1047,7 +1047,7 @@ fallible or an infallible routine was called.
   Returns true if and only if this anchor mode corresponds to an anchored
   search.
   
-  # Example
+  ##### Example
   
   ```rust
   use aho_corasick::Anchored;
@@ -1137,7 +1137,7 @@ enum MatchKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
 
 A knob for controlling the match semantics of an Aho-Corasick automaton.
 
@@ -1352,7 +1352,7 @@ enum StartKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
 
 The kind of anchored starting configurations to support in an Aho-Corasick
 searcher.

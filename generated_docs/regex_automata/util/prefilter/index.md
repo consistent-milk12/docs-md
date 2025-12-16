@@ -90,7 +90,7 @@ struct Prefilter {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:142-151`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L142-L151)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:142-151`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/prefilter/mod.rs#L142-L151)*
 
 A prefilter for accelerating regex searches.
 
@@ -188,7 +188,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   to use `Prefilter::from_hir_prefix`. It will automatically handle the
   task of extracting prefix literals for you.
   
-  # Example
+  ##### Example
   
   This example shows how match semantics can impact the matching
   algorithm used by the prefilter. For this reason, it is important to
@@ -235,7 +235,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   the given match semantics, and if possible, builds a prefilter for
   them.
   
-  # Example
+  ##### Example
   
   This example shows how to build a prefilter directly from an [`Hir`](../../../regex_syntax/hir/index.md)
   expression, and use to find an occurrence of a prefix from the regex
@@ -271,7 +271,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   from. Therefore, in order to confirm a match, you'll have to check all
   of the patterns by running the full regex engine.
   
-  # Example
+  ##### Example
   
   This example shows how to build a prefilter directly from multiple
   `Hir` expressions expression, and use it to find an occurrence of a
@@ -307,7 +307,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   or equal to the one given, and an end position less than or equal to
   the one given.
   
-  # Example
+  ##### Example
   
   This example shows how to build a prefilter directly from an [`Hir`](../../../regex_syntax/hir/index.md)
   expression, and use it to find an occurrence of a prefix from the regex
@@ -339,7 +339,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   The span returned is guaranteed to have a start position equivalent to
   the one given, and an end position less than or equal to the one given.
   
-  # Example
+  ##### Example
   
   This example shows how to build a prefilter directly from an [`Hir`](../../../regex_syntax/hir/index.md)
   expression, and use it to find an occurrence of a prefix from the regex
@@ -478,7 +478,7 @@ enum Choice {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:546-554`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L546-L554)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:546-554`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/prefilter/mod.rs#L546-L554)*
 
 A type that encapsulates the selection of a prefilter algorithm from a
 sequence of needles.
@@ -597,7 +597,7 @@ features enabled.
 trait PrefilterI: Debug + Send + Sync + RefUnwindSafe + UnwindSafe + 'static { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:474-498`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L474-L498)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:474-498`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/prefilter/mod.rs#L474-L498)*
 
 A trait for abstracting over prefilters. Basically, a prefilter is
 something that do an unanchored *and* an anchored search in a haystack
@@ -609,7 +609,7 @@ and to an enum, then it's likely this trait could be removed.
 
 #### Required Methods
 
-- `fn find(&self, haystack: &[u8], span: Span) -> Option<Span>`
+- `fn PrefilterI::find(&self, haystack: &[u8], span: Span) -> Option<Span>`
 
   Run this prefilter on `haystack[span.start..end]` and return a matching
   span if one exists.
@@ -618,7 +618,7 @@ and to an enum, then it's likely this trait could be removed.
   or equal to the one given, and an end position less than or equal to
   the one given.
 
-- `fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>`
+- `fn PrefilterI::prefix(&self, haystack: &[u8], span: Span) -> Option<Span>`
 
   Returns the span of a prefix of `haystack[span.start..span.end]` if
   the prefilter matches.
@@ -626,11 +626,11 @@ and to an enum, then it's likely this trait could be removed.
   The span returned is guaranteed to have a start position equivalent to
   the one given, and an end position less than or equal to the one given.
 
-- `fn memory_usage(&self) -> usize`
+- `fn PrefilterI::memory_usage(&self) -> usize`
 
   Returns the heap memory, in bytes, used by the underlying prefilter.
 
-- `fn is_fast(&self) -> bool`
+- `fn PrefilterI::is_fast(&self) -> bool`
 
   Implementations might return true here if they believe themselves to
   be "fast." See `Prefilter::is_fast` for more details.
@@ -656,7 +656,7 @@ where
     H: core::borrow::Borrow<regex_syntax::hir::Hir>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:649-682`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L649-L682)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:649-682`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/prefilter/mod.rs#L649-L682)*
 
 Extracts all of the prefix literals from the given HIR expressions into a
 single `Seq`. The literals in the sequence are ordered with respect to the
@@ -683,7 +683,7 @@ where
     H: core::borrow::Borrow<regex_syntax::hir::Hir>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:686-719`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L686-L719)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:686-719`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/prefilter/mod.rs#L686-L719)*
 
 Like `prefixes`, but for all suffixes of all matches for the given HIRs.
 

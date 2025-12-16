@@ -309,7 +309,7 @@ generator.write(Path::new("generated_docs/"))?;
 
   Create a new search index generator.
   
-  # Arguments
+  ##### Arguments
   
   * `crates` - Collection of parsed crates to index
   * `include_private` - Whether to include non-public items
@@ -335,11 +335,11 @@ generator.write(Path::new("generated_docs/"))?;
 
   Write the search index to `search_index.json` in the output directory.
   
-  # Arguments
+  ##### Arguments
   
   * `output_dir` - Directory where `search_index.json` will be written
   
-  # Errors
+  ##### Errors
   
   Returns an error if the file cannot be written.
 

@@ -29,7 +29,7 @@ struct Entry {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:16-20`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L16-L20)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:16-20`](../../../../.source_1765900590/crossbeam-epoch-0.9.18/src/sync/list.rs#L16-L20)*
 
 An entry in a linked list.
 
@@ -49,7 +49,7 @@ cache-line than thread-local data in terms of performance.
 
   Marks this entry as deleted, deferring the actual deallocation to a later iteration.
   
-  # Safety
+  ##### Safety
   
   The entry should be a member of a linked list, and it should not have been deleted.
   It should be safe to call `C::finalize` on the entry after the `guard` is dropped, where `C`
@@ -129,7 +129,7 @@ struct List<T, C: IsElement<T>> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:96-102`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L96-L102)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:96-102`](../../../../.source_1765900590/crossbeam-epoch-0.9.18/src/sync/list.rs#L96-L102)*
 
 A lock-free, intrusive linked list of type `T`.
 
@@ -153,7 +153,7 @@ A lock-free, intrusive linked list of type `T`.
 
   Inserts `entry` into the head of the list.
   
-  # Safety
+  ##### Safety
   
   You should guarantee that:
   
@@ -166,7 +166,7 @@ A lock-free, intrusive linked list of type `T`.
 
   Returns an iterator over all objects.
   
-  # Caveat
+  ##### Caveat
   
   Every object that is inserted at the moment this function is called and persists at least
   until the end of iteration will be returned. Since this iterator traverses a lock-free
@@ -252,7 +252,7 @@ struct Iter<'g, T, C: IsElement<T>> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:105-121`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L105-L121)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:105-121`](../../../../.source_1765900590/crossbeam-epoch-0.9.18/src/sync/list.rs#L105-L121)*
 
 An iterator used for retrieving values from the list.
 
@@ -358,7 +358,7 @@ enum IterError {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:125-129`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L125-L129)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:125-129`](../../../../.source_1765900590/crossbeam-epoch-0.9.18/src/sync/list.rs#L125-L129)*
 
 An error that occurs during iteration over the list.
 
@@ -442,7 +442,7 @@ An error that occurs during iteration over the list.
 trait IsElement<T> { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:67-92`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L67-L92)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:67-92`](../../../../.source_1765900590/crossbeam-epoch-0.9.18/src/sync/list.rs#L67-L92)*
 
 Implementing this trait asserts that the type `T` can be used as an element in the intrusive
 linked list defined in this module. `T` has to contain (or otherwise be linked to) an instance
@@ -492,11 +492,11 @@ struct B {
 
 #### Required Methods
 
-- `fn entry_of(_: &T) -> &Entry`
+- `fn IsElement::entry_of(_: &T) -> &Entry`
 
   Returns a reference to this element's `Entry`.
 
-- `fn element_of(_: &Entry) -> &T`
+- `fn IsElement::element_of(_: &Entry) -> &T`
 
   Given a reference to an element's entry, returns that element.
   
@@ -506,16 +506,16 @@ struct B {
              unsafe { ListElement::element_of(elem.entry_of()) } );
   ```
   
-  # Safety
+  ##### Safety
   
   The caller has to guarantee that the `Entry` is called with was retrieved from an instance
   of the element type (`T`).
 
-- `fn finalize(_: &Entry, _: &Guard)`
+- `fn IsElement::finalize(_: &Entry, _: &Guard)`
 
   The function that is called when an entry is unlinked from list.
   
-  # Safety
+  ##### Safety
   
   The caller has to guarantee that the `Entry` is called with was retrieved from an instance
   of the element type (`T`).

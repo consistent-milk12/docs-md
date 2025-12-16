@@ -187,7 +187,7 @@ enum Prefix {
 }
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/lib.rs:171-235`](../../.source_1765894658/unit-prefix-0.5.2/src/lib.rs#L171-L235)*
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:171-235`](../../.source_1765900590/unit-prefix-0.5.2/src/lib.rs#L171-L235)*
 
 A numeric prefix, either binary or decimal.
 
@@ -279,7 +279,7 @@ A numeric prefix, either binary or decimal.
 
   Returns the name in uppercase, such as “KILO”.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use unit_prefix::Prefix;
@@ -292,7 +292,7 @@ A numeric prefix, either binary or decimal.
 
   Returns the name with the first letter capitalised, such as “Mega”.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use unit_prefix::Prefix;
@@ -305,7 +305,7 @@ A numeric prefix, either binary or decimal.
 
   Returns the name in lowercase, such as “giga”.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use unit_prefix::Prefix;
@@ -318,7 +318,7 @@ A numeric prefix, either binary or decimal.
 
   Returns the short-hand symbol, such as “T” (for “tera”).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use unit_prefix::Prefix;
@@ -415,7 +415,7 @@ enum NumberPrefix<F> {
 }
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/lib.rs:240-249`](../../.source_1765894658/unit-prefix-0.5.2/src/lib.rs#L240-L249)*
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:240-249`](../../.source_1765900590/unit-prefix-0.5.2/src/lib.rs#L240-L249)*
 
 The result of trying to apply a prefix to a floating-point value.
 
@@ -441,7 +441,7 @@ The result of trying to apply a prefix to a floating-point value.
   This function accepts both `f32` and `f64` values. If you’re trying to
   format an integer, you’ll have to cast it first.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use unit_prefix::{NumberPrefix, Prefix};
@@ -459,7 +459,7 @@ The result of trying to apply a prefix to a floating-point value.
   This function accepts both `f32` and `f64` values. If you’re trying to
   format an integer, you’ll have to cast it first.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use unit_prefix::{NumberPrefix, Prefix};
@@ -555,7 +555,7 @@ The result of trying to apply a prefix to a floating-point value.
 trait Amounts: Copy + Sized + PartialOrd + Div<Output = Self> + Neg<Output = Self> { ... }
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/lib.rs:467-477`](../../.source_1765894658/unit-prefix-0.5.2/src/lib.rs#L467-L477)*
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:467-477`](../../.source_1765900590/unit-prefix-0.5.2/src/lib.rs#L467-L477)*
 
 Traits for floating-point values for both the possible multipliers. They
 need to be Copy, have defined 1000 and 1024s, and implement a bunch of
@@ -569,7 +569,7 @@ operators.
 
 #### Required Methods
 
-- `fn is_negative(self) -> bool`
+- `fn Amounts::is_negative(self) -> bool`
 
   Whether this number is negative.
   This is used internally.

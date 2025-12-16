@@ -22,7 +22,7 @@ struct SliceVec<'s, T> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/slicevec.rs:16-19`](../../../.source_1765894658/tinyvec-1.10.0/src/slicevec.rs#L16-L19)*
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:16-19`](../../../.source_1765900590/tinyvec-1.10.0/src/slicevec.rs#L16-L19)*
 
 A slice-backed vector-like data structure.
 
@@ -43,7 +43,7 @@ working with to make it easier to manipulate.
 
   A `*mut` pointer to the backing slice.
   
-  ## Safety
+  ###### Safety
   
   This pointer has provenance over the _entire_ backing slice.
 
@@ -55,7 +55,7 @@ working with to make it easier to manipulate.
 
   A `*const` pointer to the backing slice.
   
-  ## Safety
+  ###### Safety
   
   This pointer has provenance over the _entire_ backing slice.
 
@@ -78,11 +78,11 @@ working with to make it easier to manipulate.
   Creates a draining iterator that removes the specified range in the vector
   and yields the removed items.
   
-  ## Panics
+  ###### Panics
   * If the start is greater than the end
   * If the end is past the edge of the vec.
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut arr = [6, 7, 8];
@@ -112,10 +112,10 @@ working with to make it easier to manipulate.
   remaining elements in the iterator and the iterator itself. The
   interface also provides no way to communicate this to the caller.
   
-  ## Panics
+  ###### Panics
   * If the `next` method of the provided iterator panics.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -132,7 +132,7 @@ working with to make it easier to manipulate.
   
   If you want to simply use the full slice, use `from` instead.
   
-  ## Panics
+  ###### Panics
   
   * The length specified must be less than or equal to the capacity of the
     slice.
@@ -142,11 +142,11 @@ working with to make it easier to manipulate.
   Inserts an item at the position given, moving all following elements +1
   index.
   
-  ## Panics
+  ###### Panics
   * If `index` > `len`
   * If the capacity is exhausted
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut arr = [1, 2, 3, 0, 0];
@@ -169,10 +169,10 @@ working with to make it easier to manipulate.
 
   Remove and return the last element of the vec, if there is one.
   
-  ## Failure
+  ###### Failure
   * If the vec is empty you get `None`.
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut arr = [1, 2];
@@ -186,10 +186,10 @@ working with to make it easier to manipulate.
 
   Place an element onto the end of the vec.
   
-  ## Panics
+  ###### Panics
   * If the length of the vec would overflow the capacity.
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut arr = [0, 0];
@@ -208,11 +208,11 @@ working with to make it easier to manipulate.
   
   Returns the removed element.
   
-  ## Panics
+  ###### Panics
   
   * If the index is out of bounds.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -227,7 +227,7 @@ working with to make it easier to manipulate.
   As [`resize_with`](SliceVec::resize_with)
   and it clones the value as the closure.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -254,7 +254,7 @@ working with to make it easier to manipulate.
     * If the type needs to drop the truncated slots are filled with calls to
       the provided function.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -277,7 +277,7 @@ working with to make it easier to manipulate.
 
   Walk the vec and keep only the elements that pass the predicate given.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -292,10 +292,10 @@ working with to make it easier to manipulate.
 
   Forces the length of the vector to `new_len`.
   
-  ## Panics
+  ###### Panics
   * If `new_len` is greater than the vec's capacity.
   
-  ## Safety
+  ###### Safety
   * This is a fully safe operation! The inactive memory already counts as
     "initialized" by Rust's rules.
   * Other than "the memory is initialized" there are no other guarantees
@@ -308,10 +308,10 @@ working with to make it easier to manipulate.
   * `[0, at)` stays in this vec (and this vec is now full).
   * `[at, len)` ends up in the new vec (with any spare capacity).
   
-  ## Panics
+  ###### Panics
   * if `at` > `self.len()`
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -326,10 +326,10 @@ working with to make it easier to manipulate.
 
   Remove an element, swapping the end of the vec into its place.
   
-  ## Panics
+  ###### Panics
   * If the index is out of bounds.
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut arr = ["foo", "bar", "quack", "zap"];
@@ -355,7 +355,7 @@ working with to make it easier to manipulate.
   If you want to use the whole length of the slice, you can just use the
   `From` impl.
   
-  ## Failure
+  ###### Failure
   
   If the given length is greater than the length of the slice you get
   `None`.
@@ -518,7 +518,7 @@ struct SliceVecDrain<'p, 's, T: Default> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/slicevec.rs:714-719`](../../../.source_1765894658/tinyvec-1.10.0/src/slicevec.rs#L714-L719)*
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:714-719`](../../../.source_1765900590/tinyvec-1.10.0/src/slicevec.rs#L714-L719)*
 
 Draining iterator for [`SliceVec`](../index.md)
 

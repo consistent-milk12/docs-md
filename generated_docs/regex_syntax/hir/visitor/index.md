@@ -23,7 +23,7 @@ struct HeapVisitor<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:71-75`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L71-L75)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:71-75`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/visitor.rs#L71-L75)*
 
 HeapVisitor visits every item in an `Hir` recursively using constant stack
 size and a heap size proportional to the size of the `Hir`.
@@ -111,7 +111,7 @@ enum Frame<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:79-102`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L79-L102)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:79-102`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/visitor.rs#L79-L102)*
 
 Represents a single stack frame while performing structural induction over
 an `Hir`.
@@ -194,7 +194,7 @@ an `Hir`.
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
 
 A trait for visiting the high-level IR (HIR) in depth first order.
 
@@ -215,32 +215,32 @@ running it using the [`visit`](#visit) function.
 
 #### Required Methods
 
-- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
+- `fn Visitor::finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
   yields the result of visiting the HIR or an error.
 
 #### Provided Methods
 
-- `fn start(&mut self)`
+- `fn Visitor::start(&mut self)`
 
   This method is called before beginning traversal of the HIR.
 
-- `fn visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` before descending into child `Hir`
   nodes.
 
-- `fn visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` after descending all of its child
   `Hir` nodes.
 
-- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of an alternation.
 
-- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of a concatenation.
 
@@ -256,7 +256,7 @@ running it using the [`visit`](#visit) function.
 fn visit<V: Visitor>(hir: &crate::hir::Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
 
 Executes an implementation of `Visitor` in constant stack space.
 

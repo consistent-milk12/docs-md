@@ -54,7 +54,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
 
 A table of symbol entries in an ELF file.
 
@@ -211,7 +211,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
 
 A symbol table in an [`ElfFile`](super::ElfFile).
 
@@ -303,7 +303,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
 
 An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
@@ -384,7 +384,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
 
 A symbol in an [`ElfFile`](super::ElfFile).
 
@@ -509,9 +509,34 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 trait Sym: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
 
 A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::Sym64`](../../../elf/index.md).
+
+<details>
+<summary><strong>Methods (16)</strong> - click to expand</summary>
+
+**Required:**
+- [`Sym::st_name`](#fn-symst-name)
+- [`Sym::st_info`](#fn-symst-info)
+- [`Sym::st_bind`](#fn-symst-bind)
+- [`Sym::st_type`](#fn-symst-type)
+- [`Sym::st_other`](#fn-symst-other)
+- [`Sym::st_visibility`](#fn-symst-visibility)
+- [`Sym::st_shndx`](#fn-symst-shndx)
+- [`Sym::st_value`](#fn-symst-value)
+- [`Sym::st_size`](#fn-symst-size)
+
+**Provided:**
+- [`Sym::name`](#fn-symname)
+- [`Sym::is_undefined`](#fn-symis-undefined)
+- [`Sym::is_definition`](#fn-symis-definition)
+- [`Sym::is_common`](#fn-symis-common)
+- [`Sym::is_absolute`](#fn-symis-absolute)
+- [`Sym::is_local`](#fn-symis-local)
+- [`Sym::is_weak`](#fn-symis-weak)
+
+</details>
 
 #### Associated Types
 
@@ -521,51 +546,51 @@ A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::S
 
 #### Required Methods
 
-- `fn st_name(&self, endian: <Self as >::Endian) -> u32`
+- `fn Sym::st_name(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn st_info(&self) -> u8`
+- `fn Sym::st_info(&self) -> u8`
 
-- `fn st_bind(&self) -> u8`
+- `fn Sym::st_bind(&self) -> u8`
 
-- `fn st_type(&self) -> u8`
+- `fn Sym::st_type(&self) -> u8`
 
-- `fn st_other(&self) -> u8`
+- `fn Sym::st_other(&self) -> u8`
 
-- `fn st_visibility(&self) -> u8`
+- `fn Sym::st_visibility(&self) -> u8`
 
-- `fn st_shndx(&self, endian: <Self as >::Endian) -> u16`
+- `fn Sym::st_shndx(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Sym::st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Sym::st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 #### Provided Methods
 
-- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
+- `fn Sym::name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
   Parse the symbol name from the string table.
 
-- `fn is_undefined(&self, endian: <Self as >::Endian) -> bool`
+- `fn Sym::is_undefined(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_UNDEF`.
 
-- `fn is_definition(&self, endian: <Self as >::Endian) -> bool`
+- `fn Sym::is_definition(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol is a definition of a function or data object.
 
-- `fn is_common(&self, endian: <Self as >::Endian) -> bool`
+- `fn Sym::is_common(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_COMMON`.
 
-- `fn is_absolute(&self, endian: <Self as >::Endian) -> bool`
+- `fn Sym::is_absolute(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_ABS`.
 
-- `fn is_local(&self) -> bool`
+- `fn Sym::is_local(&self) -> bool`
 
   Return true if the symbol binding is `STB_LOCAL`.
 
-- `fn is_weak(&self) -> bool`
+- `fn Sym::is_weak(&self) -> bool`
 
   Return true if the symbol binding is `STB_WEAK`.
 
@@ -582,7 +607,7 @@ A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::S
 type ElfSymbolTable32<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -592,7 +617,7 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolTable64<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -602,7 +627,7 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator32<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
 
 An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 
@@ -612,7 +637,7 @@ An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator64<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
 
 An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 
@@ -622,7 +647,7 @@ An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbol32<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
 
 A symbol in an [`ElfFile32`](super::ElfFile32).
 
@@ -632,7 +657,7 @@ A symbol in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbol64<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
 
 A symbol in an [`ElfFile64`](super::ElfFile64).
 

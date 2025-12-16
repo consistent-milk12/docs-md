@@ -80,7 +80,7 @@ generation across crates.
   
   Builds the unified link registry and pre-computes cross-crate impls.
   
-  # Arguments
+  ##### Arguments
   
   * `crates` - Collection of parsed crates
   * `args` - CLI arguments
@@ -135,7 +135,7 @@ generation across crates.
   the given ID. This is useful for resolving re-exports that point to
   items in external crates.
   
-  # Returns
+  ##### Returns
   
   A tuple of `(crate_name, item)` if found, or `None` if the item
   doesn't exist in any crate.
@@ -147,7 +147,7 @@ generation across crates.
   Returns a map from type name to impl blocks from other crates.
   This data is pre-computed during context construction for efficiency.
   
-  # Returns
+  ##### Returns
   
   Reference to the type-name -> impl-blocks map, or `None` if the
   crate is not in the collection.
@@ -336,12 +336,12 @@ allows existing rendering code to work with minimal changes.
   This is used for cross-crate re-exports where we need to look up
   impl blocks from the source crate rather than the current crate.
   
-  # Arguments
+  ##### Arguments
   
   * `id` - The ID of the type to get impls for
   * `source_krate` - The crate to look up impls from
   
-  # Returns
+  ##### Returns
   
   A vector of impl blocks found in the source crate for the given type ID.
 
@@ -373,7 +373,7 @@ allows existing rendering code to work with minimal changes.
   external crates. First checks the local crate, then searches
   all other crates in the collection.
   
-  # Returns
+  ##### Returns
   
   A tuple of `(crate_name, item)` if found, or `None` if the item
   doesn't exist in any crate.
@@ -385,7 +385,7 @@ allows existing rendering code to work with minimal changes.
   This is useful for getting the source crate context when rendering
   re-exported items from other crates.
   
-  # Returns
+  ##### Returns
   
   The crate if found, or `None` if no crate with that name exists.
 
@@ -396,7 +396,7 @@ allows existing rendering code to work with minimal changes.
   This is used for external re-exports where `use_item.id` is `None`
   but the source path is available.
   
-  # Returns
+  ##### Returns
   
   A tuple of `(source_crate, item, item_id)` if found.
 
@@ -430,16 +430,16 @@ allows existing rendering code to work with minimal changes.
   This function attempts to convert rustdoc link syntax into valid markdown
   links that work in the generated documentation.
   
-  # Arguments
+  ##### Arguments
   * `link_text` - The raw link target from rustdoc (e.g., "`crate::config::ConfigBuilder::method`")
   * `item_links` - Map of link texts to Item IDs from rustdoc's `links` field
   * `current_file` - The markdown file being generated (e.g., "ureq/index.md")
   
-  # Returns
+  ##### Returns
   * `Some(markdown_link)` - A formatted markdown link like `[`text`](path.md#anchor)`
   * `None` - If the link cannot be resolved (will be rendered as inline code)
   
-  # Examples
+  ##### Examples
   
   ```text
   Input:  link_text = "crate::config::ConfigBuilder::http_status_as_error"
@@ -462,13 +462,13 @@ allows existing rendering code to work with minimal changes.
   This is the simplest path when we already have a resolved Item ID from
   rustdoc's links map. We just need to look up the file path in our registry.
   
-  # Arguments
+  ##### Arguments
   * `id` - The rustdoc Item ID to link to
   * `current_file` - Source file for relative path computation
   * `display_name` - Text to show in the link
   * `anchor` - Optional anchor (e.g., method name)
   
-  # Example Transformation
+  ##### Example Transformation
   
   ```text
   Input:
@@ -497,12 +497,12 @@ allows existing rendering code to work with minimal changes.
   - `crate::module::Type::method` (link to Type with #method anchor)
   - `crate::module::Type::Variant` (link to Type with #Variant anchor)
   
-  # Arguments
+  ##### Arguments
   * `path_without_crate` - The path after stripping "`crate::`" prefix
   * `display_name` - Full original text for display (includes "`crate::`")
   * `current_file` - Source file for relative path computation
   
-  # Example Transformation
+  ##### Example Transformation
   
   ```text
   Input:
@@ -537,7 +537,7 @@ allows existing rendering code to work with minimal changes.
   
   Detects methods (lowercase) and enum variants (`Type::Variant` pattern).
   
-  # Detection Rules
+  ##### Detection Rules
   
   1. **Methods/fields**: Last segment starts with lowercase
      - `Type::method` → (Type, method)
@@ -550,7 +550,7 @@ allows existing rendering code to work with minimal changes.
   3. **Nested types**: Uppercase but no uppercase predecessor
      - `mod::OuterType::InnerType` → (`mod::OuterType::InnerType`, None)
   
-  # Examples
+  ##### Examples
   
   ```text
   "ConfigBuilder::http_status_as_error"
@@ -585,16 +585,16 @@ allows existing rendering code to work with minimal changes.
   This is the core function that computes relative paths between markdown
   files and formats the final link.
   
-  # Arguments
+  ##### Arguments
   * `current_file` - The file we're generating (e.g., "ureq/agent/index.md")
   * `target_crate` - The crate containing the target item
   * `target_path` - Path to target within its crate (e.g., "config/index.md")
   * `display_name` - Text to show in the link
   * `anchor` - Optional anchor suffix (e.g., "`method_name`")
   
-  # Path Computation Examples
+  ##### Path Computation Examples
   
-  ## Same Crate Examples
+  ###### Same Crate Examples
   
   ```text
   Example 1: Link from index to nested module
@@ -663,12 +663,12 @@ allows existing rendering code to work with minimal changes.
   Given the local portion of the current file path (without crate prefix),
   computes the `../` prefix needed to navigate to another crate's file.
   
-  # Arguments
+  ##### Arguments
   * `current_local` - Current file path within crate (e.g., "agent/index.md")
   * `target_crate` - Name of the target crate
   * `target_path` - Path within target crate (e.g., "status/index.md")
   
-  # Examples
+  ##### Examples
   
   ```text
   // From root of one crate to another
@@ -691,7 +691,7 @@ allows existing rendering code to work with minimal changes.
   File paths in our system includes the crate name as the first directory.
   This helper removes it to get the crate-local path.
   
-  # Examples
+  ##### Examples
   
   ```text
   "ureq/config/index.md" -> "config/index.md"
@@ -706,6 +706,21 @@ allows existing rendering code to work with minimal changes.
   
   Simple names like "Wide", "Error", "Default" are often meant to be
   local anchors or type aliases, not cross-crate links.
+
+- <span id="singlecrateview-is-std-crate"></span>`fn is_std_crate(crate_name: &str) -> bool`
+
+  Check if a crate name is a Rust standard library crate.
+  
+  These crates are not part of our documentation set and should not
+  be linked to other crates that happen to have similarly named items.
+  Items from these crates should render as inline code without links.
+
+- <span id="singlecrateview-crate-in-docs"></span>`fn crate_in_docs(&self, crate_name: &str) -> bool`
+
+  Check if a crate is in our documentation set.
+  
+  Returns `true` if we have generated docs for this crate, `false` otherwise.
+  Used to prevent linking to random crates that happen to share item names.
 
 #### Trait Implementations
 

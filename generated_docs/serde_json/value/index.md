@@ -150,7 +150,7 @@ untyped_example().unwrap();
 struct Serializer;
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:58`](../../../.source_1765894658/serde_json-1.0.145/src/value/ser.rs#L58)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:58`](../../../.source_1765900590/serde_json-1.0.145/src/value/ser.rs#L58)*
 
 Serializer whose output is a `Value`.
 
@@ -304,7 +304,7 @@ struct Map<K, V> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L29-L31)*
+*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L29-L31)*
 
 Represents a JSON key/value type.
 
@@ -652,7 +652,7 @@ struct Number {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../../.source_1765894658/serde_json-1.0.145/src/number.rs#L22-L24)*
+*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../../.source_1765900590/serde_json-1.0.145/src/number.rs#L22-L24)*
 
 Represents a JSON number, whether integer or floating point.
 
@@ -926,7 +926,7 @@ enum Value {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:116-176`](../../../.source_1765894658/serde_json-1.0.145/src/value/mod.rs#L116-L176)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:116-176`](../../../.source_1765900590/serde_json-1.0.145/src/value/mod.rs#L116-L176)*
 
 Represents any valid JSON value.
 
@@ -1151,7 +1151,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
   Create a `Value::Array` by collecting an iterator of array elements.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::Value;
@@ -1201,7 +1201,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
   For retrieving deeply nested values, you should have a look at the
   `Value::pointer` method.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -1235,7 +1235,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
   object, it will be inserted with a value of null. Indexing into a value
   that is neither an object nor null will panic.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -1314,7 +1314,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 trait Index: private::Sealed { ... }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/index.rs:37-52`](../../../.source_1765894658/serde_json-1.0.145/src/value/index.rs#L37-L52)*
+*Defined in [`serde_json-1.0.145/src/value/index.rs:37-52`](../../../.source_1765900590/serde_json-1.0.145/src/value/index.rs#L37-L52)*
 
 A type that can be used to index into a `serde_json::Value`.
 
@@ -1359,7 +1359,7 @@ assert_eq!(first, 1);
 fn parse_index(s: &str) -> Option<usize>
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:259-264`](../../../.source_1765894658/serde_json-1.0.145/src/value/mod.rs#L259-L264)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:259-264`](../../../.source_1765900590/serde_json-1.0.145/src/value/mod.rs#L259-L264)*
 
 ### `to_value`
 
@@ -1369,7 +1369,7 @@ where
     T: Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:995-1000`](../../../.source_1765894658/serde_json-1.0.145/src/value/mod.rs#L995-L1000)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:995-1000`](../../../.source_1765900590/serde_json-1.0.145/src/value/mod.rs#L995-L1000)*
 
 Convert a `T` into `serde_json::Value` which is an enum that can represent
 any valid JSON data.
@@ -1433,7 +1433,7 @@ where
     T: DeserializeOwned
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:1037-1042`](../../../.source_1765894658/serde_json-1.0.145/src/value/mod.rs#L1037-L1042)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:1037-1042`](../../../.source_1765900590/serde_json-1.0.145/src/value/mod.rs#L1037-L1042)*
 
 Interpret a `serde_json::Value` as an instance of type `T`.
 

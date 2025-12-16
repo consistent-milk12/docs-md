@@ -48,7 +48,7 @@ struct Identifier {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:84-87`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L84-L87)*
+*Defined in [`semver-1.0.27/src/identifier.rs:84-87`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L84-L87)*
 
 #### Implementations
 
@@ -153,7 +153,7 @@ struct Identifier {
 fn ptr_to_repr(original: *mut u8) -> core::ptr::NonNull<u8>
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:281-293`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L281-L293)*
+*Defined in [`semver-1.0.27/src/identifier.rs:281-293`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L281-L293)*
 
 ### `repr_to_ptr`
 
@@ -161,7 +161,7 @@ fn ptr_to_repr(original: *mut u8) -> core::ptr::NonNull<u8>
 fn repr_to_ptr(modified: core::ptr::NonNull<u8>) -> *const u8
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:298-306`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L298-L306)*
+*Defined in [`semver-1.0.27/src/identifier.rs:298-306`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L298-L306)*
 
 ### `repr_to_ptr_mut`
 
@@ -169,7 +169,7 @@ fn repr_to_ptr(modified: core::ptr::NonNull<u8>) -> *const u8
 fn repr_to_ptr_mut(repr: core::ptr::NonNull<u8>) -> *mut u8
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:308-310`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L308-L310)*
+*Defined in [`semver-1.0.27/src/identifier.rs:308-310`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L308-L310)*
 
 ### `inline_len`
 
@@ -177,7 +177,7 @@ fn repr_to_ptr_mut(repr: core::ptr::NonNull<u8>) -> *mut u8
 unsafe fn inline_len(repr: &Identifier) -> core::num::NonZeroUsize
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:317-333`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L317-L333)*
+*Defined in [`semver-1.0.27/src/identifier.rs:317-333`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L317-L333)*
 
 ### `inline_as_str`
 
@@ -185,7 +185,7 @@ unsafe fn inline_len(repr: &Identifier) -> core::num::NonZeroUsize
 unsafe fn inline_as_str(repr: &Identifier) -> &str
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:337-347`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L337-L347)*
+*Defined in [`semver-1.0.27/src/identifier.rs:337-347`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L337-L347)*
 
 ### `decode_len`
 
@@ -193,7 +193,7 @@ unsafe fn inline_as_str(repr: &Identifier) -> &str
 unsafe fn decode_len(ptr: *const u8) -> core::num::NonZeroUsize
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:356-393`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L356-L393)*
+*Defined in [`semver-1.0.27/src/identifier.rs:356-393`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L356-L393)*
 
 ### `ptr_as_str`
 
@@ -201,7 +201,7 @@ unsafe fn decode_len(ptr: *const u8) -> core::num::NonZeroUsize
 unsafe fn ptr_as_str(repr: &core::ptr::NonNull<u8>) -> &str
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:397-405`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L397-L405)*
+*Defined in [`semver-1.0.27/src/identifier.rs:397-405`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L397-L405)*
 
 ### `bytes_for_varint`
 
@@ -209,7 +209,7 @@ unsafe fn ptr_as_str(repr: &core::ptr::NonNull<u8>) -> &str
 fn bytes_for_varint(len: core::num::NonZeroUsize) -> usize
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:408-412`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L408-L412)*
+*Defined in [`semver-1.0.27/src/identifier.rs:408-412`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L408-L412)*
 
 ## Constants
 
@@ -218,12 +218,12 @@ fn bytes_for_varint(len: core::num::NonZeroUsize) -> usize
 const PTR_BYTES: usize = 8usize;
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:76`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L76)*
+*Defined in [`semver-1.0.27/src/identifier.rs:76`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L76)*
 
 ### `TAIL_BYTES`
 ```rust
 const TAIL_BYTES: usize = 0usize;
 ```
 
-*Defined in [`semver-1.0.27/src/identifier.rs:81`](../../../.source_1765894658/semver-1.0.27/src/identifier.rs#L81)*
+*Defined in [`semver-1.0.27/src/identifier.rs:81`](../../../.source_1765900590/semver-1.0.27/src/identifier.rs#L81)*
 

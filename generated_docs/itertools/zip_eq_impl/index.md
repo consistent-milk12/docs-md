@@ -22,7 +22,7 @@ struct ZipEq<I, J> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/zip_eq_impl.rs:9-12`](../../../.source_1765894658/itertools-0.14.0/src/zip_eq_impl.rs#L9-L12)*
+*Defined in [`itertools-0.14.0/src/zip_eq_impl.rs:9-12`](../../../.source_1765900590/itertools-0.14.0/src/zip_eq_impl.rs#L9-L12)*
 
 An iterator which iterates two other iterators simultaneously
 and panic if they have different lengths.
@@ -127,7 +127,7 @@ where
     J: IntoIterator
 ```
 
-*Defined in [`itertools-0.14.0/src/zip_eq_impl.rs:27-36`](../../../.source_1765894658/itertools-0.14.0/src/zip_eq_impl.rs#L27-L36)*
+*Defined in [`itertools-0.14.0/src/zip_eq_impl.rs:27-36`](../../../.source_1765900590/itertools-0.14.0/src/zip_eq_impl.rs#L27-L36)*
 
 Zips two iterators but **panics** if they are not of the same length.
 

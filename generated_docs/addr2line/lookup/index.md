@@ -28,7 +28,7 @@ struct SplitDwarfLoad<R> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:7-19`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L7-L19)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:7-19`](../../../.source_1765900590/addr2line-0.25.1/src/lookup.rs#L7-L19)*
 
 This struct contains the information needed to find split DWARF data
 and to produce a `gimli::Dwarf<R>` for it.
@@ -107,7 +107,7 @@ where
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:118-125`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L118-L125)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:118-125`](../../../.source_1765900590/addr2line-0.25.1/src/lookup.rs#L118-L125)*
 
 #### Implementations
 
@@ -176,7 +176,7 @@ where
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:163-170`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L163-L170)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:163-170`](../../../.source_1765900590/addr2line-0.25.1/src/lookup.rs#L163-L170)*
 
 #### Trait Implementations
 
@@ -239,7 +239,7 @@ where
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:206-213`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L206-L213)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:206-213`](../../../.source_1765900590/addr2line-0.25.1/src/lookup.rs#L206-L213)*
 
 Some functions (e.g. `find_frames`) require considering multiple
 compilation units, each of which might require their own split DWARF
@@ -323,7 +323,7 @@ enum LookupResult<L: LookupContinuation> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:45-55`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L45-L55)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:45-55`](../../../.source_1765900590/addr2line-0.25.1/src/lookup.rs#L45-L55)*
 
 Operations that consult debug information may require additional files
 to be loaded if split DWARF is being used. This enum returns the result
@@ -423,7 +423,7 @@ This enum is intended to be used in a loop like so:
 trait LookupContinuation: Sized { ... }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:60-77`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L60-L77)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:60-77`](../../../.source_1765900590/addr2line-0.25.1/src/lookup.rs#L60-L77)*
 
 This trait represents a partially complete operation that can be resumed
 once a load of needed split DWARF data is completed or abandoned by the
@@ -437,7 +437,7 @@ API consumer.
 
 #### Required Methods
 
-- `fn resume(self, input: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>`
+- `fn LookupContinuation::resume(self, input: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>`
 
   Resumes the operation with the provided data.
   

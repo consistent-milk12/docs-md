@@ -24,7 +24,7 @@ where
     <I as >::Item: Clone;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:18-21`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/multi_product.rs#L18-L21)*
+*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:18-21`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/multi_product.rs#L18-L21)*
 
 An iterator adaptor that iterates over the cartesian product of
 multiple iterators of type `I`.
@@ -133,7 +133,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:25-34`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/multi_product.rs#L25-L34)*
+*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:25-34`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/multi_product.rs#L25-L34)*
 
 Internals for `MultiProduct`.
 
@@ -222,7 +222,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:74-81`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/multi_product.rs#L74-L81)*
+*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:74-81`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/multi_product.rs#L74-L81)*
 
 Holds the state of a single iterator within a `MultiProduct`.
 
@@ -306,7 +306,7 @@ where
     <<H as >::Item as IntoIterator>::Item: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:56-70`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/multi_product.rs#L56-L70)*
+*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:56-70`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/multi_product.rs#L56-L70)*
 
 Create a new cartesian product iterator over an arbitrary number
 of iterators of the same type.

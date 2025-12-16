@@ -65,7 +65,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
   Create a new item renderer with the given context.
   
-  # Arguments
+  ##### Arguments
   
   * `ctx` - Render context (implements `RenderContext` trait)
   * `current_file` - Path of the current file (for relative link calculation)
@@ -103,14 +103,14 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   - Fields section (for structs with documented fields)
   - Implementations section (inherent and trait impls)
   
-  # Struct Kinds
+  ##### Struct Kinds
   
   Rust has three kinds of structs, each rendered differently:
   - **Unit**: `struct Foo;`
   - **Tuple**: `struct Foo(T, U);`
   - **Plain** (named fields): `struct Foo { field: T }`
   
-  # Re-exports
+  ##### Re-exports
   
   Also handles `pub use` re-exports where the item is a Use pointing to a struct.
 
@@ -125,14 +125,14 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   - Variants section (for variants with documentation)
   - Implementations section (inherent and trait impls)
   
-  # Variant Kinds
+  ##### Variant Kinds
   
   Rust enums support three variant kinds:
   - **Plain**: `Variant` (no data)
   - **Tuple**: `Variant(T, U)` (positional data)
   - **Struct**: `Variant { field: T }` (named fields)
   
-  # Re-exports
+  ##### Re-exports
   
   Also handles `pub use` re-exports where the item is a Use pointing to an enum.
 
@@ -150,7 +150,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   - Provided Methods section (methods with default impl)
   - Implementors section (types that implement this trait)
   
-  # Re-exports
+  ##### Re-exports
   
   Also handles `pub use` re-exports where the item is a Use pointing to a trait.
 
@@ -172,14 +172,14 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   - Type links for parameter and return types (when resolvable)
   - Documentation from doc comments
   
-  # Function Modifiers
+  ##### Function Modifiers
   
   The signature includes applicable modifiers:
   - `const fn` - Compile-time evaluable
   - `async fn` - Returns a Future
   - `unsafe fn` - Requires unsafe block to call
   
-  # Re-exports
+  ##### Re-exports
   
   Also handles `pub use` re-exports where the item is a Use pointing to a function.
 
@@ -201,7 +201,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   Note: We don't show macro rules/implementation since rustdoc JSON
   doesn't provide the full macro definition, only metadata.
   
-  # Re-exports
+  ##### Re-exports
   
   Also handles `pub use` re-exports where the item is a Use pointing to a macro.
 
@@ -217,7 +217,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   The value may be omitted if rustdoc couldn't determine it
   (e.g., for complex const expressions).
   
-  # Re-exports
+  ##### Re-exports
   
   Also handles `pub use` re-exports where the item is a Use pointing to a constant.
 
@@ -230,7 +230,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   - Rust code block showing `type Name<T> = TargetType;`
   - Documentation from doc comments
   
-  # Re-exports
+  ##### Re-exports
   
   Also handles `pub use` re-exports where the item is a Use pointing to a type alias.
 
@@ -245,13 +245,13 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   - Fields section (for unions with documented fields)
   - Implementations section (inherent and trait impls)
   
-  # Union Fields
+  ##### Union Fields
   
   Unlike structs, all union fields share the same memory location.
   Only one field can be active at a time, and accessing fields
   requires `unsafe` code.
   
-  # Re-exports
+  ##### Re-exports
   
   Also handles `pub use` re-exports where the item is a Use pointing to a union.
 
@@ -264,13 +264,13 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
   - Rust code block showing `static [mut] NAME: Type = expr;`
   - Documentation from doc comments
   
-  # Static Modifiers
+  ##### Static Modifiers
   
   The signature includes applicable modifiers:
   - `static mut` - Mutable static (access requires unsafe)
   - `unsafe static` - Unsafe static in extern block
   
-  # Re-exports
+  ##### Re-exports
   
   Also handles `pub use` re-exports where the item is a Use pointing to a static.
 

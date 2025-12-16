@@ -44,7 +44,7 @@ struct TokenBuffer {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/buffer.rs:33-37`](../../../.source_1765894658/syn-2.0.111/src/buffer.rs#L33-L37)*
+*Defined in [`syn-2.0.111/src/buffer.rs:33-37`](../../../.source_1765900590/syn-2.0.111/src/buffer.rs#L33-L37)*
 
 A buffer that can be efficiently traversed multiple times, unlike
 `TokenStream` which requires a deep copy in order to traverse more than
@@ -120,7 +120,7 @@ struct Cursor<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/buffer.rs:97-106`](../../../.source_1765894658/syn-2.0.111/src/buffer.rs#L97-L106)*
+*Defined in [`syn-2.0.111/src/buffer.rs:97-106`](../../../.source_1765900590/syn-2.0.111/src/buffer.rs#L97-L106)*
 
 A cheaply copyable cursor into a `TokenBuffer`.
 
@@ -318,7 +318,7 @@ enum Entry {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/buffer.rs:18-28`](../../../.source_1765894658/syn-2.0.111/src/buffer.rs#L18-L28)*
+*Defined in [`syn-2.0.111/src/buffer.rs:18-28`](../../../.source_1765900590/syn-2.0.111/src/buffer.rs#L18-L28)*
 
 Internal type which is used instead of `TokenTree` to represent a token tree
 within a `TokenBuffer`.
@@ -372,7 +372,7 @@ within a `TokenBuffer`.
 fn same_scope(a: Cursor<'_>, b: Cursor<'_>) -> bool
 ```
 
-*Defined in [`syn-2.0.111/src/buffer.rs:409-411`](../../../.source_1765894658/syn-2.0.111/src/buffer.rs#L409-L411)*
+*Defined in [`syn-2.0.111/src/buffer.rs:409-411`](../../../.source_1765900590/syn-2.0.111/src/buffer.rs#L409-L411)*
 
 ### `same_buffer`
 
@@ -380,7 +380,7 @@ fn same_scope(a: Cursor<'_>, b: Cursor<'_>) -> bool
 fn same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> bool
 ```
 
-*Defined in [`syn-2.0.111/src/buffer.rs:413-415`](../../../.source_1765894658/syn-2.0.111/src/buffer.rs#L413-L415)*
+*Defined in [`syn-2.0.111/src/buffer.rs:413-415`](../../../.source_1765900590/syn-2.0.111/src/buffer.rs#L413-L415)*
 
 ### `start_of_buffer`
 
@@ -388,7 +388,7 @@ fn same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> bool
 fn start_of_buffer(cursor: Cursor<'_>) -> *const Entry
 ```
 
-*Defined in [`syn-2.0.111/src/buffer.rs:417-424`](../../../.source_1765894658/syn-2.0.111/src/buffer.rs#L417-L424)*
+*Defined in [`syn-2.0.111/src/buffer.rs:417-424`](../../../.source_1765900590/syn-2.0.111/src/buffer.rs#L417-L424)*
 
 ### `cmp_assuming_same_buffer`
 
@@ -396,7 +396,7 @@ fn start_of_buffer(cursor: Cursor<'_>) -> *const Entry
 fn cmp_assuming_same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> std::cmp::Ordering
 ```
 
-*Defined in [`syn-2.0.111/src/buffer.rs:426-428`](../../../.source_1765894658/syn-2.0.111/src/buffer.rs#L426-L428)*
+*Defined in [`syn-2.0.111/src/buffer.rs:426-428`](../../../.source_1765900590/syn-2.0.111/src/buffer.rs#L426-L428)*
 
 ### `open_span_of_group`
 
@@ -404,5 +404,5 @@ fn cmp_assuming_same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> std::cmp::Ordering
 fn open_span_of_group(cursor: Cursor<'_>) -> proc_macro2::Span
 ```
 
-*Defined in [`syn-2.0.111/src/buffer.rs:430-435`](../../../.source_1765894658/syn-2.0.111/src/buffer.rs#L430-L435)*
+*Defined in [`syn-2.0.111/src/buffer.rs:430-435`](../../../.source_1765900590/syn-2.0.111/src/buffer.rs#L430-L435)*
 

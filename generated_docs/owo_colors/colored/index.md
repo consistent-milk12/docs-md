@@ -53,7 +53,7 @@ enum Color {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -141,7 +141,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 trait OwoColorize: Sized { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L263-L489)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L263-L489)*
 
 Extension trait for colorizing a type which implements any std formatter
 ([`Display`](core::fmt::Display), [`Debug`](core::fmt::Debug), [`UpperHex`](core::fmt::UpperHex),
@@ -196,9 +196,72 @@ Use the [`color`](OwoColorize::color), [`on_color`](OwoColorize::on_color),
 Use [`style`](OwoColorize::style) to apply a [`Style`](../index.md)
 
 
+<details>
+<summary><strong>Methods (56)</strong> - click to expand</summary>
+
+**Provided:**
+- [`OwoColorize::fg`](#fn-owocolorizefg)
+- [`OwoColorize::bg`](#fn-owocolorizebg)
+- [`OwoColorize::black`](#fn-owocolorizeblack)
+- [`OwoColorize::on_black`](#fn-owocolorizeon-black)
+- [`OwoColorize::red`](#fn-owocolorizered)
+- [`OwoColorize::on_red`](#fn-owocolorizeon-red)
+- [`OwoColorize::green`](#fn-owocolorizegreen)
+- [`OwoColorize::on_green`](#fn-owocolorizeon-green)
+- [`OwoColorize::yellow`](#fn-owocolorizeyellow)
+- [`OwoColorize::on_yellow`](#fn-owocolorizeon-yellow)
+- [`OwoColorize::blue`](#fn-owocolorizeblue)
+- [`OwoColorize::on_blue`](#fn-owocolorizeon-blue)
+- [`OwoColorize::magenta`](#fn-owocolorizemagenta)
+- [`OwoColorize::on_magenta`](#fn-owocolorizeon-magenta)
+- [`OwoColorize::purple`](#fn-owocolorizepurple)
+- [`OwoColorize::on_purple`](#fn-owocolorizeon-purple)
+- [`OwoColorize::cyan`](#fn-owocolorizecyan)
+- [`OwoColorize::on_cyan`](#fn-owocolorizeon-cyan)
+- [`OwoColorize::white`](#fn-owocolorizewhite)
+- [`OwoColorize::on_white`](#fn-owocolorizeon-white)
+- [`OwoColorize::default_color`](#fn-owocolorizedefault-color)
+- [`OwoColorize::on_default_color`](#fn-owocolorizeon-default-color)
+- [`OwoColorize::bright_black`](#fn-owocolorizebright-black)
+- [`OwoColorize::on_bright_black`](#fn-owocolorizeon-bright-black)
+- [`OwoColorize::bright_red`](#fn-owocolorizebright-red)
+- [`OwoColorize::on_bright_red`](#fn-owocolorizeon-bright-red)
+- [`OwoColorize::bright_green`](#fn-owocolorizebright-green)
+- [`OwoColorize::on_bright_green`](#fn-owocolorizeon-bright-green)
+- [`OwoColorize::bright_yellow`](#fn-owocolorizebright-yellow)
+- [`OwoColorize::on_bright_yellow`](#fn-owocolorizeon-bright-yellow)
+- [`OwoColorize::bright_blue`](#fn-owocolorizebright-blue)
+- [`OwoColorize::on_bright_blue`](#fn-owocolorizeon-bright-blue)
+- [`OwoColorize::bright_magenta`](#fn-owocolorizebright-magenta)
+- [`OwoColorize::on_bright_magenta`](#fn-owocolorizeon-bright-magenta)
+- [`OwoColorize::bright_purple`](#fn-owocolorizebright-purple)
+- [`OwoColorize::on_bright_purple`](#fn-owocolorizeon-bright-purple)
+- [`OwoColorize::bright_cyan`](#fn-owocolorizebright-cyan)
+- [`OwoColorize::on_bright_cyan`](#fn-owocolorizeon-bright-cyan)
+- [`OwoColorize::bright_white`](#fn-owocolorizebright-white)
+- [`OwoColorize::on_bright_white`](#fn-owocolorizeon-bright-white)
+- [`OwoColorize::bold`](#fn-owocolorizebold)
+- [`OwoColorize::dimmed`](#fn-owocolorizedimmed)
+- [`OwoColorize::italic`](#fn-owocolorizeitalic)
+- [`OwoColorize::underline`](#fn-owocolorizeunderline)
+- [`OwoColorize::blink`](#fn-owocolorizeblink)
+- [`OwoColorize::blink_fast`](#fn-owocolorizeblink-fast)
+- [`OwoColorize::reversed`](#fn-owocolorizereversed)
+- [`OwoColorize::hidden`](#fn-owocolorizehidden)
+- [`OwoColorize::strikethrough`](#fn-owocolorizestrikethrough)
+- [`OwoColorize::color`](#fn-owocolorizecolor)
+- [`OwoColorize::on_color`](#fn-owocolorizeon-color)
+- [`OwoColorize::fg_rgb`](#fn-owocolorizefg-rgb)
+- [`OwoColorize::bg_rgb`](#fn-owocolorizebg-rgb)
+- [`OwoColorize::truecolor`](#fn-owocolorizetruecolor)
+- [`OwoColorize::on_truecolor`](#fn-owocolorizeon-truecolor)
+- [`OwoColorize::style`](#fn-owocolorizestyle)
+
+</details>
+
 #### Provided Methods
 
-- `fn fg<C: Color>(&self) -> FgColorDisplay<'_, C, Self>`
+- `fn OwoColorize::fg<C: Color>(&self) -> FgColorDisplay<'_, C, Self>`
 
   Set the foreground color generically
   
@@ -208,7 +271,7 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](../index.md)
   println!("{}", "red foreground".fg::<Red>());
   ```
 
-- `fn bg<C: Color>(&self) -> BgColorDisplay<'_, C, Self>`
+- `fn OwoColorize::bg<C: Color>(&self) -> BgColorDisplay<'_, C, Self>`
 
   Set the background color generically.
   
@@ -218,195 +281,195 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](../index.md)
   println!("{}", "black background".bg::<Black>());
   ```
 
-- `fn black(&self) -> FgColorDisplay<'_, colors::Black, Self>`
+- `fn OwoColorize::black(&self) -> FgColorDisplay<'_, colors::Black, Self>`
 
   Change the foreground color to black
 
-- `fn on_black(&self) -> BgColorDisplay<'_, colors::Black, Self>`
+- `fn OwoColorize::on_black(&self) -> BgColorDisplay<'_, colors::Black, Self>`
 
   Change the background color to black
 
-- `fn red(&self) -> FgColorDisplay<'_, colors::Red, Self>`
+- `fn OwoColorize::red(&self) -> FgColorDisplay<'_, colors::Red, Self>`
 
   Change the foreground color to red
 
-- `fn on_red(&self) -> BgColorDisplay<'_, colors::Red, Self>`
+- `fn OwoColorize::on_red(&self) -> BgColorDisplay<'_, colors::Red, Self>`
 
   Change the background color to red
 
-- `fn green(&self) -> FgColorDisplay<'_, colors::Green, Self>`
+- `fn OwoColorize::green(&self) -> FgColorDisplay<'_, colors::Green, Self>`
 
   Change the foreground color to green
 
-- `fn on_green(&self) -> BgColorDisplay<'_, colors::Green, Self>`
+- `fn OwoColorize::on_green(&self) -> BgColorDisplay<'_, colors::Green, Self>`
 
   Change the background color to green
 
-- `fn yellow(&self) -> FgColorDisplay<'_, colors::Yellow, Self>`
+- `fn OwoColorize::yellow(&self) -> FgColorDisplay<'_, colors::Yellow, Self>`
 
   Change the foreground color to yellow
 
-- `fn on_yellow(&self) -> BgColorDisplay<'_, colors::Yellow, Self>`
+- `fn OwoColorize::on_yellow(&self) -> BgColorDisplay<'_, colors::Yellow, Self>`
 
   Change the background color to yellow
 
-- `fn blue(&self) -> FgColorDisplay<'_, colors::Blue, Self>`
+- `fn OwoColorize::blue(&self) -> FgColorDisplay<'_, colors::Blue, Self>`
 
   Change the foreground color to blue
 
-- `fn on_blue(&self) -> BgColorDisplay<'_, colors::Blue, Self>`
+- `fn OwoColorize::on_blue(&self) -> BgColorDisplay<'_, colors::Blue, Self>`
 
   Change the background color to blue
 
-- `fn magenta(&self) -> FgColorDisplay<'_, colors::Magenta, Self>`
+- `fn OwoColorize::magenta(&self) -> FgColorDisplay<'_, colors::Magenta, Self>`
 
   Change the foreground color to magenta
 
-- `fn on_magenta(&self) -> BgColorDisplay<'_, colors::Magenta, Self>`
+- `fn OwoColorize::on_magenta(&self) -> BgColorDisplay<'_, colors::Magenta, Self>`
 
   Change the background color to magenta
 
-- `fn purple(&self) -> FgColorDisplay<'_, colors::Magenta, Self>`
+- `fn OwoColorize::purple(&self) -> FgColorDisplay<'_, colors::Magenta, Self>`
 
   Change the foreground color to purple
 
-- `fn on_purple(&self) -> BgColorDisplay<'_, colors::Magenta, Self>`
+- `fn OwoColorize::on_purple(&self) -> BgColorDisplay<'_, colors::Magenta, Self>`
 
   Change the background color to purple
 
-- `fn cyan(&self) -> FgColorDisplay<'_, colors::Cyan, Self>`
+- `fn OwoColorize::cyan(&self) -> FgColorDisplay<'_, colors::Cyan, Self>`
 
   Change the foreground color to cyan
 
-- `fn on_cyan(&self) -> BgColorDisplay<'_, colors::Cyan, Self>`
+- `fn OwoColorize::on_cyan(&self) -> BgColorDisplay<'_, colors::Cyan, Self>`
 
   Change the background color to cyan
 
-- `fn white(&self) -> FgColorDisplay<'_, colors::White, Self>`
+- `fn OwoColorize::white(&self) -> FgColorDisplay<'_, colors::White, Self>`
 
   Change the foreground color to white
 
-- `fn on_white(&self) -> BgColorDisplay<'_, colors::White, Self>`
+- `fn OwoColorize::on_white(&self) -> BgColorDisplay<'_, colors::White, Self>`
 
   Change the background color to white
 
-- `fn default_color(&self) -> FgColorDisplay<'_, colors::Default, Self>`
+- `fn OwoColorize::default_color(&self) -> FgColorDisplay<'_, colors::Default, Self>`
 
   Change the foreground color to the terminal default
 
-- `fn on_default_color(&self) -> BgColorDisplay<'_, colors::Default, Self>`
+- `fn OwoColorize::on_default_color(&self) -> BgColorDisplay<'_, colors::Default, Self>`
 
   Change the background color to the terminal default
 
-- `fn bright_black(&self) -> FgColorDisplay<'_, colors::BrightBlack, Self>`
+- `fn OwoColorize::bright_black(&self) -> FgColorDisplay<'_, colors::BrightBlack, Self>`
 
   Change the foreground color to bright black
 
-- `fn on_bright_black(&self) -> BgColorDisplay<'_, colors::BrightBlack, Self>`
+- `fn OwoColorize::on_bright_black(&self) -> BgColorDisplay<'_, colors::BrightBlack, Self>`
 
   Change the background color to bright black
 
-- `fn bright_red(&self) -> FgColorDisplay<'_, colors::BrightRed, Self>`
+- `fn OwoColorize::bright_red(&self) -> FgColorDisplay<'_, colors::BrightRed, Self>`
 
   Change the foreground color to bright red
 
-- `fn on_bright_red(&self) -> BgColorDisplay<'_, colors::BrightRed, Self>`
+- `fn OwoColorize::on_bright_red(&self) -> BgColorDisplay<'_, colors::BrightRed, Self>`
 
   Change the background color to bright red
 
-- `fn bright_green(&self) -> FgColorDisplay<'_, colors::BrightGreen, Self>`
+- `fn OwoColorize::bright_green(&self) -> FgColorDisplay<'_, colors::BrightGreen, Self>`
 
   Change the foreground color to bright green
 
-- `fn on_bright_green(&self) -> BgColorDisplay<'_, colors::BrightGreen, Self>`
+- `fn OwoColorize::on_bright_green(&self) -> BgColorDisplay<'_, colors::BrightGreen, Self>`
 
   Change the background color to bright green
 
-- `fn bright_yellow(&self) -> FgColorDisplay<'_, colors::BrightYellow, Self>`
+- `fn OwoColorize::bright_yellow(&self) -> FgColorDisplay<'_, colors::BrightYellow, Self>`
 
   Change the foreground color to bright yellow
 
-- `fn on_bright_yellow(&self) -> BgColorDisplay<'_, colors::BrightYellow, Self>`
+- `fn OwoColorize::on_bright_yellow(&self) -> BgColorDisplay<'_, colors::BrightYellow, Self>`
 
   Change the background color to bright yellow
 
-- `fn bright_blue(&self) -> FgColorDisplay<'_, colors::BrightBlue, Self>`
+- `fn OwoColorize::bright_blue(&self) -> FgColorDisplay<'_, colors::BrightBlue, Self>`
 
   Change the foreground color to bright blue
 
-- `fn on_bright_blue(&self) -> BgColorDisplay<'_, colors::BrightBlue, Self>`
+- `fn OwoColorize::on_bright_blue(&self) -> BgColorDisplay<'_, colors::BrightBlue, Self>`
 
   Change the background color to bright blue
 
-- `fn bright_magenta(&self) -> FgColorDisplay<'_, colors::BrightMagenta, Self>`
+- `fn OwoColorize::bright_magenta(&self) -> FgColorDisplay<'_, colors::BrightMagenta, Self>`
 
   Change the foreground color to bright magenta
 
-- `fn on_bright_magenta(&self) -> BgColorDisplay<'_, colors::BrightMagenta, Self>`
+- `fn OwoColorize::on_bright_magenta(&self) -> BgColorDisplay<'_, colors::BrightMagenta, Self>`
 
   Change the background color to bright magenta
 
-- `fn bright_purple(&self) -> FgColorDisplay<'_, colors::BrightMagenta, Self>`
+- `fn OwoColorize::bright_purple(&self) -> FgColorDisplay<'_, colors::BrightMagenta, Self>`
 
   Change the foreground color to bright purple
 
-- `fn on_bright_purple(&self) -> BgColorDisplay<'_, colors::BrightMagenta, Self>`
+- `fn OwoColorize::on_bright_purple(&self) -> BgColorDisplay<'_, colors::BrightMagenta, Self>`
 
   Change the background color to bright purple
 
-- `fn bright_cyan(&self) -> FgColorDisplay<'_, colors::BrightCyan, Self>`
+- `fn OwoColorize::bright_cyan(&self) -> FgColorDisplay<'_, colors::BrightCyan, Self>`
 
   Change the foreground color to bright cyan
 
-- `fn on_bright_cyan(&self) -> BgColorDisplay<'_, colors::BrightCyan, Self>`
+- `fn OwoColorize::on_bright_cyan(&self) -> BgColorDisplay<'_, colors::BrightCyan, Self>`
 
   Change the background color to bright cyan
 
-- `fn bright_white(&self) -> FgColorDisplay<'_, colors::BrightWhite, Self>`
+- `fn OwoColorize::bright_white(&self) -> FgColorDisplay<'_, colors::BrightWhite, Self>`
 
   Change the foreground color to bright white
 
-- `fn on_bright_white(&self) -> BgColorDisplay<'_, colors::BrightWhite, Self>`
+- `fn OwoColorize::on_bright_white(&self) -> BgColorDisplay<'_, colors::BrightWhite, Self>`
 
   Change the background color to bright white
 
-- `fn bold(&self) -> styles::BoldDisplay<'_, Self>`
+- `fn OwoColorize::bold(&self) -> styles::BoldDisplay<'_, Self>`
 
   Make the text bold
 
-- `fn dimmed(&self) -> styles::DimDisplay<'_, Self>`
+- `fn OwoColorize::dimmed(&self) -> styles::DimDisplay<'_, Self>`
 
   Make the text dim
 
-- `fn italic(&self) -> styles::ItalicDisplay<'_, Self>`
+- `fn OwoColorize::italic(&self) -> styles::ItalicDisplay<'_, Self>`
 
   Make the text italicized
 
-- `fn underline(&self) -> styles::UnderlineDisplay<'_, Self>`
+- `fn OwoColorize::underline(&self) -> styles::UnderlineDisplay<'_, Self>`
 
   Make the text underlined
 
-- `fn blink(&self) -> styles::BlinkDisplay<'_, Self>`
+- `fn OwoColorize::blink(&self) -> styles::BlinkDisplay<'_, Self>`
 
   Make the text blink
 
-- `fn blink_fast(&self) -> styles::BlinkFastDisplay<'_, Self>`
+- `fn OwoColorize::blink_fast(&self) -> styles::BlinkFastDisplay<'_, Self>`
 
   Make the text blink (but fast!)
 
-- `fn reversed(&self) -> styles::ReversedDisplay<'_, Self>`
+- `fn OwoColorize::reversed(&self) -> styles::ReversedDisplay<'_, Self>`
 
   Swap the foreground and background colors
 
-- `fn hidden(&self) -> styles::HiddenDisplay<'_, Self>`
+- `fn OwoColorize::hidden(&self) -> styles::HiddenDisplay<'_, Self>`
 
   Hide the text
 
-- `fn strikethrough(&self) -> styles::StrikeThroughDisplay<'_, Self>`
+- `fn OwoColorize::strikethrough(&self) -> styles::StrikeThroughDisplay<'_, Self>`
 
   Cross out the text
 
-- `fn color<Color: DynColor>(&self, color: Color) -> FgDynColorDisplay<'_, Color, Self>`
+- `fn OwoColorize::color<Color: DynColor>(&self, color: Color) -> FgDynColorDisplay<'_, Color, Self>`
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
   compile-time. If the color is constant, use either `OwoColorize::fg` or
@@ -418,7 +481,7 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](../index.md)
   println!("{}", "green".color(AnsiColors::Green));
   ```
 
-- `fn on_color<Color: DynColor>(&self, color: Color) -> BgDynColorDisplay<'_, Color, Self>`
+- `fn OwoColorize::on_color<Color: DynColor>(&self, color: Color) -> BgDynColorDisplay<'_, Color, Self>`
 
   Set the background color at runtime. Only use if you do not know what color to use at
   compile-time. If the color is constant, use either `OwoColorize::bg` or
@@ -430,23 +493,23 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](../index.md)
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
   ```
 
-- `fn fg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> FgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
+- `fn OwoColorize::fg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> FgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
 
   Set the foreground color to a specific RGB value.
 
-- `fn bg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> BgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
+- `fn OwoColorize::bg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> BgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
 
   Set the background color to a specific RGB value.
 
-- `fn truecolor(&self, r: u8, g: u8, b: u8) -> FgDynColorDisplay<'_, Rgb, Self>`
+- `fn OwoColorize::truecolor(&self, r: u8, g: u8, b: u8) -> FgDynColorDisplay<'_, Rgb, Self>`
 
   Sets the foreground color to an RGB value.
 
-- `fn on_truecolor(&self, r: u8, g: u8, b: u8) -> BgDynColorDisplay<'_, Rgb, Self>`
+- `fn OwoColorize::on_truecolor(&self, r: u8, g: u8, b: u8) -> BgDynColorDisplay<'_, Rgb, Self>`
 
   Sets the background color to an RGB value.
 
-- `fn style(&self, style: Style) -> Styled<&Self>`
+- `fn OwoColorize::style(&self, style: Style) -> Styled<&Self>`
 
   Apply a runtime-determined style
 

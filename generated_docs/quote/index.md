@@ -135,7 +135,7 @@ code it is convenient for a human to read and debug.
 trait TokenStreamExt: private::Sealed { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../.source_1765894658/quote-1.0.42/src/ext.rs#L8-L57)*
+*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../.source_1765900590/quote-1.0.42/src/ext.rs#L8-L57)*
 
 TokenStream extension trait with methods for appending tokens.
 
@@ -143,13 +143,13 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
 
 #### Required Methods
 
-- `fn append<U>(&mut self, token: U)`
+- `fn TokenStreamExt::append<U>(&mut self, token: U)`
 
   For use by `ToTokens` implementations.
   
   Appends the token specified to this list of tokens.
 
-- `fn append_all<I>(&mut self, iter: I)`
+- `fn TokenStreamExt::append_all<I>(&mut self, iter: I)`
 
   For use by `ToTokens` implementations.
   
@@ -169,14 +169,14 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
   assert_eq!(tokens.to_string(), "true false");
   ```
 
-- `fn append_separated<I, U>(&mut self, iter: I, op: U)`
+- `fn TokenStreamExt::append_separated<I, U>(&mut self, iter: I, op: U)`
 
   For use by `ToTokens` implementations.
   
   Appends all of the items in the iterator `I`, separated by the tokens
   `U`.
 
-- `fn append_terminated<I, U>(&mut self, iter: I, term: U)`
+- `fn TokenStreamExt::append_terminated<I, U>(&mut self, iter: I, term: U)`
 
   For use by `ToTokens` implementations.
   
@@ -193,11 +193,11 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
 trait IdentFragment { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../.source_1765894658/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
+*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../.source_1765900590/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
 
 Specialized formatting trait used by `format_ident!`.
 
-[`Ident`](../proc_macro2/index.md) arguments formatted using this trait will have their `r#` prefix
+[`Ident`](../proc_macro2/imp/index.md) arguments formatted using this trait will have their `r#` prefix
 stripped, if present.
 
 See `format_ident!` for more information.
@@ -205,13 +205,13 @@ See `format_ident!` for more information.
 
 #### Required Methods
 
-- `fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- `fn IdentFragment::fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   Format this value as an identifier fragment.
 
 #### Provided Methods
 
-- `fn span(&self) -> Option<Span>`
+- `fn IdentFragment::span(&self) -> Option<Span>`
 
   Span associated with this `IdentFragment`.
   
@@ -240,20 +240,20 @@ See `format_ident!` for more information.
 trait ToTokens { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../.source_1765894658/quote-1.0.42/src/to_tokens.rs#L9-L72)*
+*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../.source_1765900590/quote-1.0.42/src/to_tokens.rs#L9-L72)*
 
 Types that can be interpolated inside a `quote!` invocation.
 
 #### Required Methods
 
-- `fn to_tokens(&self, tokens: &mut TokenStream)`
+- `fn ToTokens::to_tokens(&self, tokens: &mut TokenStream)`
 
   Write `self` to the given `TokenStream`.
   
   The token append methods provided by the [`TokenStreamExt`](ext/index.md) extension
   trait may be useful for implementing `ToTokens`.
   
-  # Example
+  ##### Example
   
   Example implementation for a struct representing Rust paths like
   `std::cmp::PartialEq`:
@@ -291,14 +291,14 @@ Types that can be interpolated inside a `quote!` invocation.
 
 #### Provided Methods
 
-- `fn to_token_stream(&self) -> TokenStream`
+- `fn ToTokens::to_token_stream(&self) -> TokenStream`
 
   Convert `self` directly into a `TokenStream` object.
   
   This method is implicitly implemented using `to_tokens`, and acts as a
   convenience method for consumers of the `ToTokens` trait.
 
-- `fn into_token_stream(self) -> TokenStream`
+- `fn ToTokens::into_token_stream(self) -> TokenStream`
 
   Convert `self` directly into a `TokenStream` object.
   
@@ -344,15 +344,15 @@ Types that can be interpolated inside a `quote!` invocation.
 
 ### `__quote!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:128-478`](../../.source_1765894658/quote-1.0.42/src/lib.rs#L128-L478)*
+*Defined in [`quote-1.0.42/src/lib.rs:128-478`](../../.source_1765900590/quote-1.0.42/src/lib.rs#L128-L478)*
 
 ### `__quote_spanned!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:527-625`](../../.source_1765894658/quote-1.0.42/src/lib.rs#L527-L625)*
+*Defined in [`quote-1.0.42/src/lib.rs:527-625`](../../.source_1765900590/quote-1.0.42/src/lib.rs#L527-L625)*
 
 ### `format_ident!`
 
-*Defined in [`quote-1.0.42/src/format.rs:111-125`](../../.source_1765894658/quote-1.0.42/src/format.rs#L111-L125)*
+*Defined in [`quote-1.0.42/src/format.rs:111-125`](../../.source_1765900590/quote-1.0.42/src/format.rs#L111-L125)*
 
 Formatting macro for constructing `Ident`s.
 
@@ -462,12 +462,12 @@ assert_eq!(upper_hex, "Id_A");
 
 ### `quote!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:483-487`](../../.source_1765894658/quote-1.0.42/src/lib.rs#L483-L487)*
+*Defined in [`quote-1.0.42/src/lib.rs:483-487`](../../.source_1765900590/quote-1.0.42/src/lib.rs#L483-L487)*
 
 The whole point.
 
 Performs variable interpolation against the input and produces it as
-[`proc_macro2::TokenStream`](../proc_macro2/imp/index.md).
+[`proc_macro2::TokenStream`](../proc_macro2/index.md).
 
 Note: for returning tokens to the compiler in a procedural macro, use
 `.into()` on the result to convert to `proc_macro::TokenStream`.
@@ -805,7 +805,7 @@ quote! {
 
 ### `quote_spanned!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:630-634`](../../.source_1765894658/quote-1.0.42/src/lib.rs#L630-L634)*
+*Defined in [`quote-1.0.42/src/lib.rs:630-634`](../../.source_1765900590/quote-1.0.42/src/lib.rs#L630-L634)*
 
 Same as `quote!`, but applies a given span to all tokens originating within
 the macro invocation.

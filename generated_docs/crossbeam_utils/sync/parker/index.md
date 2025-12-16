@@ -26,7 +26,7 @@ struct Parker {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
 
 A thread parking primitive.
 
@@ -80,7 +80,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Creates a new `Parker`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -92,7 +92,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Blocks the current thread until the token is made available.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -111,7 +111,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Blocks the current thread until the token is made available, but only for a limited time.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::time::Duration;
@@ -127,7 +127,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Blocks the current thread until the token is made available, or until a certain deadline.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::time::{Duration, Instant};
@@ -146,7 +146,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
   
   The returned [`Unparker`](#unparker) doesn't have to be used by reference - it can also be cloned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -165,7 +165,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Converts a `Parker` into a raw pointer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -179,11 +179,11 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
   Converts a raw pointer into a `Parker`.
   
-  # Safety
+  ##### Safety
   
   This method is safe to use only with pointers returned by `Parker::into_raw`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::Parker;
@@ -252,7 +252,7 @@ struct Unparker {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
 
 Unparks a thread parked by the associated [`Parker`](#parker).
 
@@ -265,7 +265,7 @@ Unparks a thread parked by the associated [`Parker`](#parker).
   This method will wake up the thread blocked on `park` or `park_timeout`, if there is
   any.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::thread;
@@ -290,7 +290,7 @@ Unparks a thread parked by the associated [`Parker`](#parker).
 
   Converts an `Unparker` into a raw pointer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::{Parker, Unparker};
@@ -305,11 +305,11 @@ Unparks a thread parked by the associated [`Parker`](#parker).
 
   Converts a raw pointer into an `Unparker`.
   
-  # Safety
+  ##### Safety
   
   This method is safe to use only with pointers returned by `Unparker::into_raw`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::sync::{Parker, Unparker};
@@ -396,7 +396,7 @@ struct Inner {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:314-318`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L314-L318)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:314-318`](../../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/parker.rs#L314-L318)*
 
 #### Implementations
 
@@ -452,19 +452,19 @@ struct Inner {
 const EMPTY: usize = 0usize;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:310`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L310)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:310`](../../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/parker.rs#L310)*
 
 ### `PARKED`
 ```rust
 const PARKED: usize = 1usize;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:311`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L311)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:311`](../../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/parker.rs#L311)*
 
 ### `NOTIFIED`
 ```rust
 const NOTIFIED: usize = 2usize;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:312`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L312)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:312`](../../../../.source_1765900590/crossbeam-utils-0.8.21/src/sync/parker.rs#L312)*
 

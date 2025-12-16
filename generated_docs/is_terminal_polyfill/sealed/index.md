@@ -18,7 +18,7 @@
 trait Sealed { ... }
 ```
 
-*Defined in [`is_terminal_polyfill-1.70.2/src/lib.rs:26`](../../../.source_1765894658/is_terminal_polyfill-1.70.2/src/lib.rs#L26)*
+*Defined in [`is_terminal_polyfill-1.70.2/src/lib.rs:26`](../../../.source_1765900590/is_terminal_polyfill-1.70.2/src/lib.rs#L26)*
 
 #### Implementors
 

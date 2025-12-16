@@ -73,7 +73,7 @@ either a 32-bit integer or a `usize` (e.g., on 16-bit targets).
 struct SmallIndex(u32);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:96`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L96)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:96`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L96)*
 
 A type that represents a "small" index.
 
@@ -333,7 +333,7 @@ struct SmallIndexError {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:339-341`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L339-L341)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:339-341`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L339-L341)*
 
 This error occurs when a small index could not be constructed.
 
@@ -434,7 +434,7 @@ struct SmallIndexIter {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:365-367`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L365-L367)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:365-367`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L365-L367)*
 
 #### Trait Implementations
 
@@ -517,7 +517,7 @@ struct SmallIndexIter {
 struct PatternID(SmallIndex);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:713`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L713)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:713`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L713)*
 
 The identifier of a pattern in an Aho-Corasick automaton.
 
@@ -744,7 +744,7 @@ panics or silent logical errors.
 struct StateID(SmallIndex);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:734`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L734)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:734`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L734)*
 
 The identifier of a finite automaton state.
 
@@ -971,7 +971,7 @@ panics or silent logical errors.
 struct PatternIDError(SmallIndexError);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
 
 This error occurs when an ID could not be constructed.
 
@@ -1072,7 +1072,7 @@ trait.
 struct PatternIDIter(SmallIndexIter);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
 
 #### Implementations
 
@@ -1162,7 +1162,7 @@ struct WithPatternIDIter<I> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
 
 An iterator adapter that is like std::iter::Enumerate, but attaches
 small index values instead. It requires `ExactSizeIterator`. At
@@ -1254,7 +1254,7 @@ iterator is representable in the corresponding small index type.
 struct StateIDError(SmallIndexError);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
 
 This error occurs when an ID could not be constructed.
 
@@ -1355,7 +1355,7 @@ trait.
 struct StateIDIter(SmallIndexIter);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
 
 #### Implementations
 
@@ -1445,7 +1445,7 @@ struct WithStateIDIter<I> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
 
 An iterator adapter that is like std::iter::Enumerate, but attaches
 small index values instead. It requires `ExactSizeIterator`. At
@@ -1539,7 +1539,7 @@ iterator is representable in the corresponding small index type.
 trait IteratorIndexExt: Iterator { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:743-757`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L743-L757)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:743-757`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L743-L757)*
 
 A utility trait that defines a couple of adapters for making it convenient
 to access indices as "small index" types. We require ExactSizeIterator so
@@ -1548,9 +1548,9 @@ each element is representable by its small index type.
 
 #### Provided Methods
 
-- `fn with_pattern_ids(self) -> WithPatternIDIter<Self>`
+- `fn IteratorIndexExt::with_pattern_ids(self) -> WithPatternIDIter<Self>`
 
-- `fn with_state_ids(self) -> WithStateIDIter<Self>`
+- `fn IteratorIndexExt::with_state_ids(self) -> WithStateIDIter<Self>`
 
 #### Implementors
 
@@ -1560,5 +1560,5 @@ each element is representable by its small index type.
 
 ### `index_type_impls!`
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:384-692`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L384-L692)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:384-692`](../../../../.source_1765900590/aho-corasick-1.1.4/src/util/primitives.rs#L384-L692)*
 

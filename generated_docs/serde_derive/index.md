@@ -64,7 +64,7 @@ Please refer to [https://serde.rs/derive.html] for how to set this up.
 struct private;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/lib.rs:96`](../../.source_1765894658/serde_derive-1.0.228/src/lib.rs#L96)*
+*Defined in [`serde_derive-1.0.228/src/lib.rs:96`](../../.source_1765900590/serde_derive-1.0.228/src/lib.rs#L96)*
 
 #### Implementations
 

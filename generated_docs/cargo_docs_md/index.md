@@ -108,7 +108,7 @@ struct Generator<'a> {
 }
 ```
 
-*Defined in `src/generator/mod.rs:86-95`*
+*Defined in `src/generator/mod.rs:87-96`*
 
 Main documentation generator.
 
@@ -148,13 +148,13 @@ generator.generate()?;
   - Impl map (type ID → impl blocks)
   - Link registry for cross-references
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `args` - CLI arguments containing output path, format, and options
   * `config` - Rendering configuration options
   
-  # Errors
+  ##### Errors
   
   Returns an error if the root item cannot be found in the crate index.
 
@@ -168,7 +168,7 @@ generator.generate()?;
   2. Sets up a progress bar
   3. Dispatches to the format-specific generator (flat or nested)
   
-  # Errors
+  ##### Errors
   
   Returns an error if any file operation fails.
 
@@ -176,7 +176,7 @@ generator.generate()?;
 
   Create a progress bar for user feedback.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the progress bar template is invalid.
 
@@ -188,17 +188,17 @@ generator.generate()?;
   `MarkdownCapture` struct instead of writing to the filesystem.
   Useful for testing and programmatic access to generated docs.
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `format` - Output format (Flat or Nested)
   * `include_private` - Whether to include private items
   
-  # Returns
+  ##### Returns
   
   A `MarkdownCapture` containing all generated markdown files.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the root item cannot be found in the crate index.
 
@@ -209,18 +209,18 @@ generator.generate()?;
   This variant allows specifying a custom [`RenderConfig`](generator/config/index.md) for testing
   different rendering options like `hide_trivial_derives`.
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `format` - Output format (Flat or Nested)
   * `include_private` - Whether to include private items
   * `config` - Custom rendering configuration
   
-  # Returns
+  ##### Returns
   
   A `MarkdownCapture` containing all generated markdown files.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the root item cannot be found in the crate index.
 
@@ -245,16 +245,16 @@ generator.generate()?;
   
   Uses default `RenderConfig`. For custom configuration, use `new()` directly.
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `args` - CLI arguments containing output path, format, and options
   
-  # Returns
+  ##### Returns
   
   `Ok(())` on success, or an error if any file operation fails.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the root item cannot be found or if file operations fail.
 
@@ -354,7 +354,7 @@ side effects.
 
   Add a file to the capture.
   
-  # Arguments
+  ##### Arguments
   * `path` - Relative path of the file (e.g., "index.md" or "span/index.md")
   * `content` - The markdown content for this file
 
@@ -465,11 +465,12 @@ struct RenderConfig {
     pub hide_trivial_derives: bool,
     pub method_anchors: bool,
     pub full_method_docs: bool,
+    pub large_trait_threshold: Option<usize>,
     pub include_source: SourceConfig,
 }
 ```
 
-*Defined in `src/generator/config.rs:14-39`*
+*Defined in `src/generator/config.rs:14-48`*
 
 Configuration options for markdown rendering.
 
@@ -502,6 +503,16 @@ Configuration options for markdown rendering.
   When `false` (default), method docs in impl blocks show only the first
   paragraph (up to the first blank line). When `true`, the complete
   documentation is included.
+
+- **`large_trait_threshold`**: `Option<usize>`
+
+  Threshold for generating separate method pages for large traits/impls.
+  
+  When a trait or impl block has more methods than this threshold,
+  separate markdown pages will be generated for each method, with the
+  main page linking to them. Set to `None` to disable this feature.
+  
+  Default: `None` (disabled)
 
 - **`include_source`**: `SourceConfig`
 
@@ -606,7 +617,7 @@ struct SourceConfig {
 }
 ```
 
-*Defined in `src/generator/config.rs:49-68`*
+*Defined in `src/generator/config.rs:58-77`*
 
 Configuration for source code integration.
 
@@ -746,13 +757,13 @@ Utilify functions to handle anchors
   (backward compatible), and `typename-kind-itemname` for constants and types to avoid
   collisions.
   
-  # Arguments
+  ##### Arguments
   
   * `type_name` - The name of the type (struct, enum, trait, etc.)
   * `item_name` - The name of the method or associated item
   * `kind` - The kind of associated item (method, const, or type)
   
-  # Examples
+  ##### Examples
   
   ```ignore
   assert_eq!(assoc_item_anchor("Parser", "parse", AssocItemKind::Method), "parser-parse");
@@ -769,12 +780,12 @@ Utilify functions to handle anchors
   enabling deep linking to specific methods. The format is `typename-methodname`,
   where both parts are slugified.
   
-  # Arguments
+  ##### Arguments
   
   * `type_name` - The name of the type (struct, enum, trait, etc.)
   * `method_name` - The name of the method or associated item
   
-  # Examples
+  ##### Examples
   
   ```ignore
   assert_eq!(method_anchor("Parser", "parse"), "parser-parse");
@@ -789,21 +800,21 @@ Utilify functions to handle anchors
   This extends `assoc_item_anchor` to handle trait impls, where multiple traits
   may define the same associated type (e.g., `Output` in both `Add` and `Sub`).
   
-  # Disambiguation Strategy
+  ##### Disambiguation Strategy
   
   - **Associated types/consts**: Always include trait name (high collision risk)
   - **Methods**: Only include trait name when it differs from the method name
     - Avoids redundant `Clone::clone` → `type-clone-clone`
     - Keeps `Debug::fmt` → `type-debug-fmt` for disambiguation from `Display::fmt`
   
-  # Arguments
+  ##### Arguments
   
   * `type_name` - The name of the implementing type
   * `item_name` - The name of the associated item
   * `kind` - The kind of associated item
   * `impl_ctx` - Whether this is an inherent or trait impl
   
-  # Anchor Formats
+  ##### Anchor Formats
   
   | Context | Kind | Format | Example |
   |---------|------|--------|---------|
@@ -822,7 +833,7 @@ Utilify functions to handle anchors
   This normalizes item names to match the anchor IDs generated by markdown
   renderers (GitHub, mdBook, etc.) when they process headings.
   
-  # Rules Applied
+  ##### Rules Applied
   
   1. Apply Unicode NFC normalization (canonical composition)
   2. Convert to lowercase (full Unicode, not just ASCII)
@@ -833,7 +844,7 @@ Utilify functions to handle anchors
   7. Collapse consecutive hyphens
   8. Trim leading/trailing hyphens
   
-  # Examples
+  ##### Examples
   
   ```ignore
   assert_eq!(slugify_anchor("HashMap"), "hashmap");
@@ -859,11 +870,11 @@ Utilify functions to handle anchors
   Other items (methods, fields, variants) are rendered as bullet points
   without heading anchors.
   
-  # Items with anchors
+  ##### Items with anchors
   
   - Struct, Enum, Trait, Function, Constant, `TypeAlias`, Macro, Module
   
-  # Items without anchors
+  ##### Items without anchors
   
   - Methods (in impl blocks)
   - Struct fields
@@ -977,17 +988,17 @@ create links between items.
   the file path where each item will be documented. The paths depend on
   the output format (flat vs nested).
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc crate containing all items
   * `flat_format` - If true, use flat paths (`mod.md`); if false, use nested (`mod/index.md`)
   * `include_private` - If true, include non-public items; if false, only public items
   
-  # Returns
+  ##### Returns
   
   A populated `LinkRegistry` ready for link creation.
   
-  # Algorithm
+  ##### Algorithm
   
   1. Start at the crate root module
   2. For each top-level module: register it and recursively process children
@@ -1002,7 +1013,7 @@ create links between items.
   This is called for each module in the crate to populate the registry
   with all items that can be linked to.
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The full crate for looking up item details
   * `module_id` - ID of the module being registered
@@ -1020,11 +1031,11 @@ create links between items.
 
   Get the file path where an item is documented.
   
-  # Arguments
+  ##### Arguments
   
   * `id` - The item's unique ID from rustdoc JSON
   
-  # Returns
+  ##### Returns
   
   The relative file path (e.g., `"span.md"` or `"span/index.md"`),
   or `None` if the item isn't registered.
@@ -1033,11 +1044,11 @@ create links between items.
 
   Get the display name for an item.
   
-  # Arguments
+  ##### Arguments
   
   * `id` - The item's unique ID from rustdoc JSON
   
-  # Returns
+  ##### Returns
   
   The item's name for display in links (e.g., `"Span"`),
   or `None` if the item isn't registered.
@@ -1049,22 +1060,22 @@ create links between items.
   This is the main method used during markdown generation to create
   clickable links between documented items.
   
-  # Arguments
+  ##### Arguments
   
   * `id` - The target item's ID
   * `from_path` - The source file creating the link (e.g., `"index.md"`)
   
-  # Returns
+  ##### Returns
   
   A formatted markdown link like `[``ItemName``](path/to/file.md)`,
   or `None` if the target item isn't registered.
   
-  # Link Types
+  ##### Link Types
   
   - **Same file**: Returns an anchor link (`#itemname`)
   - **Different file**: Returns a relative path (`../other/file.md`)
   
-  # Example
+  ##### Example
   
   ```ignore
   // From index.md linking to span.md
@@ -1084,16 +1095,16 @@ create links between items.
   one markdown file to another within the generated documentation.
   Uses `pathdiff` for robust cross-platform path calculation.
   
-  # Arguments
+  ##### Arguments
   
   * `from` - The source file path (e.g., `"span/index.md"`)
   * `to` - The target file path (e.g., `"field/index.md"`)
   
-  # Returns
+  ##### Returns
   
   A relative path string (e.g., `"../field/index.md"`)
   
-  # Examples
+  ##### Examples
   
   - Same directory: `"index.md"` → `"span.md"` = `"span.md"`
   - Into subdirectory: `"index.md"` → `"span/index.md"` = `"span/index.md"`
@@ -1392,7 +1403,7 @@ generation across crates.
   
   Builds the unified link registry and pre-computes cross-crate impls.
   
-  # Arguments
+  ##### Arguments
   
   * `crates` - Collection of parsed crates
   * `args` - CLI arguments
@@ -1447,7 +1458,7 @@ generation across crates.
   the given ID. This is useful for resolving re-exports that point to
   items in external crates.
   
-  # Returns
+  ##### Returns
   
   A tuple of `(crate_name, item)` if found, or `None` if the item
   doesn't exist in any crate.
@@ -1459,7 +1470,7 @@ generation across crates.
   Returns a map from type name to impl blocks from other crates.
   This data is pre-computed during context construction for efficiency.
   
-  # Returns
+  ##### Returns
   
   Reference to the type-name -> impl-blocks map, or `None` if the
   crate is not in the collection.
@@ -1578,7 +1589,7 @@ output/
 
   Create a new multi-crate generator.
   
-  # Arguments
+  ##### Arguments
   
   * `crates` - Collection of parsed crates
   * `args` - CLI arguments
@@ -1592,7 +1603,7 @@ output/
   in parallel using rayon, and optionally generates SUMMARY.md for
   mdBook compatibility.
   
-  # Errors
+  ##### Errors
   
   Returns an error if any file operation fails.
 
@@ -1624,7 +1635,7 @@ output/
 
   Create a progress bar.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the progress bar template is invalid.
 
@@ -1721,15 +1732,15 @@ println!("Found {} crates", crates.len());
   attempts to parse each one as rustdoc JSON. Files that aren't
   valid rustdoc JSON (e.g., search indices) are silently skipped.
   
-  # Arguments
+  ##### Arguments
   
   * `dir` - Path to directory containing JSON files
   
-  # Returns
+  ##### Returns
   
   A `CrateCollection` containing all successfully parsed crates.
   
-  # Errors
+  ##### Errors
   
   - [`Error::InvalidDirectory`](#errorinvaliddirectory) if the path is invalid
   - [`Error::NoJsonFiles`](#errornojsonfiles) if no valid JSON files found
@@ -1948,7 +1959,7 @@ generator.write(Path::new("generated_docs/"))?;
 
   Create a new search index generator.
   
-  # Arguments
+  ##### Arguments
   
   * `crates` - Collection of parsed crates to index
   * `include_private` - Whether to include non-public items
@@ -1974,11 +1985,11 @@ generator.write(Path::new("generated_docs/"))?;
 
   Write the search index to `search_index.json` in the output directory.
   
-  # Arguments
+  ##### Arguments
   
   * `output_dir` - Directory where `search_index.json` will be written
   
-  # Errors
+  ##### Errors
   
   Returns an error if the file cannot be written.
 
@@ -2137,12 +2148,12 @@ This avoids allocating a `String` for the crate name on every lookup.
 
   Build a unified registry from a collection of crates.
   
-  # Arguments
+  ##### Arguments
   
   * `crates` - Collection of parsed crates
   * `primary_crate` - Optional primary crate for disambiguation
   
-  # Returns
+  ##### Returns
   
   A populated registry ready for link resolution.
 
@@ -2198,12 +2209,12 @@ This avoids allocating a `String` for the crate name on every lookup.
   to find the original crate and ID. Returns the original if found,
   otherwise returns `None`.
   
-  # Arguments
+  ##### Arguments
   
   * `crate_name` - The crate where the re-export appears
   * `id` - The ID of the re-export Use item
   
-  # Returns
+  ##### Returns
   
   `Some((original_crate, original_id))` if the re-export chain can be resolved,
   `None` if there's no re-export source or the original can't be found.
@@ -2224,11 +2235,11 @@ This avoids allocating a `String` for the crate name on every lookup.
   This is used for resolving external re-exports where `use_item.id` is `None`
   but the source path is available.
   
-  # Arguments
+  ##### Arguments
   
   * `path` - Full path like `regex_automata::Regex` or `tracing_core::span::Span`
   
-  # Returns
+  ##### Returns
   
   The (`crate_name`, `item_id`) if found in the registry.
 
@@ -2236,14 +2247,14 @@ This avoids allocating a `String` for the crate name on every lookup.
 
   Create a markdown link from one file to another across crates.
   
-  # Arguments
+  ##### Arguments
   
   * `from_crate` - The crate where the link appears
   * `from_path` - The file path where the link appears
   * `to_crate` - The target crate
   * `to_id` - The target item's ID
   
-  # Returns
+  ##### Returns
   
   A formatted markdown link like `[`Name`](relative/path.md)`,
   or `None` if the target item isn't registered.
@@ -2252,7 +2263,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
   Compute relative path between files potentially in different crates.
   
-  # Examples
+  ##### Examples
   
   - `tracing/span/index.md` to `tracing_core/subscriber/index.md`
     = `../../tracing_core/subscriber/index.md`
@@ -2263,12 +2274,12 @@ This avoids allocating a `String` for the crate name on every lookup.
 
   Get an anchor string for an item within its page.
   
-  # Arguments
+  ##### Arguments
   
   * `crate_name` - The crate containing the item
   * `id` - The item's ID
   
-  # Returns
+  ##### Returns
   
   An anchor like `#span` or `#enter` for linking to specific items.
 

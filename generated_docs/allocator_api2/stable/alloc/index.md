@@ -36,7 +36,7 @@ struct GlobalAlloc<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/function.rs:83-89`](../../../../.source_1765894658/addr2line-0.25.1/src/function.rs#L83-L89)*
+*Defined in [`addr2line-0.25.1/src/function.rs:83-89`](../../../../.source_1765900590/addr2line-0.25.1/src/function.rs#L83-L89)*
 
 *Re-exported from `addr2line`*
 
@@ -91,7 +91,7 @@ struct GlobalAlloc<R: gimli::Reader> {
 struct Global;
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
 
 The global memory allocator.
 
@@ -195,7 +195,7 @@ accessed through the [free functions in `alloc`](crate#functions).
 struct AllocError;
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:33`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L33)*
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:33`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L33)*
 
 The `AllocError` error indicates an allocation failure
 that may be due to resource exhaustion or to
@@ -289,7 +289,7 @@ allocator.
 trait Allocator { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:101-362`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L101-L362)*
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:101-362`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L101-L362)*
 
 An implementation of `Allocator` can allocate, grow, shrink, and deallocate arbitrary blocks of
 data described via [`Layout`][].
@@ -345,7 +345,7 @@ following conditions must hold:
 
 #### Required Methods
 
-- `fn allocate(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+- `fn Allocator::allocate(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Attempts to allocate a block of memory.
   
@@ -354,7 +354,7 @@ following conditions must hold:
   The returned block may have a larger size than specified by `layout.size()`, and may or may
   not have its contents initialized.
   
-  # Errors
+  ##### Errors
   
   Returning `Err` indicates that either memory is exhausted or `layout` does not meet
   allocator's size or alignment constraints.
@@ -366,11 +366,11 @@ following conditions must hold:
   Clients wishing to abort computation in response to an allocation error are encouraged to
   call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
-- `fn deallocate(&self, ptr: NonNull<u8>, layout: Layout)`
+- `fn Allocator::deallocate(&self, ptr: NonNull<u8>, layout: Layout)`
 
   Deallocates the memory referenced by `ptr`.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must denote a block of memory [*currently allocated*] via this allocator, and
   * `layout` must [*fit*] that block of memory.
@@ -378,11 +378,11 @@ following conditions must hold:
 
 #### Provided Methods
 
-- `fn allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+- `fn Allocator::allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Behaves like `allocate`, but also ensures that the returned memory is zero-initialized.
   
-  # Errors
+  ##### Errors
   
   Returning `Err` indicates that either memory is exhausted or `layout` does not meet
   allocator's size or alignment constraints.
@@ -394,7 +394,7 @@ following conditions must hold:
   Clients wishing to abort computation in response to an allocation error are encouraged to
   call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
-- `fn grow(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+- `fn Allocator::grow(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Attempts to extend the memory block.
   
@@ -410,7 +410,7 @@ following conditions must hold:
   If this method returns `Err`, then ownership of the memory block has not been transferred to
   this allocator, and the contents of the memory block are unaltered.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must denote a block of memory [*currently allocated*] via this allocator.
   * `old_layout` must [*fit*] that block of memory (The `new_layout` argument need not fit it.).
@@ -419,7 +419,7 @@ following conditions must hold:
   Note that `new_layout.align()` need not be the same as `old_layout.align()`.
   
   
-  # Errors
+  ##### Errors
   
   Returns `Err` if the new layout does not meet the allocator's size and alignment
   constraints of the allocator, or if growing otherwise fails.
@@ -431,7 +431,7 @@ following conditions must hold:
   Clients wishing to abort computation in response to an allocation error are encouraged to
   call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
-- `fn grow_zeroed(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+- `fn Allocator::grow_zeroed(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Behaves like `grow`, but also ensures that the new contents are set to zero before being
   returned.
@@ -446,7 +446,7 @@ following conditions must hold:
     * Bytes `old_size..new_size` are zeroed. `new_size` refers to the size of the memory
       block returned by the `grow_zeroed` call.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must denote a block of memory [*currently allocated*] via this allocator.
   * `old_layout` must [*fit*] that block of memory (The `new_layout` argument need not fit it.).
@@ -455,7 +455,7 @@ following conditions must hold:
   Note that `new_layout.align()` need not be the same as `old_layout.align()`.
   
   
-  # Errors
+  ##### Errors
   
   Returns `Err` if the new layout does not meet the allocator's size and alignment
   constraints of the allocator, or if growing otherwise fails.
@@ -467,7 +467,7 @@ following conditions must hold:
   Clients wishing to abort computation in response to an allocation error are encouraged to
   call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
-- `fn shrink(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+- `fn Allocator::shrink(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Attempts to shrink the memory block.
   
@@ -483,7 +483,7 @@ following conditions must hold:
   If this method returns `Err`, then ownership of the memory block has not been transferred to
   this allocator, and the contents of the memory block are unaltered.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must denote a block of memory [*currently allocated*] via this allocator.
   * `old_layout` must [*fit*] that block of memory (The `new_layout` argument need not fit it.).
@@ -492,7 +492,7 @@ following conditions must hold:
   Note that `new_layout.align()` need not be the same as `old_layout.align()`.
   
   
-  # Errors
+  ##### Errors
   
   Returns `Err` if the new layout does not meet the allocator's size and alignment
   constraints of the allocator, or if shrinking otherwise fails.
@@ -504,7 +504,7 @@ following conditions must hold:
   Clients wishing to abort computation in response to an allocation error are encouraged to
   call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
-- `fn by_ref(&self) -> &Self`
+- `fn Allocator::by_ref(&self) -> &Self`
 
   Creates a "by reference" adapter for this instance of `Allocator`.
   

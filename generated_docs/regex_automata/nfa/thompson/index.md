@@ -138,7 +138,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
 
 An abstraction for building Thompson NFAs by hand.
 
@@ -378,14 +378,14 @@ Ok::<(), Box<dyn std::error::Error>>(())
   searches are not supported, the unanchored starting state ID must be
   the same as the anchored starting state ID.
   
-  # Errors
+  ##### Errors
   
   This returns an error if there was a problem producing the final NFA.
   In particular, this might include an error if the capturing groups
   added to this builder violate any of the invariants documented on
   [`GroupInfo`](crate::util::captures::GroupInfo).
   
-  # Panics
+  ##### Panics
   
   If `start_pattern` was called, then `finish_pattern` must be called
   before `build`, otherwise this panics.
@@ -404,12 +404,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   It is necessary to call this routine before adding capturing states.
   Otherwise, any other NFA state may be added before starting a pattern.
   
-  # Errors
+  ##### Errors
   
   If the pattern identifier space is exhausted, then this returns an
   error.
   
-  # Panics
+  ##### Panics
   
   If this is called while assembling another pattern (i.e., before
   `finish_pattern` is called), then this panics.
@@ -427,11 +427,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
   interleaved or nested. A correct `finish_pattern` call _always_
   corresponds to the most recently called `start_pattern` routine.
   
-  # Errors
+  ##### Errors
   
   This currently never returns an error, but this is subject to change.
   
-  # Panics
+  ##### Panics
   
   If this is called without a corresponding `start_pattern` call, then
   this panics.
@@ -440,7 +440,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Returns the pattern identifier of the current pattern.
   
-  # Panics
+  ##### Panics
   
   If this doesn't occur after a `start_pattern` call and before the
   corresponding `finish_pattern` call, then this panics.
@@ -461,7 +461,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   building the final [`NFA`](nfa/index.md) (which has no such "empty" states), but they
   can be quite useful in the construction process of an NFA.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -481,7 +481,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   state with exactly one alternate is treated as if it were an "empty"
   state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -503,7 +503,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   "reverse union" state with exactly one alternate is treated as if it
   were an "empty" state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -516,7 +516,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   state, where that transition may only be followed if the current input
   byte falls between a range of bytes given.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -544,12 +544,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   all outgoing transitions for this state are included when `add_sparse`
   is called. There is no way to add more later.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
   
-  # Panics
+  ##### Panics
   
   This routine _may_ panic if the transitions given overlap or are not
   in ascending order.
@@ -565,7 +565,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Callers may provide a "dummy" state ID (typically `StateID::ZERO`),
   and then change it later with [`patch`](Builder::patch).
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -592,7 +592,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   end states may be interleaved. Indeed, it is typical for many "start
   capture" NFA states to appear before the first "end capture" state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded or if the given
@@ -607,7 +607,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   See the [`GroupInfo`](crate::util::captures::GroupInfo) type for
   more information on what qualifies as valid capturing groups.
   
-  # Example
+  ##### Example
   
   This example shows that an error occurs when one tries to add multiple
   capturing groups with the same name to the same pattern.
@@ -761,7 +761,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   end states may be interleaved. Indeed, it is typical for many "start
   capture" NFA states to appear before the first "end capture" state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded or if the given
@@ -785,7 +785,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   For example, one way to represent an NFA with zero patterns is with a
   single "fail" state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -800,12 +800,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   automatically has the current pattern ID associated with it. This is
   used to report the matching pattern ID at search time.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
   
-  # Panics
+  ##### Panics
   
   This must be called after a `start_pattern` call but before the
   corresponding `finish_pattern` call. Otherwise, it panics.
@@ -826,13 +826,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
   know all of the necessary state IDs to add because they might not
   exist yet.
   
-  # Errors
+  ##### Errors
   
   This may error if patching leads to an increase in heap usage beyond
   the configured size limit. Heap usage only grows when patching adds a
   new transition (as in the case of a "union" state).
   
-  # Panics
+  ##### Panics
   
   This panics if `from` corresponds to a "sparse" state. When "sparse"
   states are added, there is no way to patch them after-the-fact. (If you
@@ -1019,7 +1019,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
 
 An error that can occurred during the construction of a thompson NFA.
 
@@ -1027,7 +1027,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/error/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/hir/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -1145,7 +1145,7 @@ struct DenseTransitions {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1882-1886`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1882-L1886)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1882-1886`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1882-L1886)*
 
 A sequence of transitions used to represent a dense state.
 
@@ -1277,7 +1277,7 @@ struct PatternIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:2023-2031`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L2023-L2031)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:2023-2031`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L2023-L2031)*
 
 An iterator over all pattern IDs in an NFA.
 
@@ -1363,7 +1363,7 @@ struct SparseTransitions {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1795-1798`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1795-L1798)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1795-1798`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1795-L1798)*
 
 A sequence of transitions used to represent a sparse state.
 
@@ -1486,7 +1486,7 @@ struct Transition {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1965-1972`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1965-L1972)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1965-1972`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1965-L1972)*
 
 A single transition to another state.
 
@@ -1608,7 +1608,7 @@ falls in the inclusive range of bytes specified.
 struct NFA(alloc::sync::Arc<Inner>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:190-202`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L190-L202)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:190-202`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L190-L202)*
 
 A byte oriented Thompson non-deterministic finite automaton (NFA).
 
@@ -1787,7 +1787,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If you want a non-default configuration, then use the NFA
   [`Compiler`](compiler/index.md) with a [`Config`](compiler/index.md).
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::pikevm::PikeVM, Match};
@@ -1810,7 +1810,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If you want a non-default configuration, then use the NFA
   [`Compiler`](compiler/index.md) with a [`Config`](compiler/index.md).
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::pikevm::PikeVM, Match};
@@ -1830,7 +1830,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns an NFA with a single regex pattern that always matches at every
   position.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
@@ -1853,7 +1853,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   This is a convenience routine for creating an NFA with zero patterns.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::nfa::thompson::{NFA, pikevm::PikeVM};
@@ -1876,7 +1876,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine to avoid needing to import the `Config`
   type when customizing the construction of an NFA.
   
-  # Example
+  ##### Example
   
   This example shows how to build an NFA with a small size limit that
   results in a compilation error for any regex that tries to use more
@@ -1899,7 +1899,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine to avoid needing to import the
   [`Compiler`](compiler/index.md) type in common cases.
   
-  # Example
+  ##### Example
   
   This example shows how to build an NFA that is permitted match invalid
   UTF-8. Without the additional syntax configuration here, compilation of
@@ -1932,7 +1932,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   where the order corresponds to the order of patterns provided to the
   `NFA::new_many` constructor.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::NFA, PatternID};
@@ -1960,7 +1960,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   It is always true that `nfa.patterns().count() == nfa.pattern_len()`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::nfa::thompson::NFA;
@@ -1985,7 +1985,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   slice returned by `NFA::states`, and is also a valid argument to
   `NFA::state`.
   
-  # Example
+  ##### Example
   
   This example shows a somewhat contrived example where we can easily
   predict the anchored starting state.
@@ -2020,7 +2020,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   slice returned by `NFA::states`, and is also a valid argument to
   `NFA::state`.
   
-  # Example
+  ##### Example
   
   This example shows that the anchored and unanchored starting states
   are equivalent when an anchored NFA is built.
@@ -2047,12 +2047,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   slice returned by `NFA::states`, and is also a valid argument to
   `NFA::state`.
   
-  # Errors
+  ##### Errors
   
   If the pattern doesn't exist in this NFA, then this returns an error.
   This occurs when `pid.as_usize() >= nfa.pattern_len()`.
   
-  # Example
+  ##### Example
   
   This example shows that the anchored and unanchored starting states
   are equivalent when an anchored NFA is built.
@@ -2108,7 +2108,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   often quite a bit smaller than the latter, which permits the DFA to use
   less space for its transition table.
   
-  # Example
+  ##### Example
   
   This example shows how to query the class of various bytes.
   
@@ -2131,12 +2131,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   This is a convenience routine for `nfa.states()[id]`.
   
-  # Panics
+  ##### Panics
   
   This panics when the given identifier does not reference a valid state.
   That is, when `id.as_usize() >= nfa.states().len()`.
   
-  # Example
+  ##### Example
   
   The anchored state for a pattern will typically correspond to a
   capturing state for that pattern. (Although, this is not an API
@@ -2164,7 +2164,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   The slice returned is indexed by `StateID`. This provides a convenient
   way to access states while following transitions among those states.
   
-  # Example
+  ##### Example
   
   This demonstrates that disabling UTF-8 mode can shrink the size of the
   NFA considerably in some cases, especially when using Unicode character
@@ -2194,7 +2194,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Note that `GroupInfo` uses reference counting internally, such that
   cloning a `GroupInfo` is very cheap.
   
-  # Example
+  ##### Example
   
   This example shows how to get a list of all capture group names for
   a particular pattern.
@@ -2227,7 +2227,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   some regex engines (like the PikeVM) require capture states in order to
   work at all.
   
-  # Example
+  ##### Example
   
   This example shows a few different NFAs and whether they have captures
   or not.
@@ -2275,7 +2275,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   sometimes be costly, and since regexes matching an empty string are
   somewhat rare, it can be beneficial to treat such regexes specially.
   
-  # Example
+  ##### Example
   
   This example shows a few different NFAs and whether they match the
   empty string or not. Notice the empty string isn't merely a matter
@@ -2349,7 +2349,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   This is enabled by default.
   
-  # Example
+  ##### Example
   
   This example shows how UTF-8 mode can impact the match spans that may
   be reported in certain cases.
@@ -2433,7 +2433,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   the unanchored starting state will correspond to an anchored search
   since the pattern doesn't permit anything else.
   
-  # Example
+  ##### Example
   
   This example shows a few different scenarios where this method's
   return value varies.
@@ -2489,7 +2489,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   knob. Otherwise, if you've built an NFA by hand, it is set via
   `Builder::set_look_matcher`.
   
-  # Example
+  ##### Example
   
   This shows how to change the line terminator for multi-line assertions.
   
@@ -2540,7 +2540,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   cheap check of whether the NFA has a Unicode word boundary in the first
   place.
   
-  # Example
+  ##### Example
   
   This example shows how this routine varies based on the regex pattern:
   
@@ -2581,7 +2581,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   empty, then you know that the start state is invariant because there
   are no conditional epsilon transitions to consider.
   
-  # Example
+  ##### Example
   
   This example shows how this routine varies based on the regex pattern:
   
@@ -2611,7 +2611,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This does **not** include the stack size used up by this NFA. To
   compute that, use `std::mem::size_of::<NFA>()`.
   
-  # Example
+  ##### Example
   
   This example shows that large Unicode character classes can use quite
   a bit of memory.
@@ -2702,7 +2702,7 @@ struct Compiler {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
 
 A builder for compiling an NFA from a regex's high-level intermediate
 representation (HIR).
@@ -2824,7 +2824,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   the NFA would exceed the integer representations used. (For example,
   too many states might plausibly occur on a 16-bit target.)
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
@@ -2849,7 +2849,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   When matches are returned, the pattern ID corresponds to the index of
   the pattern in the slice given.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
@@ -2881,7 +2881,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   exceed the integer representations used. (For example, too many states
   might plausibly occur on a 16-bit target.)
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
@@ -2915,7 +2915,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   When matches are returned, the pattern ID corresponds to the index of
   the pattern in the slice given.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
@@ -2951,7 +2951,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Apply the given NFA configuration options to this builder.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::nfa::thompson::NFA;
@@ -2975,7 +2975,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   from a pattern string. If an NFA is built from an HIR, then all syntax
   settings are ignored.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{nfa::thompson::NFA, util::syntax};
@@ -3062,7 +3062,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
 
 The configuration used for a Thompson NFA compiler.
 
@@ -3129,7 +3129,7 @@ The configuration used for a Thompson NFA compiler.
   
   This is enabled by default.
   
-  # Example
+  ##### Example
   
   This example shows how UTF-8 mode can impact the match spans that may
   be reported in certain cases.
@@ -3200,7 +3200,7 @@ The configuration used for a Thompson NFA compiler.
   
   This is disabled by default.
   
-  # Example
+  ##### Example
   
   This example shows how to build a DFA from a reverse NFA, and then use
   the DFA to search backwards.
@@ -3249,7 +3249,7 @@ The configuration used for a Thompson NFA compiler.
   
   There is no size limit by default.
   
-  # Example
+  ##### Example
   
   This example demonstrates how Unicode mode can greatly increase the
   size of the NFA.
@@ -3298,7 +3298,7 @@ The configuration used for a Thompson NFA compiler.
   This is disabled by default because it can increase compile times
   quite a bit if you aren't building a full DFA.
   
-  # Example
+  ##### Example
   
   This example shows that NFA shrinking can lead to substantial space
   savings in some cases. Notice that, as noted above, we build a reverse
@@ -3337,7 +3337,7 @@ The configuration used for a Thompson NFA compiler.
   
   This is enabled by default.
   
-  # Example
+  ##### Example
   
   This example demonstrates that some regex engines, like the Pike VM,
   require capturing states to be present in the NFA to report match
@@ -3382,7 +3382,7 @@ The configuration used for a Thompson NFA compiler.
   match. Otherwise, the `PikeVM` could use much more memory than is
   necessary.
   
-  # Example
+  ##### Example
   
   This example demonstrates that some regex engines, like the Pike VM,
   require capturing states to be present in the NFA to report match
@@ -3435,7 +3435,7 @@ The configuration used for a Thompson NFA compiler.
   `(?m:^)` and `(?m:$)` assertions can have their line terminator changed
   from the default of `\n` to any other byte.
   
-  # Example
+  ##### Example
   
   This shows how to change the line terminator for multi-line assertions.
   
@@ -3611,7 +3611,7 @@ enum State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1514-1621`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1514-L1621)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1514-1621`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1514-L1621)*
 
 A state in an NFA.
 
@@ -3729,7 +3729,7 @@ need to do some kind of analysis on the NFA.
   only non-epsilon transitions (like `ByteRange`) or has only epsilon
   transitions (like `Union`).
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{
@@ -3847,7 +3847,7 @@ enum WhichCaptures {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
 
 A configuration indicating which kinds of
 [`State::Capture`](crate::nfa::thompson::State::Capture) states to include.

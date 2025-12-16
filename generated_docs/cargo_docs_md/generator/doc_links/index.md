@@ -91,7 +91,7 @@ The tracker correctly handles mismatched fences:
   This method both returns the line's classification AND updates
   the tracker's state. Call once per line in order.
   
-  # State Transitions
+  ##### State Transitions
   
   ```text
   ┌─────────┐  "```" or "~~~"  ┌──────────┐
@@ -308,11 +308,11 @@ Links inside fenced code blocks are not processed.
   - Strategy 1 (exact match): uses original `link_text` (preserves qualified paths)
   - Strategy 2 & 3 (fuzzy matches): uses `short_name`
   
-  # Type Parameters
+  ##### Type Parameters
   
   * `T` - The result type (e.g., `String` for URLs or markdown links)
   
-  # Arguments
+  ##### Arguments
   
   * `link_text` - Original link text from documentation
   * `item_links` - Pre-resolved links from rustdoc
@@ -448,12 +448,12 @@ Utility functions for document links
   Some crate/module docs start with `# title` which duplicates the generated
   `# Crate 'name'` or `# Module 'name'` heading.
   
-  # Arguments
+  ##### Arguments
   
   * `docs` - The documentation string to process
   * `item_name` - The name of the crate or module being documented
   
-  # Returns
+  ##### Returns
   
   The docs with the leading title removed if it matches the item name,
   otherwise the original docs unchanged.

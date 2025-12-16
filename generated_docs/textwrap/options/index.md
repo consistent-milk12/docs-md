@@ -29,7 +29,7 @@ struct Options<'a> {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/options.rs:8-33`](../../../.source_1765894658/textwrap-0.16.2/src/options.rs#L8-L33)*
+*Defined in [`textwrap-0.16.2/src/options.rs:8-33`](../../../.source_1765900590/textwrap-0.16.2/src/options.rs#L8-L33)*
 
 Holds configuration options for wrapping and filling text.
 
@@ -115,7 +115,7 @@ Holds configuration options for wrapping and filling text.
   supported line endings should be used to break the lines of the
   input text.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use textwrap::{refill, LineEnding, Options};
@@ -134,7 +134,7 @@ Holds configuration options for wrapping and filling text.
   Change `self.initial_indent`. The initial indentation is
   used on the very first line of output.
   
-  # Examples
+  ##### Examples
   
   Classic paragraph indentation can be achieved by specifying an
   initial indentation and wrapping each paragraph by itself:
@@ -153,7 +153,7 @@ Holds configuration options for wrapping and filling text.
   Change `self.subsequent_indent`. The subsequent indentation
   is used on lines following the first line of output.
   
-  # Examples
+  ##### Examples
   
   Combining initial and subsequent indentation lets you format a
   single paragraph as a bullet list:
@@ -187,7 +187,7 @@ Holds configuration options for wrapping and filling text.
   See `Options::word_splitter` instead if you want to control
   hyphenation.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use textwrap::{wrap, Options};
@@ -222,7 +222,7 @@ Holds configuration options for wrapping and filling text.
   See `Options::break_words` instead if you want to control the
   handling of words longer than the line width.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use textwrap::{wrap, Options, WordSplitter};

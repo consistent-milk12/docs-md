@@ -26,7 +26,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/flatten_ok.rs:24-32`](../../../.source_1765894658/itertools-0.14.0/src/flatten_ok.rs#L24-L32)*
+*Defined in [`itertools-0.14.0/src/flatten_ok.rs:24-32`](../../../.source_1765900590/itertools-0.14.0/src/flatten_ok.rs#L24-L32)*
 
 An iterator adaptor that flattens `Result::Ok` values and
 allows `Result::Err` values through unchanged.
@@ -135,5 +135,5 @@ where
     T: IntoIterator
 ```
 
-*Defined in [`itertools-0.14.0/src/flatten_ok.rs:7-17`](../../../.source_1765894658/itertools-0.14.0/src/flatten_ok.rs#L7-L17)*
+*Defined in [`itertools-0.14.0/src/flatten_ok.rs:7-17`](../../../.source_1765900590/itertools-0.14.0/src/flatten_ok.rs#L7-L17)*
 

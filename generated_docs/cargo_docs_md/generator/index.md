@@ -54,6 +54,7 @@ generator.generate()?;
   - [`impl_category`](#impl-category)
   - [`impls`](#impls)
   - [`items`](#items)
+  - [`method_pages`](#method-pages)
   - [`module`](#module)
   - [`nested`](#nested)
   - [`quick_ref`](#quick-ref)
@@ -96,6 +97,7 @@ generator.generate()?;
 | [`impl_category`](#impl-category) | mod | Categorization system for trait implementations. |
 | [`impls`](#impls) | mod | Implementation block rendering for documentation generation. |
 | [`items`](#items) | mod | Item rendering for documentation generation. |
+| [`method_pages`](#method-pages) | mod | Separate method page generation for large traits. |
 | [`module`](#module) | mod | Module markdown rendering for documentation generation. |
 | [`nested`](#nested) | mod | Nested format documentation generation. |
 | [`quick_ref`](#quick-ref) | mod | Quick Reference table generation for module documentation. |
@@ -132,6 +134,7 @@ generator.generate()?;
 - [`impl_category`](impl_category/index.md) — Categorization system for trait implementations.
 - [`impls`](impls/index.md) — Implementation block rendering for documentation generation.
 - [`items`](items/index.md) — Item rendering for documentation generation.
+- [`method_pages`](method_pages/index.md) — Separate method page generation for large traits.
 - [`module`](module/index.md) — Module markdown rendering for documentation generation.
 - [`nested`](nested/index.md) — Nested format documentation generation.
 - [`quick_ref`](quick_ref/index.md) — Quick Reference table generation for module documentation.
@@ -173,7 +176,7 @@ the current module, with each segment being a clickable link.
 
   Create a new breadcrumb generator.
   
-  # Arguments
+  ##### Arguments
   
   * `module_path` - The module path segments
   * `crate_name` - The name of the crate for the root link
@@ -184,7 +187,7 @@ the current module, with each segment being a clickable link.
   
   Returns empty string for root module.
   
-  # Example Output
+  ##### Example Output
   
   For `module_path = ["error", "types"]` and `crate_name = "docs_md"`:
   ```markdown
@@ -289,7 +292,7 @@ side effects.
 
   Add a file to the capture.
   
-  # Arguments
+  ##### Arguments
   * `path` - Relative path of the file (e.g., "index.md" or "span/index.md")
   * `content` - The markdown content for this file
 
@@ -400,11 +403,12 @@ struct RenderConfig {
     pub hide_trivial_derives: bool,
     pub method_anchors: bool,
     pub full_method_docs: bool,
+    pub large_trait_threshold: Option<usize>,
     pub include_source: SourceConfig,
 }
 ```
 
-*Defined in `src/generator/config.rs:14-39`*
+*Defined in `src/generator/config.rs:14-48`*
 
 Configuration options for markdown rendering.
 
@@ -437,6 +441,16 @@ Configuration options for markdown rendering.
   When `false` (default), method docs in impl blocks show only the first
   paragraph (up to the first blank line). When `true`, the complete
   documentation is included.
+
+- **`large_trait_threshold`**: `Option<usize>`
+
+  Threshold for generating separate method pages for large traits/impls.
+  
+  When a trait or impl block has more methods than this threshold,
+  separate markdown pages will be generated for each method, with the
+  main page linking to them. Set to `None` to disable this feature.
+  
+  Default: `None` (disabled)
 
 - **`include_source`**: `SourceConfig`
 
@@ -541,7 +555,7 @@ struct SourceConfig {
 }
 ```
 
-*Defined in `src/generator/config.rs:49-68`*
+*Defined in `src/generator/config.rs:58-77`*
 
 Configuration for source code integration.
 
@@ -736,7 +750,7 @@ This struct is passed to all rendering components and provides:
   
   Builds the path map, impl map, and link registry needed for generation.
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `args` - CLI arguments containing output path, format, and options
@@ -775,7 +789,7 @@ This struct is passed to all rendering components and provides:
   By default, all items are included. If `--exclude-private`
   is set, only public items are included.
   
-  # Visibility Levels
+  ##### Visibility Levels
   
   - `Public` - Always included
   - `Crate`, `Restricted`, `Default` - Included by default, excluded with `--exclude-private`
@@ -1037,11 +1051,11 @@ Links inside fenced code blocks are not processed.
   - Strategy 1 (exact match): uses original `link_text` (preserves qualified paths)
   - Strategy 2 & 3 (fuzzy matches): uses `short_name`
   
-  # Type Parameters
+  ##### Type Parameters
   
   * `T` - The result type (e.g., `String` for URLs or markdown links)
   
-  # Arguments
+  ##### Arguments
   
   * `link_text` - Original link text from documentation
   * `item_links` - Pre-resolved links from rustdoc
@@ -1177,12 +1191,12 @@ Utility functions for document links
   Some crate/module docs start with `# title` which duplicates the generated
   `# Crate 'name'` or `# Module 'name'` heading.
   
-  # Arguments
+  ##### Arguments
   
   * `docs` - The documentation string to process
   * `item_name` - The name of the crate or module being documented
   
-  # Returns
+  ##### Returns
   
   The docs with the leading title removed if it matches the item name,
   otherwise the original docs unchanged.
@@ -1330,7 +1344,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
   Create a new module renderer.
   
-  # Arguments
+  ##### Arguments
   
   * `ctx` - Render context (implements `RenderContext` trait)
   * `current_file` - Path of this file (for relative link calculation)
@@ -1347,7 +1361,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
   Generate the complete markdown content for a module.
   
-  # Output Structure
+  ##### Output Structure
   
   ```markdown
   Crate `name` (or Module `name`)
@@ -1585,7 +1599,7 @@ anchor link, and first-sentence summary.
 
   Create a new quick reference entry.
   
-  # Arguments
+  ##### Arguments
   
   * `name` - Display name for the entry
   * `kind` - Item kind (struct, enum, fn, etc.)
@@ -1700,11 +1714,11 @@ kinds, and first-sentence descriptions.
   
   Returns an empty string if there are no entries.
   
-  # Arguments
+  ##### Arguments
   
   * `entries` - Quick reference entries to include in the table
   
-  # Returns
+  ##### Returns
   
   A formatted markdown table string.
 
@@ -1833,7 +1847,7 @@ for nested navigation.
 
   Create a new TOC entry.
   
-  # Arguments
+  ##### Arguments
   
   * `title` - Display title for the entry
   * `anchor` - Anchor link target (without `#`)
@@ -1842,7 +1856,7 @@ for nested navigation.
 
   Create a new TOC entry with children.
   
-  # Arguments
+  ##### Arguments
   
   * `title` - Display title for the entry
   * `anchor` - Anchor link target (without `#`)
@@ -1963,7 +1977,7 @@ modules with unnecessary navigation.
 
   Create a new TOC generator with the given threshold.
   
-  # Arguments
+  ##### Arguments
   
   * `threshold` - Minimum number of items required to generate a TOC
 
@@ -1973,11 +1987,11 @@ modules with unnecessary navigation.
   
   Returns `None` if the total item count is below the threshold.
   
-  # Arguments
+  ##### Arguments
   
   * `entries` - Top-level TOC entries (typically section headings)
   
-  # Returns
+  ##### Returns
   
   A formatted markdown string with the TOC, or `None` if below threshold.
 
@@ -2078,7 +2092,7 @@ struct Generator<'a> {
 }
 ```
 
-*Defined in `src/generator/mod.rs:86-95`*
+*Defined in `src/generator/mod.rs:87-96`*
 
 Main documentation generator.
 
@@ -2118,13 +2132,13 @@ generator.generate()?;
   - Impl map (type ID → impl blocks)
   - Link registry for cross-references
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `args` - CLI arguments containing output path, format, and options
   * `config` - Rendering configuration options
   
-  # Errors
+  ##### Errors
   
   Returns an error if the root item cannot be found in the crate index.
 
@@ -2138,7 +2152,7 @@ generator.generate()?;
   2. Sets up a progress bar
   3. Dispatches to the format-specific generator (flat or nested)
   
-  # Errors
+  ##### Errors
   
   Returns an error if any file operation fails.
 
@@ -2146,7 +2160,7 @@ generator.generate()?;
 
   Create a progress bar for user feedback.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the progress bar template is invalid.
 
@@ -2158,17 +2172,17 @@ generator.generate()?;
   `MarkdownCapture` struct instead of writing to the filesystem.
   Useful for testing and programmatic access to generated docs.
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `format` - Output format (Flat or Nested)
   * `include_private` - Whether to include private items
   
-  # Returns
+  ##### Returns
   
   A `MarkdownCapture` containing all generated markdown files.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the root item cannot be found in the crate index.
 
@@ -2179,18 +2193,18 @@ generator.generate()?;
   This variant allows specifying a custom [`RenderConfig`](config/index.md) for testing
   different rendering options like `hide_trivial_derives`.
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `format` - Output format (Flat or Nested)
   * `include_private` - Whether to include private items
   * `config` - Custom rendering configuration
   
-  # Returns
+  ##### Returns
   
   A `MarkdownCapture` containing all generated markdown files.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the root item cannot be found in the crate index.
 
@@ -2215,16 +2229,16 @@ generator.generate()?;
   
   Uses default `RenderConfig`. For custom configuration, use `new()` directly.
   
-  # Arguments
+  ##### Arguments
   
   * `krate` - The parsed rustdoc JSON crate
   * `args` - CLI arguments containing output path, format, and options
   
-  # Returns
+  ##### Returns
   
   `Ok(())` on success, or an error if any file operation fails.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the root item cannot be found or if file operations fail.
 
@@ -2429,15 +2443,15 @@ The variants are ordered by their typical importance/frequency of use:
   It handles both simple trait names (`"Clone"`) and fully-qualified paths
   (`"std::clone::Clone"`).
   
-  # Arguments
+  ##### Arguments
   
   * `path` - The trait path, or `None` for inherent implementations
   
-  # Returns
+  ##### Returns
   
   The [`ImplCategory`](impl_category/index.md) that best matches the trait.
   
-  # Examples
+  ##### Examples
   
   ```rust,ignore
   // Inherent impl (no trait)
@@ -2471,11 +2485,11 @@ The variants are ordered by their typical importance/frequency of use:
   
   This name is suitable for use as a section header in documentation.
   
-  # Returns
+  ##### Returns
   
   A static string with the display name.
   
-  # Examples
+  ##### Examples
   
   ```rust,ignore
   assert_eq!(ImplCategory::Inherent.display_name(), "Implementations");
@@ -2490,7 +2504,7 @@ The variants are ordered by their typical importance/frequency of use:
   Lower numbers appear first in documentation. This ordering reflects
   typical importance and frequency of use.
   
-  # Returns
+  ##### Returns
   
   A `u8` value representing the sort order (0-8).
 
@@ -2629,33 +2643,33 @@ Provides read-only access to the crate structure, items, and impl blocks.
 
 #### Required Methods
 
-- `fn krate(&self) -> &Crate`
+- `fn ItemAccess::krate(&self) -> &Crate`
 
   Get the crate being documented.
 
-- `fn crate_name(&self) -> &str`
+- `fn ItemAccess::crate_name(&self) -> &str`
 
   Get the crate name.
 
-- `fn get_item(&self, id: &Id) -> Option<&Item>`
+- `fn ItemAccess::get_item(&self, id: &Id) -> Option<&Item>`
 
   Get an item by its ID.
 
-- `fn get_impls(&self, id: &Id) -> Option<&[&Impl]>`
+- `fn ItemAccess::get_impls(&self, id: &Id) -> Option<&[&Impl]>`
 
   Get impl blocks for a type.
 
-- `fn crate_version(&self) -> Option<&str>`
+- `fn ItemAccess::crate_version(&self) -> Option<&str>`
 
   Get the crate version for display in headers.
 
-- `fn render_config(&self) -> &RenderConfig`
+- `fn ItemAccess::render_config(&self) -> &RenderConfig`
 
   Get the rendering configuration.
 
 #### Provided Methods
 
-- `fn source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
+- `fn ItemAccess::source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
 
   Get source path config for a specific file.
   
@@ -2681,15 +2695,15 @@ Determines which items should be included in the generated documentation.
 
 #### Required Methods
 
-- `fn should_include_item(&self, item: &Item) -> bool`
+- `fn ItemFilter::should_include_item(&self, item: &Item) -> bool`
 
   Check if an item should be included based on visibility.
 
-- `fn include_private(&self) -> bool`
+- `fn ItemFilter::include_private(&self) -> bool`
 
   Whether private items should be included.
 
-- `fn include_blanket_impls(&self) -> bool`
+- `fn ItemFilter::include_blanket_impls(&self) -> bool`
 
   Whether blanket trait implementations should be included.
   
@@ -2714,34 +2728,34 @@ Handles intra-doc link resolution and markdown link generation.
 
 #### Required Methods
 
-- `fn link_registry(&self) -> Option<&LinkRegistry>`
+- `fn LinkResolver::link_registry(&self) -> Option<&LinkRegistry>`
 
   Get the link registry for single-crate mode.
   
   Returns `None` in multi-crate mode where `UnifiedLinkRegistry` is used instead.
 
-- `fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
+- `fn LinkResolver::process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
   Process documentation string with intra-doc link resolution.
   
   Transforms `` [`Type`](../index.md) `` style links in doc comments into proper
   markdown links. Also strips duplicate titles and reference definitions.
   
-  # Arguments
+  ##### Arguments
   
   * `item` - The item whose docs to process (provides docs and links map)
   * `current_file` - Path of the current file (for relative link calculation)
 
-- `fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
+- `fn LinkResolver::create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
   Create a markdown link to an item.
   
-  # Arguments
+  ##### Arguments
   
   * `id` - The item ID to link to
   * `current_file` - Path of the current file (for relative link calculation)
   
-  # Returns
+  ##### Returns
   
   A markdown link like `[`Name`](path/to/item.md)`, or `None` if the item
   cannot be linked.

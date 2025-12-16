@@ -50,7 +50,7 @@ side effects.
 
   Add a file to the capture.
   
-  # Arguments
+  ##### Arguments
   * `path` - Relative path of the file (e.g., "index.md" or "span/index.md")
   * `content` - The markdown content for this file
 

@@ -76,7 +76,7 @@ anchor link, and first-sentence summary.
 
   Create a new quick reference entry.
   
-  # Arguments
+  ##### Arguments
   
   * `name` - Display name for the entry
   * `kind` - Item kind (struct, enum, fn, etc.)
@@ -191,11 +191,11 @@ kinds, and first-sentence descriptions.
   
   Returns an empty string if there are no entries.
   
-  # Arguments
+  ##### Arguments
   
   * `entries` - Quick reference entries to include in the table
   
-  # Returns
+  ##### Returns
   
   A formatted markdown table string.
 

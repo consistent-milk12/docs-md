@@ -56,7 +56,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L48-L53)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L48-L53)*
 
 Low-level hash table with explicit hashing.
 
@@ -103,7 +103,7 @@ doing this because it changes the runtime of hash table operations from
   The hash table is initially created with a capacity of 0, so it will not allocate until it
   is first inserted into.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashTable;
@@ -119,7 +119,7 @@ doing this because it changes the runtime of hash table operations from
   The hash table will be able to hold at least `capacity` elements without
   reallocating. If `capacity` is 0, the hash table will not allocate.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashTable;
@@ -212,7 +212,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:1975-1981`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L1975-L1981)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:1975-1981`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L1975-L1981)*
 
 A view into an occupied entry in a `HashTable`.
 It is part of the [`Entry`](#entry) enum.
@@ -271,7 +271,7 @@ fn main() {
   `VacantEntry` that can be used to insert another value with the same
   hash as the one that was just removed.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]
@@ -309,7 +309,7 @@ fn main() {
 
   Gets a reference to the value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]
@@ -341,7 +341,7 @@ fn main() {
   If you need a reference to the `OccupiedEntry` which may outlive the
   destruction of the `Entry` value, see `into_mut`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]
@@ -390,7 +390,7 @@ fn main() {
   
   If you need multiple references to the `OccupiedEntry`, see `get_mut`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]
@@ -447,7 +447,7 @@ fn main() {
   The index is only meaningful as long as the table is not resized and no entries are added
   or removed. After such changes, it may end up pointing to a different entry or none at all.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]
@@ -543,7 +543,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2286-2293`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2286-L2293)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2286-2293`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2286-L2293)*
 
 A view into a vacant entry in a `HashTable`.
 It is part of the [`Entry`](#entry) enum.
@@ -592,7 +592,7 @@ fn main() {
   
   An `OccupiedEntry` is returned for the newly inserted element.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]
@@ -679,7 +679,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2398-2403`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2398-L2403)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2398-2403`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2398-L2403)*
 
 Type representing the absence of an entry, as returned by `HashTable::find_entry`
 and `HashTable::get_bucket_entry`.
@@ -783,7 +783,7 @@ struct Iter<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2430-2433`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2430-L2433)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2430-2433`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2430-L2433)*
 
 An iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `&'a T`.
@@ -891,7 +891,7 @@ struct IterMut<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2503-2506`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2503-L2506)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2503-2506`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2503-L2506)*
 
 A mutable iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `&'a mut T`.
@@ -983,7 +983,7 @@ struct IterBuckets<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2572-2575`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2572-L2575)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2572-2575`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2572-L2575)*
 
 An iterator producing the `usize` indices of all occupied buckets,
 within the range `0..table.num_buckets()`.
@@ -1090,7 +1090,7 @@ struct IterHash<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2634-2637`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2634-L2637)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2634-2637`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2634-L2637)*
 
 An iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a T`.
@@ -1192,7 +1192,7 @@ struct IterHashMut<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2700-2703`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2700-L2703)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2700-2703`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2700-L2703)*
 
 A mutable iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a mut T`.
@@ -1278,7 +1278,7 @@ struct IterHashBuckets<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2756-2759`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2756-L2759)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2756-2759`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2756-L2759)*
 
 An iterator producing the `usize` indices of all buckets which may match a hash.
 
@@ -1376,7 +1376,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2808-2813`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2808-L2813)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2808-2813`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2808-L2813)*
 
 An owning iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `T`.
@@ -1469,7 +1469,7 @@ struct Drain<'a, T, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2880-2882`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2880-L2882)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2880-2882`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2880-L2882)*
 
 A draining iterator over the items of a `HashTable`.
 
@@ -1556,7 +1556,7 @@ struct ExtractIf<'a, T, F, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2928-2931`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2928-L2931)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2928-2931`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L2928-L2931)*
 
 A draining iterator over entries of a `HashTable` which don't satisfy the predicate `f`.
 
@@ -1635,7 +1635,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:1676-1736`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L1676-L1736)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:1676-1736`](../../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L1676-L1736)*
 
 A view into a single entry in a table, which may either be vacant or occupied.
 
@@ -1757,7 +1757,7 @@ fn main() {
   Sets the value of the entry, replacing any existing value if there is
   one, and returns an [`OccupiedEntry`](#occupiedentry).
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]
@@ -1787,7 +1787,7 @@ fn main() {
   
   Returns an [`OccupiedEntry`](#occupiedentry) pointing to the now-occupied entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]
@@ -1828,7 +1828,7 @@ fn main() {
   
   Returns an [`OccupiedEntry`](#occupiedentry) pointing to the now-occupied entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]
@@ -1859,7 +1859,7 @@ fn main() {
   Provides in-place mutable access to an occupied entry before any
   potential inserts into the table.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(feature = "nightly")]

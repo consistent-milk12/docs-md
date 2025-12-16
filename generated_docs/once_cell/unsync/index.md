@@ -23,7 +23,7 @@ struct OnceCell<T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:411-414`](../../../.source_1765894658/once_cell-1.21.3/src/lib.rs#L411-L414)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:411-414`](../../../.source_1765900590/once_cell-1.21.3/src/lib.rs#L411-L414)*
 
 A cell which can be written to only once. It is not thread safe.
 
@@ -86,7 +86,7 @@ assert!(cell.get().is_some());
   Returns `Ok(())` if the cell was empty and `Err(value)` if it was
   full.
   
-  # Example
+  ##### Example
   ```rust
   use once_cell::unsync::OnceCell;
   
@@ -103,7 +103,7 @@ assert!(cell.get().is_some());
 
   Like [`set`](Self::set), but also returns a reference to the final cell value.
   
-  # Example
+  ##### Example
   ```rust
   use once_cell::unsync::OnceCell;
   
@@ -121,7 +121,7 @@ assert!(cell.get().is_some());
   Gets the contents of the cell, initializing it with `f`
   if the cell was empty.
   
-  # Panics
+  ##### Panics
   
   If `f` panics, the panic is propagated to the caller, and the cell
   remains uninitialized.
@@ -129,7 +129,7 @@ assert!(cell.get().is_some());
   It is an error to reentrantly initialize the cell from `f`. Doing
   so results in a panic.
   
-  # Example
+  ##### Example
   ```rust
   use once_cell::unsync::OnceCell;
   
@@ -146,7 +146,7 @@ assert!(cell.get().is_some());
   the cell was empty. If the cell was empty and `f` failed, an
   error is returned.
   
-  # Panics
+  ##### Panics
   
   If `f` panics, the panic is propagated to the caller, and the cell
   remains uninitialized.
@@ -154,7 +154,7 @@ assert!(cell.get().is_some());
   It is an error to reentrantly initialize the cell from `f`. Doing
   so results in a panic.
   
-  # Example
+  ##### Example
   ```rust
   use once_cell::unsync::OnceCell;
   
@@ -174,7 +174,7 @@ assert!(cell.get().is_some());
   
   Has no effect and returns `None` if the `OnceCell` hasn't been initialized.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use once_cell::unsync::OnceCell;
@@ -206,7 +206,7 @@ assert!(cell.get().is_some());
   
   Returns `None` if the cell was empty.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use once_cell::unsync::OnceCell;
@@ -305,7 +305,7 @@ struct Lazy<T, F> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:714-717`](../../../.source_1765894658/once_cell-1.21.3/src/lib.rs#L714-L717)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:714-717`](../../../.source_1765900590/once_cell-1.21.3/src/lib.rs#L714-L717)*
 
 A value which is initialized on the first access.
 
@@ -334,7 +334,7 @@ println!("{}", *lazy);
 
   Creates a new lazy value with the given initializing function.
   
-  # Example
+  ##### Example
   ```rust
   fn main() {
   use once_cell::unsync::Lazy;

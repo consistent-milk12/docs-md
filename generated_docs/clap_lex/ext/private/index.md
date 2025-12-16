@@ -18,7 +18,7 @@
 trait Sealed { ... }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/ext.rs:242`](../../../../.source_1765894658/clap_lex-0.7.6/src/ext.rs#L242)*
+*Defined in [`clap_lex-0.7.6/src/ext.rs:242`](../../../../.source_1765900590/clap_lex-0.7.6/src/ext.rs#L242)*
 
 #### Implementors
 

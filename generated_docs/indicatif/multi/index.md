@@ -24,7 +24,7 @@ struct MultiProgress {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L18-L20)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../../.source_1765900590/indicatif-0.18.3/src/multi.rs#L18-L20)*
 
 Manages multiple progress bars from different threads
 
@@ -238,7 +238,7 @@ struct MultiState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:207-224`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L207-L224)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:207-224`](../../../.source_1765900590/indicatif-0.18.3/src/multi.rs#L207-L224)*
 
 #### Fields
 
@@ -352,7 +352,7 @@ struct MultiStateMember {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:471-477`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L471-L477)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:471-477`](../../../.source_1765900590/indicatif-0.18.3/src/multi.rs#L471-L477)*
 
 #### Fields
 
@@ -425,7 +425,7 @@ enum MultiProgressAlignment {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L505-L509)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../../.source_1765900590/indicatif-0.18.3/src/multi.rs#L505-L509)*
 
 Vertical alignment of a multi progress.
 
@@ -523,7 +523,7 @@ enum InsertLocation {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:511-517`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L511-L517)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:511-517`](../../../.source_1765900590/indicatif-0.18.3/src/multi.rs#L511-L517)*
 
 #### Trait Implementations
 

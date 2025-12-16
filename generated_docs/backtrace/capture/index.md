@@ -25,7 +25,7 @@ struct Backtrace {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L29-L32)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../../.source_1765900590/backtrace-0.3.76/src/capture.rs#L29-L32)*
 
 Representation of an owned and self-contained backtrace.
 
@@ -58,7 +58,7 @@ enabled, and the `std` feature is enabled by default.
   avoids the symbol resolution step (which typically takes the longest)
   and allows deferring that to a later date.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use backtrace::Backtrace;
@@ -66,7 +66,7 @@ enabled, and the `std` feature is enabled by default.
   let current_backtrace = Backtrace::new();
   ```
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -81,7 +81,7 @@ enabled, and the `std` feature is enabled by default.
   the resolution process can sometimes take a significant amount of time
   whereas any one backtrace may only be rarely printed.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use backtrace::Backtrace;
@@ -92,7 +92,7 @@ enabled, and the `std` feature is enabled by default.
   println!("{current_backtrace:?}"); // symbol names now present
   ```
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -107,7 +107,7 @@ enabled, and the `std` feature is enabled by default.
   and the last frame is likely something about how this thread or the main
   function started.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -120,7 +120,7 @@ enabled, and the `std` feature is enabled by default.
   If this backtrace has been previously resolved or was created through
   `new`, this function does nothing.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -196,7 +196,7 @@ enabled, and the `std` feature is enabled by default.
 struct TracePtr(*mut core::ffi::c_void);
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:35`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L35)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:35`](../../../.source_1765900590/backtrace-0.3.76/src/capture.rs#L35)*
 
 #### Implementations
 
@@ -274,7 +274,7 @@ struct BacktraceFrame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L144-L147)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../../.source_1765900590/backtrace-0.3.76/src/capture.rs#L144-L147)*
 
 Captured version of a frame in a backtrace.
 
@@ -292,7 +292,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Frame::ip`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -301,7 +301,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Frame::symbol_address`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -310,7 +310,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Frame::module_base_address`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -327,7 +327,7 @@ enabled, and the `std` feature is enabled by default.
   Note that if this frame came from an unresolved backtrace then this will
   return an empty list.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -338,7 +338,7 @@ enabled, and the `std` feature is enabled by default.
   
   If this frame has been previously resolved, this function does nothing.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -416,7 +416,7 @@ struct BacktraceSymbol {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L222-L228)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../../.source_1765900590/backtrace-0.3.76/src/capture.rs#L222-L228)*
 
 Captured version of a symbol in a backtrace.
 
@@ -434,7 +434,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::name`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -443,7 +443,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::addr`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -452,7 +452,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::filename`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -461,7 +461,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::lineno`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -470,7 +470,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::colno`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -546,7 +546,7 @@ enum Frame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:150-158`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L150-L158)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:150-158`](../../../.source_1765900590/backtrace-0.3.76/src/capture.rs#L150-L158)*
 
 #### Implementations
 
@@ -625,5 +625,5 @@ enum Frame {
 fn _assert_send_sync()
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:129-132`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L129-L132)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:129-132`](../../../.source_1765900590/backtrace-0.3.76/src/capture.rs#L129-L132)*
 

@@ -63,7 +63,7 @@ Error reporting
 struct KindFormatter;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:36`](../../../.source_1765894658/clap_builder-4.5.53/src/error/format.rs#L36)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:36`](../../../.source_1765900590/clap_builder-4.5.53/src/error/format.rs#L36)*
 
 Report [`ErrorKind`](kind/index.md)
 
@@ -127,7 +127,7 @@ overhead for [`RichFormatter`](format/index.md).
 struct RichFormatter;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765894658/clap_builder-4.5.53/src/error/format.rs#L62)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765900590/clap_builder-4.5.53/src/error/format.rs#L62)*
 
 Richly formatted error context
 
@@ -184,7 +184,7 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 struct DefaultFormatter;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765894658/clap_builder-4.5.53/src/error/format.rs#L62)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765900590/clap_builder-4.5.53/src/error/format.rs#L62)*
 
 Richly formatted error context
 
@@ -244,7 +244,7 @@ struct Error<F: ErrorFormatter> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:60-63`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L60-L63)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:60-63`](../../../.source_1765900590/clap_builder-4.5.53/src/error/mod.rs#L60-L63)*
 
 Command Line Argument Parser Error
 
@@ -274,7 +274,7 @@ See `Command::error` to create an error.
   - `Error::insert`
   - `Error::with_cmd`
   
-  # Example
+  ##### Example
   
   ```rust
   #[cfg(feature = "error-context")] {
@@ -304,7 +304,7 @@ See `Command::error` to create an error.
 
   Apply an alternative formatter to the error
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -368,7 +368,7 @@ See `Command::error` to create an error.
 
   Prints formatted and colored error to `stdout` or `stderr` according to its error kind
   
-  # Example
+  ##### Example
   ```no_run
   use clap_builder as clap;
   use clap::Command;
@@ -388,7 +388,7 @@ See `Command::error` to create an error.
 
   Render the error message to a [`StyledStr`](../builder/styled_str/index.md).
   
-  # Example
+  ##### Example
   ```no_run
   use clap_builder as clap;
   use clap::Command;
@@ -540,7 +540,7 @@ struct ErrorInner {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:66-77`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L66-L77)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:66-77`](../../../.source_1765900590/clap_builder-4.5.53/src/error/mod.rs#L66-L77)*
 
 #### Trait Implementations
 
@@ -593,7 +593,7 @@ struct ErrorInner {
 struct Backtrace;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:927`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L927)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:927`](../../../.source_1765900590/clap_builder-4.5.53/src/error/mod.rs#L927)*
 
 #### Implementations
 
@@ -678,7 +678,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/kind.rs:4-330`](../../../.source_1765894658/clap_builder-4.5.53/src/error/kind.rs#L4-L330)*
+*Defined in [`clap_builder-4.5.53/src/error/kind.rs:4-330`](../../../.source_1765900590/clap_builder-4.5.53/src/error/kind.rs#L4-L330)*
 
 Command line argument parser kind of error
 
@@ -1133,7 +1133,7 @@ enum ContextKind {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/context.rs:5-40`](../../../.source_1765894658/clap_builder-4.5.53/src/error/context.rs#L5-L40)*
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:5-40`](../../../.source_1765900590/clap_builder-4.5.53/src/error/context.rs#L5-L40)*
 
 Semantics for a piece of error information
 
@@ -1310,7 +1310,7 @@ enum ContextValue {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/context.rs:77-92`](../../../.source_1765894658/clap_builder-4.5.53/src/error/context.rs#L77-L92)*
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:77-92`](../../../.source_1765900590/clap_builder-4.5.53/src/error/context.rs#L77-L92)*
 
 A piece of error information
 
@@ -1430,7 +1430,7 @@ enum Message {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:857-860`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L857-L860)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:857-860`](../../../.source_1765900590/clap_builder-4.5.53/src/error/mod.rs#L857-L860)*
 
 #### Implementations
 
@@ -1507,13 +1507,13 @@ enum Message {
 trait ErrorFormatter: Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:20-23`](../../../.source_1765894658/clap_builder-4.5.53/src/error/format.rs#L20-L23)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:20-23`](../../../.source_1765900590/clap_builder-4.5.53/src/error/format.rs#L20-L23)*
 
 Defines how to format an error for displaying to the user
 
 #### Required Methods
 
-- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr`
+- `fn ErrorFormatter::format_error(error: &crate::error::Error<Self>) -> StyledStr`
 
   Stylize the error for the terminal
 
@@ -1530,7 +1530,7 @@ Defines how to format an error for displaying to the user
 type Result<T, E> = std::result::Result<T, E>;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:53`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L53)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:53`](../../../.source_1765900590/clap_builder-4.5.53/src/error/mod.rs#L53)*
 
 Short hand for [`Result`](#result) type
 

@@ -110,7 +110,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../.source_1765894658/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../.source_1765900590/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
 
 An error that occurs when construction of a `Regex` fails.
 
@@ -145,7 +145,7 @@ When the `std` feature is enabled, this implements `std::error::Error`.
   errors that occur as part of parsing a pattern are guaranteed to be
   associated with a pattern ID.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{meta::Regex, PatternID};
@@ -256,7 +256,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:3380-3384`](../../../.source_1765894658/regex-automata-0.4.13/src/meta/regex.rs#L3380-L3384)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:3380-3384`](../../../.source_1765900590/regex-automata-0.4.13/src/meta/regex.rs#L3380-L3384)*
 
 A builder for configuring and constructing a `Regex`.
 
@@ -357,7 +357,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If there was a problem parsing the pattern or a problem turning it into
   a regex matcher, then an error is returned.
   
-  # Example
+  ##### Example
   
   This example shows how to configure syntax options.
   
@@ -380,7 +380,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If there was a problem parsing any of the patterns or a problem turning
   them into a regex matcher, then an error is returned.
   
-  # Example: finding the pattern that caused an error
+  ##### Example: finding the pattern that caused an error
   
   When a syntax error occurs, it is possible to ask which pattern
   caused the syntax error.
@@ -394,7 +394,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   assert_eq!(Some(PatternID::must(2)), err.pattern());
   ```
   
-  # Example: zero patterns is valid
+  ##### Example: zero patterns is valid
   
   Building a regex with zero patterns results in a regex that never
   matches anything. Because this routine is generic, passing an empty
@@ -427,7 +427,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If there was a problem building the underlying regex matcher for the
   given `Hir`, then an error is returned.
   
-  # Example
+  ##### Example
   
   This example shows how one can hand-construct an `Hir` expression and
   build a regex from it without doing any parsing at all.
@@ -475,7 +475,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   failure. So if this routine fails, it's not possible to determine which
   `Hir` expression caused the failure.
   
-  # Example
+  ##### Example
   
   This example shows how one can hand-construct multiple `Hir`
   expressions and build a single regex from them without doing any
@@ -522,7 +522,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   for configuring which regex engines the meta regex engine will be able
   to use internally.
   
-  # Example
+  ##### Example
   
   This example shows how to disable UTF-8 empty mode. This will permit
   empty matches to occur between the UTF-8 encoding of a codepoint.
@@ -562,7 +562,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   are used. The other build methods accept `Hir` values, which have
   already been parsed.
   
-  # Example
+  ##### Example
   
   This example shows how to enable case insensitive mode.
   
@@ -651,7 +651,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2353-2360`](../../../.source_1765894658/regex-automata-0.4.13/src/meta/regex.rs#L2353-L2360)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2353-2360`](../../../.source_1765900590/regex-automata-0.4.13/src/meta/regex.rs#L2353-L2360)*
 
 Represents mutable scratch space used by regex engines during a search.
 
@@ -718,7 +718,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   A cache reset permits potentially reusing memory already allocated in
   this cache with a different `Regex`.
   
-  # Example
+  ##### Example
   
   This shows how to re-purpose a cache for use with a different `Regex`.
   
@@ -829,7 +829,7 @@ struct CapturesMatches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2138-2143`](../../../.source_1765894658/regex-automata-0.4.13/src/meta/regex.rs#L2138-L2143)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2138-2143`](../../../.source_1765900590/regex-automata-0.4.13/src/meta/regex.rs#L2138-L2143)*
 
 An iterator over all non-overlapping leftmost matches with their capturing
 groups.
@@ -943,7 +943,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2453-2477`](../../../.source_1765894658/regex-automata-0.4.13/src/meta/regex.rs#L2453-L2477)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2453-2477`](../../../.source_1765900590/regex-automata-0.4.13/src/meta/regex.rs#L2453-L2477)*
 
 An object describing the configuration of a `Regex`.
 
@@ -982,7 +982,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   The default value is [`MatchKind::LeftmostFirst`](../index.md).
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{meta::Regex, Match, MatchKind};
@@ -1021,7 +1021,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   By default, this is enabled.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{meta::Regex, Match};
@@ -1060,7 +1060,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   By default, this is enabled.
   
-  # Example
+  ##### Example
   
   ```rust
   if cfg!(miri) { return Ok(()); } // miri takes too long
@@ -1087,7 +1087,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   used if one could be built. (Assuming `Config::auto_prefilter` is
   enabled, which it is by default.)
   
-  # Example
+  ##### Example
   
   This example shows how to set your own prefilter. In the case of a
   pattern like `Bruce \w+`, the automatic prefilter is likely to be
@@ -1116,7 +1116,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Ok::<(), Box<dyn std::error::Error>>(())
   ```
   
-  # Example: incorrect prefilters can lead to incorrect results!
+  ##### Example: incorrect prefilters can lead to incorrect results!
   
   Be warned that setting an incorrect prefilter can lead to missed
   matches. So if you use this option, ensure your prefilter can _never_
@@ -1169,7 +1169,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   influenced by user input (since user input can influence the selection
   of the regex engine).
   
-  # Example
+  ##### Example
   
   This example demonstrates how the results of capture groups can change
   based on this option. First we show the default (all capture groups in
@@ -1217,7 +1217,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Ok::<(), Box<dyn std::error::Error>>(())
   ```
   
-  # Example: strange `Regex::find` behavior
+  ##### Example: strange `Regex::find` behavior
   
   As noted above, when using [`WhichCaptures::None`](../index.md), this means that
   `Regex::is_match` could return `true` while `Regex::find` returns
@@ -1260,7 +1260,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This defaults to some reasonable number that permits most reasonable
   patterns.
   
-  # Example
+  ##### Example
   
   ```rust
   if cfg!(miri) { return Ok(()); } // miri takes too long
@@ -1310,7 +1310,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This defaults to some reasonable number that permits most reasonable
   one-pass patterns.
   
-  # Example
+  ##### Example
   
   This shows how to set the one-pass DFA size limit. Note that since
   a one-pass DFA is an optional component of the meta regex engine,
@@ -1356,7 +1356,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   log level to `trace` will also tell you how often the cache is being
   cleared.
   
-  # Example
+  ##### Example
   
   ```rust
   if cfg!(miri) { return Ok(()); } // miri takes too long
@@ -1399,7 +1399,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   The default is set to a small number that permits some simple regexes
   to get compiled into DFAs in reasonable time.
   
-  # Example
+  ##### Example
   
   ```rust
   if cfg!(miri) { return Ok(()); } // miri takes too long
@@ -1430,7 +1430,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   By default, this is set to a very small number.
   
-  # Example
+  ##### Example
   
   ```rust
   if cfg!(miri) { return Ok(()); } // miri takes too long
@@ -1464,7 +1464,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This option is enabled by default and should never be disabled unless
   one is debugging the meta regex engine's internals.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{meta::Regex, Match};
@@ -1496,7 +1496,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   in addition to this. Otherwise, `.` will continue to match any
   character other than `\n`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{meta::Regex, util::syntax, Match};
@@ -1757,7 +1757,7 @@ struct FindMatches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2075-2079`](../../../.source_1765894658/regex-automata-0.4.13/src/meta/regex.rs#L2075-L2079)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2075-2079`](../../../.source_1765900590/regex-automata-0.4.13/src/meta/regex.rs#L2075-L2079)*
 
 An iterator over all non-overlapping matches.
 
@@ -1855,7 +1855,7 @@ struct Regex {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:235-252`](../../../.source_1765894658/regex-automata-0.4.13/src/meta/regex.rs#L235-L252)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:235-252`](../../../.source_1765900590/regex-automata-0.4.13/src/meta/regex.rs#L235-L252)*
 
 A regex matcher that works by composing several other regex matchers
 automatically.
@@ -2083,7 +2083,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If you want to change the configuration of a `Regex`, use a [`Builder`](regex/index.md)
   with a [`Config`](regex/index.md).
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{meta::Regex, Match};
@@ -2106,7 +2106,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If you want to change the configuration of a `Regex`, use a [`Builder`](regex/index.md)
   with a [`Config`](regex/index.md).
   
-  # Example: simple lexer
+  ##### Example: simple lexer
   
   This simplistic example leverages the multi-pattern support to build a
   simple little lexer. The pattern ID in the match tells you which regex
@@ -2157,7 +2157,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   corresponds to. In contrast, the above example includes the pattern ID
   in the match. There's no need to use capture groups at all.
   
-  # Example: finding the pattern that caused an error
+  ##### Example: finding the pattern that caused an error
   
   When a syntax error occurs, it is possible to ask which pattern
   caused the syntax error.
@@ -2169,7 +2169,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   assert_eq!(Some(PatternID::must(2)), err.pattern());
   ```
   
-  # Example: zero patterns is valid
+  ##### Example: zero patterns is valid
   
   Building a regex with zero patterns results in a regex that never
   matches anything. Because this routine is generic, passing an empty
@@ -2192,7 +2192,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine to avoid needing to import the [`Config`](regex/index.md)
   type when customizing the construction of a `Regex`.
   
-  # Example: lower the NFA size limit
+  ##### Example: lower the NFA size limit
   
   In some cases, the default size limit might be too big. The size limit
   can be lowered, which will prevent large regex patterns from compiling.
@@ -2217,7 +2217,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine to avoid needing to import the
   [`Builder`](regex/index.md) type in common cases.
   
-  # Example: change the line terminator
+  ##### Example: change the line terminator
   
   This example shows how to enable multi-line mode by default and change
   the line terminator to the NUL byte:
@@ -2305,7 +2305,7 @@ struct Split<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2206-2209`](../../../.source_1765894658/regex-automata-0.4.13/src/meta/regex.rs#L2206-L2209)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2206-2209`](../../../.source_1765900590/regex-automata-0.4.13/src/meta/regex.rs#L2206-L2209)*
 
 Yields all substrings delimited by a regular expression match.
 
@@ -2397,7 +2397,7 @@ struct SplitN<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2260-2263`](../../../.source_1765894658/regex-automata-0.4.13/src/meta/regex.rs#L2260-L2263)*
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2260-2263`](../../../.source_1765900590/regex-automata-0.4.13/src/meta/regex.rs#L2260-L2263)*
 
 Yields at most `N` spans delimited by a regular expression match.
 

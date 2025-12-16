@@ -23,7 +23,7 @@
 trait TokenStreamExt: private::Sealed { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../../.source_1765894658/quote-1.0.42/src/ext.rs#L8-L57)*
+*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../../.source_1765900590/quote-1.0.42/src/ext.rs#L8-L57)*
 
 TokenStream extension trait with methods for appending tokens.
 
@@ -31,13 +31,13 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
 
 #### Required Methods
 
-- `fn append<U>(&mut self, token: U)`
+- `fn TokenStreamExt::append<U>(&mut self, token: U)`
 
   For use by `ToTokens` implementations.
   
   Appends the token specified to this list of tokens.
 
-- `fn append_all<I>(&mut self, iter: I)`
+- `fn TokenStreamExt::append_all<I>(&mut self, iter: I)`
 
   For use by `ToTokens` implementations.
   
@@ -57,14 +57,14 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
   assert_eq!(tokens.to_string(), "true false");
   ```
 
-- `fn append_separated<I, U>(&mut self, iter: I, op: U)`
+- `fn TokenStreamExt::append_separated<I, U>(&mut self, iter: I, op: U)`
 
   For use by `ToTokens` implementations.
   
   Appends all of the items in the iterator `I`, separated by the tokens
   `U`.
 
-- `fn append_terminated<I, U>(&mut self, iter: I, term: U)`
+- `fn TokenStreamExt::append_terminated<I, U>(&mut self, iter: I, term: U)`
 
   For use by `ToTokens` implementations.
   

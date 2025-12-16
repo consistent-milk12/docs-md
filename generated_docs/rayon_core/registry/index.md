@@ -65,7 +65,7 @@ struct ThreadBuilder {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L22-L29)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L22-L29)*
 
 Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
@@ -153,7 +153,7 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 struct DefaultSpawn;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:82`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L82)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:82`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L82)*
 
 Spawns a thread in the "normal" way with `std::thread::Builder`.
 
@@ -233,7 +233,7 @@ but we don't actually want to expose these details in the API.
 struct CustomSpawn<F>(F);
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:105`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L105)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:105`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L105)*
 
 Spawns a thread with a user's custom callback.
 
@@ -322,7 +322,7 @@ struct Registry {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:128-151`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L128-L151)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:128-151`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L128-L151)*
 
 #### Implementations
 
@@ -485,7 +485,7 @@ struct Registry {
 struct Terminator<'a>(&'a std::sync::Arc<Registry>);
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:230`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L230)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:230`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L230)*
 
 #### Trait Implementations
 
@@ -554,7 +554,7 @@ struct RegistryId {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:609-611`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L609-L611)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:609-611`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L609-L611)*
 
 #### Trait Implementations
 
@@ -660,7 +660,7 @@ struct ThreadInfo {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:613-631`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L613-L631)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:613-631`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L613-L631)*
 
 #### Fields
 
@@ -758,7 +758,7 @@ struct WorkerThread {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:647-663`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L647-L663)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:647-663`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L647-L663)*
 
 #### Fields
 
@@ -905,7 +905,7 @@ struct XorShift64Star {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:968-970`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L968-L970)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:968-970`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L968-L970)*
 
 [xorshift*] is a fast pseudorandom number generator which will
 even tolerate weak seeding, as long as it's not zero.
@@ -984,7 +984,7 @@ even tolerate weak seeding, as long as it's not zero.
 trait ThreadSpawn { ... }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:69-75`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L69-L75)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:69-75`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L69-L75)*
 
 Generalized trait for spawning a thread in the `Registry`.
 
@@ -993,7 +993,7 @@ but we don't actually want to expose these details in the API.
 
 #### Required Methods
 
-- `fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>`
+- `fn ThreadSpawn::spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>`
 
   Spawn a thread with the `ThreadBuilder` parameters, and then
   call `ThreadBuilder::run()`.
@@ -1011,7 +1011,7 @@ but we don't actually want to expose these details in the API.
 fn global_registry() -> &'static std::sync::Arc<Registry>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:162-172`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L162-L172)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:162-172`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L162-L172)*
 
 Starts the worker threads (if that has not already happened). If
 initialization has not already occurred, use the default
@@ -1025,7 +1025,7 @@ where
     S: ThreadSpawn
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:176-183`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L176-L183)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:176-183`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L176-L183)*
 
 Starts the worker threads (if that has not already happened) with
 the given builder.
@@ -1038,7 +1038,7 @@ where
     F: FnOnce() -> Result<std::sync::Arc<Registry>, crate::ThreadPoolBuildError>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:187-207`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L187-L207)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:187-207`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L187-L207)*
 
 Starts the worker threads (if that has not already happened)
 by creating a registry with the given callback.
@@ -1049,7 +1049,7 @@ by creating a registry with the given callback.
 fn default_global_registry() -> Result<std::sync::Arc<Registry>, crate::ThreadPoolBuildError>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:209-228`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L209-L228)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:209-228`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L209-L228)*
 
 ### `main_loop`
 
@@ -1057,7 +1057,7 @@ fn default_global_registry() -> Result<std::sync::Arc<Registry>, crate::ThreadPo
 unsafe fn main_loop(thread: ThreadBuilder)
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:910-939`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L910-L939)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:910-939`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L910-L939)*
 
 ### `in_worker`
 
@@ -1068,7 +1068,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:946-962`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L946-L962)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:946-962`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L946-L962)*
 
 If already in a worker-thread, just execute `op`.  Otherwise,
 execute `op` in the default thread pool. Either way, block until
@@ -1083,5 +1083,5 @@ panic will be propagated as well.  The second argument indicates
 const WORKER_THREAD_STATE: thread::LocalKey<std::cell::Cell<*const WorkerThread>>;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:670-672`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L670-L672)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:670-672`](../../../.source_1765900590/rayon-core-1.13.0/src/registry.rs#L670-L672)*
 

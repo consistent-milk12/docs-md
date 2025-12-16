@@ -25,7 +25,7 @@ struct Iter<B: 'static> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/iter.rs:13-16`](../../../.source_1765894658/bitflags-2.10.0/src/iter.rs#L13-L16)*
+*Defined in [`bitflags-2.10.0/src/iter.rs:13-16`](../../../.source_1765900590/bitflags-2.10.0/src/iter.rs#L13-L16)*
 
 An iterator over flags values.
 
@@ -102,7 +102,7 @@ struct IterNames<B: 'static> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/iter.rs:67-72`](../../../.source_1765894658/bitflags-2.10.0/src/iter.rs#L67-L72)*
+*Defined in [`bitflags-2.10.0/src/iter.rs:67-72`](../../../.source_1765900590/bitflags-2.10.0/src/iter.rs#L67-L72)*
 
 An iterator over flags values.
 
@@ -177,7 +177,7 @@ struct IterDefinedNames<B: 'static> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/iter.rs:153-156`](../../../.source_1765894658/bitflags-2.10.0/src/iter.rs#L153-L156)*
+*Defined in [`bitflags-2.10.0/src/iter.rs:153-156`](../../../.source_1765900590/bitflags-2.10.0/src/iter.rs#L153-L156)*
 
 An iterator over all defined named flags.
 

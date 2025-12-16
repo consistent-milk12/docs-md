@@ -63,7 +63,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:37-47`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L37-L47)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:37-47`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L37-L47)*
 
 A PE image file.
 
@@ -243,7 +243,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:432-439`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L432-L439)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:432-439`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L432-L439)*
 
 An iterator for the COMDAT section groups in a [`PeFile`](../index.md).
 
@@ -319,7 +319,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:465-472`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L465-L472)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:465-472`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L465-L472)*
 
 A COMDAT section group in a [`PeFile`](../index.md).
 
@@ -397,7 +397,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:525-532`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L525-L532)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:525-532`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L525-L532)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile`](../index.md).
 
@@ -470,7 +470,7 @@ This is a stub that doesn't implement any functionality.
 trait ImageNtHeaders: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:589-671`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L589-L671)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:589-671`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L589-L671)*
 
 A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and [`pe::ImageNtHeaders64`](../../../pe/index.md).
 
@@ -482,31 +482,31 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and
 
 #### Required Methods
 
-- `fn is_type_64(&self) -> bool`
+- `fn ImageNtHeaders::is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
   
   This is a property of the type, not a value in the header data.
 
-- `fn is_valid_optional_magic(&self) -> bool`
+- `fn ImageNtHeaders::is_valid_optional_magic(&self) -> bool`
 
   Return true if the magic field in the optional header is valid.
 
-- `fn signature(&self) -> u32`
+- `fn ImageNtHeaders::signature(&self) -> u32`
 
   Return the signature
 
-- `fn file_header(&self) -> &pe::ImageFileHeader`
+- `fn ImageNtHeaders::file_header(&self) -> &pe::ImageFileHeader`
 
   Return the file header.
 
-- `fn optional_header(&self) -> &<Self as >::ImageOptionalHeader`
+- `fn ImageNtHeaders::optional_header(&self) -> &<Self as >::ImageOptionalHeader`
 
   Return the optional header.
 
 #### Provided Methods
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<(&'data Self, DataDirectories<'data>)>`
+- `fn ImageNtHeaders::parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<(&'data Self, DataDirectories<'data>)>`
 
   Read the NT headers, including the data directories.
   
@@ -517,14 +517,14 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and
   
   Also checks that the `signature` and `magic` fields in the headers are valid.
 
-- `fn sections<'data, R: ReadRef<'data>>(&self, data: R, offset: u64) -> read::Result<SectionTable<'data>>`
+- `fn ImageNtHeaders::sections<'data, R: ReadRef<'data>>(&self, data: R, offset: u64) -> read::Result<SectionTable<'data>>`
 
   Read the section table.
   
   `data` must be for the entire file.
   `offset` must be after the optional file header.
 
-- `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<SymbolTable<'data, R>>`
+- `fn ImageNtHeaders::symbols<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<SymbolTable<'data, R>>`
 
   Read the COFF symbol table and string table.
   
@@ -541,71 +541,108 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and
 trait ImageOptionalHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:675-709`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L675-L709)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:675-709`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L675-L709)*
 
 A trait for generic access to [`pe::ImageOptionalHeader32`](../../../pe/index.md) and [`pe::ImageOptionalHeader64`](../../../pe/index.md).
 
+<details>
+<summary><strong>Methods (30)</strong> - click to expand</summary>
+
+**Required:**
+- [`ImageOptionalHeader::magic`](#fn-imageoptionalheadermagic)
+- [`ImageOptionalHeader::major_linker_version`](#fn-imageoptionalheadermajor-linker-version)
+- [`ImageOptionalHeader::minor_linker_version`](#fn-imageoptionalheaderminor-linker-version)
+- [`ImageOptionalHeader::size_of_code`](#fn-imageoptionalheadersize-of-code)
+- [`ImageOptionalHeader::size_of_initialized_data`](#fn-imageoptionalheadersize-of-initialized-data)
+- [`ImageOptionalHeader::size_of_uninitialized_data`](#fn-imageoptionalheadersize-of-uninitialized-data)
+- [`ImageOptionalHeader::address_of_entry_point`](#fn-imageoptionalheaderaddress-of-entry-point)
+- [`ImageOptionalHeader::base_of_code`](#fn-imageoptionalheaderbase-of-code)
+- [`ImageOptionalHeader::base_of_data`](#fn-imageoptionalheaderbase-of-data)
+- [`ImageOptionalHeader::image_base`](#fn-imageoptionalheaderimage-base)
+- [`ImageOptionalHeader::section_alignment`](#fn-imageoptionalheadersection-alignment)
+- [`ImageOptionalHeader::file_alignment`](#fn-imageoptionalheaderfile-alignment)
+- [`ImageOptionalHeader::major_operating_system_version`](#fn-imageoptionalheadermajor-operating-system-version)
+- [`ImageOptionalHeader::minor_operating_system_version`](#fn-imageoptionalheaderminor-operating-system-version)
+- [`ImageOptionalHeader::major_image_version`](#fn-imageoptionalheadermajor-image-version)
+- [`ImageOptionalHeader::minor_image_version`](#fn-imageoptionalheaderminor-image-version)
+- [`ImageOptionalHeader::major_subsystem_version`](#fn-imageoptionalheadermajor-subsystem-version)
+- [`ImageOptionalHeader::minor_subsystem_version`](#fn-imageoptionalheaderminor-subsystem-version)
+- [`ImageOptionalHeader::win32_version_value`](#fn-imageoptionalheaderwin32-version-value)
+- [`ImageOptionalHeader::size_of_image`](#fn-imageoptionalheadersize-of-image)
+- [`ImageOptionalHeader::size_of_headers`](#fn-imageoptionalheadersize-of-headers)
+- [`ImageOptionalHeader::check_sum`](#fn-imageoptionalheadercheck-sum)
+- [`ImageOptionalHeader::subsystem`](#fn-imageoptionalheadersubsystem)
+- [`ImageOptionalHeader::dll_characteristics`](#fn-imageoptionalheaderdll-characteristics)
+- [`ImageOptionalHeader::size_of_stack_reserve`](#fn-imageoptionalheadersize-of-stack-reserve)
+- [`ImageOptionalHeader::size_of_stack_commit`](#fn-imageoptionalheadersize-of-stack-commit)
+- [`ImageOptionalHeader::size_of_heap_reserve`](#fn-imageoptionalheadersize-of-heap-reserve)
+- [`ImageOptionalHeader::size_of_heap_commit`](#fn-imageoptionalheadersize-of-heap-commit)
+- [`ImageOptionalHeader::loader_flags`](#fn-imageoptionalheaderloader-flags)
+- [`ImageOptionalHeader::number_of_rva_and_sizes`](#fn-imageoptionalheadernumber-of-rva-and-sizes)
+
+</details>
+
 #### Required Methods
 
-- `fn magic(&self) -> u16`
+- `fn ImageOptionalHeader::magic(&self) -> u16`
 
-- `fn major_linker_version(&self) -> u8`
+- `fn ImageOptionalHeader::major_linker_version(&self) -> u8`
 
-- `fn minor_linker_version(&self) -> u8`
+- `fn ImageOptionalHeader::minor_linker_version(&self) -> u8`
 
-- `fn size_of_code(&self) -> u32`
+- `fn ImageOptionalHeader::size_of_code(&self) -> u32`
 
-- `fn size_of_initialized_data(&self) -> u32`
+- `fn ImageOptionalHeader::size_of_initialized_data(&self) -> u32`
 
-- `fn size_of_uninitialized_data(&self) -> u32`
+- `fn ImageOptionalHeader::size_of_uninitialized_data(&self) -> u32`
 
-- `fn address_of_entry_point(&self) -> u32`
+- `fn ImageOptionalHeader::address_of_entry_point(&self) -> u32`
 
-- `fn base_of_code(&self) -> u32`
+- `fn ImageOptionalHeader::base_of_code(&self) -> u32`
 
-- `fn base_of_data(&self) -> Option<u32>`
+- `fn ImageOptionalHeader::base_of_data(&self) -> Option<u32>`
 
-- `fn image_base(&self) -> u64`
+- `fn ImageOptionalHeader::image_base(&self) -> u64`
 
-- `fn section_alignment(&self) -> u32`
+- `fn ImageOptionalHeader::section_alignment(&self) -> u32`
 
-- `fn file_alignment(&self) -> u32`
+- `fn ImageOptionalHeader::file_alignment(&self) -> u32`
 
-- `fn major_operating_system_version(&self) -> u16`
+- `fn ImageOptionalHeader::major_operating_system_version(&self) -> u16`
 
-- `fn minor_operating_system_version(&self) -> u16`
+- `fn ImageOptionalHeader::minor_operating_system_version(&self) -> u16`
 
-- `fn major_image_version(&self) -> u16`
+- `fn ImageOptionalHeader::major_image_version(&self) -> u16`
 
-- `fn minor_image_version(&self) -> u16`
+- `fn ImageOptionalHeader::minor_image_version(&self) -> u16`
 
-- `fn major_subsystem_version(&self) -> u16`
+- `fn ImageOptionalHeader::major_subsystem_version(&self) -> u16`
 
-- `fn minor_subsystem_version(&self) -> u16`
+- `fn ImageOptionalHeader::minor_subsystem_version(&self) -> u16`
 
-- `fn win32_version_value(&self) -> u32`
+- `fn ImageOptionalHeader::win32_version_value(&self) -> u32`
 
-- `fn size_of_image(&self) -> u32`
+- `fn ImageOptionalHeader::size_of_image(&self) -> u32`
 
-- `fn size_of_headers(&self) -> u32`
+- `fn ImageOptionalHeader::size_of_headers(&self) -> u32`
 
-- `fn check_sum(&self) -> u32`
+- `fn ImageOptionalHeader::check_sum(&self) -> u32`
 
-- `fn subsystem(&self) -> u16`
+- `fn ImageOptionalHeader::subsystem(&self) -> u16`
 
-- `fn dll_characteristics(&self) -> u16`
+- `fn ImageOptionalHeader::dll_characteristics(&self) -> u16`
 
-- `fn size_of_stack_reserve(&self) -> u64`
+- `fn ImageOptionalHeader::size_of_stack_reserve(&self) -> u64`
 
-- `fn size_of_stack_commit(&self) -> u64`
+- `fn ImageOptionalHeader::size_of_stack_commit(&self) -> u64`
 
-- `fn size_of_heap_reserve(&self) -> u64`
+- `fn ImageOptionalHeader::size_of_heap_reserve(&self) -> u64`
 
-- `fn size_of_heap_commit(&self) -> u64`
+- `fn ImageOptionalHeader::size_of_heap_commit(&self) -> u64`
 
-- `fn loader_flags(&self) -> u32`
+- `fn ImageOptionalHeader::loader_flags(&self) -> u32`
 
-- `fn number_of_rva_and_sizes(&self) -> u32`
+- `fn ImageOptionalHeader::number_of_rva_and_sizes(&self) -> u32`
 
 #### Implementors
 
@@ -620,7 +657,7 @@ A trait for generic access to [`pe::ImageOptionalHeader32`](../../../pe/index.md
 fn optional_header_magic<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<u16>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:572-585`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L572-L585)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:572-585`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L572-L585)*
 
 Find the optional header and read its `magic` field.
 
@@ -635,7 +672,7 @@ fully parse the NT headers.
 type PeFile32<'data, R> = PeFile<'data, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:26`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L26)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:26`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L26)*
 
 A PE32 (32-bit) image file.
 
@@ -648,7 +685,7 @@ to [`crate::FileKind::Pe32`](../../../index.md).
 type PeFile64<'data, R> = PeFile<'data, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:31`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L31)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:31`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L31)*
 
 A PE32+ (64-bit) image file.
 
@@ -661,7 +698,7 @@ to [`crate::FileKind::Pe64`](../../../index.md).
 type PeComdatIterator32<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:422-423`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L422-L423)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:422-423`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L422-L423)*
 
 An iterator for the COMDAT section groups in a [`PeFile32`](../index.md).
 
@@ -671,7 +708,7 @@ An iterator for the COMDAT section groups in a [`PeFile32`](../index.md).
 type PeComdatIterator64<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:425-426`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L425-L426)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:425-426`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L425-L426)*
 
 An iterator for the COMDAT section groups in a [`PeFile64`](../index.md).
 
@@ -681,7 +718,7 @@ An iterator for the COMDAT section groups in a [`PeFile64`](../index.md).
 type PeComdat32<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:455-456`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L455-L456)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:455-456`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L455-L456)*
 
 A COMDAT section group in a [`PeFile32`](../index.md).
 
@@ -691,7 +728,7 @@ A COMDAT section group in a [`PeFile32`](../index.md).
 type PeComdat64<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:458-459`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L458-L459)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:458-459`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L458-L459)*
 
 A COMDAT section group in a [`PeFile64`](../index.md).
 
@@ -701,7 +738,7 @@ A COMDAT section group in a [`PeFile64`](../index.md).
 type PeComdatSectionIterator32<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:515-516`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L515-L516)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:515-516`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L515-L516)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile32`](../index.md).
 
@@ -711,7 +748,7 @@ An iterator for the sections in a COMDAT section group in a [`PeFile32`](../inde
 type PeComdatSectionIterator64<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:518-519`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L518-L519)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:518-519`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/file.rs#L518-L519)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile64`](../index.md).
 

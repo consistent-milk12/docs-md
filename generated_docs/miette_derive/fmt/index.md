@@ -26,7 +26,7 @@ struct Display {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/fmt.rs:12-16`](../../../.source_1765894658/miette-derive-7.6.0/src/fmt.rs#L12-L16)*
+*Defined in [`miette-derive-7.6.0/src/fmt.rs:12-16`](../../../.source_1765900590/miette-derive-7.6.0/src/fmt.rs#L12-L16)*
 
 #### Implementations
 
@@ -105,7 +105,7 @@ struct Display {
 fn explicit_named_args(input: syn::parse::ParseStream<'_>) -> syn::Result<std::collections::HashSet<syn::Ident>>
 ```
 
-*Defined in [`miette-derive-7.6.0/src/fmt.rs:116-131`](../../../.source_1765894658/miette-derive-7.6.0/src/fmt.rs#L116-L131)*
+*Defined in [`miette-derive-7.6.0/src/fmt.rs:116-131`](../../../.source_1765900590/miette-derive-7.6.0/src/fmt.rs#L116-L131)*
 
 ### `take_int`
 
@@ -113,7 +113,7 @@ fn explicit_named_args(input: syn::parse::ParseStream<'_>) -> syn::Result<std::c
 fn take_int(read: &mut &str) -> String
 ```
 
-*Defined in [`miette-derive-7.6.0/src/fmt.rs:133-145`](../../../.source_1765894658/miette-derive-7.6.0/src/fmt.rs#L133-L145)*
+*Defined in [`miette-derive-7.6.0/src/fmt.rs:133-145`](../../../.source_1765900590/miette-derive-7.6.0/src/fmt.rs#L133-L145)*
 
 ### `take_ident`
 
@@ -121,7 +121,7 @@ fn take_int(read: &mut &str) -> String
 fn take_ident(read: &mut &str) -> syn::Ident
 ```
 
-*Defined in [`miette-derive-7.6.0/src/fmt.rs:147-164`](../../../.source_1765894658/miette-derive-7.6.0/src/fmt.rs#L147-L164)*
+*Defined in [`miette-derive-7.6.0/src/fmt.rs:147-164`](../../../.source_1765900590/miette-derive-7.6.0/src/fmt.rs#L147-L164)*
 
 ### `parse_token_expr`
 
@@ -129,5 +129,5 @@ fn take_ident(read: &mut &str) -> syn::Ident
 fn parse_token_expr(input: syn::parse::ParseStream<'_>, begin_expr: bool) -> syn::Result<proc_macro2::TokenStream>
 ```
 
-*Defined in [`miette-derive-7.6.0/src/fmt.rs:166-235`](../../../.source_1765894658/miette-derive-7.6.0/src/fmt.rs#L166-L235)*
+*Defined in [`miette-derive-7.6.0/src/fmt.rs:166-235`](../../../.source_1765900590/miette-derive-7.6.0/src/fmt.rs#L166-L235)*
 

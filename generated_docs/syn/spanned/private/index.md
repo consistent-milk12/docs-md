@@ -18,7 +18,7 @@
 trait Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/spanned.rs:113`](../../../../.source_1765894658/syn-2.0.111/src/spanned.rs#L113)*
+*Defined in [`syn-2.0.111/src/spanned.rs:113`](../../../../.source_1765900590/syn-2.0.111/src/spanned.rs#L113)*
 
 #### Implementors
 

@@ -23,7 +23,7 @@ struct StaticStr {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:11-16`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/static_str.rs#L11-L16)*
+*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:11-16`](../../../../.source_1765900590/compact_str-0.9.0/src/repr/static_str.rs#L11-L16)*
 
 A buffer stored on the stack whose size is equal to the stack size of `String`
 The last byte is set to 0.
@@ -36,7 +36,7 @@ The last byte is set to 0.
 
 - <span id="staticstr-set-len"></span>`unsafe fn set_len(&mut self, len: usize)`
 
-  # Safety
+  ##### Safety
   * `len` bytes in the buffer must be valid UTF-8 and
   * `len` must be <= `self.get_text().len()`
 
@@ -106,5 +106,5 @@ The last byte is set to 0.
 const DISCRIMINANT_SIZE: usize = 8usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:5`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/static_str.rs#L5)*
+*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:5`](../../../../.source_1765900590/compact_str-0.9.0/src/repr/static_str.rs#L5)*
 

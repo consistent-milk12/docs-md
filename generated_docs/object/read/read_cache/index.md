@@ -23,7 +23,7 @@ struct ReadCache<R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L31-L33)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../../.source_1765900590/object-0.37.3/src/read/read_cache.rs#L31-L33)*
 
 An implementation of [`ReadRef`](../index.md) for data in a stream that implements
 `Read + Seek`.
@@ -122,7 +122,7 @@ struct ReadCacheInternal<R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L36-L41)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../../.source_1765900590/object-0.37.3/src/read/read_cache.rs#L36-L41)*
 
 #### Implementations
 
@@ -189,7 +189,7 @@ struct ReadCacheRange<'a, R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L172-L176)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../../.source_1765900590/object-0.37.3/src/read/read_cache.rs#L172-L176)*
 
 An implementation of [`ReadRef`](../index.md) for a range of data in a stream that
 implements `Read + Seek`.
@@ -275,7 +275,7 @@ Shares an underlying [`ReadCache`](../index.md) with a lifetime of `'a`.
 trait ReadCacheOps { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L222-L242)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../../.source_1765900590/object-0.37.3/src/read/read_cache.rs#L222-L242)*
 
 Operations required to implement [`ReadCache`](../index.md).
 
@@ -285,25 +285,25 @@ A blanket implementation is provided for all types that implement
 
 #### Required Methods
 
-- `fn len(&mut self) -> Result<u64, ()>`
+- `fn ReadCacheOps::len(&mut self) -> Result<u64, ()>`
 
   Return the length of the stream.
   
   Equivalent to `std::io::Seek::seek(SeekFrom::End(0))`.
 
-- `fn seek(&mut self, pos: u64) -> Result<u64, ()>`
+- `fn ReadCacheOps::seek(&mut self, pos: u64) -> Result<u64, ()>`
 
   Seek to the given position in the stream.
   
   Equivalent to `std::io::Seek::seek` with `SeekFrom::Start(pos)`.
 
-- `fn read(&mut self, buf: &mut [u8]) -> Result<usize, ()>`
+- `fn ReadCacheOps::read(&mut self, buf: &mut [u8]) -> Result<usize, ()>`
 
   Read up to `buf.len()` bytes into `buf`.
   
   Equivalent to `std::io::Read::read`.
 
-- `fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), ()>`
+- `fn ReadCacheOps::read_exact(&mut self, buf: &mut [u8]) -> Result<(), ()>`
 
   Read exactly `buf.len()` bytes into `buf`.
   

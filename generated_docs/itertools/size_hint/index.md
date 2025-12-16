@@ -41,7 +41,7 @@ Arithmetic on `Iterator.size_hint()` values.
 fn add(a: (usize, Option<usize>), b: (usize, Option<usize>)) -> (usize, Option<usize>)
 ```
 
-*Defined in [`itertools-0.14.0/src/size_hint.rs:11-19`](../../../.source_1765894658/itertools-0.14.0/src/size_hint.rs#L11-L19)*
+*Defined in [`itertools-0.14.0/src/size_hint.rs:11-19`](../../../.source_1765900590/itertools-0.14.0/src/size_hint.rs#L11-L19)*
 
 Add `SizeHint` correctly.
 
@@ -51,7 +51,7 @@ Add `SizeHint` correctly.
 fn add_scalar(sh: (usize, Option<usize>), x: usize) -> (usize, Option<usize>)
 ```
 
-*Defined in [`itertools-0.14.0/src/size_hint.rs:23-28`](../../../.source_1765894658/itertools-0.14.0/src/size_hint.rs#L23-L28)*
+*Defined in [`itertools-0.14.0/src/size_hint.rs:23-28`](../../../.source_1765900590/itertools-0.14.0/src/size_hint.rs#L23-L28)*
 
 Add `x` correctly to a `SizeHint`.
 
@@ -61,7 +61,7 @@ Add `x` correctly to a `SizeHint`.
 fn sub_scalar(sh: (usize, Option<usize>), x: usize) -> (usize, Option<usize>)
 ```
 
-*Defined in [`itertools-0.14.0/src/size_hint.rs:32-37`](../../../.source_1765894658/itertools-0.14.0/src/size_hint.rs#L32-L37)*
+*Defined in [`itertools-0.14.0/src/size_hint.rs:32-37`](../../../.source_1765900590/itertools-0.14.0/src/size_hint.rs#L32-L37)*
 
 Subtract `x` correctly from a `SizeHint`.
 
@@ -71,7 +71,7 @@ Subtract `x` correctly from a `SizeHint`.
 fn mul(a: (usize, Option<usize>), b: (usize, Option<usize>)) -> (usize, Option<usize>)
 ```
 
-*Defined in [`itertools-0.14.0/src/size_hint.rs:41-49`](../../../.source_1765894658/itertools-0.14.0/src/size_hint.rs#L41-L49)*
+*Defined in [`itertools-0.14.0/src/size_hint.rs:41-49`](../../../.source_1765900590/itertools-0.14.0/src/size_hint.rs#L41-L49)*
 
 Multiply `SizeHint` correctly
 
@@ -81,7 +81,7 @@ Multiply `SizeHint` correctly
 fn mul_scalar(sh: (usize, Option<usize>), x: usize) -> (usize, Option<usize>)
 ```
 
-*Defined in [`itertools-0.14.0/src/size_hint.rs:53-58`](../../../.source_1765894658/itertools-0.14.0/src/size_hint.rs#L53-L58)*
+*Defined in [`itertools-0.14.0/src/size_hint.rs:53-58`](../../../.source_1765900590/itertools-0.14.0/src/size_hint.rs#L53-L58)*
 
 Multiply `x` correctly with a `SizeHint`.
 
@@ -91,7 +91,7 @@ Multiply `x` correctly with a `SizeHint`.
 fn max(a: (usize, Option<usize>), b: (usize, Option<usize>)) -> (usize, Option<usize>)
 ```
 
-*Defined in [`itertools-0.14.0/src/size_hint.rs:62-74`](../../../.source_1765894658/itertools-0.14.0/src/size_hint.rs#L62-L74)*
+*Defined in [`itertools-0.14.0/src/size_hint.rs:62-74`](../../../.source_1765900590/itertools-0.14.0/src/size_hint.rs#L62-L74)*
 
 Return the maximum
 
@@ -101,7 +101,7 @@ Return the maximum
 fn min(a: (usize, Option<usize>), b: (usize, Option<usize>)) -> (usize, Option<usize>)
 ```
 
-*Defined in [`itertools-0.14.0/src/size_hint.rs:78-87`](../../../.source_1765894658/itertools-0.14.0/src/size_hint.rs#L78-L87)*
+*Defined in [`itertools-0.14.0/src/size_hint.rs:78-87`](../../../.source_1765900590/itertools-0.14.0/src/size_hint.rs#L78-L87)*
 
 Return the minimum
 
@@ -113,7 +113,7 @@ Return the minimum
 type SizeHint = (usize, Option<usize>);
 ```
 
-*Defined in [`itertools-0.14.0/src/size_hint.rs:7`](../../../.source_1765894658/itertools-0.14.0/src/size_hint.rs#L7)*
+*Defined in [`itertools-0.14.0/src/size_hint.rs:7`](../../../.source_1765900590/itertools-0.14.0/src/size_hint.rs#L7)*
 
 `SizeHint` is the return type of `Iterator::size_hint()`.
 

@@ -92,7 +92,7 @@ struct Encoding {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:47-56`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L47-L56)*
+*Defined in [`gimli-0.32.3/src/common.rs:47-56`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L47-L56)*
 
 Encoding parameters that are commonly used for multiple DWARF sections.
 
@@ -199,7 +199,7 @@ struct LineEncoding {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:60-76`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L60-L76)*
+*Defined in [`gimli-0.32.3/src/common.rs:60-76`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L60-L76)*
 
 Encoding parameters for a line number program.
 
@@ -311,7 +311,7 @@ Encoding parameters for a line number program.
 struct Register(u16);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:96`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L96)*
+*Defined in [`gimli-0.32.3/src/common.rs:96`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L96)*
 
 A DWARF register number.
 
@@ -411,7 +411,7 @@ a ULEB128, but supported architectures need 16 bits at most.
 struct DebugAbbrevOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:100`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L100)*
+*Defined in [`gimli-0.32.3/src/common.rs:100`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L100)*
 
 An offset into the `.debug_abbrev` section.
 
@@ -496,7 +496,7 @@ An offset into the `.debug_abbrev` section.
 struct DebugAddrOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:104`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L104)*
+*Defined in [`gimli-0.32.3/src/common.rs:104`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L104)*
 
 An offset into the `.debug_addr` section.
 
@@ -577,7 +577,7 @@ An offset into the `.debug_addr` section.
 struct DebugAddrBase<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:108`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L108)*
+*Defined in [`gimli-0.32.3/src/common.rs:108`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L108)*
 
 An offset to a set of entries in the `.debug_addr` section.
 
@@ -658,7 +658,7 @@ An offset to a set of entries in the `.debug_addr` section.
 struct DebugAddrIndex<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:112`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L112)*
+*Defined in [`gimli-0.32.3/src/common.rs:112`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L112)*
 
 An index into a set of addresses in the `.debug_addr` section.
 
@@ -739,7 +739,7 @@ An index into a set of addresses in the `.debug_addr` section.
 struct DebugArangesOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:116`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L116)*
+*Defined in [`gimli-0.32.3/src/common.rs:116`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L116)*
 
 An offset into the `.debug_aranges` section.
 
@@ -820,7 +820,7 @@ An offset into the `.debug_aranges` section.
 struct DebugInfoOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:120`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L120)*
+*Defined in [`gimli-0.32.3/src/common.rs:120`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L120)*
 
 An offset into the `.debug_info` section.
 
@@ -921,7 +921,7 @@ An offset into the `.debug_info` section.
 struct DebugLineOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:124`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L124)*
+*Defined in [`gimli-0.32.3/src/common.rs:124`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L124)*
 
 An offset into the `.debug_line` section.
 
@@ -1002,7 +1002,7 @@ An offset into the `.debug_line` section.
 struct DebugLineStrOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:128`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L128)*
+*Defined in [`gimli-0.32.3/src/common.rs:128`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L128)*
 
 An offset into the `.debug_line_str` section.
 
@@ -1083,7 +1083,7 @@ An offset into the `.debug_line_str` section.
 struct LocationListsOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:133`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L133)*
+*Defined in [`gimli-0.32.3/src/common.rs:133`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L133)*
 
 An offset into either the `.debug_loc` section or the `.debug_loclists` section,
 depending on the version of the unit the offset was contained in.
@@ -1169,7 +1169,7 @@ depending on the version of the unit the offset was contained in.
 struct DebugLocListsBase<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:137`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L137)*
+*Defined in [`gimli-0.32.3/src/common.rs:137`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L137)*
 
 An offset to a set of location list offsets in the `.debug_loclists` section.
 
@@ -1257,7 +1257,7 @@ An offset to a set of location list offsets in the `.debug_loclists` section.
 struct DebugLocListsIndex<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:141`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L141)*
+*Defined in [`gimli-0.32.3/src/common.rs:141`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L141)*
 
 An index into a set of location list offsets in the `.debug_loclists` section.
 
@@ -1338,7 +1338,7 @@ An index into a set of location list offsets in the `.debug_loclists` section.
 struct DebugMacinfoOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:145`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L145)*
+*Defined in [`gimli-0.32.3/src/common.rs:145`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L145)*
 
 An offset into the `.debug_macinfo` section.
 
@@ -1423,7 +1423,7 @@ An offset into the `.debug_macinfo` section.
 struct DebugMacroOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:149`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L149)*
+*Defined in [`gimli-0.32.3/src/common.rs:149`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L149)*
 
 An offset into the `.debug_macro` section.
 
@@ -1508,7 +1508,7 @@ An offset into the `.debug_macro` section.
 struct RawRangeListsOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:157`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L157)*
+*Defined in [`gimli-0.32.3/src/common.rs:157`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L157)*
 
 An offset into either the `.debug_ranges` section or the `.debug_rnglists` section,
 depending on the version of the unit the offset was contained in.
@@ -1597,7 +1597,7 @@ value of `DW_AT_GNU_ranges_base`. You can use `Dwarf::ranges_offset_from_raw` to
 struct RangeListsOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:162`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L162)*
+*Defined in [`gimli-0.32.3/src/common.rs:162`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L162)*
 
 An offset into either the `.debug_ranges` section or the `.debug_rnglists` section,
 depending on the version of the unit the offset was contained in.
@@ -1683,7 +1683,7 @@ depending on the version of the unit the offset was contained in.
 struct DebugRngListsBase<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:166`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L166)*
+*Defined in [`gimli-0.32.3/src/common.rs:166`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L166)*
 
 An offset to a set of range list offsets in the `.debug_rnglists` section.
 
@@ -1771,7 +1771,7 @@ An offset to a set of range list offsets in the `.debug_rnglists` section.
 struct DebugRngListsIndex<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:170`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L170)*
+*Defined in [`gimli-0.32.3/src/common.rs:170`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L170)*
 
 An index into a set of range list offsets in the `.debug_rnglists` section.
 
@@ -1852,7 +1852,7 @@ An index into a set of range list offsets in the `.debug_rnglists` section.
 struct DebugStrOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:174`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L174)*
+*Defined in [`gimli-0.32.3/src/common.rs:174`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L174)*
 
 An offset into the `.debug_str` section.
 
@@ -1933,7 +1933,7 @@ An offset into the `.debug_str` section.
 struct DebugStrOffsetsBase<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:178`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L178)*
+*Defined in [`gimli-0.32.3/src/common.rs:178`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L178)*
 
 An offset to a set of entries in the `.debug_str_offsets` section.
 
@@ -2021,7 +2021,7 @@ An offset to a set of entries in the `.debug_str_offsets` section.
 struct DebugStrOffsetsIndex<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:182`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L182)*
+*Defined in [`gimli-0.32.3/src/common.rs:182`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L182)*
 
 An index into a set of entries in the `.debug_str_offsets` section.
 
@@ -2102,7 +2102,7 @@ An index into a set of entries in the `.debug_str_offsets` section.
 struct DebugTypesOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:186`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L186)*
+*Defined in [`gimli-0.32.3/src/common.rs:186`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L186)*
 
 An offset into the `.debug_types` section.
 
@@ -2203,7 +2203,7 @@ An offset into the `.debug_types` section.
 struct DebugTypeSignature(u64);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:190`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L190)*
+*Defined in [`gimli-0.32.3/src/common.rs:190`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L190)*
 
 A type signature as used in the `.debug_types` section.
 
@@ -2288,7 +2288,7 @@ A type signature as used in the `.debug_types` section.
 struct DebugFrameOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:194`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L194)*
+*Defined in [`gimli-0.32.3/src/common.rs:194`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L194)*
 
 An offset into the `.debug_frame` section.
 
@@ -2377,7 +2377,7 @@ An offset into the `.debug_frame` section.
 struct EhFrameOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:205`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L205)*
+*Defined in [`gimli-0.32.3/src/common.rs:205`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L205)*
 
 An offset into the `.eh_frame` section.
 
@@ -2466,7 +2466,7 @@ An offset into the `.eh_frame` section.
 struct DwoId(u64);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:384`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L384)*
+*Defined in [`gimli-0.32.3/src/common.rs:384`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L384)*
 
 An optionally-provided implementation-defined compilation unit ID to enable
 split DWARF and linking a split compilation unit back together.
@@ -2557,7 +2557,7 @@ enum Format {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:3-8`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L3-L8)*
+*Defined in [`gimli-0.32.3/src/common.rs:3-8`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L3-L8)*
 
 Whether the format of a compilation unit is 32- or 64-bit.
 
@@ -2665,7 +2665,7 @@ enum Vendor {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:33-38`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L33-L38)*
+*Defined in [`gimli-0.32.3/src/common.rs:33-38`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L33-L38)*
 
 Which vendor extensions to support.
 
@@ -2759,7 +2759,7 @@ enum UnitSectionOffset<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:216-221`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L216-L221)*
+*Defined in [`gimli-0.32.3/src/common.rs:216-221`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L216-L221)*
 
 An offset into the `.debug_info` or `.debug_types` sections.
 
@@ -2895,7 +2895,7 @@ enum SectionId {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:257-302`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L257-L302)*
+*Defined in [`gimli-0.32.3/src/common.rs:257-302`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L257-L302)*
 
 An identifier for a DWARF section.
 
@@ -3101,7 +3101,7 @@ enum DwarfFileType {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:389-395`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L389-L395)*
+*Defined in [`gimli-0.32.3/src/common.rs:389-395`](../../../.source_1765900590/gimli-0.32.3/src/common.rs#L389-L395)*
 
 The "type" of file with DWARF debugging information. This determines, among other things,
 which files DWARF sections should be loaded from.

@@ -41,7 +41,7 @@ struct DuplicatesBy<I: Iterator, Key, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:10-13`](../../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L10-L13)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:10-13`](../../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L10-L13)*
 
 #### Implementations
 
@@ -146,7 +146,7 @@ struct Meta<Key, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:37-41`](../../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L37-L41)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:37-41`](../../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L37-L41)*
 
 #### Implementations
 
@@ -220,7 +220,7 @@ struct Meta<Key, F> {
 struct ById;
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:126`](../../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L126)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:126`](../../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L126)*
 
 Apply the identity function to elements before checking them for equality.
 
@@ -299,7 +299,7 @@ Apply the identity function to elements before checking them for equality.
 struct ByFn<F>(F);
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:137`](../../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L137)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:137`](../../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L137)*
 
 Apply a user-supplied function to elements before checking them for equality.
 
@@ -378,7 +378,7 @@ Apply a user-supplied function to elements before checking them for equality.
 struct KeyValue<K, V>(K, V);
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:161`](../../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L161)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:161`](../../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L161)*
 
 #### Trait Implementations
 
@@ -441,7 +441,7 @@ struct KeyValue<K, V>(K, V);
 struct JustValue<V>(V);
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:175`](../../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L175)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:175`](../../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L175)*
 
 #### Trait Implementations
 
@@ -506,7 +506,7 @@ struct JustValue<V>(V);
 trait KeyMethod<K, V> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:118-122`](../../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L118-L122)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:118-122`](../../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L118-L122)*
 
 A keying method for use with `DuplicatesBy`
 
@@ -516,7 +516,7 @@ A keying method for use with `DuplicatesBy`
 
 #### Required Methods
 
-- `fn make(&mut self, value: V) -> <Self as >::Container`
+- `fn KeyMethod::make(&mut self, value: V) -> <Self as >::Container`
 
 #### Implementors
 
@@ -529,15 +529,15 @@ A keying method for use with `DuplicatesBy`
 trait KeyXorValue<K, V> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:154-158`](../../../../.source_1765894658/itertools-0.14.0/src/duplicates_impl.rs#L154-L158)*
+*Defined in [`itertools-0.14.0/src/duplicates_impl.rs:154-158`](../../../../.source_1765900590/itertools-0.14.0/src/duplicates_impl.rs#L154-L158)*
 
 #### Required Methods
 
-- `fn key_ref(&self) -> &K`
+- `fn KeyXorValue::key_ref(&self) -> &K`
 
-- `fn key(self) -> K`
+- `fn KeyXorValue::key(self) -> K`
 
-- `fn value(self) -> V`
+- `fn KeyXorValue::value(self) -> V`
 
 #### Implementors
 

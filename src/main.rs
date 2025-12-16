@@ -177,6 +177,7 @@ fn build_render_config(args: &GenerateArgs) -> RenderConfig {
         hide_trivial_derives: args.hide_trivial_derives,
         method_anchors: !args.no_method_anchors,
         full_method_docs: args.full_method_docs,
+        large_trait_threshold: None, // TODO: Add CLI flag when feature is complete
         include_source: SourceConfig {
             source_locations: args.source_locations,
             source_dir,

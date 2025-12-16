@@ -22,7 +22,7 @@ enum Parent {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/parent.rs:4-11`](../../../.source_1765894658/tracing-core-0.1.35/src/parent.rs#L4-L11)*
+*Defined in [`tracing-core-0.1.35/src/parent.rs:4-11`](../../../.source_1765900590/tracing-core-0.1.35/src/parent.rs#L4-L11)*
 
 #### Variants
 

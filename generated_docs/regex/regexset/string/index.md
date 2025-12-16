@@ -24,7 +24,7 @@ struct RegexSet {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:132-135`](../../../../.source_1765894658/regex-1.12.2/src/regexset/string.rs#L132-L135)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:132-135`](../../../../.source_1765900590/regex-1.12.2/src/regexset/string.rs#L132-L135)*
 
 Match multiple, possibly overlapping, regexes in a single search.
 
@@ -161,7 +161,7 @@ alternate isn't always obvious to reason about.
   a `&str`. If any of the strings in the iterator are not valid regular
   expressions, then an error is returned.
   
-  # Example
+  ##### Example
   
   Create a new regex set from an iterator of strings:
   
@@ -181,7 +181,7 @@ alternate isn't always obvious to reason about.
   This is a convenience function for `RegexSet::new([])`, but doesn't
   require one to specify the type of the input.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSet;
@@ -208,7 +208,7 @@ alternate isn't always obvious to reason about.
   start with `^` or `\A`, or end with `$` or `\z`, then it is permitted
   to match anywhere in the haystack.
   
-  # Example
+  ##### Example
   
   Tests whether a set matches somewhere in a haystack:
   
@@ -229,11 +229,11 @@ alternate isn't always obvious to reason about.
   context into consideration. For example, the `\A` anchor can only
   match when `start == 0`.
   
-  # Panics
+  ##### Panics
   
   This panics when `start >= haystack.len() + 1`.
   
-  # Example
+  ##### Example
   
   This example shows the significance of `start`. Namely, consider a
   haystack `foobar` and a desire to execute a search starting at offset
@@ -268,7 +268,7 @@ alternate isn't always obvious to reason about.
   start with `^` or `\A`, or end with `$` or `\z`, then it is permitted
   to match anywhere in the haystack.
   
-  # Example
+  ##### Example
   
   Tests which regular expressions match the given haystack:
   
@@ -308,11 +308,11 @@ alternate isn't always obvious to reason about.
   context into consideration. For example, the `\A` anchor can only
   match when `start == 0`.
   
-  # Panics
+  ##### Panics
   
   This panics when `start >= haystack.len() + 1`.
   
-  # Example
+  ##### Example
   
   Tests which regular expressions match the given haystack:
   
@@ -333,7 +333,7 @@ alternate isn't always obvious to reason about.
 
   Returns the total number of regexes in this set.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSet;
@@ -347,7 +347,7 @@ alternate isn't always obvious to reason about.
 
   Returns `true` if this set contains no regexes.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSet;
@@ -365,7 +365,7 @@ alternate isn't always obvious to reason about.
   and the order of the slice is the same as the order of the patterns
   provided to the set.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSet;
@@ -458,7 +458,7 @@ alternate isn't always obvious to reason about.
 struct SetMatches(regex_automata::PatternSet);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:459`](../../../../.source_1765894658/regex-1.12.2/src/regexset/string.rs#L459)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:459`](../../../../.source_1765900590/regex-1.12.2/src/regexset/string.rs#L459)*
 
 A set of matches returned by a regex set.
 
@@ -470,7 +470,7 @@ Values of this type are constructed by `RegexSet::matches`.
 
   Whether this set contains any matches.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSet;
@@ -487,7 +487,7 @@ Values of this type are constructed by `RegexSet::matches`.
 
   Whether all patterns in this set matched.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSet;
@@ -507,13 +507,13 @@ Values of this type are constructed by `RegexSet::matches`.
   The index for a regex is determined by its insertion order upon the
   initial construction of a `RegexSet`, starting at `0`.
   
-  # Panics
+  ##### Panics
   
   If `index` is greater than or equal to the number of regexes in the
   original set that produced these matches. Equivalently, when `index`
   is greater than or equal to `SetMatches::len`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSet;
@@ -536,7 +536,7 @@ Values of this type are constructed by `RegexSet::matches`.
   `SetMatches::iter`. The only way to determine the total number of
   matched regexes is to iterate over them.
   
-  # Example
+  ##### Example
   
   Notice that this method returns the total number of regexes in the
   original set, and *not* the total number of regexes that matched.
@@ -563,7 +563,7 @@ Values of this type are constructed by `RegexSet::matches`.
   yielded corresponds to the index of the regex that matched with respect
   to its position when initially building the set.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSet;
@@ -677,7 +677,7 @@ struct SetMatchesIntoIter {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:652-655`](../../../../.source_1765894658/regex-1.12.2/src/regexset/string.rs#L652-L655)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:652-655`](../../../../.source_1765900590/regex-1.12.2/src/regexset/string.rs#L652-L655)*
 
 An owned iterator over the set of matches from a regex set.
 
@@ -780,7 +780,7 @@ assert_eq!(matches, vec![0, 1, 3]);
 struct SetMatchesIter<'a>(regex_automata::PatternSetIter<'a>);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:698`](../../../../.source_1765894658/regex-1.12.2/src/regexset/string.rs#L698)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:698`](../../../../.source_1765900590/regex-1.12.2/src/regexset/string.rs#L698)*
 
 A borrowed iterator over the set of matches from a regex set.
 

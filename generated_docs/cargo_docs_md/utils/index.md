@@ -60,7 +60,7 @@ assert_eq!(PathUtils::short_name("Clone"), "Clone");
   Rust paths use `::` as a separator. This function returns the final
   segment, which is typically the item's simple name without module prefix.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use cargo_docs_md::utils::PathUtils;
@@ -71,7 +71,7 @@ assert_eq!(PathUtils::short_name("Clone"), "Clone");
   assert_eq!(PathUtils::short_name(""), "");
   ```
   
-  # Edge Cases
+  ##### Edge Cases
   
   - Empty string returns empty string
   - Path ending with `::` returns empty string (e.g., `"foo::"` -> `""`)

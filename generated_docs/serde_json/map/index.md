@@ -77,7 +77,7 @@ struct Map<K, V> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L29-L31)*
+*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L29-L31)*
 
 Represents a JSON key/value type.
 
@@ -425,7 +425,7 @@ struct VacantEntry<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:631-633`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L631-L633)*
+*Defined in [`serde_json-1.0.145/src/map.rs:631-633`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L631-L633)*
 
 A vacant Entry. It is part of the [`Entry`](#entry) enum.
 
@@ -436,7 +436,7 @@ A vacant Entry. It is part of the [`Entry`](#entry) enum.
   Gets a reference to the key that would be used when inserting a value
   through the VacantEntry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::map::Entry;
@@ -456,7 +456,7 @@ A vacant Entry. It is part of the [`Entry`](#entry) enum.
   Sets the value of the entry with the VacantEntry's key, and returns a
   mutable reference to it.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -522,7 +522,7 @@ struct OccupiedEntry<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:636-638`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L636-L638)*
+*Defined in [`serde_json-1.0.145/src/map.rs:636-638`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L636-L638)*
 
 An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
@@ -532,7 +532,7 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
   Gets a reference to the key in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -554,7 +554,7 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
   Gets a reference to the value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -576,7 +576,7 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
   Gets a mutable reference to the value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -600,7 +600,7 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
   Converts the entry into a mutable reference to its value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -625,7 +625,7 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
   Sets the value of the entry with the `OccupiedEntry`'s key, and returns
   the entry's old value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -654,7 +654,7 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
   relative order of the keys in the map, use
   `.shift_remove()` instead.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -682,7 +682,7 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
   preserve the relative order of the keys in the map, use
   `.shift_remove_entry()` instead.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -751,7 +751,7 @@ struct Iter<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1060-1062`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1060-L1062)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1060-1062`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1060-L1062)*
 
 An iterator over a serde_json::Map's entries.
 
@@ -850,7 +850,7 @@ struct IterMut<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1086-1088`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1086-L1088)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1086-1088`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1086-L1088)*
 
 A mutable iterator over a serde_json::Map's entries.
 
@@ -933,7 +933,7 @@ struct IntoIter {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1112-1114`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1112-L1114)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1112-1114`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1112-L1114)*
 
 An owning iterator over a serde_json::Map's entries.
 
@@ -1016,7 +1016,7 @@ struct Keys<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1127-1129`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1127-L1129)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1127-1129`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1127-L1129)*
 
 An iterator over a serde_json::Map's keys.
 
@@ -1115,7 +1115,7 @@ struct Values<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1142-1144`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1142-L1144)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1142-1144`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1142-L1144)*
 
 An iterator over a serde_json::Map's values.
 
@@ -1214,7 +1214,7 @@ struct ValuesMut<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1157-1159`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1157-L1159)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1157-1159`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1157-L1159)*
 
 A mutable iterator over a serde_json::Map's values.
 
@@ -1297,7 +1297,7 @@ struct IntoValues {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1172-1174`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1172-L1174)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1172-1174`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1172-L1174)*
 
 An owning iterator over a serde_json::Map's values.
 
@@ -1383,7 +1383,7 @@ enum Entry<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:623-628`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L623-L628)*
+*Defined in [`serde_json-1.0.145/src/map.rs:623-628`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L623-L628)*
 
 A view into a single entry in a map, which may either be vacant or occupied.
 This enum is constructed from the `entry` method on [`Map`](#map).
@@ -1405,7 +1405,7 @@ This enum is constructed from the `entry` method on [`Map`](#map).
 
   Returns a reference to this entry's key.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let mut map = serde_json::Map::new();
@@ -1417,7 +1417,7 @@ This enum is constructed from the `entry` method on [`Map`](#map).
   Ensures a value is in the entry by inserting the default if empty, and
   returns a mutable reference to the value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -1434,7 +1434,7 @@ This enum is constructed from the `entry` method on [`Map`](#map).
   function if empty, and returns a mutable reference to the value in the
   entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -1450,7 +1450,7 @@ This enum is constructed from the `entry` method on [`Map`](#map).
   Provides in-place mutable access to an occupied entry before any
   potential inserts into the map.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use serde_json::json;
@@ -1518,7 +1518,7 @@ This enum is constructed from the `entry` method on [`Map`](#map).
 type MapImpl<K, V> = alloc::collections::BTreeMap<K, V>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:34`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L34)*
+*Defined in [`serde_json-1.0.145/src/map.rs:34`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L34)*
 
 ### `VacantEntryImpl<'a>`
 
@@ -1526,7 +1526,7 @@ type MapImpl<K, V> = alloc::collections::BTreeMap<K, V>;
 type VacantEntryImpl<'a> = btree_map::VacantEntry<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:641`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L641)*
+*Defined in [`serde_json-1.0.145/src/map.rs:641`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L641)*
 
 ### `OccupiedEntryImpl<'a>`
 
@@ -1534,7 +1534,7 @@ type VacantEntryImpl<'a> = btree_map::VacantEntry<'a, alloc::string::String, cra
 type OccupiedEntryImpl<'a> = btree_map::OccupiedEntry<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:646`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L646)*
+*Defined in [`serde_json-1.0.145/src/map.rs:646`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L646)*
 
 ### `IterImpl<'a>`
 
@@ -1542,7 +1542,7 @@ type OccupiedEntryImpl<'a> = btree_map::OccupiedEntry<'a, alloc::string::String,
 type IterImpl<'a> = btree_map::Iter<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1065`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1065)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1065`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1065)*
 
 ### `IterMutImpl<'a>`
 
@@ -1550,7 +1550,7 @@ type IterImpl<'a> = btree_map::Iter<'a, alloc::string::String, crate::value::Val
 type IterMutImpl<'a> = btree_map::IterMut<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1091`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1091)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1091`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1091)*
 
 ### `IntoIterImpl`
 
@@ -1558,7 +1558,7 @@ type IterMutImpl<'a> = btree_map::IterMut<'a, alloc::string::String, crate::valu
 type IntoIterImpl = btree_map::IntoIter<alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1117`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1117)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1117`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1117)*
 
 ### `KeysImpl<'a>`
 
@@ -1566,7 +1566,7 @@ type IntoIterImpl = btree_map::IntoIter<alloc::string::String, crate::value::Val
 type KeysImpl<'a> = btree_map::Keys<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1132`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1132)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1132`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1132)*
 
 ### `ValuesImpl<'a>`
 
@@ -1574,7 +1574,7 @@ type KeysImpl<'a> = btree_map::Keys<'a, alloc::string::String, crate::value::Val
 type ValuesImpl<'a> = btree_map::Values<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1147`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1147)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1147`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1147)*
 
 ### `ValuesMutImpl<'a>`
 
@@ -1582,7 +1582,7 @@ type ValuesImpl<'a> = btree_map::Values<'a, alloc::string::String, crate::value:
 type ValuesMutImpl<'a> = btree_map::ValuesMut<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1162`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1162)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1162`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1162)*
 
 ### `IntoValuesImpl`
 
@@ -1590,11 +1590,11 @@ type ValuesMutImpl<'a> = btree_map::ValuesMut<'a, alloc::string::String, crate::
 type IntoValuesImpl = btree_map::IntoValues<alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1177`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1177)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1177`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L1177)*
 
 ## Macros
 
 ### `delegate_iterator!`
 
-*Defined in [`serde_json-1.0.145/src/map.rs:569-599`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L569-L599)*
+*Defined in [`serde_json-1.0.145/src/map.rs:569-599`](../../../.source_1765900590/serde_json-1.0.145/src/map.rs#L569-L599)*
 

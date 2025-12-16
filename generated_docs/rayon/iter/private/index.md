@@ -21,7 +21,7 @@ stable clone of the standard library's `Try` trait, as yet unstable.
 trait Try { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:3479-3490`](../../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L3479-L3490)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3479-3490`](../../../../.source_1765900590/rayon-1.11.0/src/iter/mod.rs#L3479-L3490)*
 
 Clone of `std::ops::Try`.
 
@@ -35,11 +35,11 @@ Implementing this trait is not permitted outside of `rayon`.
 
 #### Required Methods
 
-- `fn from_output(output: <Self as >::Output) -> Self`
+- `fn Try::from_output(output: <Self as >::Output) -> Self`
 
-- `fn from_residual(residual: <Self as >::Residual) -> Self`
+- `fn Try::from_residual(residual: <Self as >::Residual) -> Self`
 
-- `fn branch(self) -> ControlFlow<<Self as >::Residual, <Self as >::Output>`
+- `fn Try::branch(self) -> ControlFlow<<Self as >::Residual, <Self as >::Output>`
 
 #### Implementors
 

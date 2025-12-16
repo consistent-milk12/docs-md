@@ -33,7 +33,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/diff.rs:17-29`](../../../.source_1765894658/itertools-0.14.0/src/diff.rs#L17-L29)*
+*Defined in [`itertools-0.14.0/src/diff.rs:17-29`](../../../.source_1765900590/itertools-0.14.0/src/diff.rs#L17-L29)*
 
 A type returned by the [`diff_with`](#diff-with) function.
 
@@ -130,7 +130,7 @@ where
     F: FnMut(&<I as >::Item, &<J as >::Item) -> bool
 ```
 
-*Defined in [`itertools-0.14.0/src/diff.rs:80-104`](../../../.source_1765894658/itertools-0.14.0/src/diff.rs#L80-L104)*
+*Defined in [`itertools-0.14.0/src/diff.rs:80-104`](../../../.source_1765900590/itertools-0.14.0/src/diff.rs#L80-L104)*
 
 Compares every element yielded by both `i` and `j` with the given function in lock-step and
 returns a [`Diff`](#diff) which describes how `j` differs from `i`.

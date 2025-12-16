@@ -207,12 +207,12 @@ This avoids allocating a `String` for the crate name on every lookup.
 
   Build a unified registry from a collection of crates.
   
-  # Arguments
+  ##### Arguments
   
   * `crates` - Collection of parsed crates
   * `primary_crate` - Optional primary crate for disambiguation
   
-  # Returns
+  ##### Returns
   
   A populated registry ready for link resolution.
 
@@ -268,12 +268,12 @@ This avoids allocating a `String` for the crate name on every lookup.
   to find the original crate and ID. Returns the original if found,
   otherwise returns `None`.
   
-  # Arguments
+  ##### Arguments
   
   * `crate_name` - The crate where the re-export appears
   * `id` - The ID of the re-export Use item
   
-  # Returns
+  ##### Returns
   
   `Some((original_crate, original_id))` if the re-export chain can be resolved,
   `None` if there's no re-export source or the original can't be found.
@@ -294,11 +294,11 @@ This avoids allocating a `String` for the crate name on every lookup.
   This is used for resolving external re-exports where `use_item.id` is `None`
   but the source path is available.
   
-  # Arguments
+  ##### Arguments
   
   * `path` - Full path like `regex_automata::Regex` or `tracing_core::span::Span`
   
-  # Returns
+  ##### Returns
   
   The (`crate_name`, `item_id`) if found in the registry.
 
@@ -306,14 +306,14 @@ This avoids allocating a `String` for the crate name on every lookup.
 
   Create a markdown link from one file to another across crates.
   
-  # Arguments
+  ##### Arguments
   
   * `from_crate` - The crate where the link appears
   * `from_path` - The file path where the link appears
   * `to_crate` - The target crate
   * `to_id` - The target item's ID
   
-  # Returns
+  ##### Returns
   
   A formatted markdown link like `[`Name`](relative/path.md)`,
   or `None` if the target item isn't registered.
@@ -322,7 +322,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
   Compute relative path between files potentially in different crates.
   
-  # Examples
+  ##### Examples
   
   - `tracing/span/index.md` to `tracing_core/subscriber/index.md`
     = `../../tracing_core/subscriber/index.md`
@@ -333,12 +333,12 @@ This avoids allocating a `String` for the crate name on every lookup.
 
   Get an anchor string for an item within its page.
   
-  # Arguments
+  ##### Arguments
   
   * `crate_name` - The crate containing the item
   * `id` - The item's ID
   
-  # Returns
+  ##### Returns
   
   An anchor like `#span` or `#enter` for linking to specific items.
 

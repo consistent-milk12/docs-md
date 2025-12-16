@@ -19,7 +19,7 @@
 trait ToCompactString { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../../.source_1765894658/compact_str-0.9.0/src/traits.rs#L16-L49)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../../.source_1765900590/compact_str-0.9.0/src/traits.rs#L16-L49)*
 
 A trait for converting a value to a `CompactString`.
 
@@ -30,7 +30,7 @@ implementation for free.
 
 #### Required Methods
 
-- `fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
+- `fn ToCompactString::try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
 
   Fallible version of `ToCompactString::to_compact_string()`
   
@@ -40,16 +40,16 @@ implementation for free.
 
 #### Provided Methods
 
-- `fn to_compact_string(&self) -> CompactString`
+- `fn ToCompactString::to_compact_string(&self) -> CompactString`
 
   Converts the given value to a [`CompactString`](../index.md).
   
-  # Panics
+  ##### Panics
   
   Panics if the system runs out of memory and it cannot hold the whole string,
   or if `Display::fmt()` returns an error.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -73,7 +73,7 @@ implementation for free.
 trait CompactStringExt { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../../.source_1765894658/compact_str-0.9.0/src/traits.rs#L142-L169)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../../.source_1765900590/compact_str-0.9.0/src/traits.rs#L142-L169)*
 
 A trait that provides convenience methods for creating a [`CompactString`](../index.md) from a collection of
 items. It is implemented for all types that can be converted into an iterator, and that iterator
@@ -99,11 +99,11 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
 
 #### Required Methods
 
-- `fn concat_compact(self) -> CompactString`
+- `fn CompactStringExt::concat_compact(self) -> CompactString`
 
   Concatenates all the items of a collection into a [`CompactString`](../index.md)
   
-  # Example
+  ##### Example
   ```rust
   use compact_str::CompactStringExt;
   
@@ -113,12 +113,12 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
   assert_eq!(compact, "hello world!");
   ```
 
-- `fn join_compact<S: AsRef<str>>(self, separator: S) -> CompactString`
+- `fn CompactStringExt::join_compact<S: AsRef<str>>(self, separator: S) -> CompactString`
 
   Joins all the items of a collection, placing a separator between them, forming a
   [`CompactString`](../index.md)
   
-  # Example
+  ##### Example
   ```rust
   use compact_str::CompactStringExt;
   

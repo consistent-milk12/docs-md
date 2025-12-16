@@ -22,7 +22,7 @@ struct PutBackN<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/put_back_n_impl.rs:11-14`](../../../.source_1765894658/itertools-0.14.0/src/put_back_n_impl.rs#L11-L14)*
+*Defined in [`itertools-0.14.0/src/put_back_n_impl.rs:11-14`](../../../.source_1765900590/itertools-0.14.0/src/put_back_n_impl.rs#L11-L14)*
 
 An iterator adaptor that allows putting multiple
 items in front of the iterator.
@@ -150,7 +150,7 @@ where
     I: IntoIterator
 ```
 
-*Defined in [`itertools-0.14.0/src/put_back_n_impl.rs:20-28`](../../../.source_1765894658/itertools-0.14.0/src/put_back_n_impl.rs#L20-L28)*
+*Defined in [`itertools-0.14.0/src/put_back_n_impl.rs:20-28`](../../../.source_1765900590/itertools-0.14.0/src/put_back_n_impl.rs#L20-L28)*
 
 Create an iterator where you can put back multiple values to the front
 of the iteration.

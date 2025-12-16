@@ -130,7 +130,7 @@ as long as everything in this module agrees.
 struct State(alloc::sync::Arc<[u8]>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:109`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L109)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:109`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L109)*
 
 A DFA state that, at its core, is represented by an ordered set of NFA
 states.
@@ -254,7 +254,7 @@ simultaneously.
 struct StateBuilderEmpty(alloc::vec::Vec<u8>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:191`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L191)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:191`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L191)*
 
 A state builder that represents an empty state.
 
@@ -340,7 +340,7 @@ builder that can capture assertions and pattern IDs.
 struct StateBuilderMatches(alloc::vec::Vec<u8>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:218`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L218)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:218`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L218)*
 
 A state builder that collects assertions and pattern IDs.
 
@@ -435,7 +435,7 @@ struct StateBuilderNFA {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:274-277`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L274-L277)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:274-277`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L274-L277)*
 
 A state builder that collects some assertions and NFA state IDs.
 
@@ -533,7 +533,7 @@ that it can be reused to build the next state.
 struct Repr<'a>(&'a [u8]);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:386`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L386)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:386`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L386)*
 
 Repr is a read-only view into the representation of a DFA state.
 
@@ -745,7 +745,7 @@ previous NFA state ID.
 struct ReprVec<'a>(&'a mut alloc::vec::Vec<u8>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:588`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L588)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:588`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L588)*
 
 ReprVec is a write-only view into the representation of a DFA state.
 
@@ -888,7 +888,7 @@ permit valid combinations via Rust's linear typing.
 fn write_vari32(data: &mut alloc::vec::Vec<u8>, n: i32)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:735-741`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L735-L741)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:735-741`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L735-L741)*
 
 Write a signed 32-bit integer using zig-zag encoding.
 
@@ -900,7 +900,7 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 fn read_vari32(data: &[u8]) -> (i32, usize)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:747-754`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L747-L754)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:747-754`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L747-L754)*
 
 Read a signed 32-bit integer using zig-zag encoding. Also, return the
 number of bytes read.
@@ -913,7 +913,7 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 fn write_varu32(data: &mut alloc::vec::Vec<u8>, n: u32)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:763-769`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L763-L769)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:763-769`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L763-L769)*
 
 Write an unsigned 32-bit integer as a varint. In essence, `n` is written
 as a sequence of bytes where all bytes except for the last one have the
@@ -929,7 +929,7 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 fn read_varu32(data: &[u8]) -> (u32, usize)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:774-788`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L774-L788)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:774-788`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L774-L788)*
 
 Read an unsigned 32-bit varint. Also, return the number of bytes read.
 
@@ -941,7 +941,7 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 fn write_u32(dst: &mut alloc::vec::Vec<u8>, n: u32)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:791-797`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L791-L797)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:791-797`](../../../../../.source_1765900590/regex-automata-0.4.13/src/util/determinize/state.rs#L791-L797)*
 
 Push a native-endian encoded `n` on to `dst`.
 

@@ -43,7 +43,7 @@ struct MapSpecialCase<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:6-9`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L6-L9)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:6-9`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L6-L9)*
 
 #### Trait Implementations
 
@@ -146,7 +146,7 @@ struct MapSpecialCase<I, F> {
 struct MapSpecialCaseFnOk<F>(F);
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:81`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L81)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:81`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L81)*
 
 #### Trait Implementations
 
@@ -223,7 +223,7 @@ struct MapSpecialCaseFnOk<F>(F);
 struct MapSpecialCaseFnInto<U>(std::marker::PhantomData<U>);
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:111`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L111)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:111`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L111)*
 
 #### Trait Implementations
 
@@ -302,7 +302,7 @@ struct MapSpecialCaseFnInto<U>(std::marker::PhantomData<U>);
 trait MapSpecialCaseFn<T> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:11-14`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L11-L14)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:11-14`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L11-L14)*
 
 #### Associated Types
 
@@ -310,7 +310,7 @@ trait MapSpecialCaseFn<T> { ... }
 
 #### Required Methods
 
-- `fn call(&mut self, t: T) -> <Self as >::Out`
+- `fn MapSpecialCaseFn::call(&mut self, t: T) -> <Self as >::Out`
 
 #### Implementors
 
@@ -330,7 +330,7 @@ where
     F: FnMut(T) -> U
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:88-97`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L88-L97)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:88-97`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L88-L97)*
 
 Create a new `MapOk` iterator.
 
@@ -340,7 +340,7 @@ Create a new `MapOk` iterator.
 fn map_into<I, R>(iter: I) -> MapInto<I, R>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:125-130`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L125-L130)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:125-130`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L125-L130)*
 
 Create a new [`MapInto`](#mapinto) iterator.
 
@@ -352,7 +352,7 @@ Create a new [`MapInto`](#mapinto) iterator.
 type MapOk<I, F> = MapSpecialCase<I, MapSpecialCaseFnOk<F>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:68`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L68)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:68`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L68)*
 
 An iterator adapter to apply a transformation within a nested `Result::Ok`.
 
@@ -364,7 +364,7 @@ See [`.map_ok()`](crate::Itertools::map_ok) for more information.
 type MapInto<I, R> = MapSpecialCase<I, MapSpecialCaseFnInto<R>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:102`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L102)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:102`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L102)*
 
 An iterator adapter to apply `Into` conversion to each element.
 

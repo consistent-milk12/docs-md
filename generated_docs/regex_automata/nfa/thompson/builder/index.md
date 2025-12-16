@@ -29,7 +29,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
 
 An abstraction for building Thompson NFAs by hand.
 
@@ -269,14 +269,14 @@ Ok::<(), Box<dyn std::error::Error>>(())
   searches are not supported, the unanchored starting state ID must be
   the same as the anchored starting state ID.
   
-  # Errors
+  ##### Errors
   
   This returns an error if there was a problem producing the final NFA.
   In particular, this might include an error if the capturing groups
   added to this builder violate any of the invariants documented on
   [`GroupInfo`](crate::util::captures::GroupInfo).
   
-  # Panics
+  ##### Panics
   
   If `start_pattern` was called, then `finish_pattern` must be called
   before `build`, otherwise this panics.
@@ -295,12 +295,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   It is necessary to call this routine before adding capturing states.
   Otherwise, any other NFA state may be added before starting a pattern.
   
-  # Errors
+  ##### Errors
   
   If the pattern identifier space is exhausted, then this returns an
   error.
   
-  # Panics
+  ##### Panics
   
   If this is called while assembling another pattern (i.e., before
   `finish_pattern` is called), then this panics.
@@ -318,11 +318,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
   interleaved or nested. A correct `finish_pattern` call _always_
   corresponds to the most recently called `start_pattern` routine.
   
-  # Errors
+  ##### Errors
   
   This currently never returns an error, but this is subject to change.
   
-  # Panics
+  ##### Panics
   
   If this is called without a corresponding `start_pattern` call, then
   this panics.
@@ -331,7 +331,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Returns the pattern identifier of the current pattern.
   
-  # Panics
+  ##### Panics
   
   If this doesn't occur after a `start_pattern` call and before the
   corresponding `finish_pattern` call, then this panics.
@@ -352,7 +352,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   building the final [`NFA`](../nfa/index.md) (which has no such "empty" states), but they
   can be quite useful in the construction process of an NFA.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -372,7 +372,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   state with exactly one alternate is treated as if it were an "empty"
   state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -394,7 +394,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   "reverse union" state with exactly one alternate is treated as if it
   were an "empty" state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -407,7 +407,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   state, where that transition may only be followed if the current input
   byte falls between a range of bytes given.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -435,12 +435,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   all outgoing transitions for this state are included when `add_sparse`
   is called. There is no way to add more later.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
   
-  # Panics
+  ##### Panics
   
   This routine _may_ panic if the transitions given overlap or are not
   in ascending order.
@@ -456,7 +456,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Callers may provide a "dummy" state ID (typically `StateID::ZERO`),
   and then change it later with [`patch`](Builder::patch).
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -483,7 +483,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   end states may be interleaved. Indeed, it is typical for many "start
   capture" NFA states to appear before the first "end capture" state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded or if the given
@@ -498,7 +498,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   See the [`GroupInfo`](crate::util::captures::GroupInfo) type for
   more information on what qualifies as valid capturing groups.
   
-  # Example
+  ##### Example
   
   This example shows that an error occurs when one tries to add multiple
   capturing groups with the same name to the same pattern.
@@ -652,7 +652,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   end states may be interleaved. Indeed, it is typical for many "start
   capture" NFA states to appear before the first "end capture" state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded or if the given
@@ -676,7 +676,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   For example, one way to represent an NFA with zero patterns is with a
   single "fail" state.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
@@ -691,12 +691,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   automatically has the current pattern ID associated with it. This is
   used to report the matching pattern ID at search time.
   
-  # Errors
+  ##### Errors
   
   This returns an error if the state identifier space is exhausted, or if
   the configured heap size limit has been exceeded.
   
-  # Panics
+  ##### Panics
   
   This must be called after a `start_pattern` call but before the
   corresponding `finish_pattern` call. Otherwise, it panics.
@@ -717,13 +717,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
   know all of the necessary state IDs to add because they might not
   exist yet.
   
-  # Errors
+  ##### Errors
   
   This may error if patching leads to an increase in heap usage beyond
   the configured size limit. Heap usage only grows when patching adds a
   new transition (as in the case of a "union" state).
   
-  # Panics
+  ##### Panics
   
   This panics if `from` corresponds to a "sparse" state. When "sparse"
   states are added, there is no way to patch them after-the-fact. (If you
@@ -944,7 +944,7 @@ enum State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:28-128`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L28-L128)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:28-128`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L28-L128)*
 
 An intermediate NFA state used during construction.
 

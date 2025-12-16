@@ -45,6 +45,7 @@ mod flat;
 pub mod impl_category;
 pub mod impls;
 mod items;
+pub mod method_pages;
 pub mod module;
 mod nested;
 pub mod quick_ref;

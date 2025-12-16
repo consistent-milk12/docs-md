@@ -23,7 +23,7 @@ enum MinMaxResult<T> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/minmax.rs:5-15`](../../../.source_1765894658/itertools-0.14.0/src/minmax.rs#L5-L15)*
+*Defined in [`itertools-0.14.0/src/minmax.rs:5-15`](../../../.source_1765900590/itertools-0.14.0/src/minmax.rs#L5-L15)*
 
 `MinMaxResult` is an enum returned by `minmax`.
 
@@ -54,7 +54,7 @@ See [`.minmax()`](crate::Itertools::minmax) for more detail.
   If the `MinMaxResult` has variant `OneElement(x)`, performing this
   operation will make one clone of `x`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::MinMaxResult::{self, NoElements, OneElement, MinMax};
@@ -154,7 +154,7 @@ where
     L: FnMut(&<I as >::Item, &<I as >::Item, &K, &K) -> bool
 ```
 
-*Defined in [`itertools-0.14.0/src/minmax.rs:48-116`](../../../.source_1765894658/itertools-0.14.0/src/minmax.rs#L48-L116)*
+*Defined in [`itertools-0.14.0/src/minmax.rs:48-116`](../../../.source_1765900590/itertools-0.14.0/src/minmax.rs#L48-L116)*
 
 Implementation guts for `minmax` and `minmax_by_key`.
 

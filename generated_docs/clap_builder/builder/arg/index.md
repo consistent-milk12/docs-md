@@ -48,7 +48,7 @@ struct Arg {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
 
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
@@ -100,7 +100,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -124,7 +124,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   (`disable_help_flag`,
   `disable_version_flag`) and define your own.
   
-  # Examples
+  ##### Examples
   
   When calling `short`, use a single valid UTF-8 character which will allow using the
   argument via a single hyphen (`-`) such as `-c`:
@@ -178,7 +178,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   To set `long` use a word containing valid UTF-8. If you supply a double leading
   `--` such as `--config` they will be stripped. Hyphens in the middle of the word, however,
@@ -207,7 +207,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden arguments as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -230,7 +230,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden arguments as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -253,7 +253,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden subcommands as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -278,7 +278,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden subcommands as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -302,7 +302,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::alias`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -324,7 +324,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::short_alias`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -346,7 +346,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::aliases`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -368,7 +368,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::short_aliases`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -417,13 +417,13 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Panics
+  ##### Panics
   
-  [`Command`](../command/index.md) will `panic!` if indexes are skipped (such as defining `index(1)` and `index(3)`
+  [`Command`](../../index.md) will `panic!` if indexes are skipped (such as defining `index(1)` and `index(3)`
   but not `index(2)`, or a positional argument is defined as multiple and is not the highest
   index (debug builds)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -479,7 +479,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -512,7 +512,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   <div class="warning">
   
-  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](../command/index.md#dont-collapse-args-in-usage) because failing
+  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](../../index.md#dont-collapse-args-in-usage) because failing
   to set this can make the usage string very confusing.
   
   </div>
@@ -533,13 +533,13 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   **WARNING:** Using this setting *and* having child subcommands is not
   recommended with the exception of *also* using
-  [`crate::Command::args_conflicts_with_subcommands`](../command/index.md#args-conflicts-with-subcommands)
-  (or [`crate::Command::subcommand_negates_reqs`](../command/index.md#subcommand-negates-reqs) if the argument marked `Last` is also
+  [`crate::Command::args_conflicts_with_subcommands`](../../index.md#args-conflicts-with-subcommands)
+  (or [`crate::Command::subcommand_negates_reqs`](../../index.md#subcommand-negates-reqs) if the argument marked `Last` is also
   marked `Arg::required`)
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -607,7 +607,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   is if the operation is destructive in nature, and the user is essentially proving to you,
   "Yes, I know what I'm doing."
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -664,7 +664,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -719,7 +719,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
   This argument must be passed alone; it conflicts with all other arguments.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -764,7 +764,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   Assume an application with two subcommands, and you'd like to define a
   `--verbose` flag that can be called on any of the subcommands and parent, but you don't

@@ -27,7 +27,7 @@ macros in `clap_derive`.
 trait Parser: FromArgMatches + CommandFactory + Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:29-111`](../../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L29-L111)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:29-111`](../../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L29-L111)*
 
 Parse command-line arguments into `Self`.
 
@@ -51,23 +51,23 @@ See also [`Subcommand`](#subcommand) and [`Args`](#args).
 
 #### Provided Methods
 
-- `fn parse() -> Self`
+- `fn Parser::parse() -> Self`
 
   Parse from `std::env::args_os()`, `exit` on error.
 
-- `fn try_parse() -> Result<Self, Error>`
+- `fn Parser::try_parse() -> Result<Self, Error>`
 
   Parse from `std::env::args_os()`, return Err on error.
 
-- `fn parse_from<I, T>(itr: I) -> Self`
+- `fn Parser::parse_from<I, T>(itr: I) -> Self`
 
   Parse from iterator, `exit` on error.
 
-- `fn try_parse_from<I, T>(itr: I) -> Result<Self, Error>`
+- `fn Parser::try_parse_from<I, T>(itr: I) -> Result<Self, Error>`
 
   Parse from iterator, return Err on error.
 
-- `fn update_from<I, T>(&mut self, itr: I)`
+- `fn Parser::update_from<I, T>(&mut self, itr: I)`
 
   Update from iterator, `exit` on error.
   
@@ -75,7 +75,7 @@ See also [`Subcommand`](#subcommand) and [`Args`](#args).
   The assumption is that all required fields are already provided and any [`Args`](#args) or
   [`Subcommand`](#subcommand)s provided by the user will modify only what is specified.
 
-- `fn try_update_from<I, T>(&mut self, itr: I) -> Result<(), Error>`
+- `fn Parser::try_update_from<I, T>(&mut self, itr: I) -> Result<(), Error>`
 
   Update from iterator, return Err on error.
 
@@ -89,7 +89,7 @@ See also [`Subcommand`](#subcommand) and [`Args`](#args).
 trait CommandFactory: Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:116-125`](../../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L116-L125)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:116-125`](../../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L116-L125)*
 
 Create a [`Command`](../builder/command/index.md) relevant for a user-defined container.
 
@@ -97,13 +97,13 @@ Derived as part of [`Parser`](#parser).
 
 #### Required Methods
 
-- `fn command() -> Command`
+- `fn CommandFactory::command() -> Command`
 
   Build a [`Command`](../builder/command/index.md) that can instantiate `Self`.
   
   See `FromArgMatches::from_arg_matches_mut` for instantiating `Self`.
 
-- `fn command_for_update() -> Command`
+- `fn CommandFactory::command_for_update() -> Command`
 
   Build a [`Command`](../builder/command/index.md) that can update `self`.
   
@@ -119,7 +119,7 @@ Derived as part of [`Parser`](#parser).
 trait FromArgMatches: Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:130-212`](../../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L130-L212)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:130-212`](../../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L130-L212)*
 
 Converts an instance of [`ArgMatches`](../parser/matches/arg_matches/index.md) to a user-defined container.
 
@@ -127,7 +127,7 @@ Derived as part of [`Parser`](#parser), [`Args`](#args), and [`Subcommand`](#sub
 
 #### Required Methods
 
-- `fn from_arg_matches(matches: &ArgMatches) -> Result<Self, Error>`
+- `fn FromArgMatches::from_arg_matches(matches: &ArgMatches) -> Result<Self, Error>`
 
   Instantiate `Self` from [`ArgMatches`](../parser/matches/arg_matches/index.md), parsing the arguments as needed.
   
@@ -164,13 +164,13 @@ Derived as part of [`Parser`](#parser), [`Args`](#args), and [`Subcommand`](#sub
   }
   ```
 
-- `fn update_from_arg_matches(&mut self, matches: &ArgMatches) -> Result<(), Error>`
+- `fn FromArgMatches::update_from_arg_matches(&mut self, matches: &ArgMatches) -> Result<(), Error>`
 
   Assign values from `ArgMatches` to `self`.
 
 #### Provided Methods
 
-- `fn from_arg_matches_mut(matches: &mut ArgMatches) -> Result<Self, Error>`
+- `fn FromArgMatches::from_arg_matches_mut(matches: &mut ArgMatches) -> Result<Self, Error>`
 
   Instantiate `Self` from [`ArgMatches`](../parser/matches/arg_matches/index.md), parsing the arguments as needed.
   
@@ -207,7 +207,7 @@ Derived as part of [`Parser`](#parser), [`Args`](#args), and [`Subcommand`](#sub
   }
   ```
 
-- `fn update_from_arg_matches_mut(&mut self, matches: &mut ArgMatches) -> Result<(), Error>`
+- `fn FromArgMatches::update_from_arg_matches_mut(&mut self, matches: &mut ArgMatches) -> Result<(), Error>`
 
   Assign values from `ArgMatches` to `self`.
 
@@ -223,7 +223,7 @@ Derived as part of [`Parser`](#parser), [`Args`](#args), and [`Subcommand`](#sub
 trait Args: FromArgMatches + Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:227-246`](../../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L227-L246)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:227-246`](../../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L227-L246)*
 
 Parse a set of arguments into a user-defined container.
 
@@ -241,7 +241,7 @@ with:
 
 #### Required Methods
 
-- `fn augment_args(cmd: Command) -> Command`
+- `fn Args::augment_args(cmd: Command) -> Command`
 
   Append to [`Command`](../builder/command/index.md) so it can instantiate `Self` via
   `FromArgMatches::from_arg_matches_mut`
@@ -250,7 +250,7 @@ with:
   
   See also `CommandFactory::command`.
 
-- `fn augment_args_for_update(cmd: Command) -> Command`
+- `fn Args::augment_args_for_update(cmd: Command) -> Command`
 
   Append to [`Command`](../builder/command/index.md) so it can instantiate `self` via
   `FromArgMatches::update_from_arg_matches_mut`
@@ -261,7 +261,7 @@ with:
 
 #### Provided Methods
 
-- `fn group_id() -> Option<crate::Id>`
+- `fn Args::group_id() -> Option<crate::Id>`
 
   Report the `ArgGroup::id` for this set of arguments
 
@@ -276,7 +276,7 @@ with:
 trait Subcommand: FromArgMatches + Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:262-279`](../../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L262-L279)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:262-279`](../../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L262-L279)*
 
 Parse a sub-command into a user-defined enum.
 
@@ -295,7 +295,7 @@ with:
 
 #### Required Methods
 
-- `fn augment_subcommands(cmd: Command) -> Command`
+- `fn Subcommand::augment_subcommands(cmd: Command) -> Command`
 
   Append to [`Command`](../builder/command/index.md) so it can instantiate `Self` via
   `FromArgMatches::from_arg_matches_mut`
@@ -304,7 +304,7 @@ with:
   
   See also `CommandFactory::command`.
 
-- `fn augment_subcommands_for_update(cmd: Command) -> Command`
+- `fn Subcommand::augment_subcommands_for_update(cmd: Command) -> Command`
 
   Append to [`Command`](../builder/command/index.md) so it can instantiate `self` via
   `FromArgMatches::update_from_arg_matches_mut`
@@ -313,7 +313,7 @@ with:
   
   See also `CommandFactory::command_for_update`.
 
-- `fn has_subcommand(name: &str) -> bool`
+- `fn Subcommand::has_subcommand(name: &str) -> bool`
 
   Test whether `Self` can parse a specific subcommand
 
@@ -329,7 +329,7 @@ with:
 trait ValueEnum: Sized + Clone { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:293-314`](../../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L293-L314)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:293-314`](../../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L293-L314)*
 
 Parse arguments into enums.
 
@@ -346,11 +346,11 @@ When deriving [`Parser`](#parser), a field whose type implements `ValueEnum` can
 
 #### Required Methods
 
-- `fn value_variants<'a>() -> &'a [Self]`
+- `fn ValueEnum::value_variants<'a>() -> &'a [Self]`
 
   All possible argument values, in display order.
 
-- `fn to_possible_value(&self) -> Option<PossibleValue>`
+- `fn ValueEnum::to_possible_value(&self) -> Option<PossibleValue>`
 
   The canonical argument value.
   
@@ -358,7 +358,7 @@ When deriving [`Parser`](#parser), a field whose type implements `ValueEnum` can
 
 #### Provided Methods
 
-- `fn from_str(input: &str, ignore_case: bool) -> Result<Self, String>`
+- `fn ValueEnum::from_str(input: &str, ignore_case: bool) -> Result<Self, String>`
 
   Parse an argument into `Self`.
 
@@ -374,5 +374,5 @@ When deriving [`Parser`](#parser), a field whose type implements `ValueEnum` can
 fn format_error<I: CommandFactory>(err: crate::Error) -> crate::Error
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:387-390`](../../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L387-L390)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:387-390`](../../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L387-L390)*
 

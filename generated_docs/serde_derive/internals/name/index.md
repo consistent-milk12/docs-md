@@ -25,7 +25,7 @@ struct MultiName {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/name.rs:9-15`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/name.rs#L9-L15)*
+*Defined in [`serde_derive-1.0.228/src/internals/name.rs:9-15`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/name.rs#L9-L15)*
 
 #### Implementations
 
@@ -91,7 +91,7 @@ struct Name {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/name.rs:60-63`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/name.rs#L60-L63)*
+*Defined in [`serde_derive-1.0.228/src/internals/name.rs:60-63`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/name.rs#L60-L63)*
 
 #### Trait Implementations
 

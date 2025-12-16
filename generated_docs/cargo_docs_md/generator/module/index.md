@@ -62,7 +62,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
   Create a new module renderer.
   
-  # Arguments
+  ##### Arguments
   
   * `ctx` - Render context (implements `RenderContext` trait)
   * `current_file` - Path of this file (for relative link calculation)
@@ -79,7 +79,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
   Generate the complete markdown content for a module.
   
-  # Output Structure
+  ##### Output Structure
   
   ```markdown
   Crate `name` (or Module `name`)

@@ -22,7 +22,7 @@ struct Powerset<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/powerset.rs:14-16`](../../../.source_1765894658/itertools-0.14.0/src/powerset.rs#L14-L16)*
+*Defined in [`itertools-0.14.0/src/powerset.rs:14-16`](../../../.source_1765900590/itertools-0.14.0/src/powerset.rs#L14-L16)*
 
 An iterator to iterate through the powerset of the elements from an iterator.
 
@@ -135,7 +135,7 @@ where
     <I as >::Item: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/powerset.rs:35-43`](../../../.source_1765894658/itertools-0.14.0/src/powerset.rs#L35-L43)*
+*Defined in [`itertools-0.14.0/src/powerset.rs:35-43`](../../../.source_1765900590/itertools-0.14.0/src/powerset.rs#L35-L43)*
 
 Create a new `Powerset` from a clonable iterator.
 
@@ -145,5 +145,5 @@ Create a new `Powerset` from a clonable iterator.
 fn remaining_for(n: usize, k: usize) -> Option<usize>
 ```
 
-*Defined in [`itertools-0.14.0/src/powerset.rs:129-131`](../../../.source_1765894658/itertools-0.14.0/src/powerset.rs#L129-L131)*
+*Defined in [`itertools-0.14.0/src/powerset.rs:129-131`](../../../.source_1765900590/itertools-0.14.0/src/powerset.rs#L129-L131)*
 

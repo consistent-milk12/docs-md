@@ -52,7 +52,7 @@ struct ChunkIndex {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:23-27`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L23-L27)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:23-27`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L23-L27)*
 
 `ChunkIndex` acts like the grouping key function for `IntoChunks`
 
@@ -148,7 +148,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:54-77`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L54-L77)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:54-77`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L54-L77)*
 
 #### Fields
 
@@ -278,7 +278,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:304-312`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L304-L312)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:304-312`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L304-L312)*
 
 `ChunkBy` is the storage for the lazy grouping operation.
 
@@ -368,7 +368,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:378-386`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L378-L386)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:378-386`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L378-L386)*
 
 An iterator that yields the Group iterators.
 
@@ -455,7 +455,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:419-429`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L419-L429)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:419-429`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L419-L429)*
 
 An iterator for the elements in a single group.
 
@@ -539,7 +539,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:496-504`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L496-L504)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:496-504`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L496-L504)*
 
 `ChunkLazy` is the storage for a lazy chunking operation.
 
@@ -643,7 +643,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:549-555`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L549-L555)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:549-555`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L549-L555)*
 
 An iterator that yields the Chunk iterators.
 
@@ -739,7 +739,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:580-588`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L580-L588)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:580-588`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L580-L588)*
 
 An iterator for the elements in a single chunk.
 
@@ -820,7 +820,7 @@ Iterator element type is `I::Item`.
 trait KeyFunction<A> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:5-8`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L5-L8)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:5-8`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L5-L8)*
 
 A trait to unify `FnMut` for `ChunkBy` with the chunk key in `IntoChunks`
 
@@ -830,7 +830,7 @@ A trait to unify `FnMut` for `ChunkBy` with the chunk key in `IntoChunks`
 
 #### Required Methods
 
-- `fn call_mut(&mut self, arg: A) -> <Self as >::Key`
+- `fn KeyFunction::call_mut(&mut self, arg: A) -> <Self as >::Key`
 
 #### Implementors
 
@@ -848,7 +848,7 @@ where
     F: FnMut(&<J as >::Item) -> K
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:315-335`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L315-L335)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:315-335`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L315-L335)*
 
 Create a new
 
@@ -860,7 +860,7 @@ where
     J: IntoIterator
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:461-480`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L461-L480)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:461-480`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L461-L480)*
 
 Create a new
 
@@ -872,7 +872,7 @@ Create a new
 type GroupBy<K, I, F> = ChunkBy<K, I, F>;
 ```
 
-*Defined in [`itertools-0.14.0/src/groupbylazy.rs:288`](../../../.source_1765894658/itertools-0.14.0/src/groupbylazy.rs#L288)*
+*Defined in [`itertools-0.14.0/src/groupbylazy.rs:288`](../../../.source_1765900590/itertools-0.14.0/src/groupbylazy.rs#L288)*
 
 See [`ChunkBy`](crate::structs::ChunkBy).
 

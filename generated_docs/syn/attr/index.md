@@ -50,7 +50,7 @@ struct Attribute {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L19-L179)*
+*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../../.source_1765900590/syn-2.0.111/src/attr.rs#L19-L179)*
 
 An attribute, like `#[repr(transparent)]`.
 
@@ -227,7 +227,7 @@ assert_eq!(doc, attr);
             ^^^^^^^^^ what gets parsed
   ```
   
-  # Example
+  ##### Example
   
   ```rust
   use syn::{parse_quote, Attribute, Expr};
@@ -247,7 +247,7 @@ assert_eq!(doc, attr);
 
   Parse the arguments to the attribute using the given parser.
   
-  # Example
+  ##### Example
   
   ```rust
   use syn::{parse_quote, Attribute};
@@ -273,7 +273,7 @@ assert_eq!(doc, attr);
   convention, so `parse_args()` is available if you
   need to parse arbitrarily goofy attribute syntax.
   
-  # Example
+  ##### Example
   
   We'll parse a struct, and then parse some of Rust's `#[repr]` attribute
   syntax.
@@ -336,7 +336,7 @@ assert_eq!(doc, attr);
   anyhow::Ok(())
   ```
   
-  # Alternatives
+  ##### Alternatives
   
   In some cases, for attributes which have nested layers of structured
   content, the following less flexible approach might be more convenient:
@@ -389,7 +389,7 @@ assert_eq!(doc, attr);
 
   Parses zero or more outer attributes from the stream.
   
-  # Example
+  ##### Example
   
   See
   [*Parsing from tokens to Attribute*](#parsing-from-tokens-to-attribute).
@@ -398,7 +398,7 @@ assert_eq!(doc, attr);
 
   Parses zero or more inner attributes from the stream.
   
-  # Example
+  ##### Example
   
   See
   [*Parsing from tokens to Attribute*](#parsing-from-tokens-to-attribute).
@@ -494,7 +494,7 @@ struct MetaList {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L484-L492)*
+*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../../.source_1765900590/syn-2.0.111/src/attr.rs#L484-L492)*
 
 A structured list within an attribute, like `derive(Copy, Clone)`.
 
@@ -607,7 +607,7 @@ struct MetaNameValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L494-L502)*
+*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../../.source_1765900590/syn-2.0.111/src/attr.rs#L494-L502)*
 
 A name-value pair within an attribute, like `feature = "nightly"`.
 
@@ -711,7 +711,7 @@ enum AttrStyle {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L429-L449)*
+*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../../.source_1765900590/syn-2.0.111/src/attr.rs#L429-L449)*
 
 Distinguishes between attributes that decorate an item and attributes
 that are contained within an item.
@@ -811,7 +811,7 @@ enum Meta {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L451-L482)*
+*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../../.source_1765900590/syn-2.0.111/src/attr.rs#L451-L482)*
 
 Content of a compile-time structured attribute.
 
@@ -957,7 +957,7 @@ This type is a [syntax tree enum].
 trait FilterAttrs<'a> { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:594-600`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L594-L600)*
+*Defined in [`syn-2.0.111/src/attr.rs:594-600`](../../../.source_1765900590/syn-2.0.111/src/attr.rs#L594-L600)*
 
 #### Associated Types
 
@@ -965,9 +965,9 @@ trait FilterAttrs<'a> { ... }
 
 #### Required Methods
 
-- `fn outer(self) -> <Self as >::Ret`
+- `fn FilterAttrs::outer(self) -> <Self as >::Ret`
 
-- `fn inner(self) -> <Self as >::Ret`
+- `fn FilterAttrs::inner(self) -> <Self as >::Ret`
 
 #### Implementors
 

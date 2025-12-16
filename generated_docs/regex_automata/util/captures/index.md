@@ -79,7 +79,7 @@ struct Captures {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:130-173`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L130-L173)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:130-173`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L130-L173)*
 
 The span offsets of capturing groups after a match has been found.
 
@@ -230,7 +230,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   search with a `GroupInfo` other than the one that is provided to this
   constructor.
   
-  # Example
+  ##### Example
   
   This example shows that all capturing groups---but only ones that
   participated in a match---are available to query after a match has
@@ -269,7 +269,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   search with a `GroupInfo` other than the one that is provided to this
   constructor.
   
-  # Example
+  ##### Example
   
   This example shows that only overall match offsets are reported when
   this constructor is used. Accessing any capturing groups other than
@@ -308,7 +308,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   search with a `GroupInfo` other than the one that is provided to this
   constructor.
   
-  # Example
+  ##### Example
   
   This example shows that only the pattern that matched can be accessed
   from a `Captures` value created via this constructor.
@@ -345,7 +345,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   This is a convenience routine for `caps.pattern().is_some()`.
   
-  # Example
+  ##### Example
   
   When using the PikeVM (for example), the lightest weight way of
   detecting whether a match exists is to create capturing groups that
@@ -377,7 +377,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   returns `true`. Similarly, the pattern ID returned is always the
   same pattern ID found in the `Match` returned by `get_match`.
   
-  # Example
+  ##### Example
   
   When using the PikeVM (for example), the lightest weight way of
   detecting which pattern matched is to create capturing groups that only
@@ -414,7 +414,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   guaranteed to return `true` and `pattern` is also guaranteed to return
   a non-`None` value.
   
-  # Example
+  ##### Example
   
   This example shows how to get the full match from a search:
   
@@ -459,7 +459,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   technically forced to make the 0th capturing group always correspond to
   the entire match.
   
-  # Example
+  ##### Example
   
   This example shows how to get the capturing groups, by index, from a
   match:
@@ -503,7 +503,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   non-`None` value and `get_match` is guaranteed to return a non-`None`
   value.
   
-  # Example
+  ##### Example
   
   This example shows how to get the capturing groups, by name, from a
   match:
@@ -537,7 +537,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   A span is present if and only if it corresponds to a capturing group
   that participated in a match.
   
-  # Example
+  ##### Example
   
   This example shows how to collect all capturing groups:
   
@@ -603,7 +603,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   `Captures::iter`. That is, the number includes capturing groups even
   if they don't participate in the match.
   
-  # Example
+  ##### Example
   
   This example shows how to count the total number of capturing groups
   associated with a pattern. Notice that it includes groups that did not
@@ -640,7 +640,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Note that a `GroupInfo` uses reference counting internally, so it may
   be cloned cheaply.
   
-  # Example
+  ##### Example
   
   This example shows how to get all capturing group names from the
   underlying `GroupInfo`. Notice that we don't even need to run a
@@ -688,7 +688,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   See the [`interpolate` module](interpolate) for documentation on the
   format of the replacement string.
   
-  # Example
+  ##### Example
   
   This example shows how to use interpolation, and also shows how it
   can work with multi-pattern regexes.
@@ -729,7 +729,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   See the [`interpolate` module](interpolate) for documentation on the
   format of the replacement string.
   
-  # Example
+  ##### Example
   
   This example shows how to use interpolation, and also shows how it
   can work with multi-pattern regexes.
@@ -772,7 +772,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   See the [`interpolate` module](interpolate) for documentation on the
   format of the replacement string.
   
-  # Example
+  ##### Example
   
   This example shows how to use interpolation, and also shows how it
   can work with multi-pattern regexes.
@@ -813,7 +813,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   See the [`interpolate` module](interpolate) for documentation on the
   format of the replacement string.
   
-  # Example
+  ##### Example
   
   This example shows how to use interpolation, and also shows how it
   can work with multi-pattern regexes.
@@ -857,7 +857,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is identical to `Captures::extract_bytes`, except it works with
   `&str` instead of `&[u8]`.
   
-  # Panics
+  ##### Panics
   
   This panics if the number of explicit matching groups in this
   `Captures` value is less than `N`. This also panics if this `Captures`
@@ -867,7 +867,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   groups is bigger than `N`. In that case, only the first `N` matching
   groups are extracted.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::nfa::thompson::pikevm::PikeVM;
@@ -903,7 +903,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is identical to `Captures::extract`, except it works with
   `&[u8]` instead of `&str`.
   
-  # Panics
+  ##### Panics
   
   This panics if the number of explicit matching groups in this
   `Captures` value is less than `N`. This also panics if this `Captures`
@@ -913,7 +913,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   groups is bigger than `N`. In that case, only the first `N` matching
   groups are extracted.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::nfa::thompson::pikevm::PikeVM;
@@ -1009,7 +1009,7 @@ struct CapturesDebugMap<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1217-1220`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L1217-L1220)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1217-1220`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L1217-L1220)*
 
 A little helper type to provide a nice map-like debug representation for
 our capturing group spans.
@@ -1068,7 +1068,7 @@ struct CapturesPatternIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1258-1261`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L1258-L1261)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1258-1261`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L1258-L1261)*
 
 An iterator over all capturing groups in a `Captures` value.
 
@@ -1168,7 +1168,7 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 struct GroupInfo(alloc::sync::Arc<GroupInfoInner>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1451`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L1451)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1451`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L1451)*
 
 Represents information about capturing groups in a compiled regex.
 
@@ -1361,7 +1361,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   useful for cases where you have no patterns or for cases where slots
   aren't being used at all (e.g., for most DFAs in this crate).
   
-  # Errors
+  ##### Errors
   
   This constructor returns an error if the given capturing groups are
   invalid in some way. Those reasons include, but are not necessarily
@@ -1379,7 +1379,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   An example below shows how to trigger some of the above error
   conditions.
   
-  # Example
+  ##### Example
   
   This example shows how to build a new `GroupInfo` and query it for
   information.
@@ -1401,7 +1401,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Ok::<(), Box<dyn std::error::Error>>(())
   ```
   
-  # Example: empty `GroupInfo`
+  ##### Example: empty `GroupInfo`
   
   This example shows how to build a new `GroupInfo` and query it for
   information.
@@ -1417,7 +1417,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Ok::<(), Box<dyn std::error::Error>>(())
   ```
   
-  # Example: error conditions
+  ##### Example: error conditions
   
   This example shows how to provoke some of the ways in which building
   a `GroupInfo` can fail.
@@ -1465,7 +1465,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine for calling `GroupInfo::new` with an
   iterator that yields no elements.
   
-  # Example
+  ##### Example
   
   This example shows how to build a new empty `GroupInfo` and query it
   for information.
@@ -1494,7 +1494,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   (e.g., built from an empty [`GroupInfo`](#groupinfo)). To check whether captures
   are present for a specific pattern, use `GroupInfo::group_len`.
   
-  # Example
+  ##### Example
   
   This example shows how to find the capture index for the given pattern
   and group name.
@@ -1543,7 +1543,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   (e.g., built from an empty [`GroupInfo`](#groupinfo)). To check whether captures
   are present for a specific pattern, use `GroupInfo::group_len`.
   
-  # Example
+  ##### Example
   
   This example shows how to find the capture group name for the given
   pattern and group index.
@@ -1585,7 +1585,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   the result of calling `GroupInfo::group_len` with the same
   `PatternID`.
   
-  # Example
+  ##### Example
   
   This example shows how to get a list of all capture group names for
   a particular pattern.
@@ -1614,7 +1614,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   this `GroupInfo`. Each item yielded is a triple of the group's pattern
   ID, index in the pattern and the group's name, if present.
   
-  # Example
+  ##### Example
   
   This example shows how to get a list of all capture groups found in
   one NFA, potentially spanning multiple patterns.
@@ -1672,7 +1672,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If either the pattern ID or the capture index is invalid, then this
   returns None.
   
-  # Example
+  ##### Example
   
   This example shows that the starting slots for the first capturing
   group of each pattern are distinct.
@@ -1702,7 +1702,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If either the pattern ID or the capture index is invalid, then this
   returns None.
   
-  # Example
+  ##### Example
   
   This example shows that the starting slots for the first capturing
   group of each pattern are distinct.
@@ -1729,7 +1729,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is guaranteed to be no bigger than `PatternID::LIMIT` because
   `GroupInfo` construction will fail if too many patterns are added.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::nfa::thompson::NFA;
@@ -1752,7 +1752,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   
   If the pattern ID is invalid, then this returns `0`.
   
-  # Example
+  ##### Example
   
   This example shows how the values returned by this routine may vary
   for different patterns and NFA configurations.
@@ -1792,7 +1792,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This includes implicit groups that represent the entire match of a
   pattern.
   
-  # Example
+  ##### Example
   
   This example shows how the values returned by this routine may vary
   for different patterns and NFA configurations.
@@ -1838,7 +1838,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   The total number of slots is always twice the total number of capturing
   groups, including both implicit and explicit groups.
   
-  # Example
+  ##### Example
   
   This example shows the relationship between the number of capturing
   groups and slots.
@@ -1868,7 +1868,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   implicit slots for each pattern, the number of implicit slots is always
   equal to twice the number of patterns.
   
-  # Example
+  ##### Example
   
   This example shows the relationship between the number of capturing
   groups, implicit slots and explicit slots.
@@ -1902,7 +1902,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   both the total number of slots and the number of explicit slots is
   `0`.
   
-  # Example
+  ##### Example
   
   This example shows the relationship between the number of capturing
   groups, implicit slots and explicit slots.
@@ -2006,7 +2006,7 @@ struct GroupInfoInner {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2179-2184`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L2179-L2184)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2179-2184`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L2179-L2184)*
 
 The inner guts of `GroupInfo`. This type only exists so that it can
 be wrapped in an `Arc` to make `GroupInfo` reference counted.
@@ -2116,7 +2116,7 @@ struct GroupInfoError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2337-2339`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L2337-L2339)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2337-2339`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L2337-L2339)*
 
 An error that may occur when building a `GroupInfo`.
 
@@ -2218,7 +2218,7 @@ struct GroupInfoPatternNames<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2480-2482`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L2480-L2482)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2480-2482`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L2480-L2482)*
 
 An iterator over capturing groups and their names for a specific pattern.
 
@@ -2325,7 +2325,7 @@ struct GroupInfoAllNames<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2516-2521`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L2516-L2521)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2516-2521`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L2516-L2521)*
 
 An iterator over capturing groups and their names for a `GroupInfo`.
 
@@ -2419,7 +2419,7 @@ enum GroupInfoErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2346-2387`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L2346-L2387)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2346-2387`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L2346-L2387)*
 
 The kind of error that occurs when building a `GroupInfo` fails.
 
@@ -2529,7 +2529,7 @@ export it.
 type CaptureNameMap = std::collections::HashMap<alloc::sync::Arc<str>, crate::util::primitives::SmallIndex>;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2172`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/captures.rs#L2172)*
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2172`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/captures.rs#L2172)*
 
 A map from capture group name to its corresponding capture group index.
 

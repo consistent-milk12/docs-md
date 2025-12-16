@@ -24,7 +24,7 @@ struct Style {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../../.source_1765894658/anstyle-1.0.13/src/style.rs#L18-L23)*
+*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../../.source_1765900590/anstyle-1.0.13/src/style.rs#L18-L23)*
 
 ANSI Text styling
 
@@ -47,7 +47,7 @@ println!("{style}{value}{style:#}");
 
   No effects enabled
   
-  # Examples
+  ##### Examples
   
   ```rust
   let style = anstyle::Style::new();
@@ -57,7 +57,7 @@ println!("{style}{value}{style:#}");
 
   Set foreground color
   
-  # Examples
+  ##### Examples
   
   ```rust
   let style = anstyle::Style::new().fg_color(Some(anstyle::AnsiColor::Red.into()));
@@ -67,7 +67,7 @@ println!("{style}{value}{style:#}");
 
   Set background color
   
-  # Examples
+  ##### Examples
   
   ```rust
   let style = anstyle::Style::new().bg_color(Some(anstyle::AnsiColor::Red.into()));
@@ -77,7 +77,7 @@ println!("{style}{value}{style:#}");
 
   Set underline color
   
-  # Examples
+  ##### Examples
   
   ```rust
   let style = anstyle::Style::new().underline_color(Some(anstyle::AnsiColor::Red.into()));
@@ -87,7 +87,7 @@ println!("{style}{value}{style:#}");
 
   Set text effects
   
-  # Examples
+  ##### Examples
   
   ```rust
   let style = anstyle::Style::new().effects(anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE);
@@ -238,7 +238,7 @@ println!("{style}{value}{style:#}");
 struct StyleDisplay(Style);
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../../.source_1765894658/anstyle-1.0.13/src/style.rs#L423)*
+*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../../.source_1765900590/anstyle-1.0.13/src/style.rs#L423)*
 
 #### Trait Implementations
 

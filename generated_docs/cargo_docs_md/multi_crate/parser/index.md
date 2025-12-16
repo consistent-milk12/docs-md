@@ -47,15 +47,15 @@ println!("Found {} crates", crates.len());
   attempts to parse each one as rustdoc JSON. Files that aren't
   valid rustdoc JSON (e.g., search indices) are silently skipped.
   
-  # Arguments
+  ##### Arguments
   
   * `dir` - Path to directory containing JSON files
   
-  # Returns
+  ##### Returns
   
   A `CrateCollection` containing all successfully parsed crates.
   
-  # Errors
+  ##### Errors
   
   - [`Error::InvalidDirectory`](../../index.md) if the path is invalid
   - [`Error::NoJsonFiles`](../../index.md) if no valid JSON files found

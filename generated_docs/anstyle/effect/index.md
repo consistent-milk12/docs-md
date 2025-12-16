@@ -23,7 +23,7 @@
 struct Effects(u16);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L9)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../../.source_1765900590/anstyle-1.0.13/src/effect.rs#L9)*
 
 A set of text effects
 
@@ -65,7 +65,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
   No effects enabled
   
-  # Examples
+  ##### Examples
   
   ```rust
   let effects = anstyle::Effects::new();
@@ -75,7 +75,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
   Check if no effects are enabled
   
-  # Examples
+  ##### Examples
   
   ```rust
   let effects = anstyle::Effects::new();
@@ -89,7 +89,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
   Returns `true` if all of the effects in `other` are contained within `self`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
@@ -103,7 +103,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
   Inserts the specified effects in-place.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let effects = anstyle::Effects::new().insert(anstyle::Effects::new());
@@ -117,7 +117,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
   Removes the specified effects in-place.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let effects = (anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE).remove(anstyle::Effects::BOLD);
@@ -138,7 +138,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
   Enable or disable the specified effects depending on the passed value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   let effects = anstyle::Effects::new().set(anstyle::Effects::BOLD, true);
@@ -275,7 +275,7 @@ struct Metadata {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L263-L266)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../../.source_1765900590/anstyle-1.0.13/src/effect.rs#L263-L266)*
 
 #### Trait Implementations
 
@@ -324,7 +324,7 @@ struct Metadata {
 struct EffectsDisplay(Effects);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L320)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../../.source_1765900590/anstyle-1.0.13/src/effect.rs#L320)*
 
 #### Trait Implementations
 
@@ -410,7 +410,7 @@ struct EffectIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L334-L337)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../../.source_1765900590/anstyle-1.0.13/src/effect.rs#L334-L337)*
 
 Enumerate each enabled value in [`Effects`](../index.md)
 
@@ -506,7 +506,7 @@ struct EffectIndexIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L358-L361)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../../.source_1765900590/anstyle-1.0.13/src/effect.rs#L358-L361)*
 
 #### Trait Implementations
 
@@ -598,5 +598,5 @@ struct EffectIndexIter {
 const METADATA: [Metadata; 12];
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L268-L317)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../../.source_1765900590/anstyle-1.0.13/src/effect.rs#L268-L317)*
 

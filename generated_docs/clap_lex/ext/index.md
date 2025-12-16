@@ -28,7 +28,7 @@ struct Split<'s, 'n> {
 }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/ext.rs:247-250`](../../../.source_1765894658/clap_lex-0.7.6/src/ext.rs#L247-L250)*
+*Defined in [`clap_lex-0.7.6/src/ext.rs:247-250`](../../../.source_1765900590/clap_lex-0.7.6/src/ext.rs#L247-L250)*
 
 #### Trait Implementations
 
@@ -93,27 +93,27 @@ struct Split<'s, 'n> {
 trait OsStrExt: private::Sealed { ... }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/ext.rs:4-183`](../../../.source_1765894658/clap_lex-0.7.6/src/ext.rs#L4-L183)*
+*Defined in [`clap_lex-0.7.6/src/ext.rs:4-183`](../../../.source_1765900590/clap_lex-0.7.6/src/ext.rs#L4-L183)*
 
 String-like methods for [`OsStr`](#osstr)
 
 #### Required Methods
 
-- `fn try_str(&self) -> Result<&str, std::str::Utf8Error>`
+- `fn OsStrExt::try_str(&self) -> Result<&str, std::str::Utf8Error>`
 
   Converts to a string slice.
   
   The `Utf8Error` is guaranteed to have a valid UTF8 boundary
   in its `valid_up_to()`
 
-- `fn contains(&self, needle: &str) -> bool`
+- `fn OsStrExt::contains(&self, needle: &str) -> bool`
 
   Returns `true` if the given pattern matches a sub-slice of
   this string slice.
   
   Returns `false` if it does not.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_lex::OsStrExt as _;
@@ -123,14 +123,14 @@ String-like methods for [`OsStr`](#osstr)
   assert!(!bananas.contains("apples"));
   ```
 
-- `fn find(&self, needle: &str) -> Option<usize>`
+- `fn OsStrExt::find(&self, needle: &str) -> Option<usize>`
 
   Returns the byte index of the first character of this string slice that
   matches the pattern.
   
   Returns [`None`](#none) if the pattern doesn't match.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_lex::OsStrExt as _;
@@ -150,7 +150,7 @@ String-like methods for [`OsStr`](#osstr)
   assert_eq!(s.find("1"), None);
   ```
 
-- `fn strip_prefix(&self, prefix: &str) -> Option<&OsStr>`
+- `fn OsStrExt::strip_prefix(&self, prefix: &str) -> Option<&OsStr>`
 
   Returns a string slice with the prefix removed.
   
@@ -159,7 +159,7 @@ String-like methods for [`OsStr`](#osstr)
   
   If the string does not start with `prefix`, returns `None`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::ffi::OsStr;
@@ -169,14 +169,14 @@ String-like methods for [`OsStr`](#osstr)
   assert_eq!(OsStr::new("foofoo").strip_prefix("foo"), Some(OsStr::new("foo")));
   ```
 
-- `fn starts_with(&self, prefix: &str) -> bool`
+- `fn OsStrExt::starts_with(&self, prefix: &str) -> bool`
 
   Returns `true` if the given pattern matches a prefix of this
   string slice.
   
   Returns `false` if it does not.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_lex::OsStrExt as _;
@@ -186,12 +186,12 @@ String-like methods for [`OsStr`](#osstr)
   assert!(!bananas.starts_with("nana"));
   ```
 
-- `fn split<'s, 'n>(self: &'s Self, needle: &'n str) -> Split<'s, 'n>`
+- `fn OsStrExt::split<'s, 'n>(self: &'s Self, needle: &'n str) -> Split<'s, 'n>`
 
   An iterator over substrings of this string slice, separated by
   characters matched by a pattern.
   
-  # Examples
+  ##### Examples
   
   Simple patterns:
   
@@ -273,12 +273,12 @@ String-like methods for [`OsStr`](#osstr)
   
   Use `split_whitespace` for this behavior.
 
-- `fn split_once(&self, needle: &str) -> Option<(&OsStr, &OsStr)>`
+- `fn OsStrExt::split_once(&self, needle: &str) -> Option<(&OsStr, &OsStr)>`
 
   Splits the string on the first occurrence of the specified delimiter and
   returns prefix before delimiter and suffix after delimiter.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::ffi::OsStr;
@@ -301,7 +301,7 @@ String-like methods for [`OsStr`](#osstr)
 unsafe fn split_at(os: &std::ffi::OsStr, index: usize) -> (&std::ffi::OsStr, &std::ffi::OsStr)
 ```
 
-*Defined in [`clap_lex-0.7.6/src/ext.rs:275-284`](../../../.source_1765894658/clap_lex-0.7.6/src/ext.rs#L275-L284)*
+*Defined in [`clap_lex-0.7.6/src/ext.rs:275-284`](../../../.source_1765900590/clap_lex-0.7.6/src/ext.rs#L275-L284)*
 
 Split an `OsStr`
 

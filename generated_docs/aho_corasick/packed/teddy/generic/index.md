@@ -28,7 +28,7 @@ struct Match {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:26-30`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L26-L30)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:26-30`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L26-L30)*
 
 A match type specialized to the Teddy implementations below.
 
@@ -125,7 +125,7 @@ struct Slim<V, const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:54-60`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L54-L60)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:54-60`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L54-L60)*
 
 A "slim" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
@@ -149,11 +149,11 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
   Create a new "slim" Teddy searcher for the given patterns.
   
-  # Panics
+  ##### Panics
   
   This panics when `BYTES` is any value other than 1, 2, 3 or 4.
   
-  # Safety
+  ##### Safety
   
   Callers must ensure that this is okay to call in the current target for
   the current CPU.
@@ -238,7 +238,7 @@ struct Fat<V, const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:387-393`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L387-L393)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:387-393`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L387-L393)*
 
 A "fat" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
@@ -262,11 +262,11 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
   Create a new "fat" Teddy searcher for the given patterns.
   
-  # Panics
+  ##### Panics
   
   This panics when `BYTES` is any value other than 1, 2, 3 or 4.
   
-  # Safety
+  ##### Safety
   
   Callers must ensure that this is okay to call in the current target for
   the current CPU.
@@ -351,7 +351,7 @@ struct Teddy<const BUCKETS: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:728-747`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L728-L747)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:728-747`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L728-L747)*
 
 The common elements of all "slim" and "fat" Teddy search implementations.
 
@@ -392,7 +392,7 @@ be quite expensive if `N` is not a multiple of 2.
   haystack. The candidate chunk given should correspond to 8-bit bitsets
   for N buckets.
   
-  # Safety
+  ##### Safety
   
   The given pointers representing the haystack must be valid to read
   from.
@@ -402,7 +402,7 @@ be quite expensive if `N` is not a multiple of 2.
   Verify whether there are any matches starting at `at` in the given
   `haystack` corresponding only to patterns in the given bucket.
   
-  # Safety
+  ##### Safety
   
   The given pointers representing the haystack must be valid to read
   from.
@@ -498,7 +498,7 @@ struct Mask<V> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1016-1019`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1016-L1019)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1016-1019`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1016-L1019)*
 
 A vector generic mask for the low and high nybbles in a set of patterns.
 Each 8-bit lane `j` in a vector corresponds to a bitset where the `i`th bit
@@ -671,7 +671,7 @@ struct SlimMaskBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1178-1181`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1178-L1181)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1178-1181`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1178-L1181)*
 
 Represents the low and high nybble masks that will be used during
 search. Each mask is 32 bytes wide, although only the first 16 bytes are
@@ -693,7 +693,7 @@ low and high masks together also results in 8-bit bitsets, but where bit
   Update this mask by adding the given byte to the given bucket. The
   given bucket must be in the range 0-7.
   
-  # Panics
+  ##### Panics
   
   When `bucket >= 8`.
 
@@ -701,11 +701,11 @@ low and high masks together also results in 8-bit bitsets, but where bit
 
   Turn this builder into a vector mask.
   
-  # Panics
+  ##### Panics
   
   When `V` represents a vector bigger than what `MaskBytes` can contain.
   
-  # Safety
+  ##### Safety
   
   Callers must ensure that this is okay to call in the current target for
   the current CPU.
@@ -715,11 +715,11 @@ low and high masks together also results in 8-bit bitsets, but where bit
   A convenience function for building `N` vector masks from a slim
   `Teddy` value.
   
-  # Panics
+  ##### Panics
   
   When `V` represents a vector bigger than what `MaskBytes` can contain.
   
-  # Safety
+  ##### Safety
   
   Callers must ensure that this is okay to call in the current target for
   the current CPU.
@@ -798,7 +798,7 @@ struct FatMaskBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1288-1291`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1288-L1291)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1288-1291`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1288-L1291)*
 
 Represents the low and high nybble masks that will be used during "fat"
 Teddy search.
@@ -823,7 +823,7 @@ the byte (0-15, inclusive) corresponds to the nybble.
   Update this mask by adding the given byte to the given bucket. The
   given bucket must be in the range 0-15.
   
-  # Panics
+  ##### Panics
   
   When `bucket >= 16`.
 
@@ -831,11 +831,11 @@ the byte (0-15, inclusive) corresponds to the nybble.
 
   Turn this builder into a vector mask.
   
-  # Panics
+  ##### Panics
   
   When `V` represents a vector bigger than what `MaskBytes` can contain.
   
-  # Safety
+  ##### Safety
   
   Callers must ensure that this is okay to call in the current target for
   the current CPU.
@@ -845,11 +845,11 @@ the byte (0-15, inclusive) corresponds to the nybble.
   A convenience function for building `N` vector masks from a fat
   `Teddy` value.
   
-  # Panics
+  ##### Panics
   
   When `V` represents a vector bigger than what `MaskBytes` can contain.
   
-  # Safety
+  ##### Safety
   
   Callers must ensure that this is okay to call in the current target for
   the current CPU.

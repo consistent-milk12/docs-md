@@ -18,7 +18,7 @@
 struct InlineBuffer([u8; 24]);
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/inline.rs:8`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/inline.rs#L8)*
+*Defined in [`compact_str-0.9.0/src/repr/inline.rs:8`](../../../../.source_1765900590/compact_str-0.9.0/src/repr/inline.rs#L8)*
 
 A buffer stored on the stack whose size is equal to the stack size of `String`
 
@@ -41,7 +41,7 @@ A buffer stored on the stack whose size is equal to the stack size of `String`
 
   Set's the length of the content for this [`InlineBuffer`](#inlinebuffer)
   
-  # SAFETY:
+  ##### SAFETY:
   * The caller must guarantee that `len` bytes in the buffer are valid UTF-8
 
 #### Trait Implementations

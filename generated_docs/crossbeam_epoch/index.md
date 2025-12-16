@@ -134,7 +134,7 @@ struct Atomic<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
 
 An atomic pointer that can be safely shared between threads.
 
@@ -152,7 +152,7 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 
   Allocates `value` on the heap and returns a new atomic pointer pointing to it.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch::Atomic;
@@ -262,7 +262,7 @@ struct CompareExchangeError<'g, T: ?Sized + Pointable, P: Pointer<T>> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
 
 The error returned on failed compare-and-swap operation.
 
@@ -344,7 +344,7 @@ struct Owned<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
 
 An owned heap-allocated object.
 
@@ -363,16 +363,16 @@ least significant bits of the address.
   must be a valid pointer. Also, a double-free may occur if the function is called twice on
   the same raw pointer.
   
-  # Panics
+  ##### Panics
   
   Panics if `raw` is not properly aligned.
   
-  # Safety
+  ##### Safety
   
   The given `raw` should have been derived from `Owned`, and one `raw` should not be converted
   back by `Owned::from_raw()` multiple times.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch::Owned;
@@ -384,7 +384,7 @@ least significant bits of the address.
 
   Converts the owned pointer into a `Box`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch::Owned;
@@ -398,7 +398,7 @@ least significant bits of the address.
 
   Allocates `value` on the heap and returns a new owned pointer pointing to it.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch::Owned;
@@ -491,7 +491,7 @@ least significant bits of the address.
 
   Returns a new pointer pointing to the tagged pointer `data`.
   
-  # Panics
+  ##### Panics
   
   Panics if the data is zero in debug mode.
 
@@ -528,7 +528,7 @@ struct Shared<'g, T: 'g + ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
 
 A pointer to an object protected by the epoch GC.
 
@@ -543,7 +543,7 @@ least significant bits of the address.
 
   Converts the pointer to a raw pointer (without the tag).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch::{self as epoch, Atomic, Owned};
@@ -668,7 +668,7 @@ struct Collector {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
 
 An epoch-based garbage collector.
 
@@ -783,7 +783,7 @@ struct LocalHandle {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
 
 A handle to a garbage collector.
 
@@ -872,7 +872,7 @@ struct Guard {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
 
 A guard that keeps the current thread pinned.
 
@@ -972,7 +972,7 @@ assert!(!epoch::is_pinned());
   If this method is called from an [`unprotected`](guard/index.md) guard, the function will simply be
   executed immediately.
   
-  # Safety
+  ##### Safety
   
   The given function must not hold reference onto the stack. It is highly recommended that
   the passed function is **always** marked with `move` in order to prevent accidental
@@ -1007,7 +1007,7 @@ assert!(!epoch::is_pinned());
   because it's called only after the grace period and `shared` is no longer shared with other
   threads. But we don't expect type systems to prove this.
   
-  # Examples
+  ##### Examples
   
   When a heap-allocated object in a data structure becomes unreachable, it has to be
   deallocated. However, the current thread and other threads may be still holding references
@@ -1064,7 +1064,7 @@ assert!(!epoch::is_pinned());
   If this method is called from an [`unprotected`](guard/index.md) guard, the destructor will simply be
   executed immediately.
   
-  # Safety
+  ##### Safety
   
   The object must not be reachable by other threads anymore, otherwise it might be still in
   use when the destructor runs.
@@ -1085,7 +1085,7 @@ assert!(!epoch::is_pinned());
   it's called only after the grace period and `shared` is no longer shared with other
   threads. But we don't expect type systems to prove this.
   
-  # Examples
+  ##### Examples
   
   When a heap-allocated object in a data structure becomes unreachable, it has to be
   deallocated. However, the current thread and other threads may be still holding references
@@ -1129,7 +1129,7 @@ assert!(!epoch::is_pinned());
   
   If this method is called from an [`unprotected`](guard/index.md) guard, it is a no-op (nothing happens).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch as epoch;
@@ -1152,7 +1152,7 @@ assert!(!epoch::is_pinned());
   
   If this method is called from an [`unprotected`](guard/index.md) guard, then the call will be just no-op.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch::{self as epoch, Atomic};
@@ -1184,7 +1184,7 @@ assert!(!epoch::is_pinned());
   If this method is called from an [`unprotected`](guard/index.md) guard, then the passed function is called
   directly without unpinning the thread.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch::{self as epoch, Atomic};
@@ -1215,7 +1215,7 @@ assert!(!epoch::is_pinned());
   
   If this method is called from an [`unprotected`](guard/index.md) guard, then `None` is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch as epoch;
@@ -1296,7 +1296,7 @@ assert!(!epoch::is_pinned());
 trait CompareAndSetOrdering { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
 
 Memory orderings for compare-and-set operations.
 
@@ -1312,11 +1312,11 @@ The two ways of specifying orderings for compare-and-set are:
 
 #### Required Methods
 
-- `fn success(&self) -> Ordering`
+- `fn CompareAndSetOrdering::success(&self) -> Ordering`
 
   The ordering of the operation when it succeeds.
 
-- `fn failure(&self) -> Ordering`
+- `fn CompareAndSetOrdering::failure(&self) -> Ordering`
 
   The ordering of the operation when it fails.
   
@@ -1334,7 +1334,7 @@ The two ways of specifying orderings for compare-and-set are:
 trait Pointable { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
 
 Types that are pointed to by a single word.
 
@@ -1367,40 +1367,40 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 
 #### Required Methods
 
-- `fn init(init: <Self as >::Init) -> usize`
+- `fn Pointable::init(init: <Self as >::Init) -> usize`
 
   Initializes a with the given initializer.
   
-  # Safety
+  ##### Safety
   
   The result should be a multiple of `ALIGN`.
 
-- `fn deref<'a>(ptr: usize) -> &'a Self`
+- `fn Pointable::deref<'a>(ptr: usize) -> &'a Self`
 
   Dereferences the given pointer.
   
-  # Safety
+  ##### Safety
   
   - The given `ptr` should have been initialized with `Pointable::init`.
   - `ptr` should not have yet been dropped by `Pointable::drop`.
   - `ptr` should not be mutably dereferenced by `Pointable::deref_mut` concurrently.
 
-- `fn deref_mut<'a>(ptr: usize) -> &'a mut Self`
+- `fn Pointable::deref_mut<'a>(ptr: usize) -> &'a mut Self`
 
   Mutably dereferences the given pointer.
   
-  # Safety
+  ##### Safety
   
   - The given `ptr` should have been initialized with `Pointable::init`.
   - `ptr` should not have yet been dropped by `Pointable::drop`.
   - `ptr` should not be dereferenced by `Pointable::deref` or `Pointable::deref_mut`
     concurrently.
 
-- `fn drop(ptr: usize)`
+- `fn Pointable::drop(ptr: usize)`
 
   Drops the object pointed to by the given pointer.
   
-  # Safety
+  ##### Safety
   
   - The given `ptr` should have been initialized with `Pointable::init`.
   - `ptr` should not have yet been dropped by `Pointable::drop`.
@@ -1418,21 +1418,21 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 trait Pointer<T: ?Sized + Pointable> { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
 
 A trait for either `Owned` or `Shared` pointers.
 
 #### Required Methods
 
-- `fn into_usize(self) -> usize`
+- `fn Pointer::into_usize(self) -> usize`
 
   Returns the machine representation of the pointer.
 
-- `fn from_usize(data: usize) -> Self`
+- `fn Pointer::from_usize(data: usize) -> Self`
 
   Returns a new pointer pointing to the tagged pointer `data`.
   
-  # Safety
+  ##### Safety
   
   The given `data` should have been created by `Pointer::into_usize()`, and one `data` should
   not be converted back by `Pointer::from_usize()` multiple times.
@@ -1450,7 +1450,7 @@ A trait for either `Owned` or `Shared` pointers.
 unsafe fn unprotected() -> &'static Guard
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
 
 Returns a reference to a dummy guard that allows unprotected access to [`Atomic`](atomic/index.md)s.
 
@@ -1544,7 +1544,7 @@ impl<T> Drop for Stack<T> {
 fn default_collector() -> &'static crate::collector::Collector
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:50-52`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/default.rs#L50-L52)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:50-52`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/default.rs#L50-L52)*
 
 Returns the default global collector.
 
@@ -1554,7 +1554,7 @@ Returns the default global collector.
 fn is_pinned() -> bool
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:45-47`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/default.rs#L45-L47)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:45-47`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/default.rs#L45-L47)*
 
 Returns `true` if the current thread is pinned.
 
@@ -1564,7 +1564,7 @@ Returns `true` if the current thread is pinned.
 fn pin() -> crate::guard::Guard
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:39-41`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/default.rs#L39-L41)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:39-41`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/default.rs#L39-L41)*
 
 Pins the current thread.
 
@@ -1576,7 +1576,7 @@ Pins the current thread.
 type CompareAndSetError<'g, T, P> = CompareExchangeError<'g, T, P>;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../.source_1765900590/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
 
 The error returned on failed compare-and-set operation.
 

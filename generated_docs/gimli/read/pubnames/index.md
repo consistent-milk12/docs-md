@@ -24,7 +24,7 @@ struct PubNamesEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:8-12`](../../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L8-L12)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:8-12`](../../../../.source_1765900590/gimli-0.32.3/src/read/pubnames.rs#L8-L12)*
 
 A single parsed pubname.
 
@@ -115,7 +115,7 @@ A single parsed pubname.
 struct DebugPubNames<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:50`](../../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L50)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:50`](../../../../.source_1765900590/gimli-0.32.3/src/read/pubnames.rs#L50)*
 
 The `DebugPubNames` struct represents the DWARF public names information
 found in the `.debug_pubnames` section.
@@ -213,7 +213,7 @@ found in the `.debug_pubnames` section.
 struct PubNamesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:118`](../../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L118)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:118`](../../../../.source_1765900590/gimli-0.32.3/src/read/pubnames.rs#L118)*
 
 An iterator over the pubnames from a `.debug_pubnames` section.
 

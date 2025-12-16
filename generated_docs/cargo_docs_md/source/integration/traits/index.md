@@ -30,37 +30,37 @@ constant values.
 
 #### Required Methods
 
-- `fn crate_source(&self) -> Option<&CrateSource>`
+- `fn SourceAccess::crate_source(&self) -> Option<&CrateSource>`
 
   Get parsed source for the current crate.
 
 #### Provided Methods
 
-- `fn find_function_source(&self, path: &str) -> Option<&FunctionInfo>`
+- `fn SourceAccess::find_function_source(&self, path: &str) -> Option<&FunctionInfo>`
 
   Find function source by full path (e.g., `"crate::module::func_name"`).
 
-- `fn find_struct_source(&self, path: &str) -> Option<&StructInfo>`
+- `fn SourceAccess::find_struct_source(&self, path: &str) -> Option<&StructInfo>`
 
   Find struct source by full path.
 
-- `fn find_enum_source(&self, path: &str) -> Option<&EnumInfo>`
+- `fn SourceAccess::find_enum_source(&self, path: &str) -> Option<&EnumInfo>`
 
   Find enum source by full path.
 
-- `fn find_trait_source(&self, path: &str) -> Option<&TraitInfo>`
+- `fn SourceAccess::find_trait_source(&self, path: &str) -> Option<&TraitInfo>`
 
   Find trait source by full path.
 
-- `fn find_const_source(&self, path: &str) -> Option<&ConstInfo>`
+- `fn SourceAccess::find_const_source(&self, path: &str) -> Option<&ConstInfo>`
 
   Find constant source by full path.
 
-- `fn find_static_source(&self, path: &str) -> Option<&StaticInfo>`
+- `fn SourceAccess::find_static_source(&self, path: &str) -> Option<&StaticInfo>`
 
   Find static source by full path.
 
-- `fn private_items_in_module(&self, module_path: &str) -> Vec<PrivateItem<'_>>`
+- `fn SourceAccess::private_items_in_module(&self, module_path: &str) -> Vec<PrivateItem<'_>>`
 
   Get all private items in a module.
 

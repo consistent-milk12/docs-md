@@ -670,7 +670,7 @@ fn main() {}
 struct UnitOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:264`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L264)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:264`](../../../.source_1765900590/gimli-0.32.3/src/read/mod.rs#L264)*
 
 An offset into the current compilation or type unit.
 
@@ -772,7 +772,7 @@ An offset into the current compilation or type unit.
 struct StoreOnHeap;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:276`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L276)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:276`](../../../.source_1765900590/gimli-0.32.3/src/read/mod.rs#L276)*
 
 Indicates that storage should be allocated on heap.
 
@@ -870,7 +870,7 @@ struct ArrayVec<A: ArrayLike> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/util.rs:121-124`](../../../.source_1765894658/gimli-0.32.3/src/read/util.rs#L121-L124)*
+*Defined in [`gimli-0.32.3/src/read/util.rs:121-124`](../../../.source_1765900590/gimli-0.32.3/src/read/util.rs#L121-L124)*
 
 #### Implementations
 
@@ -983,7 +983,7 @@ struct DebugAddr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L6-L8)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../.source_1765900590/gimli-0.32.3/src/read/addr.rs#L6-L8)*
 
 The raw contents of the `.debug_addr` section.
 
@@ -1094,7 +1094,7 @@ struct AddrHeaderIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L82-L85)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../.source_1765900590/gimli-0.32.3/src/read/addr.rs#L82-L85)*
 
 An iterator over the headers of a `.debug_addr` section.
 
@@ -1179,7 +1179,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L122-L131)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../.source_1765900590/gimli-0.32.3/src/read/addr.rs#L122-L131)*
 
 A header for a set of entries in the `.debug_addr` section.
 
@@ -1283,7 +1283,7 @@ struct AddrEntryIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L217-L220)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../.source_1765900590/gimli-0.32.3/src/read/addr.rs#L217-L220)*
 
 An iterator over the addresses from a `.debug_addr` section.
 
@@ -1372,7 +1372,7 @@ struct DebugFrame<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
 
 `DebugFrame` contains the `.debug_frame` section's frame unwinding
 information required to unwind to and recover registers from older frames on
@@ -1491,7 +1491,7 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 struct EhFrameHdr<R: Reader>(R);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L109)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L109)*
 
 `EhFrameHdr` contains the information about the `.eh_frame_hdr` section.
 
@@ -1594,7 +1594,7 @@ struct ParsedEhFrameHdr<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
 
 `ParsedEhFrameHdr` contains the parsed information from the `.eh_frame_hdr` section.
 
@@ -1680,7 +1680,7 @@ struct EhHdrTableIter<'a, 'bases, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
 
 An iterator for `.eh_frame_hdr` section's binary search table.
 
@@ -1752,7 +1752,7 @@ struct EhHdrTable<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
 
 The CFI binary search table that is an optional part of the `.eh_frame_hdr` section.
 
@@ -1790,7 +1790,7 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
   You must provide a function to get its associated CIE. See
   `PartialFrameDescriptionEntry::parse` for more information.
   
-  # Example
+  ##### Example
   
   ```rust
   use gimli::{BaseAddresses, EhFrame, ParsedEhFrameHdr, EndianSlice, NativeEndian, Error, UnwindSection};
@@ -1884,7 +1884,7 @@ struct EhFrame<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
 
 `EhFrame` contains the frame unwinding information needed during exception
 handling found in the `.eh_frame` section.
@@ -2001,7 +2001,7 @@ struct BaseAddresses {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers.
 
@@ -2137,7 +2137,7 @@ struct SectionBaseAddresses {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers
 in a particular section.
@@ -2251,7 +2251,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
 
 An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame`
 section.
@@ -2371,7 +2371,7 @@ struct Augmentation {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
 
 We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
@@ -2499,7 +2499,7 @@ struct AugmentationData {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
 
 Parsed augmentation data for a `FrameDescriptEntry`.
 
@@ -2600,7 +2600,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
 
 > A Common Information Entry holds information that is shared among many
 > Frame Description Entries. There is at least one CIE in every non-empty
@@ -2755,7 +2755,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
 
 A partially parsed `FrameDescriptionEntry`.
 
@@ -2875,7 +2875,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
 
 A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
@@ -3021,7 +3021,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
 
 Common context needed when evaluating the call frame unwinding information.
 
@@ -3155,7 +3155,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
 
 The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 `CallFrameInstruction` program, yielding the each row one at a time.
@@ -3298,7 +3298,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
 
 #### Implementations
 
@@ -3393,7 +3393,7 @@ where
     T: ReaderOffset;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
 
 An unordered iterator for register rules.
 
@@ -3487,7 +3487,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
 
 A row in the virtual unwind table that describes how to find the values of
 the registers in the *previous* frame for a range of PC addresses.
@@ -3675,7 +3675,7 @@ struct CallFrameInstructionIter<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
 
 A lazy iterator parsing call frame instructions.
 
@@ -3758,7 +3758,7 @@ struct UnwindExpression<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
 
 The location of a DWARF expression within an unwind section.
 
@@ -3888,7 +3888,7 @@ struct PointerEncodingParameters<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
 
 #### Trait Implementations
 
@@ -3973,7 +3973,7 @@ struct DwarfSections<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:51-82`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L51-L82)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:51-82`](../../../.source_1765900590/gimli-0.32.3/src/read/dwarf.rs#L51-L82)*
 
 All of the commonly used DWARF sections.
 
@@ -4085,7 +4085,7 @@ unreachable!()
   This is like `borrow`, but also includes the supplementary object file.
   This is useful when `R` implements `Reader` but `T` does not.
   
-  ## Example Usage
+  ###### Example Usage
   
   ```rust,no_run
   fn example() -> Result<(), gimli::Error> {
@@ -4174,7 +4174,7 @@ struct Dwarf<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:170-218`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L170-L218)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:170-218`](../../../.source_1765900590/gimli-0.32.3/src/read/dwarf.rs#L170-L218)*
 
 All of the commonly used DWARF sections, and other common information.
 
@@ -4276,7 +4276,7 @@ All of the commonly used DWARF sections, and other common information.
   
   This is useful when `R` implements `Reader` but `T` does not.
   
-  ## Example Usage
+  ###### Example Usage
   
   It can be useful to load DWARF sections into owned data structures,
   such as `Vec`. However, we do not implement the `Reader` trait
@@ -4375,7 +4375,7 @@ struct DwarfPackageSections<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:804-831`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L804-L831)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:804-831`](../../../.source_1765900590/gimli-0.32.3/src/read/dwarf.rs#L804-L831)*
 
 The sections from a `.dwp` file.
 
@@ -4537,7 +4537,7 @@ struct DwarfPackage<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:886-928`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L886-L928)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:886-928`](../../../.source_1765900590/gimli-0.32.3/src/read/dwarf.rs#L886-L928)*
 
 The sections from a `.dwp` file, with parsed indices.
 
@@ -4615,7 +4615,7 @@ The sections from a `.dwp` file, with parsed indices.
   Find the compilation unit with the given DWO identifier and return its section
   contributions.
   
-  ## Example Usage
+  ###### Example Usage
   
   ```rust,no_run
   fn example<R: gimli::Reader>(
@@ -4724,7 +4724,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1133-1170`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L1133-L1170)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1133-1170`](../../../.source_1765900590/gimli-0.32.3/src/read/dwarf.rs#L1133-L1170)*
 
 All of the commonly used information for a unit in the `.debug_info` or `.debug_types`
 sections.
@@ -4887,7 +4887,7 @@ struct UnitRef<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1389-1395`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L1389-L1395)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1389-1395`](../../../.source_1765900590/gimli-0.32.3/src/read/dwarf.rs#L1389-L1395)*
 
 A reference to a `Unit` and its associated `Dwarf`.
 
@@ -5099,7 +5099,7 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 struct RangeIter<R: Reader>(RangeIterInner<R>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1630`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L1630)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1630`](../../../.source_1765900590/gimli-0.32.3/src/read/dwarf.rs#L1630)*
 
 An iterator for the address ranges of a `DebuggingInformationEntry`.
 
@@ -5171,7 +5171,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../.source_1765900590/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
 
 A `&[u8]` slice with endianity metadata.
 
@@ -5346,7 +5346,7 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 struct DebugBytes<'input>(&'input [u8]);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L190)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../.source_1765900590/gimli-0.32.3/src/read/endian_slice.rs#L190)*
 
 #### Trait Implementations
 
@@ -5399,7 +5399,7 @@ struct DebugBytes<'input>(&'input [u8]);
 struct DebugByte(u8);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L203)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../.source_1765900590/gimli-0.32.3/src/read/endian_slice.rs#L203)*
 
 #### Trait Implementations
 
@@ -5452,7 +5452,7 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L211)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../.source_1765900590/gimli-0.32.3/src/read/endian_slice.rs#L211)*
 
 #### Trait Implementations
 
@@ -5505,7 +5505,7 @@ struct DebugLen(usize);
 struct ReaderOffsetId(u64);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:19`](../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L19)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:19`](../../../.source_1765900590/gimli-0.32.3/src/read/reader.rs#L19)*
 
 An identifier for an offset within a section reader.
 
@@ -5594,7 +5594,7 @@ struct RelocateReader<R: Reader<Offset = usize>, T: Relocate<<R as >::Offset>> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/relocate.rs:23-27`](../../../.source_1765894658/gimli-0.32.3/src/read/relocate.rs#L23-L27)*
+*Defined in [`gimli-0.32.3/src/read/relocate.rs:23-27`](../../../.source_1765900590/gimli-0.32.3/src/read/relocate.rs#L23-L27)*
 
 A `Reader` which applies relocations to addresses and offsets.
 
@@ -5717,7 +5717,7 @@ struct DebugAbbrev<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:22-24`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L22-L24)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:22-24`](../../../.source_1765900590/gimli-0.32.3/src/read/abbrev.rs#L22-L24)*
 
 The `DebugAbbrev` struct represents the abbreviations describing
 `DebuggingInformationEntry`s' attribute names and forms found in the
@@ -5823,7 +5823,7 @@ struct AbbreviationsCache {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:112-114`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L112-L114)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:112-114`](../../../.source_1765900590/gimli-0.32.3/src/read/abbrev.rs#L112-L114)*
 
 A cache of previously parsed `Abbreviations`.
 
@@ -5913,7 +5913,7 @@ struct Abbreviations {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:206-209`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L206-L209)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:206-209`](../../../.source_1765900590/gimli-0.32.3/src/read/abbrev.rs#L206-L209)*
 
 A set of type abbreviations.
 
@@ -6019,7 +6019,7 @@ struct Abbreviation {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:282-287`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L282-L287)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:282-287`](../../../.source_1765900590/gimli-0.32.3/src/read/abbrev.rs#L282-L287)*
 
 An abbreviation describes the shape of a `DebuggingInformationEntry`'s type:
 its code, tag type, whether it has children, and its set of attributes.
@@ -6030,7 +6030,7 @@ its code, tag type, whether it has children, and its set of attributes.
 
   Construct a new `Abbreviation`.
   
-  ### Panics
+  ###### Panics
   
   Panics if `code` is `0`.
 
@@ -6147,7 +6147,7 @@ struct AttributeSpecification {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:479-483`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L479-L483)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:479-483`](../../../.source_1765900590/gimli-0.32.3/src/read/abbrev.rs#L479-L483)*
 
 The description of an attribute in an abbreviated type. It is a pair of name
 and form.
@@ -6270,7 +6270,7 @@ struct DebugAranges<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:10-12`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L10-L12)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:10-12`](../../../.source_1765900590/gimli-0.32.3/src/read/aranges.rs#L10-L12)*
 
 The `DebugAranges` struct represents the DWARF address range information
 found in the `.debug_aranges` section.
@@ -6377,7 +6377,7 @@ struct ArangeHeaderIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:91-94`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L91-L94)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:91-94`](../../../.source_1765900590/gimli-0.32.3/src/read/aranges.rs#L91-L94)*
 
 An iterator over the headers of a `.debug_aranges` section.
 
@@ -6463,7 +6463,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:131-141`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L131-L141)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:131-141`](../../../.source_1765900590/gimli-0.32.3/src/read/aranges.rs#L131-L141)*
 
 A header for a set of entries in the `.debug_arange` section.
 
@@ -6571,7 +6571,7 @@ struct ArangeEntryIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:239-242`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L239-L242)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:239-242`](../../../.source_1765900590/gimli-0.32.3/src/read/aranges.rs#L239-L242)*
 
 An iterator over the aranges from a `.debug_aranges` section.
 
@@ -6666,7 +6666,7 @@ struct ArangeEntry {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:318-321`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L318-L321)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:318-321`](../../../.source_1765900590/gimli-0.32.3/src/read/aranges.rs#L318-L321)*
 
 A single parsed arange.
 
@@ -6773,7 +6773,7 @@ struct DebugCuIndex<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L12-L14)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../.source_1765900590/gimli-0.32.3/src/read/index.rs#L12-L14)*
 
 The data in the `.debug_cu_index` section of a `.dwp` file.
 
@@ -6867,7 +6867,7 @@ struct DebugTuIndex<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L68-L70)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../.source_1765900590/gimli-0.32.3/src/read/index.rs#L68-L70)*
 
 The data in the `.debug_tu_index` section of a `.dwp` file.
 
@@ -6969,7 +6969,7 @@ struct UnitIndex<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L124-L135)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../.source_1765900590/gimli-0.32.3/src/read/index.rs#L124-L135)*
 
 The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
@@ -7077,7 +7077,7 @@ struct UnitIndexSectionIterator<'index, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L307-L311)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../.source_1765900590/gimli-0.32.3/src/read/index.rs#L307-L311)*
 
 An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
@@ -7166,7 +7166,7 @@ struct UnitIndexSection {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L331-L338)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../.source_1765900590/gimli-0.32.3/src/read/index.rs#L331-L338)*
 
 Information about a unit's contribution to a section in a `.dwp` file.
 
@@ -7263,7 +7263,7 @@ struct DebugLine<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:17-19`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L17-L19)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:17-19`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L17-L19)*
 
 The `DebugLine` struct contains the source location to instruction mapping
 found in the `.debug_line` section.
@@ -7374,7 +7374,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:168-177`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L168-L177)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:168-177`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L168-L177)*
 
 Executes a `LineProgram` to iterate over the rows in the matrix of line number information.
 
@@ -7475,7 +7475,7 @@ struct LineInstructions<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:529-531`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L529-L531)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:529-531`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L529-L531)*
 
 An iterator yielding parsed instructions.
 
@@ -7568,7 +7568,7 @@ struct LineRow {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:580-594`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L580-L594)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:580-594`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L580-L594)*
 
 A row in the line number program's resulting matrix.
 
@@ -7774,7 +7774,7 @@ struct LineSequence<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:977-985`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L977-L985)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:977-985`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L977-L985)*
 
 A sequence within a line number program.  A sequence, as defined in section
 6.2.5 of the standard, is a linear subset of a line number program within
@@ -7877,7 +7877,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:996-1047`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L996-L1047)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:996-1047`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L996-L1047)*
 
 A header for a line number program in the `.debug_line` section, as defined
 in section 6.2.4 of the standard.
@@ -8163,7 +8163,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1411-1417`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1411-L1417)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1411-1417`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L1411-L1417)*
 
 A line number program that has not been run to completion.
 
@@ -8287,7 +8287,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1504-1510`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1504-L1510)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1504-1510`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L1504-L1510)*
 
 A line number program that has previously been run to completion.
 
@@ -8412,7 +8412,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1553-1564`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1553-L1564)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1553-1564`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L1553-L1564)*
 
 An entry in the `LineProgramHeader`'s `file_names` set.
 
@@ -8552,7 +8552,7 @@ struct FileEntryFormat {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1667-1673`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1667-L1673)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1667-1673`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L1667-L1673)*
 
 The format of a component of an include directory or file name entry.
 
@@ -8649,7 +8649,7 @@ struct DebugLoc<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:14-16`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L14-L16)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:14-16`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L14-L16)*
 
 The raw contents of the `.debug_loc` section.
 
@@ -8753,7 +8753,7 @@ struct DebugLocLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:74-76`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L74-L76)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:74-76`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L74-L76)*
 
 The `DebugLocLists` struct represents the DWARF data
 found in the `.debug_loclists` section.
@@ -8859,7 +8859,7 @@ struct LocationLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:156-159`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L156-L159)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:156-159`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L156-L159)*
 
 The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
@@ -8947,7 +8947,7 @@ struct RawLocListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:329-333`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L329-L333)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:329-333`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L329-L333)*
 
 A raw iterator over a location list.
 
@@ -9020,7 +9020,7 @@ struct LocListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:536-541`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L536-L541)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:536-541`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L536-L541)*
 
 An iterator over a location list.
 
@@ -9094,7 +9094,7 @@ struct LocationListEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:679-685`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L679-L685)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:679-685`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L679-L685)*
 
 A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 
@@ -9191,7 +9191,7 @@ struct DebugMacinfo<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:11-13`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L11-L13)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:11-13`](../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L11-L13)*
 
 The raw contents of the `.debug_macinfo` section.
 
@@ -9295,7 +9295,7 @@ struct DebugMacro<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:104-106`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L104-L106)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:104-106`](../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L104-L106)*
 
 The raw contents of the `.debug_macro` section.
 
@@ -9401,7 +9401,7 @@ struct MacroUnitHeader<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:197-202`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L197-L202)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:197-202`](../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L197-L202)*
 
 #### Fields
 
@@ -9492,7 +9492,7 @@ struct MacroIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:327-331`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L327-L331)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:327-331`](../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L327-L331)*
 
 Iterator over the entries in the `.debug_macro` section.
 
@@ -9576,7 +9576,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:356-378`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L356-L378)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:356-378`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L356-L378)*
 
 The description of a single piece of the result of a DWARF
 expression.
@@ -9681,7 +9681,7 @@ expression.
 struct Expression<R: Reader>(R);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:924`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L924)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:924`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L924)*
 
 The bytecode for a DWARF expression or location description.
 
@@ -9696,7 +9696,7 @@ The bytecode for a DWARF expression or location description.
   [`TypeUnitHeader`](#typeunitheader) that this expression
   relates to.
   
-  # Examples
+  ##### Examples
   ```rust,no_run
   use gimli::Expression;
   let endian = gimli::LittleEndian;
@@ -9796,7 +9796,7 @@ struct OperationIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:962-965`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L962-L965)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:962-965`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L962-L965)*
 
 An iterator for the operations in an expression.
 
@@ -9892,7 +9892,7 @@ struct Evaluation<R: Reader, S: EvaluationStorage<R>> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:1106-1131`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L1106-L1131)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:1106-1131`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L1106-L1131)*
 
 A DWARF expression evaluator.
 
@@ -9953,7 +9953,7 @@ println!("{:?}", result);
 
   Get the result of this `Evaluation`.
   
-  # Panics
+  ##### Panics
   Panics if this `Evaluation` has not been driven to completion.
 
 #### Trait Implementations
@@ -10011,7 +10011,7 @@ struct PubNamesEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:8-12`](../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L8-L12)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:8-12`](../../../.source_1765900590/gimli-0.32.3/src/read/pubnames.rs#L8-L12)*
 
 A single parsed pubname.
 
@@ -10102,7 +10102,7 @@ A single parsed pubname.
 struct DebugPubNames<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:50`](../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L50)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:50`](../../../.source_1765900590/gimli-0.32.3/src/read/pubnames.rs#L50)*
 
 The `DebugPubNames` struct represents the DWARF public names information
 found in the `.debug_pubnames` section.
@@ -10200,7 +10200,7 @@ found in the `.debug_pubnames` section.
 struct PubNamesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:118`](../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L118)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:118`](../../../.source_1765900590/gimli-0.32.3/src/read/pubnames.rs#L118)*
 
 An iterator over the pubnames from a `.debug_pubnames` section.
 
@@ -10290,7 +10290,7 @@ struct PubTypesEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../.source_1765894658/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../.source_1765900590/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
 
 A single parsed pubtype.
 
@@ -10381,7 +10381,7 @@ A single parsed pubtype.
 struct DebugPubTypes<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../.source_1765894658/gimli-0.32.3/src/read/pubtypes.rs#L50)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../.source_1765900590/gimli-0.32.3/src/read/pubtypes.rs#L50)*
 
 The `DebugPubTypes` struct represents the DWARF public types information
 found in the `.debug_info` section.
@@ -10479,7 +10479,7 @@ found in the `.debug_info` section.
 struct PubTypesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../.source_1765894658/gimli-0.32.3/src/read/pubtypes.rs#L118)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../.source_1765900590/gimli-0.32.3/src/read/pubtypes.rs#L118)*
 
 An iterator over the pubtypes from a `.debug_pubtypes` section.
 
@@ -10567,7 +10567,7 @@ struct DebugRanges<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:14-16`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L14-L16)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:14-16`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L14-L16)*
 
 The raw contents of the `.debug_ranges` section.
 
@@ -10671,7 +10671,7 @@ struct DebugRngLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:74-76`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L74-L76)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:74-76`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L74-L76)*
 
 The `DebugRngLists` struct represents the contents of the
 `.debug_rnglists` section.
@@ -10778,7 +10778,7 @@ struct RangeLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:158-161`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L158-L161)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:158-161`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L158-L161)*
 
 The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
@@ -10880,7 +10880,7 @@ struct RawRngListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:306-310`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L306-L310)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:306-310`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L306-L310)*
 
 A raw iterator over an address range list.
 
@@ -10953,7 +10953,7 @@ struct RngListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:473-478`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L473-L478)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:473-478`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L473-L478)*
 
 An iterator over an address range list.
 
@@ -11027,7 +11027,7 @@ struct RawRange {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:598-604`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L598-L604)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:598-604`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L598-L604)*
 
 A raw address range from the `.debug_ranges` section.
 
@@ -11142,7 +11142,7 @@ struct Range {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:634-640`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L634-L640)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:634-640`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L634-L640)*
 
 An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges` sections.
 
@@ -11253,7 +11253,7 @@ struct DebugStr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/str.rs:12-14`](../../../.source_1765894658/gimli-0.32.3/src/read/str.rs#L12-L14)*
+*Defined in [`gimli-0.32.3/src/read/str.rs:12-14`](../../../.source_1765900590/gimli-0.32.3/src/read/str.rs#L12-L14)*
 
 The `DebugStr` struct represents the DWARF strings
 found in the `.debug_str` section.
@@ -11358,7 +11358,7 @@ struct DebugStrOffsets<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/str.rs:91-93`](../../../.source_1765894658/gimli-0.32.3/src/read/str.rs#L91-L93)*
+*Defined in [`gimli-0.32.3/src/read/str.rs:91-93`](../../../.source_1765900590/gimli-0.32.3/src/read/str.rs#L91-L93)*
 
 The raw contents of the `.debug_str_offsets` section.
 
@@ -11461,7 +11461,7 @@ struct DebugLineStr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/str.rs:184-186`](../../../.source_1765894658/gimli-0.32.3/src/read/str.rs#L184-L186)*
+*Defined in [`gimli-0.32.3/src/read/str.rs:184-186`](../../../.source_1765900590/gimli-0.32.3/src/read/str.rs#L184-L186)*
 
 The `DebugLineStr` struct represents the DWARF strings
 found in the `.debug_line_str` section.
@@ -11566,7 +11566,7 @@ struct DebugInfo<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:82-84`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L82-L84)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:82-84`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L82-L84)*
 
 The `DebugInfo` struct represents the DWARF debugging information found in
 the `.debug_info` section.
@@ -11672,7 +11672,7 @@ struct DebugInfoUnitHeadersIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:179-182`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L179-L182)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:179-182`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L179-L182)*
 
 An iterator over the units of a .debug_info section.
 
@@ -11762,7 +11762,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:303-314`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L303-L314)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:303-314`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L303-L314)*
 
 The common fields for the headers of compilation units and
 type units.
@@ -11859,7 +11859,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:647-657`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L647-L657)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:647-657`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L647-L657)*
 
 A Debugging Information Entry (DIE).
 
@@ -12129,7 +12129,7 @@ struct Attribute<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1111-1114`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1111-L1114)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1111-1114`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L1111-L1114)*
 
 An attribute in a `DebuggingInformationEntry`, consisting of a name and
 associated value.
@@ -12289,7 +12289,7 @@ struct AttrsIter<'abbrev, 'entry, 'unit, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2272-2276`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2272-L2276)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2272-2276`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L2272-L2276)*
 
 An iterator over a particular entry's attributes.
 
@@ -12386,7 +12386,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2382-2390`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2382-L2390)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2382-2390`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L2382-L2390)*
 
 A raw reader of the data that defines the Debugging Information Entries.
 
@@ -12550,7 +12550,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2463-2472`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2463-L2472)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2463-2472`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L2463-L2472)*
 
 A cursor into the Debugging Information Entries tree for a compilation unit.
 
@@ -12887,7 +12887,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2847-2857`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2847-L2857)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2847-2857`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L2847-L2857)*
 
 The state information for a tree view of the Debugging Information Entries.
 
@@ -13016,7 +13016,7 @@ struct EntriesTreeNode<'abbrev, 'unit, 'tree, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2979-2982`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2979-L2982)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2979-2982`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L2979-L2982)*
 
 A node in the Debugging Information Entry tree.
 
@@ -13093,7 +13093,7 @@ struct EntriesTreeIter<'abbrev, 'unit, 'tree, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3014-3018`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3014-L3018)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3014-3018`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L3014-L3018)*
 
 An iterator that allows traversal of the children of an
 `EntriesTreeNode`.
@@ -13164,7 +13164,7 @@ struct DebugTypes<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3061-3063`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3061-L3063)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3061-3063`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L3061-L3063)*
 
 The `DebugTypes` struct represents the DWARF type information
 found in the `.debug_types` section.
@@ -13270,7 +13270,7 @@ struct DebugTypesUnitHeadersIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3152-3155`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3152-L3155)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3152-3155`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L3152-L3155)*
 
 An iterator over the type-units of this `.debug_types` section.
 
@@ -13436,7 +13436,7 @@ enum Error {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:286-466`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L286-L466)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:286-466`](../../../.source_1765900590/gimli-0.32.3/src/read/mod.rs#L286-L466)*
 
 An error that occurred when parsing.
 
@@ -13882,7 +13882,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
 
 Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
@@ -13979,7 +13979,7 @@ enum CfaRule<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
 
 The canonical frame address (CFA) recovery rules.
 
@@ -14086,7 +14086,7 @@ enum RegisterRule<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
 
 An entry in the abstract CFI table that describes how to find the value of a
 register.
@@ -14291,7 +14291,7 @@ enum CallFrameInstruction<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
 
 A parsed call frame instruction.
 
@@ -14615,7 +14615,7 @@ enum Pointer {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
 
 A decoded pointer.
 
@@ -14730,7 +14730,7 @@ enum RangeIterInner<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1633-1636`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L1633-L1636)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1633-1636`](../../../.source_1765900590/gimli-0.32.3/src/read/dwarf.rs#L1633-L1636)*
 
 #### Trait Implementations
 
@@ -14786,7 +14786,7 @@ enum AbbreviationsCacheStrategy {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:99-108`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L99-L108)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:99-108`](../../../.source_1765900590/gimli-0.32.3/src/read/abbrev.rs#L99-L108)*
 
 The strategy to use for caching abbreviations.
 
@@ -14887,7 +14887,7 @@ enum Attributes {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:391-397`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L391-L397)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:391-397`](../../../.source_1765900590/gimli-0.32.3/src/read/abbrev.rs#L391-L397)*
 
 A list of attributes found in an `Abbreviation`
 
@@ -14999,7 +14999,7 @@ enum IndexSectionId {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L342-L363)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../.source_1765900590/gimli-0.32.3/src/read/index.rs#L342-L363)*
 
 Section kinds which are permitted in a `.dwp` index.
 
@@ -15157,7 +15157,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:267-399`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L267-L399)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:267-399`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L267-L399)*
 
 A parsed line number program instruction.
 
@@ -15396,7 +15396,7 @@ enum ColumnType {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:961-967`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L961-L967)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:961-967`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L961-L967)*
 
 The type of column that a row is referring to.
 
@@ -15499,7 +15499,7 @@ enum LocListsFormat {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:316-322`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L316-L322)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:316-322`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L316-L322)*
 
 #### Variants
 
@@ -15629,7 +15629,7 @@ enum RawLocListEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:337-407`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L337-L407)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:337-407`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L337-L407)*
 
 A raw entry in .debug_loclists.
 
@@ -15752,7 +15752,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:244-258`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L244-L258)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:244-258`](../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L244-L258)*
 
 A string in a macro entry.
 
@@ -15883,7 +15883,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:277-323`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L277-L323)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:277-323`](../../../.source_1765900590/gimli-0.32.3/src/read/macros.rs#L277-L323)*
 
 an Entry in the `.debug_macro` section.
 
@@ -15995,7 +15995,7 @@ enum DieReference<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:15-20`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L15-L20)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:15-20`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L15-L20)*
 
 A reference to a DIE, either relative to the current CU or
 relative to the section.
@@ -16201,7 +16201,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:34-293`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L34-L293)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:34-293`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L34-L293)*
 
 A single decoded DWARF expression operation.
 
@@ -16582,7 +16582,7 @@ enum OperationEvaluationResult<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:296-301`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L296-L301)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:296-301`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L296-L301)*
 
 #### Trait Implementations
 
@@ -16656,7 +16656,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:305-340`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L305-L340)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:305-340`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L305-L340)*
 
 A single location of a piece of the result of a DWARF expression.
 
@@ -16774,7 +16774,7 @@ enum EvaluationState<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:816-822`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L816-L822)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:816-822`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L816-L822)*
 
 #### Trait Implementations
 
@@ -16847,7 +16847,7 @@ enum EvaluationWaiting<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:825-839`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L825-L839)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:825-839`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L825-L839)*
 
 #### Trait Implementations
 
@@ -16924,7 +16924,7 @@ enum EvaluationResult<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:845-920`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L845-L920)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:845-920`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L845-L920)*
 
 The state of an `Evaluation` after evaluating a DWARF expression.
 The evaluation is either `Complete`, or it requires more data
@@ -17069,7 +17069,7 @@ enum RangeListsFormat {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:294-299`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L294-L299)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:294-299`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L294-L299)*
 
 #### Variants
 
@@ -17189,7 +17189,7 @@ enum RawRngListEntry<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:314-367`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L314-L367)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:314-367`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L314-L367)*
 
 A raw entry in .debug_rnglists
 
@@ -17315,7 +17315,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:241-279`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L241-L279)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:241-279`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L241-L279)*
 
 This enum specifies the type of the unit and any type
 specific data carried in the header (e.g. the type
@@ -17490,7 +17490,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:933-1106`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L933-L1106)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:933-1106`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L933-L1106)*
 
 The value of an attribute in a `DebuggingInformationEntry`.
 
@@ -17855,7 +17855,7 @@ enum ValueType {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:26-51`](../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L26-L51)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:26-51`](../../../.source_1765900590/gimli-0.32.3/src/read/value.rs#L26-L51)*
 
 The type of an entry on the DWARF stack.
 
@@ -18010,7 +18010,7 @@ enum Value {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:55-78`](../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L55-L78)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:55-78`](../../../.source_1765900590/gimli-0.32.3/src/read/value.rs#L55-L78)*
 
 The value of an entry on the DWARF stack.
 
@@ -18384,7 +18384,7 @@ The value of an entry on the DWARF stack.
 trait Section<R>: From<R> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:653-708`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L653-L708)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:653-708`](../../../.source_1765900590/gimli-0.32.3/src/read/mod.rs#L653-L708)*
 
 A convenience trait for loading DWARF sections from object files.  To be
 used like:
@@ -18401,40 +18401,40 @@ let debug_info: DebugInfo<_> = Section::load(loader).unwrap();
 
 #### Required Methods
 
-- `fn id() -> SectionId`
+- `fn Section::id() -> SectionId`
 
   Returns the section id for this type.
 
-- `fn reader(&self) -> &R`
+- `fn Section::reader(&self) -> &R`
 
   Returns the `Reader` for this section.
 
 #### Provided Methods
 
-- `fn section_name() -> &'static str`
+- `fn Section::section_name() -> &'static str`
 
   Returns the ELF section name for this type.
 
-- `fn dwo_section_name() -> Option<&'static str>`
+- `fn Section::dwo_section_name() -> Option<&'static str>`
 
   Returns the ELF section name (if any) for this type when used in a dwo
   file.
 
-- `fn xcoff_section_name() -> Option<&'static str>`
+- `fn Section::xcoff_section_name() -> Option<&'static str>`
 
   Returns the XCOFF section name (if any) for this type when used in a XCOFF
   file.
 
-- `fn load<F, E>(f: F) -> core::result::Result<Self, E>`
+- `fn Section::load<F, E>(f: F) -> core::result::Result<Self, E>`
 
   Try to load the section using the given loader function.
 
-- `fn dwp_range(&self, offset: u32, size: u32) -> Result<Self>`
+- `fn Section::dwp_range(&self, offset: u32, size: u32) -> Result<Self>`
 
   Returns the subrange of the section that is the contribution of
   a unit in a `.dwp` file.
 
-- `fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>`
+- `fn Section::lookup_offset_id(&self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>`
 
   Returns the `Reader` for this section.
 
@@ -18469,7 +18469,7 @@ let debug_info: DebugInfo<_> = Section::load(loader).unwrap();
 trait ArrayLike: Sealed { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/util.rs:33-42`](../../../.source_1765894658/gimli-0.32.3/src/read/util.rs#L33-L42)*
+*Defined in [`gimli-0.32.3/src/read/util.rs:33-42`](../../../.source_1765900590/gimli-0.32.3/src/read/util.rs#L33-L42)*
 
 Marker trait for types that can be used as backing storage when a growable array type is needed.
 
@@ -18493,13 +18493,13 @@ where
     T: ReaderOffset { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
 
 An offset into an `UnwindSection`.
 
 #### Required Methods
 
-- `fn into(self) -> T`
+- `fn UnwindOffset::into(self) -> T`
 
   Convert an `UnwindOffset<T>` into a `T`.
 
@@ -18514,7 +18514,7 @@ An offset into an `UnwindSection`.
 trait UnwindSection<R: Reader>: Clone + Debug + _UnwindSectionPrivate<R> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
 
 A section holding unwind information: either `.debug_frame` or
 `.eh_frame`. See [`DebugFrame`](./struct.DebugFrame.html) and
@@ -18526,7 +18526,7 @@ A section holding unwind information: either `.debug_frame` or
 
 #### Provided Methods
 
-- `fn entries<'bases>(&self, bases: &'bases BaseAddresses) -> CfiEntriesIter<'bases, Self, R>`
+- `fn UnwindSection::entries<'bases>(&self, bases: &'bases BaseAddresses) -> CfiEntriesIter<'bases, Self, R>`
 
   Iterate over the `CommonInformationEntry`s and `FrameDescriptionEntry`s
   in this `.debug_frame` section.
@@ -18534,19 +18534,19 @@ A section holding unwind information: either `.debug_frame` or
   Can be [used with
   `FallibleIterator`](./index.html#using-with-fallibleiterator).
 
-- `fn cie_from_offset(&self, bases: &BaseAddresses, offset: <Self as >::Offset) -> Result<CommonInformationEntry<R>>`
+- `fn UnwindSection::cie_from_offset(&self, bases: &BaseAddresses, offset: <Self as >::Offset) -> Result<CommonInformationEntry<R>>`
 
   Parse the `CommonInformationEntry` at the given offset.
 
-- `fn partial_fde_from_offset<'bases>(&self, bases: &'bases BaseAddresses, offset: <Self as >::Offset) -> Result<PartialFrameDescriptionEntry<'bases, Self, R>>`
+- `fn UnwindSection::partial_fde_from_offset<'bases>(&self, bases: &'bases BaseAddresses, offset: <Self as >::Offset) -> Result<PartialFrameDescriptionEntry<'bases, Self, R>>`
 
   Parse the `PartialFrameDescriptionEntry` at the given offset.
 
-- `fn fde_from_offset<F>(&self, bases: &BaseAddresses, offset: <Self as >::Offset, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
+- `fn UnwindSection::fde_from_offset<F>(&self, bases: &BaseAddresses, offset: <Self as >::Offset, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
 
   Parse the `FrameDescriptionEntry` at the given offset.
 
-- `fn fde_for_address<F>(&self, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
+- `fn UnwindSection::fde_for_address<F>(&self, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
 
   Find the `FrameDescriptionEntry` for the given address.
   
@@ -18560,7 +18560,7 @@ A section holding unwind information: either `.debug_frame` or
   Note: this iterates over all FDEs. If available, it is possible
   to do a binary search with `EhFrameHdr::fde_for_address` instead.
 
-- `fn unwind_info_for_address<'ctx, F, S>(&self, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>`
+- `fn UnwindSection::unwind_info_for_address<'ctx, F, S>(&self, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>`
 
   Find the frame unwind information for the given address.
   
@@ -18619,7 +18619,7 @@ A section holding unwind information: either `.debug_frame` or
 trait UnwindContextStorage<T: ReaderOffset>: Sized { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
 
 Specification of what storage should be used for [`UnwindContext`](#unwindcontext).
 
@@ -18683,7 +18683,7 @@ unreachable!()
 trait ReaderOffset: Debug + Copy + Eq + Ord + Hash + Add<Output = Self> + AddAssign + Sub<Output = Self> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:24-52`](../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L24-L52)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:24-52`](../../../.source_1765900590/gimli-0.32.3/src/read/reader.rs#L24-L52)*
 
 A trait for offsets with a DWARF section.
 
@@ -18691,37 +18691,37 @@ This allows consumers to choose a size that is appropriate for their address spa
 
 #### Required Methods
 
-- `fn from_u8(offset: u8) -> Self`
+- `fn ReaderOffset::from_u8(offset: u8) -> Self`
 
   Convert a u8 to an offset.
 
-- `fn from_u16(offset: u16) -> Self`
+- `fn ReaderOffset::from_u16(offset: u16) -> Self`
 
   Convert a u16 to an offset.
 
-- `fn from_i16(offset: i16) -> Self`
+- `fn ReaderOffset::from_i16(offset: i16) -> Self`
 
   Convert an i16 to an offset.
 
-- `fn from_u32(offset: u32) -> Self`
+- `fn ReaderOffset::from_u32(offset: u32) -> Self`
 
   Convert a u32 to an offset.
 
-- `fn from_u64(offset: u64) -> Result<Self>`
+- `fn ReaderOffset::from_u64(offset: u64) -> Result<Self>`
 
   Convert a u64 to an offset.
   
   Returns `Error::UnsupportedOffset` if the value is too large.
 
-- `fn into_u64(self) -> u64`
+- `fn ReaderOffset::into_u64(self) -> u64`
 
   Convert an offset to a u64.
 
-- `fn wrapping_add(self, other: Self) -> Self`
+- `fn ReaderOffset::wrapping_add(self, other: Self) -> Self`
 
   Wrapping (modular) addition. Computes `self + other`.
 
-- `fn checked_sub(self, other: Self) -> Option<Self>`
+- `fn ReaderOffset::checked_sub(self, other: Self) -> Option<Self>`
 
   Checked subtraction. Computes `self - other`.
 
@@ -18737,7 +18737,7 @@ This allows consumers to choose a size that is appropriate for their address spa
 trait ReaderAddress: Sized { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:194-230`](../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L194-L230)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:194-230`](../../../.source_1765900590/gimli-0.32.3/src/read/reader.rs#L194-L230)*
 
 A trait for addresses within a DWARF section.
 
@@ -18746,30 +18746,30 @@ in the future to support user-defined address types.
 
 #### Required Methods
 
-- `fn add_sized(self, length: u64, size: u8) -> Result<Self>`
+- `fn ReaderAddress::add_sized(self, length: u64, size: u8) -> Result<Self>`
 
   Add a length to an address of the given size.
   
   Returns an error for overflow.
 
-- `fn wrapping_add_sized(self, length: u64, size: u8) -> Self`
+- `fn ReaderAddress::wrapping_add_sized(self, length: u64, size: u8) -> Self`
 
   Add a length to an address of the given size.
   
   Wraps the result to the size of the address to allow for the possibility
   that the length is a negative value.
 
-- `fn zeros() -> Self`
+- `fn ReaderAddress::zeros() -> Self`
 
   The all-zeros value of an address.
 
-- `fn ones_sized(size: u8) -> Self`
+- `fn ReaderAddress::ones_sized(size: u8) -> Self`
 
   The all-ones value of an address of the given size.
 
 #### Provided Methods
 
-- `fn min_tombstone(size: u8) -> Self`
+- `fn ReaderAddress::min_tombstone(size: u8) -> Self`
 
   Return the minimum value for a tombstone address.
   
@@ -18797,7 +18797,7 @@ in the future to support user-defined address types.
 trait Reader: Debug + Clone { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:285-581`](../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L285-L581)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:285-581`](../../../.source_1765900590/gimli-0.32.3/src/read/reader.rs#L285-L581)*
 
 A trait for reading the data from a DWARF section.
 
@@ -18819,6 +18819,55 @@ thread safe or not.
 | [`EndianArcSlice`](./struct.EndianArcSlice.html)  | Reference counted | Yes         | The same as `EndianRcSlice`, but uses atomic reference counting, and therefore reference counting operations are slower but `EndianArcSlice`s may be sent across threads. |
 | [`EndianReader<T>`](./struct.EndianReader.html)   | Same as `T`       | Same as `T` | Escape hatch for easily defining your own type of `Reader`. |
 
+<details>
+<summary><strong>Methods (40)</strong> - click to expand</summary>
+
+**Required:**
+- [`Reader::endian`](#fn-readerendian)
+- [`Reader::len`](#fn-readerlen)
+- [`Reader::empty`](#fn-readerempty)
+- [`Reader::truncate`](#fn-readertruncate)
+- [`Reader::offset_from`](#fn-readeroffset-from)
+- [`Reader::offset_id`](#fn-readeroffset-id)
+- [`Reader::lookup_offset_id`](#fn-readerlookup-offset-id)
+- [`Reader::find`](#fn-readerfind)
+- [`Reader::skip`](#fn-readerskip)
+- [`Reader::split`](#fn-readersplit)
+- [`Reader::to_slice`](#fn-readerto-slice)
+- [`Reader::to_string`](#fn-readerto-string)
+- [`Reader::to_string_lossy`](#fn-readerto-string-lossy)
+- [`Reader::read_slice`](#fn-readerread-slice)
+
+**Provided:**
+- [`Reader::read_u8_array`](#fn-readerread-u8-array)
+- [`Reader::is_empty`](#fn-readeris-empty)
+- [`Reader::read_u8`](#fn-readerread-u8)
+- [`Reader::read_i8`](#fn-readerread-i8)
+- [`Reader::read_u16`](#fn-readerread-u16)
+- [`Reader::read_i16`](#fn-readerread-i16)
+- [`Reader::read_u32`](#fn-readerread-u32)
+- [`Reader::read_i32`](#fn-readerread-i32)
+- [`Reader::read_u64`](#fn-readerread-u64)
+- [`Reader::read_i64`](#fn-readerread-i64)
+- [`Reader::read_f32`](#fn-readerread-f32)
+- [`Reader::read_f64`](#fn-readerread-f64)
+- [`Reader::read_uint`](#fn-readerread-uint)
+- [`Reader::read_null_terminated_slice`](#fn-readerread-null-terminated-slice)
+- [`Reader::skip_leb128`](#fn-readerskip-leb128)
+- [`Reader::read_uleb128`](#fn-readerread-uleb128)
+- [`Reader::read_uleb128_u32`](#fn-readerread-uleb128-u32)
+- [`Reader::read_uleb128_u16`](#fn-readerread-uleb128-u16)
+- [`Reader::read_sleb128`](#fn-readerread-sleb128)
+- [`Reader::read_initial_length`](#fn-readerread-initial-length)
+- [`Reader::read_address_size`](#fn-readerread-address-size)
+- [`Reader::read_address`](#fn-readerread-address)
+- [`Reader::read_word`](#fn-readerread-word)
+- [`Reader::read_length`](#fn-readerread-length)
+- [`Reader::read_offset`](#fn-readerread-offset)
+- [`Reader::read_sized_offset`](#fn-readerread-sized-offset)
+
+</details>
+
 #### Associated Types
 
 - `type Endian: 1`
@@ -18827,23 +18876,23 @@ thread safe or not.
 
 #### Required Methods
 
-- `fn endian(&self) -> <Self as >::Endian`
+- `fn Reader::endian(&self) -> <Self as >::Endian`
 
   Return the endianity of bytes that are read.
 
-- `fn len(&self) -> <Self as >::Offset`
+- `fn Reader::len(&self) -> <Self as >::Offset`
 
   Return the number of bytes remaining.
 
-- `fn empty(&mut self)`
+- `fn Reader::empty(&mut self)`
 
   Set the number of bytes remaining to zero.
 
-- `fn truncate(&mut self, len: <Self as >::Offset) -> Result<()>`
+- `fn Reader::truncate(&mut self, len: <Self as >::Offset) -> Result<()>`
 
   Set the number of bytes remaining to the specified length.
 
-- `fn offset_from(&self, base: &Self) -> <Self as >::Offset`
+- `fn Reader::offset_from(&self, base: &Self) -> <Self as >::Offset`
 
   Return the offset of this reader's data relative to the start of
   the given base reader's data.
@@ -18851,32 +18900,32 @@ thread safe or not.
   May panic if this reader's data is not contained within the given
   base reader's data.
 
-- `fn offset_id(&self) -> ReaderOffsetId`
+- `fn Reader::offset_id(&self) -> ReaderOffsetId`
 
   Return an identifier for the current reader offset.
 
-- `fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>`
+- `fn Reader::lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>`
 
   Return the offset corresponding to the given `id` if
   it is associated with this reader.
 
-- `fn find(&self, byte: u8) -> Result<<Self as >::Offset>`
+- `fn Reader::find(&self, byte: u8) -> Result<<Self as >::Offset>`
 
   Find the index of the first occurrence of the given byte.
   The offset of the reader is not changed.
 
-- `fn skip(&mut self, len: <Self as >::Offset) -> Result<()>`
+- `fn Reader::skip(&mut self, len: <Self as >::Offset) -> Result<()>`
 
   Discard the specified number of bytes.
 
-- `fn split(&mut self, len: <Self as >::Offset) -> Result<Self>`
+- `fn Reader::split(&mut self, len: <Self as >::Offset) -> Result<Self>`
 
   Split a reader in two.
   
   A new reader is returned that can be used to read the next
   `len` bytes, and `self` is advanced so that it reads the remainder.
 
-- `fn to_slice(&self) -> Result<Cow<'_, [u8]>>`
+- `fn Reader::to_slice(&self) -> Result<Cow<'_, [u8]>>`
 
   Return all remaining data as a clone-on-write slice.
   
@@ -18885,7 +18934,7 @@ thread safe or not.
   
   Does not advance the reader.
 
-- `fn to_string(&self) -> Result<Cow<'_, str>>`
+- `fn Reader::to_string(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string.
   
@@ -18896,7 +18945,7 @@ thread safe or not.
   
   Returns an error if the data contains invalid characters.
 
-- `fn to_string_lossy(&self) -> Result<Cow<'_, str>>`
+- `fn Reader::to_string_lossy(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string, including invalid characters.
   
@@ -18905,123 +18954,123 @@ thread safe or not.
   
   Does not advance the reader.
 
-- `fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>`
+- `fn Reader::read_slice(&mut self, buf: &mut [u8]) -> Result<()>`
 
   Read exactly `buf.len()` bytes into `buf`.
 
 #### Provided Methods
 
-- `fn read_u8_array<A>(&mut self) -> Result<A>`
+- `fn Reader::read_u8_array<A>(&mut self) -> Result<A>`
 
   Read a u8 array.
 
-- `fn is_empty(&self) -> bool`
+- `fn Reader::is_empty(&self) -> bool`
 
   Return true if the number of bytes remaining is zero.
 
-- `fn read_u8(&mut self) -> Result<u8>`
+- `fn Reader::read_u8(&mut self) -> Result<u8>`
 
   Read a u8.
 
-- `fn read_i8(&mut self) -> Result<i8>`
+- `fn Reader::read_i8(&mut self) -> Result<i8>`
 
   Read an i8.
 
-- `fn read_u16(&mut self) -> Result<u16>`
+- `fn Reader::read_u16(&mut self) -> Result<u16>`
 
   Read a u16.
 
-- `fn read_i16(&mut self) -> Result<i16>`
+- `fn Reader::read_i16(&mut self) -> Result<i16>`
 
   Read an i16.
 
-- `fn read_u32(&mut self) -> Result<u32>`
+- `fn Reader::read_u32(&mut self) -> Result<u32>`
 
   Read a u32.
 
-- `fn read_i32(&mut self) -> Result<i32>`
+- `fn Reader::read_i32(&mut self) -> Result<i32>`
 
   Read an i32.
 
-- `fn read_u64(&mut self) -> Result<u64>`
+- `fn Reader::read_u64(&mut self) -> Result<u64>`
 
   Read a u64.
 
-- `fn read_i64(&mut self) -> Result<i64>`
+- `fn Reader::read_i64(&mut self) -> Result<i64>`
 
   Read an i64.
 
-- `fn read_f32(&mut self) -> Result<f32>`
+- `fn Reader::read_f32(&mut self) -> Result<f32>`
 
   Read a f32.
 
-- `fn read_f64(&mut self) -> Result<f64>`
+- `fn Reader::read_f64(&mut self) -> Result<f64>`
 
   Read a f64.
 
-- `fn read_uint(&mut self, n: usize) -> Result<u64>`
+- `fn Reader::read_uint(&mut self, n: usize) -> Result<u64>`
 
   Read an unsigned n-bytes integer u64.
   
-  # Panics
+  ##### Panics
   
   Panics when nbytes < 1 or nbytes > 8
 
-- `fn read_null_terminated_slice(&mut self) -> Result<Self>`
+- `fn Reader::read_null_terminated_slice(&mut self) -> Result<Self>`
 
   Read a null-terminated slice, and return it (excluding the null).
 
-- `fn skip_leb128(&mut self) -> Result<()>`
+- `fn Reader::skip_leb128(&mut self) -> Result<()>`
 
   Skip a LEB128 encoded integer.
 
-- `fn read_uleb128(&mut self) -> Result<u64>`
+- `fn Reader::read_uleb128(&mut self) -> Result<u64>`
 
   Read an unsigned LEB128 encoded integer.
 
-- `fn read_uleb128_u32(&mut self) -> Result<u32>`
+- `fn Reader::read_uleb128_u32(&mut self) -> Result<u32>`
 
   Read an unsigned LEB128 encoded u32.
 
-- `fn read_uleb128_u16(&mut self) -> Result<u16>`
+- `fn Reader::read_uleb128_u16(&mut self) -> Result<u16>`
 
   Read an unsigned LEB128 encoded u16.
 
-- `fn read_sleb128(&mut self) -> Result<i64>`
+- `fn Reader::read_sleb128(&mut self) -> Result<i64>`
 
   Read a signed LEB128 encoded integer.
 
-- `fn read_initial_length(&mut self) -> Result<(<Self as >::Offset, Format)>`
+- `fn Reader::read_initial_length(&mut self) -> Result<(<Self as >::Offset, Format)>`
 
   Read an initial length field.
   
   This field is encoded as either a 32-bit length or
   a 64-bit length, and the returned `Format` indicates which.
 
-- `fn read_address_size(&mut self) -> Result<u8>`
+- `fn Reader::read_address_size(&mut self) -> Result<u8>`
 
   Read a byte and validate it as an address size.
 
-- `fn read_address(&mut self, address_size: u8) -> Result<u64>`
+- `fn Reader::read_address(&mut self, address_size: u8) -> Result<u64>`
 
   Read an address-sized integer, and return it as a `u64`.
 
-- `fn read_word(&mut self, format: Format) -> Result<<Self as >::Offset>`
+- `fn Reader::read_word(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized integer according to the DWARF format.
   
   These are always used to encode section offsets or lengths,
   and so have a type of `Self::Offset`.
 
-- `fn read_length(&mut self, format: Format) -> Result<<Self as >::Offset>`
+- `fn Reader::read_length(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized section length according to the DWARF format.
 
-- `fn read_offset(&mut self, format: Format) -> Result<<Self as >::Offset>`
+- `fn Reader::read_offset(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized section offset according to the DWARF format.
 
-- `fn read_sized_offset(&mut self, size: u8) -> Result<<Self as >::Offset>`
+- `fn Reader::read_sized_offset(&mut self, size: u8) -> Result<<Self as >::Offset>`
 
   Parse a section offset of the given size.
   
@@ -19038,17 +19087,17 @@ thread safe or not.
 trait Relocate<T: ReaderOffset> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/relocate.rs:9-15`](../../../.source_1765894658/gimli-0.32.3/src/read/relocate.rs#L9-L15)*
+*Defined in [`gimli-0.32.3/src/read/relocate.rs:9-15`](../../../.source_1765900590/gimli-0.32.3/src/read/relocate.rs#L9-L15)*
 
 Trait for relocating addresses and offsets while reading a section.
 
 #### Required Methods
 
-- `fn relocate_address(&self, offset: T, value: u64) -> Result<u64>`
+- `fn Relocate::relocate_address(&self, offset: T, value: u64) -> Result<u64>`
 
   Relocate an address which was read from the given section offset.
 
-- `fn relocate_offset(&self, offset: T, value: T) -> Result<T>`
+- `fn Relocate::relocate_offset(&self, offset: T, value: T) -> Result<T>`
 
   Relocate a value which was read from the given section offset.
 
@@ -19061,7 +19110,7 @@ where
     Offset: ReaderOffset { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:121-130`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L121-L130)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:121-130`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L121-L130)*
 
 A `LineProgram` provides access to a `LineProgramHeader` and
 a way to add files to the files table if necessary. Gimli consumers should
@@ -19069,11 +19118,11 @@ never need to use or see this trait.
 
 #### Required Methods
 
-- `fn header(&self) -> &LineProgramHeader<R, Offset>`
+- `fn LineProgram::header(&self) -> &LineProgramHeader<R, Offset>`
 
   Get a reference to the held `LineProgramHeader`.
 
-- `fn add_file(&mut self, file: FileEntry<R, Offset>)`
+- `fn LineProgram::add_file(&mut self, file: FileEntry<R, Offset>)`
 
   Add a file to the file table if necessary.
 
@@ -19088,7 +19137,7 @@ never need to use or see this trait.
 trait EvaluationStorage<R: Reader> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:1044-1051`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L1044-L1051)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:1044-1051`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L1044-L1051)*
 
 Specification of what storage should be used for [`Evaluation`](#evaluation).
 
@@ -19155,7 +19204,7 @@ where
     Section: UnwindSection<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
 
 ### `parse_encoded_pointer`
 
@@ -19163,7 +19212,7 @@ where
 fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<Pointer>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
 
 ### `parse_encoded_value`
 
@@ -19171,7 +19220,7 @@ fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &Po
 fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<u64>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
 
 ### `get_attribute_size`
 
@@ -19179,7 +19228,7 @@ fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &Poin
 fn get_attribute_size(form: constants::DwForm, encoding: crate::common::Encoding) -> Option<u8>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:572-637`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L572-L637)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:572-637`](../../../.source_1765900590/gimli-0.32.3/src/read/abbrev.rs#L572-L637)*
 
 ### `parse_directory_v5`
 
@@ -19187,7 +19236,7 @@ fn get_attribute_size(form: constants::DwForm, encoding: crate::common::Encoding
 fn parse_directory_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<crate::read::AttributeValue<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1702-1717`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1702-L1717)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1702-1717`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L1702-L1717)*
 
 ### `parse_file_v5`
 
@@ -19195,7 +19244,7 @@ fn parse_directory_v5<R: Reader>(input: &mut R, encoding: crate::common::Encodin
 fn parse_file_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<FileEntry<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1719-1773`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1719-L1773)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1719-1773`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L1719-L1773)*
 
 ### `parse_attribute`
 
@@ -19203,7 +19252,7 @@ fn parse_file_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, fo
 fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, form: constants::DwForm) -> crate::read::Result<crate::read::AttributeValue<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1776-1878`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1776-L1878)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1776-1878`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L1776-L1878)*
 
 ### `parse_data`
 
@@ -19211,7 +19260,7 @@ fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 fn parse_data<R: Reader>(input: &mut R, encoding: crate::common::Encoding) -> crate::read::Result<crate::read::Expression<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:409-418`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L409-L418)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:409-418`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L409-L418)*
 
 ### `compute_pc`
 
@@ -19219,7 +19268,7 @@ fn parse_data<R: Reader>(input: &mut R, encoding: crate::common::Encoding) -> cr
 fn compute_pc<R: Reader>(pc: &R, bytecode: &R, offset: i16) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:381-391`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L381-L391)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:381-391`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L381-L391)*
 
 ### `generic_type`
 
@@ -19227,7 +19276,7 @@ fn compute_pc<R: Reader>(pc: &R, bytecode: &R, offset: i16) -> crate::read::Resu
 fn generic_type<O: ReaderOffset>() -> crate::read::UnitOffset<O>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:393-395`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L393-L395)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:393-395`](../../../.source_1765900590/gimli-0.32.3/src/read/op.rs#L393-L395)*
 
 ### `parse_unit_type`
 
@@ -19235,7 +19284,7 @@ fn generic_type<O: ReaderOffset>() -> crate::read::UnitOffset<O>
 fn parse_unit_type<R: Reader>(input: &mut R) -> crate::read::Result<constants::DwUt>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:216-219`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L216-L219)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:216-219`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L216-L219)*
 
 Parse the unit type from the unit header.
 
@@ -19245,7 +19294,7 @@ Parse the unit type from the unit header.
 fn parse_debug_abbrev_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugAbbrevOffset<<R as >::Offset>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:222-227`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L222-L227)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:222-227`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L222-L227)*
 
 Parse the `debug_abbrev_offset` in the compilation unit header.
 
@@ -19255,7 +19304,7 @@ Parse the `debug_abbrev_offset` in the compilation unit header.
 fn parse_debug_info_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugInfoOffset<<R as >::Offset>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:230-235`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L230-L235)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:230-235`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L230-L235)*
 
 Parse the `debug_info_offset` in the arange header.
 
@@ -19268,7 +19317,7 @@ where
     Offset: ReaderOffset
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L558-L636)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L558-L636)*
 
 Parse a unit header.
 
@@ -19278,7 +19327,7 @@ Parse a unit header.
 fn parse_dwo_id<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DwoId>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:639-641`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L639-L641)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:639-641`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L639-L641)*
 
 Parse a dwo_id from a header
 
@@ -19288,7 +19337,7 @@ Parse a dwo_id from a header
 fn length_u8_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1928-1931`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1928-L1931)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1928-1931`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L1928-L1931)*
 
 ### `length_u16_value`
 
@@ -19296,7 +19345,7 @@ fn length_u8_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_u16_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1933-1936`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1933-L1936)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1933-1936`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L1933-L1936)*
 
 ### `length_u32_value`
 
@@ -19304,7 +19353,7 @@ fn length_u16_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_u32_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1938-1941`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1938-L1941)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1938-1941`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L1938-L1941)*
 
 ### `length_uleb128_value`
 
@@ -19312,7 +19361,7 @@ fn length_u32_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_uleb128_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1943-1946`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1943-L1946)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1943-1946`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L1943-L1946)*
 
 ### `allow_section_offset`
 
@@ -19320,7 +19369,7 @@ fn length_uleb128_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn allow_section_offset(name: constants::DwAt, version: u16) -> bool
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1950-1968`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1950-L1968)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1950-1968`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L1950-L1968)*
 
 ### `parse_attribute`
 
@@ -19328,7 +19377,7 @@ fn allow_section_offset(name: constants::DwAt, version: u16) -> bool
 fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, spec: crate::read::AttributeSpecification) -> crate::read::Result<Attribute<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1970-2193`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1970-L2193)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1970-2193`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L1970-L2193)*
 
 ### `skip_attributes`
 
@@ -19336,7 +19385,7 @@ fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 fn skip_attributes<R: Reader>(input: &mut R, encoding: crate::common::Encoding, specs: &[crate::read::AttributeSpecification]) -> crate::read::Result<()>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2195-2261`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2195-L2261)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2195-2261`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L2195-L2261)*
 
 ### `parse_type_signature`
 
@@ -19344,7 +19393,7 @@ fn skip_attributes<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 fn parse_type_signature<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DebugTypeSignature>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3049-3051`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3049-L3051)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3049-3051`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L3049-L3051)*
 
 Parse a type unit header's unique type signature. Callers should handle
 unique-ness checking.
@@ -19355,7 +19404,7 @@ unique-ness checking.
 fn parse_type_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::read::UnitOffset<<R as >::Offset>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3054-3056`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3054-L3056)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3054-3056`](../../../.source_1765900590/gimli-0.32.3/src/read/unit.rs#L3054-L3056)*
 
 Parse a type unit header's type offset.
 
@@ -19365,7 +19414,7 @@ Parse a type unit header's type offset.
 fn sign_extend(value: u64, mask: u64) -> i64
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:13-17`](../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L13-L17)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:13-17`](../../../.source_1765900590/gimli-0.32.3/src/read/value.rs#L13-L17)*
 
 Convert a u64 to an i64, with sign extension if required.
 
@@ -19378,7 +19427,7 @@ as a signed value.
 fn mask_bit_size(addr_mask: u64) -> u32
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:20-22`](../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L20-L22)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:20-22`](../../../.source_1765900590/gimli-0.32.3/src/read/value.rs#L20-L22)*
 
 ## Type Aliases
 
@@ -19388,7 +19437,7 @@ fn mask_bit_size(addr_mask: u64) -> u32
 type EndianBuf<'input, Endian> = EndianSlice<'input, Endian>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:281`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L281)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:281`](../../../.source_1765900590/gimli-0.32.3/src/read/mod.rs#L281)*
 
 `EndianBuf` has been renamed to `EndianSlice`. For ease of upgrading across
 `gimli` versions, we export this type alias.
@@ -19399,7 +19448,7 @@ type EndianBuf<'input, Endian> = EndianSlice<'input, Endian>;
 type Result<T> = result::Result<T, Error>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:639`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L639)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:639`](../../../.source_1765900590/gimli-0.32.3/src/read/mod.rs#L639)*
 
 The result of a parse.
 
@@ -19409,7 +19458,7 @@ The result of a parse.
 type LineNumberProgram<R, Offset> = dyn LineProgram<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:116`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L116)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:116`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L116)*
 
 Deprecated. `LineNumberProgram` has been renamed to `LineProgram`.
 
@@ -19419,7 +19468,7 @@ Deprecated. `LineNumberProgram` has been renamed to `LineProgram`.
 type StateMachine<R, Program, Offset> = LineRows<R, Program, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:160`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L160)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:160`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L160)*
 
 Deprecated. `StateMachine` has been renamed to `LineRows`.
 
@@ -19429,7 +19478,7 @@ Deprecated. `StateMachine` has been renamed to `LineRows`.
 type OneShotLineRows<R, Offset> = LineRows<R, IncompleteLineProgram<R, Offset>, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:179-180`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L179-L180)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:179-180`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L179-L180)*
 
 ### `ResumedLineRows<'program, R, Offset>`
 
@@ -19437,7 +19486,7 @@ type OneShotLineRows<R, Offset> = LineRows<R, IncompleteLineProgram<R, Offset>, 
 type ResumedLineRows<'program, R, Offset> = LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:182-183`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L182-L183)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:182-183`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L182-L183)*
 
 ### `Opcode<R>`
 
@@ -19445,7 +19494,7 @@ type ResumedLineRows<'program, R, Offset> = LineRows<R, &'program CompleteLinePr
 type Opcode<R> = LineInstruction<R, <R as Reader>::Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:263`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L263)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:263`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L263)*
 
 Deprecated. `Opcode` has been renamed to `LineInstruction`.
 
@@ -19455,7 +19504,7 @@ Deprecated. `Opcode` has been renamed to `LineInstruction`.
 type OpcodesIter<R> = LineInstructions<R>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:521`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L521)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:521`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L521)*
 
 Deprecated. `OpcodesIter` has been renamed to `LineInstructions`.
 
@@ -19465,7 +19514,7 @@ Deprecated. `OpcodesIter` has been renamed to `LineInstructions`.
 type LineNumberRow = LineRow;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:574`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L574)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:574`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L574)*
 
 Deprecated. `LineNumberRow` has been renamed to `LineRow`.
 
@@ -19475,7 +19524,7 @@ Deprecated. `LineNumberRow` has been renamed to `LineRow`.
 type LineNumberSequence<R> = LineSequence<R>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:971`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L971)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:971`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L971)*
 
 Deprecated. `LineNumberSequence` has been renamed to `LineSequence`.
 
@@ -19485,7 +19534,7 @@ Deprecated. `LineNumberSequence` has been renamed to `LineSequence`.
 type LineNumberProgramHeader<R, Offset> = LineProgramHeader<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:991`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L991)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:991`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L991)*
 
 Deprecated. `LineNumberProgramHeader` has been renamed to `LineProgramHeader`.
 
@@ -19495,7 +19544,7 @@ Deprecated. `LineNumberProgramHeader` has been renamed to `LineProgramHeader`.
 type IncompleteLineNumberProgram<R, Offset> = IncompleteLineProgram<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1407`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1407)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1407`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L1407)*
 
 Deprecated. `IncompleteLineNumberProgram` has been renamed to `IncompleteLineProgram`.
 
@@ -19505,7 +19554,7 @@ Deprecated. `IncompleteLineNumberProgram` has been renamed to `IncompleteLinePro
 type CompleteLineNumberProgram<R, Offset> = CompleteLineProgram<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1500`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1500)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1500`](../../../.source_1765900590/gimli-0.32.3/src/read/line.rs#L1500)*
 
 Deprecated. `CompleteLineNumberProgram` has been renamed to `CompleteLineProgram`.
 
@@ -19515,7 +19564,7 @@ Deprecated. `CompleteLineNumberProgram` has been renamed to `CompleteLineProgram
 type LocListsHeader = crate::read::lists::ListsHeader;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:131`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L131)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:131`](../../../.source_1765900590/gimli-0.32.3/src/read/loclists.rs#L131)*
 
 ### `RngListsHeader`
 
@@ -19523,7 +19572,7 @@ type LocListsHeader = crate::read::lists::ListsHeader;
 type RngListsHeader = crate::read::lists::ListsHeader;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:133`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L133)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:133`](../../../.source_1765900590/gimli-0.32.3/src/read/rnglists.rs#L133)*
 
 ## Constants
 
@@ -19532,40 +19581,40 @@ type RngListsHeader = crate::read::lists::ListsHeader;
 const MAX_RULES: usize = 192usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1907)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1907)*
 
 ### `MAX_UNWIND_STACK_DEPTH`
 ```rust
 const MAX_UNWIND_STACK_DEPTH: usize = 4usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1909)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L1909)*
 
 ### `CFI_INSTRUCTION_HIGH_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_HIGH_BITS_MASK: u8 = 192u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3257)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L3257)*
 
 ### `CFI_INSTRUCTION_LOW_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_LOW_BITS_MASK: u8 = 63u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3258)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../.source_1765900590/gimli-0.32.3/src/read/cfi.rs#L3258)*
 
 ### `MAX_ATTRIBUTES_INLINE`
 ```rust
 const MAX_ATTRIBUTES_INLINE: usize = 5usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:400`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L400)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:400`](../../../.source_1765900590/gimli-0.32.3/src/read/abbrev.rs#L400)*
 
 ### `SECTION_COUNT_MAX`
 ```rust
 const SECTION_COUNT_MAX: u8 = 8u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L120)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../.source_1765900590/gimli-0.32.3/src/read/index.rs#L120)*
 

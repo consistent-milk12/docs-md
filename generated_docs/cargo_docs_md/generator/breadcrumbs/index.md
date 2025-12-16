@@ -49,7 +49,7 @@ the current module, with each segment being a clickable link.
 
   Create a new breadcrumb generator.
   
-  # Arguments
+  ##### Arguments
   
   * `module_path` - The module path segments
   * `crate_name` - The name of the crate for the root link
@@ -60,7 +60,7 @@ the current module, with each segment being a clickable link.
   
   Returns empty string for root module.
   
-  # Example Output
+  ##### Example Output
   
   For `module_path = ["error", "types"]` and `crate_name = "docs_md"`:
   ```markdown

@@ -47,7 +47,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
 
 A table of symbol entries in a COFF or PE file.
 
@@ -177,7 +177,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:181-188`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L181-L188)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:181-188`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/symbol.rs#L181-L188)*
 
 An iterator for symbol entries in a COFF or PE file.
 
@@ -253,7 +253,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:210-216`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L210-L216)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:210-216`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/symbol.rs#L210-L216)*
 
 A symbol table in a [`CoffFile`](super::CoffFile)
 or [`PeFile`](crate::read::pe::PeFile).
@@ -345,7 +345,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:249-256`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L249-L256)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:249-256`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/symbol.rs#L249-L256)*
 
 An iterator for the symbols in a [`CoffFile`](super::CoffFile)
 or [`PeFile`](crate::read::pe::PeFile).
@@ -428,7 +428,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:313-321`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L313-L321)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:313-321`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/symbol.rs#L313-L321)*
 
 A symbol in a [`CoffFile`](super::CoffFile) or [`PeFile`](crate::read::pe::PeFile).
 
@@ -549,66 +549,91 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 trait ImageSymbol: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:531-641`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L531-L641)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:531-641`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/symbol.rs#L531-L641)*
 
 A trait for generic access to [`pe::ImageSymbol`](../../../pe/index.md) and [`pe::ImageSymbolEx`](../../../pe/index.md).
 
+<details>
+<summary><strong>Methods (16)</strong> - click to expand</summary>
+
+**Required:**
+- [`ImageSymbol::raw_name`](#fn-imagesymbolraw-name)
+- [`ImageSymbol::value`](#fn-imagesymbolvalue)
+- [`ImageSymbol::section_number`](#fn-imagesymbolsection-number)
+- [`ImageSymbol::typ`](#fn-imagesymboltyp)
+- [`ImageSymbol::storage_class`](#fn-imagesymbolstorage-class)
+- [`ImageSymbol::number_of_aux_symbols`](#fn-imagesymbolnumber-of-aux-symbols)
+
+**Provided:**
+- [`ImageSymbol::name`](#fn-imagesymbolname)
+- [`ImageSymbol::address`](#fn-imagesymboladdress)
+- [`ImageSymbol::section`](#fn-imagesymbolsection)
+- [`ImageSymbol::is_definition`](#fn-imagesymbolis-definition)
+- [`ImageSymbol::has_aux_file_name`](#fn-imagesymbolhas-aux-file-name)
+- [`ImageSymbol::has_aux_function`](#fn-imagesymbolhas-aux-function)
+- [`ImageSymbol::has_aux_section`](#fn-imagesymbolhas-aux-section)
+- [`ImageSymbol::has_aux_weak_external`](#fn-imagesymbolhas-aux-weak-external)
+- [`ImageSymbol::base_type`](#fn-imagesymbolbase-type)
+- [`ImageSymbol::derived_type`](#fn-imagesymbolderived-type)
+
+</details>
+
 #### Required Methods
 
-- `fn raw_name(&self) -> &[u8; 8]`
+- `fn ImageSymbol::raw_name(&self) -> &[u8; 8]`
 
-- `fn value(&self) -> u32`
+- `fn ImageSymbol::value(&self) -> u32`
 
-- `fn section_number(&self) -> i32`
+- `fn ImageSymbol::section_number(&self) -> i32`
 
-- `fn typ(&self) -> u16`
+- `fn ImageSymbol::typ(&self) -> u16`
 
-- `fn storage_class(&self) -> u8`
+- `fn ImageSymbol::storage_class(&self) -> u8`
 
-- `fn number_of_aux_symbols(&self) -> u8`
+- `fn ImageSymbol::number_of_aux_symbols(&self) -> u8`
 
 #### Provided Methods
 
-- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
+- `fn ImageSymbol::name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
   Parse a COFF symbol name.
   
   `strings` must be the string table used for symbol names.
 
-- `fn address(&self, image_base: u64, sections: &SectionTable<'_>) -> Result<Option<u64>>`
+- `fn ImageSymbol::address(&self, image_base: u64, sections: &SectionTable<'_>) -> Result<Option<u64>>`
 
   Return the symbol address.
   
   This takes into account the image base and the section address,
   and only returns an address for symbols that have an address.
 
-- `fn section(&self) -> Option<SectionIndex>`
+- `fn ImageSymbol::section(&self) -> Option<SectionIndex>`
 
   Return the section index for the symbol.
 
-- `fn is_definition(&self) -> bool`
+- `fn ImageSymbol::is_definition(&self) -> bool`
 
   Return true if the symbol is a definition of a function or data object.
 
-- `fn has_aux_file_name(&self) -> bool`
+- `fn ImageSymbol::has_aux_file_name(&self) -> bool`
 
   Return true if the symbol has an auxiliary file name.
 
-- `fn has_aux_function(&self) -> bool`
+- `fn ImageSymbol::has_aux_function(&self) -> bool`
 
   Return true if the symbol has an auxiliary function symbol.
 
-- `fn has_aux_section(&self) -> bool`
+- `fn ImageSymbol::has_aux_section(&self) -> bool`
 
   Return true if the symbol has an auxiliary section symbol.
 
-- `fn has_aux_weak_external(&self) -> bool`
+- `fn ImageSymbol::has_aux_weak_external(&self) -> bool`
 
   Return true if the symbol has an auxiliary weak external symbol.
 
-- `fn base_type(&self) -> u16`
+- `fn ImageSymbol::base_type(&self) -> u16`
 
-- `fn derived_type(&self) -> u16`
+- `fn ImageSymbol::derived_type(&self) -> u16`
 
 #### Implementors
 
@@ -623,7 +648,7 @@ A trait for generic access to [`pe::ImageSymbol`](../../../pe/index.md) and [`pe
 type CoffBigSymbolTable<'data, 'file, R> = CoffSymbolTable<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:204-205`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L204-L205)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:204-205`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/symbol.rs#L204-L205)*
 
 A symbol table in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -633,7 +658,7 @@ A symbol table in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSymbolIterator<'data, 'file, R> = CoffSymbolIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:244-245`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L244-L245)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:244-245`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/symbol.rs#L244-L245)*
 
 An iterator for the symbols in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -643,7 +668,7 @@ An iterator for the symbols in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSymbol<'data, 'file, R> = CoffSymbol<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:306-307`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L306-L307)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:306-307`](../../../../../.source_1765900590/object-0.37.3/src/read/coff/symbol.rs#L306-L307)*
 
 A symbol in a [`CoffBigFile`](super::CoffBigFile).
 

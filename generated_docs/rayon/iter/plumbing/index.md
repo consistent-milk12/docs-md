@@ -56,7 +56,7 @@ struct Splitter {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:251-256`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L251-L256)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:251-256`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L251-L256)*
 
 A splitter controls the policy for splitting into smaller work items.
 
@@ -162,7 +162,7 @@ struct LengthSplitter {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:289-295`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L289-L295)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:289-295`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L289-L295)*
 
 The length splitter is built on thief-splitting, but additionally takes
 into account the remaining length of the iterator.
@@ -273,7 +273,7 @@ into account the remaining length of the iterator.
 trait ProducerCallback<T> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:17-30`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L17-L30)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:17-30`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L17-L30)*
 
 The `ProducerCallback` trait is a kind of generic closure,
 [analogous to `FnOnce`][FnOnce]. See [the corresponding section in
@@ -287,7 +287,7 @@ the plumbing README][r] for more details.
 
 #### Required Methods
 
-- `fn callback<P>(self, producer: P) -> <Self as >::Output`
+- `fn ProducerCallback::callback<P>(self, producer: P) -> <Self as >::Output`
 
   Invokes the callback with the given producer as argument. The
   key point of this trait is that this method is generic over
@@ -303,7 +303,7 @@ the plumbing README][r] for more details.
 trait Producer: Send + Sized { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:56-109`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L56-L109)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:56-109`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L56-L109)*
 
 A `Producer` is effectively a "splittable `IntoIterator`". That
 is, a producer is a value which can be converted into an iterator
@@ -337,19 +337,19 @@ IntoIterator here until that issue is fixed.
 
 #### Required Methods
 
-- `fn into_iter(self) -> <Self as >::IntoIter`
+- `fn Producer::into_iter(self) -> <Self as >::IntoIter`
 
   Convert `self` into an iterator; at this point, no more parallel splits
   are possible.
 
-- `fn split_at(self, index: usize) -> (Self, Self)`
+- `fn Producer::split_at(self, index: usize) -> (Self, Self)`
 
   Split into two producers; one produces items `0..index`, the
   other `index..N`. Index must be less than or equal to `N`.
 
 #### Provided Methods
 
-- `fn min_len(&self) -> usize`
+- `fn Producer::min_len(&self) -> usize`
 
   The minimum number of items that we will process
   sequentially. Defaults to 1, which means that we will split
@@ -360,7 +360,7 @@ IntoIterator here until that issue is fixed.
   parallel splits to reduce overhead, so this should not be
   needed.
 
-- `fn max_len(&self) -> usize`
+- `fn Producer::max_len(&self) -> usize`
 
   The maximum number of items that we will process
   sequentially. Defaults to MAX, which means that we can choose
@@ -370,7 +370,7 @@ IntoIterator here until that issue is fixed.
   attempts to adjust the size of parallel splits to reduce
   overhead, so this should not be needed.
 
-- `fn fold_with<F>(self, folder: F) -> F`
+- `fn Producer::fold_with<F>(self, folder: F) -> F`
 
   Iterate the producer, feeding each element to `folder`, and
   stop when the folder is full (or all elements have been consumed).
@@ -420,7 +420,7 @@ IntoIterator here until that issue is fixed.
 trait Consumer<Item>: Send + Sized { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:123-146`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L123-L146)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:123-146`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L123-L146)*
 
 A consumer is effectively a [generalized "fold" operation][`fold`](../fold/index.md),
 and in fact each consumer will eventually be converted into a
@@ -444,19 +444,19 @@ README][r] for further details.
 
 #### Required Methods
 
-- `fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)`
+- `fn Consumer::split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)`
 
   Divide the consumer into two consumers, one processing items
   `0..index` and one processing items from `index..`. Also
   produces a reducer that can be used to reduce the results at
   the end.
 
-- `fn into_folder(self) -> <Self as >::Folder`
+- `fn Consumer::into_folder(self) -> <Self as >::Folder`
 
   Convert the consumer into a folder that can consume items
   sequentially, eventually producing a final result.
 
-- `fn full(&self) -> bool`
+- `fn Consumer::full(&self) -> bool`
 
   Hint whether this `Consumer` would like to stop processing
   further items, e.g. if a search has been completed.
@@ -509,7 +509,7 @@ README][r] for further details.
 trait Folder<Item>: Sized { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:154-188`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L154-L188)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:154-188`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L154-L188)*
 
 The `Folder` trait encapsulates [the standard fold
 operation][`fold`](../fold/index.md).  It can be fed many items using the `consume`
@@ -523,22 +523,22 @@ be converted (using `complete`) into a final value.
 
 #### Required Methods
 
-- `fn consume(self, item: Item) -> Self`
+- `fn Folder::consume(self, item: Item) -> Self`
 
   Consume next item and return new sequential state.
 
-- `fn complete(self) -> <Self as >::Result`
+- `fn Folder::complete(self) -> <Self as >::Result`
 
   Finish consuming items, produce final result.
 
-- `fn full(&self) -> bool`
+- `fn Folder::full(&self) -> bool`
 
   Hint whether this `Folder` would like to stop processing
   further items, e.g. if a search has been completed.
 
 #### Provided Methods
 
-- `fn consume_iter<I>(self, iter: I) -> Self`
+- `fn Folder::consume_iter<I>(self, iter: I) -> Self`
 
   Consume items from the iterator until full, and return new sequential state.
   
@@ -594,7 +594,7 @@ be converted (using `complete`) into a final value.
 trait Reducer<Result> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:197-201`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L197-L201)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:197-201`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L197-L201)*
 
 The reducer is the final step of a `Consumer` -- after a consumer
 has been split into two parts, and each of those parts has been
@@ -605,7 +605,7 @@ README][r] for further details.
 
 #### Required Methods
 
-- `fn reduce(self, left: Result, right: Result) -> Result`
+- `fn Reducer::reduce(self, left: Result, right: Result) -> Result`
 
   Reduce two final results into one; this is executed after a
   split.
@@ -631,7 +631,7 @@ README][r] for further details.
 trait UnindexedConsumer<I>: Consumer<I> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:208-221`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L208-L221)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:208-221`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L208-L221)*
 
 A stateless consumer can be freely copied. These consumers can be
 used like regular consumers, but they also support a
@@ -641,7 +641,7 @@ produces an unindexed consumer).
 
 #### Required Methods
 
-- `fn split_off_left(&self) -> Self`
+- `fn UnindexedConsumer::split_off_left(&self) -> Self`
 
   Splits off a "left" consumer and returns it. The `self`
   consumer should then be used to consume the "right" portion of
@@ -651,7 +651,7 @@ produces an unindexed consumer).
   halves have been fully consumed, you should reduce the results
   with the result of `to_reducer`.
 
-- `fn to_reducer(&self) -> <Self as >::Reducer`
+- `fn UnindexedConsumer::to_reducer(&self) -> <Self as >::Reducer`
 
   Creates a reducer that can be used to combine the results from
   a split consumer.
@@ -703,7 +703,7 @@ produces an unindexed consumer).
 trait UnindexedProducer: Send + Sized { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:231-243`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L231-L243)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:231-243`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L231-L243)*
 
 A variant on `Producer` which does not know its exact length or
 cannot represent it in a `usize`. These producers act like
@@ -720,11 +720,11 @@ own length with them.)
 
 #### Required Methods
 
-- `fn split(self) -> (Self, Option<Self>)`
+- `fn UnindexedProducer::split(self) -> (Self, Option<Self>)`
 
   Split midway into a new producer if possible, otherwise return `None`.
 
-- `fn fold_with<F>(self, folder: F) -> F`
+- `fn UnindexedProducer::fold_with<F>(self, folder: F) -> F`
 
   Iterate the producer, feeding each element to `folder`, and
   stop when the folder is full (or all elements have been consumed).
@@ -758,7 +758,7 @@ where
     C: Consumer<<I as >::Item>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:346-371`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L346-L371)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:346-371`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L346-L371)*
 
 This helper function is used to "connect" a parallel iterator to a
 consumer. It will convert the `par_iter` into a producer P and
@@ -780,7 +780,7 @@ where
     C: Consumer<<P as >::Item>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:385-435`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L385-L435)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:385-435`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L385-L435)*
 
 This helper function is used to "connect" a producer and a
 consumer. You may prefer to call [`bridge()`](#bridge), which wraps this
@@ -803,7 +803,7 @@ where
     C: UnindexedConsumer<<P as >::Item>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:438-445`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L438-L445)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:438-445`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L438-L445)*
 
 A variant of [`bridge_producer_consumer()`](#bridge-producer-consumer) where the producer is an unindexed producer.
 
@@ -816,5 +816,5 @@ where
     C: UnindexedConsumer<<P as >::Item>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:447-476`](../../../../.source_1765894658/rayon-1.11.0/src/iter/plumbing/mod.rs#L447-L476)*
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:447-476`](../../../../.source_1765900590/rayon-1.11.0/src/iter/plumbing/mod.rs#L447-L476)*
 

@@ -29,7 +29,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:17-34`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L17-L34)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:17-34`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L17-L34)*
 
 A builder for constructing a Teddy matcher.
 
@@ -181,7 +181,7 @@ struct Searcher {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:322-337`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L322-L337)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:322-337`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L322-L337)*
 
 A searcher that dispatches to one of several possible Teddy variants.
 
@@ -214,7 +214,7 @@ A searcher that dispatches to one of several possible Teddy variants.
   Look for the leftmost occurrence of any pattern in this search in the
   given haystack starting at the given position.
   
-  # Panics
+  ##### Panics
   
   This panics when `haystack[at..].len()` is less than the minimum length
   for this haystack.
@@ -298,7 +298,7 @@ A searcher that dispatches to one of several possible Teddy variants.
 trait SearcherT: Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:416-448`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L416-L448)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:416-448`](../../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L416-L448)*
 
 A trait that provides dynamic dispatch over the different possible Teddy
 variants on the same algorithm.
@@ -328,12 +328,12 @@ requires `alloc`, there's no real reason (AFAIK) to go down this path. (The
 
 #### Required Methods
 
-- `fn find(&self, start: *const u8, end: *const u8) -> Option<Match>`
+- `fn SearcherT::find(&self, start: *const u8, end: *const u8) -> Option<Match>`
 
   Execute a search on the given haystack (identified by `start` and `end`
   raw pointers).
   
-  # Safety
+  ##### Safety
   
   Essentially, the `start` and `end` pointers must be valid and point
   to a haystack one can read. As long as you derive them from, for

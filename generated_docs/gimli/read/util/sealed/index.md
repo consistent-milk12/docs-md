@@ -19,7 +19,7 @@
 struct CapacityFull;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/util.rs:25`](../../../../../.source_1765894658/gimli-0.32.3/src/read/util.rs#L25)*
+*Defined in [`gimli-0.32.3/src/read/util.rs:25`](../../../../../.source_1765900590/gimli-0.32.3/src/read/util.rs#L25)*
 
 #### Trait Implementations
 
@@ -92,7 +92,7 @@ struct CapacityFull;
 trait Sealed { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/util.rs:14-22`](../../../../../.source_1765894658/gimli-0.32.3/src/read/util.rs#L14-L22)*
+*Defined in [`gimli-0.32.3/src/read/util.rs:14-22`](../../../../../.source_1765900590/gimli-0.32.3/src/read/util.rs#L14-L22)*
 
 # Safety
 Implementer must not modify the content in storage.
@@ -103,11 +103,11 @@ Implementer must not modify the content in storage.
 
 #### Required Methods
 
-- `fn new_storage() -> <Self as >::Storage`
+- `fn Sealed::new_storage() -> <Self as >::Storage`
 
 #### Provided Methods
 
-- `fn grow(_storage: &mut <Self as >::Storage, _additional: usize) -> Result<(), CapacityFull>`
+- `fn Sealed::grow(_storage: &mut <Self as >::Storage, _additional: usize) -> Result<(), CapacityFull>`
 
 #### Implementors
 

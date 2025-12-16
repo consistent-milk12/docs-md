@@ -21,7 +21,7 @@ struct LazyBuffer<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/lazy_buffer.rs:8-11`](../../../.source_1765894658/itertools-0.14.0/src/lazy_buffer.rs#L8-L11)*
+*Defined in [`itertools-0.14.0/src/lazy_buffer.rs:8-11`](../../../.source_1765900590/itertools-0.14.0/src/lazy_buffer.rs#L8-L11)*
 
 #### Implementations
 

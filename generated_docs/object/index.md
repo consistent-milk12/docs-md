@@ -276,7 +276,7 @@ points of the crate.
 struct LittleEndian;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:317`](../../.source_1765894658/object-0.37.3/src/endian.rs#L317)*
+*Defined in [`object-0.37.3/src/endian.rs:317`](../../.source_1765900590/object-0.37.3/src/endian.rs#L317)*
 
 Compile-time little endian byte order.
 
@@ -371,7 +371,7 @@ Compile-time little endian byte order.
 struct BigEndian;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:344`](../../.source_1765894658/object-0.37.3/src/endian.rs#L344)*
+*Defined in [`object-0.37.3/src/endian.rs:344`](../../.source_1765900590/object-0.37.3/src/endian.rs#L344)*
 
 Compile-time big endian byte order.
 
@@ -466,7 +466,7 @@ Compile-time big endian byte order.
 struct U16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:620`](../../.source_1765894658/object-0.37.3/src/endian.rs#L620)*
+*Defined in [`object-0.37.3/src/endian.rs:620`](../../.source_1765900590/object-0.37.3/src/endian.rs#L620)*
 
 An unaligned `u16` value with an externally specified endianness of type `E`.
 
@@ -583,7 +583,7 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 struct U32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:647`](../../.source_1765894658/object-0.37.3/src/endian.rs#L647)*
+*Defined in [`object-0.37.3/src/endian.rs:647`](../../.source_1765900590/object-0.37.3/src/endian.rs#L647)*
 
 An unaligned `u32` value with an externally specified endianness of type `E`.
 
@@ -700,7 +700,7 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 struct U64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:674`](../../.source_1765894658/object-0.37.3/src/endian.rs#L674)*
+*Defined in [`object-0.37.3/src/endian.rs:674`](../../.source_1765900590/object-0.37.3/src/endian.rs#L674)*
 
 An unaligned `u64` value with an externally specified endianness of type `E`.
 
@@ -817,7 +817,7 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 struct I16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:701`](../../.source_1765894658/object-0.37.3/src/endian.rs#L701)*
+*Defined in [`object-0.37.3/src/endian.rs:701`](../../.source_1765900590/object-0.37.3/src/endian.rs#L701)*
 
 An unaligned `i16` value with an externally specified endianness of type `E`.
 
@@ -934,7 +934,7 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 struct I32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:728`](../../.source_1765894658/object-0.37.3/src/endian.rs#L728)*
+*Defined in [`object-0.37.3/src/endian.rs:728`](../../.source_1765900590/object-0.37.3/src/endian.rs#L728)*
 
 An unaligned `i32` value with an externally specified endianness of type `E`.
 
@@ -1051,7 +1051,7 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 struct I64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:755`](../../.source_1765894658/object-0.37.3/src/endian.rs#L755)*
+*Defined in [`object-0.37.3/src/endian.rs:755`](../../.source_1765900590/object-0.37.3/src/endian.rs#L755)*
 
 An unaligned `i64` value with an externally specified endianness of type `E`.
 
@@ -1168,7 +1168,7 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 struct Error(&'static str);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:116`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L116)*
+*Defined in [`object-0.37.3/src/read/mod.rs:116`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L116)*
 
 The error type used within the read module.
 
@@ -1259,7 +1259,7 @@ The error type used within the read module.
 struct SectionIndex(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:389`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L389)*
+*Defined in [`object-0.37.3/src/read/mod.rs:389`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L389)*
 
 The index used to identify a section in a file.
 
@@ -1352,7 +1352,7 @@ The index used to identify a section in a file.
 struct SymbolIndex(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:399`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L399)*
+*Defined in [`object-0.37.3/src/read/mod.rs:399`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L399)*
 
 The index used to identify a symbol in a symbol table.
 
@@ -1447,7 +1447,7 @@ struct SymbolMap<T: SymbolMapEntry> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:451-453`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L451-L453)*
+*Defined in [`object-0.37.3/src/read/mod.rs:451-453`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L451-L453)*
 
 A map from addresses to symbol information.
 
@@ -1545,7 +1545,7 @@ struct SymbolMapName<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:485-488`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L485-L488)*
+*Defined in [`object-0.37.3/src/read/mod.rs:485-488`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L485-L488)*
 
 The type used for entries in a [`SymbolMap`](#symbolmap) that maps from addresses to names.
 
@@ -1651,7 +1651,7 @@ struct ObjectMap<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:522-525`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L522-L525)*
+*Defined in [`object-0.37.3/src/read/mod.rs:522-525`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L522-L525)*
 
 A map from addresses to symbol names and object files.
 
@@ -1749,7 +1749,7 @@ struct ObjectMapEntry<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:550-555`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L550-L555)*
+*Defined in [`object-0.37.3/src/read/mod.rs:550-555`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L550-L555)*
 
 A symbol in an [`ObjectMap`](#objectmap).
 
@@ -1869,7 +1869,7 @@ struct ObjectMapFile<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:600-603`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L600-L603)*
+*Defined in [`object-0.37.3/src/read/mod.rs:600-603`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L600-L603)*
 
 An object file name in an [`ObjectMap`](#objectmap).
 
@@ -1969,7 +1969,7 @@ struct Import<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:628-632`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L628-L632)*
+*Defined in [`object-0.37.3/src/read/mod.rs:628-632`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L628-L632)*
 
 An imported symbol.
 
@@ -2065,7 +2065,7 @@ struct Export<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:652-656`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L652-L656)*
+*Defined in [`object-0.37.3/src/read/mod.rs:652-656`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L652-L656)*
 
 An exported symbol.
 
@@ -2162,7 +2162,7 @@ struct CodeView<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:674-678`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L674-L678)*
+*Defined in [`object-0.37.3/src/read/mod.rs:674-678`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L674-L678)*
 
 PDB information from the debug directory in a PE file.
 
@@ -2265,7 +2265,7 @@ struct Relocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:716-724`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L716-L724)*
+*Defined in [`object-0.37.3/src/read/mod.rs:716-724`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L716-L724)*
 
 A relocation entry.
 
@@ -2362,7 +2362,7 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 struct RelocationMap(alloc::collections::btree_map::BTreeMap<u64, RelocationMapEntry>);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:790`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L790)*
+*Defined in [`object-0.37.3/src/read/mod.rs:790`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L790)*
 
 A map from section offsets to relocation information.
 
@@ -2448,7 +2448,7 @@ struct RelocationMapEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:871-874`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L871-L874)*
+*Defined in [`object-0.37.3/src/read/mod.rs:871-874`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L871-L874)*
 
 #### Trait Implementations
 
@@ -2536,7 +2536,7 @@ struct CompressedFileRange {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:898-907`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L898-L907)*
+*Defined in [`object-0.37.3/src/read/mod.rs:898-907`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L898-L907)*
 
 A range in a file that may be compressed.
 
@@ -2655,7 +2655,7 @@ struct CompressedData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:947-954`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L947-L954)*
+*Defined in [`object-0.37.3/src/read/mod.rs:947-954`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L947-L954)*
 
 Data that may be compressed.
 
@@ -2809,7 +2809,7 @@ enum Architecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:5-45`](../../.source_1765894658/object-0.37.3/src/common.rs#L5-L45)*
+*Defined in [`object-0.37.3/src/common.rs:5-45`](../../.source_1765900590/object-0.37.3/src/common.rs#L5-L45)*
 
 A CPU architecture.
 
@@ -2905,7 +2905,7 @@ enum SubArchitecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:51-54`](../../.source_1765894658/object-0.37.3/src/common.rs#L51-L54)*
+*Defined in [`object-0.37.3/src/common.rs:51-54`](../../.source_1765900590/object-0.37.3/src/common.rs#L51-L54)*
 
 A CPU sub-architecture.
 
@@ -2995,7 +2995,7 @@ enum AddressSize {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:109-114`](../../.source_1765894658/object-0.37.3/src/common.rs#L109-L114)*
+*Defined in [`object-0.37.3/src/common.rs:109-114`](../../.source_1765900590/object-0.37.3/src/common.rs#L109-L114)*
 
 The size of an address value for an architecture.
 
@@ -3095,7 +3095,7 @@ enum BinaryFormat {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:128-135`](../../.source_1765894658/object-0.37.3/src/common.rs#L128-L135)*
+*Defined in [`object-0.37.3/src/common.rs:128-135`](../../.source_1765900590/object-0.37.3/src/common.rs#L128-L135)*
 
 A binary file format.
 
@@ -3208,7 +3208,7 @@ enum SectionKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:155-247`](../../.source_1765894658/object-0.37.3/src/common.rs#L155-L247)*
+*Defined in [`object-0.37.3/src/common.rs:155-247`](../../.source_1765900590/object-0.37.3/src/common.rs#L155-L247)*
 
 The kind of a section.
 
@@ -3438,7 +3438,7 @@ enum ComdatKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:264-291`](../../.source_1765894658/object-0.37.3/src/common.rs#L264-L291)*
+*Defined in [`object-0.37.3/src/common.rs:264-291`](../../.source_1765900590/object-0.37.3/src/common.rs#L264-L291)*
 
 The selection kind for a COMDAT section group.
 
@@ -3576,7 +3576,7 @@ enum SymbolKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:296-311`](../../.source_1765894658/object-0.37.3/src/common.rs#L296-L311)*
+*Defined in [`object-0.37.3/src/common.rs:296-311`](../../.source_1765900590/object-0.37.3/src/common.rs#L296-L311)*
 
 The kind of a symbol.
 
@@ -3696,7 +3696,7 @@ enum SymbolScope {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:315-324`](../../.source_1765894658/object-0.37.3/src/common.rs#L315-L324)*
+*Defined in [`object-0.37.3/src/common.rs:315-324`](../../.source_1765900590/object-0.37.3/src/common.rs#L315-L324)*
 
 A symbol scope.
 
@@ -3811,7 +3811,7 @@ enum RelocationKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:343-366`](../../.source_1765894658/object-0.37.3/src/common.rs#L343-L366)*
+*Defined in [`object-0.37.3/src/common.rs:343-366`](../../.source_1765900590/object-0.37.3/src/common.rs#L343-L366)*
 
 The operation used to calculate the result of the relocation.
 
@@ -3970,7 +3970,7 @@ enum RelocationEncoding {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:374-447`](../../.source_1765894658/object-0.37.3/src/common.rs#L374-L447)*
+*Defined in [`object-0.37.3/src/common.rs:374-447`](../../.source_1765900590/object-0.37.3/src/common.rs#L374-L447)*
 
 Information about how the result of the relocation operation is encoded in the place.
 
@@ -4166,7 +4166,7 @@ enum FileFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:452-479`](../../.source_1765894658/object-0.37.3/src/common.rs#L452-L479)*
+*Defined in [`object-0.37.3/src/common.rs:452-479`](../../.source_1765900590/object-0.37.3/src/common.rs#L452-L479)*
 
 File flags that are specific to each file format.
 
@@ -4286,7 +4286,7 @@ enum SegmentFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:484-506`](../../.source_1765894658/object-0.37.3/src/common.rs#L484-L506)*
+*Defined in [`object-0.37.3/src/common.rs:484-506`](../../.source_1765900590/object-0.37.3/src/common.rs#L484-L506)*
 
 Segment flags that are specific to each file format.
 
@@ -4403,7 +4403,7 @@ enum SectionFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:511-534`](../../.source_1765894658/object-0.37.3/src/common.rs#L511-L534)*
+*Defined in [`object-0.37.3/src/common.rs:511-534`](../../.source_1765900590/object-0.37.3/src/common.rs#L511-L534)*
 
 Section flags that are specific to each file format.
 
@@ -4529,7 +4529,7 @@ enum SymbolFlags<Section, Symbol> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:539-578`](../../.source_1765894658/object-0.37.3/src/common.rs#L539-L578)*
+*Defined in [`object-0.37.3/src/common.rs:539-578`](../../.source_1765900590/object-0.37.3/src/common.rs#L539-L578)*
 
 Symbol flags that are specific to each file format.
 
@@ -4657,7 +4657,7 @@ enum RelocationFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:583-619`](../../.source_1765894658/object-0.37.3/src/common.rs#L583-L619)*
+*Defined in [`object-0.37.3/src/common.rs:583-619`](../../.source_1765900590/object-0.37.3/src/common.rs#L583-L619)*
 
 Relocation fields that are specific to each file format and architecture.
 
@@ -4767,7 +4767,7 @@ enum Endianness {
 }
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:278-283`](../../.source_1765894658/object-0.37.3/src/endian.rs#L278-L283)*
+*Defined in [`object-0.37.3/src/endian.rs:278-283`](../../.source_1765900590/object-0.37.3/src/endian.rs#L278-L283)*
 
 An endianness that is selectable at run-time.
 
@@ -4888,7 +4888,7 @@ enum FileKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:198-281`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L198-L281)*
+*Defined in [`object-0.37.3/src/read/mod.rs:198-281`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L198-L281)*
 
 A file format kind.
 
@@ -5083,7 +5083,7 @@ enum ObjectKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:374-385`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L374-L385)*
+*Defined in [`object-0.37.3/src/read/mod.rs:374-385`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L374-L385)*
 
 An object kind.
 
@@ -5199,7 +5199,7 @@ enum SymbolSection {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:410-423`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L410-L423)*
+*Defined in [`object-0.37.3/src/read/mod.rs:410-423`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L410-L423)*
 
 The section where an [`ObjectSymbol`](read/index.md) is defined.
 
@@ -5322,7 +5322,7 @@ enum RelocationTarget {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:703-710`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L703-L710)*
+*Defined in [`object-0.37.3/src/read/mod.rs:703-710`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L703-L710)*
 
 The target referenced by a [`Relocation`](#relocation).
 
@@ -5426,7 +5426,7 @@ enum CompressionFormat {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:879-892`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L879-L892)*
+*Defined in [`object-0.37.3/src/read/mod.rs:879-892`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L879-L892)*
 
 A data compression format.
 
@@ -5535,7 +5535,7 @@ A data compression format.
 trait Endian: Debug + Default + Clone + Copy + PartialEq + Eq + 'static { ... }
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:13-274`](../../.source_1765894658/object-0.37.3/src/endian.rs#L13-L274)*
+*Defined in [`object-0.37.3/src/endian.rs:13-274`](../../.source_1765900590/object-0.37.3/src/endian.rs#L13-L274)*
 
 A trait for using an endianness specification.
 
@@ -5544,123 +5544,160 @@ the native endianness of the target machine.
 
 This trait does not require that the endianness is known at compile time.
 
+<details>
+<summary><strong>Methods (28)</strong> - click to expand</summary>
+
+**Required:**
+- [`Endian::from_big_endian`](#fn-endianfrom-big-endian)
+- [`Endian::is_big_endian`](#fn-endianis-big-endian)
+
+**Provided:**
+- [`Endian::from_little_endian`](#fn-endianfrom-little-endian)
+- [`Endian::is_little_endian`](#fn-endianis-little-endian)
+- [`Endian::read_u16`](#fn-endianread-u16)
+- [`Endian::read_u32`](#fn-endianread-u32)
+- [`Endian::read_u64`](#fn-endianread-u64)
+- [`Endian::read_i16`](#fn-endianread-i16)
+- [`Endian::read_i32`](#fn-endianread-i32)
+- [`Endian::read_i64`](#fn-endianread-i64)
+- [`Endian::read_u16_bytes`](#fn-endianread-u16-bytes)
+- [`Endian::read_u32_bytes`](#fn-endianread-u32-bytes)
+- [`Endian::read_u64_bytes`](#fn-endianread-u64-bytes)
+- [`Endian::read_i16_bytes`](#fn-endianread-i16-bytes)
+- [`Endian::read_i32_bytes`](#fn-endianread-i32-bytes)
+- [`Endian::read_i64_bytes`](#fn-endianread-i64-bytes)
+- [`Endian::write_u16`](#fn-endianwrite-u16)
+- [`Endian::write_u32`](#fn-endianwrite-u32)
+- [`Endian::write_u64`](#fn-endianwrite-u64)
+- [`Endian::write_i16`](#fn-endianwrite-i16)
+- [`Endian::write_i32`](#fn-endianwrite-i32)
+- [`Endian::write_i64`](#fn-endianwrite-i64)
+- [`Endian::write_u16_bytes`](#fn-endianwrite-u16-bytes)
+- [`Endian::write_u32_bytes`](#fn-endianwrite-u32-bytes)
+- [`Endian::write_u64_bytes`](#fn-endianwrite-u64-bytes)
+- [`Endian::write_i16_bytes`](#fn-endianwrite-i16-bytes)
+- [`Endian::write_i32_bytes`](#fn-endianwrite-i32-bytes)
+- [`Endian::write_i64_bytes`](#fn-endianwrite-i64-bytes)
+
+</details>
+
 #### Required Methods
 
-- `fn from_big_endian(big_endian: bool) -> Option<Self>`
+- `fn Endian::from_big_endian(big_endian: bool) -> Option<Self>`
 
   Construct a specification for the endianness of some values.
   
   Returns `None` if the type does not support specifying the given endianness.
 
-- `fn is_big_endian(self) -> bool`
+- `fn Endian::is_big_endian(self) -> bool`
 
   Return true for big endian byte order.
 
 #### Provided Methods
 
-- `fn from_little_endian(little_endian: bool) -> Option<Self>`
+- `fn Endian::from_little_endian(little_endian: bool) -> Option<Self>`
 
   Construct a specification for the endianness of some values.
   
   Returns `None` if the type does not support specifying the given endianness.
 
-- `fn is_little_endian(self) -> bool`
+- `fn Endian::is_little_endian(self) -> bool`
 
   Return true for little endian byte order.
 
-- `fn read_u16(self, n: u16) -> u16`
+- `fn Endian::read_u16(self, n: u16) -> u16`
 
   Converts an unsigned 16 bit integer to native endian.
 
-- `fn read_u32(self, n: u32) -> u32`
+- `fn Endian::read_u32(self, n: u32) -> u32`
 
   Converts an unsigned 32 bit integer to native endian.
 
-- `fn read_u64(self, n: u64) -> u64`
+- `fn Endian::read_u64(self, n: u64) -> u64`
 
   Converts an unsigned 64 bit integer to native endian.
 
-- `fn read_i16(self, n: i16) -> i16`
+- `fn Endian::read_i16(self, n: i16) -> i16`
 
   Converts a signed 16 bit integer to native endian.
 
-- `fn read_i32(self, n: i32) -> i32`
+- `fn Endian::read_i32(self, n: i32) -> i32`
 
   Converts a signed 32 bit integer to native endian.
 
-- `fn read_i64(self, n: i64) -> i64`
+- `fn Endian::read_i64(self, n: i64) -> i64`
 
   Converts a signed 64 bit integer to native endian.
 
-- `fn read_u16_bytes(self, n: [u8; 2]) -> u16`
+- `fn Endian::read_u16_bytes(self, n: [u8; 2]) -> u16`
 
   Converts an unaligned unsigned 16 bit integer to native endian.
 
-- `fn read_u32_bytes(self, n: [u8; 4]) -> u32`
+- `fn Endian::read_u32_bytes(self, n: [u8; 4]) -> u32`
 
   Converts an unaligned unsigned 32 bit integer to native endian.
 
-- `fn read_u64_bytes(self, n: [u8; 8]) -> u64`
+- `fn Endian::read_u64_bytes(self, n: [u8; 8]) -> u64`
 
   Converts an unaligned unsigned 64 bit integer to native endian.
 
-- `fn read_i16_bytes(self, n: [u8; 2]) -> i16`
+- `fn Endian::read_i16_bytes(self, n: [u8; 2]) -> i16`
 
   Converts an unaligned signed 16 bit integer to native endian.
 
-- `fn read_i32_bytes(self, n: [u8; 4]) -> i32`
+- `fn Endian::read_i32_bytes(self, n: [u8; 4]) -> i32`
 
   Converts an unaligned signed 32 bit integer to native endian.
 
-- `fn read_i64_bytes(self, n: [u8; 8]) -> i64`
+- `fn Endian::read_i64_bytes(self, n: [u8; 8]) -> i64`
 
   Converts an unaligned signed 64 bit integer to native endian.
 
-- `fn write_u16(self, n: u16) -> u16`
+- `fn Endian::write_u16(self, n: u16) -> u16`
 
   Converts an unsigned 16 bit integer from native endian.
 
-- `fn write_u32(self, n: u32) -> u32`
+- `fn Endian::write_u32(self, n: u32) -> u32`
 
   Converts an unsigned 32 bit integer from native endian.
 
-- `fn write_u64(self, n: u64) -> u64`
+- `fn Endian::write_u64(self, n: u64) -> u64`
 
   Converts an unsigned 64 bit integer from native endian.
 
-- `fn write_i16(self, n: i16) -> i16`
+- `fn Endian::write_i16(self, n: i16) -> i16`
 
   Converts a signed 16 bit integer from native endian.
 
-- `fn write_i32(self, n: i32) -> i32`
+- `fn Endian::write_i32(self, n: i32) -> i32`
 
   Converts a signed 32 bit integer from native endian.
 
-- `fn write_i64(self, n: i64) -> i64`
+- `fn Endian::write_i64(self, n: i64) -> i64`
 
   Converts a signed 64 bit integer from native endian.
 
-- `fn write_u16_bytes(self, n: u16) -> [u8; 2]`
+- `fn Endian::write_u16_bytes(self, n: u16) -> [u8; 2]`
 
   Converts an unaligned unsigned 16 bit integer from native endian.
 
-- `fn write_u32_bytes(self, n: u32) -> [u8; 4]`
+- `fn Endian::write_u32_bytes(self, n: u32) -> [u8; 4]`
 
   Converts an unaligned unsigned 32 bit integer from native endian.
 
-- `fn write_u64_bytes(self, n: u64) -> [u8; 8]`
+- `fn Endian::write_u64_bytes(self, n: u64) -> [u8; 8]`
 
   Converts an unaligned unsigned 64 bit integer from native endian.
 
-- `fn write_i16_bytes(self, n: i16) -> [u8; 2]`
+- `fn Endian::write_i16_bytes(self, n: i16) -> [u8; 2]`
 
   Converts an unaligned signed 16 bit integer from native endian.
 
-- `fn write_i32_bytes(self, n: i32) -> [u8; 4]`
+- `fn Endian::write_i32_bytes(self, n: i32) -> [u8; 4]`
 
   Converts an unaligned signed 32 bit integer from native endian.
 
-- `fn write_i64_bytes(self, n: i64) -> [u8; 8]`
+- `fn Endian::write_i64_bytes(self, n: i64) -> [u8; 8]`
 
   Converts an unaligned signed 64 bit integer from native endian.
 
@@ -5676,7 +5713,7 @@ This trait does not require that the endianness is known at compile time.
 trait Pod: Copy + 'static { ... }
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:22`](../../.source_1765894658/object-0.37.3/src/pod.rs#L22)*
+*Defined in [`object-0.37.3/src/pod.rs:22`](../../.source_1765900590/object-0.37.3/src/pod.rs#L22)*
 
 A trait for types that can safely be converted from and to byte slices.
 
@@ -5902,11 +5939,11 @@ A type that is `Pod` must:
 trait ReadError<T> { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:133-135`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L133-L135)*
+*Defined in [`object-0.37.3/src/read/mod.rs:133-135`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L133-L135)*
 
 #### Required Methods
 
-- `fn read_error(self, error: &'static str) -> Result<T>`
+- `fn ReadError::read_error(self, error: &'static str) -> Result<T>`
 
 #### Implementors
 
@@ -5920,13 +5957,13 @@ trait ReadError<T> { ... }
 trait SymbolMapEntry { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:440-443`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L440-L443)*
+*Defined in [`object-0.37.3/src/read/mod.rs:440-443`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L440-L443)*
 
 An entry in a [`SymbolMap`](#symbolmap).
 
 #### Required Methods
 
-- `fn address(&self) -> u64`
+- `fn SymbolMapEntry::address(&self) -> u64`
 
   The symbol address.
 
@@ -5943,7 +5980,7 @@ An entry in a [`SymbolMap`](#symbolmap).
 fn from_bytes<T: Pod>(data: &[u8]) -> result::Result<(&T, &[u8]), ()>
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:30-42`](../../.source_1765894658/object-0.37.3/src/pod.rs#L30-L42)*
+*Defined in [`object-0.37.3/src/pod.rs:30-42`](../../.source_1765900590/object-0.37.3/src/pod.rs#L30-L42)*
 
 Cast the head of a byte slice to a `Pod` type.
 
@@ -5957,7 +5994,7 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 fn from_bytes_mut<T: Pod>(data: &mut [u8]) -> result::Result<(&mut T, &mut [u8]), ()>
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:50-65`](../../.source_1765894658/object-0.37.3/src/pod.rs#L50-L65)*
+*Defined in [`object-0.37.3/src/pod.rs:50-65`](../../.source_1765900590/object-0.37.3/src/pod.rs#L50-L65)*
 
 Cast the head of a mutable byte slice to a `Pod` type.
 
@@ -5971,7 +6008,7 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 fn slice_from_bytes<T: Pod>(data: &[u8], count: usize) -> result::Result<(&[T], &[u8]), ()>
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:73-85`](../../.source_1765894658/object-0.37.3/src/pod.rs#L73-L85)*
+*Defined in [`object-0.37.3/src/pod.rs:73-85`](../../.source_1765900590/object-0.37.3/src/pod.rs#L73-L85)*
 
 Cast the head of a byte slice to a slice of a `Pod` type.
 
@@ -5985,7 +6022,7 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 fn slice_from_bytes_mut<T: Pod>(data: &mut [u8], count: usize) -> result::Result<(&mut [T], &mut [u8]), ()>
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:93-111`](../../.source_1765894658/object-0.37.3/src/pod.rs#L93-L111)*
+*Defined in [`object-0.37.3/src/pod.rs:93-111`](../../.source_1765900590/object-0.37.3/src/pod.rs#L93-L111)*
 
 Cast the head of a mutable byte slice to a slice of a `Pod` type.
 
@@ -5999,7 +6036,7 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 fn slice_from_all_bytes<T: Pod>(data: &[u8]) -> result::Result<&[T], ()>
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:120-127`](../../.source_1765894658/object-0.37.3/src/pod.rs#L120-L127)*
+*Defined in [`object-0.37.3/src/pod.rs:120-127`](../../.source_1765900590/object-0.37.3/src/pod.rs#L120-L127)*
 
 Cast all of a byte slice to a slice of a `Pod` type.
 
@@ -6014,7 +6051,7 @@ of the type size, or the alignment is invalid.
 fn slice_from_all_bytes_mut<T: Pod>(data: &mut [u8]) -> result::Result<&mut [T], ()>
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:136-143`](../../.source_1765894658/object-0.37.3/src/pod.rs#L136-L143)*
+*Defined in [`object-0.37.3/src/pod.rs:136-143`](../../.source_1765900590/object-0.37.3/src/pod.rs#L136-L143)*
 
 Cast all of a byte slice to a slice of a `Pod` type.
 
@@ -6029,7 +6066,7 @@ of the type size, or the alignment is invalid.
 fn bytes_of<T: Pod>(val: &T) -> &[u8]
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:147-154`](../../.source_1765894658/object-0.37.3/src/pod.rs#L147-L154)*
+*Defined in [`object-0.37.3/src/pod.rs:147-154`](../../.source_1765900590/object-0.37.3/src/pod.rs#L147-L154)*
 
 Cast a `Pod` type to a byte slice.
 
@@ -6039,7 +6076,7 @@ Cast a `Pod` type to a byte slice.
 fn bytes_of_mut<T: Pod>(val: &mut T) -> &mut [u8]
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:158-165`](../../.source_1765894658/object-0.37.3/src/pod.rs#L158-L165)*
+*Defined in [`object-0.37.3/src/pod.rs:158-165`](../../.source_1765900590/object-0.37.3/src/pod.rs#L158-L165)*
 
 Cast a `Pod` type to a mutable byte slice.
 
@@ -6049,7 +6086,7 @@ Cast a `Pod` type to a mutable byte slice.
 fn bytes_of_slice<T: Pod>(val: &[T]) -> &[u8]
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:169-176`](../../.source_1765894658/object-0.37.3/src/pod.rs#L169-L176)*
+*Defined in [`object-0.37.3/src/pod.rs:169-176`](../../.source_1765900590/object-0.37.3/src/pod.rs#L169-L176)*
 
 Cast a slice of a `Pod` type to a byte slice.
 
@@ -6059,7 +6096,7 @@ Cast a slice of a `Pod` type to a byte slice.
 fn bytes_of_slice_mut<T: Pod>(val: &mut [T]) -> &mut [u8]
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:180-187`](../../.source_1765894658/object-0.37.3/src/pod.rs#L180-L187)*
+*Defined in [`object-0.37.3/src/pod.rs:180-187`](../../.source_1765900590/object-0.37.3/src/pod.rs#L180-L187)*
 
 Cast a slice of a `Pod` type to a mutable byte slice.
 
@@ -6071,7 +6108,7 @@ Cast a slice of a `Pod` type to a mutable byte slice.
 type NativeEndian = LittleEndian;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:371`](../../.source_1765894658/object-0.37.3/src/endian.rs#L371)*
+*Defined in [`object-0.37.3/src/endian.rs:371`](../../.source_1765900590/object-0.37.3/src/endian.rs#L371)*
 
 The native endianness for the target platform.
 
@@ -6081,7 +6118,7 @@ The native endianness for the target platform.
 type U16<E> = U16Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:595`](../../.source_1765894658/object-0.37.3/src/endian.rs#L595)*
+*Defined in [`object-0.37.3/src/endian.rs:595`](../../.source_1765900590/object-0.37.3/src/endian.rs#L595)*
 
 A `u16` value with an externally specified endianness of type `E`.
 
@@ -6091,7 +6128,7 @@ A `u16` value with an externally specified endianness of type `E`.
 type U32<E> = U32Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:599`](../../.source_1765894658/object-0.37.3/src/endian.rs#L599)*
+*Defined in [`object-0.37.3/src/endian.rs:599`](../../.source_1765900590/object-0.37.3/src/endian.rs#L599)*
 
 A `u32` value with an externally specified endianness of type `E`.
 
@@ -6101,7 +6138,7 @@ A `u32` value with an externally specified endianness of type `E`.
 type U64<E> = U64Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:603`](../../.source_1765894658/object-0.37.3/src/endian.rs#L603)*
+*Defined in [`object-0.37.3/src/endian.rs:603`](../../.source_1765900590/object-0.37.3/src/endian.rs#L603)*
 
 A `u64` value with an externally specified endianness of type `E`.
 
@@ -6111,7 +6148,7 @@ A `u64` value with an externally specified endianness of type `E`.
 type I16<E> = I16Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:607`](../../.source_1765894658/object-0.37.3/src/endian.rs#L607)*
+*Defined in [`object-0.37.3/src/endian.rs:607`](../../.source_1765900590/object-0.37.3/src/endian.rs#L607)*
 
 An `i16` value with an externally specified endianness of type `E`.
 
@@ -6121,7 +6158,7 @@ An `i16` value with an externally specified endianness of type `E`.
 type I32<E> = I32Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:611`](../../.source_1765894658/object-0.37.3/src/endian.rs#L611)*
+*Defined in [`object-0.37.3/src/endian.rs:611`](../../.source_1765900590/object-0.37.3/src/endian.rs#L611)*
 
 An `i32` value with an externally specified endianness of type `E`.
 
@@ -6131,7 +6168,7 @@ An `i32` value with an externally specified endianness of type `E`.
 type I64<E> = I64Bytes<E>;
 ```
 
-*Defined in [`object-0.37.3/src/endian.rs:615`](../../.source_1765894658/object-0.37.3/src/endian.rs#L615)*
+*Defined in [`object-0.37.3/src/endian.rs:615`](../../.source_1765900590/object-0.37.3/src/endian.rs#L615)*
 
 An `i64` value with an externally specified endianness of type `E`.
 
@@ -6141,7 +6178,7 @@ An `i64` value with an externally specified endianness of type `E`.
 type Result<T> = result::Result<T, ()>;
 ```
 
-*Defined in [`object-0.37.3/src/pod.rs:13`](../../.source_1765894658/object-0.37.3/src/pod.rs#L13)*
+*Defined in [`object-0.37.3/src/pod.rs:13`](../../.source_1765900590/object-0.37.3/src/pod.rs#L13)*
 
 ### `Result<T>`
 
@@ -6149,7 +6186,7 @@ type Result<T> = result::Result<T, ()>;
 type Result<T> = result::Result<T, Error>;
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:131`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L131)*
+*Defined in [`object-0.37.3/src/read/mod.rs:131`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L131)*
 
 The result type used within the read module.
 
@@ -6159,7 +6196,7 @@ The result type used within the read module.
 type NativeFile<'data, R> = elf::ElfFile64<'data, crate::endian::Endianness, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:171`](../../.source_1765894658/object-0.37.3/src/read/mod.rs#L171)*
+*Defined in [`object-0.37.3/src/read/mod.rs:171`](../../.source_1765900590/object-0.37.3/src/read/mod.rs#L171)*
 
 The native executable file for the target platform.
 
@@ -6167,9 +6204,9 @@ The native executable file for the target platform.
 
 ### `unsafe_impl_endian_pod!`
 
-*Defined in [`object-0.37.3/src/endian.rs:387-393`](../../.source_1765894658/object-0.37.3/src/endian.rs#L387-L393)*
+*Defined in [`object-0.37.3/src/endian.rs:387-393`](../../.source_1765900590/object-0.37.3/src/endian.rs#L387-L393)*
 
 ### `unsafe_impl_pod!`
 
-*Defined in [`object-0.37.3/src/pod.rs:189-195`](../../.source_1765894658/object-0.37.3/src/pod.rs#L189-L195)*
+*Defined in [`object-0.37.3/src/pod.rs:189-195`](../../.source_1765900590/object-0.37.3/src/pod.rs#L189-L195)*
 

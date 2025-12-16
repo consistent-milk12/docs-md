@@ -275,7 +275,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/diff.rs:17-29`](../../.source_1765894658/itertools-0.14.0/src/diff.rs#L17-L29)*
+*Defined in [`itertools-0.14.0/src/diff.rs:17-29`](../../.source_1765900590/itertools-0.14.0/src/diff.rs#L17-L29)*
 
 A type returned by the [`diff_with`](diff/index.md) function.
 
@@ -370,7 +370,7 @@ enum MinMaxResult<T> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/minmax.rs:5-15`](../../.source_1765894658/itertools-0.14.0/src/minmax.rs#L5-L15)*
+*Defined in [`itertools-0.14.0/src/minmax.rs:5-15`](../../.source_1765900590/itertools-0.14.0/src/minmax.rs#L5-L15)*
 
 `MinMaxResult` is an enum returned by `minmax`.
 
@@ -401,7 +401,7 @@ See [`.minmax()`](crate::Itertools::minmax) for more detail.
   If the `MinMaxResult` has variant `OneElement(x)`, performing this
   operation will make one clone of `x`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::MinMaxResult::{self, NoElements, OneElement, MinMax};
@@ -500,7 +500,7 @@ enum Position {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/with_position.rs:50-59`](../../.source_1765894658/itertools-0.14.0/src/with_position.rs#L50-L59)*
+*Defined in [`itertools-0.14.0/src/with_position.rs:50-59`](../../.source_1765900590/itertools-0.14.0/src/with_position.rs#L50-L59)*
 
 The first component of the value yielded by `WithPosition`.
 Indicates the position of this element in the iterator results.
@@ -608,7 +608,7 @@ enum EitherOrBoth<A, B> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/either_or_both.rs:9-16`](../../.source_1765894658/itertools-0.14.0/src/either_or_both.rs#L9-L16)*
+*Defined in [`itertools-0.14.0/src/either_or_both.rs:9-16`](../../.source_1765900590/itertools-0.14.0/src/either_or_both.rs#L9-L16)*
 
 Value that either holds a single A or B, or both.
 
@@ -669,7 +669,7 @@ Value that either holds a single A or B, or both.
 
   If `Left`, return `Some` with the left value. If `Right` or `Both`, return `None`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   // On the `Left` variant.
@@ -690,7 +690,7 @@ Value that either holds a single A or B, or both.
 
   If `Right`, return `Some` with the right value. If `Left` or `Both`, return `None`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   // On the `Left` variant.
@@ -776,7 +776,7 @@ Value that either holds a single A or B, or both.
   the result of a function call, it is recommended to use `or_else`,
   which is lazily evaluated.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::EitherOrBoth;
@@ -798,7 +798,7 @@ Value that either holds a single A or B, or both.
   missing value with the supplied closure. The first argument (`l`) is used for a
   missing `Left` value. The second argument (`r`) is used for a missing `Right` value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::EitherOrBoth;
@@ -833,7 +833,7 @@ Value that either holds a single A or B, or both.
   Sets the `left` value of this instance, and returns a mutable reference to it.
   Does not affect the `right` value.
   
-  # Examples
+  ##### Examples
   ```rust
   use itertools::{EitherOrBoth, EitherOrBoth::{Left, Right, Both}};
   
@@ -852,7 +852,7 @@ Value that either holds a single A or B, or both.
   Sets the `right` value of this instance, and returns a mutable reference to it.
   Does not affect the `left` value.
   
-  # Examples
+  ##### Examples
   ```rust
   use itertools::{EitherOrBoth, EitherOrBoth::{Left, Both}};
   // Overwriting a pre-existing value.
@@ -954,7 +954,7 @@ enum FoldWhile<T> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/lib.rs:4691-4696`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L4691-L4696)*
+*Defined in [`itertools-0.14.0/src/lib.rs:4691-4696`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L4691-L4696)*
 
 An enum used for controlling the execution of `fold_while`.
 
@@ -1061,7 +1061,7 @@ See [`.fold_while()`](Itertools::fold_while) for more information.
 trait PeekingNext: Iterator { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:15-23`](../../.source_1765894658/itertools-0.14.0/src/peeking_take_while.rs#L15-L23)*
+*Defined in [`itertools-0.14.0/src/peeking_take_while.rs:15-23`](../../.source_1765900590/itertools-0.14.0/src/peeking_take_while.rs#L15-L23)*
 
 An iterator that allows peeking at an element before deciding to accept it.
 
@@ -1074,7 +1074,7 @@ by reference iterator (`std::slice::Iter`).
 
 #### Required Methods
 
-- `fn peeking_next<F>(&mut self, accept: F) -> Option<<Self as >::Item>`
+- `fn PeekingNext::peeking_next<F>(&mut self, accept: F) -> Option<<Self as >::Item>`
 
   Pass a reference to the next iterator element to the closure `accept`;
   if `accept` returns `true`, return it as the next element,
@@ -1107,7 +1107,7 @@ by reference iterator (`std::slice::Iter`).
 trait MultiUnzip<FromI>: Iterator { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/unziptuple.rs:32-35`](../../.source_1765894658/itertools-0.14.0/src/unziptuple.rs#L32-L35)*
+*Defined in [`itertools-0.14.0/src/unziptuple.rs:32-35`](../../.source_1765900590/itertools-0.14.0/src/unziptuple.rs#L32-L35)*
 
 An iterator that can be unzipped into multiple collections.
 
@@ -1115,7 +1115,7 @@ See [`.multiunzip()`](crate::Itertools::multiunzip) for more information.
 
 #### Required Methods
 
-- `fn multiunzip(self) -> FromI`
+- `fn MultiUnzip::multiunzip(self) -> FromI`
 
   Unzip this iterator into multiple collections.
 
@@ -1129,7 +1129,7 @@ See [`.multiunzip()`](crate::Itertools::multiunzip) for more information.
 trait Itertools: Iterator { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/lib.rs:438-4584`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L438-L4584)*
+*Defined in [`itertools-0.14.0/src/lib.rs:438-4584`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L438-L4584)*
 
 An `Iterator` blanket implementation that provides extra adaptors and
 methods.
@@ -1145,9 +1145,146 @@ This trait defines a number of methods. They are divided into two groups:
   [`.next_tuple()`](Itertools::next_tuple) is an example and the first regular
   method in the list.
 
+<details>
+<summary><strong>Methods (130)</strong> - click to expand</summary>
+
+**Provided:**
+- [`Itertools::interleave`](#fn-itertoolsinterleave)
+- [`Itertools::interleave_shortest`](#fn-itertoolsinterleave-shortest)
+- [`Itertools::intersperse`](#fn-itertoolsintersperse)
+- [`Itertools::intersperse_with`](#fn-itertoolsintersperse-with)
+- [`Itertools::get`](#fn-itertoolsget)
+- [`Itertools::zip_longest`](#fn-itertoolszip-longest)
+- [`Itertools::zip_eq`](#fn-itertoolszip-eq)
+- [`Itertools::batching`](#fn-itertoolsbatching)
+- [`Itertools::chunk_by`](#fn-itertoolschunk-by)
+- [`Itertools::group_by`](#fn-itertoolsgroup-by)
+- [`Itertools::chunks`](#fn-itertoolschunks)
+- [`Itertools::tuple_windows`](#fn-itertoolstuple-windows)
+- [`Itertools::circular_tuple_windows`](#fn-itertoolscircular-tuple-windows)
+- [`Itertools::tuples`](#fn-itertoolstuples)
+- [`Itertools::tee`](#fn-itertoolstee)
+- [`Itertools::map_into`](#fn-itertoolsmap-into)
+- [`Itertools::map_ok`](#fn-itertoolsmap-ok)
+- [`Itertools::filter_ok`](#fn-itertoolsfilter-ok)
+- [`Itertools::filter_map_ok`](#fn-itertoolsfilter-map-ok)
+- [`Itertools::flatten_ok`](#fn-itertoolsflatten-ok)
+- [`Itertools::process_results`](#fn-itertoolsprocess-results)
+- [`Itertools::merge`](#fn-itertoolsmerge)
+- [`Itertools::merge_by`](#fn-itertoolsmerge-by)
+- [`Itertools::merge_join_by`](#fn-itertoolsmerge-join-by)
+- [`Itertools::kmerge`](#fn-itertoolskmerge)
+- [`Itertools::kmerge_by`](#fn-itertoolskmerge-by)
+- [`Itertools::cartesian_product`](#fn-itertoolscartesian-product)
+- [`Itertools::multi_cartesian_product`](#fn-itertoolsmulti-cartesian-product)
+- [`Itertools::coalesce`](#fn-itertoolscoalesce)
+- [`Itertools::dedup`](#fn-itertoolsdedup)
+- [`Itertools::dedup_by`](#fn-itertoolsdedup-by)
+- [`Itertools::dedup_with_count`](#fn-itertoolsdedup-with-count)
+- [`Itertools::dedup_by_with_count`](#fn-itertoolsdedup-by-with-count)
+- [`Itertools::duplicates`](#fn-itertoolsduplicates)
+- [`Itertools::duplicates_by`](#fn-itertoolsduplicates-by)
+- [`Itertools::unique`](#fn-itertoolsunique)
+- [`Itertools::unique_by`](#fn-itertoolsunique-by)
+- [`Itertools::peeking_take_while`](#fn-itertoolspeeking-take-while)
+- [`Itertools::take_while_ref`](#fn-itertoolstake-while-ref)
+- [`Itertools::take_while_inclusive`](#fn-itertoolstake-while-inclusive)
+- [`Itertools::while_some`](#fn-itertoolswhile-some)
+- [`Itertools::tuple_combinations`](#fn-itertoolstuple-combinations)
+- [`Itertools::array_combinations`](#fn-itertoolsarray-combinations)
+- [`Itertools::combinations`](#fn-itertoolscombinations)
+- [`Itertools::combinations_with_replacement`](#fn-itertoolscombinations-with-replacement)
+- [`Itertools::permutations`](#fn-itertoolspermutations)
+- [`Itertools::powerset`](#fn-itertoolspowerset)
+- [`Itertools::pad_using`](#fn-itertoolspad-using)
+- [`Itertools::with_position`](#fn-itertoolswith-position)
+- [`Itertools::positions`](#fn-itertoolspositions)
+- [`Itertools::update`](#fn-itertoolsupdate)
+- [`Itertools::next_array`](#fn-itertoolsnext-array)
+- [`Itertools::collect_array`](#fn-itertoolscollect-array)
+- [`Itertools::next_tuple`](#fn-itertoolsnext-tuple)
+- [`Itertools::collect_tuple`](#fn-itertoolscollect-tuple)
+- [`Itertools::find_position`](#fn-itertoolsfind-position)
+- [`Itertools::find_or_last`](#fn-itertoolsfind-or-last)
+- [`Itertools::find_or_first`](#fn-itertoolsfind-or-first)
+- [`Itertools::contains`](#fn-itertoolscontains)
+- [`Itertools::all_equal`](#fn-itertoolsall-equal)
+- [`Itertools::all_equal_value`](#fn-itertoolsall-equal-value)
+- [`Itertools::all_unique`](#fn-itertoolsall-unique)
+- [`Itertools::dropping`](#fn-itertoolsdropping)
+- [`Itertools::dropping_back`](#fn-itertoolsdropping-back)
+- [`Itertools::concat`](#fn-itertoolsconcat)
+- [`Itertools::collect_vec`](#fn-itertoolscollect-vec)
+- [`Itertools::try_collect`](#fn-itertoolstry-collect)
+- [`Itertools::set_from`](#fn-itertoolsset-from)
+- [`Itertools::join`](#fn-itertoolsjoin)
+- [`Itertools::format`](#fn-itertoolsformat)
+- [`Itertools::format_with`](#fn-itertoolsformat-with)
+- [`Itertools::fold_ok`](#fn-itertoolsfold-ok)
+- [`Itertools::fold_options`](#fn-itertoolsfold-options)
+- [`Itertools::fold1`](#fn-itertoolsfold1)
+- [`Itertools::tree_reduce`](#fn-itertoolstree-reduce)
+- [`Itertools::tree_fold1`](#fn-itertoolstree-fold1)
+- [`Itertools::fold_while`](#fn-itertoolsfold-while)
+- [`Itertools::sum1`](#fn-itertoolssum1)
+- [`Itertools::product1`](#fn-itertoolsproduct1)
+- [`Itertools::sorted_unstable`](#fn-itertoolssorted-unstable)
+- [`Itertools::sorted_unstable_by`](#fn-itertoolssorted-unstable-by)
+- [`Itertools::sorted_unstable_by_key`](#fn-itertoolssorted-unstable-by-key)
+- [`Itertools::sorted`](#fn-itertoolssorted)
+- [`Itertools::sorted_by`](#fn-itertoolssorted-by)
+- [`Itertools::sorted_by_key`](#fn-itertoolssorted-by-key)
+- [`Itertools::sorted_by_cached_key`](#fn-itertoolssorted-by-cached-key)
+- [`Itertools::k_smallest`](#fn-itertoolsk-smallest)
+- [`Itertools::k_smallest_by`](#fn-itertoolsk-smallest-by)
+- [`Itertools::k_smallest_by_key`](#fn-itertoolsk-smallest-by-key)
+- [`Itertools::k_smallest_relaxed`](#fn-itertoolsk-smallest-relaxed)
+- [`Itertools::k_smallest_relaxed_by`](#fn-itertoolsk-smallest-relaxed-by)
+- [`Itertools::k_smallest_relaxed_by_key`](#fn-itertoolsk-smallest-relaxed-by-key)
+- [`Itertools::k_largest`](#fn-itertoolsk-largest)
+- [`Itertools::k_largest_by`](#fn-itertoolsk-largest-by)
+- [`Itertools::k_largest_by_key`](#fn-itertoolsk-largest-by-key)
+- [`Itertools::k_largest_relaxed`](#fn-itertoolsk-largest-relaxed)
+- [`Itertools::k_largest_relaxed_by`](#fn-itertoolsk-largest-relaxed-by)
+- [`Itertools::k_largest_relaxed_by_key`](#fn-itertoolsk-largest-relaxed-by-key)
+- [`Itertools::tail`](#fn-itertoolstail)
+- [`Itertools::partition_map`](#fn-itertoolspartition-map)
+- [`Itertools::partition_result`](#fn-itertoolspartition-result)
+- [`Itertools::into_group_map`](#fn-itertoolsinto-group-map)
+- [`Itertools::into_group_map_by`](#fn-itertoolsinto-group-map-by)
+- [`Itertools::into_grouping_map`](#fn-itertoolsinto-grouping-map)
+- [`Itertools::into_grouping_map_by`](#fn-itertoolsinto-grouping-map-by)
+- [`Itertools::min_set`](#fn-itertoolsmin-set)
+- [`Itertools::min_set_by`](#fn-itertoolsmin-set-by)
+- [`Itertools::min_set_by_key`](#fn-itertoolsmin-set-by-key)
+- [`Itertools::max_set`](#fn-itertoolsmax-set)
+- [`Itertools::max_set_by`](#fn-itertoolsmax-set-by)
+- [`Itertools::max_set_by_key`](#fn-itertoolsmax-set-by-key)
+- [`Itertools::minmax`](#fn-itertoolsminmax)
+- [`Itertools::minmax_by_key`](#fn-itertoolsminmax-by-key)
+- [`Itertools::minmax_by`](#fn-itertoolsminmax-by)
+- [`Itertools::position_max`](#fn-itertoolsposition-max)
+- [`Itertools::position_max_by_key`](#fn-itertoolsposition-max-by-key)
+- [`Itertools::position_max_by`](#fn-itertoolsposition-max-by)
+- [`Itertools::position_min`](#fn-itertoolsposition-min)
+- [`Itertools::position_min_by_key`](#fn-itertoolsposition-min-by-key)
+- [`Itertools::position_min_by`](#fn-itertoolsposition-min-by)
+- [`Itertools::position_minmax`](#fn-itertoolsposition-minmax)
+- [`Itertools::position_minmax_by_key`](#fn-itertoolsposition-minmax-by-key)
+- [`Itertools::position_minmax_by`](#fn-itertoolsposition-minmax-by)
+- [`Itertools::exactly_one`](#fn-itertoolsexactly-one)
+- [`Itertools::at_most_one`](#fn-itertoolsat-most-one)
+- [`Itertools::multipeek`](#fn-itertoolsmultipeek)
+- [`Itertools::counts`](#fn-itertoolscounts)
+- [`Itertools::counts_by`](#fn-itertoolscounts-by)
+- [`Itertools::multiunzip`](#fn-itertoolsmultiunzip)
+- [`Itertools::try_len`](#fn-itertoolstry-len)
+
+</details>
+
 #### Provided Methods
 
-- `fn interleave<J>(self, other: J) -> Interleave<Self, <J as >::IntoIter>`
+- `fn Itertools::interleave<J>(self, other: J) -> Interleave<Self, <J as >::IntoIter>`
 
   Alternate elements from two iterators until both have run out.
   
@@ -1162,7 +1299,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![1, -1, 2, -2, 3, 4, 5, 6]);
   ```
 
-- `fn interleave_shortest<J>(self, other: J) -> InterleaveShortest<Self, <J as >::IntoIter>`
+- `fn Itertools::interleave_shortest<J>(self, other: J) -> InterleaveShortest<Self, <J as >::IntoIter>`
 
   Alternate elements from two iterators until at least one of them has run
   out.
@@ -1176,7 +1313,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![1, -1, 2, -2, 3]);
   ```
 
-- `fn intersperse(self, element: <Self as >::Item) -> Intersperse<Self>`
+- `fn Itertools::intersperse(self, element: <Self as >::Item) -> Intersperse<Self>`
 
   An iterator adaptor to insert a particular value
   between each element of the adapted iterator.
@@ -1191,7 +1328,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal((0..3).intersperse(8), vec![0, 8, 1, 8, 2]);
   ```
 
-- `fn intersperse_with<F>(self, element: F) -> IntersperseWith<Self, F>`
+- `fn Itertools::intersperse_with<F>(self, element: F) -> IntersperseWith<Self, F>`
 
   An iterator adaptor to insert a particular value created by a function
   between each element of the adapted iterator.
@@ -1208,7 +1345,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(i, 8);
   ```
 
-- `fn get<R>(self, index: R) -> <R as >::Output`
+- `fn Itertools::get<R>(self, index: R) -> <R as >::Output`
 
   Returns an iterator over a subsection of the iterator.
   
@@ -1222,10 +1359,10 @@ This trait defines a number of methods. They are divided into two groups:
   - `ExactSizeIterator` if the adapted iterator is `ExactSizeIterator`.
   - `DoubleEndedIterator` if the adapted iterator is `DoubleEndedIterator` and `ExactSizeIterator`.
   
-  # Unspecified Behavior
+  ##### Unspecified Behavior
   The result of indexing with an exhausted `core::ops::RangeInclusive` is unspecified.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -1253,7 +1390,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(range, vec);
   ```
 
-- `fn zip_longest<J>(self, other: J) -> ZipLongest<Self, <J as >::IntoIter>`
+- `fn Itertools::zip_longest<J>(self, other: J) -> ZipLongest<Self, <J as >::IntoIter>`
 
   Create an iterator which iterates over both this and the specified
   iterator simultaneously, yielding pairs of two optional elements.
@@ -1282,7 +1419,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![Both(0, 1), Right(2)]);
   ```
 
-- `fn zip_eq<J>(self, other: J) -> ZipEq<Self, <J as >::IntoIter>`
+- `fn Itertools::zip_eq<J>(self, other: J) -> ZipEq<Self, <J as >::IntoIter>`
 
   Create an iterator which iterates over both this and the specified
   iterator simultaneously, yielding pairs of elements.
@@ -1290,7 +1427,7 @@ This trait defines a number of methods. They are divided into two groups:
   **Panics** if the iterators reach an end and they are not of equal
   lengths.
 
-- `fn batching<B, F>(self, f: F) -> Batching<Self, F>`
+- `fn Itertools::batching<B, F>(self, f: F) -> Batching<Self, F>`
 
   A “meta iterator adaptor”. Its closure receives a reference to the
   iterator and may pick off as many elements as it likes, to produce the
@@ -1315,7 +1452,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(pit, vec![(0, 1), (2, 3)]);
   ```
 
-- `fn chunk_by<K, F>(self, key: F) -> ChunkBy<K, Self, F>`
+- `fn Itertools::chunk_by<K, F>(self, key: F) -> ChunkBy<K, Self, F>`
 
   Return an *iterable* that can group iterator elements.
   Consecutive elements that map to the same key (“runs”), are assigned
@@ -1352,11 +1489,11 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(data_grouped, vec![(true, vec![1, 3]), (false, vec![-2, -2]), (true, vec![1, 0, 1, 2])]);
   ```
 
-- `fn group_by<K, F>(self, key: F) -> ChunkBy<K, Self, F>`
+- `fn Itertools::group_by<K, F>(self, key: F) -> ChunkBy<K, Self, F>`
 
   See [`.chunk_by()`](Itertools::chunk_by).
 
-- `fn chunks(self, size: usize) -> IntoChunks<Self>`
+- `fn Itertools::chunks(self, size: usize) -> IntoChunks<Self>`
 
   Return an *iterable* that can chunk the iterator.
   
@@ -1386,7 +1523,7 @@ This trait defines a number of methods. They are divided into two groups:
   }
   ```
 
-- `fn tuple_windows<T>(self) -> TupleWindows<Self, T>`
+- `fn Itertools::tuple_windows<T>(self) -> TupleWindows<Self, T>`
 
   Return an iterator over all contiguous windows producing tuples of
   a specific size (up to 12).
@@ -1422,7 +1559,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![(1, 2, 3), (2, 3, 4)]);
   ```
 
-- `fn circular_tuple_windows<T>(self) -> CircularTupleWindows<Self, T>`
+- `fn Itertools::circular_tuple_windows<T>(self) -> CircularTupleWindows<Self, T>`
 
   Return an iterator over all windows, wrapping back to the first
   elements when the window would otherwise exceed the length of the
@@ -1452,7 +1589,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![(1, 2, 3), (2, 3, 4), (3, 4, 1), (4, 1, 2)]);
   ```
 
-- `fn tuples<T>(self) -> Tuples<Self, T>`
+- `fn Itertools::tuples<T>(self) -> Tuples<Self, T>`
 
   Return an iterator that groups the items in tuples of a specific size
   (up to 12).
@@ -1486,7 +1623,7 @@ This trait defines a number of methods. They are divided into two groups:
   
   See also `Tuples::into_buffer`.
 
-- `fn tee(self) -> (Tee<Self>, Tee<Self>)`
+- `fn Itertools::tee(self) -> (Tee<Self>, Tee<Self>)`
 
   Split into an iterator pair that both yield all elements from
   the original iterator.
@@ -1506,7 +1643,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(t1, 1..4);
   ```
 
-- `fn map_into<R>(self) -> MapInto<Self, R>`
+- `fn Itertools::map_into<R>(self) -> MapInto<Self, R>`
 
   Convert each item of the iterator using the `Into` trait.
   
@@ -1516,7 +1653,7 @@ This trait defines a number of methods. They are divided into two groups:
   (1i32..42i32).map_into::<f64>().collect_vec();
   ```
 
-- `fn map_ok<F, T, U, E>(self, f: F) -> MapOk<Self, F>`
+- `fn Itertools::map_ok<F, T, U, E>(self, f: F) -> MapOk<Self, F>`
 
   Return an iterator adaptor that applies the provided closure
   to every `Result::Ok` value. `Result::Err` values are
@@ -1530,7 +1667,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![Ok(42), Err(false), Ok(12)]);
   ```
 
-- `fn filter_ok<F, T, E>(self, f: F) -> FilterOk<Self, F>`
+- `fn Itertools::filter_ok<F, T, E>(self, f: F) -> FilterOk<Self, F>`
 
   Return an iterator adaptor that filters every `Result::Ok`
   value with the provided closure. `Result::Err` values are
@@ -1544,7 +1681,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![Ok(22), Err(false)]);
   ```
 
-- `fn filter_map_ok<F, T, U, E>(self, f: F) -> FilterMapOk<Self, F>`
+- `fn Itertools::filter_map_ok<F, T, U, E>(self, f: F) -> FilterMapOk<Self, F>`
 
   Return an iterator adaptor that filters and transforms every
   `Result::Ok` value with the provided closure. `Result::Err`
@@ -1558,7 +1695,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![Ok(44), Err(false)]);
   ```
 
-- `fn flatten_ok<T, E>(self) -> FlattenOk<Self, T, E>`
+- `fn Itertools::flatten_ok<T, E>(self) -> FlattenOk<Self, T, E>`
 
   Return an iterator adaptor that flattens every `Result::Ok` value into
   a series of `Result::Ok` values. `Result::Err` values are unchanged.
@@ -1578,7 +1715,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(output_result, Err(false));
   ```
 
-- `fn process_results<F, T, E, R>(self, processor: F) -> Result<R, E>`
+- `fn Itertools::process_results<F, T, E, R>(self, processor: F) -> Result<R, E>`
 
   “Lift” a function of the values of the current iterator so as to process
   an iterator of `Result` values instead.
@@ -1593,7 +1730,7 @@ This trait defines a number of methods. They are divided into two groups:
   Otherwise, the return value from the closure is returned wrapped
   inside `Ok`.
   
-  # Example
+  ##### Example
   
   ```rust
   use itertools::Itertools;
@@ -1611,7 +1748,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert!(second_max.is_err());
   ```
 
-- `fn merge<J>(self, other: J) -> Merge<Self, <J as >::IntoIter>`
+- `fn Itertools::merge<J>(self, other: J) -> Merge<Self, <J as >::IntoIter>`
 
   Return an iterator adaptor that merges the two base iterators in
   ascending order.  If both base iterators are sorted (ascending), the
@@ -1628,7 +1765,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![0, 0, 3, 5, 6, 9, 10]);
   ```
 
-- `fn merge_by<J, F>(self, other: J, is_first: F) -> MergeBy<Self, <J as >::IntoIter, F>`
+- `fn Itertools::merge_by<J, F>(self, other: J, is_first: F) -> MergeBy<Self, <J as >::IntoIter, F>`
 
   Return an iterator adaptor that merges the two base iterators in order.
   This is much like [`.merge()`](Itertools::merge) but allows for a custom ordering.
@@ -1646,7 +1783,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![(0, 'a'), (0, 'b'), (1, 'c'), (1, 'd')]);
   ```
 
-- `fn merge_join_by<J, F, T>(self, other: J, cmp_fn: F) -> MergeJoinBy<Self, <J as >::IntoIter, F>`
+- `fn Itertools::merge_join_by<J, F, T>(self, other: J, cmp_fn: F) -> MergeJoinBy<Self, <J as >::IntoIter, F>`
 
   Create an iterator that merges items from both this and the specified
   iterator in ascending order.
@@ -1708,7 +1845,7 @@ This trait defines a number of methods. They are divided into two groups:
   );
   ```
 
-- `fn kmerge(self) -> KMerge<<<Self as >::Item as IntoIterator>::IntoIter>`
+- `fn Itertools::kmerge(self) -> KMerge<<<Self as >::Item as IntoIterator>::IntoIter>`
 
   Return an iterator adaptor that flattens an iterator of iterators by
   merging them in ascending order.
@@ -1727,7 +1864,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![0, 1, 2, 3, 4, 5]);
   ```
 
-- `fn kmerge_by<F>(self, first: F) -> KMergeBy<<<Self as >::Item as IntoIterator>::IntoIter, F>`
+- `fn Itertools::kmerge_by<F>(self, first: F) -> KMergeBy<<<Self as >::Item as IntoIterator>::IntoIter, F>`
 
   Return an iterator adaptor that flattens an iterator of iterators by
   merging them according to the given closure.
@@ -1750,7 +1887,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(it.last(), Some(-7.));
   ```
 
-- `fn cartesian_product<J>(self, other: J) -> Product<Self, <J as >::IntoIter>`
+- `fn Itertools::cartesian_product<J>(self, other: J) -> Product<Self, <J as >::IntoIter>`
 
   Return an iterator adaptor that iterates over the cartesian product of
   the element sets of two iterators `self` and `J`.
@@ -1764,7 +1901,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![(0, 'α'), (0, 'β'), (1, 'α'), (1, 'β')]);
   ```
 
-- `fn multi_cartesian_product(self) -> MultiProduct<<<Self as >::Item as IntoIterator>::IntoIter>`
+- `fn Itertools::multi_cartesian_product(self) -> MultiProduct<<<Self as >::Item as IntoIterator>::IntoIter>`
 
   Return an iterator adaptor that iterates over the cartesian product of
   all subiterators returned by meta-iterator `self`.
@@ -1803,7 +1940,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(nullary_cartesian_product.next(), None);
   ```
 
-- `fn coalesce<F>(self, f: F) -> Coalesce<Self, F>`
+- `fn Itertools::coalesce<F>(self, f: F) -> Coalesce<Self, F>`
 
   Return an iterator adaptor that uses the passed-in closure to
   optionally merge together consecutive elements.
@@ -1834,7 +1971,7 @@ This trait defines a number of methods. They are divided into two groups:
           vec![-6., 4., -1.]);
   ```
 
-- `fn dedup(self) -> Dedup<Self>`
+- `fn Itertools::dedup(self) -> Dedup<Self>`
 
   Remove duplicates from sections of consecutive identical elements.
   If the iterator is sorted, all elements will be unique.
@@ -1851,7 +1988,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec![1., 2., 3., 2.]);
   ```
 
-- `fn dedup_by<Cmp>(self, cmp: Cmp) -> DedupBy<Self, Cmp>`
+- `fn Itertools::dedup_by<Cmp>(self, cmp: Cmp) -> DedupBy<Self, Cmp>`
 
   Remove duplicates from sections of consecutive identical elements,
   determining equality using a comparison function.
@@ -1869,7 +2006,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec![(0, 1.), (0, 2.), (0, 3.), (1, 2.)]);
   ```
 
-- `fn dedup_with_count(self) -> DedupWithCount<Self>`
+- `fn Itertools::dedup_with_count(self) -> DedupWithCount<Self>`
 
   Remove duplicates from sections of consecutive identical elements, while keeping a count of
   how many repeated elements were present.
@@ -1887,7 +2024,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec![(2, 'a'), (1, 'b'), (2, 'c'), (2, 'b')]);
   ```
 
-- `fn dedup_by_with_count<Cmp>(self, cmp: Cmp) -> DedupByWithCount<Self, Cmp>`
+- `fn Itertools::dedup_by_with_count<Cmp>(self, cmp: Cmp) -> DedupByWithCount<Self, Cmp>`
 
   Remove duplicates from sections of consecutive identical elements, while keeping a count of
   how many repeated elements were present.
@@ -1906,7 +2043,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec![(2, (0, 'a')), (1, (0, 'b')), (2, (0, 'c')), (2, (1, 'b'))]);
   ```
 
-- `fn duplicates(self) -> Duplicates<Self>`
+- `fn Itertools::duplicates(self) -> Duplicates<Self>`
 
   Return an iterator adaptor that produces elements that appear more than once during the
   iteration. Duplicates are detected using hash and equality.
@@ -1923,7 +2060,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec![20, 10]);
   ```
 
-- `fn duplicates_by<V, F>(self, f: F) -> DuplicatesBy<Self, V, F>`
+- `fn Itertools::duplicates_by<V, F>(self, f: F) -> DuplicatesBy<Self, V, F>`
 
   Return an iterator adaptor that produces elements that appear more than once during the
   iteration. Duplicates are detected using hash and equality.
@@ -1943,7 +2080,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec!["aa", "c"]);
   ```
 
-- `fn unique(self) -> Unique<Self>`
+- `fn Itertools::unique(self) -> Unique<Self>`
 
   Return an iterator adaptor that filters out elements that have
   already been produced once during the iteration. Duplicates
@@ -1964,7 +2101,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec![10, 20, 30, 40, 50]);
   ```
 
-- `fn unique_by<V, F>(self, f: F) -> UniqueBy<Self, V, F>`
+- `fn Itertools::unique_by<V, F>(self, f: F) -> UniqueBy<Self, V, F>`
 
   Return an iterator adaptor that filters out elements that have
   already been produced once during the iteration.
@@ -1985,7 +2122,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec!["a", "bb", "ccc"]);
   ```
 
-- `fn peeking_take_while<F>(&mut self, accept: F) -> PeekingTakeWhile<'_, Self, F>`
+- `fn Itertools::peeking_take_while<F>(&mut self, accept: F) -> PeekingTakeWhile<'_, Self, F>`
 
   Return an iterator adaptor that borrows from this iterator and
   takes items while the closure `accept` returns `true`.
@@ -2000,7 +2137,7 @@ This trait defines a number of methods. They are divided into two groups:
   See also [`.take_while_ref()`](Itertools::take_while_ref)
   which is a similar adaptor.
 
-- `fn take_while_ref<F>(&mut self, accept: F) -> TakeWhileRef<'_, Self, F>`
+- `fn Itertools::take_while_ref<F>(&mut self, accept: F) -> TakeWhileRef<'_, Self, F>`
 
   Return an iterator adaptor that borrows from a `Clone`-able iterator
   to only pick off elements while the predicate `accept` returns `true`.
@@ -2021,7 +2158,7 @@ This trait defines a number of methods. They are divided into two groups:
   
   ```
 
-- `fn take_while_inclusive<F>(self, accept: F) -> TakeWhileInclusive<Self, F>`
+- `fn Itertools::take_while_inclusive<F>(self, accept: F) -> TakeWhileInclusive<Self, F>`
 
   Returns an iterator adaptor that consumes elements while the given
   predicate is `true`, *including* the element for which the predicate
@@ -2084,7 +2221,7 @@ This trait defines a number of methods. They are divided into two groups:
   let expected: Vec<_> = vec![1, 2, 3].into_iter().map(NoCloneImpl).collect();
   assert_eq!(filtered, expected);
 
-- `fn while_some<A>(self) -> WhileSome<Self>`
+- `fn Itertools::while_some<A>(self) -> WhileSome<Self>`
 
   Return an iterator adaptor that filters `Option<A>` iterator elements
   and produces `A`. Stops on the first `None` encountered.
@@ -2101,7 +2238,7 @@ This trait defines a number of methods. They are divided into two groups:
   
   ```
 
-- `fn tuple_combinations<T>(self) -> TupleCombinations<Self, T>`
+- `fn Itertools::tuple_combinations<T>(self) -> TupleCombinations<Self, T>`
 
   Return an iterator adaptor that iterates over the combinations of the
   elements from an iterator.
@@ -2109,7 +2246,7 @@ This trait defines a number of methods. They are divided into two groups:
   Iterator element can be any homogeneous tuple of type `Self::Item` with
   size up to 12.
   
-  # Guarantees
+  ##### Guarantees
   
   If the adapted iterator is deterministic,
   this iterator adapter yields items in a reliable order.
@@ -2142,7 +2279,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![(1, 2, 3), (1, 2, 4), (1, 3, 4), (2, 3, 4)]);
   ```
 
-- `fn array_combinations<const K: usize>(self) -> ArrayCombinations<Self, K>`
+- `fn Itertools::array_combinations<const K: usize>(self) -> ArrayCombinations<Self, K>`
 
   Return an iterator adaptor that iterates over the combinations of the
   elements from an iterator.
@@ -2150,7 +2287,7 @@ This trait defines a number of methods. They are divided into two groups:
   Iterator element type is [Self::Item; K]. The iterator produces a new
   array per iteration, and clones the iterator elements.
   
-  # Guarantees
+  ##### Guarantees
   
   If the adapted iterator is deterministic,
   this iterator adapter yields items in a reliable order.
@@ -2183,7 +2320,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![[1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4]]);
   ```
 
-- `fn combinations(self, k: usize) -> Combinations<Self>`
+- `fn Itertools::combinations(self, k: usize) -> Combinations<Self>`
 
   Return an iterator adaptor that iterates over the `k`-length combinations of
   the elements from an iterator.
@@ -2191,7 +2328,7 @@ This trait defines a number of methods. They are divided into two groups:
   Iterator element type is `Vec<Self::Item>`. The iterator produces a new `Vec` per iteration,
   and clones the iterator elements.
   
-  # Guarantees
+  ##### Guarantees
   
   If the adapted iterator is deterministic,
   this iterator adapter yields items in a reliable order.
@@ -2220,7 +2357,7 @@ This trait defines a number of methods. They are divided into two groups:
   ]);
   ```
 
-- `fn combinations_with_replacement(self, k: usize) -> CombinationsWithReplacement<Self>`
+- `fn Itertools::combinations_with_replacement(self, k: usize) -> CombinationsWithReplacement<Self>`
 
   Return an iterator that iterates over the `k`-length combinations of
   the elements from an iterator, with replacement.
@@ -2242,7 +2379,7 @@ This trait defines a number of methods. They are divided into two groups:
   ]);
   ```
 
-- `fn permutations(self, k: usize) -> Permutations<Self>`
+- `fn Itertools::permutations(self, k: usize) -> Permutations<Self>`
 
   Return an iterator adaptor that iterates over all k-permutations of the
   elements from an iterator.
@@ -2285,7 +2422,7 @@ This trait defines a number of methods. They are divided into two groups:
   Note: The source iterator is collected lazily, and will not be
   re-iterated if the permutations adaptor is completed and re-iterated.
 
-- `fn powerset(self) -> Powerset<Self>`
+- `fn Itertools::powerset(self) -> Powerset<Self>`
 
   Return an iterator that iterates through the powerset of the elements from an
   iterator.
@@ -2316,7 +2453,7 @@ This trait defines a number of methods. They are divided into two groups:
   ]);
   ```
 
-- `fn pad_using<F>(self, min: usize, f: F) -> PadUsing<Self, F>`
+- `fn Itertools::pad_using<F>(self, min: usize, f: F) -> PadUsing<Self, F>`
 
   Return an iterator adaptor that pads the sequence to a minimum length of
   `min` by filling missing elements using a closure `f`.
@@ -2336,7 +2473,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![18, 16, 14, 12, 10, 4, 3, 2, 1, 0]);
   ```
 
-- `fn with_position(self) -> WithPosition<Self>`
+- `fn Itertools::with_position(self) -> WithPosition<Self>`
 
   Return an iterator adaptor that combines each element with a `Position` to
   ease special-case handling of the first or last elements.
@@ -2358,7 +2495,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![(Position::Only, 0)]);
   ```
 
-- `fn positions<P>(self, predicate: P) -> Positions<Self, P>`
+- `fn Itertools::positions<P>(self, predicate: P) -> Positions<Self, P>`
 
   Return an iterator adaptor that yields the indices of all elements
   satisfying a predicate, counted from the start of the iterator.
@@ -2374,7 +2511,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(data.iter().positions(|v| v % 2 == 1).rev(), vec![7, 6, 3, 2, 0]);
   ```
 
-- `fn update<F>(self, updater: F) -> Update<Self, F>`
+- `fn Itertools::update<F>(self, updater: F) -> Update<Self, F>`
 
   Return an iterator adaptor that applies a mutating function
   to each element before yielding it.
@@ -2387,7 +2524,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(it, vec![vec![1, 0], vec![3, 2, 1, 0]]);
   ```
 
-- `fn next_array<const N: usize>(&mut self) -> Option<[<Self as >::Item; N]>`
+- `fn Itertools::next_array<const N: usize>(&mut self) -> Option<[<Self as >::Item; N]>`
 
   Advances the iterator and returns the next items grouped in an array of
   a specific size.
@@ -2403,7 +2540,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(Some([1, 2]), iter.next_array());
   ```
 
-- `fn collect_array<const N: usize>(self) -> Option<[<Self as >::Item; N]>`
+- `fn Itertools::collect_array<const N: usize>(self) -> Option<[<Self as >::Item; N]>`
 
   Collects all items from the iterator into an array of a specific size.
   
@@ -2423,7 +2560,7 @@ This trait defines a number of methods. They are divided into two groups:
   }
   ```
 
-- `fn next_tuple<T>(&mut self) -> Option<T>`
+- `fn Itertools::next_tuple<T>(&mut self) -> Option<T>`
 
   Advances the iterator and returns the next items grouped in a tuple of
   a specific size (up to 12).
@@ -2439,7 +2576,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(Some((1, 2)), iter.next_tuple());
   ```
 
-- `fn collect_tuple<T>(self) -> Option<T>`
+- `fn Itertools::collect_tuple<T>(self) -> Option<T>`
 
   Collects all items from the iterator into a tuple of a specific size
   (up to 12).
@@ -2460,7 +2597,7 @@ This trait defines a number of methods. They are divided into two groups:
   }
   ```
 
-- `fn find_position<P>(&mut self, pred: P) -> Option<(usize, <Self as >::Item)>`
+- `fn Itertools::find_position<P>(&mut self, pred: P) -> Option<(usize, <Self as >::Item)>`
 
   Find the position and value of the first element satisfying a predicate.
   
@@ -2473,7 +2610,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(text.chars().find_position(|ch| ch.is_lowercase()), Some((1, 'α')));
   ```
 
-- `fn find_or_last<P>(self, predicate: P) -> Option<<Self as >::Item>`
+- `fn Itertools::find_or_last<P>(self, predicate: P) -> Option<<Self as >::Item>`
 
   Find the value of the first element satisfying a predicate or return the last element, if any.
   
@@ -2497,7 +2634,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(std::iter::empty::<Result<(), i32>>().find_or_last(Result::is_ok), None);
   ```
 
-- `fn find_or_first<P>(self, predicate: P) -> Option<<Self as >::Item>`
+- `fn Itertools::find_or_first<P>(self, predicate: P) -> Option<<Self as >::Item>`
 
   Find the value of the first element satisfying a predicate or return the first element, if any.
   
@@ -2521,7 +2658,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(std::iter::empty::<Result<(), i32>>().find_or_first(Result::is_ok), None);
   ```
 
-- `fn contains<Q>(&mut self, query: &Q) -> bool`
+- `fn Itertools::contains<Q>(&mut self, query: &Q) -> bool`
 
   Returns `true` if the given item is present in this iterator.
   
@@ -2549,7 +2686,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(iter.next(), None);
   ```
 
-- `fn all_equal(&mut self) -> bool`
+- `fn Itertools::all_equal(&mut self) -> bool`
 
   Check whether all elements compare equal.
   
@@ -2568,7 +2705,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert!(data.into_iter().all_equal());
   ```
 
-- `fn all_equal_value(&mut self) -> Result<<Self as >::Item, Option<(<Self as >::Item, <Self as >::Item)>>`
+- `fn Itertools::all_equal_value(&mut self) -> Result<<Self as >::Item, Option<(<Self as >::Item, <Self as >::Item)>>`
 
   If there are elements and they are all equal, return a single copy of that element.
   If there are no elements, return an Error containing None.
@@ -2588,7 +2725,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(data.into_iter().all_equal_value(), Err(None));
   ```
 
-- `fn all_unique(&mut self) -> bool`
+- `fn Itertools::all_unique(&mut self) -> bool`
 
   Check whether all elements are unique (non equal).
   
@@ -2606,7 +2743,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert!(data.into_iter().all_unique());
   ```
 
-- `fn dropping(self, n: usize) -> Self`
+- `fn Itertools::dropping(self, n: usize) -> Self`
 
   Consume the first `n` elements from the iterator eagerly,
   and return the same iterator again.
@@ -2624,7 +2761,7 @@ This trait defines a number of methods. They are divided into two groups:
   *Fusing notes: if the iterator is exhausted by dropping,
   the result of calling `.next()` again depends on the iterator implementation.*
 
-- `fn dropping_back(self, n: usize) -> Self`
+- `fn Itertools::dropping_back(self, n: usize) -> Self`
 
   Consume the last `n` elements from the iterator eagerly,
   and return the same iterator again.
@@ -2642,7 +2779,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(init, vec![0, 3, 6]);
   ```
 
-- `fn concat(self) -> <Self as >::Item`
+- `fn Itertools::concat(self) -> <Self as >::Item`
 
   Combine all an iterator's elements into one element by using `Extend`.
   
@@ -2658,17 +2795,17 @@ This trait defines a number of methods. They are divided into two groups:
              vec![1, 2, 3, 4, 5, 6]);
   ```
 
-- `fn collect_vec(self) -> Vec<<Self as >::Item>`
+- `fn Itertools::collect_vec(self) -> Vec<<Self as >::Item>`
 
   `.collect_vec()` is simply a type specialization of `Iterator::collect`,
   for convenience.
 
-- `fn try_collect<T, U, E>(self) -> Result<U, E>`
+- `fn Itertools::try_collect<T, U, E>(self) -> Result<U, E>`
 
   `.try_collect()` is more convenient way of writing
   `.collect::<Result<_, _>>()`
   
-  # Example
+  ##### Example
   
   ```rust
   use std::{fs, io};
@@ -2689,7 +2826,7 @@ This trait defines a number of methods. They are divided into two groups:
   let _ = do_stuff;
   ```
 
-- `fn set_from<'a, A: 'a, J>(&mut self, from: J) -> usize`
+- `fn Itertools::set_from<'a, A: 'a, J>(&mut self, from: J) -> usize`
 
   Assign to each reference in `self` from the `from` iterator,
   stopping at the shortest of the two iterators.
@@ -2707,7 +2844,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(xs, [1, 2, 3, 4]);
   ```
 
-- `fn join(&mut self, sep: &str) -> String`
+- `fn Itertools::join(&mut self, sep: &str) -> String`
 
   Combine all iterator elements into one `String`, separated by `sep`.
   
@@ -2720,7 +2857,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!([1, 2, 3].iter().join(", "), "1, 2, 3");
   ```
 
-- `fn format(self, sep: &str) -> Format<'_, Self>`
+- `fn Itertools::format(self, sep: &str) -> Format<'_, Self>`
 
   Format all iterator elements, separated by `sep`.
   
@@ -2738,7 +2875,7 @@ This trait defines a number of methods. They are divided into two groups:
              "1.10, 2.72, -3.00");
   ```
 
-- `fn format_with<F>(self, sep: &str, format: F) -> FormatWith<'_, Self, F>`
+- `fn Itertools::format_with<F>(self, sep: &str, format: F) -> FormatWith<'_, Self, F>`
 
   Format all iterator elements, separated by `sep`.
   
@@ -2773,7 +2910,7 @@ This trait defines a number of methods. They are divided into two groups:
   
   ```
 
-- `fn fold_ok<A, E, B, F>(&mut self, start: B, f: F) -> Result<B, E>`
+- `fn Itertools::fold_ok<A, E, B, F>(&mut self, start: B, f: F) -> Result<B, E>`
 
   Fold `Result` values from an iterator.
   
@@ -2821,7 +2958,7 @@ This trait defines a number of methods. They are divided into two groups:
   );
   ```
 
-- `fn fold_options<A, B, F>(&mut self, start: B, f: F) -> Option<B>`
+- `fn Itertools::fold_options<A, B, F>(&mut self, start: B, f: F) -> Option<B>`
 
   Fold `Option` values from an iterator.
   
@@ -2843,7 +2980,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(more_values.next().unwrap(), Some(0));
   ```
 
-- `fn fold1<F>(self, f: F) -> Option<<Self as >::Item>`
+- `fn Itertools::fold1<F>(self, f: F) -> Option<<Self as >::Item>`
 
   Accumulator of the elements in the iterator.
   
@@ -2858,7 +2995,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!((0..0).fold1(|x, y| x * y), None);
   ```
 
-- `fn tree_reduce<F>(self, f: F) -> Option<<Self as >::Item>`
+- `fn Itertools::tree_reduce<F>(self, f: F) -> Option<<Self as >::Item>`
 
   Accumulate the elements in the iterator in a tree-like manner.
   
@@ -2950,11 +3087,11 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(reduce_res.len(), tree_reduce_res.len());
   ```
 
-- `fn tree_fold1<F>(self, f: F) -> Option<<Self as >::Item>`
+- `fn Itertools::tree_fold1<F>(self, f: F) -> Option<<Self as >::Item>`
 
   See [`.tree_reduce()`](Itertools::tree_reduce).
 
-- `fn fold_while<B, F>(&mut self, init: B, f: F) -> FoldWhile<B>`
+- `fn Itertools::fold_while<B, F>(&mut self, init: B, f: F) -> FoldWhile<B>`
 
   An iterator method that applies a function, producing a single, final value.
   
@@ -2996,19 +3133,19 @@ This trait defines a number of methods. They are divided into two groups:
   `fold()` called the provided closure for every item of the callee iterator,
   `fold_while()` actually stopped iterating as soon as it encountered `Fold::Done(_)`.
 
-- `fn sum1<S>(self) -> Option<S>`
+- `fn Itertools::sum1<S>(self) -> Option<S>`
 
   Iterate over the entire iterator and add all the elements.
   
   An empty iterator returns `None`, otherwise `Some(sum)`.
   
-  # Panics
+  ##### Panics
   
   When calling `sum1()` and a primitive integer type is being returned, this
   method will panic if the computation overflows and debug assertions are
   enabled.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3020,19 +3157,19 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(nonempty_sum, Some(55));
   ```
 
-- `fn product1<P>(self) -> Option<P>`
+- `fn Itertools::product1<P>(self) -> Option<P>`
 
   Iterate over the entire iterator and multiply all the elements.
   
   An empty iterator returns `None`, otherwise `Some(product)`.
   
-  # Panics
+  ##### Panics
   
   When calling `product1()` and a primitive integer type is being returned,
   method will panic if the computation overflows and debug assertions are
   enabled.
   
-  # Examples
+  ##### Examples
   ```rust
   use itertools::Itertools;
   
@@ -3043,7 +3180,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(nonempty_product, Some(3628800));
   ```
 
-- `fn sorted_unstable(self) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::sorted_unstable(self) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort all iterator elements into a new iterator in ascending order.
   
@@ -3065,7 +3202,7 @@ This trait defines a number of methods. They are divided into two groups:
                           "abcdef".chars());
   ```
 
-- `fn sorted_unstable_by<F>(self, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::sorted_unstable_by<F>(self, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort all iterator elements into a new iterator in ascending order.
   
@@ -3093,7 +3230,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec!["Jill", "Jack", "Jane", "John"]);
   ```
 
-- `fn sorted_unstable_by_key<K, F>(self, f: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::sorted_unstable_by_key<K, F>(self, f: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort all iterator elements into a new iterator in ascending order.
   
@@ -3121,7 +3258,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec!["Jill", "Jack", "Jane", "John"]);
   ```
 
-- `fn sorted(self) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::sorted(self) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort all iterator elements into a new iterator in ascending order.
   
@@ -3143,7 +3280,7 @@ This trait defines a number of methods. They are divided into two groups:
                           "abcdef".chars());
   ```
 
-- `fn sorted_by<F>(self, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::sorted_by<F>(self, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort all iterator elements into a new iterator in ascending order.
   
@@ -3171,7 +3308,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec!["Jill", "Jack", "Jane", "John"]);
   ```
 
-- `fn sorted_by_key<K, F>(self, f: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::sorted_by_key<K, F>(self, f: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort all iterator elements into a new iterator in ascending order.
   
@@ -3199,7 +3336,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec!["Jill", "Jack", "Jane", "John"]);
   ```
 
-- `fn sorted_by_cached_key<K, F>(self, f: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::sorted_by_cached_key<K, F>(self, f: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort all iterator elements into a new iterator in ascending order. The key function is
   called exactly once per key.
@@ -3228,7 +3365,7 @@ This trait defines a number of methods. They are divided into two groups:
                           vec!["Jill", "Jack", "Jane", "John"]);
   ```
 
-- `fn k_smallest(self, k: usize) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_smallest(self, k: usize) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort the k smallest elements into a new iterator, in ascending order.
   
@@ -3258,7 +3395,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_smallest, 0..5);
   ```
 
-- `fn k_smallest_by<F>(self, k: usize, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_smallest_by<F>(self, k: usize, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort the k smallest elements into a new iterator using the provided comparison.
   
@@ -3284,7 +3421,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_smallest, vec![0, 7, 14, 1, 8]);
   ```
 
-- `fn k_smallest_by_key<F, K>(self, k: usize, key: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_smallest_by_key<F, K>(self, k: usize, key: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Return the elements producing the k smallest outputs of the provided function.
   
@@ -3310,7 +3447,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_smallest, vec![0, 7, 14, 1, 8]);
   ```
 
-- `fn k_smallest_relaxed(self, k: usize) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_smallest_relaxed(self, k: usize) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort the k smallest elements into a new iterator, in ascending order, relaxing the amount of memory required.
   
@@ -3342,7 +3479,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_smallest, 0..5);
   ```
 
-- `fn k_smallest_relaxed_by<F>(self, k: usize, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_smallest_relaxed_by<F>(self, k: usize, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort the k smallest elements into a new iterator using the provided comparison, relaxing the amount of memory required.
   
@@ -3366,7 +3503,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_smallest, vec![0, 7, 14, 1, 8]);
   ```
 
-- `fn k_smallest_relaxed_by_key<F, K>(self, k: usize, key: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_smallest_relaxed_by_key<F, K>(self, k: usize, key: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Return the elements producing the k smallest outputs of the provided function, relaxing the amount of memory required.
   
@@ -3390,7 +3527,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_smallest, vec![0, 7, 14, 1, 8]);
   ```
 
-- `fn k_largest(self, k: usize) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_largest(self, k: usize) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort the k largest elements into a new iterator, in descending order.
   
@@ -3415,7 +3552,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_largest, vec![14, 13, 12, 11, 10]);
   ```
 
-- `fn k_largest_by<F>(self, k: usize, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_largest_by<F>(self, k: usize, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort the k largest elements into a new iterator using the provided comparison.
   
@@ -3438,7 +3575,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_largest, vec![13, 6, 12, 5, 11]);
   ```
 
-- `fn k_largest_by_key<F, K>(self, k: usize, key: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_largest_by_key<F, K>(self, k: usize, key: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Return the elements producing the k largest outputs of the provided function.
   
@@ -3461,7 +3598,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_largest, vec![13, 6, 12, 5, 11]);
   ```
 
-- `fn k_largest_relaxed(self, k: usize) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_largest_relaxed(self, k: usize) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort the k largest elements into a new iterator, in descending order, relaxing the amount of memory required.
   
@@ -3484,7 +3621,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_largest, vec![14, 13, 12, 11, 10]);
   ```
 
-- `fn k_largest_relaxed_by<F>(self, k: usize, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_largest_relaxed_by<F>(self, k: usize, cmp: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Sort the k largest elements into a new iterator using the provided comparison, relaxing the amount of memory required.
   
@@ -3507,7 +3644,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_largest, vec![13, 6, 12, 5, 11]);
   ```
 
-- `fn k_largest_relaxed_by_key<F, K>(self, k: usize, key: F) -> alloc::vec::IntoIter<<Self as >::Item>`
+- `fn Itertools::k_largest_relaxed_by_key<F, K>(self, k: usize, key: F) -> alloc::vec::IntoIter<<Self as >::Item>`
 
   Return the elements producing the k largest outputs of the provided function, relaxing the amount of memory required.
   
@@ -3530,7 +3667,7 @@ This trait defines a number of methods. They are divided into two groups:
   itertools::assert_equal(five_largest, vec![13, 6, 12, 5, 11]);
   ```
 
-- `fn tail(self, n: usize) -> alloc::collections::vec_deque::IntoIter<<Self as >::Item>`
+- `fn Itertools::tail(self, n: usize) -> alloc::collections::vec_deque::IntoIter<<Self as >::Item>`
 
   Consumes the iterator and return an iterator of the last `n` elements.
   
@@ -3557,7 +3694,7 @@ This trait defines a number of methods. They are divided into two groups:
   `.rev().take(n).rev()` to have a similar result (lazy and non-allocating)
   without consuming the entire iterator.
 
-- `fn partition_map<A, B, F, L, R>(self, predicate: F) -> (A, B)`
+- `fn Itertools::partition_map<A, B, F, L, R>(self, predicate: F) -> (A, B)`
 
   Collect all iterator elements into one of two
   partitions. Unlike `Iterator::partition`, each partition may
@@ -3581,7 +3718,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(failures, [false, true]);
   ```
 
-- `fn partition_result<A, B, T, E>(self) -> (A, B)`
+- `fn Itertools::partition_result<A, B, T, E>(self) -> (A, B)`
 
   Partition a sequence of `Result`s into one list of all the `Ok` elements
   and another list of all the `Err` elements.
@@ -3599,7 +3736,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(failures, [false, true]);
   ```
 
-- `fn into_group_map<K, V>(self) -> HashMap<K, Vec<V>>`
+- `fn Itertools::into_group_map<K, V>(self) -> HashMap<K, Vec<V>>`
 
   Return a `HashMap` of keys mapped to `Vec`s of values. Keys and values
   are taken from `(Key, Value)` tuple pairs yielded by the input iterator.
@@ -3618,7 +3755,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(lookup[&3], vec![13, 33]);
   ```
 
-- `fn into_group_map_by<K, V, F>(self, f: F) -> HashMap<K, Vec<V>>`
+- `fn Itertools::into_group_map_by<K, V, F>(self, f: F) -> HashMap<K, Vec<V>>`
 
   Return a `HashMap` of keys mapped to `Vec`s of values. The key is specified
   in the closure. The values are taken from the input iterator.
@@ -3648,7 +3785,7 @@ This trait defines a number of methods. They are divided into two groups:
   );
   ```
 
-- `fn into_grouping_map<K, V>(self) -> GroupingMap<Self>`
+- `fn Itertools::into_grouping_map<K, V>(self) -> GroupingMap<Self>`
 
   Constructs a `GroupingMap` to be used later with one of the efficient
   group-and-fold operations it allows to perform.
@@ -3660,7 +3797,7 @@ This trait defines a number of methods. They are divided into two groups:
   See [`GroupingMap`](grouping_map/index.md) for more informations
   on what operations are available.
 
-- `fn into_grouping_map_by<K, V, F>(self, key_mapper: F) -> GroupingMapBy<Self, F>`
+- `fn Itertools::into_grouping_map_by<K, V, F>(self, key_mapper: F) -> GroupingMapBy<Self, F>`
 
   Constructs a `GroupingMap` to be used later with one of the efficient
   group-and-fold operations it allows to perform.
@@ -3671,11 +3808,11 @@ This trait defines a number of methods. They are divided into two groups:
   See [`GroupingMap`](grouping_map/index.md) for more informations
   on what operations are available.
 
-- `fn min_set(self) -> Vec<<Self as >::Item>`
+- `fn Itertools::min_set(self) -> Vec<<Self as >::Item>`
 
   Return all minimum elements of an iterator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3696,12 +3833,12 @@ This trait defines a number of methods. They are divided into two groups:
   The elements can be floats but no particular result is guaranteed
   if an element is NaN.
 
-- `fn min_set_by<F>(self, compare: F) -> Vec<<Self as >::Item>`
+- `fn Itertools::min_set_by<F>(self, compare: F) -> Vec<<Self as >::Item>`
 
   Return all minimum elements of an iterator, as determined by
   the specified function.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::cmp::Ordering;
@@ -3723,12 +3860,12 @@ This trait defines a number of methods. They are divided into two groups:
   The elements can be floats but no particular result is guaranteed
   if an element is NaN.
 
-- `fn min_set_by_key<K, F>(self, key: F) -> Vec<<Self as >::Item>`
+- `fn Itertools::min_set_by_key<K, F>(self, key: F) -> Vec<<Self as >::Item>`
 
   Return all minimum elements of an iterator, as determined by
   the specified function.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3749,11 +3886,11 @@ This trait defines a number of methods. They are divided into two groups:
   The elements can be floats but no particular result is guaranteed
   if an element is NaN.
 
-- `fn max_set(self) -> Vec<<Self as >::Item>`
+- `fn Itertools::max_set(self) -> Vec<<Self as >::Item>`
 
   Return all maximum elements of an iterator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3774,12 +3911,12 @@ This trait defines a number of methods. They are divided into two groups:
   The elements can be floats but no particular result is guaranteed
   if an element is NaN.
 
-- `fn max_set_by<F>(self, compare: F) -> Vec<<Self as >::Item>`
+- `fn Itertools::max_set_by<F>(self, compare: F) -> Vec<<Self as >::Item>`
 
   Return all maximum elements of an iterator, as determined by
   the specified function.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use std::cmp::Ordering;
@@ -3801,12 +3938,12 @@ This trait defines a number of methods. They are divided into two groups:
   The elements can be floats but no particular result is guaranteed
   if an element is NaN.
 
-- `fn max_set_by_key<K, F>(self, key: F) -> Vec<<Self as >::Item>`
+- `fn Itertools::max_set_by_key<K, F>(self, key: F) -> Vec<<Self as >::Item>`
 
   Return all maximum elements of an iterator, as determined by
   the specified function.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3827,7 +3964,7 @@ This trait defines a number of methods. They are divided into two groups:
   The elements can be floats but no particular result is guaranteed
   if an element is NaN.
 
-- `fn minmax(self) -> MinMaxResult<<Self as >::Item>`
+- `fn Itertools::minmax(self) -> MinMaxResult<<Self as >::Item>`
 
   Return the minimum and maximum elements in the iterator.
   
@@ -3843,7 +3980,7 @@ This trait defines a number of methods. They are divided into two groups:
   and so is faster than calling `min` and `max` separately which does
   `2 * n` comparisons.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3865,7 +4002,7 @@ This trait defines a number of methods. They are divided into two groups:
   The elements can be floats but no particular result is guaranteed
   if an element is NaN.
 
-- `fn minmax_by_key<K, F>(self, key: F) -> MinMaxResult<<Self as >::Item>`
+- `fn Itertools::minmax_by_key<K, F>(self, key: F) -> MinMaxResult<<Self as >::Item>`
 
   Return the minimum and maximum element of an iterator, as determined by
   the specified function.
@@ -3879,7 +4016,7 @@ This trait defines a number of methods. They are divided into two groups:
   The keys can be floats but no particular result is guaranteed
   if a key is NaN.
 
-- `fn minmax_by<F>(self, compare: F) -> MinMaxResult<<Self as >::Item>`
+- `fn Itertools::minmax_by<F>(self, compare: F) -> MinMaxResult<<Self as >::Item>`
 
   Return the minimum and maximum element of an iterator, as determined by
   the specified comparison function.
@@ -3890,14 +4027,14 @@ This trait defines a number of methods. They are divided into two groups:
   the last maximal element wins.  This matches the behavior of the standard
   `Iterator::min` and `Iterator::max` methods.
 
-- `fn position_max(self) -> Option<usize>`
+- `fn Itertools::position_max(self) -> Option<usize>`
 
   Return the position of the maximum element in the iterator.
   
   If several elements are equally maximum, the position of the
   last of them is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3912,7 +4049,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(a.iter().position_max(), Some(1));
   ```
 
-- `fn position_max_by_key<K, F>(self, key: F) -> Option<usize>`
+- `fn Itertools::position_max_by_key<K, F>(self, key: F) -> Option<usize>`
 
   Return the position of the maximum element in the iterator, as
   determined by the specified function.
@@ -3920,7 +4057,7 @@ This trait defines a number of methods. They are divided into two groups:
   If several elements are equally maximum, the position of the
   last of them is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3935,7 +4072,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(a.iter().position_max_by_key(|x| x.abs()), Some(3));
   ```
 
-- `fn position_max_by<F>(self, compare: F) -> Option<usize>`
+- `fn Itertools::position_max_by<F>(self, compare: F) -> Option<usize>`
 
   Return the position of the maximum element in the iterator, as
   determined by the specified comparison function.
@@ -3943,7 +4080,7 @@ This trait defines a number of methods. They are divided into two groups:
   If several elements are equally maximum, the position of the
   last of them is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3958,14 +4095,14 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(a.iter().position_max_by(|x, y| x.cmp(y)), Some(1));
   ```
 
-- `fn position_min(self) -> Option<usize>`
+- `fn Itertools::position_min(self) -> Option<usize>`
 
   Return the position of the minimum element in the iterator.
   
   If several elements are equally minimum, the position of the
   first of them is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -3980,7 +4117,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(a.iter().position_min(), Some(2));
   ```
 
-- `fn position_min_by_key<K, F>(self, key: F) -> Option<usize>`
+- `fn Itertools::position_min_by_key<K, F>(self, key: F) -> Option<usize>`
 
   Return the position of the minimum element in the iterator, as
   determined by the specified function.
@@ -3988,7 +4125,7 @@ This trait defines a number of methods. They are divided into two groups:
   If several elements are equally minimum, the position of the
   first of them is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -4003,7 +4140,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(a.iter().position_min_by_key(|x| x.abs()), Some(0));
   ```
 
-- `fn position_min_by<F>(self, compare: F) -> Option<usize>`
+- `fn Itertools::position_min_by<F>(self, compare: F) -> Option<usize>`
 
   Return the position of the minimum element in the iterator, as
   determined by the specified comparison function.
@@ -4011,7 +4148,7 @@ This trait defines a number of methods. They are divided into two groups:
   If several elements are equally minimum, the position of the
   first of them is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -4026,7 +4163,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(a.iter().position_min_by(|x, y| x.cmp(y)), Some(2));
   ```
 
-- `fn position_minmax(self) -> MinMaxResult<usize>`
+- `fn Itertools::position_minmax(self) -> MinMaxResult<usize>`
 
   Return the positions of the minimum and maximum elements in
   the iterator.
@@ -4052,7 +4189,7 @@ This trait defines a number of methods. They are divided into two groups:
   The elements can be floats but no particular result is
   guaranteed if an element is NaN.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -4071,7 +4208,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(a.iter().position_minmax(), MinMax(2, 1));
   ```
 
-- `fn position_minmax_by_key<K, F>(self, key: F) -> MinMaxResult<usize>`
+- `fn Itertools::position_minmax_by_key<K, F>(self, key: F) -> MinMaxResult<usize>`
 
   Return the postions of the minimum and maximum elements of an
   iterator, as determined by the specified function.
@@ -4087,7 +4224,7 @@ This trait defines a number of methods. They are divided into two groups:
   The keys can be floats but no particular result is guaranteed
   if a key is NaN.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -4106,7 +4243,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(a.iter().position_minmax_by_key(|x| x.abs()), MinMax(0, 3));
   ```
 
-- `fn position_minmax_by<F>(self, compare: F) -> MinMaxResult<usize>`
+- `fn Itertools::position_minmax_by<F>(self, compare: F) -> MinMaxResult<usize>`
 
   Return the postions of the minimum and maximum elements of an
   iterator, as determined by the specified comparison function.
@@ -4119,7 +4256,7 @@ This trait defines a number of methods. They are divided into two groups:
   several elements are equally maximum, the position of the last
   of them is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::Itertools;
@@ -4138,7 +4275,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(a.iter().position_minmax_by(|x, y| x.cmp(y)), MinMax(2, 1));
   ```
 
-- `fn exactly_one(self) -> Result<<Self as >::Item, ExactlyOneError<Self>>`
+- `fn Itertools::exactly_one(self) -> Result<<Self as >::Item, ExactlyOneError<Self>>`
 
   If the iterator yields exactly one element, that element will be returned, otherwise
   an error will be returned containing an iterator that has the same output as the input
@@ -4148,7 +4285,7 @@ This trait defines a number of methods. They are divided into two groups:
   If your assumption that there should only be one element yielded is false this provides
   the opportunity to detect and handle that, preventing errors at a distance.
   
-  # Examples
+  ##### Examples
   ```rust
   use itertools::Itertools;
   
@@ -4158,7 +4295,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert!((0..10).filter(|&_| false).exactly_one().unwrap_err().eq(0..0));
   ```
 
-- `fn at_most_one(self) -> Result<Option<<Self as >::Item>, ExactlyOneError<Self>>`
+- `fn Itertools::at_most_one(self) -> Result<Option<<Self as >::Item>, ExactlyOneError<Self>>`
 
   If the iterator yields no elements, `Ok(None)` will be returned. If the iterator yields
   exactly one element, that element will be returned, otherwise an error will be returned
@@ -4168,7 +4305,7 @@ This trait defines a number of methods. They are divided into two groups:
   If your assumption that there should be at most one element yielded is false this provides
   the opportunity to detect and handle that, preventing errors at a distance.
   
-  # Examples
+  ##### Examples
   ```rust
   use itertools::Itertools;
   
@@ -4178,12 +4315,12 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!((0..10).filter(|&_| false).at_most_one().unwrap(), None);
   ```
 
-- `fn multipeek(self) -> MultiPeek<Self>`
+- `fn Itertools::multipeek(self) -> MultiPeek<Self>`
 
   An iterator adaptor that allows the user to peek at multiple `.next()`
   values without advancing the base iterator.
   
-  # Examples
+  ##### Examples
   ```rust
   use itertools::Itertools;
   
@@ -4195,13 +4332,13 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(iter.peek(), Some(&1));
   ```
 
-- `fn counts(self) -> HashMap<<Self as >::Item, usize>`
+- `fn Itertools::counts(self) -> HashMap<<Self as >::Item, usize>`
 
   Collect the items in this iterator and return a `HashMap` which
   contains each item that appears in the iterator and the number
   of times it appears.
   
-  # Examples
+  ##### Examples
   ```rust
   use itertools::Itertools;
   let counts = [1, 1, 1, 3, 3, 5].iter().counts();
@@ -4211,7 +4348,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(counts.get(&0), None);
   ```
 
-- `fn counts_by<K, F>(self, f: F) -> HashMap<K, usize>`
+- `fn Itertools::counts_by<K, F>(self, f: F) -> HashMap<K, usize>`
 
   Collect the items in this iterator and return a `HashMap` which
   contains each item that appears in the iterator and the number
@@ -4247,7 +4384,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(first_name_frequency.contains_key("Asha"), false);
   ```
 
-- `fn multiunzip<FromI>(self) -> FromI`
+- `fn Itertools::multiunzip<FromI>(self) -> FromI`
 
   Converts an iterator of tuples into a tuple of containers.
   
@@ -4270,7 +4407,7 @@ This trait defines a number of methods. They are divided into two groups:
   assert_eq!(c, vec![3, 6, 9]);
   ```
 
-- `fn try_len(&self) -> Result<usize, (usize, Option<usize>)>`
+- `fn Itertools::try_len(&self) -> Result<usize, (usize, Option<usize>)>`
 
   Returns the length of the iterator if one exists.
   Otherwise return `self.size_hint()`.
@@ -4301,7 +4438,7 @@ This trait defines a number of methods. They are divided into two groups:
 unsafe fn Either(chunk: V, masks: [Mask<V>; 4]) -> (V, V, V, V)
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1140-1162`](../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1140-L1162)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1140-1162`](../../.source_1765900590/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1140-L1162)*
 
 Return a candidate for Teddy (fat or slim) that is searching for 4-byte
 candidates.
@@ -4331,7 +4468,7 @@ where
     <I as >::Item: Extend<<<I as IntoIterator>::Item as IntoIterator>::Item> + IntoIterator + Default
 ```
 
-*Defined in [`itertools-0.14.0/src/concat_impl.rs:15-27`](../../.source_1765894658/itertools-0.14.0/src/concat_impl.rs#L15-L27)*
+*Defined in [`itertools-0.14.0/src/concat_impl.rs:15-27`](../../.source_1765900590/itertools-0.14.0/src/concat_impl.rs#L15-L27)*
 
 Combine all an iterator's elements into one element by using `Extend`.
 
@@ -4356,7 +4493,7 @@ where
     I: IntoIterator
 ```
 
-*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:31-39`](../../.source_1765894658/itertools-0.14.0/src/cons_tuples_impl.rs#L31-L39)*
+*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:31-39`](../../.source_1765900590/itertools-0.14.0/src/cons_tuples_impl.rs#L31-L39)*
 
 Create an iterator that maps for example iterators of
 `((A, B), C)` to `(A, B, C)`.
@@ -4371,7 +4508,7 @@ where
     F: FnMut(&<I as >::Item, &<J as >::Item) -> bool
 ```
 
-*Defined in [`itertools-0.14.0/src/diff.rs:80-104`](../../.source_1765894658/itertools-0.14.0/src/diff.rs#L80-L104)*
+*Defined in [`itertools-0.14.0/src/diff.rs:80-104`](../../.source_1765900590/itertools-0.14.0/src/diff.rs#L80-L104)*
 
 Compares every element yielded by both `i` and `j` with the given function in lock-step and
 returns a [`Diff`](diff/index.md) which describes how `j` differs from `i`.
@@ -4396,7 +4533,7 @@ where
     F: KMergePredicate<<<I as IntoIterator>::Item as IntoIterator>::Item>
 ```
 
-*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:176-191`](../../.source_1765894658/itertools-0.14.0/src/kmerge_impl.rs#L176-L191)*
+*Defined in [`itertools-0.14.0/src/kmerge_impl.rs:176-191`](../../.source_1765900590/itertools-0.14.0/src/kmerge_impl.rs#L176-L191)*
 
 Create an iterator that merges elements of the contained iterators.
 
@@ -4411,7 +4548,7 @@ where
     F: FnOnce(ProcessResults<'_, <I as >::IntoIter, E>) -> R
 ```
 
-*Defined in [`itertools-0.14.0/src/process_results_impl.rs:94-108`](../../.source_1765894658/itertools-0.14.0/src/process_results_impl.rs#L94-L108)*
+*Defined in [`itertools-0.14.0/src/process_results_impl.rs:94-108`](../../.source_1765900590/itertools-0.14.0/src/process_results_impl.rs#L94-L108)*
 
 “Lift” a function of the values of an iterator so that it can process
 an iterator of `Result` values instead.
@@ -4426,7 +4563,7 @@ where
     A: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/repeatn.rs:14-26`](../../.source_1765894658/itertools-0.14.0/src/repeatn.rs#L14-L26)*
+*Defined in [`itertools-0.14.0/src/repeatn.rs:14-26`](../../.source_1765900590/itertools-0.14.0/src/repeatn.rs#L14-L26)*
 
 Create an iterator that produces `n` repetitions of `element`.
 
@@ -4438,7 +4575,7 @@ where
     F: FnMut(&St) -> St
 ```
 
-*Defined in [`itertools-0.14.0/src/sources.rs:145-153`](../../.source_1765894658/itertools-0.14.0/src/sources.rs#L145-L153)*
+*Defined in [`itertools-0.14.0/src/sources.rs:145-153`](../../.source_1765900590/itertools-0.14.0/src/sources.rs#L145-L153)*
 
 Creates a new iterator that infinitely applies function to value and yields results.
 
@@ -4468,7 +4605,7 @@ where
     F: FnMut(&mut St) -> Option<A>
 ```
 
-*Defined in [`itertools-0.14.0/src/sources.rs:48-56`](../../.source_1765894658/itertools-0.14.0/src/sources.rs#L48-L56)*
+*Defined in [`itertools-0.14.0/src/sources.rs:48-56`](../../.source_1765900590/itertools-0.14.0/src/sources.rs#L48-L56)*
 
 Creates a new unfold source with the specified closure as the "iterator
 function" and an initial state to eventually pass to the closure
@@ -4516,7 +4653,7 @@ where
     <I as >::IntoIter: MultiUnzip<FromI>
 ```
 
-*Defined in [`itertools-0.14.0/src/unziptuple.rs:21-27`](../../.source_1765894658/itertools-0.14.0/src/unziptuple.rs#L21-L27)*
+*Defined in [`itertools-0.14.0/src/unziptuple.rs:21-27`](../../.source_1765900590/itertools-0.14.0/src/unziptuple.rs#L21-L27)*
 
 Converts an iterator of tuples into a tuple of containers.
 
@@ -4546,7 +4683,7 @@ where
     Zip<T>: From<U> + Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/ziptuple.rs:39-44`](../../.source_1765894658/itertools-0.14.0/src/ziptuple.rs#L39-L44)*
+*Defined in [`itertools-0.14.0/src/ziptuple.rs:39-44`](../../.source_1765900590/itertools-0.14.0/src/ziptuple.rs#L39-L44)*
 
 An iterator that generalizes `.zip()` and allows running multiple iterators in lockstep.
 
@@ -4588,7 +4725,7 @@ where
     <I as >::Item: PartialEq<<J as >::Item>
 ```
 
-*Defined in [`itertools-0.14.0/src/lib.rs:4598-4605`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L4598-L4605)*
+*Defined in [`itertools-0.14.0/src/lib.rs:4598-4605`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L4598-L4605)*
 
 Return `true` if both iterables produce equal sequences
 (elements pairwise equal and sequences of the same length),
@@ -4612,7 +4749,7 @@ where
     <J as >::Item: fmt::Debug
 ```
 
-*Defined in [`itertools-0.14.0/src/lib.rs:4619-4648`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L4619-L4648)*
+*Defined in [`itertools-0.14.0/src/lib.rs:4619-4648`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L4619-L4648)*
 
 Assert that two iterables produce equal sequences, with the same
 semantics as [`equal(a, b)`](equal).
@@ -4636,7 +4773,7 @@ where
     F: FnMut(&A) -> bool
 ```
 
-*Defined in [`itertools-0.14.0/src/lib.rs:4667-4685`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L4667-L4685)*
+*Defined in [`itertools-0.14.0/src/lib.rs:4667-4685`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L4667-L4685)*
 
 Partition a sequence using predicate `pred` so that elements
 that map to `true` are placed before elements which map to `false`.
@@ -4664,7 +4801,7 @@ assert_eq!(split_index, 3);
 type VecDequeIntoIter<T> = alloc::collections::vec_deque::IntoIter<T>;
 ```
 
-*Defined in [`itertools-0.14.0/src/lib.rs:78`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L78)*
+*Defined in [`itertools-0.14.0/src/lib.rs:78`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L78)*
 
 ### `VecIntoIter<T>`
 
@@ -4672,13 +4809,13 @@ type VecDequeIntoIter<T> = alloc::collections::vec_deque::IntoIter<T>;
 type VecIntoIter<T> = alloc::vec::IntoIter<T>;
 ```
 
-*Defined in [`itertools-0.14.0/src/lib.rs:80`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L80)*
+*Defined in [`itertools-0.14.0/src/lib.rs:80`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L80)*
 
 ## Macros
 
 ### `iproduct!`
 
-*Defined in [`itertools-0.14.0/src/lib.rs:259-284`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L259-L284)*
+*Defined in [`itertools-0.14.0/src/lib.rs:259-284`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L259-L284)*
 
 Create an iterator over the “cartesian product” of iterators.
 
@@ -4700,7 +4837,7 @@ for (i, j, k) in iproduct!(0..4, 0..4, 0..4) {
 
 ### `izip!`
 
-*Defined in [`itertools-0.14.0/src/lib.rs:321-360`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L321-L360)*
+*Defined in [`itertools-0.14.0/src/lib.rs:321-360`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L321-L360)*
 
 Create an iterator running multiple iterators in lockstep.
 
@@ -4739,7 +4876,7 @@ assert_eq!(results, [0 + 3, 10 + 7, 29, 36]);
 
 ### `chain!`
 
-*Defined in [`itertools-0.14.0/src/lib.rs:407-423`](../../.source_1765894658/itertools-0.14.0/src/lib.rs#L407-L423)*
+*Defined in [`itertools-0.14.0/src/lib.rs:407-423`](../../.source_1765900590/itertools-0.14.0/src/lib.rs#L407-L423)*
 
 [Chain][`chain`](#chain) zero or more iterators together into one sequence.
 

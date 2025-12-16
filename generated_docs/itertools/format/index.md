@@ -25,7 +25,7 @@ struct FormatWith<'a, I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/format.rs:10-14`](../../../.source_1765894658/itertools-0.14.0/src/format.rs#L10-L14)*
+*Defined in [`itertools-0.14.0/src/format.rs:10-14`](../../../.source_1765900590/itertools-0.14.0/src/format.rs#L10-L14)*
 
 Format all iterator elements lazily, separated by `sep`.
 
@@ -120,7 +120,7 @@ struct Format<'a, I> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/format.rs:23-27`](../../../.source_1765894658/itertools-0.14.0/src/format.rs#L23-L27)*
+*Defined in [`itertools-0.14.0/src/format.rs:23-27`](../../../.source_1765900590/itertools-0.14.0/src/format.rs#L23-L27)*
 
 Format all iterator elements lazily, separated by `sep`.
 
@@ -250,7 +250,7 @@ where
     F: FnMut(<I as >::Item, &mut dyn FnMut(&dyn fmt::Display) -> fmt::Result) -> fmt::Result
 ```
 
-*Defined in [`itertools-0.14.0/src/format.rs:29-38`](../../../.source_1765894658/itertools-0.14.0/src/format.rs#L29-L38)*
+*Defined in [`itertools-0.14.0/src/format.rs:29-38`](../../../.source_1765900590/itertools-0.14.0/src/format.rs#L29-L38)*
 
 ### `new_format_default`
 
@@ -260,11 +260,11 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/format.rs:40-48`](../../../.source_1765894658/itertools-0.14.0/src/format.rs#L40-L48)*
+*Defined in [`itertools-0.14.0/src/format.rs:40-48`](../../../.source_1765900590/itertools-0.14.0/src/format.rs#L40-L48)*
 
 ## Macros
 
 ### `impl_format!`
 
-*Defined in [`itertools-0.14.0/src/format.rs:111-124`](../../../.source_1765894658/itertools-0.14.0/src/format.rs#L111-L124)*
+*Defined in [`itertools-0.14.0/src/format.rs:111-124`](../../../.source_1765900590/itertools-0.14.0/src/format.rs#L111-L124)*
 

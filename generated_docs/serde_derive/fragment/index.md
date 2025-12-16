@@ -23,7 +23,7 @@
 struct Expr(Fragment);
 ```
 
-*Defined in [`serde_derive-1.0.228/src/fragment.rs:27`](../../../.source_1765894658/serde_derive-1.0.228/src/fragment.rs#L27)*
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:27`](../../../.source_1765900590/serde_derive-1.0.228/src/fragment.rs#L27)*
 
 Interpolate a fragment in place of an expression. This involves surrounding
 Block fragments in curly braces.
@@ -83,7 +83,7 @@ Block fragments in curly braces.
 struct Stmts(Fragment);
 ```
 
-*Defined in [`serde_derive-1.0.228/src/fragment.rs:40`](../../../.source_1765894658/serde_derive-1.0.228/src/fragment.rs#L40)*
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:40`](../../../.source_1765900590/serde_derive-1.0.228/src/fragment.rs#L40)*
 
 Interpolate a fragment as the statements of a block.
 
@@ -142,7 +142,7 @@ Interpolate a fragment as the statements of a block.
 struct Match(Fragment);
 ```
 
-*Defined in [`serde_derive-1.0.228/src/fragment.rs:52`](../../../.source_1765894658/serde_derive-1.0.228/src/fragment.rs#L52)*
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:52`](../../../.source_1765900590/serde_derive-1.0.228/src/fragment.rs#L52)*
 
 Interpolate a fragment as the value part of a `match` expression. This
 involves putting a comma after expressions and curly braces around blocks.
@@ -207,7 +207,7 @@ enum Fragment {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/fragment.rs:5-11`](../../../.source_1765894658/serde_derive-1.0.228/src/fragment.rs#L5-L11)*
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:5-11`](../../../.source_1765900590/serde_derive-1.0.228/src/fragment.rs#L5-L11)*
 
 #### Variants
 
@@ -269,9 +269,9 @@ enum Fragment {
 
 ### `quote_expr!`
 
-*Defined in [`serde_derive-1.0.228/src/fragment.rs:13-17`](../../../.source_1765894658/serde_derive-1.0.228/src/fragment.rs#L13-L17)*
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:13-17`](../../../.source_1765900590/serde_derive-1.0.228/src/fragment.rs#L13-L17)*
 
 ### `quote_block!`
 
-*Defined in [`serde_derive-1.0.228/src/fragment.rs:19-23`](../../../.source_1765894658/serde_derive-1.0.228/src/fragment.rs#L19-L23)*
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:19-23`](../../../.source_1765900590/serde_derive-1.0.228/src/fragment.rs#L19-L23)*
 

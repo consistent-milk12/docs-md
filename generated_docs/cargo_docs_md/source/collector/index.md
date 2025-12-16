@@ -500,7 +500,7 @@ Collector for gathering dependency sources.
 
   Create a new collector for the current directory.
   
-  # Errors
+  ##### Errors
   
   Returns an error if cargo metadata cannot be loaded.
 
@@ -508,7 +508,7 @@ Collector for gathering dependency sources.
 
   Create a new collector from a specific manifest path.
   
-  # Errors
+  ##### Errors
   
   Returns an error if cargo metadata cannot be loaded.
 
@@ -516,7 +516,7 @@ Collector for gathering dependency sources.
 
   Collect all dependency sources.
   
-  # Errors
+  ##### Errors
   
   Returns an error if collection fails.
 

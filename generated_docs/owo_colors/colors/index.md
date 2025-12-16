@@ -85,7 +85,7 @@ Color types for used for being generic over the color
 struct Black;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -148,7 +148,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct Red;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -211,7 +211,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct Green;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -274,7 +274,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct Yellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -337,7 +337,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct Blue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -400,7 +400,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct Magenta;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -463,7 +463,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct Cyan;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -526,7 +526,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct White;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -589,7 +589,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct Default;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -652,7 +652,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct BrightBlack;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -715,7 +715,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct BrightRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -778,7 +778,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct BrightGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -841,7 +841,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct BrightYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -904,7 +904,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct BrightBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -967,7 +967,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct BrightMagenta;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -1030,7 +1030,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct BrightCyan;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -1093,7 +1093,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct BrightWhite;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods.
 
@@ -1156,7 +1156,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 struct CustomColor<const R: u8, const G: u8, const B: u8>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:83`](../../../.source_1765894658/owo-colors-4.2.3/src/colors/custom.rs#L83)*
+*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:83`](../../../.source_1765900590/owo-colors-4.2.3/src/colors/custom.rs#L83)*
 
 A custom RGB color, determined at compile time
 
@@ -1227,13 +1227,13 @@ A custom RGB color, determined at compile time
 
 ### `colors!`
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:5-106`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L5-L106)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:5-106`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L5-L106)*
 
 ### `impl_fmt_for!`
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:129-151`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L129-L151)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:129-151`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L129-L151)*
 
 ### `impl_fmt_for_dyn!`
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:165-187`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L165-L187)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:165-187`](../../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L165-L187)*
 

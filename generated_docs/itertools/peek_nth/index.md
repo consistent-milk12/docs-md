@@ -24,7 +24,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/peek_nth.rs:9-15`](../../../.source_1765894658/itertools-0.14.0/src/peek_nth.rs#L9-L15)*
+*Defined in [`itertools-0.14.0/src/peek_nth.rs:9-15`](../../../.source_1765900590/itertools-0.14.0/src/peek_nth.rs#L9-L15)*
 
 See [`peek_nth()`](#peek-nth) for more information.
 
@@ -42,7 +42,7 @@ See [`peek_nth()`](#peek-nth) for more information.
 
   Returns a reference to the `nth` value without advancing the iterator.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -68,7 +68,7 @@ See [`peek_nth()`](#peek-nth) for more information.
 
   Returns a mutable reference to the `nth` value without advancing the iterator.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -211,7 +211,7 @@ where
     I: IntoIterator
 ```
 
-*Defined in [`itertools-0.14.0/src/peek_nth.rs:24-32`](../../../.source_1765894658/itertools-0.14.0/src/peek_nth.rs#L24-L32)*
+*Defined in [`itertools-0.14.0/src/peek_nth.rs:24-32`](../../../.source_1765900590/itertools-0.14.0/src/peek_nth.rs#L24-L32)*
 
 A drop-in replacement for `std::iter::Peekable` which adds a `peek_nth`
 method allowing the user to `peek` at a value several iterations forward

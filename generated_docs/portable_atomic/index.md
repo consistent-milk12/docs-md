@@ -289,7 +289,7 @@ struct AtomicBool {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:555-557`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L555-L557)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:555-557`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L555-L557)*
 
 A boolean type which can be safely shared between threads.
 
@@ -307,7 +307,7 @@ assembly.
 
   Creates a new `AtomicBool`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicBool;
@@ -322,7 +322,7 @@ assembly.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicBool>()` (note that on some platforms this can
     be bigger than `align_of::<bool>()`).
@@ -352,7 +352,7 @@ assembly.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicBool;
@@ -371,7 +371,7 @@ assembly.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicBool;
@@ -388,7 +388,7 @@ assembly.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -408,7 +408,7 @@ assembly.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicBool;
@@ -424,11 +424,11 @@ assembly.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering
   of this operation. Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -445,11 +445,11 @@ assembly.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering
   of this operation. Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -469,7 +469,7 @@ assembly.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -495,11 +495,11 @@ assembly.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -536,11 +536,11 @@ assembly.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -571,7 +571,7 @@ assembly.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -612,7 +612,7 @@ assembly.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -644,7 +644,7 @@ assembly.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -677,7 +677,7 @@ assembly.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -718,7 +718,7 @@ assembly.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -750,7 +750,7 @@ assembly.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -791,7 +791,7 @@ assembly.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -823,7 +823,7 @@ assembly.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -860,7 +860,7 @@ assembly.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -896,18 +896,18 @@ assembly.
   load `Relaxed`. The (failed) load ordering can only be `SeqCst`,
   `Acquire` or `Relaxed`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicBool, Ordering};
@@ -1001,7 +1001,7 @@ struct AtomicPtr<T> {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:1594-1596`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L1594-L1596)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:1594-1596`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L1594-L1596)*
 
 A raw pointer type which can be safely shared between threads.
 
@@ -1019,7 +1019,7 @@ assembly.
 
   Creates a new `AtomicPtr`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicPtr;
@@ -1034,7 +1034,7 @@ assembly.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicPtr<T>>()` (note that on some platforms this
     can be bigger than `align_of::<*mut T>()`).
@@ -1064,7 +1064,7 @@ assembly.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicPtr;
@@ -1083,7 +1083,7 @@ assembly.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicPtr;
@@ -1100,7 +1100,7 @@ assembly.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicPtr, Ordering};
@@ -1121,7 +1121,7 @@ assembly.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicPtr;
@@ -1138,11 +1138,11 @@ assembly.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering
   of this operation. Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicPtr, Ordering};
@@ -1160,11 +1160,11 @@ assembly.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering
   of this operation. Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicPtr, Ordering};
@@ -1186,7 +1186,7 @@ assembly.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicPtr, Ordering};
@@ -1214,11 +1214,11 @@ assembly.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicPtr, Ordering};
@@ -1248,11 +1248,11 @@ assembly.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicPtr, Ordering};
@@ -1291,18 +1291,18 @@ assembly.
   load `Relaxed`. The (failed) load ordering can only be `SeqCst`,
   `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicPtr, Ordering};
@@ -1342,7 +1342,7 @@ assembly.
   that using `Acquire` makes the store part of this operation
   `Relaxed`, and using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unstable_name_collisions)]
@@ -1374,7 +1374,7 @@ assembly.
   using `Acquire` makes the store part of this operation `Relaxed`,
   and using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicPtr, Ordering};
@@ -1400,7 +1400,7 @@ assembly.
   `Relaxed`, and using `Release` makes the load part `Relaxed`.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unstable_name_collisions)]
@@ -1427,7 +1427,7 @@ assembly.
   `Relaxed`, and using `Release` makes the load part `Relaxed`.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unstable_name_collisions)]
@@ -1462,7 +1462,7 @@ assembly.
   experiment, see the `module documentation for `ptr`` for
   details.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unstable_name_collisions)]
@@ -1503,7 +1503,7 @@ assembly.
   experiment, see the `module documentation for `ptr`` for
   details.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unstable_name_collisions)]
@@ -1542,7 +1542,7 @@ assembly.
   experiment, see the `module documentation for `ptr`` for
   details.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unstable_name_collisions)]
@@ -1570,7 +1570,7 @@ assembly.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unstable_name_collisions)]
@@ -1601,7 +1601,7 @@ assembly.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unstable_name_collisions)]
@@ -1629,7 +1629,7 @@ assembly.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #![allow(unstable_name_collisions)]
@@ -1728,7 +1728,7 @@ struct AtomicIsize {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4786`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4786)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4786`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4786)*
 
 An integer type which can be safely shared between threads.
 
@@ -1746,7 +1746,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicIsize;
@@ -1760,7 +1760,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicIsize>()` (note that on some platforms this
     can be bigger than `align_of::<isize>()`).
@@ -1791,7 +1791,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicIsize;
@@ -1810,7 +1810,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicIsize;
@@ -1827,7 +1827,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -1847,7 +1847,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicIsize;
@@ -1863,11 +1863,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -1884,11 +1884,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -1908,7 +1908,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -1935,11 +1935,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -1977,11 +1977,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2009,7 +2009,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2036,7 +2036,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2057,7 +2057,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2084,7 +2084,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2108,7 +2108,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2141,7 +2141,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2165,7 +2165,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2189,7 +2189,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2222,7 +2222,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2246,7 +2246,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2279,7 +2279,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2308,18 +2308,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2345,7 +2345,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2380,7 +2380,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2416,7 +2416,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2441,7 +2441,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2464,7 +2464,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2487,7 +2487,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2513,7 +2513,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2534,7 +2534,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2561,7 +2561,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicIsize, Ordering};
@@ -2649,7 +2649,7 @@ struct AtomicUsize {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4788`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4788)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4788`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4788)*
 
 An integer type which can be safely shared between threads.
 
@@ -2667,7 +2667,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicUsize;
@@ -2681,7 +2681,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicUsize>()` (note that on some platforms this
     can be bigger than `align_of::<usize>()`).
@@ -2712,7 +2712,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicUsize;
@@ -2731,7 +2731,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicUsize;
@@ -2748,7 +2748,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -2768,7 +2768,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicUsize;
@@ -2784,11 +2784,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -2805,11 +2805,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -2829,7 +2829,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -2856,11 +2856,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -2898,11 +2898,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -2930,7 +2930,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -2957,7 +2957,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -2978,7 +2978,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3005,7 +3005,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3029,7 +3029,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3062,7 +3062,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3086,7 +3086,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3110,7 +3110,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3143,7 +3143,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3167,7 +3167,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3200,7 +3200,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3229,18 +3229,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3266,7 +3266,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3301,7 +3301,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3337,7 +3337,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3362,7 +3362,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3385,7 +3385,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3408,7 +3408,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3434,7 +3434,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3455,7 +3455,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3482,7 +3482,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicUsize, Ordering};
@@ -3570,7 +3570,7 @@ struct AtomicI8 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4796`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4796)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4796`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4796)*
 
 An integer type which can be safely shared between threads.
 
@@ -3588,7 +3588,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI8;
@@ -3602,7 +3602,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicI8>()` (note that on some platforms this
     can be bigger than `align_of::<i8>()`).
@@ -3633,7 +3633,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI8;
@@ -3652,7 +3652,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI8;
@@ -3669,7 +3669,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3689,7 +3689,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI8;
@@ -3705,11 +3705,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3726,11 +3726,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3750,7 +3750,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3777,11 +3777,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3819,11 +3819,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3851,7 +3851,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3878,7 +3878,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3899,7 +3899,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3926,7 +3926,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3950,7 +3950,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -3983,7 +3983,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4007,7 +4007,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4031,7 +4031,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4064,7 +4064,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4088,7 +4088,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4121,7 +4121,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4150,18 +4150,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4187,7 +4187,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4222,7 +4222,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4258,7 +4258,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4283,7 +4283,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4306,7 +4306,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4329,7 +4329,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4355,7 +4355,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4376,7 +4376,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4403,7 +4403,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI8, Ordering};
@@ -4491,7 +4491,7 @@ struct AtomicU8 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4797`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4797)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4797`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4797)*
 
 An integer type which can be safely shared between threads.
 
@@ -4509,7 +4509,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU8;
@@ -4523,7 +4523,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicU8>()` (note that on some platforms this
     can be bigger than `align_of::<u8>()`).
@@ -4554,7 +4554,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU8;
@@ -4573,7 +4573,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU8;
@@ -4590,7 +4590,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4610,7 +4610,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU8;
@@ -4626,11 +4626,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4647,11 +4647,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4671,7 +4671,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4698,11 +4698,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4740,11 +4740,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4772,7 +4772,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4799,7 +4799,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4820,7 +4820,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4847,7 +4847,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4871,7 +4871,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4904,7 +4904,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4928,7 +4928,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4952,7 +4952,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -4985,7 +4985,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5009,7 +5009,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5042,7 +5042,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5071,18 +5071,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5108,7 +5108,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5143,7 +5143,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5179,7 +5179,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5204,7 +5204,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5227,7 +5227,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5250,7 +5250,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5276,7 +5276,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5297,7 +5297,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5324,7 +5324,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU8, Ordering};
@@ -5412,7 +5412,7 @@ struct AtomicI16 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4800`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4800)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4800`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4800)*
 
 An integer type which can be safely shared between threads.
 
@@ -5430,7 +5430,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI16;
@@ -5444,7 +5444,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicI16>()` (note that on some platforms this
     can be bigger than `align_of::<i16>()`).
@@ -5475,7 +5475,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI16;
@@ -5494,7 +5494,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI16;
@@ -5511,7 +5511,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5531,7 +5531,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI16;
@@ -5547,11 +5547,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5568,11 +5568,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5592,7 +5592,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5619,11 +5619,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5661,11 +5661,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5693,7 +5693,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5720,7 +5720,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5741,7 +5741,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5768,7 +5768,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5792,7 +5792,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5825,7 +5825,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5849,7 +5849,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5873,7 +5873,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5906,7 +5906,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5930,7 +5930,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5963,7 +5963,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -5992,18 +5992,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6029,7 +6029,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6064,7 +6064,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6100,7 +6100,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6125,7 +6125,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6148,7 +6148,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6171,7 +6171,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6197,7 +6197,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6218,7 +6218,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6245,7 +6245,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI16, Ordering};
@@ -6333,7 +6333,7 @@ struct AtomicU16 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4801-4802`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4801-L4802)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4801-4802`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4801-L4802)*
 
 An integer type which can be safely shared between threads.
 
@@ -6351,7 +6351,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU16;
@@ -6365,7 +6365,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicU16>()` (note that on some platforms this
     can be bigger than `align_of::<u16>()`).
@@ -6396,7 +6396,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU16;
@@ -6415,7 +6415,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU16;
@@ -6432,7 +6432,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6452,7 +6452,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU16;
@@ -6468,11 +6468,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6489,11 +6489,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6513,7 +6513,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6540,11 +6540,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6582,11 +6582,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6614,7 +6614,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6641,7 +6641,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6662,7 +6662,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6689,7 +6689,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6713,7 +6713,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6746,7 +6746,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6770,7 +6770,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6794,7 +6794,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6827,7 +6827,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6851,7 +6851,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6884,7 +6884,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6913,18 +6913,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6950,7 +6950,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -6985,7 +6985,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -7021,7 +7021,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -7046,7 +7046,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -7069,7 +7069,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -7092,7 +7092,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -7118,7 +7118,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -7139,7 +7139,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -7166,7 +7166,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU16, Ordering};
@@ -7254,7 +7254,7 @@ struct AtomicI32 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4805`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4805)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4805`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4805)*
 
 An integer type which can be safely shared between threads.
 
@@ -7272,7 +7272,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI32;
@@ -7286,7 +7286,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicI32>()` (note that on some platforms this
     can be bigger than `align_of::<i32>()`).
@@ -7317,7 +7317,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI32;
@@ -7336,7 +7336,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI32;
@@ -7353,7 +7353,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7373,7 +7373,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI32;
@@ -7389,11 +7389,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7410,11 +7410,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7434,7 +7434,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7461,11 +7461,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7503,11 +7503,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7535,7 +7535,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7562,7 +7562,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7583,7 +7583,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7610,7 +7610,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7634,7 +7634,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7667,7 +7667,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7691,7 +7691,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7715,7 +7715,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7748,7 +7748,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7772,7 +7772,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7805,7 +7805,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7834,18 +7834,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7871,7 +7871,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7906,7 +7906,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7942,7 +7942,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7967,7 +7967,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -7990,7 +7990,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -8013,7 +8013,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -8039,7 +8039,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -8060,7 +8060,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -8087,7 +8087,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI32, Ordering};
@@ -8175,7 +8175,7 @@ struct AtomicU32 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4806-4807`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4806-L4807)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4806-4807`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4806-L4807)*
 
 An integer type which can be safely shared between threads.
 
@@ -8193,7 +8193,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU32;
@@ -8207,7 +8207,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicU32>()` (note that on some platforms this
     can be bigger than `align_of::<u32>()`).
@@ -8238,7 +8238,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU32;
@@ -8257,7 +8257,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU32;
@@ -8274,7 +8274,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8294,7 +8294,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU32;
@@ -8310,11 +8310,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8331,11 +8331,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8355,7 +8355,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8382,11 +8382,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8424,11 +8424,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8456,7 +8456,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8483,7 +8483,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8504,7 +8504,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8531,7 +8531,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8555,7 +8555,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8588,7 +8588,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8612,7 +8612,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8636,7 +8636,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8669,7 +8669,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8693,7 +8693,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8726,7 +8726,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8755,18 +8755,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8792,7 +8792,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8827,7 +8827,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8863,7 +8863,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8888,7 +8888,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8911,7 +8911,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8934,7 +8934,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8960,7 +8960,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -8981,7 +8981,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -9008,7 +9008,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU32, Ordering};
@@ -9096,7 +9096,7 @@ struct AtomicI64 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4810`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4810)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4810`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4810)*
 
 An integer type which can be safely shared between threads.
 
@@ -9114,7 +9114,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI64;
@@ -9128,7 +9128,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicI64>()` (note that on some platforms this
     can be bigger than `align_of::<i64>()`).
@@ -9159,7 +9159,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI64;
@@ -9178,7 +9178,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI64;
@@ -9195,7 +9195,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9215,7 +9215,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI64;
@@ -9231,11 +9231,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9252,11 +9252,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9276,7 +9276,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9303,11 +9303,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9345,11 +9345,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9377,7 +9377,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9404,7 +9404,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9425,7 +9425,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9452,7 +9452,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9476,7 +9476,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9509,7 +9509,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9533,7 +9533,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9557,7 +9557,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9590,7 +9590,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9614,7 +9614,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9647,7 +9647,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9676,18 +9676,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9713,7 +9713,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9748,7 +9748,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9784,7 +9784,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9809,7 +9809,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9832,7 +9832,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9855,7 +9855,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9881,7 +9881,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9902,7 +9902,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -9929,7 +9929,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI64, Ordering};
@@ -10017,7 +10017,7 @@ struct AtomicU64 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4811-4812`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4811-L4812)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4811-4812`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4811-L4812)*
 
 An integer type which can be safely shared between threads.
 
@@ -10035,7 +10035,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU64;
@@ -10049,7 +10049,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicU64>()` (note that on some platforms this
     can be bigger than `align_of::<u64>()`).
@@ -10080,7 +10080,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU64;
@@ -10099,7 +10099,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU64;
@@ -10116,7 +10116,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10136,7 +10136,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU64;
@@ -10152,11 +10152,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10173,11 +10173,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10197,7 +10197,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10224,11 +10224,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10266,11 +10266,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10298,7 +10298,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10325,7 +10325,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10346,7 +10346,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10373,7 +10373,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10397,7 +10397,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10430,7 +10430,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10454,7 +10454,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10478,7 +10478,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10511,7 +10511,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10535,7 +10535,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10568,7 +10568,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10597,18 +10597,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10634,7 +10634,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10669,7 +10669,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10705,7 +10705,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10730,7 +10730,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10753,7 +10753,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10776,7 +10776,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10802,7 +10802,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10823,7 +10823,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10850,7 +10850,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU64, Ordering};
@@ -10938,7 +10938,7 @@ struct AtomicI128 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4815`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4815)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4815`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4815)*
 
 An integer type which can be safely shared between threads.
 
@@ -10956,7 +10956,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI128;
@@ -10970,7 +10970,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicI128>()` (note that on some platforms this
     can be bigger than `align_of::<i128>()`).
@@ -11001,7 +11001,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI128;
@@ -11020,7 +11020,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI128;
@@ -11037,7 +11037,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11057,7 +11057,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicI128;
@@ -11073,11 +11073,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11094,11 +11094,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11118,7 +11118,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11145,11 +11145,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11187,11 +11187,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11219,7 +11219,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11246,7 +11246,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11267,7 +11267,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11294,7 +11294,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11318,7 +11318,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11351,7 +11351,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11375,7 +11375,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11399,7 +11399,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11432,7 +11432,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11456,7 +11456,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11489,7 +11489,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11518,18 +11518,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11555,7 +11555,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11590,7 +11590,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11626,7 +11626,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11651,7 +11651,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11674,7 +11674,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11697,7 +11697,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11723,7 +11723,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11744,7 +11744,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11771,7 +11771,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicI128, Ordering};
@@ -11859,7 +11859,7 @@ struct AtomicU128 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:4816-4817`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L4816-L4817)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4816-4817`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L4816-L4817)*
 
 An integer type which can be safely shared between threads.
 
@@ -11877,7 +11877,7 @@ atomic instructions or locks will be used.
 
   Creates a new atomic integer.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU128;
@@ -11891,7 +11891,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Safety
+  ##### Safety
   
   * `ptr` must be aligned to `align_of::<AtomicU128>()` (note that on some platforms this
     can be bigger than `align_of::<u128>()`).
@@ -11922,7 +11922,7 @@ atomic instructions or locks will be used.
   atomic instructions, global locks for every potentially
   concurrent atomic operation will be used.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU128;
@@ -11941,7 +11941,7 @@ atomic instructions or locks will be used.
   **Note:** If the atomic operation relies on dynamic CPU feature detection,
   this type may be lock-free even if the function returns false.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU128;
@@ -11958,7 +11958,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.83+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -11978,7 +11978,7 @@ atomic instructions or locks will be used.
   
   This is `const fn` on Rust 1.56+.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::AtomicU128;
@@ -11994,11 +11994,11 @@ atomic instructions or locks will be used.
   `load` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Acquire` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Release` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12015,11 +12015,11 @@ atomic instructions or locks will be used.
   `store` takes an [`Ordering`](#ordering) argument which describes the memory ordering of this operation.
   Possible values are `SeqCst`, `Release` and `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `order` is `Acquire` or `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12039,7 +12039,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12066,11 +12066,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12108,11 +12108,11 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the successful load
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `failure` is `Release`, `AcqRel`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12140,7 +12140,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12167,7 +12167,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `add` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12188,7 +12188,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12215,7 +12215,7 @@ atomic instructions or locks will be used.
   
   - MSP430: `sub` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12239,7 +12239,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12272,7 +12272,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12296,7 +12296,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12320,7 +12320,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12353,7 +12353,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12377,7 +12377,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12410,7 +12410,7 @@ atomic instructions or locks will be used.
   affect the generated code, because LLVM can properly optimize the case
   where the result is unused.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12439,18 +12439,18 @@ atomic instructions or locks will be used.
   of this operation `Relaxed`, and using `Release` makes the final successful load
   `Relaxed`. The (failed) load ordering can only be `SeqCst`, `Acquire` or `Relaxed`.
   
-  # Panics
+  ##### Panics
   
   Panics if `fetch_order` is `Release`, `AcqRel`.
   
-  # Considerations
+  ##### Considerations
   
   This method is not magic; it is not provided by the hardware.
   It is implemented in terms of [`compare_exchange_weak`](Self::compare_exchange_weak),
   and suffers from the same drawbacks.
   In particular, this method will not circumvent the [ABA Problem].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12476,7 +12476,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12511,7 +12511,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12547,7 +12547,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock bts`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12572,7 +12572,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btr`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12595,7 +12595,7 @@ atomic instructions or locks will be used.
   
   This corresponds to x86's `lock btc`, and the implementation calls them on x86/x86_64.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12618,7 +12618,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12644,7 +12644,7 @@ atomic instructions or locks will be used.
   - x86/x86_64: `lock not` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   - MSP430: `inv` instead of disabling interrupts ({8,16}-bit atomics)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12665,7 +12665,7 @@ atomic instructions or locks will be used.
   `Acquire` makes the store part of this operation `Relaxed`, and
   using `Release` makes the load part `Relaxed`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12692,7 +12692,7 @@ atomic instructions or locks will be used.
   
   - x86/x86_64: `lock neg` instead of `cmpxchg` loop ({8,16,32}-bit atomics on x86, but additionally 64-bit atomics on x86_64)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use portable_atomic::{AtomicU128, Ordering};
@@ -12784,61 +12784,61 @@ fn Ordering(self) -> Result<U, <U as TryFrom>::Error>
 
 ### `cfg_has_atomic_ptr!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
 
 ### `cfg_no_atomic_ptr!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
 
 ### `atomic_int!`
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:2720-4774`](../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L2720-L4774)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:2720-4774`](../../.source_1765900590/portable-atomic-1.11.1/src/lib.rs#L2720-L4774)*
 
 ### `cfg_has_atomic_8!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:18-22`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L18-L22)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:18-22`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L18-L22)*
 
 ### `cfg_no_atomic_8!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:24-26`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L24-L26)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:24-26`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L24-L26)*
 
 ### `cfg_has_atomic_16!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:28-32`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L28-L32)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:28-32`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L28-L32)*
 
 ### `cfg_no_atomic_16!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:34-36`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L34-L36)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:34-36`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L34-L36)*
 
 ### `cfg_has_atomic_32!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:88-92`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L88-L92)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:88-92`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L88-L92)*
 
 ### `cfg_no_atomic_32!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:94-96`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L94-L96)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:94-96`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L94-L96)*
 
 ### `cfg_has_atomic_64!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
 
 ### `cfg_no_atomic_64!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
 
 ### `cfg_has_atomic_128!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:323-327`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L323-L327)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:323-327`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L323-L327)*
 
 ### `cfg_no_atomic_128!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:329-331`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L329-L331)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:329-331`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L329-L331)*
 
 ### `cfg_has_atomic_cas!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:446-450`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L446-L450)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:446-450`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L446-L450)*
 
 ### `cfg_no_atomic_cas!`
 
-*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:452-454`](../../.source_1765894658/portable-atomic-1.11.1/src/cfgs.rs#L452-L454)*
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:452-454`](../../.source_1765900590/portable-atomic-1.11.1/src/cfgs.rs#L452-L454)*
 

@@ -61,7 +61,7 @@ struct RelocationSections {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:18-20`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L18-L20)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:18-20`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L18-L20)*
 
 A mapping from section index to associated relocation sections.
 
@@ -142,7 +142,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:123-132`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L123-L132)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:123-132`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L123-L132)*
 
 An iterator for the dynamic relocations in an [`ElfFile`](../index.md).
 
@@ -224,7 +224,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:207-216`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L207-L216)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:207-216`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L207-L216)*
 
 An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
@@ -305,7 +305,7 @@ struct RelrIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:681-687`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L681-L687)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:681-687`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L681-L687)*
 
 An iterator over the relative relocations in an ELF `SHT_RELR` section.
 
@@ -387,7 +387,7 @@ struct Crel {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:792-803`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L792-L803)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:792-803`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L792-L803)*
 
 Compact relocation
 
@@ -503,7 +503,7 @@ struct CrelIteratorHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:839-848`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L839-L848)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:839-848`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L839-L848)*
 
 #### Fields
 
@@ -596,7 +596,7 @@ struct CrelIteratorState {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:851-862`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L851-L862)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:851-862`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L851-L862)*
 
 #### Fields
 
@@ -695,7 +695,7 @@ struct CrelIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:866-873`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L866-L873)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:866-873`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L866-L873)*
 
 Compact relocation iterator.
 
@@ -822,7 +822,7 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:83-87`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L83-L87)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:83-87`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L83-L87)*
 
 #### Implementations
 
@@ -891,7 +891,7 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 trait Rel: Debug + Pod + Clone { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:514-535`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L514-L535)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:514-535`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L514-L535)*
 
 A trait for generic access to [`elf::Rel32`](../../../elf/index.md) and [`elf::Rel64`](../../../elf/index.md).
 
@@ -905,17 +905,17 @@ A trait for generic access to [`elf::Rel32`](../../../elf/index.md) and [`elf::R
 
 #### Required Methods
 
-- `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Rel::r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Rel::r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_sym(&self, endian: <Self as >::Endian) -> u32`
+- `fn Rel::r_sym(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn r_type(&self, endian: <Self as >::Endian) -> u32`
+- `fn Rel::r_type(&self, endian: <Self as >::Endian) -> u32`
 
 #### Provided Methods
 
-- `fn symbol(&self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
+- `fn Rel::symbol(&self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
   
@@ -932,7 +932,7 @@ A trait for generic access to [`elf::Rel32`](../../../elf/index.md) and [`elf::R
 trait Rela: Debug + Pod + Clone { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:591-613`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L591-L613)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:591-613`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L591-L613)*
 
 A trait for generic access to [`elf::Rela32`](../../../elf/index.md) and [`elf::Rela64`](../../../elf/index.md).
 
@@ -946,19 +946,19 @@ A trait for generic access to [`elf::Rela32`](../../../elf/index.md) and [`elf::
 
 #### Required Methods
 
-- `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Rela::r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word`
+- `fn Rela::r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word`
 
-- `fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword`
+- `fn Rela::r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword`
 
-- `fn r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+- `fn Rela::r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
 
-- `fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+- `fn Rela::r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
 
 #### Provided Methods
 
-- `fn symbol(&self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
+- `fn Rela::symbol(&self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
   
@@ -975,7 +975,7 @@ A trait for generic access to [`elf::Rela32`](../../../elf/index.md) and [`elf::
 trait Relr: Debug + Pod + Clone { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:727-746`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L727-L746)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:727-746`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L727-L746)*
 
 A trait for generic access to [`elf::Relr32`](../../../elf/index.md) and [`elf::Relr64`](../../../elf/index.md).
 
@@ -991,13 +991,13 @@ A trait for generic access to [`elf::Relr32`](../../../elf/index.md) and [`elf::
 
 #### Required Methods
 
-- `fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Relr::get(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
   Get the relocation entry.
   
   This value is an offset if the lowest bit is clear, or a bit mask if the lowest bit is set.
 
-- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>`
+- `fn Relr::next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>`
 
   Return the offset corresponding to the next bit in the bit mask.
   
@@ -1019,7 +1019,7 @@ A trait for generic access to [`elf::Relr32`](../../../elf/index.md) and [`elf::
 fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, reloc: Crel, implicit_addend: bool) -> crate::read::Relocation
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:278-510`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L278-L510)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:278-510`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L278-L510)*
 
 ## Type Aliases
 
@@ -1029,7 +1029,7 @@ fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, re
 type ElfDynamicRelocationIterator32<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:116-117`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L116-L117)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:116-117`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L116-L117)*
 
 An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 
@@ -1039,7 +1039,7 @@ An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 type ElfDynamicRelocationIterator64<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:119-120`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L119-L120)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:119-120`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L119-L120)*
 
 An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 
@@ -1049,7 +1049,7 @@ An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionRelocationIterator32<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:200-201`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L200-L201)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:200-201`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L200-L201)*
 
 An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 
@@ -1059,7 +1059,7 @@ An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 type ElfSectionRelocationIterator64<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:203-204`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L203-L204)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:203-204`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L203-L204)*
 
 An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 

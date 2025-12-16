@@ -21,7 +21,7 @@ struct Unique<T: ?Sized> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/unique.rs:22-25`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/unique.rs#L22-L25)*
+*Defined in [`allocator-api2-0.2.21/src/stable/unique.rs:22-25`](../../../../.source_1765900590/allocator-api2-0.2.21/src/stable/unique.rs#L22-L25)*
 
 A wrapper around a raw non-null `*mut T` that indicates that the possessor
 of this wrapper owns the referent. Useful for building abstractions like
@@ -50,7 +50,7 @@ for any type which upholds Unique's aliasing requirements.
 
   Creates a new `Unique`.
   
-  # Safety
+  ##### Safety
   
   `ptr` must be non-null.
 

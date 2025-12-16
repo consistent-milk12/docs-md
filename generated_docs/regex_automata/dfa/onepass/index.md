@@ -60,7 +60,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:67-72`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L67-L72)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:67-72`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L67-L72)*
 
 The configuration used for building a [one-pass DFA](DFA).
 
@@ -121,7 +121,7 @@ perhaps more conveniently, with `DFA::config`.
   
   By default this is disabled.
   
-  # Example
+  ##### Example
   
   This example shows how to build a multi-regex and then search for
   matches for a any of the patterns or matches for a specific pattern.
@@ -194,7 +194,7 @@ perhaps more conveniently, with `DFA::config`.
   
   The default is no limit.
   
-  # Example
+  ##### Example
   
   This example shows a one-pass DFA that fails to build because of
   a configured size limit. This particular example also serves as a
@@ -331,7 +331,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:335-339`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L335-L339)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:335-339`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L335-L339)*
 
 A builder for a [one-pass DFA](DFA).
 
@@ -410,7 +410,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Build a DFA from the given NFA.
   
-  # Example
+  ##### Example
   
   This example shows how to build a DFA if you already have an NFA in
   hand.
@@ -533,7 +533,7 @@ struct InternalBuilder<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:475-520`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L475-L520)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:475-520`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L475-L520)*
 
 An internal builder for encapsulating the state necessary to build a
 one-pass DFA. Typical use is just `InternalBuilder::new(..).build()`.
@@ -767,7 +767,7 @@ struct DFA {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:1077-1146`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L1077-L1146)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:1077-1146`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L1077-L1146)*
 
 A one-pass DFA for executing a subset of anchored regex searches while
 resolving capturing groups.
@@ -1020,7 +1020,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If you want a non-default configuration, then use the [`Builder`](#builder) to
   set your own configuration.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{dfa::onepass::DFA, Match};
@@ -1038,7 +1038,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Like `new`, but parses multiple patterns into a single "multi regex."
   This similarly uses the default regex configuration.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{dfa::onepass::DFA, Match};
@@ -1061,7 +1061,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   useful if you already have an NFA, or even if you hand-assembled the
   NFA.
   
-  # Example
+  ##### Example
   
   This shows how to hand assemble a regular expression via its HIR,
   compile an NFA from it and build a one-pass DFA from the NFA.
@@ -1097,7 +1097,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Create a new one-pass DFA that matches every input.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{dfa::onepass::DFA, Match};
@@ -1118,7 +1118,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Create a new one-pass DFA that never matches any input.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::dfa::onepass::DFA;
@@ -1141,7 +1141,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine to avoid needing to import the `Config`
   type when customizing the construction of a DFA.
   
-  # Example
+  ##### Example
   
   This example shows how to change the match semantics of this DFA from
   its default "leftmost first" to "all." When using "all," non-greediness
@@ -1172,7 +1172,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine to avoid needing to import the
   [`Builder`](#builder) type in common cases.
   
-  # Example
+  ##### Example
   
   This example shows how to use the builder to disable UTF-8 mode.
   
@@ -1229,7 +1229,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   A cache reset permits reusing memory already allocated in this cache
   with a different DFA.
   
-  # Example
+  ##### Example
   
   This shows how to re-purpose a cache for use with a different DFA.
   
@@ -1446,7 +1446,7 @@ struct SparseTransitionIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2442-2445`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L2442-L2445)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2442-2445`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L2442-L2445)*
 
 An iterator over groups of consecutive equivalent transitions in a single
 state.
@@ -1519,7 +1519,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2492-2504`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L2492-L2504)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2492-2504`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L2492-L2504)*
 
 A cache represents mutable state that a one-pass [`DFA`](#dfa) requires during a
 search.
@@ -1571,7 +1571,7 @@ only be used with the new one-pass DFA (and not the old one).
   A cache reset permits reusing memory already allocated in this cache
   with a different one-pass DFA.
   
-  # Example
+  ##### Example
   
   This shows how to re-purpose a cache for use with a different one-pass
   DFA.
@@ -1684,7 +1684,7 @@ only be used with the new one-pass DFA (and not the old one).
 struct Transition(u64);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2592`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L2592)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2592`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L2592)*
 
 Represents a single transition in a one-pass DFA.
 
@@ -1814,7 +1814,7 @@ must be satisfied in order to follow this transition.
 struct PatternEpsilons(u64);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2679`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L2679)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2679`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L2679)*
 
 A representation of a match state's pattern ID along with the epsilons for
 when a match occurs.
@@ -1952,7 +1952,7 @@ ever non-empty for match states.
 struct Epsilons(u64);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2787`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L2787)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2787`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L2787)*
 
 Epsilons represents all of the NFA epsilons transitions that went into a
 single transition in a single DFA state. In this case, it only represents
@@ -2073,7 +2073,7 @@ the lower 42 bits of a `Transition`. (Where the high 22 bits contains a
 struct Slots(u32);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2886`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L2886)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2886`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L2886)*
 
 The set of epsilon transitions indicating that the current position in a
 search should be saved to a slot.
@@ -2211,7 +2211,7 @@ struct SlotsIter {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2955-2957`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L2955-L2957)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2955-2957`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L2955-L2957)*
 
 An iterator over all of the bits set in a slot set.
 
@@ -2285,7 +2285,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2987-2989`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L2987-L2989)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2987-2989`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L2987-L2989)*
 
 An error that occurred during the construction of a one-pass DFA.
 
@@ -2416,7 +2416,7 @@ enum BuildErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2993-3001`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/onepass.rs#L2993-L3001)*
+*Defined in [`regex-automata-0.4.13/src/dfa/onepass.rs:2993-3001`](../../../../.source_1765900590/regex-automata-0.4.13/src/dfa/onepass.rs#L2993-L3001)*
 
 The kind of error that occurred during the construction of a one-pass DFA.
 

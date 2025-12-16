@@ -23,7 +23,7 @@ enum BytesOrWideString<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../../.source_1765894658/backtrace-0.3.76/src/types.rs#L17-L22)*
+*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../../.source_1765900590/backtrace-0.3.76/src/types.rs#L17-L22)*
 
 A platform independent representation of a string. When working with `std`
 enabled it is recommended to the convenience methods for providing
@@ -46,7 +46,7 @@ conversions to `std` types.
   Lossy converts to a `Cow<str>`, will allocate if `Bytes` is not valid
   UTF-8 or if `BytesOrWideString` is `Wide`.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -55,7 +55,7 @@ conversions to `std` types.
 
   Provides a `Path` representation of `BytesOrWideString`.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.

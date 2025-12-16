@@ -24,7 +24,7 @@ struct Date {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/date.rs:8-12`](../../../.source_1765894658/rustversion-1.0.22/src/date.rs#L8-L12)*
+*Defined in [`rustversion-1.0.22/src/date.rs:8-12`](../../../.source_1765900590/rustversion-1.0.22/src/date.rs#L8-L12)*
 
 #### Trait Implementations
 
@@ -121,7 +121,7 @@ struct Date {
 fn parse(paren: proc_macro::Group, iter: &'_ mut IterImpl) -> std::result::Result<Date, Error>
 ```
 
-*Defined in [`rustversion-1.0.22/src/date.rs:24-29`](../../../.source_1765894658/rustversion-1.0.22/src/date.rs#L24-L29)*
+*Defined in [`rustversion-1.0.22/src/date.rs:24-29`](../../../.source_1765900590/rustversion-1.0.22/src/date.rs#L24-L29)*
 
 ### `try_parse`
 
@@ -129,5 +129,5 @@ fn parse(paren: proc_macro::Group, iter: &'_ mut IterImpl) -> std::result::Resul
 fn try_parse(iter: &'_ mut IterImpl) -> std::result::Result<Date, ()>
 ```
 
-*Defined in [`rustversion-1.0.22/src/date.rs:31-50`](../../../.source_1765894658/rustversion-1.0.22/src/date.rs#L31-L50)*
+*Defined in [`rustversion-1.0.22/src/date.rs:31-50`](../../../.source_1765900590/rustversion-1.0.22/src/date.rs#L31-L50)*
 

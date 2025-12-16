@@ -46,7 +46,7 @@ struct One {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:29-34`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L29-L34)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:29-34`](../../../../../../.source_1765900590/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L29-L34)*
 
 Finds all occurrences of a single byte in a haystack.
 
@@ -78,7 +78,7 @@ Finds all occurrences of a single byte in a haystack.
   Create a new finder specific to AVX2 vectors and routines without
   checking that either SSE2 or AVX2 is available.
   
-  # Safety
+  ##### Safety
   
   Callers must guarantee that it is safe to execute both `sse2` and
   `avx2` instructions in the current environment.
@@ -130,7 +130,7 @@ Finds all occurrences of a single byte in a haystack.
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -156,7 +156,7 @@ Finds all occurrences of a single byte in a haystack.
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -180,7 +180,7 @@ Finds all occurrences of a single byte in a haystack.
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -200,7 +200,7 @@ Finds all occurrences of a single byte in a haystack.
 
   Execute a search using SSE2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `One::find_raw`, except the distance between `start` and
   `end` must be at least the size of an SSE2 vector (in bytes).
@@ -213,7 +213,7 @@ Finds all occurrences of a single byte in a haystack.
 
   Execute a search using SSE2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `One::rfind_raw`, except the distance between `start` and
   `end` must be at least the size of an SSE2 vector (in bytes).
@@ -226,7 +226,7 @@ Finds all occurrences of a single byte in a haystack.
 
   Execute a count using SSE2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `One::count_raw`, except the distance between `start` and
   `end` must be at least the size of an SSE2 vector (in bytes).
@@ -239,7 +239,7 @@ Finds all occurrences of a single byte in a haystack.
 
   Execute a search using AVX2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `One::find_raw`, except the distance between `start` and
   `end` must be at least the size of an AVX2 vector (in bytes).
@@ -252,7 +252,7 @@ Finds all occurrences of a single byte in a haystack.
 
   Execute a search using AVX2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `One::rfind_raw`, except the distance between `start` and
   `end` must be at least the size of an AVX2 vector (in bytes).
@@ -265,7 +265,7 @@ Finds all occurrences of a single byte in a haystack.
 
   Execute a count using AVX2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `One::count_raw`, except the distance between `start` and
   `end` must be at least the size of an AVX2 vector (in bytes).
@@ -354,7 +354,7 @@ struct OneIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:467-470`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L467-L470)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:467-470`](../../../../../../.source_1765900590/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L467-L470)*
 
 An iterator over all occurrences of a single byte in a haystack.
 
@@ -462,7 +462,7 @@ struct Two {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:516-521`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L516-L521)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:516-521`](../../../../../../.source_1765900590/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L516-L521)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -498,7 +498,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
   Create a new finder specific to AVX2 vectors and routines without
   checking that either SSE2 or AVX2 is available.
   
-  # Safety
+  ##### Safety
   
   Callers must guarantee that it is safe to execute both `sse2` and
   `avx2` instructions in the current environment.
@@ -546,7 +546,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -572,7 +572,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -592,7 +592,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
   Execute a search using SSE2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `Two::find_raw`, except the distance between `start` and
   `end` must be at least the size of an SSE2 vector (in bytes).
@@ -605,7 +605,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
   Execute a search using SSE2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `Two::rfind_raw`, except the distance between `start` and
   `end` must be at least the size of an SSE2 vector (in bytes).
@@ -618,7 +618,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
   Execute a search using AVX2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `Two::find_raw`, except the distance between `start` and
   `end` must be at least the size of an AVX2 vector (in bytes).
@@ -631,7 +631,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
   Execute a search using AVX2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `Two::rfind_raw`, except the distance between `start` and
   `end` must be at least the size of an AVX2 vector (in bytes).
@@ -720,7 +720,7 @@ struct TwoIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:855-858`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L855-L858)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:855-858`](../../../../../../.source_1765900590/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L855-L858)*
 
 An iterator over all occurrences of two possible bytes in a haystack.
 
@@ -826,7 +826,7 @@ struct Three {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:895-900`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L895-L900)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:895-900`](../../../../../../.source_1765900590/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L895-L900)*
 
 Finds all occurrences of three bytes in a haystack.
 
@@ -862,7 +862,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
   Create a new finder specific to AVX2 vectors and routines without
   checking that either SSE2 or AVX2 is available.
   
-  # Safety
+  ##### Safety
   
   Callers must guarantee that it is safe to execute both `sse2` and
   `avx2` instructions in the current environment.
@@ -910,7 +910,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -936,7 +936,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -956,7 +956,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
   Execute a search using SSE2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `Three::find_raw`, except the distance between `start` and
   `end` must be at least the size of an SSE2 vector (in bytes).
@@ -969,7 +969,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
   Execute a search using SSE2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `Three::rfind_raw`, except the distance between `start` and
   `end` must be at least the size of an SSE2 vector (in bytes).
@@ -982,7 +982,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
   Execute a search using AVX2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `Three::find_raw`, except the distance between `start` and
   `end` must be at least the size of an AVX2 vector (in bytes).
@@ -995,7 +995,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
   Execute a search using AVX2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as `Three::rfind_raw`, except the distance between `start` and
   `end` must be at least the size of an AVX2 vector (in bytes).
@@ -1084,7 +1084,7 @@ struct ThreeIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:1242-1245`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L1242-L1245)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:1242-1245`](../../../../../../.source_1765900590/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L1242-L1245)*
 
 An iterator over all occurrences of three possible bytes in a haystack.
 

@@ -27,7 +27,7 @@ where
     U: IsStyled;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styled_list.rs:64-67`](../../../.source_1765894658/owo-colors-4.2.3/src/styled_list.rs#L64-L67)*
+*Defined in [`owo-colors-4.2.3/src/styled_list.rs:64-67`](../../../.source_1765900590/owo-colors-4.2.3/src/styled_list.rs#L64-L67)*
 
 A collection of [`Styled`](../index.md) items that are displayed in such a way as to minimize the amount of characters
 that are written when displayed.
@@ -107,7 +107,7 @@ enum Transition<'a> {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styled_list.rs:157-161`](../../../.source_1765894658/owo-colors-4.2.3/src/styled_list.rs#L157-L161)*
+*Defined in [`owo-colors-4.2.3/src/styled_list.rs:157-161`](../../../.source_1765900590/owo-colors-4.2.3/src/styled_list.rs#L157-L161)*
 
 How the transition between two styles should be printed
 

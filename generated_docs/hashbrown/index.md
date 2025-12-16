@@ -88,7 +88,7 @@ struct DefaultHashBuilder {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../.source_1765894658/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../.source_1765900590/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
 
 Default hash builder for the `S` type parameter of
 [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
@@ -176,7 +176,7 @@ struct DefaultHasher {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../.source_1765894658/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../.source_1765900590/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
 
 Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
@@ -276,7 +276,7 @@ struct HashMap<K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../.source_1765894658/hashbrown-0.16.1/src/map.rs#L185-L188)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../.source_1765900590/hashbrown-0.16.1/src/map.rs#L185-L188)*
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
@@ -455,7 +455,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
   The hash map is initially created with a capacity of 0, so it will not allocate until it
   is first inserted into.
   
-  # HashDoS resistance
+  ##### HashDoS resistance
   
   The `hash_builder` normally use a fixed key by default and that does
   not allow the `HashMap` to be protected against attacks such as `HashDoS`.
@@ -465,7 +465,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
   [`with_hasher`](HashMap::with_hasher) method.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -481,7 +481,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
   The hash map will be able to hold at least `capacity` elements without
   reallocating. If `capacity` is 0, the hash map will not allocate.
   
-  # HashDoS resistance
+  ##### HashDoS resistance
   
   The `hash_builder` normally use a fixed key by default and that does
   not allow the `HashMap` to be protected against attacks such as `HashDoS`.
@@ -491,7 +491,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
   [`with_capacity_and_hasher`](HashMap::with_capacity_and_hasher) method.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -534,7 +534,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
   Creates an empty `HashMap<K, V, S, A>`, with the `Default` value for the hasher and allocator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -561,7 +561,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
   Inserts all new key-values from the iterator to existing `HashMap<K, V, S, A>`.
   Replace values with existing keys with new values returned from the iterator.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::HashMap;
@@ -612,11 +612,11 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
   Returns a reference to the value corresponding to the supplied key.
   
-  # Panics
+  ##### Panics
   
   Panics if the key is not present in the `HashMap`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -650,7 +650,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
   Return the same `Iter` struct as by the [`iter`](#iter) method on [`HashMap`](hash_map/index.md).
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -697,7 +697,7 @@ struct HashSet<T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L114-L116)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../.source_1765900590/hashbrown-0.16.1/src/set.rs#L114-L116)*
 
 A hash set implemented as a `HashMap` where the value is `()`.
 
@@ -803,7 +803,7 @@ let viking_names: HashSet<&'static str> =
   The hash set is initially created with a capacity of 0, so it will not allocate until it
   is first inserted into.
   
-  # HashDoS resistance
+  ##### HashDoS resistance
   
   The `hash_builder` normally use a fixed key by default and that does
   not allow the `HashSet` to be protected against attacks such as `HashDoS`.
@@ -813,7 +813,7 @@ let viking_names: HashSet<&'static str> =
   [`with_hasher`](HashSet::with_hasher) method.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -827,7 +827,7 @@ let viking_names: HashSet<&'static str> =
   The hash set will be able to hold at least `capacity` elements without
   reallocating. If `capacity` is 0, the hash set will not allocate.
   
-  # HashDoS resistance
+  ##### HashDoS resistance
   
   The `hash_builder` normally use a fixed key by default and that does
   not allow the `HashSet` to be protected against attacks such as `HashDoS`.
@@ -837,7 +837,7 @@ let viking_names: HashSet<&'static str> =
   [`with_capacity_and_hasher`](HashSet::with_capacity_and_hasher) method.
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -859,7 +859,7 @@ let viking_names: HashSet<&'static str> =
 
   Returns the intersection of `self` and `rhs` as a new `HashSet<T, S>`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -884,7 +884,7 @@ let viking_names: HashSet<&'static str> =
 
   Modifies this set to contain the intersection of `self` and `rhs`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -911,7 +911,7 @@ let viking_names: HashSet<&'static str> =
 
   Returns the union of `self` and `rhs` as a new `HashSet<T, S>`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -936,7 +936,7 @@ let viking_names: HashSet<&'static str> =
 
   Modifies this set to contain the union of `self` and `rhs`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -963,7 +963,7 @@ let viking_names: HashSet<&'static str> =
 
   Returns the symmetric difference of `self` and `rhs` as a new `HashSet<T, S>`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -988,7 +988,7 @@ let viking_names: HashSet<&'static str> =
 
   Modifies this set to contain the symmetric difference of `self` and `rhs`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -1084,7 +1084,7 @@ let viking_names: HashSet<&'static str> =
 
   Returns the difference of `self` and `rhs` as a new `HashSet<T, S>`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -1109,7 +1109,7 @@ let viking_names: HashSet<&'static str> =
 
   Modifies this set to contain the difference of `self` and `rhs`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashSet;
@@ -1158,7 +1158,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L48-L53)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../.source_1765900590/hashbrown-0.16.1/src/table.rs#L48-L53)*
 
 Low-level hash table with explicit hashing.
 
@@ -1205,7 +1205,7 @@ doing this because it changes the runtime of hash table operations from
   The hash table is initially created with a capacity of 0, so it will not allocate until it
   is first inserted into.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashTable;
@@ -1221,7 +1221,7 @@ doing this because it changes the runtime of hash table operations from
   The hash table will be able to hold at least `capacity` elements without
   reallocating. If `capacity` is 0, the hash table will not allocate.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashTable;
@@ -1316,7 +1316,7 @@ enum TryReserveError {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/lib.rs:180-190`](../../.source_1765894658/hashbrown-0.16.1/src/lib.rs#L180-L190)*
+*Defined in [`hashbrown-0.16.1/src/lib.rs:180-190`](../../.source_1765900590/hashbrown-0.16.1/src/lib.rs#L180-L190)*
 
 The error type for `try_reserve` methods.
 

@@ -30,7 +30,7 @@ struct Parser {
 }
 ```
 
-*Defined in [`utf8parse-0.2.2/src/lib.rs:29-32`](../../.source_1765894658/utf8parse-0.2.2/src/lib.rs#L29-L32)*
+*Defined in [`utf8parse-0.2.2/src/lib.rs:29-32`](../../.source_1765900590/utf8parse-0.2.2/src/lib.rs#L29-L32)*
 
 A parser for Utf8 Characters
 
@@ -124,17 +124,17 @@ Repeatedly call `advance` with bytes to emit Utf8 characters
 trait Receiver { ... }
 ```
 
-*Defined in [`utf8parse-0.2.2/src/lib.rs:17-23`](../../.source_1765894658/utf8parse-0.2.2/src/lib.rs#L17-L23)*
+*Defined in [`utf8parse-0.2.2/src/lib.rs:17-23`](../../.source_1765900590/utf8parse-0.2.2/src/lib.rs#L17-L23)*
 
 Handles codepoint and invalid sequence events from the parser.
 
 #### Required Methods
 
-- `fn codepoint(&mut self, _: char)`
+- `fn Receiver::codepoint(&mut self, _: char)`
 
   Called whenever a codepoint is parsed successfully
 
-- `fn invalid_sequence(&mut self)`
+- `fn Receiver::invalid_sequence(&mut self)`
 
   Called when an invalid_sequence is detected
 
@@ -145,7 +145,7 @@ Handles codepoint and invalid sequence events from the parser.
 const CONTINUATION_MASK: u8 = 63u8;
 ```
 
-*Defined in [`utf8parse-0.2.2/src/lib.rs:35`](../../.source_1765894658/utf8parse-0.2.2/src/lib.rs#L35)*
+*Defined in [`utf8parse-0.2.2/src/lib.rs:35`](../../.source_1765900590/utf8parse-0.2.2/src/lib.rs#L35)*
 
 Continuation bytes are masked with this value.
 

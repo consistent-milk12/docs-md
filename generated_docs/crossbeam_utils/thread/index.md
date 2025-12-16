@@ -159,7 +159,7 @@ struct Scope<'env> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:213-222`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L213-L222)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:213-222`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/thread.rs#L213-L222)*
 
 A scope for spawning threads.
 
@@ -196,12 +196,12 @@ A scope for spawning threads.
   This will create a thread using default parameters of [`ScopedThreadBuilder`](#scopedthreadbuilder), if you want to specify the
   stack size or the name of the thread, use this API instead.
   
-  # Panics
+  ##### Panics
   
   Panics if the OS fails to create a thread; use `ScopedThreadBuilder::spawn`
   to recover from such errors.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::thread;
@@ -222,7 +222,7 @@ A scope for spawning threads.
 
   Creates a builder that can configure a thread before spawning.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::thread;
@@ -290,7 +290,7 @@ struct ScopedThreadBuilder<'scope, 'env> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:336-339`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L336-L339)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:336-339`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/thread.rs#L336-L339)*
 
 Configures the properties of a new thread.
 
@@ -334,7 +334,7 @@ thread::scope(|s| {
   
   For more information about named threads, see [here][naming-threads].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::thread;
@@ -356,7 +356,7 @@ thread::scope(|s| {
   
   For more information about the stack size for threads, see [here][stack-size].
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::thread;
@@ -378,17 +378,17 @@ thread::scope(|s| {
   
   The returned handle can be used to manually join the thread before the scope exits.
   
-  # Errors
+  ##### Errors
   
   Unlike the `Scope::spawn` method, this method yields an
   `io::Result` to capture any failure to create the thread at
   the OS level.
   
-  # Panics
+  ##### Panics
   
   Panics if a thread name was set and it contained null bytes.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::thread;
@@ -463,7 +463,7 @@ struct ScopedJoinHandle<'scope, T> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:496-508`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L496-L508)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:496-508`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/thread.rs#L496-L508)*
 
 A handle that can be used to join its scoped thread.
 
@@ -497,12 +497,12 @@ This struct is created by the `Scope::spawn` method and the
   If the child thread panics, an error is returned. Note that if panics are implemented by
   aborting the process, no error is returned; see the notes of [std::panic::catch_unwind].
   
-  # Panics
+  ##### Panics
   
   This function may panic on some platforms if a thread attempts to join itself or otherwise
   may create a deadlock with joining threads.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::thread;
@@ -525,7 +525,7 @@ This struct is created by the `Scope::spawn` method and the
 
   Returns a handle to the underlying thread.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::thread;
@@ -601,7 +601,7 @@ where
     F: FnOnce(&Scope<'env>) -> R
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:153-210`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L153-L210)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:153-210`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/thread.rs#L153-L210)*
 
 Creates a new scope for spawning threads.
 
@@ -635,7 +635,7 @@ thread::scope(|s| {
 type SharedVec<T> = std::sync::Arc<std::sync::Mutex<std::vec::Vec<T>>>;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:127`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L127)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:127`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/thread.rs#L127)*
 
 ### `SharedOption<T>`
 
@@ -643,5 +643,5 @@ type SharedVec<T> = std::sync::Arc<std::sync::Mutex<std::vec::Vec<T>>>;
 type SharedOption<T> = std::sync::Arc<std::sync::Mutex<Option<T>>>;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:128`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L128)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:128`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/thread.rs#L128)*
 

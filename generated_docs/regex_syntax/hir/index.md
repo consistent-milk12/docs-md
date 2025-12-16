@@ -116,7 +116,7 @@ to its simplified structure.
 struct CaseFoldError(());
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:31`](../../../.source_1765894658/regex-syntax-0.8.8/src/unicode.rs#L31)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:31`](../../../.source_1765900590/regex-syntax-0.8.8/src/unicode.rs#L31)*
 
 An error that occurs when Unicode-aware simple case folding fails.
 
@@ -189,7 +189,7 @@ struct Error {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:49-57`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L49-L57)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:49-57`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L49-L57)*
 
 An error that can occur while translating an `Ast` to a `Hir`.
 
@@ -312,7 +312,7 @@ struct Hir {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:205-210`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L205-L210)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:205-210`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L205-L210)*
 
 A high-level intermediate representation (HIR) for a regular expression.
 
@@ -496,7 +496,7 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 struct Literal(alloc::boxed::Box<[u8]>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:801`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L801)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:801`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L801)*
 
 The high-level intermediate representation of a literal.
 
@@ -586,7 +586,7 @@ struct ClassUnicode {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1051-1053`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1051-L1053)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1051-1053`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1051-L1053)*
 
 A set of characters represented by Unicode scalar values.
 
@@ -628,7 +628,7 @@ A set of characters represented by Unicode scalar values.
   this class consists of the range `a-z`, then applying case folding will
   result in the class containing both the ranges `a-z` and `A-Z`.
   
-  # Panics
+  ##### Panics
   
   This routine panics when the case mapping data necessary for this
   routine to complete is unavailable. This occurs when the `unicode-case`
@@ -644,7 +644,7 @@ A set of characters represented by Unicode scalar values.
   this class consists of the range `a-z`, then applying case folding will
   result in the class containing both the ranges `a-z` and `A-Z`.
   
-  # Error
+  ##### Error
   
   This routine returns an error when the case mapping data necessary
   for this routine to complete is unavailable. This occurs when the
@@ -789,7 +789,7 @@ A set of characters represented by Unicode scalar values.
 struct ClassUnicodeIter<'a>(crate::hir::interval::IntervalSetIter<'a, ClassUnicodeRange>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1226`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1226)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1226`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1226)*
 
 An iterator over all ranges in a Unicode character class.
 
@@ -863,7 +863,7 @@ struct ClassUnicodeRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1241-1244`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1241-L1244)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1241-1244`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1241-L1244)*
 
 A single range of characters represented by Unicode scalar values.
 
@@ -1007,7 +1007,7 @@ struct ClassBytes {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1350-1352`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1350-L1352)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1350-1352`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1350-L1352)*
 
 A set of characters represented by arbitrary bytes.
 
@@ -1191,7 +1191,7 @@ Each byte corresponds to one character.
 struct ClassBytesIter<'a>(crate::hir::interval::IntervalSetIter<'a, ClassBytesRange>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1504`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1504)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1504`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1504)*
 
 An iterator over all ranges in a byte character class.
 
@@ -1265,7 +1265,7 @@ struct ClassBytesRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1519-1522`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1519-L1522)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1519-1522`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1519-L1522)*
 
 A single range of characters represented by arbitrary bytes.
 
@@ -1412,7 +1412,7 @@ struct Capture {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1799-1806`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1799-L1806)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1799-1806`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1799-L1806)*
 
 The high-level intermediate representation for a capturing group.
 
@@ -1518,7 +1518,7 @@ struct Repetition {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1813-1839`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1813-L1839)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1813-1839`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1813-L1839)*
 
 The high-level intermediate representation of a repetition operator.
 
@@ -1642,7 +1642,7 @@ sub-expression.
 struct Properties(alloc::boxed::Box<PropertiesI>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1964`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1964)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1964`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1964)*
 
 A type that collects various properties of an HIR value.
 
@@ -1743,7 +1743,7 @@ be cheap to call.
   specially by the search routine if it is absolutely required that
   matches not split a codepoint.
   
-  # Example
+  ##### Example
   
   This code example shows the UTF-8 property of a variety of patterns.
   
@@ -1802,7 +1802,7 @@ be cheap to call.
   corresponding to the entire match that is typically included by regex
   engines.
   
-  # Example
+  ##### Example
   
   This method will return `0` for `a` and `1` for `(a)`:
   
@@ -1827,7 +1827,7 @@ be cheap to call.
   Note that this does not include the implicit capturing group
   corresponding to the entire match.
   
-  # Example
+  ##### Example
   
   This shows a few cases where a static number of capture groups is
   available and a few cases where it is not.
@@ -1890,7 +1890,7 @@ be cheap to call.
   properties of each `Hir` expression into one set of properties
   representing the union of those expressions.
   
-  # Example: union with HIRs that never match
+  ##### Example: union with HIRs that never match
   
   This example shows that unioning properties together with one that
   represents a regex that never matches will "poison" certain attributes,
@@ -2040,7 +2040,7 @@ struct PropertiesI {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1974-1987`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1974-L1987)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1974-1987`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1974-L1987)*
 
 The property definition. It is split out so that we can box it, and
 there by make `Properties` use less stack size. This is kind-of important
@@ -2127,7 +2127,7 @@ struct LookSet {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2665-2676`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2665-L2676)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2665-2676`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L2665-L2676)*
 
 A set of look-around assertions.
 
@@ -2283,7 +2283,7 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
   Return a `LookSet` from the slice given as a native endian 32-bit
   integer.
   
-  # Panics
+  ##### Panics
   
   This panics if `slice.len() < 4`.
 
@@ -2292,7 +2292,7 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
   Write a `LookSet` as a native endian 32-bit integer to the beginning
   of the slice given.
   
-  # Panics
+  ##### Panics
   
   This panics if `slice.len() < 4`.
 
@@ -2379,7 +2379,7 @@ struct LookSetIter {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2916-2918`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2916-L2918)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2916-2918`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L2916-L2918)*
 
 An iterator over all look-around assertions in a [`LookSet`](#lookset).
 
@@ -2476,7 +2476,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:84-108`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L84-L108)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:84-108`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L84-L108)*
 
 The type of an error that occurred while building an `Hir`.
 
@@ -2614,7 +2614,7 @@ enum HirKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:717-752`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L717-L752)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:717-752`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L717-L752)*
 
 The underlying kind of an arbitrary [`Hir`](#hir) expression.
 
@@ -2760,7 +2760,7 @@ enum Class {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:830-836`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L830-L836)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:830-836`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L830-L836)*
 
 The high-level intermediate representation of a character class.
 
@@ -2805,7 +2805,7 @@ and `(?i-u)k` will not match the same set of strings.
   If this is a byte oriented character class, then this will be limited
   to the ASCII ranges `A-Z` and `a-z`.
   
-  # Panics
+  ##### Panics
   
   This routine panics when the case mapping data necessary for this
   routine to complete is unavailable. This occurs when the `unicode-case`
@@ -2823,7 +2823,7 @@ and `(?i-u)k` will not match the same set of strings.
   If this is a byte oriented character class, then this will be limited
   to the ASCII ranges `A-Z` and `a-z`.
   
-  # Error
+  ##### Error
   
   This routine returns an error when the case mapping data necessary
   for this routine to complete is unavailable. This occurs when the
@@ -2861,7 +2861,7 @@ and `(?i-u)k` will not match the same set of strings.
   `4`. For empty classes, `None` is returned. It is impossible for `0` to
   be returned.
   
-  # Example
+  ##### Example
   
   This example shows some examples of regexes and their corresponding
   minimum length, if any.
@@ -2901,7 +2901,7 @@ and `(?i-u)k` will not match the same set of strings.
   `4`. For empty classes, `None` is returned. It is impossible for `0` to
   be returned.
   
-  # Example
+  ##### Example
   
   This example shows some examples of regexes and their corresponding
   maximum length, if any.
@@ -3043,7 +3043,7 @@ enum Look {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1613-1686`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1613-L1686)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1613-1686`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1613-L1686)*
 
 The high-level intermediate representation for a look-around assertion.
 
@@ -3278,7 +3278,7 @@ enum Dot {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1860-1909`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1860-L1909)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1860-1909`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L1860-L1909)*
 
 A type describing the different flavors of `.`.
 
@@ -3430,7 +3430,7 @@ routine for building HIR values derived from the `.` regex.
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
 
 A trait for visiting the high-level IR (HIR) in depth first order.
 
@@ -3451,32 +3451,32 @@ running it using the [`visit`](visitor/index.md) function.
 
 #### Required Methods
 
-- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
+- `fn Visitor::finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
   yields the result of visiting the HIR or an error.
 
 #### Provided Methods
 
-- `fn start(&mut self)`
+- `fn Visitor::start(&mut self)`
 
   This method is called before beginning traversal of the HIR.
 
-- `fn visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` before descending into child `Hir`
   nodes.
 
-- `fn visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` after descending all of its child
   `Hir` nodes.
 
-- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of an alternation.
 
-- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
+- `fn Visitor::visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of a concatenation.
 
@@ -3492,7 +3492,7 @@ running it using the [`visit`](visitor/index.md) function.
 fn visit<V: Visitor>(hir: &crate::hir::Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
 
 Executes an implementation of `Visitor` in constant stack space.
 
@@ -3515,7 +3515,7 @@ the error is returned.
 fn class_chars(hirs: &[Hir]) -> Option<Class>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2940-2954`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2940-L2954)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2940-2954`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L2940-L2954)*
 
 Given a sequence of HIR values where each value corresponds to a Unicode
 class (or an all-ASCII byte class), return a single Unicode class
@@ -3527,7 +3527,7 @@ corresponding to the union of the classes found.
 fn class_bytes(hirs: &[Hir]) -> Option<Class>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2959-2973`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2959-L2973)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2959-2973`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L2959-L2973)*
 
 Given a sequence of HIR values where each value corresponds to a byte class
 (or an all-ASCII Unicode class), return a single byte class corresponding
@@ -3539,7 +3539,7 @@ to the union of the classes found.
 fn singleton_chars(hirs: &[Hir]) -> Option<alloc::vec::Vec<char>>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2978-2996`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2978-L2996)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2978-2996`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L2978-L2996)*
 
 Given a sequence of HIR values where each value corresponds to a literal
 that is a single `char`, return that sequence of `char`s. Otherwise return
@@ -3551,7 +3551,7 @@ None. No deduplication is done.
 fn singleton_bytes(hirs: &[Hir]) -> Option<alloc::vec::Vec<u8>>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3001-3014`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L3001-L3014)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3001-3014`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L3001-L3014)*
 
 Given a sequence of HIR values where each value corresponds to a literal
 that is a single byte, return that sequence of bytes. Otherwise return
@@ -3563,7 +3563,7 @@ None. No deduplication is done.
 fn lift_common_prefix(hirs: alloc::vec::Vec<Hir>) -> Result<Hir, alloc::vec::Vec<Hir>>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3027-3073`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L3027-L3073)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3027-3073`](../../../.source_1765900590/regex-syntax-0.8.8/src/hir/mod.rs#L3027-L3073)*
 
 Looks for a common prefix in the list of alternation branches given. If one
 is found, then an equivalent but (hopefully) simplified Hir is returned.

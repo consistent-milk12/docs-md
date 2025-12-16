@@ -363,7 +363,7 @@ struct Id<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lib.rs:95-99`](../../../.source_1765894658/addr2line-0.25.1/src/lib.rs#L95-L99)*
+*Defined in [`addr2line-0.25.1/src/lib.rs:95-99`](../../../.source_1765900590/addr2line-0.25.1/src/lib.rs#L95-L99)*
 
 *Re-exported from `addr2line`*
 
@@ -387,8 +387,6 @@ when performing lookups for many addresses in the same executable.
 - <span id="context-from-arc-dwarf"></span>`fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
 
   Construct a new `Context` from an existing `gimli::Dwarf` object.
-
-- <span id="context-find-unit"></span>`fn find_unit(&self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id), [`Record`](#record)
 
 - <span id="context-find-dwarf-and-unit"></span>`fn find_dwarf_and_unit(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`DefaultGuard`](../dispatcher/index.md#defaultguard)
 
@@ -446,6 +444,8 @@ when performing lookups for many addresses in the same executable.
     // ...
   ```
 
+- <span id="context-find-unit"></span>`fn find_unit(&self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id), [`Record`](#record)
+
 #### Trait Implementations
 
 ##### `impl Any for Context<R>`
@@ -496,7 +496,7 @@ struct Span {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:349-359`](../../../.source_1765894658/tracing-0.1.43/src/span.rs#L349-L359)*
+*Defined in [`tracing-0.1.43/src/span.rs:349-359`](../../../.source_1765900590/tracing-0.1.43/src/span.rs#L349-L359)*
 
 A handle representing a span, with the capability to enter the span if it
 exists.
@@ -596,7 +596,7 @@ manner regardless of whether or not the trace is currently being collected.
   will call `Subscriber::exit`. If the span is disabled, this does
   nothing.
   
-  # In Asynchronous Code
+  ##### In Asynchronous Code
   
   **Warning**: in asynchronous code that uses [async/await syntax][`syntax`](../../regex_automata/util/syntax/index.md),
   `Span::enter` should be used very carefully or avoided entirely. Holding
@@ -718,7 +718,7 @@ manner regardless of whether or not the trace is currently being collected.
   
   
   
-  # Examples
+  ##### Examples
   
   ```rust
   use tracing::{span, Level};
@@ -821,7 +821,7 @@ manner regardless of whether or not the trace is currently being collected.
       this span. Thus, <code>EnteredSpan</code>s should not be sent between threads.
   </pre>
   
-  # Examples
+  ##### Examples
   
   The returned guard can be `explicitly exited`,
   returning the un-entered span:
@@ -1018,7 +1018,7 @@ manner regardless of whether or not the trace is currently being collected.
   
   Returns the result of evaluating `f`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use tracing::{trace, span, Level};
@@ -1166,7 +1166,7 @@ manner regardless of whether or not the trace is currently being collected.
   If this span is disabled, or the resulting follows-from relationship
   would be invalid, this function will do nothing.
   
-  # Examples
+  ##### Examples
   
   Setting a `follows_from` relationship with a `Span`:
   ```rust
@@ -1301,7 +1301,7 @@ struct Inner {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:367-376`](../../../.source_1765894658/tracing-0.1.43/src/span.rs#L367-L376)*
+*Defined in [`tracing-0.1.43/src/span.rs:367-376`](../../../.source_1765900590/tracing-0.1.43/src/span.rs#L367-L376)*
 
 A handle representing the capacity to enter a span which is known to exist.
 
@@ -1431,7 +1431,7 @@ struct Entered<'a> {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:388-390`](../../../.source_1765894658/tracing-0.1.43/src/span.rs#L388-L390)*
+*Defined in [`tracing-0.1.43/src/span.rs:388-390`](../../../.source_1765900590/tracing-0.1.43/src/span.rs#L388-L390)*
 
 A guard representing a span which has been entered and is currently
 executing.
@@ -1503,7 +1503,7 @@ struct EnteredSpan {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:402-412`](../../../.source_1765894658/tracing-0.1.43/src/span.rs#L402-L412)*
+*Defined in [`tracing-0.1.43/src/span.rs:402-412`](../../../.source_1765900590/tracing-0.1.43/src/span.rs#L402-L412)*
 
 An owned version of [`Entered`](#entered), a guard representing a span which has been
 entered and is currently executing.
@@ -1605,7 +1605,7 @@ struct PhantomNotSend {
 }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:1594-1596`](../../../.source_1765894658/tracing-0.1.43/src/span.rs#L1594-L1596)*
+*Defined in [`tracing-0.1.43/src/span.rs:1594-1596`](../../../.source_1765900590/tracing-0.1.43/src/span.rs#L1594-L1596)*
 
 Technically, `EnteredSpan` _can_ implement both `Send` *and*
 `Sync` safely. It doesn't, because it has a `PhantomNotSend` field,
@@ -1681,13 +1681,13 @@ Thus, this is totally safe.
 trait AsId: crate::sealed::Sealed { ... }
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:336-340`](../../../.source_1765894658/tracing-0.1.43/src/span.rs#L336-L340)*
+*Defined in [`tracing-0.1.43/src/span.rs:336-340`](../../../.source_1765900590/tracing-0.1.43/src/span.rs#L336-L340)*
 
 Trait implemented by types which have a span `Id`.
 
 #### Required Methods
 
-- `fn as_id(&self) -> Option<&Id>`
+- `fn AsId::as_id(&self) -> Option<&Id>`
 
   Returns the `Id` of the span that `self` corresponds to, or `None` if
   this corresponds to a disabled span.
@@ -1707,5 +1707,5 @@ fn Attributes(self) -> Result<U, <U as TryFrom>::Error>
 const PhantomNotSend: PhantomNotSend;
 ```
 
-*Defined in [`tracing-0.1.43/src/span.rs:1599`](../../../.source_1765894658/tracing-0.1.43/src/span.rs#L1599)*
+*Defined in [`tracing-0.1.43/src/span.rs:1599`](../../../.source_1765900590/tracing-0.1.43/src/span.rs#L1599)*
 

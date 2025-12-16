@@ -41,7 +41,7 @@ struct Error {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L101-L103)*
+*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../../.source_1765900590/syn-2.0.111/src/error.rs#L101-L103)*
 
 Error returned when a Syn parser cannot parse the input tokens.
 
@@ -133,7 +133,7 @@ mod expand {
   Use `Error::new` when the error needs to be triggered on some span other
   than where the parse stream is currently positioned.
   
-  # Example
+  ##### Example
   
   ```rust
   use syn::{Error, Ident, LitStr, Result, Token};
@@ -191,7 +191,7 @@ mod expand {
 
   Render the error as an invocation of `compile_error!`.
   
-  # Example
+  ##### Example
   
   ```rust
   extern crate proc_macro;
@@ -317,7 +317,7 @@ struct ErrorMessage {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:105-113`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L105-L113)*
+*Defined in [`syn-2.0.111/src/error.rs:105-113`](../../../.source_1765900590/syn-2.0.111/src/error.rs#L105-L113)*
 
 #### Implementations
 
@@ -393,7 +393,7 @@ struct SpanRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:118-121`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L118-L121)*
+*Defined in [`syn-2.0.111/src/error.rs:118-121`](../../../.source_1765900590/syn-2.0.111/src/error.rs#L118-L121)*
 
 #### Trait Implementations
 
@@ -462,7 +462,7 @@ struct IntoIter {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:423-425`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L423-L425)*
+*Defined in [`syn-2.0.111/src/error.rs:423-425`](../../../.source_1765900590/syn-2.0.111/src/error.rs#L423-L425)*
 
 #### Trait Implementations
 
@@ -527,7 +527,7 @@ struct Iter<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:448-450`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L448-L450)*
+*Defined in [`syn-2.0.111/src/error.rs:448-450`](../../../.source_1765900590/syn-2.0.111/src/error.rs#L448-L450)*
 
 #### Trait Implementations
 
@@ -592,7 +592,7 @@ struct Iter<'a> {
 fn new_at<T: Display>(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>, message: T) -> Error
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:328-335`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L328-L335)*
+*Defined in [`syn-2.0.111/src/error.rs:328-335`](../../../.source_1765900590/syn-2.0.111/src/error.rs#L328-L335)*
 
 ### `new2`
 
@@ -600,7 +600,7 @@ fn new_at<T: Display>(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_
 fn new2<T: Display>(start: proc_macro2::Span, end: proc_macro2::Span, message: T) -> Error
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:338-349`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L338-L349)*
+*Defined in [`syn-2.0.111/src/error.rs:338-349`](../../../.source_1765900590/syn-2.0.111/src/error.rs#L338-L349)*
 
 ## Type Aliases
 
@@ -610,7 +610,7 @@ fn new2<T: Display>(start: proc_macro2::Span, end: proc_macro2::Span, message: T
 type Result<T> = std::result::Result<T, Error>;
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:15`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L15)*
+*Defined in [`syn-2.0.111/src/error.rs:15`](../../../.source_1765900590/syn-2.0.111/src/error.rs#L15)*
 
 The result of a Syn parser.
 

@@ -22,7 +22,7 @@ Thread-safe, blocking version of `OnceCell`.
 struct OnceCell<T>(super::imp::OnceCell<T>);
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:901`](../../../.source_1765894658/once_cell-1.21.3/src/lib.rs#L901)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:901`](../../../.source_1765900590/once_cell-1.21.3/src/lib.rs#L901)*
 
 A thread-safe cell which can be written to only once.
 
@@ -116,7 +116,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
   Get the reference to the underlying value, without checking if the
   cell is initialized.
   
-  # Safety
+  ##### Safety
   
   Caller must ensure that the cell is in initialized state, and that
   the contents are acquired by (synchronized to) this thread.
@@ -128,7 +128,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
   Returns `Ok(())` if the cell was empty and `Err(value)` if it was
   full.
   
-  # Example
+  ##### Example
   
   ```rust
   use once_cell::sync::OnceCell;
@@ -151,7 +151,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
   Like [`set`](Self::set), but also returns a reference to the final cell value.
   
-  # Example
+  ##### Example
   
   ```rust
   use once_cell::unsync::OnceCell;
@@ -174,7 +174,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
   initializing functions, but it is guaranteed that only one function
   will be executed.
   
-  # Panics
+  ##### Panics
   
   If `f` panics, the panic is propagated to the caller, and the cell
   remains uninitialized.
@@ -183,7 +183,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
   exact outcome is unspecified. Current implementation deadlocks, but
   this may be changed to a panic in the future.
   
-  # Example
+  ##### Example
   ```rust
   use once_cell::sync::OnceCell;
   
@@ -200,7 +200,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
   the cell was empty. If the cell was empty and `f` failed, an
   error is returned.
   
-  # Panics
+  ##### Panics
   
   If `f` panics, the panic is propagated to the caller, and
   the cell remains uninitialized.
@@ -209,7 +209,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
   The exact outcome is unspecified. Current implementation
   deadlocks, but this may be changed to a panic in the future.
   
-  # Example
+  ##### Example
   ```rust
   use once_cell::sync::OnceCell;
   
@@ -229,7 +229,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
   
   Has no effect and returns `None` if the `OnceCell` hasn't been initialized.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use once_cell::sync::OnceCell;
@@ -260,7 +260,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
   Consumes the `OnceCell`, returning the wrapped value. Returns
   `None` if the cell was empty.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use once_cell::sync::OnceCell;
@@ -355,7 +355,7 @@ struct Lazy<T, F> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:1255-1258`](../../../.source_1765894658/once_cell-1.21.3/src/lib.rs#L1255-L1258)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:1255-1258`](../../../.source_1765900590/once_cell-1.21.3/src/lib.rs#L1255-L1258)*
 
 A value which is initialized on the first access.
 
@@ -481,7 +481,7 @@ fn main() {
 fn _dummy()
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:1408`](../../../.source_1765894658/once_cell-1.21.3/src/lib.rs#L1408)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:1408`](../../../.source_1765900590/once_cell-1.21.3/src/lib.rs#L1408)*
 
 ```compile_fail
 struct S(*mut ());

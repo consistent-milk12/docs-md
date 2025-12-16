@@ -28,7 +28,7 @@ struct Struct<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/ast.rs:15-20`](../../../.source_1765894658/thiserror-impl-2.0.17/src/ast.rs#L15-L20)*
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:15-20`](../../../.source_1765900590/thiserror-impl-2.0.17/src/ast.rs#L15-L20)*
 
 #### Implementations
 
@@ -86,7 +86,7 @@ struct Enum<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/ast.rs:22-27`](../../../.source_1765894658/thiserror-impl-2.0.17/src/ast.rs#L22-L27)*
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:22-27`](../../../.source_1765900590/thiserror-impl-2.0.17/src/ast.rs#L22-L27)*
 
 #### Implementations
 
@@ -144,7 +144,7 @@ struct Variant<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/ast.rs:29-34`](../../../.source_1765894658/thiserror-impl-2.0.17/src/ast.rs#L29-L34)*
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:29-34`](../../../.source_1765900590/thiserror-impl-2.0.17/src/ast.rs#L29-L34)*
 
 #### Implementations
 
@@ -203,7 +203,7 @@ struct Field<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/ast.rs:36-42`](../../../.source_1765894658/thiserror-impl-2.0.17/src/ast.rs#L36-L42)*
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:36-42`](../../../.source_1765900590/thiserror-impl-2.0.17/src/ast.rs#L36-L42)*
 
 #### Implementations
 
@@ -263,7 +263,7 @@ enum Input<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/ast.rs:10-13`](../../../.source_1765894658/thiserror-impl-2.0.17/src/ast.rs#L10-L13)*
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:10-13`](../../../.source_1765900590/thiserror-impl-2.0.17/src/ast.rs#L10-L13)*
 
 #### Implementations
 
@@ -323,7 +323,7 @@ enum ContainerKind {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/ast.rs:45-52`](../../../.source_1765894658/thiserror-impl-2.0.17/src/ast.rs#L45-L52)*
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:45-52`](../../../.source_1765900590/thiserror-impl-2.0.17/src/ast.rs#L45-L52)*
 
 #### Implementations
 

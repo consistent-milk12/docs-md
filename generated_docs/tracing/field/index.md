@@ -131,7 +131,7 @@ be forwarded to the visitor's `record_debug` method.
 trait AsField: crate::sealed::Sealed { ... }
 ```
 
-*Defined in [`tracing-0.1.43/src/field.rs:129-135`](../../../.source_1765894658/tracing-0.1.43/src/field.rs#L129-L135)*
+*Defined in [`tracing-0.1.43/src/field.rs:129-135`](../../../.source_1765900590/tracing-0.1.43/src/field.rs#L129-L135)*
 
 Trait implemented to allow a type to be used as a field key.
 
@@ -147,7 +147,7 @@ should be used whenever possible.
 
 #### Required Methods
 
-- `fn as_field(&self, metadata: &Metadata<'_>) -> Option<Field>`
+- `fn AsField::as_field(&self, metadata: &Metadata<'_>) -> Option<Field>`
 
   Attempts to convert `&self` into a `Field` with the specified `metadata`.
   

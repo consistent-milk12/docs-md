@@ -212,15 +212,15 @@ The variants are ordered by their typical importance/frequency of use:
   It handles both simple trait names (`"Clone"`) and fully-qualified paths
   (`"std::clone::Clone"`).
   
-  # Arguments
+  ##### Arguments
   
   * `path` - The trait path, or `None` for inherent implementations
   
-  # Returns
+  ##### Returns
   
   The [`ImplCategory`](#implcategory) that best matches the trait.
   
-  # Examples
+  ##### Examples
   
   ```rust,ignore
   // Inherent impl (no trait)
@@ -254,11 +254,11 @@ The variants are ordered by their typical importance/frequency of use:
   
   This name is suitable for use as a section header in documentation.
   
-  # Returns
+  ##### Returns
   
   A static string with the display name.
   
-  # Examples
+  ##### Examples
   
   ```rust,ignore
   assert_eq!(ImplCategory::Inherent.display_name(), "Implementations");
@@ -273,7 +273,7 @@ The variants are ordered by their typical importance/frequency of use:
   Lower numbers appear first in documentation. This ordering reflects
   typical importance and frequency of use.
   
-  # Returns
+  ##### Returns
   
   A `u8` value representing the sort order (0-8).
 

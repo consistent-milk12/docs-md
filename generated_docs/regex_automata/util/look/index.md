@@ -38,7 +38,7 @@ struct LookSet {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/look.rs:244-255`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/look.rs#L244-L255)*
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:244-255`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/look.rs#L244-L255)*
 
 LookSet is a memory-efficient set of look-around assertions.
 
@@ -195,7 +195,7 @@ that return `LookSet`s.
   Return a `LookSet` from the slice given as a native endian 32-bit
   integer.
   
-  # Panics
+  ##### Panics
   
   This panics if `slice.len() < 4`.
 
@@ -204,7 +204,7 @@ that return `LookSet`s.
   Write a `LookSet` as a native endian 32-bit integer to the beginning
   of the slice given.
   
-  # Panics
+  ##### Panics
   
   This panics if `slice.len() < 4`.
 
@@ -309,7 +309,7 @@ struct LookSetIter {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/look.rs:517-519`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/look.rs#L517-L519)*
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:517-519`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/look.rs#L517-L519)*
 
 An iterator over all look-around assertions in a [`LookSet`](#lookset).
 
@@ -398,7 +398,7 @@ struct LookMatcher {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/look.rs:577-579`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/look.rs#L577-L579)*
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:577-579`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/look.rs#L577-L579)*
 
 A matcher for look-around assertions.
 
@@ -475,7 +475,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when the position `at` in `haystack` satisfies the given
   look-around assertion.
   
-  # Panics
+  ##### Panics
   
   This panics when testing any Unicode word boundary assertion in this
   set and when the Unicode word data is not available. Specifically, this
@@ -496,7 +496,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Like `matches`, but forcefully inlined.
   
-  # Panics
+  ##### Panics
   
   This panics when testing any Unicode word boundary assertion in this
   set and when the Unicode word data is not available. Specifically, this
@@ -518,7 +518,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when _all_ of the assertions in the given set match at the
   given position in the haystack.
   
-  # Panics
+  ##### Panics
   
   This panics when testing any Unicode word boundary assertion in this
   set and when the Unicode word data is not available. Specifically, this
@@ -549,7 +549,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::Start`](../../index.md) is satisfied `at` the given position
   in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -559,7 +559,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::End`](../../index.md) is satisfied `at` the given position in
   `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -569,7 +569,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::StartLF`](../../index.md) is satisfied `at` the given
   position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -579,7 +579,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::EndLF`](../../index.md) is satisfied `at` the given position
   in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -589,7 +589,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::StartCRLF`](../../index.md) is satisfied `at` the given
   position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -599,7 +599,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::EndCRLF`](../../index.md) is satisfied `at` the given
   position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -609,7 +609,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordAscii`](../../index.md) is satisfied `at` the given
   position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -619,7 +619,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordAsciiNegate`](../../index.md) is satisfied `at` the given
   position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -629,12 +629,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordUnicode`](../../index.md) is satisfied `at` the given
   position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
   
-  # Errors
+  ##### Errors
   
   This returns an error when Unicode word boundary tables
   are not available. Specifically, this only occurs when the
@@ -645,12 +645,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordUnicodeNegate`](../../index.md) is satisfied `at` the
   given position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
   
-  # Errors
+  ##### Errors
   
   This returns an error when Unicode word boundary tables
   are not available. Specifically, this only occurs when the
@@ -661,7 +661,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordStartAscii`](../../index.md) is satisfied `at` the given
   position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -671,7 +671,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordEndAscii`](../../index.md) is satisfied `at` the given
   position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -681,12 +681,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordStartUnicode`](../../index.md) is satisfied `at` the
   given position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
   
-  # Errors
+  ##### Errors
   
   This returns an error when Unicode word boundary tables
   are not available. Specifically, this only occurs when the
@@ -697,12 +697,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordEndUnicode`](../../index.md) is satisfied `at` the
   given position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
   
-  # Errors
+  ##### Errors
   
   This returns an error when Unicode word boundary tables
   are not available. Specifically, this only occurs when the
@@ -713,7 +713,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordStartHalfAscii`](../../index.md) is satisfied `at` the
   given position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -723,7 +723,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordEndHalfAscii`](../../index.md) is satisfied `at` the
   given position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
@@ -733,12 +733,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordStartHalfUnicode`](../../index.md) is satisfied `at` the
   given position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
   
-  # Errors
+  ##### Errors
   
   This returns an error when Unicode word boundary tables
   are not available. Specifically, this only occurs when the
@@ -749,12 +749,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Returns true when [`Look::WordEndHalfUnicode`](../../index.md) is satisfied `at` the
   given position in `haystack`.
   
-  # Panics
+  ##### Panics
   
   This may panic when `at > haystack.len()`. Note that `at ==
   haystack.len()` is legal and guaranteed not to panic.
   
-  # Errors
+  ##### Errors
   
   This returns an error when Unicode word boundary tables
   are not available. Specifically, this only occurs when the
@@ -831,7 +831,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 struct UnicodeWordBoundaryError(());
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/look.rs:1280`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/look.rs#L1280)*
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:1280`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/look.rs#L1280)*
 
 An error that occurs when the Unicode-aware `\w` class is unavailable.
 
@@ -949,7 +949,7 @@ enum Look {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/look.rs:62-135`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/look.rs#L62-L135)*
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:62-135`](../../../../.source_1765900590/regex-automata-0.4.13/src/util/look.rs#L62-L135)*
 
 A look-around assertion.
 

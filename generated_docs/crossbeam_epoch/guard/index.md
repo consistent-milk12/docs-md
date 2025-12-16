@@ -21,7 +21,7 @@ struct Guard {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../../.source_1765900590/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
 
 A guard that keeps the current thread pinned.
 
@@ -121,7 +121,7 @@ assert!(!epoch::is_pinned());
   If this method is called from an [`unprotected`](#unprotected) guard, the function will simply be
   executed immediately.
   
-  # Safety
+  ##### Safety
   
   The given function must not hold reference onto the stack. It is highly recommended that
   the passed function is **always** marked with `move` in order to prevent accidental
@@ -156,7 +156,7 @@ assert!(!epoch::is_pinned());
   because it's called only after the grace period and `shared` is no longer shared with other
   threads. But we don't expect type systems to prove this.
   
-  # Examples
+  ##### Examples
   
   When a heap-allocated object in a data structure becomes unreachable, it has to be
   deallocated. However, the current thread and other threads may be still holding references
@@ -213,7 +213,7 @@ assert!(!epoch::is_pinned());
   If this method is called from an [`unprotected`](#unprotected) guard, the destructor will simply be
   executed immediately.
   
-  # Safety
+  ##### Safety
   
   The object must not be reachable by other threads anymore, otherwise it might be still in
   use when the destructor runs.
@@ -234,7 +234,7 @@ assert!(!epoch::is_pinned());
   it's called only after the grace period and `shared` is no longer shared with other
   threads. But we don't expect type systems to prove this.
   
-  # Examples
+  ##### Examples
   
   When a heap-allocated object in a data structure becomes unreachable, it has to be
   deallocated. However, the current thread and other threads may be still holding references
@@ -278,7 +278,7 @@ assert!(!epoch::is_pinned());
   
   If this method is called from an [`unprotected`](#unprotected) guard, it is a no-op (nothing happens).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch as epoch;
@@ -301,7 +301,7 @@ assert!(!epoch::is_pinned());
   
   If this method is called from an [`unprotected`](#unprotected) guard, then the call will be just no-op.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch::{self as epoch, Atomic};
@@ -333,7 +333,7 @@ assert!(!epoch::is_pinned());
   If this method is called from an [`unprotected`](#unprotected) guard, then the passed function is called
   directly without unpinning the thread.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch::{self as epoch, Atomic};
@@ -364,7 +364,7 @@ assert!(!epoch::is_pinned());
   
   If this method is called from an [`unprotected`](#unprotected) guard, then `None` is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_epoch as epoch;
@@ -445,7 +445,7 @@ assert!(!epoch::is_pinned());
 unsafe fn unprotected() -> &'static Guard
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../../.source_1765900590/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
 
 Returns a reference to a dummy guard that allows unprotected access to [`Atomic`](../atomic/index.md)s.
 

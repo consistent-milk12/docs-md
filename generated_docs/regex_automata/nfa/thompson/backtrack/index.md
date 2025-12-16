@@ -56,7 +56,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:50-53`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L50-L53)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:50-53`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L50-L53)*
 
 The configuration used for building a bounded backtracker.
 
@@ -88,7 +88,7 @@ typically used with `Builder::configure`.
   
   By default no prefilter is set.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{
@@ -150,7 +150,7 @@ typically used with `Builder::configure`.
   
   The default capacity is a reasonable but empirically chosen size.
   
-  # Example
+  ##### Example
   
   As with other regex engines, Unicode is what tends to make the bounded
   backtracker less useful by making the maximum haystack length quite
@@ -272,7 +272,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:256-260`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L256-L260)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:256-260`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L256-L260)*
 
 A builder for a bounded backtracker.
 
@@ -450,7 +450,7 @@ struct BoundedBacktracker {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:427-430`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L427-L430)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:427-430`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L427-L430)*
 
 A backtracking regex engine that bounds its execution to avoid exponential
 blow-up.
@@ -543,7 +543,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   If you want a non-default configuration, then use the [`Builder`](#builder) to
   set your own configuration.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{
@@ -565,7 +565,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   Like `new`, but parses multiple patterns into a single "multi regex."
   This similarly uses the default regex configuration.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{
@@ -589,7 +589,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="boundedbacktracker-new-from-nfa"></span>`fn new_from_nfa(nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../nfa/index.md#nfa), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md#builderror)
 
-  # Example
+  ##### Example
   
   This shows how to hand assemble a regular expression via its HIR,
   compile an NFA from it and build a BoundedBacktracker from the NFA.
@@ -624,7 +624,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Create a new `BoundedBacktracker` that matches every input.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::{
@@ -645,7 +645,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Create a new `BoundedBacktracker` that never matches any input.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex_automata::nfa::thompson::backtrack::BoundedBacktracker;
@@ -665,7 +665,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine to avoid needing to import the `Config`
   type when customizing the construction of a `BoundedBacktracker`.
   
-  # Example
+  ##### Example
   
   This example shows how to disable UTF-8 mode. When UTF-8 mode is
   disabled, zero-width matches that split a codepoint are allowed.
@@ -706,7 +706,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This is a convenience routine to avoid needing to import the
   [`Builder`](#builder) type in common cases.
   
-  # Example
+  ##### Example
   
   This example shows how to use the builder to disable UTF-8 mode
   everywhere.
@@ -763,7 +763,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   A cache reset permits reusing memory already allocated in this cache
   with a different `BoundedBacktracker`.
   
-  # Example
+  ##### Example
   
   This shows how to re-purpose a cache for use with a different
   `BoundedBacktracker`.
@@ -807,7 +807,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   In the case of a `BoundedBacktracker` that contains no patterns, this
   returns `0`.
   
-  # Example
+  ##### Example
   
   This example shows the pattern length for a `BoundedBacktracker` that
   never matches:
@@ -857,7 +857,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
   This routine is a function of both `Config::visited_capacity` and the
   internal size of the backtracker's NFA.
   
-  # Example
+  ##### Example
   
   This example shows how the maximum haystack length can vary depending
   on the size of the regex itself. Note though that the specific maximum
@@ -972,7 +972,7 @@ struct TryFindMatches<'r, 'c, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1572-1577`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1572-L1577)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1572-1577`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1572-L1577)*
 
 An iterator over all non-overlapping matches for a fallible search.
 
@@ -1058,7 +1058,7 @@ struct TryCapturesMatches<'r, 'c, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1610-1615`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1610-L1615)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1610-1615`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1610-L1615)*
 
 An iterator over all non-overlapping leftmost matches, with their capturing
 groups, for a fallible search.
@@ -1143,7 +1143,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1653-1664`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1653-L1664)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1653-1664`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1653-L1664)*
 
 A cache represents mutable state that a [`BoundedBacktracker`](#boundedbacktracker) requires
 during a search.
@@ -1197,7 +1197,7 @@ one).
   A cache reset permits reusing memory already allocated in this cache
   with a different `BoundedBacktracker`.
   
-  # Example
+  ##### Example
   
   This shows how to re-purpose a cache for use with a different
   `BoundedBacktracker`.
@@ -1323,7 +1323,7 @@ struct Visited {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1779-1801`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1779-L1801)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1779-1801`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1779-L1801)*
 
 A bitset that keeps track of whether a particular (StateID, offset) has
 been considered during backtracking. If it has already been visited, then
@@ -1466,7 +1466,7 @@ enum Frame {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1761-1773`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1761-L1773)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1761-1773`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1761-L1773)*
 
 Represents a stack frame on the heap while doing backtracking.
 
@@ -1560,7 +1560,7 @@ backtracking branch turns out to not lead to a match.
 fn min_visited_capacity(nfa: &crate::nfa::thompson::NFA, input: &crate::util::search::Input<'_>) -> usize
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:41-43`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L41-L43)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:41-43`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L41-L43)*
 
 Returns the minimum visited capacity for the given haystack.
 
@@ -1584,7 +1584,7 @@ the size the given NFA and haystack.
 fn div_ceil(lhs: usize, rhs: usize) -> usize
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1881-1887`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1881-L1887)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1881-1887`](../../../../../.source_1765900590/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1881-L1887)*
 
 Integer division, but rounds up instead of down.
 

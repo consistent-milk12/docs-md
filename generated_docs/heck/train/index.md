@@ -19,7 +19,7 @@
 struct AsTrainCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/train.rs:41`](../../../.source_1765894658/heck-0.5.0/src/train.rs#L41)*
+*Defined in [`heck-0.5.0/src/train.rs:41`](../../../.source_1765900590/heck-0.5.0/src/train.rs#L41)*
 
 This wrapper performs a train case conversion in `fmt::Display`.
 
@@ -89,7 +89,7 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 trait ToTrainCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/train.rs:20-23`](../../../.source_1765894658/heck-0.5.0/src/train.rs#L20-L23)*
+*Defined in [`heck-0.5.0/src/train.rs:20-23`](../../../.source_1765900590/heck-0.5.0/src/train.rs#L20-L23)*
 
 This trait defines a train case conversion.
 
@@ -107,7 +107,7 @@ assert_eq!(sentence.to_train_case(), "We-Are-Going-To-Inherit-The-Earth");
 
 #### Required Methods
 
-- `fn to_train_case(&self) -> <Self as >::Owned`
+- `fn ToTrainCase::to_train_case(&self) -> <Self as >::Owned`
 
   Convert this type to Train-Case.
 

@@ -233,7 +233,7 @@ Thanks for readingme!
 struct CompactString(repr::Repr);
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:128`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L128)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:128`](../../.source_1765900590/compact_str-0.9.0/src/lib.rs#L128)*
 
 A [`CompactString`](#compactstring) is a compact string type that can be used almost anywhere a
 `String` or [`str`](#str) can be used.
@@ -332,9 +332,9 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   
   In a `static` or `const` context you can use the method `CompactString::const_new()`.
   
-  # Examples
+  ##### Examples
   
-  ### Inlined
+  ###### Inlined
   ```rust
   use compact_str::CompactString;
   // We can inline strings up to 12 characters long on 32-bit architectures...
@@ -351,7 +351,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert!(!compact.is_heap_allocated());
   ```
   
-  ### Heap
+  ###### Heap
   ```rust
   use compact_str::CompactString;
   // For longer strings though, we get allocated on the heap
@@ -363,7 +363,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert!(compact.is_heap_allocated());
   ```
   
-  ### Creation
+  ###### Creation
   ```rust
   use compact_str::CompactString;
   
@@ -394,7 +394,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   
   In a dynamic context you can use the method `CompactString::new()`.
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   
@@ -408,7 +408,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   If the string was short enough that it could be inlined, then it was inline, and
   this method will return `None`.
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   
@@ -429,14 +429,14 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   then it will be inlined. This also means that `CompactString`s have a minimum capacity
   of `std::mem::size_of::<String>`.
   
-  # Panics
+  ##### Panics
   
   This method panics if the system is out-of-memory.
   Use `CompactString::try_with_capacity()` if you want to handle such a problem manually.
   
-  # Examples
+  ##### Examples
   
-  ### "zero" Capacity
+  ###### "zero" Capacity
   ```rust
   use compact_str::CompactString;
   // Creating a CompactString with a capacity of 0 will create
@@ -449,7 +449,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert!(!empty.is_heap_allocated());
   ```
   
-  ### Max Inline Size
+  ###### Max Inline Size
   ```rust
   use compact_str::CompactString;
   // Creating a CompactString with a capacity of std::mem::size_of::<String>()
@@ -461,7 +461,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert!(!empty.is_heap_allocated());
   ```
   
-  ### Heap Allocating
+  ###### Heap Allocating
   ```rust
   use compact_str::CompactString;
   // If you create a `CompactString` with a capacity greater than
@@ -495,8 +495,8 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   Note: If you want to create a [`CompactString`](#compactstring) from a non-contiguous collection of bytes,
   enable the `bytes` feature of this crate, and see `CompactString::from_utf8_buf`
   
-  # Examples
-  ### Valid UTF-8
+  ##### Examples
+  ###### Valid UTF-8
   ```rust
   use compact_str::CompactString;
   let bytes = vec![240, 159, 166, 128, 240, 159, 146, 175];
@@ -505,7 +505,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert_eq!(compact, "🦀💯");
   ```
   
-  ### Invalid UTF-8
+  ###### Invalid UTF-8
   ```rust
   use compact_str::CompactString;
   let bytes = vec![255, 255, 255];
@@ -521,7 +521,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   
   See the safe version, `CompactString::from_utf8`, for more details.
   
-  # Safety
+  ##### Safety
   
   * The contents pased to this method must be valid UTF-8.
   
@@ -530,7 +530,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   the [`CompactString`](#compactstring) containing valid UTF-8. If this constraint is violated any further
   use of the returned [`CompactString`](#compactstring) (including dropping it) can cause undefined behavior.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -551,8 +551,8 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   Decode a [`UTF-16`](https://en.wikipedia.org/wiki/UTF-16) slice of bytes into a
   [`CompactString`](#compactstring), returning an `Err` if the slice contains any invalid data.
   
-  # Examples
-  ### Valid UTF-16
+  ##### Examples
+  ###### Valid UTF-16
   ```rust
   use compact_str::CompactString;
   let buf: &[u16] = &[0xD834, 0xDD1E, 0x006d, 0x0075, 0x0073, 0x0069, 0x0063];
@@ -561,7 +561,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert_eq!(compact, "𝄞music");
   ```
   
-  ### Invalid UTF-16
+  ###### Invalid UTF-16
   ```rust
   use compact_str::CompactString;
   let buf: &[u16] = &[0xD834, 0xDD1E, 0x006d, 0x0075, 0xD800, 0x0069, 0x0063];
@@ -575,7 +575,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   Decode a UTF-16–encoded slice `v` into a `CompactString`, replacing invalid data with
   the replacement character (`U+FFFD`), �.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -598,7 +598,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   bytes long, therefore the return value of this method might not be what a human considers
   the length of the string.
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   let ascii = CompactString::new("hello world");
@@ -612,7 +612,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Returns `true` if the [`CompactString`](#compactstring) has a length of 0, `false` otherwise
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   let mut msg = CompactString::new("");
@@ -627,11 +627,11 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Returns the capacity of the [`CompactString`](#compactstring), in bytes.
   
-  # Note
+  ##### Note
   * A `CompactString` will always have a capacity of at least `std::mem::size_of::<String>()`
   
-  # Examples
-  ### Minimum Size
+  ##### Examples
+  ###### Minimum Size
   ```rust
   use compact_str::CompactString;
   let min_size = std::mem::size_of::<String>();
@@ -640,7 +640,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert!(compact.capacity() >= min_size);
   ```
   
-  ### Heap Allocated
+  ###### Heap Allocated
   ```rust
   use compact_str::CompactString;
   let compact = CompactString::with_capacity(128);
@@ -653,15 +653,15 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   its length. The capacity may be increased by more than `additional` bytes if it chooses,
   to prevent frequent reallocations.
   
-  # Note
+  ##### Note
   * A `CompactString` will always have at least a capacity of `std::mem::size_of::<String>()`
   * Reserving additional bytes may cause the `CompactString` to become heap allocated
   
-  # Panics
+  ##### Panics
   This method panics if the new capacity overflows `usize` or if the system is out-of-memory.
   Use `CompactString::try_reserve()` if you want to handle such a problem manually.
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   
@@ -685,7 +685,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Returns a string slice containing the entire [`CompactString`](#compactstring).
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   let s = CompactString::new("hello");
@@ -697,7 +697,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Returns a mutable string slice containing the entire [`CompactString`](#compactstring).
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   let mut s = CompactString::new("hello");
@@ -712,7 +712,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Returns a byte slice of the [`CompactString`](#compactstring)'s contents.
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   let s = CompactString::new("hello");
@@ -724,11 +724,11 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Provides a mutable reference to the underlying buffer of bytes.
   
-  # Safety
+  ##### Safety
   * All Rust strings, including `CompactString`, must be valid UTF-8. The caller must
     guarantee that any modifications made to the underlying buffer are valid UTF-8.
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   let mut s = CompactString::new("hello");
@@ -746,7 +746,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Appends the given [`char`]() to the end of this [`CompactString`](#compactstring).
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   let mut s = CompactString::new("foo");
@@ -763,7 +763,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   Removes the last character from the [`CompactString`](#compactstring) and returns it.
   Returns `None` if this [`CompactString`](#compactstring) is empty.
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   let mut s = CompactString::new("abc");
@@ -779,7 +779,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Appends a given string slice onto the end of this [`CompactString`](#compactstring)
   
-  # Examples
+  ##### Examples
   ```rust
   use compact_str::CompactString;
   let mut s = CompactString::new("abc");
@@ -796,14 +796,14 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   This is an *O*(*n*) operation, as it requires copying every element in the
   buffer.
   
-  # Panics
+  ##### Panics
   
   Panics if `idx` is larger than or equal to the [`CompactString`](#compactstring)'s length,
   or if it does not lie on a [`char`]() boundary.
   
-  # Examples
+  ##### Examples
   
-  ### Basic usage:
+  ###### Basic usage:
   
   ```rust
   use compact_str::CompactString;
@@ -816,7 +816,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert_eq!(c, "ello orld");
   ```
   
-  ### Past total length:
+  ###### Past total length:
   
   ```should_panic
   use compact_str::CompactString;
@@ -824,7 +824,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   c.remove(100);
   ```
   
-  ### Not on char boundary:
+  ###### Not on char boundary:
   
   ```should_panic
   use compact_str::CompactString;
@@ -840,7 +840,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   `CompactString`. If you want to modify the `CompactString` you should use methods like
   `push`, `push_str` or `pop`.
   
-  # Safety
+  ##### Safety
   * `new_len` must be less than or equal to `capacity()`
   * The elements at `old_len..new_len` must be initialized
 
@@ -848,8 +848,8 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Returns whether or not the [`CompactString`](#compactstring) is heap allocated.
   
-  # Examples
-  ### Inlined
+  ##### Examples
+  ###### Inlined
   ```rust
   use compact_str::CompactString;
   let hello = CompactString::new("hello world");
@@ -857,7 +857,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert!(!hello.is_heap_allocated());
   ```
   
-  ### Heap Allocated
+  ###### Heap Allocated
   ```rust
   use compact_str::CompactString;
   let msg = CompactString::new("this message will self destruct in 5, 4, 3, 2, 1 💥");
@@ -877,12 +877,12 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   and replaces it with the given string.
   The given string doesn't need to be the same length as the range.
   
-  # Panics
+  ##### Panics
   
   Panics if the starting point or end point do not lie on a [`char`]()
   boundary, or if they're out of bounds.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -916,11 +916,11 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Creates a new [`CompactString`](#compactstring) by repeating a string `n` times.
   
-  # Panics
+  ##### Panics
   
   This function will panic if the capacity would overflow.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -946,11 +946,11 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   
   Calling this function does not change the capacity of the [`CompactString`](#compactstring).
   
-  # Panics
+  ##### Panics
   
   Panics if the new end of the string does not lie on a [`char`]() boundary.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -973,7 +973,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Insert string character at an index.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -988,7 +988,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Insert a character at an index.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -1023,7 +1023,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   Calling this function does not change the capacity of the [`CompactString`](#compactstring), unless the
   [`CompactString`](#compactstring) is backed by a `&'static str`.
   
-  # Panics
+  ##### Panics
   
   Panics if `at` does not lie on a [`char`]() boundary.
   
@@ -1044,11 +1044,11 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   
   Calling this function does not change the capacity of the [`CompactString`](#compactstring).
   
-  # Panics
+  ##### Panics
   
   Panics if the start or end of the range does not lie on a [`char`]() boundary.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -1073,7 +1073,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   The resulting capactity is never less than the size of 3×`usize`,
   i.e. the capacity than can be inlined.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -1103,7 +1103,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   
   This method is effectively the same as calling `string.shrink_to(0)`.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -1138,7 +1138,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   If the `predicate` returns `false`, then the character gets removed.
   If the `predicate` returns `true`, then the character is kept.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use compact_str::CompactString;
@@ -1155,7 +1155,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Decode a bytes slice as UTF-8 string, replacing any illegal codepoints
   
-  # Examples
+  ##### Examples
   
   ```rust
   use compact_str::CompactString;
@@ -1199,12 +1199,12 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Decode a slice of bytes as UTF-16 encoded string, in little endian.
   
-  # Errors
+  ##### Errors
   
   If the slice has an odd number of bytes, or if it did not contain valid UTF-16 characters,
   a [`Utf16Error`](#utf16error) is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use compact_str::CompactString;
@@ -1217,12 +1217,12 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Decode a slice of bytes as UTF-16 encoded string, in big endian.
   
-  # Errors
+  ##### Errors
   
   If the slice has an odd number of bytes, or if it did not contain valid UTF-16 characters,
   a [`Utf16Error`](#utf16error) is returned.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use compact_str::CompactString;
@@ -1239,7 +1239,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   \<REPLACEMENT CHARACTER\> `'�'`. Please notice that, unlike UTF-8, UTF-16 is not self
   synchronizing. I.e. if a byte in the input is dropped, all following data is broken.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use compact_str::CompactString;
@@ -1257,7 +1257,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   \<REPLACEMENT CHARACTER\> `'�'`. Please notice that, unlike UTF-8, UTF-16 is not self
   synchronizing. I.e. if a byte in the input is dropped, all following data is broken.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use compact_str::CompactString;
@@ -1271,7 +1271,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
   Convert the [`CompactString`](#compactstring) into a `String`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use compact_str::CompactString;
@@ -1293,9 +1293,9 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   the heap to be deallocated. Instead when using this method, we always reuse the buffer that
   was previously owned by the `String`, so no trips to the allocator are needed.
   
-  # Examples
+  ##### Examples
   
-  ### Short Strings
+  ###### Short Strings
   ```rust
   use compact_str::CompactString;
   
@@ -1312,7 +1312,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert_eq!(c_heap, c_inline);
   ```
   
-  ### Longer Strings
+  ###### Longer Strings
   ```rust
   use compact_str::CompactString;
   
@@ -1327,7 +1327,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   assert!(c2.is_heap_allocated());
   ```
   
-  ### Buffer Re-use
+  ###### Buffer Re-use
   ```rust
   use compact_str::CompactString;
   
@@ -1366,7 +1366,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   To lowercase ASCII characters in addition to non-ASCII characters, use
   `CompactString::to_lowercase`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use compact_str::CompactString;
@@ -1388,7 +1388,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   To uppercase ASCII characters in addition to non-ASCII characters, use
   `CompactString::to_uppercase`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use compact_str::CompactString;
@@ -1408,7 +1408,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
   parameter in-place.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -1453,7 +1453,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
   parameter in-place.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -1494,7 +1494,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
   parameter in-place.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -1533,7 +1533,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
   the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
   parameter in-place.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -1712,7 +1712,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 struct Utf16Error(());
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2483`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2483)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2483`](../../.source_1765900590/compact_str-0.9.0/src/lib.rs#L2483)*
 
 A possible error value when converting a [`CompactString`](#compactstring) from a UTF-16 byte slice.
 
@@ -1817,7 +1817,7 @@ struct Drain<'a> {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2493-2498`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2493-L2498)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2493-2498`](../../.source_1765900590/compact_str-0.9.0/src/lib.rs#L2493-L2498)*
 
 An iterator over the exacted data by `CompactString::drain()`.
 
@@ -1934,7 +1934,7 @@ An iterator over the exacted data by `CompactString::drain()`.
 struct ReserveError(());
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2579`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2579)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2579`](../../.source_1765900590/compact_str-0.9.0/src/lib.rs#L2579)*
 
 A possible error value if allocating or resizing a [`CompactString`](#compactstring) failed.
 
@@ -2032,7 +2032,7 @@ enum ToCompactStringError {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2594-2599`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2594-L2599)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2594-2599`](../../.source_1765900590/compact_str-0.9.0/src/lib.rs#L2594-L2599)*
 
 A possible error value if `ToCompactString::try_to_compact_string()` failed.
 
@@ -2139,7 +2139,7 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 trait CompactStringExt { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../.source_1765894658/compact_str-0.9.0/src/traits.rs#L142-L169)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../.source_1765900590/compact_str-0.9.0/src/traits.rs#L142-L169)*
 
 A trait that provides convenience methods for creating a [`CompactString`](#compactstring) from a collection of
 items. It is implemented for all types that can be converted into an iterator, and that iterator
@@ -2165,11 +2165,11 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
 
 #### Required Methods
 
-- `fn concat_compact(self) -> CompactString`
+- `fn CompactStringExt::concat_compact(self) -> CompactString`
 
   Concatenates all the items of a collection into a [`CompactString`](#compactstring)
   
-  # Example
+  ##### Example
   ```rust
   use compact_str::CompactStringExt;
   
@@ -2179,12 +2179,12 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
   assert_eq!(compact, "hello world!");
   ```
 
-- `fn join_compact<S: AsRef<str>>(self, separator: S) -> CompactString`
+- `fn CompactStringExt::join_compact<S: AsRef<str>>(self, separator: S) -> CompactString`
 
   Joins all the items of a collection, placing a separator between them, forming a
   [`CompactString`](#compactstring)
   
-  # Example
+  ##### Example
   ```rust
   use compact_str::CompactStringExt;
   
@@ -2204,7 +2204,7 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
 trait ToCompactString { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../.source_1765894658/compact_str-0.9.0/src/traits.rs#L16-L49)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../.source_1765900590/compact_str-0.9.0/src/traits.rs#L16-L49)*
 
 A trait for converting a value to a `CompactString`.
 
@@ -2215,7 +2215,7 @@ implementation for free.
 
 #### Required Methods
 
-- `fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
+- `fn ToCompactString::try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
 
   Fallible version of `ToCompactString::to_compact_string()`
   
@@ -2225,16 +2225,16 @@ implementation for free.
 
 #### Provided Methods
 
-- `fn to_compact_string(&self) -> CompactString`
+- `fn ToCompactString::to_compact_string(&self) -> CompactString`
 
   Converts the given value to a [`CompactString`](#compactstring).
   
-  # Panics
+  ##### Panics
   
   Panics if the system runs out of memory and it cannot hold the whole string,
   or if `Display::fmt()` returns an error.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -2258,7 +2258,7 @@ implementation for free.
 trait UnwrapWithMsg { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2635-2639`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2635-L2639)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2635-2639`](../../.source_1765900590/compact_str-0.9.0/src/lib.rs#L2635-L2639)*
 
 #### Associated Types
 
@@ -2266,7 +2266,7 @@ trait UnwrapWithMsg { ... }
 
 #### Required Methods
 
-- `fn unwrap_with_msg(self) -> <Self as >::T`
+- `fn UnwrapWithMsg::unwrap_with_msg(self) -> <Self as >::T`
 
 #### Implementors
 
@@ -2280,7 +2280,7 @@ trait UnwrapWithMsg { ... }
 fn convert_while_ascii(b: &[u8], convert: fn(&u8) -> u8) -> CompactString
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:1907-1947`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L1907-L1947)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:1907-1947`](../../.source_1765900590/compact_str-0.9.0/src/lib.rs#L1907-L1947)*
 
 Converts the bytes while the bytes are still ascii.
 For better average performance, this is happens in chunks of `2*size_of::<usize>()`.
@@ -2294,13 +2294,13 @@ Copied from https://doc.rust-lang.org/nightly/src/alloc/str.rs.html#623-666
 fn unwrap_with_msg_fail<E: fmt::Display>(error: E) -> never
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2657-2659`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2657-L2659)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2657-2659`](../../.source_1765900590/compact_str-0.9.0/src/lib.rs#L2657-L2659)*
 
 ## Macros
 
 ### `format_compact!`
 
-*Defined in [`compact_str-0.9.0/src/macros.rs:28-32`](../../.source_1765894658/compact_str-0.9.0/src/macros.rs#L28-L32)*
+*Defined in [`compact_str-0.9.0/src/macros.rs:28-32`](../../.source_1765900590/compact_str-0.9.0/src/macros.rs#L28-L32)*
 
 Creates a `CompactString` using interpolation of runtime expressions.
 

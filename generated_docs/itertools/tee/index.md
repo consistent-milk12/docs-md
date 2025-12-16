@@ -24,7 +24,7 @@ struct TeeBuffer<A, I> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tee.rs:9-14`](../../../.source_1765894658/itertools-0.14.0/src/tee.rs#L9-L14)*
+*Defined in [`itertools-0.14.0/src/tee.rs:9-14`](../../../.source_1765900590/itertools-0.14.0/src/tee.rs#L9-L14)*
 
 Common buffer object for the two tee halves
 
@@ -92,7 +92,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/tee.rs:21-27`](../../../.source_1765894658/itertools-0.14.0/src/tee.rs#L21-L27)*
+*Defined in [`itertools-0.14.0/src/tee.rs:21-27`](../../../.source_1765900590/itertools-0.14.0/src/tee.rs#L21-L27)*
 
 One half of an iterator pair where both return the same elements.
 
@@ -179,5 +179,5 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/tee.rs:29-47`](../../../.source_1765894658/itertools-0.14.0/src/tee.rs#L29-L47)*
+*Defined in [`itertools-0.14.0/src/tee.rs:29-47`](../../../.source_1765900590/itertools-0.14.0/src/tee.rs#L29-L47)*
 

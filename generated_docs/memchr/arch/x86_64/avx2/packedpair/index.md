@@ -28,7 +28,7 @@ struct Finder {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/packedpair.rs:23-26`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/avx2/packedpair.rs#L23-L26)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/packedpair.rs:23-26`](../../../../../../.source_1765900590/memchr-2.7.6/src/arch/x86_64/avx2/packedpair.rs#L23-L26)*
 
 A "packed pair" finder that uses 256-bit vector operations.
 
@@ -64,7 +64,7 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
   Create a new `Finder` specific to SSE2 vectors and routines.
   
-  # Safety
+  ##### Safety
   
   Same as the safety for `packedpair::Finder::new`, and callers must also
   ensure that both SSE2 and AVX2 are available.
@@ -88,7 +88,7 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
   Execute a search using AVX2 vectors and routines.
   
-  # Panics
+  ##### Panics
   
   When `haystack.len()` is less than `Finder::min_haystack_len`.
 
@@ -99,7 +99,7 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
   If a candidate match is found, then an offset where the needle *could*
   begin in the haystack is returned.
   
-  # Panics
+  ##### Panics
   
   When `haystack.len()` is less than `Finder::min_haystack_len`.
 
@@ -107,11 +107,11 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
   Execute a search using AVX2 vectors and routines.
   
-  # Panics
+  ##### Panics
   
   When `haystack.len()` is less than `Finder::min_haystack_len`.
   
-  # Safety
+  ##### Safety
   
   (The target feature safety obligation is automatically fulfilled by
   virtue of being a method on `Finder`, which can only be constructed
@@ -121,11 +121,11 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
   Execute a prefilter search using AVX2 vectors and routines.
   
-  # Panics
+  ##### Panics
   
   When `haystack.len()` is less than `Finder::min_haystack_len`.
   
-  # Safety
+  ##### Safety
   
   (The target feature safety obligation is automatically fulfilled by
   virtue of being a method on `Finder`, which can only be constructed

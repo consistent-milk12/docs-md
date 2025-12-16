@@ -19,7 +19,7 @@
 struct AsTitleCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/title.rs:44`](../../../.source_1765894658/heck-0.5.0/src/title.rs#L44)*
+*Defined in [`heck-0.5.0/src/title.rs:44`](../../../.source_1765900590/heck-0.5.0/src/title.rs#L44)*
 
 This wrapper performs a title case conversion in `fmt::Display`.
 
@@ -89,7 +89,7 @@ assert_eq!(format!("{}", AsTitleCase(sentence)), "We Have Always Lived In Slums 
 trait ToTitleCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/title.rs:23-26`](../../../.source_1765894658/heck-0.5.0/src/title.rs#L23-L26)*
+*Defined in [`heck-0.5.0/src/title.rs:23-26`](../../../.source_1765900590/heck-0.5.0/src/title.rs#L23-L26)*
 
 This trait defines a title case conversion.
 
@@ -107,7 +107,7 @@ assert_eq!(sentence.to_title_case(), "We Have Always Lived In Slums And Holes In
 
 #### Required Methods
 
-- `fn to_title_case(&self) -> <Self as >::Owned`
+- `fn ToTitleCase::to_title_case(&self) -> <Self as >::Owned`
 
   Convert this type to title case.
 

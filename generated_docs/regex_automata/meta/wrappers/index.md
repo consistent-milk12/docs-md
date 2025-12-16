@@ -83,7 +83,7 @@ cache for it will *not* actually be allocated.
 struct PikeVM(PikeVMEngine);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:49`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L49)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:49`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L49)*
 
 #### Implementations
 
@@ -144,7 +144,7 @@ struct PikeVM(PikeVMEngine);
 struct PikeVMEngine(pikevm::PikeVM);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:71`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L71)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:71`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L71)*
 
 #### Implementations
 
@@ -207,7 +207,7 @@ struct PikeVMEngine(pikevm::PikeVM);
 struct PikeVMCache(Option<pikevm::Cache>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:121`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L121)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:121`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L121)*
 
 #### Implementations
 
@@ -286,7 +286,7 @@ struct PikeVMCache(Option<pikevm::Cache>);
 struct BoundedBacktracker(Option<BoundedBacktrackerEngine>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:142`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L142)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:142`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L142)*
 
 #### Implementations
 
@@ -347,7 +347,7 @@ struct BoundedBacktracker(Option<BoundedBacktrackerEngine>);
 struct BoundedBacktrackerEngine(backtrack::BoundedBacktracker);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:188-191`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L188-L191)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:188-191`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L188-L191)*
 
 #### Implementations
 
@@ -410,7 +410,7 @@ struct BoundedBacktrackerEngine(backtrack::BoundedBacktracker);
 struct BoundedBacktrackerCache(Option<backtrack::Cache>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:282-285`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L282-L285)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:282-285`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L282-L285)*
 
 #### Implementations
 
@@ -489,7 +489,7 @@ struct BoundedBacktrackerCache(Option<backtrack::Cache>);
 struct OnePass(Option<OnePassEngine>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:327`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L327)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:327`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L327)*
 
 #### Implementations
 
@@ -552,7 +552,7 @@ struct OnePass(Option<OnePassEngine>);
 struct OnePassEngine(onepass::DFA);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:355-358`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L355-L358)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:355-358`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L355-L358)*
 
 #### Implementations
 
@@ -615,7 +615,7 @@ struct OnePassEngine(onepass::DFA);
 struct OnePassCache(Option<onepass::Cache>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:461-464`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L461-L464)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:461-464`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L461-L464)*
 
 #### Implementations
 
@@ -694,7 +694,7 @@ struct OnePassCache(Option<onepass::Cache>);
 struct Hybrid(Option<HybridEngine>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:509`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L509)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:509`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L509)*
 
 #### Implementations
 
@@ -759,7 +759,7 @@ struct Hybrid(Option<HybridEngine>);
 struct HybridEngine(hybrid::regex::Regex);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:541-544`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L541-L544)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:541-544`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L541-L544)*
 
 #### Implementations
 
@@ -828,7 +828,7 @@ struct HybridEngine(hybrid::regex::Regex);
 struct HybridCache(Option<hybrid::regex::Cache>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:753-756`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L753-L756)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:753-756`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L753-L756)*
 
 #### Implementations
 
@@ -907,7 +907,7 @@ struct HybridCache(Option<hybrid::regex::Cache>);
 struct DFA(Option<DFAEngine>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:801`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L801)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:801`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L801)*
 
 #### Implementations
 
@@ -972,7 +972,7 @@ struct DFA(Option<DFAEngine>);
 struct DFAEngine(());
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:833-836`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L833-L836)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:833-836`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L833-L836)*
 
 #### Implementations
 
@@ -1043,7 +1043,7 @@ struct DFAEngine(());
 struct ReverseHybrid(Option<ReverseHybridEngine>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1059`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L1059)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1059`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L1059)*
 
 #### Implementations
 
@@ -1106,7 +1106,7 @@ struct ReverseHybrid(Option<ReverseHybridEngine>);
 struct ReverseHybridEngine(hybrid::dfa::DFA);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1085-1088`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L1085-L1088)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1085-1088`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L1085-L1088)*
 
 #### Implementations
 
@@ -1165,7 +1165,7 @@ struct ReverseHybridEngine(hybrid::dfa::DFA);
 struct ReverseHybridCache(Option<hybrid::dfa::Cache>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1158-1161`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L1158-L1161)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1158-1161`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L1158-L1161)*
 
 #### Implementations
 
@@ -1244,7 +1244,7 @@ struct ReverseHybridCache(Option<hybrid::dfa::Cache>);
 struct ReverseDFA(Option<ReverseDFAEngine>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1206`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L1206)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1206`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L1206)*
 
 #### Implementations
 
@@ -1309,7 +1309,7 @@ struct ReverseDFA(Option<ReverseDFAEngine>);
 struct ReverseDFAEngine(());
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1233-1236`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/wrappers.rs#L1233-L1236)*
+*Defined in [`regex-automata-0.4.13/src/meta/wrappers.rs:1233-1236`](../../../../.source_1765900590/regex-automata-0.4.13/src/meta/wrappers.rs#L1233-L1236)*
 
 #### Implementations
 

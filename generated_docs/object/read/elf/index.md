@@ -276,7 +276,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L38-L51)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../.source_1765900590/object-0.37.3/src/read/elf/file.rs#L38-L51)*
 
 A partially parsed ELF file.
 
@@ -469,7 +469,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:20-27`](../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L20-L27)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:20-27`](../../../../.source_1765900590/object-0.37.3/src/read/elf/segment.rs#L20-L27)*
 
 An iterator for the segments in an [`ElfFile`](#elffile).
 
@@ -544,7 +544,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:60-67`](../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L60-L67)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:60-67`](../../../../.source_1765900590/object-0.37.3/src/read/elf/segment.rs#L60-L67)*
 
 A segment in an [`ElfFile`](#elffile).
 
@@ -640,7 +640,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L25-L31)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L25-L31)*
 
 The table of section headers in an ELF file.
 
@@ -867,7 +867,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L358-L365)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L358-L365)*
 
 An iterator for the sections in an [`ElfFile`](#elffile).
 
@@ -947,7 +947,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L406-L414)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L406-L414)*
 
 A section in an [`ElfFile`](#elffile).
 
@@ -1097,7 +1097,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
 
 A table of symbol entries in an ELF file.
 
@@ -1254,7 +1254,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
 
 A symbol table in an [`ElfFile`](super::ElfFile).
 
@@ -1346,7 +1346,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
 
 An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
@@ -1427,7 +1427,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
 
 A symbol in an [`ElfFile`](super::ElfFile).
 
@@ -1552,7 +1552,7 @@ struct RelocationSections {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:18-20`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L18-L20)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:18-20`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L18-L20)*
 
 A mapping from section index to associated relocation sections.
 
@@ -1633,7 +1633,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:123-132`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L123-L132)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:123-132`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L123-L132)*
 
 An iterator for the dynamic relocations in an [`ElfFile`](#elffile).
 
@@ -1715,7 +1715,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:207-216`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L207-L216)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:207-216`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L207-L216)*
 
 An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
@@ -1796,7 +1796,7 @@ struct RelrIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:681-687`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L681-L687)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:681-687`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L681-L687)*
 
 An iterator over the relative relocations in an ELF `SHT_RELR` section.
 
@@ -1878,7 +1878,7 @@ struct Crel {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:792-803`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L792-L803)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:792-803`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L792-L803)*
 
 Compact relocation
 
@@ -1994,7 +1994,7 @@ struct CrelIteratorHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:839-848`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L839-L848)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:839-848`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L839-L848)*
 
 #### Fields
 
@@ -2087,7 +2087,7 @@ struct CrelIteratorState {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:851-862`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L851-L862)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:851-862`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L851-L862)*
 
 #### Fields
 
@@ -2186,7 +2186,7 @@ struct CrelIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:866-873`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L866-L873)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:866-873`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L866-L873)*
 
 Compact relocation iterator.
 
@@ -2313,7 +2313,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:19-26`](../../../../.source_1765894658/object-0.37.3/src/read/elf/comdat.rs#L19-L26)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:19-26`](../../../../.source_1765900590/object-0.37.3/src/read/elf/comdat.rs#L19-L26)*
 
 An iterator for the COMDAT section groups in an [`ElfFile`](#elffile).
 
@@ -2393,7 +2393,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:70-78`](../../../../.source_1765894658/object-0.37.3/src/read/elf/comdat.rs#L70-L78)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:70-78`](../../../../.source_1765900590/object-0.37.3/src/read/elf/comdat.rs#L70-L78)*
 
 A COMDAT section group in an [`ElfFile`](#elffile).
 
@@ -2484,7 +2484,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:166-173`](../../../../.source_1765894658/object-0.37.3/src/read/elf/comdat.rs#L166-L173)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:166-173`](../../../../.source_1765900590/object-0.37.3/src/read/elf/comdat.rs#L166-L173)*
 
 An iterator for the sections in a COMDAT section group in an [`ElfFile`](#elffile).
 
@@ -2559,7 +2559,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L17-L24)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L17-L24)*
 
 An iterator over the notes in an ELF section or segment.
 
@@ -2656,7 +2656,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L109-L116)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L109-L116)*
 
 A parsed [`NoteHeader`](#noteheader).
 
@@ -2756,7 +2756,7 @@ struct GnuPropertyIterator<'data, Endian: endian::Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L235-L239)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L235-L239)*
 
 An iterator for the properties in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
@@ -2838,7 +2838,7 @@ struct GnuProperty<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L277-L280)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L277-L280)*
 
 A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
@@ -2912,7 +2912,7 @@ struct HashTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/hash.rs:13-16`](../../../../.source_1765894658/object-0.37.3/src/read/elf/hash.rs#L13-L16)*
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:13-16`](../../../../.source_1765900590/object-0.37.3/src/read/elf/hash.rs#L13-L16)*
 
 A SysV symbol hash table in an ELF file.
 
@@ -2998,7 +2998,7 @@ struct GnuHashTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/hash.rs:86-92`](../../../../.source_1765894658/object-0.37.3/src/read/elf/hash.rs#L86-L92)*
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:86-92`](../../../../.source_1765900590/object-0.37.3/src/read/elf/hash.rs#L86-L92)*
 
 A GNU symbol hash table in an ELF file.
 
@@ -3087,7 +3087,7 @@ Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 struct VersionIndex(u16);
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L10)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../.source_1765900590/object-0.37.3/src/read/elf/version.rs#L10)*
 
 A version index.
 
@@ -3187,7 +3187,7 @@ struct Version<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L38-L44)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../.source_1765900590/object-0.37.3/src/read/elf/version.rs#L38-L44)*
 
 A version definition or requirement.
 
@@ -3286,7 +3286,7 @@ struct VersionTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L75-L78)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../.source_1765900590/object-0.37.3/src/read/elf/version.rs#L75-L78)*
 
 A table of version definitions and requirements.
 
@@ -3400,7 +3400,7 @@ struct VerdefIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L234-L237)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../.source_1765900590/object-0.37.3/src/read/elf/version.rs#L234-L237)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
@@ -3499,7 +3499,7 @@ struct VerdauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L297-L301)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../.source_1765900590/object-0.37.3/src/read/elf/version.rs#L297-L301)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
@@ -3597,7 +3597,7 @@ struct VerneedIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L350-L353)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../.source_1765900590/object-0.37.3/src/read/elf/version.rs#L350-L353)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
@@ -3696,7 +3696,7 @@ struct VernauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L426-L430)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../.source_1765900590/object-0.37.3/src/read/elf/version.rs#L426-L430)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
@@ -3795,7 +3795,7 @@ struct AttributesSection<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../.source_1765900590/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
 
 An ELF attributes section.
 
@@ -3890,7 +3890,7 @@ struct AttributesSubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../.source_1765900590/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
 
 An iterator for the subsections in an [`AttributesSection`](#attributessection).
 
@@ -3988,7 +3988,7 @@ struct AttributesSubsection<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../.source_1765900590/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
 
 A subsection in an [`AttributesSection`](#attributessection).
 
@@ -4079,7 +4079,7 @@ struct AttributesSubsubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../.source_1765900590/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
 
 An iterator for the sub-subsections in an [`AttributesSubsection`](#attributessubsection).
 
@@ -4177,7 +4177,7 @@ struct AttributesSubsubsection<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../.source_1765900590/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
 
 A sub-subsection in an [`AttributesSubsection`](#attributessubsection).
 
@@ -4283,7 +4283,7 @@ struct AttributeIndexIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../.source_1765900590/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
 
 An iterator over the indices in an [`AttributesSubsubsection`](#attributessubsubsection).
 
@@ -4378,7 +4378,7 @@ struct AttributeReader<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../.source_1765900590/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
 
 A parser for the attributes in an [`AttributesSubsubsection`](#attributessubsubsection).
 
@@ -4471,7 +4471,7 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:83-87`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L83-L87)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:83-87`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L83-L87)*
 
 #### Implementations
 
@@ -4540,9 +4540,51 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 trait FileHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L530-L819)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../.source_1765900590/object-0.37.3/src/read/elf/file.rs#L530-L819)*
 
 A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`elf::FileHeader64`](../../elf/index.md).
+
+<details>
+<summary><strong>Methods (33)</strong> - click to expand</summary>
+
+**Required:**
+- [`FileHeader::is_type_64`](#fn-fileheaderis-type-64)
+- [`FileHeader::is_type_64_sized`](#fn-fileheaderis-type-64-sized)
+- [`FileHeader::e_ident`](#fn-fileheadere-ident)
+- [`FileHeader::e_type`](#fn-fileheadere-type)
+- [`FileHeader::e_machine`](#fn-fileheadere-machine)
+- [`FileHeader::e_version`](#fn-fileheadere-version)
+- [`FileHeader::e_entry`](#fn-fileheadere-entry)
+- [`FileHeader::e_phoff`](#fn-fileheadere-phoff)
+- [`FileHeader::e_shoff`](#fn-fileheadere-shoff)
+- [`FileHeader::e_flags`](#fn-fileheadere-flags)
+- [`FileHeader::e_ehsize`](#fn-fileheadere-ehsize)
+- [`FileHeader::e_phentsize`](#fn-fileheadere-phentsize)
+- [`FileHeader::e_phnum`](#fn-fileheadere-phnum)
+- [`FileHeader::e_shentsize`](#fn-fileheadere-shentsize)
+- [`FileHeader::e_shnum`](#fn-fileheadere-shnum)
+- [`FileHeader::e_shstrndx`](#fn-fileheadere-shstrndx)
+
+**Provided:**
+- [`FileHeader::parse`](#fn-fileheaderparse)
+- [`FileHeader::is_supported`](#fn-fileheaderis-supported)
+- [`FileHeader::is_class_32`](#fn-fileheaderis-class-32)
+- [`FileHeader::is_class_64`](#fn-fileheaderis-class-64)
+- [`FileHeader::is_little_endian`](#fn-fileheaderis-little-endian)
+- [`FileHeader::is_big_endian`](#fn-fileheaderis-big-endian)
+- [`FileHeader::endian`](#fn-fileheaderendian)
+- [`FileHeader::section_0`](#fn-fileheadersection-0)
+- [`FileHeader::phnum`](#fn-fileheaderphnum)
+- [`FileHeader::shnum`](#fn-fileheadershnum)
+- [`FileHeader::shstrndx`](#fn-fileheadershstrndx)
+- [`FileHeader::program_headers`](#fn-fileheaderprogram-headers)
+- [`FileHeader::section_headers`](#fn-fileheadersection-headers)
+- [`FileHeader::section_strings_index`](#fn-fileheadersection-strings-index)
+- [`FileHeader::section_strings`](#fn-fileheadersection-strings)
+- [`FileHeader::sections`](#fn-fileheadersections)
+- [`FileHeader::is_mips64el`](#fn-fileheaderis-mips64el)
+
+</details>
 
 #### Associated Types
 
@@ -4572,13 +4614,13 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 
 #### Required Methods
 
-- `fn is_type_64(&self) -> bool`
+- `fn FileHeader::is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
   
   This is a property of the type, not a value in the header data.
 
-- `fn is_type_64_sized() -> bool`
+- `fn FileHeader::is_type_64_sized() -> bool`
 
   Return true if this type is a 64-bit header.
   
@@ -4586,112 +4628,112 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
   
   This is the same as `Self::is_type_64`, but is non-dispatchable.
 
-- `fn e_ident(&self) -> &elf::Ident`
+- `fn FileHeader::e_ident(&self) -> &elf::Ident`
 
-- `fn e_type(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_type(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_machine(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_machine(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_version(&self, endian: <Self as >::Endian) -> u32`
+- `fn FileHeader::e_version(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn FileHeader::e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn FileHeader::e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn FileHeader::e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn e_flags(&self, endian: <Self as >::Endian) -> u32`
+- `fn FileHeader::e_flags(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn e_ehsize(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_ehsize(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_phentsize(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_phentsize(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_phnum(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_phnum(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_shentsize(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_shentsize(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_shnum(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_shnum(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_shstrndx(&self, endian: <Self as >::Endian) -> u16`
 
 #### Provided Methods
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>`
+- `fn FileHeader::parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>`
 
   Read the file header.
   
   Also checks that the ident field in the file header is a supported format.
 
-- `fn is_supported(&self) -> bool`
+- `fn FileHeader::is_supported(&self) -> bool`
 
   Check that the ident field in the file header is a supported format.
   
   This checks the magic number, version, class, and endianness.
 
-- `fn is_class_32(&self) -> bool`
+- `fn FileHeader::is_class_32(&self) -> bool`
 
-- `fn is_class_64(&self) -> bool`
+- `fn FileHeader::is_class_64(&self) -> bool`
 
-- `fn is_little_endian(&self) -> bool`
+- `fn FileHeader::is_little_endian(&self) -> bool`
 
-- `fn is_big_endian(&self) -> bool`
+- `fn FileHeader::is_big_endian(&self) -> bool`
 
-- `fn endian(&self) -> read::Result<<Self as >::Endian>`
+- `fn FileHeader::endian(&self) -> read::Result<<Self as >::Endian>`
 
-- `fn section_0<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data <Self as >::SectionHeader>>`
+- `fn FileHeader::section_0<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data <Self as >::SectionHeader>>`
 
   Return the first section header, if present.
   
   Section 0 is a special case because getting the section headers normally
   requires `shnum`, but `shnum` may be in the first section header.
 
-- `fn phnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
+- `fn FileHeader::phnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
 
   Return the `e_phnum` field of the header. Handles extended values.
   
   Returns `Err` for invalid values.
 
-- `fn shnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
+- `fn FileHeader::shnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
 
   Return the `e_shnum` field of the header. Handles extended values.
   
   Returns `Err` for invalid values.
 
-- `fn shstrndx<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<u32>`
+- `fn FileHeader::shstrndx<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<u32>`
 
   Return the `e_shstrndx` field of the header. Handles extended values.
   
   Returns `Err` for invalid values (including if the index is 0).
 
-- `fn program_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::ProgramHeader]>`
+- `fn FileHeader::program_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::ProgramHeader]>`
 
   Return the slice of program headers.
   
   Returns `Ok(&[])` if there are no program headers.
   Returns `Err` for invalid values.
 
-- `fn section_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::SectionHeader]>`
+- `fn FileHeader::section_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::SectionHeader]>`
 
   Return the slice of section headers.
   
   Returns `Ok(&[])` if there are no section headers.
   Returns `Err` for invalid values.
 
-- `fn section_strings_index<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionIndex>`
+- `fn FileHeader::section_strings_index<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionIndex>`
 
   Get the section index of the section header string table.
   
   Returns `Err` for invalid values (including if the index is 0).
 
-- `fn section_strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &[<Self as >::SectionHeader]) -> read::Result<StringTable<'data, R>>`
+- `fn FileHeader::section_strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &[<Self as >::SectionHeader]) -> read::Result<StringTable<'data, R>>`
 
   Return the string table for the section headers.
 
-- `fn sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionTable<'data, Self, R>>`
+- `fn FileHeader::sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionTable<'data, Self, R>>`
 
   Return the section table.
 
-- `fn is_mips64el(&self, endian: <Self as >::Endian) -> bool`
+- `fn FileHeader::is_mips64el(&self, endian: <Self as >::Endian) -> bool`
 
   Returns whether this is a mips64el elf file.
 
@@ -4706,9 +4748,33 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 trait ProgramHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:152-273`](../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L152-L273)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:152-273`](../../../../.source_1765900590/object-0.37.3/src/read/elf/segment.rs#L152-L273)*
 
 A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [`elf::ProgramHeader64`](../../elf/index.md).
+
+<details>
+<summary><strong>Methods (15)</strong> - click to expand</summary>
+
+**Required:**
+- [`ProgramHeader::p_type`](#fn-programheaderp-type)
+- [`ProgramHeader::p_flags`](#fn-programheaderp-flags)
+- [`ProgramHeader::p_offset`](#fn-programheaderp-offset)
+- [`ProgramHeader::p_vaddr`](#fn-programheaderp-vaddr)
+- [`ProgramHeader::p_paddr`](#fn-programheaderp-paddr)
+- [`ProgramHeader::p_filesz`](#fn-programheaderp-filesz)
+- [`ProgramHeader::p_memsz`](#fn-programheaderp-memsz)
+- [`ProgramHeader::p_align`](#fn-programheaderp-align)
+
+**Provided:**
+- [`ProgramHeader::file_range`](#fn-programheaderfile-range)
+- [`ProgramHeader::data`](#fn-programheaderdata)
+- [`ProgramHeader::data_as_array`](#fn-programheaderdata-as-array)
+- [`ProgramHeader::data_range`](#fn-programheaderdata-range)
+- [`ProgramHeader::dynamic`](#fn-programheaderdynamic)
+- [`ProgramHeader::interpreter`](#fn-programheaderinterpreter)
+- [`ProgramHeader::notes`](#fn-programheadernotes)
+
+</details>
 
 #### Associated Types
 
@@ -4720,35 +4786,35 @@ A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [
 
 #### Required Methods
 
-- `fn p_type(&self, endian: <Self as >::Endian) -> u32`
+- `fn ProgramHeader::p_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn p_flags(&self, endian: <Self as >::Endian) -> u32`
+- `fn ProgramHeader::p_flags(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ProgramHeader::p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ProgramHeader::p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ProgramHeader::p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ProgramHeader::p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ProgramHeader::p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ProgramHeader::p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 #### Provided Methods
 
-- `fn file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
+- `fn ProgramHeader::file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
 
   Return the offset and size of the segment in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [u8], ()>`
+- `fn ProgramHeader::data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [u8], ()>`
 
   Return the segment data.
   
   Returns `Err` for invalid values.
 
-- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [T], ()>`
+- `fn ProgramHeader::data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [T], ()>`
 
   Return the segment data as a slice of the given type.
   
@@ -4756,28 +4822,28 @@ A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [
   Returns `Ok(&[])` if the segment has no data.
   Returns `Err` for invalid values, including bad alignment.
 
-- `fn data_range<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, address: u64, size: u64) -> Result<Option<&'data [u8]>, ()>`
+- `fn ProgramHeader::data_range<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, address: u64, size: u64) -> Result<Option<&'data [u8]>, ()>`
 
   Return the segment data in the given virtual address range
   
   Returns `Ok(None)` if the segment does not contain the address.
   Returns `Err` for invalid values.
 
-- `fn dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [<<Self as >::Elf as FileHeader>::Dyn]>>`
+- `fn ProgramHeader::dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [<<Self as >::Elf as FileHeader>::Dyn]>>`
 
   Return entries in a dynamic segment.
   
   Returns `Ok(None)` if the segment is not `PT_DYNAMIC`.
   Returns `Err` for invalid values.
 
-- `fn interpreter<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [u8]>>`
+- `fn ProgramHeader::interpreter<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [u8]>>`
 
   Return the data in an interpreter segment.
   
   Returns `Ok(None)` if the segment is not `PT_INTERP`.
   Returns `Err` for invalid values.
 
-- `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
+- `fn ProgramHeader::notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the segment data.
   
@@ -4795,9 +4861,54 @@ A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [
 trait SectionHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
 
 A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [`elf::SectionHeader64`](../../elf/index.md).
+
+<details>
+<summary><strong>Methods (36)</strong> - click to expand</summary>
+
+**Required:**
+- [`SectionHeader::sh_name`](#fn-sectionheadersh-name)
+- [`SectionHeader::sh_type`](#fn-sectionheadersh-type)
+- [`SectionHeader::sh_flags`](#fn-sectionheadersh-flags)
+- [`SectionHeader::sh_addr`](#fn-sectionheadersh-addr)
+- [`SectionHeader::sh_offset`](#fn-sectionheadersh-offset)
+- [`SectionHeader::sh_size`](#fn-sectionheadersh-size)
+- [`SectionHeader::sh_link`](#fn-sectionheadersh-link)
+- [`SectionHeader::sh_info`](#fn-sectionheadersh-info)
+- [`SectionHeader::sh_addralign`](#fn-sectionheadersh-addralign)
+- [`SectionHeader::sh_entsize`](#fn-sectionheadersh-entsize)
+
+**Provided:**
+- [`SectionHeader::name`](#fn-sectionheadername)
+- [`SectionHeader::link`](#fn-sectionheaderlink)
+- [`SectionHeader::has_info_link`](#fn-sectionheaderhas-info-link)
+- [`SectionHeader::info_link`](#fn-sectionheaderinfo-link)
+- [`SectionHeader::file_range`](#fn-sectionheaderfile-range)
+- [`SectionHeader::data`](#fn-sectionheaderdata)
+- [`SectionHeader::data_as_array`](#fn-sectionheaderdata-as-array)
+- [`SectionHeader::strings`](#fn-sectionheaderstrings)
+- [`SectionHeader::symbols`](#fn-sectionheadersymbols)
+- [`SectionHeader::rel`](#fn-sectionheaderrel)
+- [`SectionHeader::rela`](#fn-sectionheaderrela)
+- [`SectionHeader::relr`](#fn-sectionheaderrelr)
+- [`SectionHeader::crel`](#fn-sectionheadercrel)
+- [`SectionHeader::dynamic`](#fn-sectionheaderdynamic)
+- [`SectionHeader::notes`](#fn-sectionheadernotes)
+- [`SectionHeader::group`](#fn-sectionheadergroup)
+- [`SectionHeader::hash_header`](#fn-sectionheaderhash-header)
+- [`SectionHeader::hash`](#fn-sectionheaderhash)
+- [`SectionHeader::gnu_hash_header`](#fn-sectionheadergnu-hash-header)
+- [`SectionHeader::gnu_hash`](#fn-sectionheadergnu-hash)
+- [`SectionHeader::gnu_versym`](#fn-sectionheadergnu-versym)
+- [`SectionHeader::gnu_verdef`](#fn-sectionheadergnu-verdef)
+- [`SectionHeader::gnu_verneed`](#fn-sectionheadergnu-verneed)
+- [`SectionHeader::gnu_attributes`](#fn-sectionheadergnu-attributes)
+- [`SectionHeader::attributes`](#fn-sectionheaderattributes)
+- [`SectionHeader::compression`](#fn-sectionheadercompression)
+
+</details>
 
 #### Associated Types
 
@@ -4809,63 +4920,63 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
 
 #### Required Methods
 
-- `fn sh_name(&self, endian: <Self as >::Endian) -> u32`
+- `fn SectionHeader::sh_name(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_type(&self, endian: <Self as >::Endian) -> u32`
+- `fn SectionHeader::sh_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_link(&self, endian: <Self as >::Endian) -> u32`
+- `fn SectionHeader::sh_link(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_info(&self, endian: <Self as >::Endian) -> u32`
+- `fn SectionHeader::sh_info(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 #### Provided Methods
 
-- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
+- `fn SectionHeader::name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
   Parse the section name from the string table.
 
-- `fn link(&self, endian: <Self as >::Endian) -> SectionIndex`
+- `fn SectionHeader::link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_link` field as a section index.
   
   This may return a null section index, and does not check for validity.
 
-- `fn has_info_link(&self, endian: <Self as >::Endian) -> bool`
+- `fn SectionHeader::has_info_link(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the `SHF_INFO_LINK` flag is set.
 
-- `fn info_link(&self, endian: <Self as >::Endian) -> SectionIndex`
+- `fn SectionHeader::info_link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_info` field as a section index.
   
   This does not check the `SHF_INFO_LINK` flag.
   This may return a null section index, and does not check for validity.
 
-- `fn file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
+- `fn SectionHeader::file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
   
   Returns `None` for sections that have no data in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [u8]>`
+- `fn SectionHeader::data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [u8]>`
 
   Return the section data.
   
   Returns `Ok(&[])` if the section has no data.
   Returns `Err` for invalid values.
 
-- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [T]>`
+- `fn SectionHeader::data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [T]>`
 
   Return the section data as a slice of the given type.
   
@@ -4873,14 +4984,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(&[])` if the section has no data.
   Returns `Err` for invalid values, including bad alignment.
 
-- `fn strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<StringTable<'data, R>>>`
+- `fn SectionHeader::strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<StringTable<'data, R>>>`
 
   Return the strings in the section.
   
   Returns `Ok(None)` if the section does not contain strings.
   Returns `Err` for invalid values.
 
-- `fn symbols<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &SectionTable<'data, <Self as >::Elf, R>, section_index: SectionIndex) -> read::Result<Option<SymbolTable<'data, <Self as >::Elf, R>>>`
+- `fn SectionHeader::symbols<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &SectionTable<'data, <Self as >::Elf, R>, section_index: SectionIndex) -> read::Result<Option<SymbolTable<'data, <Self as >::Elf, R>>>`
 
   Return the symbols in the section.
   
@@ -4892,7 +5003,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section does not contain symbols.
   Returns `Err` for invalid values.
 
-- `fn rel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rel], SectionIndex)>>`
+- `fn SectionHeader::rel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rel], SectionIndex)>>`
 
   Return the `Elf::Rel` entries in the section.
   
@@ -4901,7 +5012,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section does not contain relocations.
   Returns `Err` for invalid values.
 
-- `fn rela<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rela], SectionIndex)>>`
+- `fn SectionHeader::rela<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rela], SectionIndex)>>`
 
   Return the `Elf::Rela` entries in the section.
   
@@ -4910,21 +5021,21 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section does not contain relocations.
   Returns `Err` for invalid values.
 
-- `fn relr<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<RelrIterator<'data, <Self as >::Elf>>>`
+- `fn SectionHeader::relr<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<RelrIterator<'data, <Self as >::Elf>>>`
 
   Return the `Elf::Relr` entries in the section.
   
   Returns `Ok(None)` if the section does not contain relative relocations.
   Returns `Err` for invalid values.
 
-- `fn crel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(CrelIterator<'data>, SectionIndex)>>`
+- `fn SectionHeader::crel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(CrelIterator<'data>, SectionIndex)>>`
 
   Return the `Crel` entries in the section.
   
   Returns `Ok(None)` if the section does not contain compact relocations.
   Returns `Err` for invalid values.
 
-- `fn dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Dyn], SectionIndex)>>`
+- `fn SectionHeader::dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Dyn], SectionIndex)>>`
 
   Return entries in a dynamic section.
   
@@ -4933,14 +5044,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section type is not `SHT_DYNAMIC`.
   Returns `Err` for invalid values.
 
-- `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
+- `fn SectionHeader::notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the section data.
   
   Returns `Ok(None)` if the section does not contain notes.
   Returns `Err` for invalid values.
 
-- `fn group<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(u32, &'data [U32Bytes<<Self as >::Endian>])>>`
+- `fn SectionHeader::group<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(u32, &'data [U32Bytes<<Self as >::Endian>])>>`
 
   Return the contents of a group section.
   
@@ -4950,14 +5061,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section does not define a group.
   Returns `Err` for invalid values.
 
-- `fn hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Self as >::Endian>>>`
+- `fn SectionHeader::hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Self as >::Endian>>>`
 
   Return the header of a SysV hash section.
   
   Returns `Ok(None)` if the section does not contain a SysV hash.
   Returns `Err` for invalid values.
 
-- `fn hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn SectionHeader::hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a SysV hash section.
   
@@ -4966,14 +5077,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section does not contain a SysV hash.
   Returns `Err` for invalid values.
 
-- `fn gnu_hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Self as >::Endian>>>`
+- `fn SectionHeader::gnu_hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Self as >::Endian>>>`
 
   Return the header of a GNU hash section.
   
   Returns `Ok(None)` if the section does not contain a GNU hash.
   Returns `Err` for invalid values.
 
-- `fn gnu_hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn SectionHeader::gnu_hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a GNU hash section.
   
@@ -4982,7 +5093,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section does not contain a GNU hash.
   Returns `Err` for invalid values.
 
-- `fn gnu_versym<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Self as >::Endian>], SectionIndex)>>`
+- `fn SectionHeader::gnu_versym<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Self as >::Endian>], SectionIndex)>>`
 
   Return the contents of a `SHT_GNU_VERSYM` section.
   
@@ -4991,7 +5102,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section type is not `SHT_GNU_VERSYM`.
   Returns `Err` for invalid values.
 
-- `fn gnu_verdef<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn SectionHeader::gnu_verdef<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERDEF` section.
   
@@ -5000,7 +5111,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section type is not `SHT_GNU_VERDEF`.
   Returns `Err` for invalid values.
 
-- `fn gnu_verneed<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn SectionHeader::gnu_verneed<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERNEED` section.
   
@@ -5009,14 +5120,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   Returns `Ok(None)` if the section type is not `SHT_GNU_VERNEED`.
   Returns `Err` for invalid values.
 
-- `fn gnu_attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<AttributesSection<'data, <Self as >::Elf>>>`
+- `fn SectionHeader::gnu_attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<AttributesSection<'data, <Self as >::Elf>>>`
 
   Return the contents of a `SHT_GNU_ATTRIBUTES` section.
   
   Returns `Ok(None)` if the section type is not `SHT_GNU_ATTRIBUTES`.
   Returns `Err` for invalid values.
 
-- `fn attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<AttributesSection<'data, <Self as >::Elf>>`
+- `fn SectionHeader::attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<AttributesSection<'data, <Self as >::Elf>>`
 
   Parse the contents of the section as attributes.
   
@@ -5025,7 +5136,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
   
   Returns `Err` for invalid values.
 
-- `fn compression<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
+- `fn SectionHeader::compression<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
 
   Parse the compression header if present.
   
@@ -5046,9 +5157,34 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
 trait Sym: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
 
 A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym64`](../../elf/index.md).
+
+<details>
+<summary><strong>Methods (16)</strong> - click to expand</summary>
+
+**Required:**
+- [`Sym::st_name`](#fn-symst-name)
+- [`Sym::st_info`](#fn-symst-info)
+- [`Sym::st_bind`](#fn-symst-bind)
+- [`Sym::st_type`](#fn-symst-type)
+- [`Sym::st_other`](#fn-symst-other)
+- [`Sym::st_visibility`](#fn-symst-visibility)
+- [`Sym::st_shndx`](#fn-symst-shndx)
+- [`Sym::st_value`](#fn-symst-value)
+- [`Sym::st_size`](#fn-symst-size)
+
+**Provided:**
+- [`Sym::name`](#fn-symname)
+- [`Sym::is_undefined`](#fn-symis-undefined)
+- [`Sym::is_definition`](#fn-symis-definition)
+- [`Sym::is_common`](#fn-symis-common)
+- [`Sym::is_absolute`](#fn-symis-absolute)
+- [`Sym::is_local`](#fn-symis-local)
+- [`Sym::is_weak`](#fn-symis-weak)
+
+</details>
 
 #### Associated Types
 
@@ -5058,51 +5194,51 @@ A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym6
 
 #### Required Methods
 
-- `fn st_name(&self, endian: <Self as >::Endian) -> u32`
+- `fn Sym::st_name(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn st_info(&self) -> u8`
+- `fn Sym::st_info(&self) -> u8`
 
-- `fn st_bind(&self) -> u8`
+- `fn Sym::st_bind(&self) -> u8`
 
-- `fn st_type(&self) -> u8`
+- `fn Sym::st_type(&self) -> u8`
 
-- `fn st_other(&self) -> u8`
+- `fn Sym::st_other(&self) -> u8`
 
-- `fn st_visibility(&self) -> u8`
+- `fn Sym::st_visibility(&self) -> u8`
 
-- `fn st_shndx(&self, endian: <Self as >::Endian) -> u16`
+- `fn Sym::st_shndx(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Sym::st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Sym::st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 #### Provided Methods
 
-- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
+- `fn Sym::name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
   Parse the symbol name from the string table.
 
-- `fn is_undefined(&self, endian: <Self as >::Endian) -> bool`
+- `fn Sym::is_undefined(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_UNDEF`.
 
-- `fn is_definition(&self, endian: <Self as >::Endian) -> bool`
+- `fn Sym::is_definition(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol is a definition of a function or data object.
 
-- `fn is_common(&self, endian: <Self as >::Endian) -> bool`
+- `fn Sym::is_common(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_COMMON`.
 
-- `fn is_absolute(&self, endian: <Self as >::Endian) -> bool`
+- `fn Sym::is_absolute(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_ABS`.
 
-- `fn is_local(&self) -> bool`
+- `fn Sym::is_local(&self) -> bool`
 
   Return true if the symbol binding is `STB_LOCAL`.
 
-- `fn is_weak(&self) -> bool`
+- `fn Sym::is_weak(&self) -> bool`
 
   Return true if the symbol binding is `STB_WEAK`.
 
@@ -5117,7 +5253,7 @@ A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym6
 trait Rel: Debug + Pod + Clone { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:514-535`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L514-L535)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:514-535`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L514-L535)*
 
 A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel64`](../../elf/index.md).
 
@@ -5131,17 +5267,17 @@ A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel6
 
 #### Required Methods
 
-- `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Rel::r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Rel::r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_sym(&self, endian: <Self as >::Endian) -> u32`
+- `fn Rel::r_sym(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn r_type(&self, endian: <Self as >::Endian) -> u32`
+- `fn Rel::r_type(&self, endian: <Self as >::Endian) -> u32`
 
 #### Provided Methods
 
-- `fn symbol(&self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
+- `fn Rel::symbol(&self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
   
@@ -5158,7 +5294,7 @@ A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel6
 trait Rela: Debug + Pod + Clone { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:591-613`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L591-L613)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:591-613`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L591-L613)*
 
 A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rela64`](../../elf/index.md).
 
@@ -5172,19 +5308,19 @@ A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rel
 
 #### Required Methods
 
-- `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Rela::r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word`
+- `fn Rela::r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word`
 
-- `fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword`
+- `fn Rela::r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword`
 
-- `fn r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+- `fn Rela::r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
 
-- `fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+- `fn Rela::r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
 
 #### Provided Methods
 
-- `fn symbol(&self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
+- `fn Rela::symbol(&self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
   
@@ -5201,7 +5337,7 @@ A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rel
 trait Relr: Debug + Pod + Clone { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:727-746`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L727-L746)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:727-746`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L727-L746)*
 
 A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Relr64`](../../elf/index.md).
 
@@ -5217,13 +5353,13 @@ A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Rel
 
 #### Required Methods
 
-- `fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Relr::get(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
   Get the relocation entry.
   
   This value is an offset if the lowest bit is clear, or a bit mask if the lowest bit is set.
 
-- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>`
+- `fn Relr::next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>`
 
   Return the offset corresponding to the next bit in the bit mask.
   
@@ -5243,7 +5379,7 @@ A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Rel
 trait Dyn: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../.source_1765894658/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
+*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../.source_1765900590/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
 
 A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn64`](../../elf/index.md).
 
@@ -5255,31 +5391,31 @@ A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn6
 
 #### Required Methods
 
-- `fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Dyn::d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Dyn::d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 #### Provided Methods
 
-- `fn tag32(&self, endian: <Self as >::Endian) -> Option<u32>`
+- `fn Dyn::tag32(&self, endian: <Self as >::Endian) -> Option<u32>`
 
   Try to convert the tag to a `u32`.
 
-- `fn val32(&self, endian: <Self as >::Endian) -> Option<u32>`
+- `fn Dyn::val32(&self, endian: <Self as >::Endian) -> Option<u32>`
 
   Try to convert the value to a `u32`.
 
-- `fn is_string(&self, endian: <Self as >::Endian) -> bool`
+- `fn Dyn::is_string(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the value is an offset in the dynamic string table.
 
-- `fn string<'data>(&self, endian: <Self as >::Endian, strings: StringTable<'data>) -> Result<&'data [u8]>`
+- `fn Dyn::string<'data>(&self, endian: <Self as >::Endian, strings: StringTable<'data>) -> Result<&'data [u8]>`
 
   Use the value to get a string in a string table.
   
   Does not check for an appropriate tag.
 
-- `fn is_address(&self, endian: <Self as >::Endian) -> bool`
+- `fn Dyn::is_address(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the value is an address.
 
@@ -5294,7 +5430,7 @@ A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn6
 trait CompressionHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/compression.rs:9-16`](../../../../.source_1765894658/object-0.37.3/src/read/elf/compression.rs#L9-L16)*
+*Defined in [`object-0.37.3/src/read/elf/compression.rs:9-16`](../../../../.source_1765900590/object-0.37.3/src/read/elf/compression.rs#L9-L16)*
 
 A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) and [`elf::CompressionHeader64`](../../elf/index.md).
 
@@ -5306,11 +5442,11 @@ A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) a
 
 #### Required Methods
 
-- `fn ch_type(&self, endian: <Self as >::Endian) -> u32`
+- `fn CompressionHeader::ch_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn CompressionHeader::ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn CompressionHeader::ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 #### Implementors
 
@@ -5323,7 +5459,7 @@ A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) a
 trait NoteHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L185-L191)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../.source_1765900590/object-0.37.3/src/read/elf/note.rs#L185-L191)*
 
 A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`elf::NoteHeader64`](../../elf/index.md).
 
@@ -5333,11 +5469,11 @@ A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`el
 
 #### Required Methods
 
-- `fn n_namesz(&self, endian: <Self as >::Endian) -> u32`
+- `fn NoteHeader::n_namesz(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn n_descsz(&self, endian: <Self as >::Endian) -> u32`
+- `fn NoteHeader::n_descsz(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn n_type(&self, endian: <Self as >::Endian) -> u32`
+- `fn NoteHeader::n_type(&self, endian: <Self as >::Endian) -> u32`
 
 #### Implementors
 
@@ -5352,7 +5488,7 @@ A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`el
 fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, reloc: Crel, implicit_addend: bool) -> crate::read::Relocation
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:278-510`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L278-L510)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:278-510`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L278-L510)*
 
 ## Type Aliases
 
@@ -5362,7 +5498,7 @@ fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, re
 type ElfFile32<'data, Endian, R> = ElfFile<'data, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L25-L26)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../.source_1765900590/object-0.37.3/src/read/elf/file.rs#L25-L26)*
 
 A 32-bit ELF object file.
 
@@ -5375,7 +5511,7 @@ to [`crate::FileKind::Elf32`](../../index.md).
 type ElfFile64<'data, Endian, R> = ElfFile<'data, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L31-L32)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../.source_1765900590/object-0.37.3/src/read/elf/file.rs#L31-L32)*
 
 A 64-bit ELF object file.
 
@@ -5388,7 +5524,7 @@ to [`crate::FileKind::Elf64`](../../index.md).
 type ElfSegmentIterator32<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:12-13`](../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L12-L13)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:12-13`](../../../../.source_1765900590/object-0.37.3/src/read/elf/segment.rs#L12-L13)*
 
 An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 
@@ -5398,7 +5534,7 @@ An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 type ElfSegmentIterator64<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:15-16`](../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:15-16`](../../../../.source_1765900590/object-0.37.3/src/read/elf/segment.rs#L15-L16)*
 
 An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 
@@ -5408,7 +5544,7 @@ An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 type ElfSegment32<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:50-51`](../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L50-L51)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:50-51`](../../../../.source_1765900590/object-0.37.3/src/read/elf/segment.rs#L50-L51)*
 
 A segment in an [`ElfFile32`](super::ElfFile32).
 
@@ -5418,7 +5554,7 @@ A segment in an [`ElfFile32`](super::ElfFile32).
 type ElfSegment64<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:53-54`](../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L53-L54)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:53-54`](../../../../.source_1765900590/object-0.37.3/src/read/elf/segment.rs#L53-L54)*
 
 A segment in an [`ElfFile64`](super::ElfFile64).
 
@@ -5428,7 +5564,7 @@ A segment in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionIterator32<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L350-L351)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L350-L351)*
 
 An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 
@@ -5438,7 +5574,7 @@ An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 type ElfSectionIterator64<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L353-L354)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L353-L354)*
 
 An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 
@@ -5448,7 +5584,7 @@ An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 type ElfSection32<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L396-L397)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L396-L397)*
 
 A section in an [`ElfFile32`](super::ElfFile32).
 
@@ -5458,7 +5594,7 @@ A section in an [`ElfFile32`](super::ElfFile32).
 type ElfSection64<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L399-L400)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L399-L400)*
 
 A section in an [`ElfFile64`](super::ElfFile64).
 
@@ -5468,7 +5604,7 @@ A section in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbolTable32<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -5478,7 +5614,7 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolTable64<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -5488,7 +5624,7 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator32<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
 
 An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 
@@ -5498,7 +5634,7 @@ An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator64<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
 
 An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 
@@ -5508,7 +5644,7 @@ An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbol32<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
 
 A symbol in an [`ElfFile32`](super::ElfFile32).
 
@@ -5518,7 +5654,7 @@ A symbol in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbol64<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../.source_1765894658/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../.source_1765900590/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
 
 A symbol in an [`ElfFile64`](super::ElfFile64).
 
@@ -5528,7 +5664,7 @@ A symbol in an [`ElfFile64`](super::ElfFile64).
 type ElfDynamicRelocationIterator32<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:116-117`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L116-L117)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:116-117`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L116-L117)*
 
 An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 
@@ -5538,7 +5674,7 @@ An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 type ElfDynamicRelocationIterator64<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:119-120`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L119-L120)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:119-120`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L119-L120)*
 
 An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 
@@ -5548,7 +5684,7 @@ An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionRelocationIterator32<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:200-201`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L200-L201)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:200-201`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L200-L201)*
 
 An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 
@@ -5558,7 +5694,7 @@ An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 type ElfSectionRelocationIterator64<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/relocation.rs:203-204`](../../../../.source_1765894658/object-0.37.3/src/read/elf/relocation.rs#L203-L204)*
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:203-204`](../../../../.source_1765900590/object-0.37.3/src/read/elf/relocation.rs#L203-L204)*
 
 An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 
@@ -5568,7 +5704,7 @@ An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 type ElfComdatIterator32<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:11-12`](../../../../.source_1765894658/object-0.37.3/src/read/elf/comdat.rs#L11-L12)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:11-12`](../../../../.source_1765900590/object-0.37.3/src/read/elf/comdat.rs#L11-L12)*
 
 An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 
@@ -5578,7 +5714,7 @@ An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 type ElfComdatIterator64<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:14-15`](../../../../.source_1765894658/object-0.37.3/src/read/elf/comdat.rs#L14-L15)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:14-15`](../../../../.source_1765900590/object-0.37.3/src/read/elf/comdat.rs#L14-L15)*
 
 An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 
@@ -5588,7 +5724,7 @@ An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 type ElfComdat32<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:60-61`](../../../../.source_1765894658/object-0.37.3/src/read/elf/comdat.rs#L60-L61)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:60-61`](../../../../.source_1765900590/object-0.37.3/src/read/elf/comdat.rs#L60-L61)*
 
 A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
@@ -5598,7 +5734,7 @@ A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 type ElfComdat64<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:63-64`](../../../../.source_1765894658/object-0.37.3/src/read/elf/comdat.rs#L63-L64)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:63-64`](../../../../.source_1765900590/object-0.37.3/src/read/elf/comdat.rs#L63-L64)*
 
 A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 
@@ -5608,7 +5744,7 @@ A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 type ElfComdatSectionIterator32<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:158-159`](../../../../.source_1765894658/object-0.37.3/src/read/elf/comdat.rs#L158-L159)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:158-159`](../../../../.source_1765900590/object-0.37.3/src/read/elf/comdat.rs#L158-L159)*
 
 An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
@@ -5618,7 +5754,7 @@ An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super
 type ElfComdatSectionIterator64<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/comdat.rs:161-162`](../../../../.source_1765894658/object-0.37.3/src/read/elf/comdat.rs#L161-L162)*
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:161-162`](../../../../.source_1765900590/object-0.37.3/src/read/elf/comdat.rs#L161-L162)*
 
 An iterator for the sections in a COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 

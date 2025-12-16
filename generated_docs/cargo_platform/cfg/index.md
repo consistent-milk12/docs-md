@@ -47,7 +47,7 @@ struct Ident {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:29-37`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L29-L37)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:29-37`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L29-L37)*
 
 A identifier
 
@@ -164,7 +164,7 @@ struct Tokenizer<'a> {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:58-61`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L58-L61)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:58-61`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L58-L61)*
 
 #### Trait Implementations
 
@@ -245,7 +245,7 @@ struct Parser<'a> {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:63-65`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L63-L65)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:63-65`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L63-L65)*
 
 #### Implementations
 
@@ -312,7 +312,7 @@ struct Parser<'a> {
 struct CommaSep<'a, T>(&'a [T]);
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:187`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L187)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:187`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L187)*
 
 #### Trait Implementations
 
@@ -378,7 +378,7 @@ enum CfgExpr {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:9-16`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L9-L16)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:9-16`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L9-L16)*
 
 A cfg expression.
 
@@ -494,7 +494,7 @@ enum Cfg {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:20-25`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L20-L25)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:20-25`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L20-L25)*
 
 A cfg value.
 
@@ -616,7 +616,7 @@ enum Token<'a> {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:40-47`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L40-L47)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:40-47`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L40-L47)*
 
 #### Implementations
 
@@ -677,7 +677,7 @@ enum Token<'a> {
 fn is_ident_start(ch: char) -> bool
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:410-412`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L410-L412)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:410-412`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L410-L412)*
 
 ### `is_ident_rest`
 
@@ -685,7 +685,7 @@ fn is_ident_start(ch: char) -> bool
 fn is_ident_rest(ch: char) -> bool
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:414-416`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L414-L416)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:414-416`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L414-L416)*
 
 ## Constants
 
@@ -694,7 +694,7 @@ fn is_ident_rest(ch: char) -> bool
 const KEYWORDS: &[&str; 2];
 ```
 
-*Defined in [`cargo-platform-0.3.2/src/cfg.rs:55`](../../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L55)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:55`](../../../.source_1765900590/cargo-platform-0.3.2/src/cfg.rs#L55)*
 
 The list of keywords.
 

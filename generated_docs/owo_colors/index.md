@@ -196,7 +196,7 @@ println!("{}", text.style(my_style));
 struct FgColorDisplay<'a, C: Color, T: ?Sized>(&'a T, core::marker::PhantomData<C>);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:154`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L154)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:154`](../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L154)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the foreground color. Recommended to be constructed using
@@ -212,7 +212,7 @@ with the addition of changing the foreground color. Recommended to be constructe
   This is a const function: in non-const contexts, `OwoColorize::fg` or one of the
   other methods on it may be more convenient.
   
-  # Example
+  ##### Example
   
   Usage in const contexts:
   
@@ -232,7 +232,7 @@ with the addition of changing the foreground color. Recommended to be constructe
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   Typical use:
   
@@ -547,7 +547,7 @@ with the addition of changing the foreground color. Recommended to be constructe
 struct BgColorDisplay<'a, C: Color, T: ?Sized>(&'a T, core::marker::PhantomData<C>);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:160`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L160)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:160`](../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L160)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the background color. Recommended to be constructed using
@@ -563,7 +563,7 @@ with the addition of changing the background color. Recommended to be constructe
   This is a const function: in non-const contexts, `OwoColorize::bg` may be more
   convenient.
   
-  # Example
+  ##### Example
   
   Usage in const contexts:
   
@@ -583,7 +583,7 @@ with the addition of changing the background color. Recommended to be constructe
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   Typical use:
   
@@ -898,7 +898,7 @@ with the addition of changing the background color. Recommended to be constructe
 struct FgDynColorDisplay<'a, Color: DynColor, T: ?Sized>(&'a T, Color);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:165`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L165)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:165`](../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L165)*
 
 Wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the foreground color. Is not recommended unless compile-time
@@ -914,7 +914,7 @@ coloring is not an option.
   This is a const function: in non-const contexts, `OwoColorize::color` may be more
   convenient.
   
-  # Example
+  ##### Example
   
   Usage in const contexts:
   
@@ -935,7 +935,7 @@ coloring is not an option.
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::{AnsiColors, CssColors, OwoColorize};
@@ -1064,7 +1064,7 @@ coloring is not an option.
 struct BgDynColorDisplay<'a, Color: DynColor, T: ?Sized>(&'a T, Color);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:170`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L170)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:170`](../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L170)*
 
 Wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the background color. Is not recommended unless compile-time
@@ -1080,7 +1080,7 @@ coloring is not an option.
   This is a const function: in non-const contexts, `OwoColorize::on_color` may be more
   convenient.
   
-  # Example
+  ##### Example
   
   Usage in const contexts:
   
@@ -1101,7 +1101,7 @@ coloring is not an option.
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::{AnsiColors, CssColors, OwoColorize};
@@ -1230,7 +1230,7 @@ coloring is not an option.
 struct Rgb(u8, u8, u8);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/dynamic.rs:10`](../../.source_1765894658/owo-colors-4.2.3/src/colors/dynamic.rs#L10)*
+*Defined in [`owo-colors-4.2.3/src/colors/dynamic.rs:10`](../../.source_1765900590/owo-colors-4.2.3/src/colors/dynamic.rs#L10)*
 
 Available RGB colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -1316,7 +1316,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 struct ComboColorDisplay<'a, Fg: Color, Bg: Color, T: ?Sized>(&'a T, core::marker::PhantomData<(Fg, Bg)>);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:11`](../../.source_1765894658/owo-colors-4.2.3/src/combo.rs#L11)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:11`](../../.source_1765900590/owo-colors-4.2.3/src/combo.rs#L11)*
 
 A wrapper type which applies both a foreground and background color
 
@@ -1330,7 +1330,7 @@ A wrapper type which applies both a foreground and background color
   This is a const function: in non-const contexts, calling the [`OwoColorize`](#owocolorize)
   functions may be more convenient.
   
-  # Example
+  ##### Example
   
   Usage in const contexts:
   
@@ -1351,7 +1351,7 @@ A wrapper type which applies both a foreground and background color
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   Typical use:
   
@@ -1666,7 +1666,7 @@ A wrapper type which applies both a foreground and background color
 struct ComboDynColorDisplay<'a, Fg: DynColor, Bg: DynColor, T: ?Sized>(&'a T, Fg, Bg);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:17`](../../.source_1765894658/owo-colors-4.2.3/src/combo.rs#L17)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:17`](../../.source_1765900590/owo-colors-4.2.3/src/combo.rs#L17)*
 
 Wrapper around a type which implements all the formatters the wrapped type does, with the
 addition of changing the foreground and background color.
@@ -1682,7 +1682,7 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](comb
   
   This is a const function: in non-const contexts, other functions may be more convenient.
   
-  # Example
+  ##### Example
   
   Usage in const contexts:
   
@@ -1707,7 +1707,7 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](comb
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   Typical use:
   
@@ -1841,7 +1841,7 @@ where
     U: IsStyled;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styled_list.rs:64-67`](../../.source_1765894658/owo-colors-4.2.3/src/styled_list.rs#L64-L67)*
+*Defined in [`owo-colors-4.2.3/src/styled_list.rs:64-67`](../../.source_1765900590/owo-colors-4.2.3/src/styled_list.rs#L64-L67)*
 
 A collection of [`Styled`](#styled) items that are displayed in such a way as to minimize the amount of characters
 that are written when displayed.
@@ -1915,7 +1915,7 @@ assert!(styled_length < normal_length);
 struct ParseColorError;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:72`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_colors.rs#L72)*
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:72`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_colors.rs#L72)*
 
 An error for when the color can not be parsed from a string at runtime
 
@@ -1975,7 +1975,7 @@ struct Styled<T> {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:60-65`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L60-L65)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:60-65`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L60-L65)*
 
 A wrapper type which applies a [`Style`](#style) when displaying the inner type
 
@@ -2099,7 +2099,7 @@ struct Style {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:83-88`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L83-L88)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:83-88`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L83-L88)*
 
 A pre-computed style that can be applied to a struct using `OwoColorize::style`.
 
@@ -2127,7 +2127,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
   Apply the style to a given struct to output.
   
-  # Example
+  ##### Example
   
   Usage in const contexts:
   
@@ -2438,7 +2438,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
   
   This can be used to separate out the prefix and suffix of a style.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::Style;
@@ -2463,7 +2463,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
   
   This can be used to separate out the prefix and suffix of a style.
   
-  # Example
+  ##### Example
   
   See `Style::prefix_formatter`.
 
@@ -2548,7 +2548,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 struct StyleFlags(u8);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:92`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L92)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:92`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L92)*
 
 #### Implementations
 
@@ -2627,7 +2627,7 @@ struct StyleFlags(u8);
 struct StylePrefixFormatter(Style);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:597`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L597)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:597`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L597)*
 
 Formatter for the prefix of a [`Style`](#style).
 
@@ -2707,7 +2707,7 @@ the suffix, which is useful for formatting the prefix separately.
 struct StyleSuffixFormatter(Style);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:611`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L611)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:611`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L611)*
 
 Formatter for the suffix of a [`Style`](#style).
 
@@ -2807,7 +2807,7 @@ enum AnsiColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../.source_1765900590/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -3041,7 +3041,7 @@ enum CssColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../.source_1765894658/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../.source_1765900590/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 Available CSS colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -3384,7 +3384,7 @@ enum XtermColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 Available Xterm colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -3475,7 +3475,7 @@ enum DynColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:13-18`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_colors.rs#L13-L18)*
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:13-18`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_colors.rs#L13-L18)*
 
 An enum describing runtime-configurable colors
 
@@ -3579,7 +3579,7 @@ enum Effect {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:10-20`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L10-L20)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:10-20`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L10-L20)*
 
 A runtime-configurable text effect for use with [`Style`](#style)
 
@@ -3648,7 +3648,7 @@ A runtime-configurable text effect for use with [`Style`](#style)
 trait Color: private::Sealed { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:102-125`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L102-L125)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:102-125`](../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L102-L125)*
 
 A trait for describing a type which can be used with [`FgColorDisplay`](#fgcolordisplay) or
 [`BgColorDisplay`](#bgcolordisplay)
@@ -3946,7 +3946,7 @@ A trait for describing a type which can be used with [`FgColorDisplay`](#fgcolor
 trait DynColor: private::Sealed { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:130-148`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L130-L148)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:130-148`](../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L130-L148)*
 
 A trait describing a runtime-configurable color which can displayed using [`FgDynColorDisplay`](#fgdyncolordisplay)
 or [`BgDynColorDisplay`](#bgdyncolordisplay). If your color will be known at compile time it
@@ -3954,20 +3954,20 @@ is recommended you avoid this.
 
 #### Required Methods
 
-- `fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- `fn DynColor::fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   A function to output a ANSI code to a formatter to set the foreground to this color
 
-- `fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- `fn DynColor::fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   A function to output a ANSI code to a formatter to set the background to this color
 
-- `fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- `fn DynColor::fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   A function to output a raw ANSI code to a formatter to set the foreground to this color,
   but without including the ANSI delimiters.
 
-- `fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- `fn DynColor::fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   A function to output a raw ANSI code to a formatter to set the background to this color,
   but without including the ANSI delimiters.
@@ -3987,7 +3987,7 @@ is recommended you avoid this.
 trait OwoColorize: Sized { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L263-L489)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L263-L489)*
 
 Extension trait for colorizing a type which implements any std formatter
 ([`Display`](core::fmt::Display), [`Debug`](core::fmt::Debug), [`UpperHex`](core::fmt::UpperHex),
@@ -4042,9 +4042,72 @@ Use the [`color`](OwoColorize::color), [`on_color`](OwoColorize::on_color),
 Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
 
 
+<details>
+<summary><strong>Methods (56)</strong> - click to expand</summary>
+
+**Provided:**
+- [`OwoColorize::fg`](#fn-owocolorizefg)
+- [`OwoColorize::bg`](#fn-owocolorizebg)
+- [`OwoColorize::black`](#fn-owocolorizeblack)
+- [`OwoColorize::on_black`](#fn-owocolorizeon-black)
+- [`OwoColorize::red`](#fn-owocolorizered)
+- [`OwoColorize::on_red`](#fn-owocolorizeon-red)
+- [`OwoColorize::green`](#fn-owocolorizegreen)
+- [`OwoColorize::on_green`](#fn-owocolorizeon-green)
+- [`OwoColorize::yellow`](#fn-owocolorizeyellow)
+- [`OwoColorize::on_yellow`](#fn-owocolorizeon-yellow)
+- [`OwoColorize::blue`](#fn-owocolorizeblue)
+- [`OwoColorize::on_blue`](#fn-owocolorizeon-blue)
+- [`OwoColorize::magenta`](#fn-owocolorizemagenta)
+- [`OwoColorize::on_magenta`](#fn-owocolorizeon-magenta)
+- [`OwoColorize::purple`](#fn-owocolorizepurple)
+- [`OwoColorize::on_purple`](#fn-owocolorizeon-purple)
+- [`OwoColorize::cyan`](#fn-owocolorizecyan)
+- [`OwoColorize::on_cyan`](#fn-owocolorizeon-cyan)
+- [`OwoColorize::white`](#fn-owocolorizewhite)
+- [`OwoColorize::on_white`](#fn-owocolorizeon-white)
+- [`OwoColorize::default_color`](#fn-owocolorizedefault-color)
+- [`OwoColorize::on_default_color`](#fn-owocolorizeon-default-color)
+- [`OwoColorize::bright_black`](#fn-owocolorizebright-black)
+- [`OwoColorize::on_bright_black`](#fn-owocolorizeon-bright-black)
+- [`OwoColorize::bright_red`](#fn-owocolorizebright-red)
+- [`OwoColorize::on_bright_red`](#fn-owocolorizeon-bright-red)
+- [`OwoColorize::bright_green`](#fn-owocolorizebright-green)
+- [`OwoColorize::on_bright_green`](#fn-owocolorizeon-bright-green)
+- [`OwoColorize::bright_yellow`](#fn-owocolorizebright-yellow)
+- [`OwoColorize::on_bright_yellow`](#fn-owocolorizeon-bright-yellow)
+- [`OwoColorize::bright_blue`](#fn-owocolorizebright-blue)
+- [`OwoColorize::on_bright_blue`](#fn-owocolorizeon-bright-blue)
+- [`OwoColorize::bright_magenta`](#fn-owocolorizebright-magenta)
+- [`OwoColorize::on_bright_magenta`](#fn-owocolorizeon-bright-magenta)
+- [`OwoColorize::bright_purple`](#fn-owocolorizebright-purple)
+- [`OwoColorize::on_bright_purple`](#fn-owocolorizeon-bright-purple)
+- [`OwoColorize::bright_cyan`](#fn-owocolorizebright-cyan)
+- [`OwoColorize::on_bright_cyan`](#fn-owocolorizeon-bright-cyan)
+- [`OwoColorize::bright_white`](#fn-owocolorizebright-white)
+- [`OwoColorize::on_bright_white`](#fn-owocolorizeon-bright-white)
+- [`OwoColorize::bold`](#fn-owocolorizebold)
+- [`OwoColorize::dimmed`](#fn-owocolorizedimmed)
+- [`OwoColorize::italic`](#fn-owocolorizeitalic)
+- [`OwoColorize::underline`](#fn-owocolorizeunderline)
+- [`OwoColorize::blink`](#fn-owocolorizeblink)
+- [`OwoColorize::blink_fast`](#fn-owocolorizeblink-fast)
+- [`OwoColorize::reversed`](#fn-owocolorizereversed)
+- [`OwoColorize::hidden`](#fn-owocolorizehidden)
+- [`OwoColorize::strikethrough`](#fn-owocolorizestrikethrough)
+- [`OwoColorize::color`](#fn-owocolorizecolor)
+- [`OwoColorize::on_color`](#fn-owocolorizeon-color)
+- [`OwoColorize::fg_rgb`](#fn-owocolorizefg-rgb)
+- [`OwoColorize::bg_rgb`](#fn-owocolorizebg-rgb)
+- [`OwoColorize::truecolor`](#fn-owocolorizetruecolor)
+- [`OwoColorize::on_truecolor`](#fn-owocolorizeon-truecolor)
+- [`OwoColorize::style`](#fn-owocolorizestyle)
+
+</details>
+
 #### Provided Methods
 
-- `fn fg<C: Color>(&self) -> FgColorDisplay<'_, C, Self>`
+- `fn OwoColorize::fg<C: Color>(&self) -> FgColorDisplay<'_, C, Self>`
 
   Set the foreground color generically
   
@@ -4054,7 +4117,7 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
   println!("{}", "red foreground".fg::<Red>());
   ```
 
-- `fn bg<C: Color>(&self) -> BgColorDisplay<'_, C, Self>`
+- `fn OwoColorize::bg<C: Color>(&self) -> BgColorDisplay<'_, C, Self>`
 
   Set the background color generically.
   
@@ -4064,195 +4127,195 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
   println!("{}", "black background".bg::<Black>());
   ```
 
-- `fn black(&self) -> FgColorDisplay<'_, colors::Black, Self>`
+- `fn OwoColorize::black(&self) -> FgColorDisplay<'_, colors::Black, Self>`
 
   Change the foreground color to black
 
-- `fn on_black(&self) -> BgColorDisplay<'_, colors::Black, Self>`
+- `fn OwoColorize::on_black(&self) -> BgColorDisplay<'_, colors::Black, Self>`
 
   Change the background color to black
 
-- `fn red(&self) -> FgColorDisplay<'_, colors::Red, Self>`
+- `fn OwoColorize::red(&self) -> FgColorDisplay<'_, colors::Red, Self>`
 
   Change the foreground color to red
 
-- `fn on_red(&self) -> BgColorDisplay<'_, colors::Red, Self>`
+- `fn OwoColorize::on_red(&self) -> BgColorDisplay<'_, colors::Red, Self>`
 
   Change the background color to red
 
-- `fn green(&self) -> FgColorDisplay<'_, colors::Green, Self>`
+- `fn OwoColorize::green(&self) -> FgColorDisplay<'_, colors::Green, Self>`
 
   Change the foreground color to green
 
-- `fn on_green(&self) -> BgColorDisplay<'_, colors::Green, Self>`
+- `fn OwoColorize::on_green(&self) -> BgColorDisplay<'_, colors::Green, Self>`
 
   Change the background color to green
 
-- `fn yellow(&self) -> FgColorDisplay<'_, colors::Yellow, Self>`
+- `fn OwoColorize::yellow(&self) -> FgColorDisplay<'_, colors::Yellow, Self>`
 
   Change the foreground color to yellow
 
-- `fn on_yellow(&self) -> BgColorDisplay<'_, colors::Yellow, Self>`
+- `fn OwoColorize::on_yellow(&self) -> BgColorDisplay<'_, colors::Yellow, Self>`
 
   Change the background color to yellow
 
-- `fn blue(&self) -> FgColorDisplay<'_, colors::Blue, Self>`
+- `fn OwoColorize::blue(&self) -> FgColorDisplay<'_, colors::Blue, Self>`
 
   Change the foreground color to blue
 
-- `fn on_blue(&self) -> BgColorDisplay<'_, colors::Blue, Self>`
+- `fn OwoColorize::on_blue(&self) -> BgColorDisplay<'_, colors::Blue, Self>`
 
   Change the background color to blue
 
-- `fn magenta(&self) -> FgColorDisplay<'_, colors::Magenta, Self>`
+- `fn OwoColorize::magenta(&self) -> FgColorDisplay<'_, colors::Magenta, Self>`
 
   Change the foreground color to magenta
 
-- `fn on_magenta(&self) -> BgColorDisplay<'_, colors::Magenta, Self>`
+- `fn OwoColorize::on_magenta(&self) -> BgColorDisplay<'_, colors::Magenta, Self>`
 
   Change the background color to magenta
 
-- `fn purple(&self) -> FgColorDisplay<'_, colors::Magenta, Self>`
+- `fn OwoColorize::purple(&self) -> FgColorDisplay<'_, colors::Magenta, Self>`
 
   Change the foreground color to purple
 
-- `fn on_purple(&self) -> BgColorDisplay<'_, colors::Magenta, Self>`
+- `fn OwoColorize::on_purple(&self) -> BgColorDisplay<'_, colors::Magenta, Self>`
 
   Change the background color to purple
 
-- `fn cyan(&self) -> FgColorDisplay<'_, colors::Cyan, Self>`
+- `fn OwoColorize::cyan(&self) -> FgColorDisplay<'_, colors::Cyan, Self>`
 
   Change the foreground color to cyan
 
-- `fn on_cyan(&self) -> BgColorDisplay<'_, colors::Cyan, Self>`
+- `fn OwoColorize::on_cyan(&self) -> BgColorDisplay<'_, colors::Cyan, Self>`
 
   Change the background color to cyan
 
-- `fn white(&self) -> FgColorDisplay<'_, colors::White, Self>`
+- `fn OwoColorize::white(&self) -> FgColorDisplay<'_, colors::White, Self>`
 
   Change the foreground color to white
 
-- `fn on_white(&self) -> BgColorDisplay<'_, colors::White, Self>`
+- `fn OwoColorize::on_white(&self) -> BgColorDisplay<'_, colors::White, Self>`
 
   Change the background color to white
 
-- `fn default_color(&self) -> FgColorDisplay<'_, colors::Default, Self>`
+- `fn OwoColorize::default_color(&self) -> FgColorDisplay<'_, colors::Default, Self>`
 
   Change the foreground color to the terminal default
 
-- `fn on_default_color(&self) -> BgColorDisplay<'_, colors::Default, Self>`
+- `fn OwoColorize::on_default_color(&self) -> BgColorDisplay<'_, colors::Default, Self>`
 
   Change the background color to the terminal default
 
-- `fn bright_black(&self) -> FgColorDisplay<'_, colors::BrightBlack, Self>`
+- `fn OwoColorize::bright_black(&self) -> FgColorDisplay<'_, colors::BrightBlack, Self>`
 
   Change the foreground color to bright black
 
-- `fn on_bright_black(&self) -> BgColorDisplay<'_, colors::BrightBlack, Self>`
+- `fn OwoColorize::on_bright_black(&self) -> BgColorDisplay<'_, colors::BrightBlack, Self>`
 
   Change the background color to bright black
 
-- `fn bright_red(&self) -> FgColorDisplay<'_, colors::BrightRed, Self>`
+- `fn OwoColorize::bright_red(&self) -> FgColorDisplay<'_, colors::BrightRed, Self>`
 
   Change the foreground color to bright red
 
-- `fn on_bright_red(&self) -> BgColorDisplay<'_, colors::BrightRed, Self>`
+- `fn OwoColorize::on_bright_red(&self) -> BgColorDisplay<'_, colors::BrightRed, Self>`
 
   Change the background color to bright red
 
-- `fn bright_green(&self) -> FgColorDisplay<'_, colors::BrightGreen, Self>`
+- `fn OwoColorize::bright_green(&self) -> FgColorDisplay<'_, colors::BrightGreen, Self>`
 
   Change the foreground color to bright green
 
-- `fn on_bright_green(&self) -> BgColorDisplay<'_, colors::BrightGreen, Self>`
+- `fn OwoColorize::on_bright_green(&self) -> BgColorDisplay<'_, colors::BrightGreen, Self>`
 
   Change the background color to bright green
 
-- `fn bright_yellow(&self) -> FgColorDisplay<'_, colors::BrightYellow, Self>`
+- `fn OwoColorize::bright_yellow(&self) -> FgColorDisplay<'_, colors::BrightYellow, Self>`
 
   Change the foreground color to bright yellow
 
-- `fn on_bright_yellow(&self) -> BgColorDisplay<'_, colors::BrightYellow, Self>`
+- `fn OwoColorize::on_bright_yellow(&self) -> BgColorDisplay<'_, colors::BrightYellow, Self>`
 
   Change the background color to bright yellow
 
-- `fn bright_blue(&self) -> FgColorDisplay<'_, colors::BrightBlue, Self>`
+- `fn OwoColorize::bright_blue(&self) -> FgColorDisplay<'_, colors::BrightBlue, Self>`
 
   Change the foreground color to bright blue
 
-- `fn on_bright_blue(&self) -> BgColorDisplay<'_, colors::BrightBlue, Self>`
+- `fn OwoColorize::on_bright_blue(&self) -> BgColorDisplay<'_, colors::BrightBlue, Self>`
 
   Change the background color to bright blue
 
-- `fn bright_magenta(&self) -> FgColorDisplay<'_, colors::BrightMagenta, Self>`
+- `fn OwoColorize::bright_magenta(&self) -> FgColorDisplay<'_, colors::BrightMagenta, Self>`
 
   Change the foreground color to bright magenta
 
-- `fn on_bright_magenta(&self) -> BgColorDisplay<'_, colors::BrightMagenta, Self>`
+- `fn OwoColorize::on_bright_magenta(&self) -> BgColorDisplay<'_, colors::BrightMagenta, Self>`
 
   Change the background color to bright magenta
 
-- `fn bright_purple(&self) -> FgColorDisplay<'_, colors::BrightMagenta, Self>`
+- `fn OwoColorize::bright_purple(&self) -> FgColorDisplay<'_, colors::BrightMagenta, Self>`
 
   Change the foreground color to bright purple
 
-- `fn on_bright_purple(&self) -> BgColorDisplay<'_, colors::BrightMagenta, Self>`
+- `fn OwoColorize::on_bright_purple(&self) -> BgColorDisplay<'_, colors::BrightMagenta, Self>`
 
   Change the background color to bright purple
 
-- `fn bright_cyan(&self) -> FgColorDisplay<'_, colors::BrightCyan, Self>`
+- `fn OwoColorize::bright_cyan(&self) -> FgColorDisplay<'_, colors::BrightCyan, Self>`
 
   Change the foreground color to bright cyan
 
-- `fn on_bright_cyan(&self) -> BgColorDisplay<'_, colors::BrightCyan, Self>`
+- `fn OwoColorize::on_bright_cyan(&self) -> BgColorDisplay<'_, colors::BrightCyan, Self>`
 
   Change the background color to bright cyan
 
-- `fn bright_white(&self) -> FgColorDisplay<'_, colors::BrightWhite, Self>`
+- `fn OwoColorize::bright_white(&self) -> FgColorDisplay<'_, colors::BrightWhite, Self>`
 
   Change the foreground color to bright white
 
-- `fn on_bright_white(&self) -> BgColorDisplay<'_, colors::BrightWhite, Self>`
+- `fn OwoColorize::on_bright_white(&self) -> BgColorDisplay<'_, colors::BrightWhite, Self>`
 
   Change the background color to bright white
 
-- `fn bold(&self) -> styles::BoldDisplay<'_, Self>`
+- `fn OwoColorize::bold(&self) -> styles::BoldDisplay<'_, Self>`
 
   Make the text bold
 
-- `fn dimmed(&self) -> styles::DimDisplay<'_, Self>`
+- `fn OwoColorize::dimmed(&self) -> styles::DimDisplay<'_, Self>`
 
   Make the text dim
 
-- `fn italic(&self) -> styles::ItalicDisplay<'_, Self>`
+- `fn OwoColorize::italic(&self) -> styles::ItalicDisplay<'_, Self>`
 
   Make the text italicized
 
-- `fn underline(&self) -> styles::UnderlineDisplay<'_, Self>`
+- `fn OwoColorize::underline(&self) -> styles::UnderlineDisplay<'_, Self>`
 
   Make the text underlined
 
-- `fn blink(&self) -> styles::BlinkDisplay<'_, Self>`
+- `fn OwoColorize::blink(&self) -> styles::BlinkDisplay<'_, Self>`
 
   Make the text blink
 
-- `fn blink_fast(&self) -> styles::BlinkFastDisplay<'_, Self>`
+- `fn OwoColorize::blink_fast(&self) -> styles::BlinkFastDisplay<'_, Self>`
 
   Make the text blink (but fast!)
 
-- `fn reversed(&self) -> styles::ReversedDisplay<'_, Self>`
+- `fn OwoColorize::reversed(&self) -> styles::ReversedDisplay<'_, Self>`
 
   Swap the foreground and background colors
 
-- `fn hidden(&self) -> styles::HiddenDisplay<'_, Self>`
+- `fn OwoColorize::hidden(&self) -> styles::HiddenDisplay<'_, Self>`
 
   Hide the text
 
-- `fn strikethrough(&self) -> styles::StrikeThroughDisplay<'_, Self>`
+- `fn OwoColorize::strikethrough(&self) -> styles::StrikeThroughDisplay<'_, Self>`
 
   Cross out the text
 
-- `fn color<Color: DynColor>(&self, color: Color) -> FgDynColorDisplay<'_, Color, Self>`
+- `fn OwoColorize::color<Color: DynColor>(&self, color: Color) -> FgDynColorDisplay<'_, Color, Self>`
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
   compile-time. If the color is constant, use either `OwoColorize::fg` or
@@ -4264,7 +4327,7 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
   println!("{}", "green".color(AnsiColors::Green));
   ```
 
-- `fn on_color<Color: DynColor>(&self, color: Color) -> BgDynColorDisplay<'_, Color, Self>`
+- `fn OwoColorize::on_color<Color: DynColor>(&self, color: Color) -> BgDynColorDisplay<'_, Color, Self>`
 
   Set the background color at runtime. Only use if you do not know what color to use at
   compile-time. If the color is constant, use either `OwoColorize::bg` or
@@ -4276,23 +4339,23 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
   ```
 
-- `fn fg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> FgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
+- `fn OwoColorize::fg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> FgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
 
   Set the foreground color to a specific RGB value.
 
-- `fn bg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> BgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
+- `fn OwoColorize::bg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> BgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
 
   Set the background color to a specific RGB value.
 
-- `fn truecolor(&self, r: u8, g: u8, b: u8) -> FgDynColorDisplay<'_, Rgb, Self>`
+- `fn OwoColorize::truecolor(&self, r: u8, g: u8, b: u8) -> FgDynColorDisplay<'_, Rgb, Self>`
 
   Sets the foreground color to an RGB value.
 
-- `fn on_truecolor(&self, r: u8, g: u8, b: u8) -> BgDynColorDisplay<'_, Rgb, Self>`
+- `fn OwoColorize::on_truecolor(&self, r: u8, g: u8, b: u8) -> BgDynColorDisplay<'_, Rgb, Self>`
 
   Sets the background color to an RGB value.
 
-- `fn style(&self, style: Style) -> Styled<&Self>`
+- `fn OwoColorize::style(&self, style: Style) -> Styled<&Self>`
 
   Apply a runtime-determined style
 
@@ -4308,7 +4371,7 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
 const fn style() -> Style
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:626-628`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L626-L628)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:626-628`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L626-L628)*
 
 Helper to create [`Style`](#style)s more ergonomically
 
@@ -4319,80 +4382,80 @@ Helper to create [`Style`](#style)s more ergonomically
 const DIMMED_SHIFT: u8 = 0u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:102`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L102)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:102`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L102)*
 
 ### `ITALIC_SHIFT`
 ```rust
 const ITALIC_SHIFT: u8 = 1u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:103`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L103)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:103`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L103)*
 
 ### `UNDERLINE_SHIFT`
 ```rust
 const UNDERLINE_SHIFT: u8 = 2u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:104`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L104)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:104`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L104)*
 
 ### `BLINK_SHIFT`
 ```rust
 const BLINK_SHIFT: u8 = 3u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:105`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L105)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:105`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L105)*
 
 ### `BLINK_FAST_SHIFT`
 ```rust
 const BLINK_FAST_SHIFT: u8 = 4u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:106`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L106)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:106`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L106)*
 
 ### `REVERSED_SHIFT`
 ```rust
 const REVERSED_SHIFT: u8 = 5u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:107`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L107)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:107`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L107)*
 
 ### `HIDDEN_SHIFT`
 ```rust
 const HIDDEN_SHIFT: u8 = 6u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:108`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L108)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:108`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L108)*
 
 ### `STRIKETHROUGH_SHIFT`
 ```rust
 const STRIKETHROUGH_SHIFT: u8 = 7u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:109`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L109)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:109`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L109)*
 
 ## Macros
 
 ### `style_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:172-183`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L172-L183)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:172-183`](../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L172-L183)*
 
 ### `color_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:187-207`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L187-L207)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:187-207`](../../.source_1765900590/owo-colors-4.2.3/src/lib.rs#L187-L207)*
 
 ### `color_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:22-42`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L22-L42)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:22-42`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L22-L42)*
 
 ### `style_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:44-55`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L44-L55)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:44-55`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L44-L55)*
 
 ### `style_flags_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:111-126`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L111-L126)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:111-126`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L111-L126)*
 
 ### `impl_fmt!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:653-666`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L653-L666)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:653-666`](../../.source_1765900590/owo-colors-4.2.3/src/dyn_styles.rs#L653-L666)*
 

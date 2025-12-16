@@ -76,7 +76,7 @@ fn main() {
 trait Equivalent<K: ?Sized> { ... }
 ```
 
-*Defined in [`equivalent-1.0.2/src/lib.rs:77-80`](../../.source_1765894658/equivalent-1.0.2/src/lib.rs#L77-L80)*
+*Defined in [`equivalent-1.0.2/src/lib.rs:77-80`](../../.source_1765900590/equivalent-1.0.2/src/lib.rs#L77-L80)*
 
 Key equivalence trait.
 
@@ -91,7 +91,7 @@ The implementor **must** hash like `K`, if it is hashable.
 
 #### Required Methods
 
-- `fn equivalent(&self, key: &K) -> bool`
+- `fn Equivalent::equivalent(&self, key: &K) -> bool`
 
   Compare self to `key` and return `true` if they are equal.
 
@@ -105,7 +105,7 @@ The implementor **must** hash like `K`, if it is hashable.
 trait Comparable<K: ?Sized>: Equivalent<K> { ... }
 ```
 
-*Defined in [`equivalent-1.0.2/src/lib.rs:99-102`](../../.source_1765894658/equivalent-1.0.2/src/lib.rs#L99-L102)*
+*Defined in [`equivalent-1.0.2/src/lib.rs:99-102`](../../.source_1765900590/equivalent-1.0.2/src/lib.rs#L99-L102)*
 
 Key ordering trait.
 
@@ -116,7 +116,7 @@ like `BTreeMap` does, so that you can pass `&str` to lookup into a map with
 
 #### Required Methods
 
-- `fn compare(&self, key: &K) -> Ordering`
+- `fn Comparable::compare(&self, key: &K) -> Ordering`
 
   Compare self to `key` and return their ordering.
 

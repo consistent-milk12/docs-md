@@ -18,21 +18,21 @@
 trait Pointer { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/ext.rs:2-18`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/ext.rs#L2-L18)*
+*Defined in [`aho-corasick-1.1.4/src/packed/ext.rs:2-18`](../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/ext.rs#L2-L18)*
 
 A trait for adding some helper routines to pointers.
 
 #### Required Methods
 
-- `fn distance(self, origin: Self) -> usize`
+- `fn Pointer::distance(self, origin: Self) -> usize`
 
   Returns the distance, in units of `T`, between `self` and `origin`.
   
-  # Safety
+  ##### Safety
   
   Same as `ptr::offset_from` in addition to `self >= origin`.
 
-- `fn as_usize(self) -> usize`
+- `fn Pointer::as_usize(self) -> usize`
 
   Casts this pointer to `usize`.
   

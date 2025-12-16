@@ -21,7 +21,7 @@ struct RegexBuilder {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/builders.rs:212-214`](../../../../.source_1765894658/regex-1.12.2/src/builders.rs#L212-L214)*
+*Defined in [`regex-1.12.2/src/builders.rs:212-214`](../../../../.source_1765900590/regex-1.12.2/src/builders.rs#L212-L214)*
 
 A configurable builder for a [`Regex`](../../index.md).
 
@@ -84,7 +84,7 @@ the compiled regular expression.
   
   The default for this is `true`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexBuilder;
@@ -120,7 +120,7 @@ the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexBuilder;
@@ -161,7 +161,7 @@ the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexBuilder;
@@ -189,7 +189,7 @@ the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexBuilder;
@@ -222,7 +222,7 @@ the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexBuilder;
@@ -275,7 +275,7 @@ the compiled regular expression.
   
   The default line terminator is `\n`.
   
-  # Example
+  ##### Example
   
   This shows how to treat the NUL byte as a line terminator. This can
   be a useful heuristic when searching binary data.
@@ -337,7 +337,7 @@ the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexBuilder;
@@ -373,7 +373,7 @@ the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexBuilder;
@@ -433,7 +433,7 @@ the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexBuilder;
@@ -473,7 +473,7 @@ the compiled regular expression.
   The default for this is some reasonable number that permits most
   patterns to compile successfully.
   
-  # Example
+  ##### Example
   
   ```rust
   if !cfg!(target_pointer_width = "64") { return; } // see #1041
@@ -556,7 +556,7 @@ the compiled regular expression.
   not something that manifests in an obvious way in the concrete
   syntax, therefore, it should not be used in a granular way.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexBuilder;
@@ -634,7 +634,7 @@ struct RegexSetBuilder {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/builders.rs:787-789`](../../../../.source_1765894658/regex-1.12.2/src/builders.rs#L787-L789)*
+*Defined in [`regex-1.12.2/src/builders.rs:787-789`](../../../../.source_1765900590/regex-1.12.2/src/builders.rs#L787-L789)*
 
 A configurable builder for a [`RegexSet`](../../index.md).
 
@@ -697,7 +697,7 @@ and a size limit on the compiled regular expression.
   
   The default for this is `true`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSetBuilder;
@@ -733,7 +733,7 @@ and a size limit on the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSetBuilder;
@@ -774,7 +774,7 @@ and a size limit on the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSetBuilder;
@@ -802,7 +802,7 @@ and a size limit on the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSetBuilder;
@@ -835,7 +835,7 @@ and a size limit on the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSetBuilder;
@@ -886,7 +886,7 @@ and a size limit on the compiled regular expression.
   
   The default line terminator is `\n`.
   
-  # Example
+  ##### Example
   
   This shows how to treat the NUL byte as a line terminator. This can
   be a useful heuristic when searching binary data.
@@ -988,7 +988,7 @@ and a size limit on the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSetBuilder;
@@ -1032,7 +1032,7 @@ and a size limit on the compiled regular expression.
   
   The default for this is `false`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSetBuilder;
@@ -1072,7 +1072,7 @@ and a size limit on the compiled regular expression.
   The default for this is some reasonable number that permits most
   patterns to compile successfully.
   
-  # Example
+  ##### Example
   
   ```rust
   if !cfg!(target_pointer_width = "64") { return; } // see #1041
@@ -1160,7 +1160,7 @@ and a size limit on the compiled regular expression.
   not something that manifests in an obvious way in the concrete
   syntax, therefore, it should not be used in a granular way.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::RegexSetBuilder;

@@ -47,7 +47,7 @@ struct Container<'a> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:10-21`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/ast.rs#L10-L21)*
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:10-21`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/ast.rs#L10-L21)*
 
 A source data structure annotated with `#[derive(Serialize)]` and/or `#[derive(Deserialize)]`,
 parsed into an internal representation.
@@ -133,7 +133,7 @@ struct Variant<'a> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:32-38`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/ast.rs#L32-L38)*
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:32-38`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/ast.rs#L32-L38)*
 
 A variant of an enum.
 
@@ -189,7 +189,7 @@ struct Field<'a> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:41-46`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/ast.rs#L41-L46)*
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:41-46`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/ast.rs#L41-L46)*
 
 A field of a struct.
 
@@ -245,7 +245,7 @@ enum Data<'a> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:26-29`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/ast.rs#L26-L29)*
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:26-29`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/ast.rs#L26-L29)*
 
 The fields of a struct or enum.
 
@@ -309,7 +309,7 @@ enum Style {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:49-58`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/ast.rs#L49-L58)*
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:49-58`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/ast.rs#L49-L58)*
 
 #### Variants
 
@@ -396,7 +396,7 @@ enum Style {
 fn enum_from_ast<'a>(cx: &crate::internals::Ctxt, variants: &'a syn::punctuated::Punctuated<syn::Variant, token::Comma>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Variant<'a>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:133-172`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/ast.rs#L133-L172)*
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:133-172`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/ast.rs#L133-L172)*
 
 ### `struct_from_ast`
 
@@ -404,7 +404,7 @@ fn enum_from_ast<'a>(cx: &crate::internals::Ctxt, variants: &'a syn::punctuated:
 fn struct_from_ast<'a>(cx: &crate::internals::Ctxt, fields: &'a syn::Fields, attrs: Option<&attr::Variant>, container_default: &attr::Default, private: &proc_macro2::Ident) -> (Style, Vec<Field<'a>>)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:174-196`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/ast.rs#L174-L196)*
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:174-196`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/ast.rs#L174-L196)*
 
 ### `fields_from_ast`
 
@@ -412,5 +412,5 @@ fn struct_from_ast<'a>(cx: &crate::internals::Ctxt, fields: &'a syn::Fields, att
 fn fields_from_ast<'a>(cx: &crate::internals::Ctxt, fields: &'a syn::punctuated::Punctuated<syn::Field, token::Comma>, attrs: Option<&attr::Variant>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Field<'a>>
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:198-218`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/ast.rs#L198-L218)*
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:198-218`](../../../../.source_1765900590/serde_derive-1.0.228/src/internals/ast.rs#L198-L218)*
 

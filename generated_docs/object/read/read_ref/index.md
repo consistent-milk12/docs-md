@@ -19,7 +19,7 @@
 trait ReadRef<'a>: Clone + Copy { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_ref.rs:49-124`](../../../../.source_1765894658/object-0.37.3/src/read/read_ref.rs#L49-L124)*
+*Defined in [`object-0.37.3/src/read/read_ref.rs:49-124`](../../../../.source_1765900590/object-0.37.3/src/read/read_ref.rs#L49-L124)*
 
 A trait for reading references to [`Pod`](../../index.md) types from a block of data.
 
@@ -58,17 +58,17 @@ the size that was read.
 
 #### Required Methods
 
-- `fn len(self) -> result::Result<u64, ()>`
+- `fn ReadRef::len(self) -> result::Result<u64, ()>`
 
   The total size of the block of data.
 
-- `fn read_bytes_at(self, offset: u64, size: u64) -> result::Result<&'a [u8], ()>`
+- `fn ReadRef::read_bytes_at(self, offset: u64, size: u64) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a `u8` slice at the given offset.
   
   Returns an error if offset or size are out of bounds.
 
-- `fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> result::Result<&'a [u8], ()>`
+- `fn ReadRef::read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a delimited `u8` slice which starts at range.start.
   
@@ -79,13 +79,13 @@ the size that was read.
 
 #### Provided Methods
 
-- `fn read_bytes(self, offset: &mut u64, size: u64) -> result::Result<&'a [u8], ()>`
+- `fn ReadRef::read_bytes(self, offset: &mut u64, size: u64) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a `u8` slice at the given offset, and update the offset.
   
   Returns an error if offset or size are out of bounds.
 
-- `fn read<T: Pod>(self, offset: &mut u64) -> result::Result<&'a T, ()>`
+- `fn ReadRef::read<T: Pod>(self, offset: &mut u64) -> result::Result<&'a T, ()>`
 
   Get a reference to a `Pod` type at the given offset, and update the offset.
   
@@ -97,7 +97,7 @@ the size that was read.
   the alignment can be satisfied. Alternatively, only use this method with
   types that do not need alignment (see the `unaligned` feature of this crate).
 
-- `fn read_at<T: Pod>(self, offset: u64) -> result::Result<&'a T, ()>`
+- `fn ReadRef::read_at<T: Pod>(self, offset: u64) -> result::Result<&'a T, ()>`
 
   Get a reference to a `Pod` type at the given offset.
   
@@ -105,7 +105,7 @@ the size that was read.
   
   Also see the `read` method for information regarding alignment of `T`.
 
-- `fn read_slice<T: Pod>(self, offset: &mut u64, count: usize) -> result::Result<&'a [T], ()>`
+- `fn ReadRef::read_slice<T: Pod>(self, offset: &mut u64, count: usize) -> result::Result<&'a [T], ()>`
 
   Get a reference to a slice of a `Pod` type at the given offset, and update the offset.
   
@@ -113,7 +113,7 @@ the size that was read.
   
   Also see the `read` method for information regarding alignment of `T`.
 
-- `fn read_slice_at<T: Pod>(self, offset: u64, count: usize) -> result::Result<&'a [T], ()>`
+- `fn ReadRef::read_slice_at<T: Pod>(self, offset: u64, count: usize) -> result::Result<&'a [T], ()>`
 
   Get a reference to a slice of a `Pod` type at the given offset.
   
@@ -135,5 +135,5 @@ the size that was read.
 type Result<T> = result::Result<T, ()>;
 ```
 
-*Defined in [`object-0.37.3/src/read/read_ref.rs:9`](../../../../.source_1765894658/object-0.37.3/src/read/read_ref.rs#L9)*
+*Defined in [`object-0.37.3/src/read/read_ref.rs:9`](../../../../.source_1765900590/object-0.37.3/src/read/read_ref.rs#L9)*
 

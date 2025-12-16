@@ -33,7 +33,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L38-L51)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/file.rs#L38-L51)*
 
 A partially parsed ELF file.
 
@@ -222,9 +222,51 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 trait FileHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L530-L819)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/file.rs#L530-L819)*
 
 A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [`elf::FileHeader64`](../../../elf/index.md).
+
+<details>
+<summary><strong>Methods (33)</strong> - click to expand</summary>
+
+**Required:**
+- [`FileHeader::is_type_64`](#fn-fileheaderis-type-64)
+- [`FileHeader::is_type_64_sized`](#fn-fileheaderis-type-64-sized)
+- [`FileHeader::e_ident`](#fn-fileheadere-ident)
+- [`FileHeader::e_type`](#fn-fileheadere-type)
+- [`FileHeader::e_machine`](#fn-fileheadere-machine)
+- [`FileHeader::e_version`](#fn-fileheadere-version)
+- [`FileHeader::e_entry`](#fn-fileheadere-entry)
+- [`FileHeader::e_phoff`](#fn-fileheadere-phoff)
+- [`FileHeader::e_shoff`](#fn-fileheadere-shoff)
+- [`FileHeader::e_flags`](#fn-fileheadere-flags)
+- [`FileHeader::e_ehsize`](#fn-fileheadere-ehsize)
+- [`FileHeader::e_phentsize`](#fn-fileheadere-phentsize)
+- [`FileHeader::e_phnum`](#fn-fileheadere-phnum)
+- [`FileHeader::e_shentsize`](#fn-fileheadere-shentsize)
+- [`FileHeader::e_shnum`](#fn-fileheadere-shnum)
+- [`FileHeader::e_shstrndx`](#fn-fileheadere-shstrndx)
+
+**Provided:**
+- [`FileHeader::parse`](#fn-fileheaderparse)
+- [`FileHeader::is_supported`](#fn-fileheaderis-supported)
+- [`FileHeader::is_class_32`](#fn-fileheaderis-class-32)
+- [`FileHeader::is_class_64`](#fn-fileheaderis-class-64)
+- [`FileHeader::is_little_endian`](#fn-fileheaderis-little-endian)
+- [`FileHeader::is_big_endian`](#fn-fileheaderis-big-endian)
+- [`FileHeader::endian`](#fn-fileheaderendian)
+- [`FileHeader::section_0`](#fn-fileheadersection-0)
+- [`FileHeader::phnum`](#fn-fileheaderphnum)
+- [`FileHeader::shnum`](#fn-fileheadershnum)
+- [`FileHeader::shstrndx`](#fn-fileheadershstrndx)
+- [`FileHeader::program_headers`](#fn-fileheaderprogram-headers)
+- [`FileHeader::section_headers`](#fn-fileheadersection-headers)
+- [`FileHeader::section_strings_index`](#fn-fileheadersection-strings-index)
+- [`FileHeader::section_strings`](#fn-fileheadersection-strings)
+- [`FileHeader::sections`](#fn-fileheadersections)
+- [`FileHeader::is_mips64el`](#fn-fileheaderis-mips64el)
+
+</details>
 
 #### Associated Types
 
@@ -254,13 +296,13 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 
 #### Required Methods
 
-- `fn is_type_64(&self) -> bool`
+- `fn FileHeader::is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
   
   This is a property of the type, not a value in the header data.
 
-- `fn is_type_64_sized() -> bool`
+- `fn FileHeader::is_type_64_sized() -> bool`
 
   Return true if this type is a 64-bit header.
   
@@ -268,112 +310,112 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
   
   This is the same as `Self::is_type_64`, but is non-dispatchable.
 
-- `fn e_ident(&self) -> &elf::Ident`
+- `fn FileHeader::e_ident(&self) -> &elf::Ident`
 
-- `fn e_type(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_type(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_machine(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_machine(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_version(&self, endian: <Self as >::Endian) -> u32`
+- `fn FileHeader::e_version(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn FileHeader::e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn FileHeader::e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn FileHeader::e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn e_flags(&self, endian: <Self as >::Endian) -> u32`
+- `fn FileHeader::e_flags(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn e_ehsize(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_ehsize(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_phentsize(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_phentsize(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_phnum(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_phnum(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_shentsize(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_shentsize(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_shnum(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_shnum(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16`
+- `fn FileHeader::e_shstrndx(&self, endian: <Self as >::Endian) -> u16`
 
 #### Provided Methods
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>`
+- `fn FileHeader::parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>`
 
   Read the file header.
   
   Also checks that the ident field in the file header is a supported format.
 
-- `fn is_supported(&self) -> bool`
+- `fn FileHeader::is_supported(&self) -> bool`
 
   Check that the ident field in the file header is a supported format.
   
   This checks the magic number, version, class, and endianness.
 
-- `fn is_class_32(&self) -> bool`
+- `fn FileHeader::is_class_32(&self) -> bool`
 
-- `fn is_class_64(&self) -> bool`
+- `fn FileHeader::is_class_64(&self) -> bool`
 
-- `fn is_little_endian(&self) -> bool`
+- `fn FileHeader::is_little_endian(&self) -> bool`
 
-- `fn is_big_endian(&self) -> bool`
+- `fn FileHeader::is_big_endian(&self) -> bool`
 
-- `fn endian(&self) -> read::Result<<Self as >::Endian>`
+- `fn FileHeader::endian(&self) -> read::Result<<Self as >::Endian>`
 
-- `fn section_0<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data <Self as >::SectionHeader>>`
+- `fn FileHeader::section_0<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data <Self as >::SectionHeader>>`
 
   Return the first section header, if present.
   
   Section 0 is a special case because getting the section headers normally
   requires `shnum`, but `shnum` may be in the first section header.
 
-- `fn phnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
+- `fn FileHeader::phnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
 
   Return the `e_phnum` field of the header. Handles extended values.
   
   Returns `Err` for invalid values.
 
-- `fn shnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
+- `fn FileHeader::shnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
 
   Return the `e_shnum` field of the header. Handles extended values.
   
   Returns `Err` for invalid values.
 
-- `fn shstrndx<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<u32>`
+- `fn FileHeader::shstrndx<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<u32>`
 
   Return the `e_shstrndx` field of the header. Handles extended values.
   
   Returns `Err` for invalid values (including if the index is 0).
 
-- `fn program_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::ProgramHeader]>`
+- `fn FileHeader::program_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::ProgramHeader]>`
 
   Return the slice of program headers.
   
   Returns `Ok(&[])` if there are no program headers.
   Returns `Err` for invalid values.
 
-- `fn section_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::SectionHeader]>`
+- `fn FileHeader::section_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::SectionHeader]>`
 
   Return the slice of section headers.
   
   Returns `Ok(&[])` if there are no section headers.
   Returns `Err` for invalid values.
 
-- `fn section_strings_index<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionIndex>`
+- `fn FileHeader::section_strings_index<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionIndex>`
 
   Get the section index of the section header string table.
   
   Returns `Err` for invalid values (including if the index is 0).
 
-- `fn section_strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &[<Self as >::SectionHeader]) -> read::Result<StringTable<'data, R>>`
+- `fn FileHeader::section_strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &[<Self as >::SectionHeader]) -> read::Result<StringTable<'data, R>>`
 
   Return the string table for the section headers.
 
-- `fn sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionTable<'data, Self, R>>`
+- `fn FileHeader::sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionTable<'data, Self, R>>`
 
   Return the section table.
 
-- `fn is_mips64el(&self, endian: <Self as >::Endian) -> bool`
+- `fn FileHeader::is_mips64el(&self, endian: <Self as >::Endian) -> bool`
 
   Returns whether this is a mips64el elf file.
 
@@ -390,7 +432,7 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 type ElfFile32<'data, Endian, R> = ElfFile<'data, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L25-L26)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/file.rs#L25-L26)*
 
 A 32-bit ELF object file.
 
@@ -403,7 +445,7 @@ to [`crate::FileKind::Elf32`](../../../index.md).
 type ElfFile64<'data, Endian, R> = ElfFile<'data, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L31-L32)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/file.rs#L31-L32)*
 
 A 64-bit ELF object file.
 

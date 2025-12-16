@@ -18,7 +18,7 @@
 trait Dyn: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
+*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
 
 A trait for generic access to [`elf::Dyn32`](../../../elf/index.md) and [`elf::Dyn64`](../../../elf/index.md).
 
@@ -30,31 +30,31 @@ A trait for generic access to [`elf::Dyn32`](../../../elf/index.md) and [`elf::D
 
 #### Required Methods
 
-- `fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Dyn::d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn Dyn::d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 #### Provided Methods
 
-- `fn tag32(&self, endian: <Self as >::Endian) -> Option<u32>`
+- `fn Dyn::tag32(&self, endian: <Self as >::Endian) -> Option<u32>`
 
   Try to convert the tag to a `u32`.
 
-- `fn val32(&self, endian: <Self as >::Endian) -> Option<u32>`
+- `fn Dyn::val32(&self, endian: <Self as >::Endian) -> Option<u32>`
 
   Try to convert the value to a `u32`.
 
-- `fn is_string(&self, endian: <Self as >::Endian) -> bool`
+- `fn Dyn::is_string(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the value is an offset in the dynamic string table.
 
-- `fn string<'data>(&self, endian: <Self as >::Endian, strings: StringTable<'data>) -> Result<&'data [u8]>`
+- `fn Dyn::string<'data>(&self, endian: <Self as >::Endian, strings: StringTable<'data>) -> Result<&'data [u8]>`
 
   Use the value to get a string in a string table.
   
   Does not check for an appropriate tag.
 
-- `fn is_address(&self, endian: <Self as >::Endian) -> bool`
+- `fn Dyn::is_address(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the value is an address.
 

@@ -267,8 +267,15 @@ impl<'a> ItemRenderer<'a> {
             let items = CategorizedTraitItems::categorize_trait_items(&t.items, krate);
 
             let full_method_docs = self.ctx.render_config().full_method_docs;
+            let toc_threshold = self.ctx.render_config().toc_threshold;
 
-            // Associated Types
+            // Generate sub-TOC for traits with many methods
+            let toc = TraitRenderer::render_trait_methods_toc(name, &items, toc_threshold);
+            if !toc.is_empty() {
+                _ = write!(md, "{toc}");
+            }
+
+            // Associated Types (no trait prefix needed)
             if !items.associated_types.is_empty() {
                 _ = writeln!(md, "#### Associated Types\n");
 
@@ -279,11 +286,12 @@ impl<'a> ItemRenderer<'a> {
                         &self.type_renderer,
                         |m| self.process_docs(m),
                         full_method_docs,
+                        None, // No trait prefix for associated types
                     );
                 }
             }
 
-            // Associated Constants
+            // Associated Constants (no trait prefix needed)
             if !items.associated_consts.is_empty() {
                 _ = writeln!(md, "#### Associated Constants\n");
 
@@ -294,11 +302,12 @@ impl<'a> ItemRenderer<'a> {
                         &self.type_renderer,
                         |m| self.process_docs(m),
                         full_method_docs,
+                        None, // No trait prefix for associated constants
                     );
                 }
             }
 
-            // Required Methods
+            // Required Methods (with trait prefix for better navigation)
             if !items.required_methods.is_empty() {
                 _ = writeln!(md, "#### Required Methods\n");
 
@@ -309,11 +318,12 @@ impl<'a> ItemRenderer<'a> {
                         &self.type_renderer,
                         |m| self.process_docs(m),
                         full_method_docs,
+                        Some(name), // Include trait name for sense of place
                     );
                 }
             }
 
-            // Provided Methods
+            // Provided Methods (with trait prefix for better navigation)
             if !items.provided_methods.is_empty() {
                 _ = writeln!(md, "#### Provided Methods \n");
 
@@ -324,6 +334,7 @@ impl<'a> ItemRenderer<'a> {
                         &self.type_renderer,
                         |m| self.process_docs(m),
                         full_method_docs,
+                        Some(name), // Include trait name for sense of place
                     );
                 }
             }

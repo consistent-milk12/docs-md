@@ -117,7 +117,7 @@ rendering improvements.
   Iterates through items in the target module and adds them to the
   appropriate category vectors. Uses `seen_items` to avoid duplicates.
   
-  # Arguments
+  ##### Arguments
   
   * `use_item` - The glob Use item to expand
   * `krate` - The crate containing the target module
@@ -234,7 +234,7 @@ output/
 
   Create a new multi-crate generator.
   
-  # Arguments
+  ##### Arguments
   
   * `crates` - Collection of parsed crates
   * `args` - CLI arguments
@@ -248,7 +248,7 @@ output/
   in parallel using rayon, and optionally generates SUMMARY.md for
   mdBook compatibility.
   
-  # Errors
+  ##### Errors
   
   Returns an error if any file operation fails.
 
@@ -280,7 +280,7 @@ output/
 
   Create a progress bar.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the progress bar template is invalid.
 
@@ -532,7 +532,7 @@ resolve items across crate boundaries.
 
   Render impl blocks for a type, including cross-crate impls.
   
-  # Arguments
+  ##### Arguments
   
   * `md` - The markdown output buffer
   * `item_id` - The ID of the item to render impl blocks for

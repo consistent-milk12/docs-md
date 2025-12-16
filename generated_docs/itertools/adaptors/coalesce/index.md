@@ -69,7 +69,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:7-18`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L7-L18)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:7-18`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L7-L18)*
 
 #### Fields
 
@@ -174,7 +174,7 @@ where
 struct NoCount;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:113`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L113)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:113`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L113)*
 
 #### Trait Implementations
 
@@ -231,7 +231,7 @@ struct NoCount;
 struct WithCount;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:115`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L115)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:115`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L115)*
 
 #### Trait Implementations
 
@@ -288,7 +288,7 @@ struct WithCount;
 struct DedupPred2CoalescePred<DP>(DP);
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:170`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L170)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:170`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L170)*
 
 #### Trait Implementations
 
@@ -363,7 +363,7 @@ struct DedupPred2CoalescePred<DP>(DP);
 struct DedupEq;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:195`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L195)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:195`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L195)*
 
 #### Trait Implementations
 
@@ -438,7 +438,7 @@ struct DedupEq;
 struct DedupPredWithCount2CoalescePred<DP>(DP);
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:243`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L243)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:243`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L243)*
 
 #### Trait Implementations
 
@@ -515,11 +515,11 @@ struct DedupPredWithCount2CoalescePred<DP>(DP);
 trait CoalescePredicate<Item, T> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:39-41`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L39-L41)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:39-41`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L39-L41)*
 
 #### Required Methods
 
-- `fn coalesce_pair(&mut self, t: T, item: Item) -> Result<T, (T, T)>`
+- `fn CoalescePredicate::coalesce_pair(&mut self, t: T, item: Item) -> Result<T, (T, T)>`
 
 #### Implementors
 
@@ -533,7 +533,7 @@ trait CoalescePredicate<Item, T> { ... }
 trait CountItem<T> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:117-120`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L117-L120)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:117-120`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L117-L120)*
 
 #### Associated Types
 
@@ -541,7 +541,7 @@ trait CountItem<T> { ... }
 
 #### Required Methods
 
-- `fn new(t: T) -> <Self as >::CItem`
+- `fn CountItem::new(t: T) -> <Self as >::CItem`
 
 #### Implementors
 
@@ -554,11 +554,11 @@ trait CountItem<T> { ... }
 trait DedupPredicate<T> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:176-179`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L176-L179)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:176-179`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L176-L179)*
 
 #### Required Methods
 
-- `fn dedup_pair(&mut self, a: &T, b: &T) -> bool`
+- `fn DedupPredicate::dedup_pair(&mut self, a: &T, b: &T) -> bool`
 
 #### Implementors
 
@@ -575,7 +575,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:153-162`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L153-L162)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:153-162`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L153-L162)*
 
 Create a new `Coalesce`.
 
@@ -587,7 +587,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:210-219`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L210-L219)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:210-219`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L210-L219)*
 
 Create a new `DedupBy`.
 
@@ -599,7 +599,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:227-232`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L227-L232)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:227-232`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L227-L232)*
 
 Create a new `Dedup`.
 
@@ -611,7 +611,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:269-278`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L269-L278)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:269-278`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L269-L278)*
 
 Create a new `DedupByWithCount`.
 
@@ -623,7 +623,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:281-286`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L281-L286)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:281-286`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L281-L286)*
 
 Create a new `DedupWithCount`.
 
@@ -635,7 +635,7 @@ Create a new `DedupWithCount`.
 type Coalesce<I, F> = CoalesceBy<I, F, NoCount>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:141`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L141)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:141`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L141)*
 
 An iterator adaptor that may join together adjacent elements.
 
@@ -647,7 +647,7 @@ See [`.coalesce()`](crate::Itertools::coalesce) for more information.
 type DedupBy<I, Pred> = CoalesceBy<I, DedupPred2CoalescePred<Pred>, NoCount>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:167`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L167)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:167`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L167)*
 
 An iterator adaptor that removes repeated duplicates, determining equality using a comparison function.
 
@@ -659,7 +659,7 @@ See [`.dedup_by()`](crate::Itertools::dedup_by) or [`.dedup()`](crate::Itertools
 type Dedup<I> = DedupBy<I, DedupEq>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:224`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L224)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:224`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L224)*
 
 An iterator adaptor that removes repeated duplicates.
 
@@ -671,7 +671,7 @@ See [`.dedup()`](crate::Itertools::dedup) for more information.
 type DedupByWithCount<I, Pred> = CoalesceBy<I, DedupPredWithCount2CoalescePred<Pred>, WithCount>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:239-240`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L239-L240)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:239-240`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L239-L240)*
 
 An iterator adaptor that removes repeated duplicates, while keeping a count of how many
 repeated elements were present. This will determine equality using a comparison function.
@@ -685,7 +685,7 @@ See [`.dedup_by_with_count()`](crate::Itertools::dedup_by_with_count) or
 type DedupWithCount<I> = DedupByWithCount<I, DedupEq>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:266`](../../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L266)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:266`](../../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L266)*
 
 An iterator adaptor that removes repeated duplicates, while keeping a count of how many
 repeated elements were present.

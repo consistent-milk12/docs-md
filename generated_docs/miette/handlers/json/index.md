@@ -20,7 +20,7 @@
 struct JSONReportHandler;
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../../.source_1765894658/miette-7.6.0/src/handlers/json.rs#L11)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../../.source_1765900590/miette-7.6.0/src/handlers/json.rs#L11)*
 
 [`ReportHandler`](../../index.md) that renders JSON output. It's a machine-readable output.
 
@@ -108,7 +108,7 @@ struct JSONReportHandler;
 struct Escape<'a>(&'a str);
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../../.source_1765894658/miette-7.6.0/src/handlers/json.rs#L27)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../../.source_1765900590/miette-7.6.0/src/handlers/json.rs#L27)*
 
 #### Trait Implementations
 
@@ -169,5 +169,5 @@ struct Escape<'a>(&'a str);
 const fn escape(input: &str) -> Escape<'_>
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../../.source_1765894658/miette-7.6.0/src/handlers/json.rs#L52-L54)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../../.source_1765900590/miette-7.6.0/src/handlers/json.rs#L52-L54)*
 

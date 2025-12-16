@@ -26,7 +26,7 @@ struct ChunkByProducer<'p, T, Slice, Pred> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:45-50`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L45-L50)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:45-50`](../../../../.source_1765900590/rayon-1.11.0/src/slice/chunk_by.rs#L45-L50)*
 
 #### Trait Implementations
 
@@ -102,7 +102,7 @@ struct ChunkBy<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:142-145`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L142-L145)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:142-145`](../../../../.source_1765900590/rayon-1.11.0/src/slice/chunk_by.rs#L142-L145)*
 
 Parallel iterator over slice in (non-overlapping) chunks separated by a predicate.
 
@@ -213,7 +213,7 @@ struct ChunkByMut<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:199-202`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L199-L202)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:199-202`](../../../../.source_1765900590/rayon-1.11.0/src/slice/chunk_by.rs#L199-L202)*
 
 Parallel iterator over slice in (non-overlapping) mutable chunks
 separated by a predicate.
@@ -308,19 +308,19 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 trait ChunkBySlice<T>: AsRef<[T]> + Default + Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:6-23`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L6-L23)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:6-23`](../../../../.source_1765900590/rayon-1.11.0/src/slice/chunk_by.rs#L6-L23)*
 
 #### Required Methods
 
-- `fn split(self, index: usize) -> (Self, Self)`
+- `fn ChunkBySlice::split(self, index: usize) -> (Self, Self)`
 
-- `fn chunk_by(self, pred: &impl Fn(&T, &T) -> bool) -> impl Iterator<Item = Self>`
+- `fn ChunkBySlice::chunk_by(self, pred: &impl Fn(&T, &T) -> bool) -> impl Iterator<Item = Self>`
 
 #### Provided Methods
 
-- `fn find(&self, pred: &impl Fn(&T, &T) -> bool, start: usize, end: usize) -> Option<usize>`
+- `fn ChunkBySlice::find(&self, pred: &impl Fn(&T, &T) -> bool, start: usize, end: usize) -> Option<usize>`
 
-- `fn rfind(&self, pred: &impl Fn(&T, &T) -> bool, end: usize) -> Option<usize>`
+- `fn ChunkBySlice::rfind(&self, pred: &impl Fn(&T, &T) -> bool, end: usize) -> Option<usize>`
 
 #### Implementors
 

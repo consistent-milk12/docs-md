@@ -68,7 +68,7 @@ output/
 
   Create a new nested generator.
   
-  # Arguments
+  ##### Arguments
   
   * `ctx` - Shared generator context
   * `output_dir` - Directory to write markdown files to
@@ -89,7 +89,7 @@ output/
   Recursively creates subdirectories for child modules. Now tracks the
   full module path for breadcrumb generation.
   
-  # Arguments
+  ##### Arguments
   
   * `item` - The module item to generate
   * `parent_dir` - Parent directory to create module directory in

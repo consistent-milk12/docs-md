@@ -27,7 +27,7 @@ struct Unfold<St, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/sources.rs:72-76`](../../../.source_1765894658/itertools-0.14.0/src/sources.rs#L72-L76)*
+*Defined in [`itertools-0.14.0/src/sources.rs:72-76`](../../../.source_1765900590/itertools-0.14.0/src/sources.rs#L72-L76)*
 
 See [`unfold`](crate::unfold) for more information.
 
@@ -129,7 +129,7 @@ struct Iterate<St, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/sources.rs:96-99`](../../../.source_1765894658/itertools-0.14.0/src/sources.rs#L96-L99)*
+*Defined in [`itertools-0.14.0/src/sources.rs:96-99`](../../../.source_1765900590/itertools-0.14.0/src/sources.rs#L96-L99)*
 
 An iterator that infinitely applies function to value and yields results.
 
@@ -231,7 +231,7 @@ where
     F: FnMut(&mut St) -> Option<A>
 ```
 
-*Defined in [`itertools-0.14.0/src/sources.rs:48-56`](../../../.source_1765894658/itertools-0.14.0/src/sources.rs#L48-L56)*
+*Defined in [`itertools-0.14.0/src/sources.rs:48-56`](../../../.source_1765900590/itertools-0.14.0/src/sources.rs#L48-L56)*
 
 Creates a new unfold source with the specified closure as the "iterator
 function" and an initial state to eventually pass to the closure
@@ -278,7 +278,7 @@ where
     F: FnMut(&St) -> St
 ```
 
-*Defined in [`itertools-0.14.0/src/sources.rs:145-153`](../../../.source_1765894658/itertools-0.14.0/src/sources.rs#L145-L153)*
+*Defined in [`itertools-0.14.0/src/sources.rs:145-153`](../../../.source_1765900590/itertools-0.14.0/src/sources.rs#L145-L153)*
 
 Creates a new iterator that infinitely applies function to value and yields results.
 

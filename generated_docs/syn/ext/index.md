@@ -27,7 +27,7 @@ Extension traits to provide parsing methods on foreign types.
 trait IdentExt: Sized + private::Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/ext.rs:22-95`](../../../.source_1765894658/syn-2.0.111/src/ext.rs#L22-L95)*
+*Defined in [`syn-2.0.111/src/ext.rs:22-95`](../../../.source_1765900590/syn-2.0.111/src/ext.rs#L22-L95)*
 
 Additional methods for `Ident` not provided by proc-macro2 or libproc_macro.
 
@@ -40,14 +40,14 @@ is implemented only for `proc_macro2::Ident`.
 
 #### Required Methods
 
-- `fn parse_any(input: ParseStream<'_>) -> Result<Self>`
+- `fn IdentExt::parse_any(input: ParseStream<'_>) -> Result<Self>`
 
   Parses any identifier including keywords.
   
   This is useful when parsing macro input which allows Rust keywords as
   identifiers.
   
-  # Example
+  ##### Example
   
   ```rust
   use syn::{Error, Ident, Result, Token};
@@ -73,7 +73,7 @@ is implemented only for `proc_macro2::Ident`.
   }
   ```
 
-- `fn unraw(&self) -> Ident`
+- `fn IdentExt::unraw(&self) -> Ident`
 
   Strips the raw marker `r#`, if any, from the beginning of an ident.
   
@@ -81,7 +81,7 @@ is implemented only for `proc_macro2::Ident`.
     - unraw(`move`) = `move`
     - unraw(`r#move`) = `move`
   
-  # Example
+  ##### Example
   
   In the case of interop with other languages like Python that have a
   different set of keywords than Rust, we might come across macro input
@@ -113,11 +113,11 @@ is implemented only for `proc_macro2::Ident`.
 trait TokenStreamExt { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/ext.rs:135-137`](../../../.source_1765894658/syn-2.0.111/src/ext.rs#L135-L137)*
+*Defined in [`syn-2.0.111/src/ext.rs:135-137`](../../../.source_1765900590/syn-2.0.111/src/ext.rs#L135-L137)*
 
 #### Required Methods
 
-- `fn append(&mut self, token: TokenTree)`
+- `fn TokenStreamExt::append(&mut self, token: TokenTree)`
 
 #### Implementors
 
@@ -129,11 +129,11 @@ trait TokenStreamExt { ... }
 trait PunctExt { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/ext.rs:145-147`](../../../.source_1765894658/syn-2.0.111/src/ext.rs#L145-L147)*
+*Defined in [`syn-2.0.111/src/ext.rs:145-147`](../../../.source_1765900590/syn-2.0.111/src/ext.rs#L145-L147)*
 
 #### Required Methods
 
-- `fn new_spanned(ch: char, spacing: Spacing, span: Span) -> Self`
+- `fn PunctExt::new_spanned(ch: char, spacing: Spacing, span: Span) -> Self`
 
 #### Implementors
 

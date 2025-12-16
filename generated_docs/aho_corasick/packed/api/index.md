@@ -45,7 +45,7 @@ struct Config {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:87-93`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/api.rs#L87-L93)*
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:87-93`](../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/api.rs#L87-L93)*
 
 The configuration for a packed multiple pattern searcher.
 
@@ -186,7 +186,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:232-239`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/api.rs#L232-L239)*
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:232-239`](../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/api.rs#L232-L239)*
 
 A builder for constructing a packed searcher from a collection of patterns.
 
@@ -361,7 +361,7 @@ struct Searcher {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:396-401`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/api.rs#L396-L401)*
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:396-401`](../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/api.rs#L396-L401)*
 
 A packed searcher for quickly finding occurrences of multiple patterns.
 
@@ -405,7 +405,7 @@ if cfg!(all(feature = "std", any(
   unsupported CPU or because there are too many patterns), then `None`
   is returned.
   
-  # Example
+  ##### Example
   
   Basic usage:
   
@@ -449,7 +449,7 @@ if cfg!(all(feature = "std", any(
   corresponds to the index of the pattern (starting from `0`) in which it
   was added.
   
-  # Example
+  ##### Example
   
   Basic usage:
   
@@ -483,7 +483,7 @@ if cfg!(all(feature = "std", any(
   `0`) in which it was added. The offsets in the `Match` will be relative
   to the start of `haystack` (and not `at`).
   
-  # Example
+  ##### Example
   
   Basic usage:
   
@@ -512,7 +512,7 @@ if cfg!(all(feature = "std", any(
   Return an iterator of non-overlapping occurrences of the patterns in
   this searcher, according to its match semantics, in the given haystack.
   
-  # Example
+  ##### Example
   
   Basic usage:
   
@@ -545,7 +545,7 @@ if cfg!(all(feature = "std", any(
 
   Returns the match kind used by this packed searcher.
   
-  # Examples
+  ##### Examples
   
   Basic usage:
   
@@ -664,7 +664,7 @@ struct FindIter<'s, 'h> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:666-670`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/api.rs#L666-L670)*
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:666-670`](../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/api.rs#L666-L670)*
 
 An iterator over non-overlapping matches from a packed searcher.
 
@@ -742,7 +742,7 @@ enum MatchKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:28-40`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/api.rs#L28-L40)*
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:28-40`](../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/api.rs#L28-L40)*
 
 A knob for controlling the match semantics of a packed multiple string
 searcher.
@@ -859,7 +859,7 @@ enum ForceAlgorithm {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:101-104`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/api.rs#L101-L104)*
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:101-104`](../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/api.rs#L101-L104)*
 
 An internal option for forcing the use of a particular packed algorithm.
 
@@ -937,7 +937,7 @@ enum SearchKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:404-407`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/api.rs#L404-L407)*
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:404-407`](../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/api.rs#L404-L407)*
 
 #### Implementations
 
@@ -1011,7 +1011,7 @@ enum SearchKind {
 const PATTERN_LIMIT: usize = 128usize;
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:11`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/api.rs#L11)*
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:11`](../../../../.source_1765900590/aho-corasick-1.1.4/src/packed/api.rs#L11)*
 
 This is a limit placed on the total number of patterns we're willing to try
 and match at once. As more sophisticated algorithms are added, this number

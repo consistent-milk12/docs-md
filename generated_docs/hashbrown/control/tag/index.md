@@ -19,7 +19,7 @@
 struct Tag(u8);
 ```
 
-*Defined in [`hashbrown-0.16.1/src/control/tag.rs:6`](../../../../.source_1765894658/hashbrown-0.16.1/src/control/tag.rs#L6)*
+*Defined in [`hashbrown-0.16.1/src/control/tag.rs:6`](../../../../.source_1765900590/hashbrown-0.16.1/src/control/tag.rs#L6)*
 
 Single tag in a control group.
 
@@ -128,19 +128,19 @@ Single tag in a control group.
 trait TagSliceExt { ... }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/control/tag.rs:67-76`](../../../../.source_1765894658/hashbrown-0.16.1/src/control/tag.rs#L67-L76)*
+*Defined in [`hashbrown-0.16.1/src/control/tag.rs:67-76`](../../../../.source_1765900590/hashbrown-0.16.1/src/control/tag.rs#L67-L76)*
 
 Extension trait for slices of tags.
 
 #### Required Methods
 
-- `fn fill_tag(&mut self, tag: Tag)`
+- `fn TagSliceExt::fill_tag(&mut self, tag: Tag)`
 
   Fills the control with the given tag.
 
 #### Provided Methods
 
-- `fn fill_empty(&mut self)`
+- `fn TagSliceExt::fill_empty(&mut self)`
 
   Clears out the control.
 

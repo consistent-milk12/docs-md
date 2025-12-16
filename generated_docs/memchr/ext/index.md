@@ -18,21 +18,21 @@
 trait Pointer { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/ext.rs:2-18`](../../../.source_1765894658/memchr-2.7.6/src/ext.rs#L2-L18)*
+*Defined in [`memchr-2.7.6/src/ext.rs:2-18`](../../../.source_1765900590/memchr-2.7.6/src/ext.rs#L2-L18)*
 
 A trait for adding some helper routines to pointers.
 
 #### Required Methods
 
-- `fn distance(self, origin: Self) -> usize`
+- `fn Pointer::distance(self, origin: Self) -> usize`
 
   Returns the distance, in units of `T`, between `self` and `origin`.
   
-  # Safety
+  ##### Safety
   
   Same as `ptr::offset_from` in addition to `self >= origin`.
 
-- `fn as_usize(self) -> usize`
+- `fn Pointer::as_usize(self) -> usize`
 
   Casts this pointer to `usize`.
   

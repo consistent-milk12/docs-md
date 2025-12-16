@@ -22,7 +22,7 @@ struct ZipLongest<T, U> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/zip_longest.rs:18-21`](../../../.source_1765894658/itertools-0.14.0/src/zip_longest.rs#L18-L21)*
+*Defined in [`itertools-0.14.0/src/zip_longest.rs:18-21`](../../../.source_1765900590/itertools-0.14.0/src/zip_longest.rs#L18-L21)*
 
 An iterator which iterates two other iterators simultaneously
 and wraps the elements in [`EitherOrBoth`](../either_or_both/index.md).
@@ -135,7 +135,7 @@ where
     U: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/zip_longest.rs:24-33`](../../../.source_1765894658/itertools-0.14.0/src/zip_longest.rs#L24-L33)*
+*Defined in [`itertools-0.14.0/src/zip_longest.rs:24-33`](../../../.source_1765900590/itertools-0.14.0/src/zip_longest.rs#L24-L33)*
 
 Create a new `ZipLongest` iterator.
 

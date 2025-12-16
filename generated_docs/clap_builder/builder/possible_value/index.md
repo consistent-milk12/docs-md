@@ -23,7 +23,7 @@ struct PossibleValue {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
+*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
 
 A possible value of an argument.
 
@@ -73,7 +73,7 @@ let cfg = Arg::new("config")
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -91,7 +91,7 @@ let cfg = Arg::new("config")
   This is typically displayed in completions (where supported) and should be a short, one-line
   description.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -108,7 +108,7 @@ let cfg = Arg::new("config")
   This is an alternative to hiding through `Arg::hide_possible_values(true)`, if you only
   want to hide some values.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -122,7 +122,7 @@ let cfg = Arg::new("config")
 
   Sets a *hidden* alias for this argument value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -136,7 +136,7 @@ let cfg = Arg::new("config")
 
   Sets multiple *hidden* aliases for this argument value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;

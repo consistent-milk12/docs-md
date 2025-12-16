@@ -69,7 +69,7 @@ struct One {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:35-38`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L35-L38)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:35-38`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L35-L38)*
 
 Finds all occurrences of a single byte in a haystack.
 
@@ -111,7 +111,7 @@ Finds all occurrences of a single byte in a haystack.
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -137,7 +137,7 @@ Finds all occurrences of a single byte in a haystack.
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -161,7 +161,7 @@ Finds all occurrences of a single byte in a haystack.
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -261,7 +261,7 @@ struct OneIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:303-308`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L303-L308)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:303-308`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L303-L308)*
 
 An iterator over all occurrences of a single byte in a haystack.
 
@@ -379,7 +379,7 @@ struct Two {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:352-357`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L352-L357)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:352-357`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L352-L357)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -420,7 +420,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -446,7 +446,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -546,7 +546,7 @@ struct TwoIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:568-573`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L568-L573)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:568-573`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L568-L573)*
 
 An iterator over all occurrences of two possible bytes in a haystack.
 
@@ -664,7 +664,7 @@ struct Three {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:608-615`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L608-L615)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:608-615`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L608-L615)*
 
 Finds all occurrences of three bytes in a haystack.
 
@@ -705,7 +705,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -731,7 +731,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
   This routine is useful if you're already using raw pointers and would
   like to avoid converting back to a slice before executing a search.
   
-  # Safety
+  ##### Safety
   
   * Both `start` and `end` must be valid for reads.
   * Both `start` and `end` must point to an initialized value.
@@ -831,7 +831,7 @@ struct ThreeIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:836-841`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L836-L841)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:836-841`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L836-L841)*
 
 An iterator over all occurrences of three possible bytes in a haystack.
 
@@ -944,7 +944,7 @@ The lifetime parameters are as follows:
 fn has_zero_byte(x: usize) -> bool
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:877-885`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L877-L885)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:877-885`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L877-L885)*
 
 Return `true` if `x` contains any zero byte.
 
@@ -959,7 +959,7 @@ From "Matters Computational" by J. Arndt.
 const fn splat(b: u8) -> usize
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:892-895`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L892-L895)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:892-895`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L892-L895)*
 
 Repeat the given byte into a word size number. That is, every 8 bits
 is equivalent to the given byte. For example, if `b` is `\x4E` or
@@ -973,7 +973,7 @@ is equivalent to the given byte. For example, if `b` is `\x4E` or
 const USIZE_BYTES: usize = 8usize;
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:29`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L29)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:29`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L29)*
 
 The number of bytes in a single `usize` value.
 
@@ -982,7 +982,7 @@ The number of bytes in a single `usize` value.
 const USIZE_ALIGN: usize = 7usize;
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:31`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L31)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:31`](../../../../../.source_1765900590/memchr-2.7.6/src/arch/all/memchr.rs#L31)*
 
 The bits that must be zero for a `*const usize` to be properly aligned.
 

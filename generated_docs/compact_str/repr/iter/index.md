@@ -24,5 +24,5 @@ where
     alloc::string::String: core::iter::Extend<S> + FromIterator<S>
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/iter.rs:34-77`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/iter.rs#L34-L77)*
+*Defined in [`compact_str-0.9.0/src/repr/iter.rs:34-77`](../../../../.source_1765900590/compact_str-0.9.0/src/repr/iter.rs#L34-L77)*
 

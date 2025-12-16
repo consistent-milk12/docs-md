@@ -35,7 +35,7 @@ struct AtomicCell<T> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
 
 A thread-safe mutable memory location.
 
@@ -75,7 +75,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
   Creates a new atomic cell initialized with `val`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::atomic::AtomicCell;
@@ -90,7 +90,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
   This is safe because passing `self` by value guarantees that no other threads are
   concurrently accessing the atomic data.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::atomic::AtomicCell;
@@ -108,7 +108,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
   If the compiler or the platform doesn't support the necessary atomic instructions,
   `AtomicCell<T>` will use global locks for every potentially concurrent atomic operation.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::atomic::AtomicCell;
@@ -136,7 +136,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
   Stores `val` into the atomic cell.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::atomic::AtomicCell;
@@ -152,7 +152,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
   Stores `val` into the atomic cell and returns the previous value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::atomic::AtomicCell;
@@ -168,7 +168,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
   Returns a raw pointer to the underlying data in this atomic cell.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use crossbeam_utils::atomic::AtomicCell;
@@ -247,7 +247,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 trait AtomicConsume { ... }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../.source_1765900590/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
 
 Trait which allows reading from primitive atomic types with "consume" ordering.
 
@@ -257,7 +257,7 @@ Trait which allows reading from primitive atomic types with "consume" ordering.
 
 #### Required Methods
 
-- `fn load_consume(&self) -> <Self as >::Val`
+- `fn AtomicConsume::load_consume(&self) -> <Self as >::Val`
 
   Loads a value from the atomic using a "consume" memory ordering.
   

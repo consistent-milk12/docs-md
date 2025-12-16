@@ -24,7 +24,7 @@ struct ArrayVec<A> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:106-109`](../../../.source_1765894658/tinyvec-1.10.0/src/arrayvec.rs#L106-L109)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:106-109`](../../../.source_1765900590/tinyvec-1.10.0/src/arrayvec.rs#L106-L109)*
 
 An array-backed, vector-like data structure.
 
@@ -85,10 +85,10 @@ assert_eq!(no_ints.len(), 0);
 
   Move all values from `other` into this vec.
   
-  ## Panics
+  ###### Panics
   * If the vec overflows its capacity
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut av = array_vec!([i32; 10] => 1, 2, 3);
@@ -102,7 +102,7 @@ assert_eq!(no_ints.len(), 0);
 
   Move all values from `other` into this vec.
   If appending would overflow the capacity, Some(other) is returned.
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut av = array_vec!([i32; 7] => 1, 2, 3);
@@ -121,7 +121,7 @@ assert_eq!(no_ints.len(), 0);
 
   A `*mut` pointer to the backing array.
   
-  ## Safety
+  ###### Safety
   
   This pointer has provenance over the _entire_ backing array.
 
@@ -133,7 +133,7 @@ assert_eq!(no_ints.len(), 0);
 
   A `*const` pointer to the backing array.
   
-  ## Safety
+  ###### Safety
   
   This pointer has provenance over the _entire_ backing array.
 
@@ -157,11 +157,11 @@ assert_eq!(no_ints.len(), 0);
   Creates a draining iterator that removes the specified range in the vector
   and yields the removed items.
   
-  ## Panics
+  ###### Panics
   * If the start is greater than the end
   * If the end is past the edge of the vec.
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut av = array_vec!([i32; 4] => 1, 2, 3);
@@ -180,7 +180,7 @@ assert_eq!(no_ints.len(), 0);
   This returns the full array, even if the `ArrayVec` length is currently
   less than that.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::{array_vec, ArrayVec};
@@ -205,7 +205,7 @@ assert_eq!(no_ints.len(), 0);
 
   Clone each element of the slice into this `ArrayVec`.
   
-  ## Panics
+  ###### Panics
   * If the `ArrayVec` would overflow, this will panic.
 
 - <span id="arrayvec-fill"></span>`fn fill<I: IntoIterator<Item = <A as >::Item>>(&mut self, iter: I) -> <I as >::IntoIter`
@@ -223,10 +223,10 @@ assert_eq!(no_ints.len(), 0);
   remaining elements in the iterator and the iterator itself. The
   interface also provides no way to communicate this to the caller.
   
-  ## Panics
+  ###### Panics
   * If the `next` method of the provided iterator panics.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -242,7 +242,7 @@ assert_eq!(no_ints.len(), 0);
   
   If you want to simply use the full array, use `from` instead.
   
-  ## Panics
+  ###### Panics
   
   * The length specified must be less than or equal to the capacity of the
     array.
@@ -252,11 +252,11 @@ assert_eq!(no_ints.len(), 0);
   Inserts an item at the position given, moving all following elements +1
   index.
   
-  ## Panics
+  ###### Panics
   * If `index` > `len`
   * If the capacity is exhausted
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut av = array_vec!([i32; 10] => 1, 2, 3);
@@ -273,10 +273,10 @@ assert_eq!(no_ints.len(), 0);
   Returns back the element if the capacity is exhausted,
   otherwise returns None.
   
-  ## Panics
+  ###### Panics
   * If `index` > `len`
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut av = array_vec!([&'static str; 4] => "one", "two", "three");
@@ -301,10 +301,10 @@ assert_eq!(no_ints.len(), 0);
 
   Remove and return the last element of the vec, if there is one.
   
-  ## Failure
+  ###### Failure
   * If the vec is empty you get `None`.
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut av = array_vec!([i32; 10] => 1, 2);
@@ -317,10 +317,10 @@ assert_eq!(no_ints.len(), 0);
 
   Place an element onto the end of the vec.
   
-  ## Panics
+  ###### Panics
   * If the length of the vec would overflow the capacity.
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut av = array_vec!([i32; 2]);
@@ -354,11 +354,11 @@ assert_eq!(no_ints.len(), 0);
   
   Returns the removed element.
   
-  ## Panics
+  ###### Panics
   
   * If the index is out of bounds.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -372,7 +372,7 @@ assert_eq!(no_ints.len(), 0);
   As [`resize_with`](ArrayVec::resize_with)
   and it clones the value as the closure.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -393,7 +393,7 @@ assert_eq!(no_ints.len(), 0);
   If it needs to be longer, it's filled with repeated calls to the provided
   function. If it needs to be shorter, it's truncated.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -415,7 +415,7 @@ assert_eq!(no_ints.len(), 0);
 
   Walk the vec and keep only the elements that pass the predicate given.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -435,7 +435,7 @@ assert_eq!(no_ints.len(), 0);
   original order, and preserves the order of the retained elements.
   
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -449,10 +449,10 @@ assert_eq!(no_ints.len(), 0);
 
   Forces the length of the vector to `new_len`.
   
-  ## Panics
+  ###### Panics
   * If `new_len` is greater than the vec's capacity.
   
-  ## Safety
+  ###### Safety
   * This is a fully safe operation! The inactive memory already counts as
     "initialized" by Rust's rules.
   * Other than "the memory is initialized" there are no other guarantees
@@ -465,10 +465,10 @@ assert_eq!(no_ints.len(), 0);
   * `[0, at)` stays in this vec
   * `[at, len)` ends up in the new vec.
   
-  ## Panics
+  ###### Panics
   * if at > len
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::*;
@@ -487,7 +487,7 @@ assert_eq!(no_ints.len(), 0);
   `splice` fuses the provided iterator, so elements after the first `None`
   are ignored.
   
-  ## Panics
+  ###### Panics
   * If the start is greater than the end.
   * If the end is past the edge of the vec.
   * If the provided iterator panics.
@@ -495,7 +495,7 @@ assert_eq!(no_ints.len(), 0);
     `ArrayVecSplice` adds elements to this vec in its destructor when
     necessary, this panic would occur when it is dropped.
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut av = array_vec!([i32; 4] => 1, 2, 3);
@@ -511,10 +511,10 @@ assert_eq!(no_ints.len(), 0);
 
   Remove an element, swapping the end of the vec into its place.
   
-  ## Panics
+  ###### Panics
   * If the index is out of bounds.
   
-  ## Example
+  ###### Example
   ```rust
   use tinyvec::*;
   let mut av = array_vec!([&str; 4] => "foo", "bar", "quack", "zap");
@@ -539,7 +539,7 @@ assert_eq!(no_ints.len(), 0);
   If you want to use the whole length of the array, you can just use the
   `From` impl.
   
-  ## Failure
+  ###### Failure
   
   If the given length is greater than the capacity of the array this will
   error, and you'll get the array back in the `Err`.
@@ -726,7 +726,7 @@ struct ArrayVecSplice<'p, A: Array, I: Iterator<Item = <A as >::Item>> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1264-1269`](../../../.source_1765894658/tinyvec-1.10.0/src/arrayvec.rs#L1264-L1269)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1264-1269`](../../../.source_1765900590/tinyvec-1.10.0/src/arrayvec.rs#L1264-L1269)*
 
 Splicing iterator for `ArrayVec`
 See [`ArrayVec::splice`](ArrayVec::<A>::splice)
@@ -808,7 +808,7 @@ See [`ArrayVec::splice`](ArrayVec::<A>::splice)
 struct TryFromSliceError(());
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1425`](../../../.source_1765894658/tinyvec-1.10.0/src/arrayvec.rs#L1425)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1425`](../../../.source_1765900590/tinyvec-1.10.0/src/arrayvec.rs#L1425)*
 
 The error type returned when a conversion from a slice to an [`ArrayVec`](../index.md)
 fails.
@@ -894,7 +894,7 @@ struct ArrayVecIterator<A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1478-1482`](../../../.source_1765894658/tinyvec-1.10.0/src/arrayvec.rs#L1478-L1482)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1478-1482`](../../../.source_1765900590/tinyvec-1.10.0/src/arrayvec.rs#L1478-L1482)*
 
 Iterator for consuming an `ArrayVec` and returning owned elements.
 

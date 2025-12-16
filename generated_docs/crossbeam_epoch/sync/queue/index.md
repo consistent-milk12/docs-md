@@ -32,7 +32,7 @@ struct Queue<T> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:22-25`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/queue.rs#L22-L25)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:22-25`](../../../../.source_1765900590/crossbeam-epoch-0.9.18/src/sync/queue.rs#L22-L25)*
 
 #### Implementations
 
@@ -147,7 +147,7 @@ struct Node<T> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:27-37`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/queue.rs#L27-L37)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:27-37`](../../../../.source_1765900590/crossbeam-epoch-0.9.18/src/sync/queue.rs#L27-L37)*
 
 #### Fields
 

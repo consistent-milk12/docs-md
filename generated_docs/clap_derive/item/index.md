@@ -72,7 +72,7 @@ struct Item {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:33-53`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L33-L53)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:33-53`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L33-L53)*
 
 #### Implementations
 
@@ -212,7 +212,7 @@ struct Method {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1232-1235`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1232-L1235)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1232-1235`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1232-L1235)*
 
 #### Implementations
 
@@ -298,7 +298,7 @@ struct Deprecation {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1285-1290`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1285-L1290)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1285-1290`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1285-L1290)*
 
 #### Implementations
 
@@ -380,7 +380,7 @@ enum ValueParser {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1096-1099`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1096-L1099)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1096-1099`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1096-L1099)*
 
 #### Implementations
 
@@ -454,7 +454,7 @@ enum Action {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1128-1131`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1128-L1131)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1128-1131`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1128-L1131)*
 
 #### Implementations
 
@@ -534,7 +534,7 @@ enum Kind {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1181-1190`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1181-L1190)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1181-1190`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1181-L1190)*
 
 #### Implementations
 
@@ -616,7 +616,7 @@ enum CasingStyle {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1378-1395`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1378-L1395)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1378-1395`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1378-L1395)*
 
 Defines the casing for the attributes long representation.
 
@@ -738,7 +738,7 @@ enum Name {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1422-1425`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1422-L1425)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1422-1425`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1422-L1425)*
 
 #### Implementations
 
@@ -819,7 +819,7 @@ enum Name {
 fn default_value_parser(inner_type: &syn::Type, span: proc_macro2::Span) -> Method
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1117-1125`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1117-L1125)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1117-1125`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1117-L1125)*
 
 ### `default_action`
 
@@ -827,7 +827,7 @@ fn default_value_parser(inner_type: &syn::Type, span: proc_macro2::Span) -> Meth
 fn default_action(field_type: &syn::Type, span: proc_macro2::Span) -> Method
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1149-1177`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1149-L1177)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1149-1177`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1149-L1177)*
 
 ### `assert_attr_kind`
 
@@ -835,7 +835,7 @@ fn default_action(field_type: &syn::Type, span: proc_macro2::Span) -> Method
 fn assert_attr_kind(attr: &crate::attr::ClapAttr, possible_kind: &[crate::attr::AttrKind]) -> Result<(), syn::Error>
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1332-1349`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1332-L1349)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1332-1349`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1332-L1349)*
 
 ### `process_author_str`
 
@@ -843,7 +843,7 @@ fn assert_attr_kind(attr: &crate::attr::ClapAttr, possible_kind: &[crate::attr::
 fn process_author_str(author: &str) -> String
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:1355-1374`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L1355-L1374)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:1355-1374`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L1355-L1374)*
 
 replace all `:` with `, ` when not inside the `<>`
 
@@ -857,7 +857,7 @@ replace all `:` with `, ` when not inside the `<>`
 const DEFAULT_CASING: CasingStyle;
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:27`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L27)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:27`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L27)*
 
 Default casing style for generated arguments.
 
@@ -866,7 +866,7 @@ Default casing style for generated arguments.
 const DEFAULT_ENV_CASING: CasingStyle;
 ```
 
-*Defined in [`clap_derive-4.5.49/src/item.rs:30`](../../../.source_1765894658/clap_derive-4.5.49/src/item.rs#L30)*
+*Defined in [`clap_derive-4.5.49/src/item.rs:30`](../../../.source_1765900590/clap_derive-4.5.49/src/item.rs#L30)*
 
 Default casing style for environment variables
 

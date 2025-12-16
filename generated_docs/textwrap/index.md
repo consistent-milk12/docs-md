@@ -285,7 +285,7 @@ struct Options<'a> {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/options.rs:8-33`](../../.source_1765894658/textwrap-0.16.2/src/options.rs#L8-L33)*
+*Defined in [`textwrap-0.16.2/src/options.rs:8-33`](../../.source_1765900590/textwrap-0.16.2/src/options.rs#L8-L33)*
 
 Holds configuration options for wrapping and filling text.
 
@@ -371,7 +371,7 @@ Holds configuration options for wrapping and filling text.
   supported line endings should be used to break the lines of the
   input text.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use textwrap::{refill, LineEnding, Options};
@@ -390,7 +390,7 @@ Holds configuration options for wrapping and filling text.
   Change `self.initial_indent`. The initial indentation is
   used on the very first line of output.
   
-  # Examples
+  ##### Examples
   
   Classic paragraph indentation can be achieved by specifying an
   initial indentation and wrapping each paragraph by itself:
@@ -409,7 +409,7 @@ Holds configuration options for wrapping and filling text.
   Change `self.subsequent_indent`. The subsequent indentation
   is used on lines following the first line of output.
   
-  # Examples
+  ##### Examples
   
   Combining initial and subsequent indentation lets you format a
   single paragraph as a bullet list:
@@ -443,7 +443,7 @@ Holds configuration options for wrapping and filling text.
   See `Options::word_splitter` instead if you want to control
   hyphenation.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use textwrap::{wrap, Options};
@@ -478,7 +478,7 @@ Holds configuration options for wrapping and filling text.
   See `Options::break_words` instead if you want to control the
   handling of words longer than the line width.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use textwrap::{wrap, Options, WordSplitter};
@@ -574,7 +574,7 @@ enum LineEnding {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/line_ending.rs:8-16`](../../.source_1765894658/textwrap-0.16.2/src/line_ending.rs#L8-L16)*
+*Defined in [`textwrap-0.16.2/src/line_ending.rs:8-16`](../../.source_1765900590/textwrap-0.16.2/src/line_ending.rs#L8-L16)*
 
 Supported line endings. Like in the Rust standard library, two line
 endings are supported: `\r\n` and `\n`
@@ -679,7 +679,7 @@ enum WordSeparator {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:42-123`](../../.source_1765894658/textwrap-0.16.2/src/word_separators.rs#L42-L123)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:42-123`](../../.source_1765900590/textwrap-0.16.2/src/word_separators.rs#L42-L123)*
 
 Describes where words occur in a line of text.
 
@@ -902,7 +902,7 @@ enum WordSplitter {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../.source_1765894658/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../.source_1765900590/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
 
 The `WordSplitter` enum describes where words can be split.
 
@@ -998,7 +998,7 @@ details.
   splitting on hyphens. This way, `word.split_at(idx)` will
   break the word into two well-formed pieces.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use textwrap::WordSplitter;
@@ -1081,7 +1081,7 @@ enum WrapAlgorithm {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:36-90`](../../.source_1765894658/textwrap-0.16.2/src/wrap_algorithms.rs#L36-L90)*
+*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:36-90`](../../.source_1765900590/textwrap-0.16.2/src/wrap_algorithms.rs#L36-L90)*
 
 Describes how to wrap words into lines.
 
@@ -1254,7 +1254,7 @@ where
     Opt: Into<crate::Options<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/columns.rs:63-114`](../../.source_1765894658/textwrap-0.16.2/src/columns.rs#L63-L114)*
+*Defined in [`textwrap-0.16.2/src/columns.rs:63-114`](../../.source_1765900590/textwrap-0.16.2/src/columns.rs#L63-L114)*
 
 Wrap text into columns with a given total width.
 
@@ -1322,7 +1322,7 @@ where
     Opt: Into<crate::Options<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/fill.rs:36-47`](../../.source_1765894658/textwrap-0.16.2/src/fill.rs#L36-L47)*
+*Defined in [`textwrap-0.16.2/src/fill.rs:36-47`](../../.source_1765900590/textwrap-0.16.2/src/fill.rs#L36-L47)*
 
 Fill a line of text at a given width.
 
@@ -1362,7 +1362,7 @@ assert_eq!(
 fn fill_inplace(text: &mut String, width: usize)
 ```
 
-*Defined in [`textwrap-0.16.2/src/fill.rs:120-153`](../../.source_1765894658/textwrap-0.16.2/src/fill.rs#L120-L153)*
+*Defined in [`textwrap-0.16.2/src/fill.rs:120-153`](../../.source_1765900590/textwrap-0.16.2/src/fill.rs#L120-L153)*
 
 Fill `text` in-place without reallocating the input string.
 
@@ -1423,7 +1423,7 @@ for details.
 fn dedent(s: &str) -> String
 ```
 
-*Defined in [`textwrap-0.16.2/src/indentation.rs:95-150`](../../.source_1765894658/textwrap-0.16.2/src/indentation.rs#L95-L150)*
+*Defined in [`textwrap-0.16.2/src/indentation.rs:95-150`](../../.source_1765900590/textwrap-0.16.2/src/indentation.rs#L95-L150)*
 
 Removes common leading whitespace from each line.
 
@@ -1450,7 +1450,7 @@ assert_eq!(dedent("
 fn indent(s: &str, prefix: &str) -> String
 ```
 
-*Defined in [`textwrap-0.16.2/src/indentation.rs:52-75`](../../.source_1765894658/textwrap-0.16.2/src/indentation.rs#L52-L75)*
+*Defined in [`textwrap-0.16.2/src/indentation.rs:52-75`](../../.source_1765900590/textwrap-0.16.2/src/indentation.rs#L52-L75)*
 
 Indent each line by the given prefix.
 
@@ -1506,7 +1506,7 @@ where
     Opt: Into<crate::Options<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/refill.rs:169-188`](../../.source_1765894658/textwrap-0.16.2/src/refill.rs#L169-L188)*
+*Defined in [`textwrap-0.16.2/src/refill.rs:169-188`](../../.source_1765900590/textwrap-0.16.2/src/refill.rs#L169-L188)*
 
 Refill a paragraph of wrapped text with a new width.
 
@@ -1568,7 +1568,7 @@ assert_eq!(refill(text, 20), "\
 fn unfill(text: &str) -> (String, crate::Options<'_>)
 ```
 
-*Defined in [`textwrap-0.16.2/src/refill.rs:62-114`](../../.source_1765894658/textwrap-0.16.2/src/refill.rs#L62-L114)*
+*Defined in [`textwrap-0.16.2/src/refill.rs:62-114`](../../.source_1765900590/textwrap-0.16.2/src/refill.rs#L62-L114)*
 
 Unpack a paragraph of already-wrapped text.
 
@@ -1634,7 +1634,7 @@ where
     Opt: Into<crate::Options<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/wrap.rs:180-193`](../../.source_1765894658/textwrap-0.16.2/src/wrap.rs#L180-L193)*
+*Defined in [`textwrap-0.16.2/src/wrap.rs:180-193`](../../.source_1765900590/textwrap-0.16.2/src/wrap.rs#L180-L193)*
 
 Wrap a line of text at a given width.
 

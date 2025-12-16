@@ -516,390 +516,585 @@ fn main() {
 trait Visit<'ast> { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:28-945`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L28-L945)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:28-945`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L28-L945)*
 
 Syntax tree traversal to walk a shared borrow of a syntax tree.
 
 See the [module documentation] for details.
 
 
+<details>
+<summary><strong>Methods (188)</strong> - click to expand</summary>
+
+**Provided:**
+- [`Visit::visit_abi`](#fn-visitvisit-abi)
+- [`Visit::visit_angle_bracketed_generic_arguments`](#fn-visitvisit-angle-bracketed-generic-arguments)
+- [`Visit::visit_arm`](#fn-visitvisit-arm)
+- [`Visit::visit_assoc_const`](#fn-visitvisit-assoc-const)
+- [`Visit::visit_assoc_type`](#fn-visitvisit-assoc-type)
+- [`Visit::visit_attr_style`](#fn-visitvisit-attr-style)
+- [`Visit::visit_attribute`](#fn-visitvisit-attribute)
+- [`Visit::visit_bare_fn_arg`](#fn-visitvisit-bare-fn-arg)
+- [`Visit::visit_bare_variadic`](#fn-visitvisit-bare-variadic)
+- [`Visit::visit_bin_op`](#fn-visitvisit-bin-op)
+- [`Visit::visit_block`](#fn-visitvisit-block)
+- [`Visit::visit_bound_lifetimes`](#fn-visitvisit-bound-lifetimes)
+- [`Visit::visit_captured_param`](#fn-visitvisit-captured-param)
+- [`Visit::visit_const_param`](#fn-visitvisit-const-param)
+- [`Visit::visit_constraint`](#fn-visitvisit-constraint)
+- [`Visit::visit_data`](#fn-visitvisit-data)
+- [`Visit::visit_data_enum`](#fn-visitvisit-data-enum)
+- [`Visit::visit_data_struct`](#fn-visitvisit-data-struct)
+- [`Visit::visit_data_union`](#fn-visitvisit-data-union)
+- [`Visit::visit_derive_input`](#fn-visitvisit-derive-input)
+- [`Visit::visit_expr`](#fn-visitvisit-expr)
+- [`Visit::visit_expr_array`](#fn-visitvisit-expr-array)
+- [`Visit::visit_expr_assign`](#fn-visitvisit-expr-assign)
+- [`Visit::visit_expr_async`](#fn-visitvisit-expr-async)
+- [`Visit::visit_expr_await`](#fn-visitvisit-expr-await)
+- [`Visit::visit_expr_binary`](#fn-visitvisit-expr-binary)
+- [`Visit::visit_expr_block`](#fn-visitvisit-expr-block)
+- [`Visit::visit_expr_break`](#fn-visitvisit-expr-break)
+- [`Visit::visit_expr_call`](#fn-visitvisit-expr-call)
+- [`Visit::visit_expr_cast`](#fn-visitvisit-expr-cast)
+- [`Visit::visit_expr_closure`](#fn-visitvisit-expr-closure)
+- [`Visit::visit_expr_const`](#fn-visitvisit-expr-const)
+- [`Visit::visit_expr_continue`](#fn-visitvisit-expr-continue)
+- [`Visit::visit_expr_field`](#fn-visitvisit-expr-field)
+- [`Visit::visit_expr_for_loop`](#fn-visitvisit-expr-for-loop)
+- [`Visit::visit_expr_group`](#fn-visitvisit-expr-group)
+- [`Visit::visit_expr_if`](#fn-visitvisit-expr-if)
+- [`Visit::visit_expr_index`](#fn-visitvisit-expr-index)
+- [`Visit::visit_expr_infer`](#fn-visitvisit-expr-infer)
+- [`Visit::visit_expr_let`](#fn-visitvisit-expr-let)
+- [`Visit::visit_expr_lit`](#fn-visitvisit-expr-lit)
+- [`Visit::visit_expr_loop`](#fn-visitvisit-expr-loop)
+- [`Visit::visit_expr_macro`](#fn-visitvisit-expr-macro)
+- [`Visit::visit_expr_match`](#fn-visitvisit-expr-match)
+- [`Visit::visit_expr_method_call`](#fn-visitvisit-expr-method-call)
+- [`Visit::visit_expr_paren`](#fn-visitvisit-expr-paren)
+- [`Visit::visit_expr_path`](#fn-visitvisit-expr-path)
+- [`Visit::visit_expr_range`](#fn-visitvisit-expr-range)
+- [`Visit::visit_expr_raw_addr`](#fn-visitvisit-expr-raw-addr)
+- [`Visit::visit_expr_reference`](#fn-visitvisit-expr-reference)
+- [`Visit::visit_expr_repeat`](#fn-visitvisit-expr-repeat)
+- [`Visit::visit_expr_return`](#fn-visitvisit-expr-return)
+- [`Visit::visit_expr_struct`](#fn-visitvisit-expr-struct)
+- [`Visit::visit_expr_try`](#fn-visitvisit-expr-try)
+- [`Visit::visit_expr_try_block`](#fn-visitvisit-expr-try-block)
+- [`Visit::visit_expr_tuple`](#fn-visitvisit-expr-tuple)
+- [`Visit::visit_expr_unary`](#fn-visitvisit-expr-unary)
+- [`Visit::visit_expr_unsafe`](#fn-visitvisit-expr-unsafe)
+- [`Visit::visit_expr_while`](#fn-visitvisit-expr-while)
+- [`Visit::visit_expr_yield`](#fn-visitvisit-expr-yield)
+- [`Visit::visit_field`](#fn-visitvisit-field)
+- [`Visit::visit_field_mutability`](#fn-visitvisit-field-mutability)
+- [`Visit::visit_field_pat`](#fn-visitvisit-field-pat)
+- [`Visit::visit_field_value`](#fn-visitvisit-field-value)
+- [`Visit::visit_fields`](#fn-visitvisit-fields)
+- [`Visit::visit_fields_named`](#fn-visitvisit-fields-named)
+- [`Visit::visit_fields_unnamed`](#fn-visitvisit-fields-unnamed)
+- [`Visit::visit_file`](#fn-visitvisit-file)
+- [`Visit::visit_fn_arg`](#fn-visitvisit-fn-arg)
+- [`Visit::visit_foreign_item`](#fn-visitvisit-foreign-item)
+- [`Visit::visit_foreign_item_fn`](#fn-visitvisit-foreign-item-fn)
+- [`Visit::visit_foreign_item_macro`](#fn-visitvisit-foreign-item-macro)
+- [`Visit::visit_foreign_item_static`](#fn-visitvisit-foreign-item-static)
+- [`Visit::visit_foreign_item_type`](#fn-visitvisit-foreign-item-type)
+- [`Visit::visit_generic_argument`](#fn-visitvisit-generic-argument)
+- [`Visit::visit_generic_param`](#fn-visitvisit-generic-param)
+- [`Visit::visit_generics`](#fn-visitvisit-generics)
+- [`Visit::visit_ident`](#fn-visitvisit-ident)
+- [`Visit::visit_impl_item`](#fn-visitvisit-impl-item)
+- [`Visit::visit_impl_item_const`](#fn-visitvisit-impl-item-const)
+- [`Visit::visit_impl_item_fn`](#fn-visitvisit-impl-item-fn)
+- [`Visit::visit_impl_item_macro`](#fn-visitvisit-impl-item-macro)
+- [`Visit::visit_impl_item_type`](#fn-visitvisit-impl-item-type)
+- [`Visit::visit_impl_restriction`](#fn-visitvisit-impl-restriction)
+- [`Visit::visit_index`](#fn-visitvisit-index)
+- [`Visit::visit_item`](#fn-visitvisit-item)
+- [`Visit::visit_item_const`](#fn-visitvisit-item-const)
+- [`Visit::visit_item_enum`](#fn-visitvisit-item-enum)
+- [`Visit::visit_item_extern_crate`](#fn-visitvisit-item-extern-crate)
+- [`Visit::visit_item_fn`](#fn-visitvisit-item-fn)
+- [`Visit::visit_item_foreign_mod`](#fn-visitvisit-item-foreign-mod)
+- [`Visit::visit_item_impl`](#fn-visitvisit-item-impl)
+- [`Visit::visit_item_macro`](#fn-visitvisit-item-macro)
+- [`Visit::visit_item_mod`](#fn-visitvisit-item-mod)
+- [`Visit::visit_item_static`](#fn-visitvisit-item-static)
+- [`Visit::visit_item_struct`](#fn-visitvisit-item-struct)
+- [`Visit::visit_item_trait`](#fn-visitvisit-item-trait)
+- [`Visit::visit_item_trait_alias`](#fn-visitvisit-item-trait-alias)
+- [`Visit::visit_item_type`](#fn-visitvisit-item-type)
+- [`Visit::visit_item_union`](#fn-visitvisit-item-union)
+- [`Visit::visit_item_use`](#fn-visitvisit-item-use)
+- [`Visit::visit_label`](#fn-visitvisit-label)
+- [`Visit::visit_lifetime`](#fn-visitvisit-lifetime)
+- [`Visit::visit_lifetime_param`](#fn-visitvisit-lifetime-param)
+- [`Visit::visit_lit`](#fn-visitvisit-lit)
+- [`Visit::visit_lit_bool`](#fn-visitvisit-lit-bool)
+- [`Visit::visit_lit_byte`](#fn-visitvisit-lit-byte)
+- [`Visit::visit_lit_byte_str`](#fn-visitvisit-lit-byte-str)
+- [`Visit::visit_lit_cstr`](#fn-visitvisit-lit-cstr)
+- [`Visit::visit_lit_char`](#fn-visitvisit-lit-char)
+- [`Visit::visit_lit_float`](#fn-visitvisit-lit-float)
+- [`Visit::visit_lit_int`](#fn-visitvisit-lit-int)
+- [`Visit::visit_lit_str`](#fn-visitvisit-lit-str)
+- [`Visit::visit_local`](#fn-visitvisit-local)
+- [`Visit::visit_local_init`](#fn-visitvisit-local-init)
+- [`Visit::visit_macro`](#fn-visitvisit-macro)
+- [`Visit::visit_macro_delimiter`](#fn-visitvisit-macro-delimiter)
+- [`Visit::visit_member`](#fn-visitvisit-member)
+- [`Visit::visit_meta`](#fn-visitvisit-meta)
+- [`Visit::visit_meta_list`](#fn-visitvisit-meta-list)
+- [`Visit::visit_meta_name_value`](#fn-visitvisit-meta-name-value)
+- [`Visit::visit_parenthesized_generic_arguments`](#fn-visitvisit-parenthesized-generic-arguments)
+- [`Visit::visit_pat`](#fn-visitvisit-pat)
+- [`Visit::visit_pat_ident`](#fn-visitvisit-pat-ident)
+- [`Visit::visit_pat_or`](#fn-visitvisit-pat-or)
+- [`Visit::visit_pat_paren`](#fn-visitvisit-pat-paren)
+- [`Visit::visit_pat_reference`](#fn-visitvisit-pat-reference)
+- [`Visit::visit_pat_rest`](#fn-visitvisit-pat-rest)
+- [`Visit::visit_pat_slice`](#fn-visitvisit-pat-slice)
+- [`Visit::visit_pat_struct`](#fn-visitvisit-pat-struct)
+- [`Visit::visit_pat_tuple`](#fn-visitvisit-pat-tuple)
+- [`Visit::visit_pat_tuple_struct`](#fn-visitvisit-pat-tuple-struct)
+- [`Visit::visit_pat_type`](#fn-visitvisit-pat-type)
+- [`Visit::visit_pat_wild`](#fn-visitvisit-pat-wild)
+- [`Visit::visit_path`](#fn-visitvisit-path)
+- [`Visit::visit_path_arguments`](#fn-visitvisit-path-arguments)
+- [`Visit::visit_path_segment`](#fn-visitvisit-path-segment)
+- [`Visit::visit_pointer_mutability`](#fn-visitvisit-pointer-mutability)
+- [`Visit::visit_precise_capture`](#fn-visitvisit-precise-capture)
+- [`Visit::visit_predicate_lifetime`](#fn-visitvisit-predicate-lifetime)
+- [`Visit::visit_predicate_type`](#fn-visitvisit-predicate-type)
+- [`Visit::visit_qself`](#fn-visitvisit-qself)
+- [`Visit::visit_range_limits`](#fn-visitvisit-range-limits)
+- [`Visit::visit_receiver`](#fn-visitvisit-receiver)
+- [`Visit::visit_return_type`](#fn-visitvisit-return-type)
+- [`Visit::visit_signature`](#fn-visitvisit-signature)
+- [`Visit::visit_span`](#fn-visitvisit-span)
+- [`Visit::visit_static_mutability`](#fn-visitvisit-static-mutability)
+- [`Visit::visit_stmt`](#fn-visitvisit-stmt)
+- [`Visit::visit_stmt_macro`](#fn-visitvisit-stmt-macro)
+- [`Visit::visit_token_stream`](#fn-visitvisit-token-stream)
+- [`Visit::visit_trait_bound`](#fn-visitvisit-trait-bound)
+- [`Visit::visit_trait_bound_modifier`](#fn-visitvisit-trait-bound-modifier)
+- [`Visit::visit_trait_item`](#fn-visitvisit-trait-item)
+- [`Visit::visit_trait_item_const`](#fn-visitvisit-trait-item-const)
+- [`Visit::visit_trait_item_fn`](#fn-visitvisit-trait-item-fn)
+- [`Visit::visit_trait_item_macro`](#fn-visitvisit-trait-item-macro)
+- [`Visit::visit_trait_item_type`](#fn-visitvisit-trait-item-type)
+- [`Visit::visit_type`](#fn-visitvisit-type)
+- [`Visit::visit_type_array`](#fn-visitvisit-type-array)
+- [`Visit::visit_type_bare_fn`](#fn-visitvisit-type-bare-fn)
+- [`Visit::visit_type_group`](#fn-visitvisit-type-group)
+- [`Visit::visit_type_impl_trait`](#fn-visitvisit-type-impl-trait)
+- [`Visit::visit_type_infer`](#fn-visitvisit-type-infer)
+- [`Visit::visit_type_macro`](#fn-visitvisit-type-macro)
+- [`Visit::visit_type_never`](#fn-visitvisit-type-never)
+- [`Visit::visit_type_param`](#fn-visitvisit-type-param)
+- [`Visit::visit_type_param_bound`](#fn-visitvisit-type-param-bound)
+- [`Visit::visit_type_paren`](#fn-visitvisit-type-paren)
+- [`Visit::visit_type_path`](#fn-visitvisit-type-path)
+- [`Visit::visit_type_ptr`](#fn-visitvisit-type-ptr)
+- [`Visit::visit_type_reference`](#fn-visitvisit-type-reference)
+- [`Visit::visit_type_slice`](#fn-visitvisit-type-slice)
+- [`Visit::visit_type_trait_object`](#fn-visitvisit-type-trait-object)
+- [`Visit::visit_type_tuple`](#fn-visitvisit-type-tuple)
+- [`Visit::visit_un_op`](#fn-visitvisit-un-op)
+- [`Visit::visit_use_glob`](#fn-visitvisit-use-glob)
+- [`Visit::visit_use_group`](#fn-visitvisit-use-group)
+- [`Visit::visit_use_name`](#fn-visitvisit-use-name)
+- [`Visit::visit_use_path`](#fn-visitvisit-use-path)
+- [`Visit::visit_use_rename`](#fn-visitvisit-use-rename)
+- [`Visit::visit_use_tree`](#fn-visitvisit-use-tree)
+- [`Visit::visit_variadic`](#fn-visitvisit-variadic)
+- [`Visit::visit_variant`](#fn-visitvisit-variant)
+- [`Visit::visit_vis_restricted`](#fn-visitvisit-vis-restricted)
+- [`Visit::visit_visibility`](#fn-visitvisit-visibility)
+- [`Visit::visit_where_clause`](#fn-visitvisit-where-clause)
+- [`Visit::visit_where_predicate`](#fn-visitvisit-where-predicate)
+
+</details>
+
 #### Provided Methods
 
-- `fn visit_abi(&mut self, i: &'ast crate::Abi)`
+- `fn Visit::visit_abi(&mut self, i: &'ast crate::Abi)`
 
-- `fn visit_angle_bracketed_generic_arguments(&mut self, i: &'ast crate::AngleBracketedGenericArguments)`
+- `fn Visit::visit_angle_bracketed_generic_arguments(&mut self, i: &'ast crate::AngleBracketedGenericArguments)`
 
-- `fn visit_arm(&mut self, i: &'ast crate::Arm)`
+- `fn Visit::visit_arm(&mut self, i: &'ast crate::Arm)`
 
-- `fn visit_assoc_const(&mut self, i: &'ast crate::AssocConst)`
+- `fn Visit::visit_assoc_const(&mut self, i: &'ast crate::AssocConst)`
 
-- `fn visit_assoc_type(&mut self, i: &'ast crate::AssocType)`
+- `fn Visit::visit_assoc_type(&mut self, i: &'ast crate::AssocType)`
 
-- `fn visit_attr_style(&mut self, i: &'ast crate::AttrStyle)`
+- `fn Visit::visit_attr_style(&mut self, i: &'ast crate::AttrStyle)`
 
-- `fn visit_attribute(&mut self, i: &'ast crate::Attribute)`
+- `fn Visit::visit_attribute(&mut self, i: &'ast crate::Attribute)`
 
-- `fn visit_bare_fn_arg(&mut self, i: &'ast crate::BareFnArg)`
+- `fn Visit::visit_bare_fn_arg(&mut self, i: &'ast crate::BareFnArg)`
 
-- `fn visit_bare_variadic(&mut self, i: &'ast crate::BareVariadic)`
+- `fn Visit::visit_bare_variadic(&mut self, i: &'ast crate::BareVariadic)`
 
-- `fn visit_bin_op(&mut self, i: &'ast crate::BinOp)`
+- `fn Visit::visit_bin_op(&mut self, i: &'ast crate::BinOp)`
 
-- `fn visit_block(&mut self, i: &'ast crate::Block)`
+- `fn Visit::visit_block(&mut self, i: &'ast crate::Block)`
 
-- `fn visit_bound_lifetimes(&mut self, i: &'ast crate::BoundLifetimes)`
+- `fn Visit::visit_bound_lifetimes(&mut self, i: &'ast crate::BoundLifetimes)`
 
-- `fn visit_captured_param(&mut self, i: &'ast crate::CapturedParam)`
+- `fn Visit::visit_captured_param(&mut self, i: &'ast crate::CapturedParam)`
 
-- `fn visit_const_param(&mut self, i: &'ast crate::ConstParam)`
+- `fn Visit::visit_const_param(&mut self, i: &'ast crate::ConstParam)`
 
-- `fn visit_constraint(&mut self, i: &'ast crate::Constraint)`
+- `fn Visit::visit_constraint(&mut self, i: &'ast crate::Constraint)`
 
-- `fn visit_data(&mut self, i: &'ast crate::Data)`
+- `fn Visit::visit_data(&mut self, i: &'ast crate::Data)`
 
-- `fn visit_data_enum(&mut self, i: &'ast crate::DataEnum)`
+- `fn Visit::visit_data_enum(&mut self, i: &'ast crate::DataEnum)`
 
-- `fn visit_data_struct(&mut self, i: &'ast crate::DataStruct)`
+- `fn Visit::visit_data_struct(&mut self, i: &'ast crate::DataStruct)`
 
-- `fn visit_data_union(&mut self, i: &'ast crate::DataUnion)`
+- `fn Visit::visit_data_union(&mut self, i: &'ast crate::DataUnion)`
 
-- `fn visit_derive_input(&mut self, i: &'ast crate::DeriveInput)`
+- `fn Visit::visit_derive_input(&mut self, i: &'ast crate::DeriveInput)`
 
-- `fn visit_expr(&mut self, i: &'ast crate::Expr)`
+- `fn Visit::visit_expr(&mut self, i: &'ast crate::Expr)`
 
-- `fn visit_expr_array(&mut self, i: &'ast crate::ExprArray)`
+- `fn Visit::visit_expr_array(&mut self, i: &'ast crate::ExprArray)`
 
-- `fn visit_expr_assign(&mut self, i: &'ast crate::ExprAssign)`
+- `fn Visit::visit_expr_assign(&mut self, i: &'ast crate::ExprAssign)`
 
-- `fn visit_expr_async(&mut self, i: &'ast crate::ExprAsync)`
+- `fn Visit::visit_expr_async(&mut self, i: &'ast crate::ExprAsync)`
 
-- `fn visit_expr_await(&mut self, i: &'ast crate::ExprAwait)`
+- `fn Visit::visit_expr_await(&mut self, i: &'ast crate::ExprAwait)`
 
-- `fn visit_expr_binary(&mut self, i: &'ast crate::ExprBinary)`
+- `fn Visit::visit_expr_binary(&mut self, i: &'ast crate::ExprBinary)`
 
-- `fn visit_expr_block(&mut self, i: &'ast crate::ExprBlock)`
+- `fn Visit::visit_expr_block(&mut self, i: &'ast crate::ExprBlock)`
 
-- `fn visit_expr_break(&mut self, i: &'ast crate::ExprBreak)`
+- `fn Visit::visit_expr_break(&mut self, i: &'ast crate::ExprBreak)`
 
-- `fn visit_expr_call(&mut self, i: &'ast crate::ExprCall)`
+- `fn Visit::visit_expr_call(&mut self, i: &'ast crate::ExprCall)`
 
-- `fn visit_expr_cast(&mut self, i: &'ast crate::ExprCast)`
+- `fn Visit::visit_expr_cast(&mut self, i: &'ast crate::ExprCast)`
 
-- `fn visit_expr_closure(&mut self, i: &'ast crate::ExprClosure)`
+- `fn Visit::visit_expr_closure(&mut self, i: &'ast crate::ExprClosure)`
 
-- `fn visit_expr_const(&mut self, i: &'ast crate::ExprConst)`
+- `fn Visit::visit_expr_const(&mut self, i: &'ast crate::ExprConst)`
 
-- `fn visit_expr_continue(&mut self, i: &'ast crate::ExprContinue)`
+- `fn Visit::visit_expr_continue(&mut self, i: &'ast crate::ExprContinue)`
 
-- `fn visit_expr_field(&mut self, i: &'ast crate::ExprField)`
+- `fn Visit::visit_expr_field(&mut self, i: &'ast crate::ExprField)`
 
-- `fn visit_expr_for_loop(&mut self, i: &'ast crate::ExprForLoop)`
+- `fn Visit::visit_expr_for_loop(&mut self, i: &'ast crate::ExprForLoop)`
 
-- `fn visit_expr_group(&mut self, i: &'ast crate::ExprGroup)`
+- `fn Visit::visit_expr_group(&mut self, i: &'ast crate::ExprGroup)`
 
-- `fn visit_expr_if(&mut self, i: &'ast crate::ExprIf)`
+- `fn Visit::visit_expr_if(&mut self, i: &'ast crate::ExprIf)`
 
-- `fn visit_expr_index(&mut self, i: &'ast crate::ExprIndex)`
+- `fn Visit::visit_expr_index(&mut self, i: &'ast crate::ExprIndex)`
 
-- `fn visit_expr_infer(&mut self, i: &'ast crate::ExprInfer)`
+- `fn Visit::visit_expr_infer(&mut self, i: &'ast crate::ExprInfer)`
 
-- `fn visit_expr_let(&mut self, i: &'ast crate::ExprLet)`
+- `fn Visit::visit_expr_let(&mut self, i: &'ast crate::ExprLet)`
 
-- `fn visit_expr_lit(&mut self, i: &'ast crate::ExprLit)`
+- `fn Visit::visit_expr_lit(&mut self, i: &'ast crate::ExprLit)`
 
-- `fn visit_expr_loop(&mut self, i: &'ast crate::ExprLoop)`
+- `fn Visit::visit_expr_loop(&mut self, i: &'ast crate::ExprLoop)`
 
-- `fn visit_expr_macro(&mut self, i: &'ast crate::ExprMacro)`
+- `fn Visit::visit_expr_macro(&mut self, i: &'ast crate::ExprMacro)`
 
-- `fn visit_expr_match(&mut self, i: &'ast crate::ExprMatch)`
+- `fn Visit::visit_expr_match(&mut self, i: &'ast crate::ExprMatch)`
 
-- `fn visit_expr_method_call(&mut self, i: &'ast crate::ExprMethodCall)`
+- `fn Visit::visit_expr_method_call(&mut self, i: &'ast crate::ExprMethodCall)`
 
-- `fn visit_expr_paren(&mut self, i: &'ast crate::ExprParen)`
+- `fn Visit::visit_expr_paren(&mut self, i: &'ast crate::ExprParen)`
 
-- `fn visit_expr_path(&mut self, i: &'ast crate::ExprPath)`
+- `fn Visit::visit_expr_path(&mut self, i: &'ast crate::ExprPath)`
 
-- `fn visit_expr_range(&mut self, i: &'ast crate::ExprRange)`
+- `fn Visit::visit_expr_range(&mut self, i: &'ast crate::ExprRange)`
 
-- `fn visit_expr_raw_addr(&mut self, i: &'ast crate::ExprRawAddr)`
+- `fn Visit::visit_expr_raw_addr(&mut self, i: &'ast crate::ExprRawAddr)`
 
-- `fn visit_expr_reference(&mut self, i: &'ast crate::ExprReference)`
+- `fn Visit::visit_expr_reference(&mut self, i: &'ast crate::ExprReference)`
 
-- `fn visit_expr_repeat(&mut self, i: &'ast crate::ExprRepeat)`
+- `fn Visit::visit_expr_repeat(&mut self, i: &'ast crate::ExprRepeat)`
 
-- `fn visit_expr_return(&mut self, i: &'ast crate::ExprReturn)`
+- `fn Visit::visit_expr_return(&mut self, i: &'ast crate::ExprReturn)`
 
-- `fn visit_expr_struct(&mut self, i: &'ast crate::ExprStruct)`
+- `fn Visit::visit_expr_struct(&mut self, i: &'ast crate::ExprStruct)`
 
-- `fn visit_expr_try(&mut self, i: &'ast crate::ExprTry)`
+- `fn Visit::visit_expr_try(&mut self, i: &'ast crate::ExprTry)`
 
-- `fn visit_expr_try_block(&mut self, i: &'ast crate::ExprTryBlock)`
+- `fn Visit::visit_expr_try_block(&mut self, i: &'ast crate::ExprTryBlock)`
 
-- `fn visit_expr_tuple(&mut self, i: &'ast crate::ExprTuple)`
+- `fn Visit::visit_expr_tuple(&mut self, i: &'ast crate::ExprTuple)`
 
-- `fn visit_expr_unary(&mut self, i: &'ast crate::ExprUnary)`
+- `fn Visit::visit_expr_unary(&mut self, i: &'ast crate::ExprUnary)`
 
-- `fn visit_expr_unsafe(&mut self, i: &'ast crate::ExprUnsafe)`
+- `fn Visit::visit_expr_unsafe(&mut self, i: &'ast crate::ExprUnsafe)`
 
-- `fn visit_expr_while(&mut self, i: &'ast crate::ExprWhile)`
+- `fn Visit::visit_expr_while(&mut self, i: &'ast crate::ExprWhile)`
 
-- `fn visit_expr_yield(&mut self, i: &'ast crate::ExprYield)`
+- `fn Visit::visit_expr_yield(&mut self, i: &'ast crate::ExprYield)`
 
-- `fn visit_field(&mut self, i: &'ast crate::Field)`
+- `fn Visit::visit_field(&mut self, i: &'ast crate::Field)`
 
-- `fn visit_field_mutability(&mut self, i: &'ast crate::FieldMutability)`
+- `fn Visit::visit_field_mutability(&mut self, i: &'ast crate::FieldMutability)`
 
-- `fn visit_field_pat(&mut self, i: &'ast crate::FieldPat)`
+- `fn Visit::visit_field_pat(&mut self, i: &'ast crate::FieldPat)`
 
-- `fn visit_field_value(&mut self, i: &'ast crate::FieldValue)`
+- `fn Visit::visit_field_value(&mut self, i: &'ast crate::FieldValue)`
 
-- `fn visit_fields(&mut self, i: &'ast crate::Fields)`
+- `fn Visit::visit_fields(&mut self, i: &'ast crate::Fields)`
 
-- `fn visit_fields_named(&mut self, i: &'ast crate::FieldsNamed)`
+- `fn Visit::visit_fields_named(&mut self, i: &'ast crate::FieldsNamed)`
 
-- `fn visit_fields_unnamed(&mut self, i: &'ast crate::FieldsUnnamed)`
+- `fn Visit::visit_fields_unnamed(&mut self, i: &'ast crate::FieldsUnnamed)`
 
-- `fn visit_file(&mut self, i: &'ast crate::File)`
+- `fn Visit::visit_file(&mut self, i: &'ast crate::File)`
 
-- `fn visit_fn_arg(&mut self, i: &'ast crate::FnArg)`
+- `fn Visit::visit_fn_arg(&mut self, i: &'ast crate::FnArg)`
 
-- `fn visit_foreign_item(&mut self, i: &'ast crate::ForeignItem)`
+- `fn Visit::visit_foreign_item(&mut self, i: &'ast crate::ForeignItem)`
 
-- `fn visit_foreign_item_fn(&mut self, i: &'ast crate::ForeignItemFn)`
+- `fn Visit::visit_foreign_item_fn(&mut self, i: &'ast crate::ForeignItemFn)`
 
-- `fn visit_foreign_item_macro(&mut self, i: &'ast crate::ForeignItemMacro)`
+- `fn Visit::visit_foreign_item_macro(&mut self, i: &'ast crate::ForeignItemMacro)`
 
-- `fn visit_foreign_item_static(&mut self, i: &'ast crate::ForeignItemStatic)`
+- `fn Visit::visit_foreign_item_static(&mut self, i: &'ast crate::ForeignItemStatic)`
 
-- `fn visit_foreign_item_type(&mut self, i: &'ast crate::ForeignItemType)`
+- `fn Visit::visit_foreign_item_type(&mut self, i: &'ast crate::ForeignItemType)`
 
-- `fn visit_generic_argument(&mut self, i: &'ast crate::GenericArgument)`
+- `fn Visit::visit_generic_argument(&mut self, i: &'ast crate::GenericArgument)`
 
-- `fn visit_generic_param(&mut self, i: &'ast crate::GenericParam)`
+- `fn Visit::visit_generic_param(&mut self, i: &'ast crate::GenericParam)`
 
-- `fn visit_generics(&mut self, i: &'ast crate::Generics)`
+- `fn Visit::visit_generics(&mut self, i: &'ast crate::Generics)`
 
-- `fn visit_ident(&mut self, i: &'ast proc_macro2::Ident)`
+- `fn Visit::visit_ident(&mut self, i: &'ast proc_macro2::Ident)`
 
-- `fn visit_impl_item(&mut self, i: &'ast crate::ImplItem)`
+- `fn Visit::visit_impl_item(&mut self, i: &'ast crate::ImplItem)`
 
-- `fn visit_impl_item_const(&mut self, i: &'ast crate::ImplItemConst)`
+- `fn Visit::visit_impl_item_const(&mut self, i: &'ast crate::ImplItemConst)`
 
-- `fn visit_impl_item_fn(&mut self, i: &'ast crate::ImplItemFn)`
+- `fn Visit::visit_impl_item_fn(&mut self, i: &'ast crate::ImplItemFn)`
 
-- `fn visit_impl_item_macro(&mut self, i: &'ast crate::ImplItemMacro)`
+- `fn Visit::visit_impl_item_macro(&mut self, i: &'ast crate::ImplItemMacro)`
 
-- `fn visit_impl_item_type(&mut self, i: &'ast crate::ImplItemType)`
+- `fn Visit::visit_impl_item_type(&mut self, i: &'ast crate::ImplItemType)`
 
-- `fn visit_impl_restriction(&mut self, i: &'ast crate::ImplRestriction)`
+- `fn Visit::visit_impl_restriction(&mut self, i: &'ast crate::ImplRestriction)`
 
-- `fn visit_index(&mut self, i: &'ast crate::Index)`
+- `fn Visit::visit_index(&mut self, i: &'ast crate::Index)`
 
-- `fn visit_item(&mut self, i: &'ast crate::Item)`
+- `fn Visit::visit_item(&mut self, i: &'ast crate::Item)`
 
-- `fn visit_item_const(&mut self, i: &'ast crate::ItemConst)`
+- `fn Visit::visit_item_const(&mut self, i: &'ast crate::ItemConst)`
 
-- `fn visit_item_enum(&mut self, i: &'ast crate::ItemEnum)`
+- `fn Visit::visit_item_enum(&mut self, i: &'ast crate::ItemEnum)`
 
-- `fn visit_item_extern_crate(&mut self, i: &'ast crate::ItemExternCrate)`
+- `fn Visit::visit_item_extern_crate(&mut self, i: &'ast crate::ItemExternCrate)`
 
-- `fn visit_item_fn(&mut self, i: &'ast crate::ItemFn)`
+- `fn Visit::visit_item_fn(&mut self, i: &'ast crate::ItemFn)`
 
-- `fn visit_item_foreign_mod(&mut self, i: &'ast crate::ItemForeignMod)`
+- `fn Visit::visit_item_foreign_mod(&mut self, i: &'ast crate::ItemForeignMod)`
 
-- `fn visit_item_impl(&mut self, i: &'ast crate::ItemImpl)`
+- `fn Visit::visit_item_impl(&mut self, i: &'ast crate::ItemImpl)`
 
-- `fn visit_item_macro(&mut self, i: &'ast crate::ItemMacro)`
+- `fn Visit::visit_item_macro(&mut self, i: &'ast crate::ItemMacro)`
 
-- `fn visit_item_mod(&mut self, i: &'ast crate::ItemMod)`
+- `fn Visit::visit_item_mod(&mut self, i: &'ast crate::ItemMod)`
 
-- `fn visit_item_static(&mut self, i: &'ast crate::ItemStatic)`
+- `fn Visit::visit_item_static(&mut self, i: &'ast crate::ItemStatic)`
 
-- `fn visit_item_struct(&mut self, i: &'ast crate::ItemStruct)`
+- `fn Visit::visit_item_struct(&mut self, i: &'ast crate::ItemStruct)`
 
-- `fn visit_item_trait(&mut self, i: &'ast crate::ItemTrait)`
+- `fn Visit::visit_item_trait(&mut self, i: &'ast crate::ItemTrait)`
 
-- `fn visit_item_trait_alias(&mut self, i: &'ast crate::ItemTraitAlias)`
+- `fn Visit::visit_item_trait_alias(&mut self, i: &'ast crate::ItemTraitAlias)`
 
-- `fn visit_item_type(&mut self, i: &'ast crate::ItemType)`
+- `fn Visit::visit_item_type(&mut self, i: &'ast crate::ItemType)`
 
-- `fn visit_item_union(&mut self, i: &'ast crate::ItemUnion)`
+- `fn Visit::visit_item_union(&mut self, i: &'ast crate::ItemUnion)`
 
-- `fn visit_item_use(&mut self, i: &'ast crate::ItemUse)`
+- `fn Visit::visit_item_use(&mut self, i: &'ast crate::ItemUse)`
 
-- `fn visit_label(&mut self, i: &'ast crate::Label)`
+- `fn Visit::visit_label(&mut self, i: &'ast crate::Label)`
 
-- `fn visit_lifetime(&mut self, i: &'ast crate::Lifetime)`
+- `fn Visit::visit_lifetime(&mut self, i: &'ast crate::Lifetime)`
 
-- `fn visit_lifetime_param(&mut self, i: &'ast crate::LifetimeParam)`
+- `fn Visit::visit_lifetime_param(&mut self, i: &'ast crate::LifetimeParam)`
 
-- `fn visit_lit(&mut self, i: &'ast crate::Lit)`
+- `fn Visit::visit_lit(&mut self, i: &'ast crate::Lit)`
 
-- `fn visit_lit_bool(&mut self, i: &'ast crate::LitBool)`
+- `fn Visit::visit_lit_bool(&mut self, i: &'ast crate::LitBool)`
 
-- `fn visit_lit_byte(&mut self, i: &'ast crate::LitByte)`
+- `fn Visit::visit_lit_byte(&mut self, i: &'ast crate::LitByte)`
 
-- `fn visit_lit_byte_str(&mut self, i: &'ast crate::LitByteStr)`
+- `fn Visit::visit_lit_byte_str(&mut self, i: &'ast crate::LitByteStr)`
 
-- `fn visit_lit_cstr(&mut self, i: &'ast crate::LitCStr)`
+- `fn Visit::visit_lit_cstr(&mut self, i: &'ast crate::LitCStr)`
 
-- `fn visit_lit_char(&mut self, i: &'ast crate::LitChar)`
+- `fn Visit::visit_lit_char(&mut self, i: &'ast crate::LitChar)`
 
-- `fn visit_lit_float(&mut self, i: &'ast crate::LitFloat)`
+- `fn Visit::visit_lit_float(&mut self, i: &'ast crate::LitFloat)`
 
-- `fn visit_lit_int(&mut self, i: &'ast crate::LitInt)`
+- `fn Visit::visit_lit_int(&mut self, i: &'ast crate::LitInt)`
 
-- `fn visit_lit_str(&mut self, i: &'ast crate::LitStr)`
+- `fn Visit::visit_lit_str(&mut self, i: &'ast crate::LitStr)`
 
-- `fn visit_local(&mut self, i: &'ast crate::Local)`
+- `fn Visit::visit_local(&mut self, i: &'ast crate::Local)`
 
-- `fn visit_local_init(&mut self, i: &'ast crate::LocalInit)`
+- `fn Visit::visit_local_init(&mut self, i: &'ast crate::LocalInit)`
 
-- `fn visit_macro(&mut self, i: &'ast crate::Macro)`
+- `fn Visit::visit_macro(&mut self, i: &'ast crate::Macro)`
 
-- `fn visit_macro_delimiter(&mut self, i: &'ast crate::MacroDelimiter)`
+- `fn Visit::visit_macro_delimiter(&mut self, i: &'ast crate::MacroDelimiter)`
 
-- `fn visit_member(&mut self, i: &'ast crate::Member)`
+- `fn Visit::visit_member(&mut self, i: &'ast crate::Member)`
 
-- `fn visit_meta(&mut self, i: &'ast crate::Meta)`
+- `fn Visit::visit_meta(&mut self, i: &'ast crate::Meta)`
 
-- `fn visit_meta_list(&mut self, i: &'ast crate::MetaList)`
+- `fn Visit::visit_meta_list(&mut self, i: &'ast crate::MetaList)`
 
-- `fn visit_meta_name_value(&mut self, i: &'ast crate::MetaNameValue)`
+- `fn Visit::visit_meta_name_value(&mut self, i: &'ast crate::MetaNameValue)`
 
-- `fn visit_parenthesized_generic_arguments(&mut self, i: &'ast crate::ParenthesizedGenericArguments)`
+- `fn Visit::visit_parenthesized_generic_arguments(&mut self, i: &'ast crate::ParenthesizedGenericArguments)`
 
-- `fn visit_pat(&mut self, i: &'ast crate::Pat)`
+- `fn Visit::visit_pat(&mut self, i: &'ast crate::Pat)`
 
-- `fn visit_pat_ident(&mut self, i: &'ast crate::PatIdent)`
+- `fn Visit::visit_pat_ident(&mut self, i: &'ast crate::PatIdent)`
 
-- `fn visit_pat_or(&mut self, i: &'ast crate::PatOr)`
+- `fn Visit::visit_pat_or(&mut self, i: &'ast crate::PatOr)`
 
-- `fn visit_pat_paren(&mut self, i: &'ast crate::PatParen)`
+- `fn Visit::visit_pat_paren(&mut self, i: &'ast crate::PatParen)`
 
-- `fn visit_pat_reference(&mut self, i: &'ast crate::PatReference)`
+- `fn Visit::visit_pat_reference(&mut self, i: &'ast crate::PatReference)`
 
-- `fn visit_pat_rest(&mut self, i: &'ast crate::PatRest)`
+- `fn Visit::visit_pat_rest(&mut self, i: &'ast crate::PatRest)`
 
-- `fn visit_pat_slice(&mut self, i: &'ast crate::PatSlice)`
+- `fn Visit::visit_pat_slice(&mut self, i: &'ast crate::PatSlice)`
 
-- `fn visit_pat_struct(&mut self, i: &'ast crate::PatStruct)`
+- `fn Visit::visit_pat_struct(&mut self, i: &'ast crate::PatStruct)`
 
-- `fn visit_pat_tuple(&mut self, i: &'ast crate::PatTuple)`
+- `fn Visit::visit_pat_tuple(&mut self, i: &'ast crate::PatTuple)`
 
-- `fn visit_pat_tuple_struct(&mut self, i: &'ast crate::PatTupleStruct)`
+- `fn Visit::visit_pat_tuple_struct(&mut self, i: &'ast crate::PatTupleStruct)`
 
-- `fn visit_pat_type(&mut self, i: &'ast crate::PatType)`
+- `fn Visit::visit_pat_type(&mut self, i: &'ast crate::PatType)`
 
-- `fn visit_pat_wild(&mut self, i: &'ast crate::PatWild)`
+- `fn Visit::visit_pat_wild(&mut self, i: &'ast crate::PatWild)`
 
-- `fn visit_path(&mut self, i: &'ast crate::Path)`
+- `fn Visit::visit_path(&mut self, i: &'ast crate::Path)`
 
-- `fn visit_path_arguments(&mut self, i: &'ast crate::PathArguments)`
+- `fn Visit::visit_path_arguments(&mut self, i: &'ast crate::PathArguments)`
 
-- `fn visit_path_segment(&mut self, i: &'ast crate::PathSegment)`
+- `fn Visit::visit_path_segment(&mut self, i: &'ast crate::PathSegment)`
 
-- `fn visit_pointer_mutability(&mut self, i: &'ast crate::PointerMutability)`
+- `fn Visit::visit_pointer_mutability(&mut self, i: &'ast crate::PointerMutability)`
 
-- `fn visit_precise_capture(&mut self, i: &'ast crate::PreciseCapture)`
+- `fn Visit::visit_precise_capture(&mut self, i: &'ast crate::PreciseCapture)`
 
-- `fn visit_predicate_lifetime(&mut self, i: &'ast crate::PredicateLifetime)`
+- `fn Visit::visit_predicate_lifetime(&mut self, i: &'ast crate::PredicateLifetime)`
 
-- `fn visit_predicate_type(&mut self, i: &'ast crate::PredicateType)`
+- `fn Visit::visit_predicate_type(&mut self, i: &'ast crate::PredicateType)`
 
-- `fn visit_qself(&mut self, i: &'ast crate::QSelf)`
+- `fn Visit::visit_qself(&mut self, i: &'ast crate::QSelf)`
 
-- `fn visit_range_limits(&mut self, i: &'ast crate::RangeLimits)`
+- `fn Visit::visit_range_limits(&mut self, i: &'ast crate::RangeLimits)`
 
-- `fn visit_receiver(&mut self, i: &'ast crate::Receiver)`
+- `fn Visit::visit_receiver(&mut self, i: &'ast crate::Receiver)`
 
-- `fn visit_return_type(&mut self, i: &'ast crate::ReturnType)`
+- `fn Visit::visit_return_type(&mut self, i: &'ast crate::ReturnType)`
 
-- `fn visit_signature(&mut self, i: &'ast crate::Signature)`
+- `fn Visit::visit_signature(&mut self, i: &'ast crate::Signature)`
 
-- `fn visit_span(&mut self, i: &proc_macro2::Span)`
+- `fn Visit::visit_span(&mut self, i: &proc_macro2::Span)`
 
-- `fn visit_static_mutability(&mut self, i: &'ast crate::StaticMutability)`
+- `fn Visit::visit_static_mutability(&mut self, i: &'ast crate::StaticMutability)`
 
-- `fn visit_stmt(&mut self, i: &'ast crate::Stmt)`
+- `fn Visit::visit_stmt(&mut self, i: &'ast crate::Stmt)`
 
-- `fn visit_stmt_macro(&mut self, i: &'ast crate::StmtMacro)`
+- `fn Visit::visit_stmt_macro(&mut self, i: &'ast crate::StmtMacro)`
 
-- `fn visit_token_stream(&mut self, i: &'ast proc_macro2::TokenStream)`
+- `fn Visit::visit_token_stream(&mut self, i: &'ast proc_macro2::TokenStream)`
 
-- `fn visit_trait_bound(&mut self, i: &'ast crate::TraitBound)`
+- `fn Visit::visit_trait_bound(&mut self, i: &'ast crate::TraitBound)`
 
-- `fn visit_trait_bound_modifier(&mut self, i: &'ast crate::TraitBoundModifier)`
+- `fn Visit::visit_trait_bound_modifier(&mut self, i: &'ast crate::TraitBoundModifier)`
 
-- `fn visit_trait_item(&mut self, i: &'ast crate::TraitItem)`
+- `fn Visit::visit_trait_item(&mut self, i: &'ast crate::TraitItem)`
 
-- `fn visit_trait_item_const(&mut self, i: &'ast crate::TraitItemConst)`
+- `fn Visit::visit_trait_item_const(&mut self, i: &'ast crate::TraitItemConst)`
 
-- `fn visit_trait_item_fn(&mut self, i: &'ast crate::TraitItemFn)`
+- `fn Visit::visit_trait_item_fn(&mut self, i: &'ast crate::TraitItemFn)`
 
-- `fn visit_trait_item_macro(&mut self, i: &'ast crate::TraitItemMacro)`
+- `fn Visit::visit_trait_item_macro(&mut self, i: &'ast crate::TraitItemMacro)`
 
-- `fn visit_trait_item_type(&mut self, i: &'ast crate::TraitItemType)`
+- `fn Visit::visit_trait_item_type(&mut self, i: &'ast crate::TraitItemType)`
 
-- `fn visit_type(&mut self, i: &'ast crate::Type)`
+- `fn Visit::visit_type(&mut self, i: &'ast crate::Type)`
 
-- `fn visit_type_array(&mut self, i: &'ast crate::TypeArray)`
+- `fn Visit::visit_type_array(&mut self, i: &'ast crate::TypeArray)`
 
-- `fn visit_type_bare_fn(&mut self, i: &'ast crate::TypeBareFn)`
+- `fn Visit::visit_type_bare_fn(&mut self, i: &'ast crate::TypeBareFn)`
 
-- `fn visit_type_group(&mut self, i: &'ast crate::TypeGroup)`
+- `fn Visit::visit_type_group(&mut self, i: &'ast crate::TypeGroup)`
 
-- `fn visit_type_impl_trait(&mut self, i: &'ast crate::TypeImplTrait)`
+- `fn Visit::visit_type_impl_trait(&mut self, i: &'ast crate::TypeImplTrait)`
 
-- `fn visit_type_infer(&mut self, i: &'ast crate::TypeInfer)`
+- `fn Visit::visit_type_infer(&mut self, i: &'ast crate::TypeInfer)`
 
-- `fn visit_type_macro(&mut self, i: &'ast crate::TypeMacro)`
+- `fn Visit::visit_type_macro(&mut self, i: &'ast crate::TypeMacro)`
 
-- `fn visit_type_never(&mut self, i: &'ast crate::TypeNever)`
+- `fn Visit::visit_type_never(&mut self, i: &'ast crate::TypeNever)`
 
-- `fn visit_type_param(&mut self, i: &'ast crate::TypeParam)`
+- `fn Visit::visit_type_param(&mut self, i: &'ast crate::TypeParam)`
 
-- `fn visit_type_param_bound(&mut self, i: &'ast crate::TypeParamBound)`
+- `fn Visit::visit_type_param_bound(&mut self, i: &'ast crate::TypeParamBound)`
 
-- `fn visit_type_paren(&mut self, i: &'ast crate::TypeParen)`
+- `fn Visit::visit_type_paren(&mut self, i: &'ast crate::TypeParen)`
 
-- `fn visit_type_path(&mut self, i: &'ast crate::TypePath)`
+- `fn Visit::visit_type_path(&mut self, i: &'ast crate::TypePath)`
 
-- `fn visit_type_ptr(&mut self, i: &'ast crate::TypePtr)`
+- `fn Visit::visit_type_ptr(&mut self, i: &'ast crate::TypePtr)`
 
-- `fn visit_type_reference(&mut self, i: &'ast crate::TypeReference)`
+- `fn Visit::visit_type_reference(&mut self, i: &'ast crate::TypeReference)`
 
-- `fn visit_type_slice(&mut self, i: &'ast crate::TypeSlice)`
+- `fn Visit::visit_type_slice(&mut self, i: &'ast crate::TypeSlice)`
 
-- `fn visit_type_trait_object(&mut self, i: &'ast crate::TypeTraitObject)`
+- `fn Visit::visit_type_trait_object(&mut self, i: &'ast crate::TypeTraitObject)`
 
-- `fn visit_type_tuple(&mut self, i: &'ast crate::TypeTuple)`
+- `fn Visit::visit_type_tuple(&mut self, i: &'ast crate::TypeTuple)`
 
-- `fn visit_un_op(&mut self, i: &'ast crate::UnOp)`
+- `fn Visit::visit_un_op(&mut self, i: &'ast crate::UnOp)`
 
-- `fn visit_use_glob(&mut self, i: &'ast crate::UseGlob)`
+- `fn Visit::visit_use_glob(&mut self, i: &'ast crate::UseGlob)`
 
-- `fn visit_use_group(&mut self, i: &'ast crate::UseGroup)`
+- `fn Visit::visit_use_group(&mut self, i: &'ast crate::UseGroup)`
 
-- `fn visit_use_name(&mut self, i: &'ast crate::UseName)`
+- `fn Visit::visit_use_name(&mut self, i: &'ast crate::UseName)`
 
-- `fn visit_use_path(&mut self, i: &'ast crate::UsePath)`
+- `fn Visit::visit_use_path(&mut self, i: &'ast crate::UsePath)`
 
-- `fn visit_use_rename(&mut self, i: &'ast crate::UseRename)`
+- `fn Visit::visit_use_rename(&mut self, i: &'ast crate::UseRename)`
 
-- `fn visit_use_tree(&mut self, i: &'ast crate::UseTree)`
+- `fn Visit::visit_use_tree(&mut self, i: &'ast crate::UseTree)`
 
-- `fn visit_variadic(&mut self, i: &'ast crate::Variadic)`
+- `fn Visit::visit_variadic(&mut self, i: &'ast crate::Variadic)`
 
-- `fn visit_variant(&mut self, i: &'ast crate::Variant)`
+- `fn Visit::visit_variant(&mut self, i: &'ast crate::Variant)`
 
-- `fn visit_vis_restricted(&mut self, i: &'ast crate::VisRestricted)`
+- `fn Visit::visit_vis_restricted(&mut self, i: &'ast crate::VisRestricted)`
 
-- `fn visit_visibility(&mut self, i: &'ast crate::Visibility)`
+- `fn Visit::visit_visibility(&mut self, i: &'ast crate::Visibility)`
 
-- `fn visit_where_clause(&mut self, i: &'ast crate::WhereClause)`
+- `fn Visit::visit_where_clause(&mut self, i: &'ast crate::WhereClause)`
 
-- `fn visit_where_predicate(&mut self, i: &'ast crate::WherePredicate)`
+- `fn Visit::visit_where_predicate(&mut self, i: &'ast crate::WherePredicate)`
 
 ## Functions
 
@@ -911,7 +1106,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:948-956`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L948-L956)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:948-956`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L948-L956)*
 
 ### `visit_angle_bracketed_generic_arguments`
 
@@ -921,7 +1116,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:959-973`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L959-L973)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:959-973`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L959-L973)*
 
 ### `visit_arm`
 
@@ -931,7 +1126,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:976-991`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L976-L991)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:976-991`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L976-L991)*
 
 ### `visit_assoc_const`
 
@@ -941,7 +1136,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:994-1004`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L994-L1004)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:994-1004`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L994-L1004)*
 
 ### `visit_assoc_type`
 
@@ -951,7 +1146,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1007-1017`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1007-L1017)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1007-1017`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1007-L1017)*
 
 ### `visit_attr_style`
 
@@ -961,7 +1156,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1020-1030`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1020-L1030)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1020-1030`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1020-L1030)*
 
 ### `visit_attribute`
 
@@ -971,7 +1166,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1033-1041`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1033-L1041)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1033-1041`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1033-L1041)*
 
 ### `visit_bare_fn_arg`
 
@@ -981,7 +1176,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1044-1056`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1044-L1056)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1044-1056`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1044-L1056)*
 
 ### `visit_bare_variadic`
 
@@ -991,7 +1186,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1059-1072`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1059-L1072)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1059-1072`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1059-L1072)*
 
 ### `visit_bin_op`
 
@@ -1001,7 +1196,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1075-1165`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1075-L1165)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1075-1165`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1075-L1165)*
 
 ### `visit_block`
 
@@ -1011,7 +1206,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1168-1176`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1168-L1176)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1168-1176`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1168-L1176)*
 
 ### `visit_bound_lifetimes`
 
@@ -1021,7 +1216,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1179-1190`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1179-L1190)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1179-1190`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1179-L1190)*
 
 ### `visit_captured_param`
 
@@ -1031,7 +1226,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1193-1205`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1193-L1205)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1193-1205`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1193-L1205)*
 
 ### `visit_const_param`
 
@@ -1041,7 +1236,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1208-1223`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1208-L1223)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1208-1223`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1208-L1223)*
 
 ### `visit_constraint`
 
@@ -1051,7 +1246,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1226-1239`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1226-L1239)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1226-1239`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1226-L1239)*
 
 ### `visit_data`
 
@@ -1061,7 +1256,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1242-1257`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1242-L1257)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1242-1257`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1242-L1257)*
 
 ### `visit_data_enum`
 
@@ -1071,7 +1266,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1260-1270`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1260-L1270)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1260-1270`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1260-L1270)*
 
 ### `visit_data_struct`
 
@@ -1081,7 +1276,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1273-1280`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1273-L1280)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1273-1280`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1273-L1280)*
 
 ### `visit_data_union`
 
@@ -1091,7 +1286,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1283-1289`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1283-L1289)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1283-1289`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1283-L1289)*
 
 ### `visit_derive_input`
 
@@ -1101,7 +1296,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1292-1303`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1292-L1303)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1292-1303`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1292-L1303)*
 
 ### `visit_expr`
 
@@ -1111,7 +1306,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1306-1432`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1306-L1432)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1306-1432`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1306-L1432)*
 
 ### `visit_expr_array`
 
@@ -1121,7 +1316,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1435-1447`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1435-L1447)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1435-1447`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1435-L1447)*
 
 ### `visit_expr_assign`
 
@@ -1131,7 +1326,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1450-1460`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1450-L1460)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1450-1460`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1450-L1460)*
 
 ### `visit_expr_async`
 
@@ -1141,7 +1336,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1463-1473`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1463-L1473)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1463-1473`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1463-L1473)*
 
 ### `visit_expr_await`
 
@@ -1151,7 +1346,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1476-1486`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1476-L1486)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1476-1486`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1476-L1486)*
 
 ### `visit_expr_binary`
 
@@ -1161,7 +1356,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1489-1499`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1489-L1499)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1489-1499`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1489-L1499)*
 
 ### `visit_expr_block`
 
@@ -1171,7 +1366,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1502-1513`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1502-L1513)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1502-1513`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1502-L1513)*
 
 ### `visit_expr_break`
 
@@ -1181,7 +1376,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1516-1530`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1516-L1530)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1516-1530`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1516-L1530)*
 
 ### `visit_expr_call`
 
@@ -1191,7 +1386,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1533-1546`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1533-L1546)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1533-1546`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1533-L1546)*
 
 ### `visit_expr_cast`
 
@@ -1201,7 +1396,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1549-1559`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1549-L1559)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1549-1559`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1549-L1559)*
 
 ### `visit_expr_closure`
 
@@ -1211,7 +1406,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1562-1584`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1562-L1584)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1562-1584`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1562-L1584)*
 
 ### `visit_expr_const`
 
@@ -1221,7 +1416,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1587-1596`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1587-L1596)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1587-1596`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1587-L1596)*
 
 ### `visit_expr_continue`
 
@@ -1231,7 +1426,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1599-1610`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1599-L1610)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1599-1610`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1599-L1610)*
 
 ### `visit_expr_field`
 
@@ -1241,7 +1436,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1613-1623`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1613-L1623)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1613-1623`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1613-L1623)*
 
 ### `visit_expr_for_loop`
 
@@ -1251,7 +1446,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1626-1641`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1626-L1641)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1626-1641`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1626-L1641)*
 
 ### `visit_expr_group`
 
@@ -1261,7 +1456,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1644-1653`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1644-L1653)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1644-1653`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1644-L1653)*
 
 ### `visit_expr_if`
 
@@ -1271,7 +1466,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1656-1670`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1656-L1670)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1656-1670`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1656-L1670)*
 
 ### `visit_expr_index`
 
@@ -1281,7 +1476,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1673-1683`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1673-L1683)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1673-1683`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1673-L1683)*
 
 ### `visit_expr_infer`
 
@@ -1291,7 +1486,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1686-1694`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1686-L1694)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1686-1694`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1686-L1694)*
 
 ### `visit_expr_let`
 
@@ -1301,7 +1496,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1697-1708`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1697-L1708)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1697-1708`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1697-L1708)*
 
 ### `visit_expr_lit`
 
@@ -1311,7 +1506,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1711-1719`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1711-L1719)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1711-1719`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1711-L1719)*
 
 ### `visit_expr_loop`
 
@@ -1321,7 +1516,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1722-1734`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1722-L1734)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1722-1734`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1722-L1734)*
 
 ### `visit_expr_macro`
 
@@ -1331,7 +1526,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1737-1745`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1737-L1745)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1737-1745`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1737-L1745)*
 
 ### `visit_expr_match`
 
@@ -1341,7 +1536,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1748-1761`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1748-L1761)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1748-1761`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1748-L1761)*
 
 ### `visit_expr_method_call`
 
@@ -1351,7 +1546,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1764-1782`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1764-L1782)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1764-1782`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1764-L1782)*
 
 ### `visit_expr_paren`
 
@@ -1361,7 +1556,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1785-1794`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1785-L1794)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1785-1794`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1785-L1794)*
 
 ### `visit_expr_path`
 
@@ -1371,7 +1566,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1797-1808`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1797-L1808)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1797-1808`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1797-L1808)*
 
 ### `visit_expr_range`
 
@@ -1381,7 +1576,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1811-1825`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1811-L1825)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1811-1825`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1811-L1825)*
 
 ### `visit_expr_raw_addr`
 
@@ -1391,7 +1586,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1828-1839`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1828-L1839)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1828-1839`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1828-L1839)*
 
 ### `visit_expr_reference`
 
@@ -1401,7 +1596,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1842-1852`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1842-L1852)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1842-1852`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1842-L1852)*
 
 ### `visit_expr_repeat`
 
@@ -1411,7 +1606,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1855-1866`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1855-L1866)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1855-1866`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1855-L1866)*
 
 ### `visit_expr_return`
 
@@ -1421,7 +1616,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1869-1880`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1869-L1880)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1869-1880`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1869-L1880)*
 
 ### `visit_expr_struct`
 
@@ -1431,7 +1626,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1883-1903`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1883-L1903)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1883-1903`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1883-L1903)*
 
 ### `visit_expr_try`
 
@@ -1441,7 +1636,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1906-1915`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1906-L1915)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1906-1915`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1906-L1915)*
 
 ### `visit_expr_try_block`
 
@@ -1451,7 +1646,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1918-1927`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1918-L1927)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1918-1927`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1918-L1927)*
 
 ### `visit_expr_tuple`
 
@@ -1461,7 +1656,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1930-1942`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1930-L1942)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1930-1942`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1930-L1942)*
 
 ### `visit_expr_unary`
 
@@ -1471,7 +1666,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1945-1954`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1945-L1954)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1945-1954`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1945-L1954)*
 
 ### `visit_expr_unsafe`
 
@@ -1481,7 +1676,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1957-1966`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1957-L1966)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1957-1966`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1957-L1966)*
 
 ### `visit_expr_while`
 
@@ -1491,7 +1686,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1969-1982`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1969-L1982)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1969-1982`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1969-L1982)*
 
 ### `visit_expr_yield`
 
@@ -1501,7 +1696,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1985-1996`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1985-L1996)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1985-1996`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1985-L1996)*
 
 ### `visit_field`
 
@@ -1511,7 +1706,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:1999-2013`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L1999-L2013)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:1999-2013`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L1999-L2013)*
 
 ### `visit_field_mutability`
 
@@ -1521,7 +1716,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2016-2023`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2016-L2023)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2016-2023`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2016-L2023)*
 
 ### `visit_field_pat`
 
@@ -1531,7 +1726,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2026-2036`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2026-L2036)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2026-2036`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2026-L2036)*
 
 ### `visit_field_value`
 
@@ -1541,7 +1736,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2039-2049`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2039-L2049)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2039-2049`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2039-L2049)*
 
 ### `visit_fields`
 
@@ -1551,7 +1746,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2052-2065`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2052-L2065)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2052-2065`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2052-L2065)*
 
 ### `visit_fields_named`
 
@@ -1561,7 +1756,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2068-2077`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2068-L2077)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2068-2077`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2068-L2077)*
 
 ### `visit_fields_unnamed`
 
@@ -1571,7 +1766,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2080-2089`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2080-L2089)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2080-2089`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2080-L2089)*
 
 ### `visit_file`
 
@@ -1581,7 +1776,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2092-2103`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2092-L2103)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2092-2103`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2092-L2103)*
 
 ### `visit_fn_arg`
 
@@ -1591,7 +1786,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2106-2118`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2106-L2118)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2106-2118`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2106-L2118)*
 
 ### `visit_foreign_item`
 
@@ -1601,7 +1796,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2121-2142`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2121-L2142)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2121-2142`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2121-L2142)*
 
 ### `visit_foreign_item_fn`
 
@@ -1611,7 +1806,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2145-2155`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2145-L2155)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2145-2155`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2145-L2155)*
 
 ### `visit_foreign_item_macro`
 
@@ -1621,7 +1816,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2158-2167`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2158-L2167)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2158-2167`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2158-L2167)*
 
 ### `visit_foreign_item_static`
 
@@ -1631,7 +1826,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2170-2187`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2170-L2187)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2170-2187`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2170-L2187)*
 
 ### `visit_foreign_item_type`
 
@@ -1641,7 +1836,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2190-2202`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2190-L2202)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2190-2202`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2190-L2202)*
 
 ### `visit_generic_argument`
 
@@ -1651,7 +1846,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2205-2229`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2205-L2229)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2205-2229`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2205-L2229)*
 
 ### `visit_generic_param`
 
@@ -1661,7 +1856,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2232-2247`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2232-L2247)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2232-2247`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2232-L2247)*
 
 ### `visit_generics`
 
@@ -1671,7 +1866,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2250-2263`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2250-L2263)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2250-2263`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2250-L2263)*
 
 ### `visit_ident`
 
@@ -1681,7 +1876,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2264-2269`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2264-L2269)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2264-2269`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2264-L2269)*
 
 ### `visit_impl_item`
 
@@ -1691,7 +1886,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2272-2293`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2272-L2293)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2272-2293`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2272-L2293)*
 
 ### `visit_impl_item_const`
 
@@ -1701,7 +1896,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2296-2313`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2296-L2313)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2296-2313`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2296-L2313)*
 
 ### `visit_impl_item_fn`
 
@@ -1711,7 +1906,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2316-2327`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2316-L2327)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2316-2327`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2316-L2327)*
 
 ### `visit_impl_item_macro`
 
@@ -1721,7 +1916,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2330-2339`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2330-L2339)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2330-2339`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2330-L2339)*
 
 ### `visit_impl_item_type`
 
@@ -1731,7 +1926,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2342-2357`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2342-L2357)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2342-2357`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2342-L2357)*
 
 ### `visit_impl_restriction`
 
@@ -1741,7 +1936,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2360-2365`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2360-L2365)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2360-2365`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2360-L2365)*
 
 ### `visit_index`
 
@@ -1751,7 +1946,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2368-2374`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2368-L2374)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2368-2374`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2368-L2374)*
 
 ### `visit_item`
 
@@ -1761,7 +1956,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2377-2431`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2377-L2431)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2377-2431`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2377-L2431)*
 
 ### `visit_item_const`
 
@@ -1771,7 +1966,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2434-2450`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2434-L2450)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2434-2450`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2434-L2450)*
 
 ### `visit_item_enum`
 
@@ -1781,7 +1976,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2453-2469`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2453-L2469)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2453-2469`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2453-L2469)*
 
 ### `visit_item_extern_crate`
 
@@ -1791,7 +1986,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2472-2488`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2472-L2488)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2472-2488`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2472-L2488)*
 
 ### `visit_item_fn`
 
@@ -1801,7 +1996,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2491-2501`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2491-L2501)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2491-2501`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2491-L2501)*
 
 ### `visit_item_foreign_mod`
 
@@ -1811,7 +2006,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2504-2517`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2504-L2517)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2504-2517`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2504-L2517)*
 
 ### `visit_item_impl`
 
@@ -1821,7 +2016,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2520-2541`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2520-L2541)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2520-2541`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2520-L2541)*
 
 ### `visit_item_macro`
 
@@ -1831,7 +2026,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2544-2556`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2544-L2556)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2544-2556`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2544-L2556)*
 
 ### `visit_item_mod`
 
@@ -1841,7 +2036,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2559-2577`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2559-L2577)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2559-2577`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2559-L2577)*
 
 ### `visit_item_static`
 
@@ -1851,7 +2046,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2580-2596`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2580-L2596)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2580-2596`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2580-L2596)*
 
 ### `visit_item_struct`
 
@@ -1861,7 +2056,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2599-2612`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2599-L2612)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2599-2612`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2599-L2612)*
 
 ### `visit_item_trait`
 
@@ -1871,7 +2066,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2615-2640`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2615-L2640)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2615-2640`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2615-L2640)*
 
 ### `visit_item_trait_alias`
 
@@ -1881,7 +2076,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2643-2660`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2643-L2660)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2643-2660`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2643-L2660)*
 
 ### `visit_item_type`
 
@@ -1891,7 +2086,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2663-2677`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2663-L2677)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2663-2677`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2663-L2677)*
 
 ### `visit_item_union`
 
@@ -1901,7 +2096,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2680-2692`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2680-L2692)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2680-2692`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2680-L2692)*
 
 ### `visit_item_use`
 
@@ -1911,7 +2106,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2695-2707`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2695-L2707)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2695-2707`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2695-L2707)*
 
 ### `visit_label`
 
@@ -1921,7 +2116,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2710-2716`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2710-L2716)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2710-2716`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2710-L2716)*
 
 ### `visit_lifetime`
 
@@ -1931,7 +2126,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2717-2723`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2717-L2723)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2717-2723`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2717-L2723)*
 
 ### `visit_lifetime_param`
 
@@ -1941,7 +2136,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2726-2739`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2726-L2739)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2726-2739`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2726-L2739)*
 
 ### `visit_lit`
 
@@ -1951,7 +2146,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2740-2773`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2740-L2773)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2740-2773`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2740-L2773)*
 
 ### `visit_lit_bool`
 
@@ -1961,7 +2156,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2774-2780`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2774-L2780)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2774-2780`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2774-L2780)*
 
 ### `visit_lit_byte`
 
@@ -1971,7 +2166,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2781-2784`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2781-L2784)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2781-2784`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2781-L2784)*
 
 ### `visit_lit_byte_str`
 
@@ -1981,7 +2176,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2785-2788`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2785-L2788)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2785-2788`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2785-L2788)*
 
 ### `visit_lit_cstr`
 
@@ -1991,7 +2186,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2789-2792`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2789-L2792)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2789-2792`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2789-L2792)*
 
 ### `visit_lit_char`
 
@@ -2001,7 +2196,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2793-2796`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2793-L2796)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2793-2796`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2793-L2796)*
 
 ### `visit_lit_float`
 
@@ -2011,7 +2206,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2797-2800`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2797-L2800)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2797-2800`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2797-L2800)*
 
 ### `visit_lit_int`
 
@@ -2021,7 +2216,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2801-2804`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2801-L2804)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2801-2804`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2801-L2804)*
 
 ### `visit_lit_str`
 
@@ -2031,7 +2226,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2805-2808`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2805-L2808)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2805-2808`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2805-L2808)*
 
 ### `visit_local`
 
@@ -2041,7 +2236,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2811-2824`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2811-L2824)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2811-2824`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2811-L2824)*
 
 ### `visit_local_init`
 
@@ -2051,7 +2246,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2827-2837`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2827-L2837)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2827-2837`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2827-L2837)*
 
 ### `visit_macro`
 
@@ -2061,7 +2256,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2840-2848`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2840-L2848)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2840-2848`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2840-L2848)*
 
 ### `visit_macro_delimiter`
 
@@ -2071,7 +2266,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2851-2866`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2851-L2866)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2851-2866`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2851-L2866)*
 
 ### `visit_member`
 
@@ -2081,7 +2276,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2869-2881`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2869-L2881)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2869-2881`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2869-L2881)*
 
 ### `visit_meta`
 
@@ -2091,7 +2286,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2884-2899`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2884-L2899)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2884-2899`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2884-L2899)*
 
 ### `visit_meta_list`
 
@@ -2101,7 +2296,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2902-2909`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2902-L2909)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2902-2909`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2902-L2909)*
 
 ### `visit_meta_name_value`
 
@@ -2111,7 +2306,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2912-2919`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2912-L2919)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2912-2919`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2912-L2919)*
 
 ### `visit_parenthesized_generic_arguments`
 
@@ -2121,7 +2316,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2922-2935`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2922-L2935)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2922-2935`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2922-L2935)*
 
 ### `visit_pat`
 
@@ -2131,7 +2326,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2938-2995`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2938-L2995)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2938-2995`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2938-L2995)*
 
 ### `visit_pat_ident`
 
@@ -2141,7 +2336,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:2998-3012`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L2998-L3012)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:2998-3012`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L2998-L3012)*
 
 ### `visit_pat_or`
 
@@ -2151,7 +2346,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3015-3027`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3015-L3027)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3015-3027`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3015-L3027)*
 
 ### `visit_pat_paren`
 
@@ -2161,7 +2356,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3030-3039`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3030-L3039)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3030-3039`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3030-L3039)*
 
 ### `visit_pat_reference`
 
@@ -2171,7 +2366,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3042-3052`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3042-L3052)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3042-3052`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3042-L3052)*
 
 ### `visit_pat_rest`
 
@@ -2181,7 +2376,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3055-3063`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3055-L3063)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3055-3063`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3055-L3063)*
 
 ### `visit_pat_slice`
 
@@ -2191,7 +2386,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3066-3078`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3066-L3078)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3066-3078`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3066-L3078)*
 
 ### `visit_pat_struct`
 
@@ -2201,7 +2396,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3081-3100`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3081-L3100)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3081-3100`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3081-L3100)*
 
 ### `visit_pat_tuple`
 
@@ -2211,7 +2406,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3103-3115`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3103-L3115)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3103-3115`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3103-L3115)*
 
 ### `visit_pat_tuple_struct`
 
@@ -2221,7 +2416,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3118-3134`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3118-L3134)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3118-3134`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3118-L3134)*
 
 ### `visit_pat_type`
 
@@ -2231,7 +2426,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3137-3147`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3137-L3147)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3137-3147`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3137-L3147)*
 
 ### `visit_pat_wild`
 
@@ -2241,7 +2436,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3150-3158`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3150-L3158)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3150-3158`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3150-L3158)*
 
 ### `visit_path`
 
@@ -2251,7 +2446,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3161-3170`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3161-L3170)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3161-3170`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3161-L3170)*
 
 ### `visit_path_arguments`
 
@@ -2261,7 +2456,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3173-3186`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3173-L3186)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3173-3186`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3173-L3186)*
 
 ### `visit_path_segment`
 
@@ -2271,7 +2466,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3189-3195`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3189-L3195)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3189-3195`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3189-L3195)*
 
 ### `visit_pointer_mutability`
 
@@ -2281,7 +2476,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3198-3210`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3198-L3210)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3198-3210`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3198-L3210)*
 
 ### `visit_precise_capture`
 
@@ -2291,7 +2486,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3213-3224`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3213-L3224)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3213-3224`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3213-L3224)*
 
 ### `visit_predicate_lifetime`
 
@@ -2301,7 +2496,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3227-3237`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3227-L3237)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3227-3237`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3227-L3237)*
 
 ### `visit_predicate_type`
 
@@ -2311,7 +2506,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3240-3253`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3240-L3253)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3240-3253`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3240-L3253)*
 
 ### `visit_qself`
 
@@ -2321,7 +2516,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3256-3265`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3256-L3265)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3256-3265`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3256-L3265)*
 
 ### `visit_range_limits`
 
@@ -2331,7 +2526,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3268-3280`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3268-L3280)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3268-3280`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3268-L3280)*
 
 ### `visit_receiver`
 
@@ -2341,7 +2536,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3283-3300`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3283-L3300)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3283-3300`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3283-L3300)*
 
 ### `visit_return_type`
 
@@ -2351,7 +2546,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3303-3314`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3303-L3314)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3303-3314`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3303-L3314)*
 
 ### `visit_signature`
 
@@ -2361,7 +2556,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3317-3339`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3317-L3339)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3317-3339`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3317-L3339)*
 
 ### `visit_span`
 
@@ -2371,7 +2566,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3340-3343`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3340-L3343)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3340-3343`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3340-L3343)*
 
 ### `visit_static_mutability`
 
@@ -2381,7 +2576,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3346-3356`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3346-L3356)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3346-3356`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3346-L3356)*
 
 ### `visit_stmt`
 
@@ -2391,7 +2586,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3359-3378`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3359-L3378)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3359-3378`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3359-L3378)*
 
 ### `visit_stmt_macro`
 
@@ -2401,7 +2596,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3381-3390`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3381-L3390)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3381-3390`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3381-L3390)*
 
 ### `visit_trait_bound`
 
@@ -2411,7 +2606,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3393-3403`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3393-L3403)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3393-3403`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3393-L3403)*
 
 ### `visit_trait_bound_modifier`
 
@@ -2421,7 +2616,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3406-3419`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3406-L3419)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3406-3419`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3406-L3419)*
 
 ### `visit_trait_item`
 
@@ -2431,7 +2626,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3422-3443`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3422-L3443)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3422-3443`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3422-L3443)*
 
 ### `visit_trait_item_const`
 
@@ -2441,7 +2636,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3446-3463`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3446-L3463)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3446-3463`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3446-L3463)*
 
 ### `visit_trait_item_fn`
 
@@ -2451,7 +2646,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3466-3478`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3466-L3478)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3466-3478`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3466-L3478)*
 
 ### `visit_trait_item_macro`
 
@@ -2461,7 +2656,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3481-3490`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3481-L3490)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3481-3490`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3481-L3490)*
 
 ### `visit_trait_item_type`
 
@@ -2471,7 +2666,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3493-3513`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3493-L3513)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3493-3513`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3493-L3513)*
 
 ### `visit_type`
 
@@ -2481,7 +2676,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3516-3567`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3516-L3567)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3516-3567`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3516-L3567)*
 
 ### `visit_type_array`
 
@@ -2491,7 +2686,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3570-3578`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3570-L3578)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3570-3578`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3570-L3578)*
 
 ### `visit_type_bare_fn`
 
@@ -2501,7 +2696,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3581-3602`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3581-L3602)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3581-3602`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3581-L3602)*
 
 ### `visit_type_group`
 
@@ -2511,7 +2706,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3605-3611`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3605-L3611)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3605-3611`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3605-L3611)*
 
 ### `visit_type_impl_trait`
 
@@ -2521,7 +2716,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3614-3623`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3614-L3623)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3614-3623`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3614-L3623)*
 
 ### `visit_type_infer`
 
@@ -2531,7 +2726,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3626-3631`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3626-L3631)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3626-3631`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3626-L3631)*
 
 ### `visit_type_macro`
 
@@ -2541,7 +2736,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3634-3639`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3634-L3639)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3634-3639`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3634-L3639)*
 
 ### `visit_type_never`
 
@@ -2551,7 +2746,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3642-3647`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3642-L3647)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3642-3647`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3642-L3647)*
 
 ### `visit_type_param`
 
@@ -2561,7 +2756,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3650-3667`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3650-L3667)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3650-3667`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3650-L3667)*
 
 ### `visit_type_param_bound`
 
@@ -2571,7 +2766,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3670-3688`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3670-L3688)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3670-3688`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3670-L3688)*
 
 ### `visit_type_paren`
 
@@ -2581,7 +2776,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3691-3697`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3691-L3697)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3691-3697`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3691-L3697)*
 
 ### `visit_type_path`
 
@@ -2591,7 +2786,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3700-3708`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3700-L3708)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3700-3708`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3700-L3708)*
 
 ### `visit_type_ptr`
 
@@ -2601,7 +2796,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3711-3719`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3711-L3719)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3711-3719`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3711-L3719)*
 
 ### `visit_type_reference`
 
@@ -2611,7 +2806,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3722-3732`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3722-L3732)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3722-3732`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3722-L3732)*
 
 ### `visit_type_slice`
 
@@ -2621,7 +2816,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3735-3741`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3735-L3741)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3735-3741`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3735-L3741)*
 
 ### `visit_type_trait_object`
 
@@ -2631,7 +2826,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3744-3753`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3744-L3753)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3744-3753`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3744-L3753)*
 
 ### `visit_type_tuple`
 
@@ -2641,7 +2836,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3756-3765`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3756-L3765)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3756-3765`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3756-L3765)*
 
 ### `visit_un_op`
 
@@ -2651,7 +2846,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3768-3783`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3768-L3783)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3768-3783`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3768-L3783)*
 
 ### `visit_use_glob`
 
@@ -2661,7 +2856,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3786-3791`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3786-L3791)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3786-3791`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3786-L3791)*
 
 ### `visit_use_group`
 
@@ -2671,7 +2866,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3794-3803`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3794-L3803)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3794-3803`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3794-L3803)*
 
 ### `visit_use_name`
 
@@ -2681,7 +2876,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3806-3811`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3806-L3811)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3806-3811`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3806-L3811)*
 
 ### `visit_use_path`
 
@@ -2691,7 +2886,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3814-3821`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3814-L3821)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3814-3821`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3814-L3821)*
 
 ### `visit_use_rename`
 
@@ -2701,7 +2896,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3824-3831`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3824-L3831)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3824-3831`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3824-L3831)*
 
 ### `visit_use_tree`
 
@@ -2711,7 +2906,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3834-3855`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3834-L3855)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3834-3855`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3834-L3855)*
 
 ### `visit_variadic`
 
@@ -2721,7 +2916,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3858-3871`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3858-L3871)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3858-3871`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3858-L3871)*
 
 ### `visit_variant`
 
@@ -2731,7 +2926,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3874-3887`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3874-L3887)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3874-3887`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3874-L3887)*
 
 ### `visit_vis_restricted`
 
@@ -2741,7 +2936,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3890-3898`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3890-L3898)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3890-3898`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3890-L3898)*
 
 ### `visit_visibility`
 
@@ -2751,7 +2946,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3901-3914`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3901-L3914)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3901-3914`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3901-L3914)*
 
 ### `visit_where_clause`
 
@@ -2761,7 +2956,7 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3917-3926`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3917-L3926)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3917-3926`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3917-L3926)*
 
 ### `visit_where_predicate`
 
@@ -2771,15 +2966,15 @@ where
     V: Visit<'ast> + ?Sized
 ```
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:3929-3941`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L3929-L3941)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:3929-3941`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L3929-L3941)*
 
 ## Macros
 
 ### `full!`
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:9-13`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L9-L13)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:9-13`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L9-L13)*
 
 ### `skip!`
 
-*Defined in [`syn-2.0.111/src/gen/visit.rs:20-22`](../../../../.source_1765894658/syn-2.0.111/src/gen/visit.rs#L20-L22)*
+*Defined in [`syn-2.0.111/src/gen/visit.rs:20-22`](../../../../.source_1765900590/syn-2.0.111/src/gen/visit.rs#L20-L22)*
 

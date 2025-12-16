@@ -41,7 +41,7 @@ struct ImportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:15-19`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L15-L19)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:15-19`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/import.rs#L15-L19)*
 
 Information for parsing a PE import table.
 
@@ -160,7 +160,7 @@ struct ImportDescriptorIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:102-105`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L102-L105)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:102-105`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/import.rs#L102-L105)*
 
 A fallible iterator for the descriptors in the import data directory.
 
@@ -255,7 +255,7 @@ struct ImportThunkList<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:148-150`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L148-L150)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:148-150`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/import.rs#L148-L150)*
 
 A list of import thunks.
 
@@ -344,7 +344,7 @@ struct DelayLoadImportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:250-254`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L250-L254)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:250-254`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/import.rs#L250-L254)*
 
 Information for parsing a PE delay-load import table.
 
@@ -468,7 +468,7 @@ struct DelayLoadDescriptorIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:341-344`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L341-L344)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:341-344`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/import.rs#L341-L344)*
 
 A fallible iterator for the descriptors in the delay-load data directory.
 
@@ -566,7 +566,7 @@ enum Import<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:180-187`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L180-L187)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:180-187`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/import.rs#L180-L187)*
 
 A parsed import thunk.
 
@@ -653,27 +653,27 @@ A parsed import thunk.
 trait ImageThunkData: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:191-207`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L191-L207)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:191-207`](../../../../../.source_1765900590/object-0.37.3/src/read/pe/import.rs#L191-L207)*
 
 A trait for generic access to [`pe::ImageThunkData32`](../../../pe/index.md) and [`pe::ImageThunkData64`](../../../pe/index.md).
 
 #### Required Methods
 
-- `fn raw(self) -> u64`
+- `fn ImageThunkData::raw(self) -> u64`
 
   Return the raw thunk value.
 
-- `fn is_ordinal(self) -> bool`
+- `fn ImageThunkData::is_ordinal(self) -> bool`
 
   Returns true if the ordinal flag is set.
 
-- `fn ordinal(self) -> u16`
+- `fn ImageThunkData::ordinal(self) -> u16`
 
   Return the ordinal portion of the thunk.
   
   Does not check the ordinal flag.
 
-- `fn address(self) -> u32`
+- `fn ImageThunkData::address(self) -> u32`
 
   Return the RVA portion of the thunk.
   

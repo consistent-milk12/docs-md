@@ -52,7 +52,7 @@ struct Symbol {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:190-195`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L190-L195)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:190-195`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L190-L195)*
 
 A trait representing the resolution of a symbol in a file.
 
@@ -110,7 +110,7 @@ always available in a symbol, however, so all methods return an `Option`.
   debuginfo. If neither of these conditions is met then this will likely
   return `None`.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -169,7 +169,7 @@ struct SymbolName<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:300-305`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L300-L305)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:300-305`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L300-L305)*
 
 A wrapper around a symbol name to provide ergonomic accessors to the
 demangled name, the raw bytes, the raw string, etc.
@@ -254,7 +254,7 @@ enum ResolveWhat<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:108-111`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L108-L111)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:108-111`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L108-L111)*
 
 #### Implementations
 
@@ -309,7 +309,7 @@ enum ResolveWhat<'a> {
 fn resolve<F: FnMut(&Symbol)>(addr: *mut core::ffi::c_void, cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:61-64`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L61-L64)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:61-64`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L61-L64)*
 
 Resolve an address to a symbol, passing the symbol to the specified
 closure.
@@ -363,7 +363,7 @@ fn main() {
 fn resolve_frame<F: FnMut(&Symbol)>(frame: &super::backtrace::Frame, cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:103-106`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L103-L106)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:103-106`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L103-L106)*
 
 Resolve a previously captured frame to a symbol, passing the symbol to the
 specified closure.
@@ -408,7 +408,7 @@ fn main() {
 fn adjust_ip(a: *mut core::ffi::c_void) -> *mut core::ffi::c_void
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:141-147`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L141-L147)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:141-147`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L141-L147)*
 
 ### `resolve_unsynchronized`
 
@@ -418,7 +418,7 @@ where
     F: FnMut(&Symbol)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:158-163`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L158-L163)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:158-163`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L158-L163)*
 
 Same as `resolve`, only unsafe as it's unsynchronized.
 
@@ -438,7 +438,7 @@ where
     F: FnMut(&Symbol)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:174-179`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L174-L179)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:174-179`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L174-L179)*
 
 Same as `resolve_frame`, only unsafe as it's unsynchronized.
 
@@ -456,7 +456,7 @@ See information on `resolve_frame` for caveats on `cb` panicking.
 fn format_symbol_name(fmt: fn(&str, &mut fmt::Formatter<'_>) -> fmt::Result, bytes: &[u8], f: &mut fmt::Formatter<'_>) -> fmt::Result
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:344-366`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L344-L366)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:344-366`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L344-L366)*
 
 ### `clear_symbol_cache`
 
@@ -464,7 +464,7 @@ fn format_symbol_name(fmt: fn(&str, &mut fmt::Formatter<'_>) -> fmt::Result, byt
 fn clear_symbol_cache()
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:426-431`](../../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L426-L431)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:426-431`](../../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L426-L431)*
 
 Attempt to reclaim that cached memory used to symbolicate addresses.
 

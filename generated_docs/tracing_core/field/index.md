@@ -178,7 +178,7 @@ struct Field {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L134-L137)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L134-L137)*
 
 An opaque key allowing _O_(1) access to a field in a `Span`'s key-value
 data.
@@ -294,7 +294,7 @@ and use the key for that name for all other accesses.
 struct Empty;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:146`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L146)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:146`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L146)*
 
 An empty field.
 
@@ -371,7 +371,7 @@ struct FieldSet {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:159-164`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L159-L164)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:159-164`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L159-L164)*
 
 Describes the fields present on a span.
 
@@ -512,7 +512,7 @@ struct ValueSet<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:167-170`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L167-L170)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:167-170`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L167-L170)*
 
 A set of fields and values for a span.
 
@@ -606,7 +606,7 @@ struct Iter {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:182-185`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L182-L185)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:182-185`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L182-L185)*
 
 An iterator over a set of fields.
 
@@ -675,7 +675,7 @@ An iterator over a set of fields.
 struct DisplayValue<T: fmt::Display>(T);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:360`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L360)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:360`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L360)*
 
 A `Value` which serializes using `fmt::Display`.
 
@@ -763,7 +763,7 @@ avoid an unnecessary evaluation.
 struct DebugValue<T: fmt::Debug>(T);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:364`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L364)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:364`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L364)*
 
 A `Value` which serializes as a string using `fmt::Debug`.
 
@@ -840,7 +840,7 @@ A `Value` which serializes as a string using `fmt::Debug`.
 struct HexBytes<'a>(&'a [u8]);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:397`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L397)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:397`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L397)*
 
 #### Trait Implementations
 
@@ -898,7 +898,7 @@ enum Values<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:172-178`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L172-L178)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:172-178`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L172-L178)*
 
 #### Variants
 
@@ -960,7 +960,7 @@ enum Values<'a> {
 trait Visit { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:275-341`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L275-L341)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:275-341`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L275-L341)*
 
 Visits typed values.
 
@@ -1050,47 +1050,66 @@ available when the Rust standard library is present, as it requires the
 
 
 
+<details>
+<summary><strong>Methods (10)</strong> - click to expand</summary>
+
+**Required:**
+- [`Visit::record_debug`](#fn-visitrecord-debug)
+
+**Provided:**
+- [`Visit::record_f64`](#fn-visitrecord-f64)
+- [`Visit::record_i64`](#fn-visitrecord-i64)
+- [`Visit::record_u64`](#fn-visitrecord-u64)
+- [`Visit::record_i128`](#fn-visitrecord-i128)
+- [`Visit::record_u128`](#fn-visitrecord-u128)
+- [`Visit::record_bool`](#fn-visitrecord-bool)
+- [`Visit::record_str`](#fn-visitrecord-str)
+- [`Visit::record_bytes`](#fn-visitrecord-bytes)
+- [`Visit::record_error`](#fn-visitrecord-error)
+
+</details>
+
 #### Required Methods
 
-- `fn record_debug(&mut self, field: &Field, value: &dyn fmt::Debug)`
+- `fn Visit::record_debug(&mut self, field: &Field, value: &dyn fmt::Debug)`
 
   Visit a value implementing `fmt::Debug`.
 
 #### Provided Methods
 
-- `fn record_f64(&mut self, field: &Field, value: f64)`
+- `fn Visit::record_f64(&mut self, field: &Field, value: f64)`
 
   Visit a double-precision floating point value.
 
-- `fn record_i64(&mut self, field: &Field, value: i64)`
+- `fn Visit::record_i64(&mut self, field: &Field, value: i64)`
 
   Visit a signed 64-bit integer value.
 
-- `fn record_u64(&mut self, field: &Field, value: u64)`
+- `fn Visit::record_u64(&mut self, field: &Field, value: u64)`
 
   Visit an unsigned 64-bit integer value.
 
-- `fn record_i128(&mut self, field: &Field, value: i128)`
+- `fn Visit::record_i128(&mut self, field: &Field, value: i128)`
 
   Visit a signed 128-bit integer value.
 
-- `fn record_u128(&mut self, field: &Field, value: u128)`
+- `fn Visit::record_u128(&mut self, field: &Field, value: u128)`
 
   Visit an unsigned 128-bit integer value.
 
-- `fn record_bool(&mut self, field: &Field, value: bool)`
+- `fn Visit::record_bool(&mut self, field: &Field, value: bool)`
 
   Visit a boolean value.
 
-- `fn record_str(&mut self, field: &Field, value: &str)`
+- `fn Visit::record_str(&mut self, field: &Field, value: &str)`
 
   Visit a string value.
 
-- `fn record_bytes(&mut self, field: &Field, value: &[u8])`
+- `fn Visit::record_bytes(&mut self, field: &Field, value: &[u8])`
 
   Visit a byte slice.
 
-- `fn record_error(&mut self, field: &Field, value: &dyn std::error::Error)`
+- `fn Visit::record_error(&mut self, field: &Field, value: &dyn std::error::Error)`
 
   Records a type implementing `Error`.
   
@@ -1113,7 +1132,7 @@ available when the Rust standard library is present, as it requires the
 trait Value: crate::sealed::Sealed { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:350-353`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L350-L353)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:350-353`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L350-L353)*
 
 A field value of an erased type.
 
@@ -1124,7 +1143,7 @@ their data should be recorded.
 
 #### Required Methods
 
-- `fn record(&self, key: &Field, visitor: &mut dyn Visit)`
+- `fn Value::record(&self, key: &Field, visitor: &mut dyn Visit)`
 
   Visits this value with the given `Visitor`.
 
@@ -1184,7 +1203,7 @@ where
     T: fmt::Display
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:368-373`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L368-L373)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:368-373`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L368-L373)*
 
 Wraps a type implementing `fmt::Display` as a `Value` that can be
 recorded using its `Display` implementation.
@@ -1197,7 +1216,7 @@ where
     T: fmt::Debug
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:377-382`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L377-L382)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:377-382`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L377-L382)*
 
 Wraps a type implementing `fmt::Debug` as a `Value` that can be
 recorded using its `Debug` implementation.
@@ -1206,17 +1225,17 @@ recorded using its `Debug` implementation.
 
 ### `impl_values!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:442-448`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L442-L448)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:442-448`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L442-L448)*
 
 ### `ty_to_nonzero!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:450-487`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L450-L487)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:450-487`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L450-L487)*
 
 ### `impl_one_value!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:489-534`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L489-L534)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:489-534`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L489-L534)*
 
 ### `impl_value!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:536-547`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L536-L547)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:536-547`](../../../.source_1765900590/tracing-core-0.1.35/src/field.rs#L536-L547)*
 

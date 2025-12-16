@@ -332,27 +332,16 @@ the current module, with each segment being a clickable link.
 - <span id="breadcrumbgenerator-generate"></span>`fn generate(&self) -> String`
 
   Generate breadcrumb navigation markdown.
-
   
-
   Returns empty string for root module.
-
   
-
-  # Example Output
-
+  ##### Example Output
   
-
   For `module_path = ["error", "types"]` and `crate_name = "docs_md"`:
-
   ```markdown
-
   *[docs_md](../../index.md) / [error](../index.md) / [types](index.md)*
-
   
-
   ---
-
   ```
 
 #### Trait Implementations
@@ -892,21 +881,13 @@ Utility functions for document links
 - <span id="doclinkutils-unhide-code-lines"></span>`fn unhide_code_lines(docs: &str) -> String`
 
   Unhide rustdoc hidden lines in code blocks and add language identifiers.
-
   
-
   This function performs two transformations on code blocks:
-
   1. Lines starting with `# ` inside code blocks are hidden in rustdoc
-
      but compiled. We remove the prefix to show the full example.
-
   2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
-
      examples are Rust code.
-
   
-
   Uses [`CodeBlockTracker`] to manage fence state.
 
 - <span id="doclinkutils-convert-path-reference-links"></span>`fn convert_path_reference_links(docs: &str) -> String`
@@ -979,49 +960,27 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
 
   Generate the complete markdown content for a module.
-
   
-
-  # Output Structure
-
+  ##### Output Structure
   
-
   ```markdown
-
   Crate `name` (or Module `name`)
-
   
-
   [module documentation]
-
   
-
   ## Contents (if items exceed threshold)
-
   - [Structs](#structs)
-
     - [`Parser`](#parser)
-
   
-
   ## Modules
-
   - [submodule](link) - first line of docs
-
   
-
   ## Structs
-
   ### `StructName`
-
   [struct definition and docs]
-
   
-
   ## Enums
-
   ...
-
   ```
 
 - <span id="modulerenderer-categorize-items"></span>`fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a>`
@@ -1039,43 +998,24 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)`
 
   Render the Types section (structs, enums, unions, type aliases).
-
   
-
   All type definitions are grouped under a single "Types" heading,
-
   with each item type rendered in subsections:
-
   
-
   ```markdown
-
   ## Types
-
   
-
   ### `MyStruct`
-
   [struct definition]
-
   
-
   ### `MyEnum`
-
   [enum definition]
-
   
-
   ### `MyUnion`
-
   [union definition]
-
   
-
   ### `MyAlias`
-
   [type alias definition]
-
   ```
 
 - <span id="modulerenderer-render-statics-section"></span>`fn render_statics_section(&self, md: &mut String, statics: &[&Item])`
@@ -1557,117 +1497,63 @@ The variants are ordered by their typical importance/frequency of use:
 - <span id="implcategory-from-trait-path"></span>`fn from_trait_path(path: Option<&str>) -> Self`
 
   Categorize a trait implementation by its trait path.
-
   
-
   This method examines the trait path and returns the appropriate category.
-
   It handles both simple trait names (`"Clone"`) and fully-qualified paths
-
   (`"std::clone::Clone"`).
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `path` - The trait path, or `None` for inherent implementations
-
   
-
-  # Returns
-
+  ##### Returns
   
-
   The [`ImplCategory`](generator__impl_category.md#implcategory) that best matches the trait.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```rust,ignore
-
   // Inherent impl (no trait)
-
   assert_eq!(ImplCategory::from_trait_path(None), ImplCategory::Inherent);
-
   
-
   // Simple trait name
-
   assert_eq!(ImplCategory::from_trait_path(Some("Clone")), ImplCategory::Derive);
-
   
-
   // Fully-qualified path
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("std::clone::Clone")),
-
       ImplCategory::Derive
-
   );
-
   
-
   // Operator from std::ops
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("std::ops::Add")),
-
       ImplCategory::Operator
-
   );
-
   
-
   // Unknown trait
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("serde::Serialize")),
-
       ImplCategory::Other
-
   );
-
   ```
 
 - <span id="implcategory-display-name"></span>`const fn display_name(&self) -> &'static str`
 
   Get the human-readable display name for this category.
-
   
-
   This name is suitable for use as a section header in documentation.
-
   
-
-  # Returns
-
+  ##### Returns
   
-
   A static string with the display name.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```rust,ignore
-
   assert_eq!(ImplCategory::Inherent.display_name(), "Implementations");
-
   assert_eq!(ImplCategory::Derive.display_name(), "Derived Traits");
-
   assert_eq!(ImplCategory::Conversion.display_name(), "Conversion");
-
   ```
 
 - <span id="implcategory-sort-order"></span>`const fn sort_order(self) -> u8`
@@ -1742,33 +1628,33 @@ Provides read-only access to the crate structure, items, and impl blocks.
 
 #### Required Methods
 
-- `fn krate(&self) -> &Crate`
+- `fn ItemAccess::krate(&self) -> &Crate`
 
   Get the crate being documented.
 
-- `fn crate_name(&self) -> &str`
+- `fn ItemAccess::crate_name(&self) -> &str`
 
   Get the crate name.
 
-- `fn get_item(&self, id: &Id) -> Option<&Item>`
+- `fn ItemAccess::get_item(&self, id: &Id) -> Option<&Item>`
 
   Get an item by its ID.
 
-- `fn get_impls(&self, id: &Id) -> Option<&[&Impl]>`
+- `fn ItemAccess::get_impls(&self, id: &Id) -> Option<&[&Impl]>`
 
   Get impl blocks for a type.
 
-- `fn crate_version(&self) -> Option<&str>`
+- `fn ItemAccess::crate_version(&self) -> Option<&str>`
 
   Get the crate version for display in headers.
 
-- `fn render_config(&self) -> &RenderConfig`
+- `fn ItemAccess::render_config(&self) -> &RenderConfig`
 
   Get the rendering configuration.
 
 #### Provided Methods 
 
-- `fn source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
+- `fn ItemAccess::source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
 
   Get source path config for a specific file.
 
@@ -1790,15 +1676,15 @@ Determines which items should be included in the generated documentation.
 
 #### Required Methods
 
-- `fn should_include_item(&self, item: &Item) -> bool`
+- `fn ItemFilter::should_include_item(&self, item: &Item) -> bool`
 
   Check if an item should be included based on visibility.
 
-- `fn include_private(&self) -> bool`
+- `fn ItemFilter::include_private(&self) -> bool`
 
   Whether private items should be included.
 
-- `fn include_blanket_impls(&self) -> bool`
+- `fn ItemFilter::include_blanket_impls(&self) -> bool`
 
   Whether blanket trait implementations should be included.
 
@@ -1820,15 +1706,15 @@ Handles intra-doc link resolution and markdown link generation.
 
 #### Required Methods
 
-- `fn link_registry(&self) -> Option<&LinkRegistry>`
+- `fn LinkResolver::link_registry(&self) -> Option<&LinkRegistry>`
 
   Get the link registry for single-crate mode.
 
-- `fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
+- `fn LinkResolver::process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
   Process documentation string with intra-doc link resolution.
 
-- `fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
+- `fn LinkResolver::create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
   Create a markdown link to an item.
 
@@ -1944,27 +1830,16 @@ the current module, with each segment being a clickable link.
 - <span id="breadcrumbgenerator-generate"></span>`fn generate(&self) -> String`
 
   Generate breadcrumb navigation markdown.
-
   
-
   Returns empty string for root module.
-
   
-
-  # Example Output
-
+  ##### Example Output
   
-
   For `module_path = ["error", "types"]` and `crate_name = "docs_md"`:
-
   ```markdown
-
   *[docs_md](../../index.md) / [error](../index.md) / [types](index.md)*
-
   
-
   ---
-
   ```
 
 #### Trait Implementations
@@ -2341,21 +2216,13 @@ Utility functions for document links
 - <span id="doclinkutils-unhide-code-lines"></span>`fn unhide_code_lines(docs: &str) -> String`
 
   Unhide rustdoc hidden lines in code blocks and add language identifiers.
-
   
-
   This function performs two transformations on code blocks:
-
   1. Lines starting with `# ` inside code blocks are hidden in rustdoc
-
      but compiled. We remove the prefix to show the full example.
-
   2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
-
      examples are Rust code.
-
   
-
   Uses [`CodeBlockTracker`] to manage fence state.
 
 - <span id="doclinkutils-convert-path-reference-links"></span>`fn convert_path_reference_links(docs: &str) -> String`
@@ -2565,117 +2432,63 @@ The variants are ordered by their typical importance/frequency of use:
 - <span id="implcategory-from-trait-path"></span>`fn from_trait_path(path: Option<&str>) -> Self`
 
   Categorize a trait implementation by its trait path.
-
   
-
   This method examines the trait path and returns the appropriate category.
-
   It handles both simple trait names (`"Clone"`) and fully-qualified paths
-
   (`"std::clone::Clone"`).
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `path` - The trait path, or `None` for inherent implementations
-
   
-
-  # Returns
-
+  ##### Returns
   
-
   The [`ImplCategory`](#implcategory) that best matches the trait.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```rust,ignore
-
   // Inherent impl (no trait)
-
   assert_eq!(ImplCategory::from_trait_path(None), ImplCategory::Inherent);
-
   
-
   // Simple trait name
-
   assert_eq!(ImplCategory::from_trait_path(Some("Clone")), ImplCategory::Derive);
-
   
-
   // Fully-qualified path
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("std::clone::Clone")),
-
       ImplCategory::Derive
-
   );
-
   
-
   // Operator from std::ops
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("std::ops::Add")),
-
       ImplCategory::Operator
-
   );
-
   
-
   // Unknown trait
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("serde::Serialize")),
-
       ImplCategory::Other
-
   );
-
   ```
 
 - <span id="implcategory-display-name"></span>`const fn display_name(&self) -> &'static str`
 
   Get the human-readable display name for this category.
-
   
-
   This name is suitable for use as a section header in documentation.
-
   
-
-  # Returns
-
+  ##### Returns
   
-
   A static string with the display name.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```rust,ignore
-
   assert_eq!(ImplCategory::Inherent.display_name(), "Implementations");
-
   assert_eq!(ImplCategory::Derive.display_name(), "Derived Traits");
-
   assert_eq!(ImplCategory::Conversion.display_name(), "Conversion");
-
   ```
 
 - <span id="implcategory-sort-order"></span>`const fn sort_order(self) -> u8`
@@ -2856,27 +2669,16 @@ Utility functions to work with impl's and generics
 - <span id="implutils-is-trivial-derive-impl"></span>`fn is_trivial_derive_impl(impl_block: &Impl) -> bool`
 
   Check if an impl block is for a trivial derive trait.
-
   
-
   Returns `true` if the impl is for one of the commonly derived traits
-
   `(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)`.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```rust
-
   use rustdoc_types::Impl;
-
   // For an impl block with trait "Clone", returns true
-
   // For an impl block with trait "Display", returns false
-
   ```
 
 - <span id="implutils-get-trivial-derive-description"></span>`fn get_trivial_derive_description(trait_name: &str) -> Option<&'static str>`
@@ -2890,47 +2692,26 @@ Utility functions to work with impl's and generics
 - <span id="implutils-is-generic-type"></span>`fn is_generic_type(ty: &Type) -> bool`
 
   Check if a type is generic (contains a type parameter like `T`).
-
   
-
   This is used to determine whether to show generic parameters in impl blocks.
-
   For blanket impls like `impl<T> Trait for T`, we only show the generics if
-
   the `for_` type is actually generic. When the impl is instantiated for a
-
   concrete type like `TocEntry`, we hide the generics.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```text
-
   // Generic type - returns true
-
   is_generic_type(&Type::Generic("T")) == true
-
   
-
   // Concrete type - returns false
-
   is_generic_type(&Type::ResolvedPath { name: "TocEntry", .. }) == false
-
   
-
   // Container with generic - returns true
-
   is_generic_type(&Type::ResolvedPath {
-
       name: "Vec",
-
       args: Some(GenericArgs::AngleBracketed { args: [Type::Generic("T")] })
-
   }) == true
-
   ```
 
 - <span id="implutils-generic-args-contain-generic"></span>`fn generic_args_contain_generic(args: &GenericArgs) -> bool`
@@ -2940,217 +2721,117 @@ Utility functions to work with impl's and generics
 - <span id="implutils-extract-impl-signature-generics"></span>`fn extract_impl_signature_generics(impl_block: &Impl) -> HashSet<String>`
 
   Extract generic parameter names that appear in the impl signature (for_ and trait).
-
   
-
   This extracts generics from only the visible parts of the impl header:
-
   1. The `for_` type: `impl<T> Trait for Foo<T>` → extracts `T` from `Foo<T>`
-
   2. The trait path: `impl<U> Trait<U> for Foo` → extracts `U` from `Trait<U>`
-
   
-
   Unlike [`extract_impl_visible_generics`], this does NOT extract from where clauses.
-
   Use this for rendering purposes when deciding which generic params to show in
-
   `impl<...>`. Generics that only appear in where clauses should not be shown in
-
   the impl header since the where clause itself is not rendered.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```text
-
   impl<T: Sized> IntoEither for T
-
     └─ for_ type is Generic("T") → extracts ["T"]
-
     └─ When rendered for `Either<L, R>`, for_ becomes `Either<L, R>`
-
     └─ Extracts ["L", "R"], NOT ["T"]
-
     └─ T is only in where clause, so `impl<T>` should NOT be shown
-
   
-
   impl<T> Clone for Wrapper<T>
-
     └─ for_ type has `Wrapper<T>` → extracts ["T"]
-
     └─ Result: render as `impl<T>`
-
   
-
   impl<T, U> Trait<U> for Foo<T>
-
     └─ for_ type has `Foo<T>` → extracts ["T"]
-
     └─ trait path has `Trait<U>` → extracts ["U"]
-
     └─ Result: render as `impl<T, U>` (both visible)
-
   ```
 
 - <span id="implutils-extract-impl-visible-generics"></span>`fn extract_impl_visible_generics(impl_block: &Impl) -> HashSet<String>`
 
   Extract all generic parameter names visible in an impl block's signature.
-
   
-
-  # Why This Is Needed
-
+  ##### Why This Is Needed
   
-
   Rustdoc JSON stores impl generics in two places that can have DIFFERENT names:
-
   - `impl_block.generics.params` - the declared params (e.g., `T` from `impl<T>`)
-
   - `impl_block.for_` - the actual type (e.g., `StyledObject<D>`)
-
   
-
   For blanket impls, these names often differ! The compiler transforms:
-
   ```text
-
   impl<D: Display> ToString for StyledObject<D>
-
   ```
-
   Into JSON where `generics.params` has `T` but `for_` has `StyledObject<D>`.
-
   If we blindly use `generics.params`, we'd render `impl<T> ToString for StyledObject<D>`.
-
   
-
-  # Solution
-
+  ##### Solution
   
-
   Extract generics from what's VISIBLE in the signature:
-
   1. The `for_` type: `Foo<T>` → extracts `T`
-
   2. The trait path: `Iterator<Item = U>` → extracts `U`
-
   3. Where clauses: `where T: Clone` → extracts `T`
-
   
-
   Then filter `generics.params` to only include names that appear in visible locations.
-
   
-
   **Note:** For rendering the impl header, use [`extract_impl_signature_generics`] instead,
-
   which excludes where clause generics.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```text
-
   impl<T> Clone for Wrapper<T>
-
     └─ for_ type has `Wrapper<T>` → extracts ["T"]
-
     └─ Result: render as `impl<T>`
-
   
-
   impl<T, U> Trait<U> for Foo<T> where T: Clone
-
     └─ for_ type has `Foo<T>` → extracts ["T"]
-
     └─ trait path has `Trait<U>` → extracts ["U"]
-
     └─ where clause has `T: Clone` → extracts ["T"]
-
     └─ Result: render as `impl<T, U>` (both visible)
-
   
-
   impl<D: Display> ToString for StyledObject<D>
-
     └─ for_ type has `StyledObject<D>` → extracts ["D"]
-
     └─ Result: render as `impl<D>` (not `impl<T>`)
-
   ```
 
 - <span id="implutils-extract-type-generics-into"></span>`fn extract_type_generics_into(ty: &Type, names: &mut HashSet<String>)`
 
   Extract generic parameter names from a type into a set.
-
   
-
   Recursively traverses the type structure to find all `Type::Generic` variants.
-
   This handles all the ways generics can be nested in complex types.
-
   
-
-  # Type Tree Visualization
-
+  ##### Type Tree Visualization
   
-
   ```text
-
   HashMap<K, Vec<T>>
-
   └─ ResolvedPath("HashMap")
-
      └─ args: [K, Vec<T>]
-
               │  └─ ResolvedPath("Vec")
-
               │     └─ args: [T]
-
               │              └─ Generic("T") ← extracted!
-
               └─ Generic("K") ← extracted!
-
   ```
 
 - <span id="implutils-extract-generic-args-into"></span>`fn extract_generic_args_into(args: &GenericArgs, names: &mut HashSet<String>)`
 
   Extract generic parameter names from generic arguments.
-
   
-
   Generic arguments come in three forms:
-
   
-
-  # Forms
-
+  ##### Forms
   
-
   ```text
-
   AngleBracketed: Vec<T, U>           → args: [T, U], constraints: []
-
                   Iterator<Item = T>  → args: [], constraints: [Item = T]
-
   
-
   Parenthesized:  Fn(T, U) -> V       → inputs: [T, U], output: Some(V)
-
                   FnOnce(T)           → inputs: [T], output: None
-
   
-
   ReturnTypeNotation: method(..)      → (no generics to extract)
-
   ```
 
 - <span id="implutils-extract-term-generics-into"></span>`fn extract_term_generics_into(term: &Term, names: &mut HashSet<String>)`
@@ -3160,131 +2841,70 @@ Utility functions to work with impl's and generics
 - <span id="implutils-extract-bound-generics-into"></span>`fn extract_bound_generics_into(bound: &GenericBound, names: &mut HashSet<String>)`
 
   Extract generic parameter names from a generic bound.
-
   
-
   Bounds appear in where clauses: `where T: Clone + Iterator<Item = U>`
-
   
-
   We only care about `TraitBound` (not `Outlives` like `'a: 'b`).
-
   From the trait bound, we extract any generic args on the trait itself.
-
   
-
-  # Example
-
+  ##### Example
   
-
   ```text
-
   where T: Iterator<Item = U>
-
            └─ TraitBound { trait_: Path("Iterator"), args: [Item = U] }
-
                                                                └─ extracts U
-
   ```
 
 - <span id="implutils-has-hidden-generic-refs"></span>`fn has_hidden_generic_refs(impl_block: &Impl, krate: &Crate) -> bool`
 
   Check if an impl has associated types referencing generics NOT visible in the signature.
-
   
-
-  # The Problem
-
+  ##### The Problem
   
-
   Some impl blocks have generics that only appear in associated types, not in the
-
   visible signature. When rendered, this produces confusing output:
-
   
-
   ```text
-
   impl DoubleEndedIterator for Foo    ← No `I` visible!
-
       type Item = <I as Iterator>::Item   ← Where does `I` come from?
-
   ```
-
   
-
-  # Detection Strategy
-
+  ##### Detection Strategy
   
-
   1. Extract "visible" generics from: `for_` type, trait path, where clause
-
   2. Extract "declared" generics from: `impl_block.generics.params`
-
   3. Compute "hidden" = declared - visible
-
   4. Check if any associated type references a hidden generic
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```text
-
   // FILTER THIS - `I` is hidden but used in associated type
-
   impl<I: Iterator> DoubleEndedIterator for Foo {
-
       type Item = <I as Iterator>::Item;
-
   }
-
   visible = {}        (Foo has no generics)
-
   declared = {I}      (from impl<I>)
-
   hidden = {I}        (declared - visible)
-
   assoc type uses I   → FILTER!
-
   
-
   // KEEP THIS - `T` is visible in for_ type
-
   impl<T> Iterator for Wrapper<T> {
-
       type Item = T;
-
   }
-
   visible = {T}       (from Wrapper<T>)
-
   declared = {T}      (from impl<T>)
-
   hidden = {}         (all visible)
-
   → KEEP!
-
   
-
   // KEEP THIS - `U` is visible in trait path
-
   impl<T, U> Trait<U> for Foo<T> {
-
       type Output = (T, U);
-
   }
-
   visible = {T, U}    (T from Foo<T>, U from Trait<U>)
-
   declared = {T, U}   (from impl<T, U>)
-
   hidden = {}         (all visible)
-
   → KEEP!
-
   ```
 
 #### Trait Implementations
@@ -3396,49 +3016,27 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
 
   Generate the complete markdown content for a module.
-
   
-
-  # Output Structure
-
+  ##### Output Structure
   
-
   ```markdown
-
   Crate `name` (or Module `name`)
-
   
-
   [module documentation]
-
   
-
   ## Contents (if items exceed threshold)
-
   - [Structs](#structs)
-
     - [`Parser`](#parser)
-
   
-
   ## Modules
-
   - [submodule](link) - first line of docs
-
   
-
   ## Structs
-
   ### `StructName`
-
   [struct definition and docs]
-
   
-
   ## Enums
-
   ...
-
   ```
 
 - <span id="modulerenderer-categorize-items"></span>`fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a>`
@@ -3456,43 +3054,24 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)`
 
   Render the Types section (structs, enums, unions, type aliases).
-
   
-
   All type definitions are grouped under a single "Types" heading,
-
   with each item type rendered in subsections:
-
   
-
   ```markdown
-
   ## Types
-
   
-
   ### `MyStruct`
-
   [struct definition]
-
   
-
   ### `MyEnum`
-
   [enum definition]
-
   
-
   ### `MyUnion`
-
   [union definition]
-
   
-
   ### `MyAlias`
-
   [type alias definition]
-
   ```
 
 - <span id="modulerenderer-render-statics-section"></span>`fn render_statics_section(&self, md: &mut String, statics: &[&Item])`
@@ -3863,63 +3442,36 @@ Helpful because free functions are annoying.
 - <span id="rendererinternals-render-collapsible-start"></span>`fn render_collapsible_start(summary: &str) -> String`
 
   Render the opening of a collapsible `<details>` block with a summary.
-
   
-
   Produces HTML that creates a collapsible section in markdown. Use with
-
   [`render_collapsible_end`] to close the block.
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `summary` - The text to display in the summary line (clickable header)
-
   
-
-  # Example
-
+  ##### Example
   
-
   ```rust
-
   use cargo_docs_md::generator::render_shared::RendererInternals;
-
   
-
   let start = RendererInternals::render_collapsible_start("Derived Traits (9 implementations)");
-
   assert!(start.contains("<details>"));
-
   assert!(start.contains("<summary>Derived Traits (9 implementations)</summary>"));
-
   ```
 
 - <span id="rendererinternals-render-collapsible-end"></span>`const fn render_collapsible_end() -> &'static str`
 
   Render the closing of a collapsible `<details>` block.
-
   
-
   Returns a static string to close a block opened with [`render_collapsible_start`].
-
   
-
-  # Example
-
+  ##### Example
   
-
   ```rust
-
   use cargo_docs_md::generator::render_shared::RendererInternals;
-
   
-
   assert_eq!(RendererInternals::render_collapsible_end(), "\n</details>\n\n");
-
   ```
 
 - <span id="rendererinternals-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl, type_renderer: &TypeRenderer<'_>) -> String` — [`TypeRenderer`](types.md#typerenderer)
@@ -3929,55 +3481,30 @@ Helpful because free functions are annoying.
 - <span id="rendererinternals-render-source-location"></span>`fn render_source_location(span: Option<&Span>, source_path_config: Option<&SourcePathConfig>) -> String` — [`SourcePathConfig`](#sourcepathconfig)
 
   Render a source location reference for an item.
-
   
-
   Produces a small italicized line showing the source file and line range.
-
   If `source_path_config` is provided, generates a clickable markdown link
-
   relative to the current file's location.
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `span` - The source span from the item
-
   * `source_path_config` - Optional configuration for path transformation
-
   
-
-  # Returns
-
+  ##### Returns
   
-
   A formatted markdown string with the source location, or empty string if span is None.
-
   
-
-  # Example Output (without config)
-
+  ##### Example Output (without config)
   
-
   ```text
-
   *Defined in `/home/user/.cargo/registry/src/.../serde-1.0.228/src/lib.rs:10-25`*
-
   ```
-
   
-
-  # Example Output (with config, depth=2)
-
+  ##### Example Output (with config, depth=2)
   
-
   ```text
-
   *Defined in [`serde-1.0.228/src/lib.rs:10-25`](../../.source_xxx/serde-1.0.228/src/lib.rs#L10-L25)*
-
   ```
 
 - <span id="rendererinternals-render-union-definition"></span>`fn render_union_definition(md: &mut String, name: &str, u: &rustdoc_types::Union, krate: &Crate, type_renderer: &TypeRenderer<'_>)` — [`TypeRenderer`](types.md#typerenderer)
@@ -4015,75 +3542,42 @@ Unit struct to organize path related utility functions related to renderer funct
 - <span id="rendererutils-sanitize-path"></span>`fn sanitize_path(path: &str) -> Cow<'_, str>`
 
   Sanitize trait paths by removing macro artifacts.
-
   
-
   Rustdoc JSON can contain `$crate::` prefixes from macro expansions
-
   which leak implementation details into documentation. This function
-
   removes these artifacts for cleaner output.
-
   
-
   Uses `Cow<str>` to avoid allocation when no changes are needed.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```rust
-
   use cargo_docs_md::generator::render_shared::RendererUtils;
-
   
-
   assert_eq!(RendererUtils::sanitize_path("$crate::clone::Clone"), "clone::Clone");
-
   assert_eq!(RendererUtils::sanitize_path("std::fmt::Debug"), "std::fmt::Debug");
-
   ```
 
 - <span id="rendererutils-sanitize-self-param"></span>`fn sanitize_self_param(param: &str) -> Cow<'_, str>`
 
   Sanitize self parameter in function signatures.
-
   
-
   Converts verbose self type annotations to idiomatic Rust syntax:
-
   - `self: &Self` → `&self`
-
   - `self: &mut Self` → `&mut self`
-
   - `self: Self` → `self`
-
   
-
   Uses `Cow<str>` to avoid allocation when no changes are needed.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```rust
-
   use cargo_docs_md::generator::render_shared::RendererUtils;
-
   
-
   assert_eq!(RendererUtils::sanitize_self_param("self: &Self"), "&self");
-
   assert_eq!(RendererUtils::sanitize_self_param("self: &mut Self"), "&mut self");
-
   assert_eq!(RendererUtils::sanitize_self_param("self: Self"), "self");
-
   assert_eq!(RendererUtils::sanitize_self_param("x: i32"), "x: i32");
-
   ```
 
 - <span id="rendererutils-write-tuple-fields"></span>`fn write_tuple_fields(out: &mut String, fields: &[Option<Id>], krate: &Crate, type_renderer: &TypeRenderer<'_>)` — [`TypeRenderer`](types.md#typerenderer)
@@ -4208,7 +3702,7 @@ This trait provides a unified way to process docs from different contexts.
 
 #### Required Methods
 
-- `fn process_item_docs(&self, item: &Item) -> Option<String>`
+- `fn DocsProcessor::process_item_docs(&self, item: &Item) -> Option<String>`
 
   Process documentation for an item, resolving intra-doc links.
 
@@ -4748,83 +4242,46 @@ Utilify functions to handle anchors
 - <span id="anchorutils-assoc-item-anchor"></span>`fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) -> String` — [`AssocItemKind`](linker.md#associtemkind)
 
   Generate a compound anchor for an associated item on a type.
-
   
-
   This creates a unique anchor that combines the type name, item kind, and item name,
-
   enabling deep linking to specific items. The format is `typename-itemname` for methods
-
   (backward compatible), and `typename-kind-itemname` for constants and types to avoid
-
   collisions.
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `type_name` - The name of the type (struct, enum, trait, etc.)
-
   * `item_name` - The name of the method or associated item
-
   * `kind` - The kind of associated item (method, const, or type)
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```ignore
-
   assert_eq!(assoc_item_anchor("Parser", "parse", AssocItemKind::Method), "parser-parse");
-
   assert_eq!(assoc_item_anchor("HashMap", "new", AssocItemKind::Method), "hashmap-new");
-
   assert_eq!(assoc_item_anchor("Vec", "Item", AssocItemKind::Type), "vec-type-item");
-
   assert_eq!(assoc_item_anchor("Vec", "ALIGN", AssocItemKind::Const), "vec-const-align");
-
   ```
 
 - <span id="anchorutils-method-anchor"></span>`fn method_anchor(type_name: &str, method_name: &str) -> String`
 
   Generate a compound anchor for a method on a type.
-
   
-
   This creates a unique anchor that combines the type name and method name,
-
   enabling deep linking to specific methods. The format is `typename-methodname`,
-
   where both parts are slugified.
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `type_name` - The name of the type (struct, enum, trait, etc.)
-
   * `method_name` - The name of the method or associated item
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```ignore
-
   assert_eq!(method_anchor("Parser", "parse"), "parser-parse");
-
   assert_eq!(method_anchor("HashMap", "new"), "hashmap-new");
-
   assert_eq!(method_anchor("Vec<T>", "push"), "vec-push");
-
   ```
 
 - <span id="anchorutils-impl-item-anchor"></span>`fn impl_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind, impl_ctx: ImplContext<'_>) -> String` — [`AssocItemKind`](linker.md#associtemkind), [`ImplContext`](linker.md#implcontext)
@@ -4834,53 +4291,29 @@ Utilify functions to handle anchors
 - <span id="anchorutils-slugify-anchor"></span>`fn slugify_anchor(name: &str) -> String`
 
   Convert a name to a GitHub-style markdown anchor slug.
-
   
-
   This normalizes item names to match the anchor IDs generated by markdown
-
   renderers (GitHub, mdBook, etc.) when they process headings.
-
   
-
-  # Rules Applied
-
+  ##### Rules Applied
   
-
   1. Apply Unicode NFC normalization (canonical composition)
-
   2. Convert to lowercase (full Unicode, not just ASCII)
-
   3. Remove backticks (markdown code formatting)
-
   4. Remove generics (`<T>`, `<K, V>`) by stripping `<...>` content
-
   5. Replace spaces and underscores with hyphens
-
   6. Remove non-alphanumeric characters (except hyphens)
-
   7. Collapse consecutive hyphens
-
   8. Trim leading/trailing hyphens
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```ignore
-
   assert_eq!(slugify_anchor("HashMap"), "hashmap");
-
   assert_eq!(slugify_anchor("HashMap<K, V>"), "hashmap");
-
   assert_eq!(slugify_anchor("my_function"), "my-function");
-
   assert_eq!(slugify_anchor("Into<T>"), "into");
-
   assert_eq!(slugify_anchor("Größe"), "größe");
-
   ```
 
 - <span id="anchorutils-slugify-anchor-ascii"></span>`fn slugify_anchor_ascii(name: &str) -> String`
@@ -4961,65 +4394,35 @@ create links between items.
 - <span id="linkregistry-create-link"></span>`fn create_link(&self, id: Id, from_path: &str) -> Option<String>`
 
   Create a markdown link to an item from a given source file.
-
   
-
   This is the main method used during markdown generation to create
-
   clickable links between documented items.
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `id` - The target item's ID
-
   * `from_path` - The source file creating the link (e.g., `"index.md"`)
-
   
-
-  # Returns
-
+  ##### Returns
   
-
   A formatted markdown link like `[``ItemName``](path/to/file.md)`,
-
   or `None` if the target item isn't registered.
-
   
-
-  # Link Types
-
+  ##### Link Types
   
-
   - **Same file**: Returns an anchor link (`#itemname`)
-
   - **Different file**: Returns a relative path (`../other/file.md`)
-
   
-
-  # Example
-
+  ##### Example
   
-
   ```ignore
-
   // From index.md linking to span.md
-
   registry.create_link(&span_id, "index.md")
-
   // Returns: Some("[`Span`](span.md)")
-
   
-
   // From span/index.md linking to index.md
-
   registry.create_link(&root_id, "span/index.md")
-
   // Returns: Some("[`crate`](../index.md)")
-
   ```
 
 - <span id="linkregistry-compute-relative-path"></span>`fn compute_relative_path(from: &str, to: &str) -> String`
@@ -6453,83 +5856,46 @@ Utilify functions to handle anchors
 - <span id="anchorutils-assoc-item-anchor"></span>`fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) -> String` — [`AssocItemKind`](#associtemkind)
 
   Generate a compound anchor for an associated item on a type.
-
   
-
   This creates a unique anchor that combines the type name, item kind, and item name,
-
   enabling deep linking to specific items. The format is `typename-itemname` for methods
-
   (backward compatible), and `typename-kind-itemname` for constants and types to avoid
-
   collisions.
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `type_name` - The name of the type (struct, enum, trait, etc.)
-
   * `item_name` - The name of the method or associated item
-
   * `kind` - The kind of associated item (method, const, or type)
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```ignore
-
   assert_eq!(assoc_item_anchor("Parser", "parse", AssocItemKind::Method), "parser-parse");
-
   assert_eq!(assoc_item_anchor("HashMap", "new", AssocItemKind::Method), "hashmap-new");
-
   assert_eq!(assoc_item_anchor("Vec", "Item", AssocItemKind::Type), "vec-type-item");
-
   assert_eq!(assoc_item_anchor("Vec", "ALIGN", AssocItemKind::Const), "vec-const-align");
-
   ```
 
 - <span id="anchorutils-method-anchor"></span>`fn method_anchor(type_name: &str, method_name: &str) -> String`
 
   Generate a compound anchor for a method on a type.
-
   
-
   This creates a unique anchor that combines the type name and method name,
-
   enabling deep linking to specific methods. The format is `typename-methodname`,
-
   where both parts are slugified.
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `type_name` - The name of the type (struct, enum, trait, etc.)
-
   * `method_name` - The name of the method or associated item
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```ignore
-
   assert_eq!(method_anchor("Parser", "parse"), "parser-parse");
-
   assert_eq!(method_anchor("HashMap", "new"), "hashmap-new");
-
   assert_eq!(method_anchor("Vec<T>", "push"), "vec-push");
-
   ```
 
 - <span id="anchorutils-impl-item-anchor"></span>`fn impl_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind, impl_ctx: ImplContext<'_>) -> String` — [`AssocItemKind`](#associtemkind), [`ImplContext`](#implcontext)
@@ -6539,53 +5905,29 @@ Utilify functions to handle anchors
 - <span id="anchorutils-slugify-anchor"></span>`fn slugify_anchor(name: &str) -> String`
 
   Convert a name to a GitHub-style markdown anchor slug.
-
   
-
   This normalizes item names to match the anchor IDs generated by markdown
-
   renderers (GitHub, mdBook, etc.) when they process headings.
-
   
-
-  # Rules Applied
-
+  ##### Rules Applied
   
-
   1. Apply Unicode NFC normalization (canonical composition)
-
   2. Convert to lowercase (full Unicode, not just ASCII)
-
   3. Remove backticks (markdown code formatting)
-
   4. Remove generics (`<T>`, `<K, V>`) by stripping `<...>` content
-
   5. Replace spaces and underscores with hyphens
-
   6. Remove non-alphanumeric characters (except hyphens)
-
   7. Collapse consecutive hyphens
-
   8. Trim leading/trailing hyphens
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```ignore
-
   assert_eq!(slugify_anchor("HashMap"), "hashmap");
-
   assert_eq!(slugify_anchor("HashMap<K, V>"), "hashmap");
-
   assert_eq!(slugify_anchor("my_function"), "my-function");
-
   assert_eq!(slugify_anchor("Into<T>"), "into");
-
   assert_eq!(slugify_anchor("Größe"), "größe");
-
   ```
 
 - <span id="anchorutils-slugify-anchor-ascii"></span>`fn slugify_anchor_ascii(name: &str) -> String`
@@ -6666,65 +6008,35 @@ create links between items.
 - <span id="linkregistry-create-link"></span>`fn create_link(&self, id: Id, from_path: &str) -> Option<String>`
 
   Create a markdown link to an item from a given source file.
-
   
-
   This is the main method used during markdown generation to create
-
   clickable links between documented items.
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `id` - The target item's ID
-
   * `from_path` - The source file creating the link (e.g., `"index.md"`)
-
   
-
-  # Returns
-
+  ##### Returns
   
-
   A formatted markdown link like `[``ItemName``](path/to/file.md)`,
-
   or `None` if the target item isn't registered.
-
   
-
-  # Link Types
-
+  ##### Link Types
   
-
   - **Same file**: Returns an anchor link (`#itemname`)
-
   - **Different file**: Returns a relative path (`../other/file.md`)
-
   
-
-  # Example
-
+  ##### Example
   
-
   ```ignore
-
   // From index.md linking to span.md
-
   registry.create_link(&span_id, "index.md")
-
   // Returns: Some("[`Span`](span.md)")
-
   
-
   // From span/index.md linking to index.md
-
   registry.create_link(&root_id, "span/index.md")
-
   // Returns: Some("[`crate`](../index.md)")
-
   ```
 
 - <span id="linkregistry-compute-relative-path"></span>`fn compute_relative_path(from: &str, to: &str) -> String`
@@ -7242,527 +6554,278 @@ allows existing rendering code to work with minimal changes.
 - <span id="singlecrateview-resolve-link"></span>`fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>, current_file: &str) -> Option<String>`
 
   Resolve a link text to a markdown link using the registry.
-
   
-
   This function attempts to convert rustdoc link syntax into valid markdown
-
   links that work in the generated documentation.
-
   
-
-  # Arguments
-
+  ##### Arguments
   * `link_text` - The raw link target from rustdoc (e.g., "`crate::config::ConfigBuilder::method`")
-
   * `item_links` - Map of link texts to Item IDs from rustdoc's `links` field
-
   * `current_file` - The markdown file being generated (e.g., "ureq/index.md")
-
   
-
-  # Returns
-
+  ##### Returns
   * `Some(markdown_link)` - A formatted markdown link like `[`text`](path.md#anchor)`
-
   * `None` - If the link cannot be resolved (will be rendered as inline code)
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```text
-
   Input:  link_text = "crate::config::ConfigBuilder::http_status_as_error"
-
           current_file = "ureq/index.md"
-
   Output: Some("[`crate::config::ConfigBuilder::http_status_as_error`](config/index.md#http_status_as_error)")
-
   
-
   Input:  link_text = "ConfigBuilder"
-
           current_file = "ureq/agent/index.md"
-
   Output: Some("[`ConfigBuilder`](../config/index.md#configbuilder)")
-
   
-
   Input:  link_text = "std::io::Error"  (external crate, not in registry)
-
           current_file = "ureq/index.md"
-
   Output: None  (rendered as `std::io::Error` inline code)
-
   ```
 
 - <span id="singlecrateview-build-link-to-id"></span>`fn build_link_to_id(&self, id: Id, current_file: &str, display_name: &str, anchor: Option<&str>) -> Option<String>`
 
   Build a link to an item by ID.
-
   
-
   This is the simplest path when we already have a resolved Item ID from
-
   rustdoc's links map. We just need to look up the file path in our registry.
-
   
-
-  # Arguments
-
+  ##### Arguments
   * `id` - The rustdoc Item ID to link to
-
   * `current_file` - Source file for relative path computation
-
   * `display_name` - Text to show in the link
-
   * `anchor` - Optional anchor (e.g., method name)
-
   
-
-  # Example Transformation
-
+  ##### Example Transformation
   
-
   ```text
-
   Input:
-
     id = Id(123)  (rustdoc's internal ID for ConfigBuilder)
-
     current_file = "ureq/agent/index.md"
-
     display_name = "ConfigBuilder"
-
     anchor = None
-
   
-
   Step 1: Look up ID in registry
-
     registry.get_path("ureq", Id(123)) → Some("config/index.md")
-
   
-
   Step 2: Build markdown link
-
     build_markdown_link("ureq/agent/index.md", "ureq", "config/index.md", "ConfigBuilder", None)
-
     → "[`ConfigBuilder`](../config/index.md)"
-
   
-
   Output: Some("[`ConfigBuilder`](../config/index.md)")
-
   ```
 
 - <span id="singlecrateview-resolve-crate-path"></span>`fn resolve_crate_path(&self, path_without_crate: &str, display_name: &str, current_file: &str) -> Option<String>`
 
   Resolve `crate::path::Item` or `crate::path::Item::method` patterns.
-
   
-
   This handles the common rustdoc pattern where docs reference items using
-
   crate-relative paths. The tricky part is distinguishing between:
-
   - `crate::module::Type` (link to Type, no anchor)
-
   - `crate::module::Type::method` (link to Type with #method anchor)
-
   - `crate::module::Type::Variant` (link to Type with #Variant anchor)
-
   
-
-  # Arguments
-
+  ##### Arguments
   * `path_without_crate` - The path after stripping "`crate::`" prefix
-
   * `display_name` - Full original text for display (includes "`crate::`")
-
   * `current_file` - Source file for relative path computation
-
   
-
-  # Example Transformation
-
+  ##### Example Transformation
   
-
   ```text
-
   Input:
-
     path_without_crate = "config::ConfigBuilder::http_status_as_error"
-
     display_name = "crate::config::ConfigBuilder::http_status_as_error"
-
     current_file = "ureq/index.md"
-
   
-
   Step 1: Split into type path and anchor
-
     split_type_and_anchor("config::ConfigBuilder::http_status_as_error")
-
     → ("config::ConfigBuilder", Some("http_status_as_error"))
-
     (lowercase "http_status_as_error" indicates a method)
-
   
-
   Step 2: Extract the type name (last segment of type path)
-
     "config::ConfigBuilder".rsplit("::").next() → "ConfigBuilder"
-
   
-
   Step 3: Resolve type name in registry
-
     registry.resolve_name("ConfigBuilder", "ureq") → Some(("ureq", Id(123)))
-
     registry.get_path("ureq", Id(123)) → Some("config/index.md")
-
   
-
   Step 4: Build markdown link with anchor
-
     build_markdown_link("ureq/index.md", "ureq", "config/index.md",
-
                         "crate::config::ConfigBuilder::http_status_as_error",
-
                         Some("http_status_as_error"))
-
     → "[`crate::config::ConfigBuilder::http_status_as_error`](config/index.md#http_status_as_error)"
-
   
-
   Output: Some("[`crate::config::ConfigBuilder::http_status_as_error`](config/index.md#http_status_as_error)")
-
   ```
 
 - <span id="singlecrateview-split-type-and-anchor"></span>`fn split_type_and_anchor(path: &str) -> (&str, Option<&str>)`
 
   Split `config::ConfigBuilder::method` into (`config::ConfigBuilder`, Some("method")).
-
   
-
   Detects methods (lowercase) and enum variants (`Type::Variant` pattern).
-
   
-
-  # Detection Rules
-
+  ##### Detection Rules
   
-
   1. **Methods/fields**: Last segment starts with lowercase
-
      - `Type::method` → (Type, method)
-
      - `mod::Type::field_name` → (`mod::Type`, `field_name`)
-
   
-
   2. **Enum variants**: Two consecutive uppercase segments
-
      - `Option::Some` → (Option, Some)
-
      - `mod::Error::IoError` → (`mod::Error`, `IoError`)
-
   
-
   3. **Nested types**: Uppercase but no uppercase predecessor
-
      - `mod::OuterType::InnerType` → (`mod::OuterType::InnerType`, None)
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```text
-
   "ConfigBuilder::http_status_as_error"
-
     Last segment "http_status_as_error" starts lowercase → method
-
     → ("ConfigBuilder", Some("http_status_as_error"))
-
   
-
   "config::ConfigBuilder::new"
-
     Last segment "new" starts lowercase → method
-
     → ("config::ConfigBuilder", Some("new"))
-
   
-
   "Option::Some"
-
     "Option" uppercase, "Some" uppercase → enum variant
-
     → ("Option", Some("Some"))
-
   
-
   "error::Error::Io"
-
     "Error" uppercase, "Io" uppercase → enum variant
-
     → ("error::Error", Some("Io"))
-
   
-
   "config::ConfigBuilder"
-
     "config" lowercase, "ConfigBuilder" uppercase → not a variant
-
     → ("config::ConfigBuilder", None)
-
   
-
   "Vec"
-
     No "::" separator
-
     → ("Vec", None)
-
   ```
 
 - <span id="singlecrateview-build-markdown-link"></span>`fn build_markdown_link(&self, current_file: &str, target_crate: &str, target_path: &str, display_name: &str, anchor: Option<&str>) -> String`
 
   Build a markdown link, handling same-crate and cross-crate cases.
-
   
-
   This is the core function that computes relative paths between markdown
-
   files and formats the final link.
-
   
-
-  # Arguments
-
+  ##### Arguments
   * `current_file` - The file we're generating (e.g., "ureq/agent/index.md")
-
   * `target_crate` - The crate containing the target item
-
   * `target_path` - Path to target within its crate (e.g., "config/index.md")
-
   * `display_name` - Text to show in the link
-
   * `anchor` - Optional anchor suffix (e.g., "`method_name`")
-
   
-
-  # Path Computation Examples
-
+  ##### Path Computation Examples
   
-
-  ## Same Crate Examples
-
+  ###### Same Crate Examples
   
-
   ```text
-
   Example 1: Link from index to nested module
-
      current_file = "ureq/index.md"
-
      target_crate = "ureq"
-
      target_path = "config/index.md"
-
   
-
      Step 1: Strip crate prefix from current
-
        "ureq/index.md" -> "index.md"
-
   
-
      Step 2: Compute relative path
-
        from "index.md" to "config/index.md"
-
        -> "config/index.md"
-
   
-
      Output: "[`display`](config/index.md)"
-
   
-
   Example 2: Link from nested to sibling module
-
      current_file = "ureq/agent/index.md"
-
      target_crate = "ureq"
-
      target_path = "config/index.md"
-
   
-
      Step 1: Strip crate prefix
-
        "ureq/agent/index.md" -> "agent/index.md"
-
   
-
      Step 2: Compute relative path
-
        from "agent/index.md" to "config/index.md"
-
        -> "config/index.md"
-
   
-
      Output: "[`display`][../config/index.md]"
-
   
-
   ## Cross-Crate Examples
-
   
-
   ```text
-
   Example 3: Link from one crate to another
-
     current_file = "ureq/agent/index.md"
-
     target_crate = "http"
-
     target_path  = "status/index.md"
-
   
-
     Step 1: Strip crate prefix
-
       "ureq/agent/index.md" → "agent/index.md"
-
   
-
     Step 2: Count depth (number of '/' in local path)
-
       "agent/index.md" has 1 slash → depth = 1
-
   
-
     Step 3: Build cross-crate path
-
       Go up (depth + 1) levels: "../" * 2 = "../../"
-
       Then into target crate: "../../http/status/index.md"
-
   
-
     Output: "[`display`](../../http/status/index.md)"
-
   
-
   Example 4: Cross-crate from root
-
     current_file = "ureq/index.md"
-
     target_crate = "http"
-
     target_path  = "index.md"
-
   
-
     depth = 0 (no slashes in "index.md")
-
     prefix = "../" * 1 = "../"
-
   
-
     Output: "[`display`](../http/index.md)"
-
   ```rust
 
 - <span id="singlecrateview-compute-cross-crate-path"></span>`fn compute_cross_crate_path(current_local: &str, target_crate: &str, target_path: &str) -> String`
 
   Compute a relative path for cross-crate linking.
-
   
-
   Given the local portion of the current file path (without crate prefix),
-
   computes the `../` prefix needed to navigate to another crate's file.
-
   
-
-  # Arguments
-
+  ##### Arguments
   * `current_local` - Current file path within crate (e.g., "agent/index.md")
-
   * `target_crate` - Name of the target crate
-
   * `target_path` - Path within target crate (e.g., "status/index.md")
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```text
-
   // From root of one crate to another
-
   compute_cross_crate_path("index.md", "http", "index.md")
-
     → "../http/index.md"
-
   
-
   // From nested module to another crate
-
   compute_cross_crate_path("agent/index.md", "http", "status/index.md")
-
     → "../../http/status/index.md"
-
   
-
   // From deeply nested to another crate root
-
   compute_cross_crate_path("a/b/c/index.md", "other", "index.md")
-
     → "../../../../other/index.md"
-
   ```
 
 - <span id="singlecrateview-strip-crate-prefix"></span>`fn strip_crate_prefix(path: &str) -> &str`
 
   Strip the crate prefix from a file path.
-
   
-
   File paths in our system includes the crate name as the first directory.
-
   This helper removes it to get the crate-local path.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```text
-
   "ureq/config/index.md" -> "config/index.md"
-
   "ureq/index.md"        -> "index.md"
-
   "http/status/index.md" -> "status/index.md"
-
   "simple.md"            -> "simple.md" (no slash returns as is)
-
   ```
 
 - <span id="singlecrateview-looks-like-external-reference"></span>`fn looks_like_external_reference(link_text: &str) -> bool`
@@ -10901,41 +9964,23 @@ let generics = renderer.render_generics(&params);
 - <span id="typerenderer-render-where-clause"></span>`fn render_where_clause(&self, where_predicates: &[WherePredicate]) -> String`
 
   Render where clause predicates.
-
   
-
   Produces the `where T: Clone, U: Send` portion of a signature.
-
   
-
-  # Arguments
-
+  ##### Arguments
   
-
   * `where_predicates` - The list of where predicates from rustdoc
-
   
-
-  # Returns
-
+  ##### Returns
   
-
   A formatted where clause string, or empty string if no predicates.
-
   
-
-  # Format
-
+  ##### Format
   
-
   ```text
-
   where
-
       T: Clone,
-
       U: Send
-
   ```
 
 - <span id="typerenderer-render-where-predicate"></span>`fn render_where_predicate(self, pred: &WherePredicate) -> String`
@@ -11028,45 +10073,25 @@ assert_eq!(PathUtils::short_name("Clone"), "Clone");
 - <span id="pathutils-short-name"></span>`fn short_name(path: &str) -> &str`
 
   Extract the short name (last segment) from a qualified Rust path.
-
   
-
   Rust paths use `::` as a separator. This function returns the final
-
   segment, which is typically the item's simple name without module prefix.
-
   
-
-  # Examples
-
+  ##### Examples
   
-
   ```rust
-
   use cargo_docs_md::utils::PathUtils;
-
   
-
   assert_eq!(PathUtils::short_name("std::vec::Vec"), "Vec");
-
   assert_eq!(PathUtils::short_name("std::collections::HashMap"), "HashMap");
-
   assert_eq!(PathUtils::short_name("Clone"), "Clone");
-
   assert_eq!(PathUtils::short_name(""), "");
-
   ```
-
   
-
-  # Edge Cases
-
+  ##### Edge Cases
   
-
   - Empty string returns empty string
-
   - Path ending with `::` returns empty string (e.g., `"foo::"` -> `""`)
-
   - Single segment returns itself (e.g., `"Vec"` -> `"Vec"`)
 
 #### Trait Implementations

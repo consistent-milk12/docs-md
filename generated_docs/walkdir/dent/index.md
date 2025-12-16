@@ -25,7 +25,7 @@ struct DirEntry {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../../.source_1765894658/walkdir-2.5.0/src/dent.rs#L35-L59)*
+*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../../.source_1765900590/walkdir-2.5.0/src/dent.rs#L35-L59)*
 
 A directory entry.
 
@@ -120,14 +120,14 @@ operations operate on the symbolic link.
   This will follow symbolic links if and only if the [`WalkDir`](../index.md) value
   has `follow_links` enabled.
   
-  # Platform behavior
+  ##### Platform behavior
   
   This always calls `std::fs::symlink_metadata`.
   
   If this entry is a symbolic link and `follow_links` is enabled, then
   `std::fs::metadata` is called instead.
   
-  # Errors
+  ##### Errors
   
   Similar to `std::fs::metadata`, returns errors for path values that
   the program does not have permissions to access or if the path does not
@@ -246,13 +246,13 @@ operations operate on the symbolic link.
 trait DirEntryExt { ... }
 ```
 
-*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../../.source_1765894658/walkdir-2.5.0/src/dent.rs#L339-L343)*
+*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../../.source_1765900590/walkdir-2.5.0/src/dent.rs#L339-L343)*
 
 Unix-specific extension methods for `walkdir::DirEntry`
 
 #### Required Methods
 
-- `fn ino(&self) -> u64`
+- `fn DirEntryExt::ino(&self) -> u64`
 
   Returns the underlying `d_ino` field in the contained `dirent`
   structure.

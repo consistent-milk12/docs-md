@@ -80,7 +80,7 @@ struct Error {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
 
 Core Diagnostic wrapper type.
 
@@ -184,7 +184,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
   object, beginning with the error that this error object was created
   from.
   
-  # Example
+  ##### Example
   
   ```rust
   use miette::Report;
@@ -225,7 +225,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
   Downcast this error object by reference.
   
-  # Example
+  ##### Example
   
   ```rust
   use miette::{Report, miette};
@@ -375,7 +375,7 @@ struct Report {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
 
 Core Diagnostic wrapper type.
 
@@ -479,7 +479,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
   object, beginning with the error that this error object was created
   from.
   
-  # Example
+  ##### Example
   
   ```rust
   use miette::Report;
@@ -520,7 +520,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
   Downcast this error object by reference.
   
-  # Example
+  ##### Example
   
   ```rust
   use miette::{Report, miette};
@@ -668,7 +668,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 struct InstallError;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L69)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L69)*
 
 Error indicating that [`set_hook()`](../index.md) was unable to install the provided
 [`ErrorHook`](../index.md).
@@ -744,7 +744,7 @@ Error indicating that [`set_hook()`](../index.md) was unable to install the prov
 struct DiagnosticError(Box<dyn std::error::Error + Send + Sync>);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:8`](../../../.source_1765894658/miette-7.6.0/src/eyreish/into_diagnostic.rs#L8)*
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:8`](../../../.source_1765900590/miette-7.6.0/src/eyreish/into_diagnostic.rs#L8)*
 
 Convenience [`Diagnostic`](../index.md) that can be used as an "anonymous" wrapper for
 Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
@@ -824,7 +824,7 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
 trait Context<T, E>: context::private::Sealed { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
 
 Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](../index.md).
 
@@ -1003,20 +1003,20 @@ supports both of the following use cases:
 
 #### Required Methods
 
-- `fn wrap_err<D>(self, msg: D) -> Result<T, Report>`
+- `fn Context::wrap_err<D>(self, msg: D) -> Result<T, Report>`
 
   Wrap the error value with a new adhoc error
 
-- `fn wrap_err_with<D, F>(self, f: F) -> Result<T, Report>`
+- `fn Context::wrap_err_with<D, F>(self, f: F) -> Result<T, Report>`
 
   Wrap the error value with a new adhoc error that is evaluated lazily
   only once an error does occur.
 
-- `fn context<D>(self, msg: D) -> Result<T, Report>`
+- `fn Context::context<D>(self, msg: D) -> Result<T, Report>`
 
   Compatibility re-export of `wrap_err()` for interop with `anyhow`
 
-- `fn with_context<D, F>(self, f: F) -> Result<T, Report>`
+- `fn Context::with_context<D, F>(self, f: F) -> Result<T, Report>`
 
   Compatibility re-export of `wrap_err_with()` for interop with `anyhow`
 
@@ -1031,19 +1031,19 @@ supports both of the following use cases:
 trait ReportHandler: core::any::Any + Send + Sync { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
 
 Error Report Handler trait for customizing `miette::Report`
 
 #### Required Methods
 
-- `fn debug(&self, error: &dyn Diagnostic, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- `fn ReportHandler::debug(&self, error: &dyn Diagnostic, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
   Define the report format
   
   Used to override the report format of `miette::Report`
   
-  # Example
+  ##### Example
   
   ```rust
   use indenter::indented;
@@ -1072,11 +1072,11 @@ Error Report Handler trait for customizing `miette::Report`
 
 #### Provided Methods
 
-- `fn display(&self, error: &dyn StdError, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- `fn ReportHandler::display(&self, error: &dyn StdError, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
   Override for the `Display` format
 
-- `fn track_caller(&mut self, location: &'static std::panic::Location<'static>)`
+- `fn ReportHandler::track_caller(&mut self, location: &'static std::panic::Location<'static>)`
 
   Store the location of the caller who constructed this error report
 
@@ -1094,7 +1094,7 @@ Error Report Handler trait for customizing `miette::Report`
 trait WrapErr<T, E>: context::private::Sealed { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
 
 Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](../index.md).
 
@@ -1273,20 +1273,20 @@ supports both of the following use cases:
 
 #### Required Methods
 
-- `fn wrap_err<D>(self, msg: D) -> Result<T, Report>`
+- `fn WrapErr::wrap_err<D>(self, msg: D) -> Result<T, Report>`
 
   Wrap the error value with a new adhoc error
 
-- `fn wrap_err_with<D, F>(self, f: F) -> Result<T, Report>`
+- `fn WrapErr::wrap_err_with<D, F>(self, f: F) -> Result<T, Report>`
 
   Wrap the error value with a new adhoc error that is evaluated lazily
   only once an error does occur.
 
-- `fn context<D>(self, msg: D) -> Result<T, Report>`
+- `fn WrapErr::context<D>(self, msg: D) -> Result<T, Report>`
 
   Compatibility re-export of `wrap_err()` for interop with `anyhow`
 
-- `fn with_context<D, F>(self, f: F) -> Result<T, Report>`
+- `fn WrapErr::with_context<D, F>(self, f: F) -> Result<T, Report>`
 
   Compatibility re-export of `wrap_err_with()` for interop with `anyhow`
 
@@ -1301,7 +1301,7 @@ supports both of the following use cases:
 trait IntoDiagnostic<T, E> { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../.source_1765894658/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../.source_1765900590/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
 
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
 `std::error::Error` to a `Result<T, Report>`.
@@ -1315,7 +1315,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 
 #### Required Methods
 
-- `fn into_diagnostic(self) -> Result<T, Report>`
+- `fn IntoDiagnostic::into_diagnostic(self) -> Result<T, Report>`
 
   Converts [`Result`](../index.md) types that return regular `std::error::Error`s
   into a [`Result`](../index.md) that returns a [`Diagnostic`](../index.md).
@@ -1332,7 +1332,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 fn set_hook(hook: ErrorHook) -> Result<(), InstallError>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
 
 Set the error hook.
 
@@ -1342,7 +1342,7 @@ Set the error hook.
 fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
 
 ### `get_default_printer`
 
@@ -1350,7 +1350,7 @@ fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
 
 ## Type Aliases
 
@@ -1360,7 +1360,7 @@ fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + Send>;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
 
 ### `Result<T, E>`
 
@@ -1368,7 +1368,7 @@ type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + 
 type Result<T, E> = core::result::Result<T, E>;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L257)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../../.source_1765900590/miette-7.6.0/src/eyreish/mod.rs#L257)*
 
 type alias for `Result<T, Report>`
 

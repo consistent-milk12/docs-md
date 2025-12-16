@@ -21,7 +21,7 @@ enum MietteError {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../../.source_1765894658/miette-7.6.0/src/error.rs#L13-L21)*
+*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../../.source_1765900590/miette-7.6.0/src/error.rs#L13-L21)*
 
 Error enum for miette. Used by certain operations in the protocol.
 

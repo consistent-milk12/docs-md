@@ -21,7 +21,7 @@
 struct ConsTuplesFn;
 ```
 
-*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:21`](../../../.source_1765894658/itertools-0.14.0/src/cons_tuples_impl.rs#L21)*
+*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:21`](../../../.source_1765900590/itertools-0.14.0/src/cons_tuples_impl.rs#L21)*
 
 #### Trait Implementations
 
@@ -102,7 +102,7 @@ where
     I: IntoIterator
 ```
 
-*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:31-39`](../../../.source_1765894658/itertools-0.14.0/src/cons_tuples_impl.rs#L31-L39)*
+*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:31-39`](../../../.source_1765900590/itertools-0.14.0/src/cons_tuples_impl.rs#L31-L39)*
 
 Create an iterator that maps for example iterators of
 `((A, B), C)` to `(A, B, C)`.
@@ -115,7 +115,7 @@ Create an iterator that maps for example iterators of
 type ConsTuples<I> = crate::adaptors::map::MapSpecialCase<I, ConsTuplesFn>;
 ```
 
-*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:27`](../../../.source_1765894658/itertools-0.14.0/src/cons_tuples_impl.rs#L27)*
+*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:27`](../../../.source_1765900590/itertools-0.14.0/src/cons_tuples_impl.rs#L27)*
 
 An iterator that maps an iterator of tuples like
 `((A, B), C)` to an iterator of `(A, B, C)`.
@@ -126,5 +126,5 @@ Used by the `iproduct!()` macro.
 
 ### `impl_cons_iter!`
 
-*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:3-16`](../../../.source_1765894658/itertools-0.14.0/src/cons_tuples_impl.rs#L3-L16)*
+*Defined in [`itertools-0.14.0/src/cons_tuples_impl.rs:3-16`](../../../.source_1765900590/itertools-0.14.0/src/cons_tuples_impl.rs#L3-L16)*
 

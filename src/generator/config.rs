@@ -34,6 +34,15 @@ pub struct RenderConfig {
     /// documentation is included.
     pub full_method_docs: bool,
 
+    /// Threshold for generating separate method pages for large traits/impls.
+    ///
+    /// When a trait or impl block has more methods than this threshold,
+    /// separate markdown pages will be generated for each method, with the
+    /// main page linking to them. Set to `None` to disable this feature.
+    ///
+    /// Default: `None` (disabled)
+    pub large_trait_threshold: Option<usize>,
+
     /// Source code integration options.
     pub include_source: SourceConfig,
 }
@@ -76,6 +85,7 @@ impl Default for RenderConfig {
             hide_trivial_derives: false,
             method_anchors: true,
             full_method_docs: false,
+            large_trait_threshold: None, // Disabled by default
             include_source: SourceConfig::default(),
         }
     }
@@ -95,6 +105,7 @@ mod tests {
         assert!(!config.hide_trivial_derives);
         assert!(config.method_anchors);
         assert!(!config.full_method_docs);
+        assert!(config.large_trait_threshold.is_none());
     }
 
     #[test]
@@ -128,6 +139,7 @@ mod tests {
             hide_trivial_derives: true,
             method_anchors: false,
             full_method_docs: true,
+            large_trait_threshold: Some(50),
             include_source: SourceConfig {
                 function_bodies: true,
                 const_values: true,
@@ -143,6 +155,7 @@ mod tests {
         assert!(config.hide_trivial_derives);
         assert!(!config.method_anchors);
         assert!(config.full_method_docs);
+        assert_eq!(config.large_trait_threshold, Some(50));
         assert!(config.include_source.function_bodies);
         assert!(config.include_source.const_values);
         assert!(config.include_source.private_items);

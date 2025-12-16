@@ -84,7 +84,7 @@ as shown in the following build timings.
 trait Deserialize<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:554-593`](../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L554-L593)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:554-593`](../../.source_1765900590/serde_core-1.0.228/src/de/mod.rs#L554-L593)*
 
 A **data structure** that can be deserialized from any data format supported
 by Serde.
@@ -117,7 +117,7 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
 #### Required Methods
 
-- `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
+- `fn Deserialize::deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
   Deserialize this value from the given Serde deserializer.
   
@@ -267,7 +267,7 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 trait Deserializer<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:945-1266`](../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L945-L1266)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:945-1266`](../../.source_1765900590/serde_core-1.0.228/src/de/mod.rs#L945-L1266)*
 
 A **data format** that can deserialize any data structure supported by
 Serde.
@@ -373,13 +373,54 @@ The [example data format] presented on the website contains example code for
 a basic JSON `Deserializer`.
 
 
+<details>
+<summary><strong>Methods (32)</strong> - click to expand</summary>
+
+**Required:**
+- [`Deserializer::deserialize_any`](#fn-deserializerdeserialize-any)
+- [`Deserializer::deserialize_bool`](#fn-deserializerdeserialize-bool)
+- [`Deserializer::deserialize_i8`](#fn-deserializerdeserialize-i8)
+- [`Deserializer::deserialize_i16`](#fn-deserializerdeserialize-i16)
+- [`Deserializer::deserialize_i32`](#fn-deserializerdeserialize-i32)
+- [`Deserializer::deserialize_i64`](#fn-deserializerdeserialize-i64)
+- [`Deserializer::deserialize_u8`](#fn-deserializerdeserialize-u8)
+- [`Deserializer::deserialize_u16`](#fn-deserializerdeserialize-u16)
+- [`Deserializer::deserialize_u32`](#fn-deserializerdeserialize-u32)
+- [`Deserializer::deserialize_u64`](#fn-deserializerdeserialize-u64)
+- [`Deserializer::deserialize_f32`](#fn-deserializerdeserialize-f32)
+- [`Deserializer::deserialize_f64`](#fn-deserializerdeserialize-f64)
+- [`Deserializer::deserialize_char`](#fn-deserializerdeserialize-char)
+- [`Deserializer::deserialize_str`](#fn-deserializerdeserialize-str)
+- [`Deserializer::deserialize_string`](#fn-deserializerdeserialize-string)
+- [`Deserializer::deserialize_bytes`](#fn-deserializerdeserialize-bytes)
+- [`Deserializer::deserialize_byte_buf`](#fn-deserializerdeserialize-byte-buf)
+- [`Deserializer::deserialize_option`](#fn-deserializerdeserialize-option)
+- [`Deserializer::deserialize_unit`](#fn-deserializerdeserialize-unit)
+- [`Deserializer::deserialize_unit_struct`](#fn-deserializerdeserialize-unit-struct)
+- [`Deserializer::deserialize_newtype_struct`](#fn-deserializerdeserialize-newtype-struct)
+- [`Deserializer::deserialize_seq`](#fn-deserializerdeserialize-seq)
+- [`Deserializer::deserialize_tuple`](#fn-deserializerdeserialize-tuple)
+- [`Deserializer::deserialize_tuple_struct`](#fn-deserializerdeserialize-tuple-struct)
+- [`Deserializer::deserialize_map`](#fn-deserializerdeserialize-map)
+- [`Deserializer::deserialize_struct`](#fn-deserializerdeserialize-struct)
+- [`Deserializer::deserialize_enum`](#fn-deserializerdeserialize-enum)
+- [`Deserializer::deserialize_identifier`](#fn-deserializerdeserialize-identifier)
+- [`Deserializer::deserialize_ignored_any`](#fn-deserializerdeserialize-ignored-any)
+
+**Provided:**
+- [`Deserializer::deserialize_i128`](#fn-deserializerdeserialize-i128)
+- [`Deserializer::deserialize_u128`](#fn-deserializerdeserialize-u128)
+- [`Deserializer::is_human_readable`](#fn-deserializeris-human-readable)
+
+</details>
+
 #### Associated Types
 
 - `type Error: 1`
 
 #### Required Methods
 
-- `fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Require the `Deserializer` to figure out how to drive the visitor based
   on what data type is in the input.
@@ -391,55 +432,55 @@ a basic JSON `Deserializer`.
   deserialize from self-describing formats only, ruling out Postcard and
   many others.
 
-- `fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `bool` value.
 
-- `fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i8` value.
 
-- `fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i16` value.
 
-- `fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i32` value.
 
-- `fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i64` value.
 
-- `fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u8` value.
 
-- `fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u16` value.
 
-- `fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u32` value.
 
-- `fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u64` value.
 
-- `fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `f32` value.
 
-- `fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `f64` value.
 
-- `fn deserialize_char<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_char<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `char` value.
 
-- `fn deserialize_str<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_str<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a string value and does
   not benefit from taking ownership of buffered data owned by the
@@ -449,7 +490,7 @@ a basic JSON `Deserializer`.
   indicate this to the `Deserializer` by using `deserialize_string`
   instead.
 
-- `fn deserialize_string<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_string<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a string value and would
   benefit from taking ownership of buffered data owned by the
@@ -459,7 +500,7 @@ a basic JSON `Deserializer`.
   data, indicate that to the `Deserializer` by using `deserialize_str`
   instead.
 
-- `fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a byte array and does not
   benefit from taking ownership of buffered data owned by the
@@ -469,7 +510,7 @@ a basic JSON `Deserializer`.
   indicate this to the `Deserializer` by using `deserialize_byte_buf`
   instead.
 
-- `fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a byte array and would
   benefit from taking ownership of buffered data owned by the
@@ -479,7 +520,7 @@ a basic JSON `Deserializer`.
   data, indicate that to the `Deserializer` by using `deserialize_bytes`
   instead.
 
-- `fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an optional value.
   
@@ -487,54 +528,54 @@ a basic JSON `Deserializer`.
   value to convert the null value into `None` and a regular value into
   `Some(value)`.
 
-- `fn deserialize_unit<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_unit<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a unit value.
 
-- `fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a unit struct with a
   particular name.
 
-- `fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a newtype struct with a
   particular name.
 
-- `fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a sequence of values.
 
-- `fn deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a sequence of values and
   knows how many values there are without looking at the serialized data.
 
-- `fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a tuple struct with a
   particular name and number of fields.
 
-- `fn deserialize_map<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_map<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a map of key-value pairs.
 
-- `fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a struct with a particular
   name and fields.
 
-- `fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an enum value with a
   particular name and possible variants.
 
-- `fn deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting the name of a struct
   field or the discriminant of an enum variant.
 
-- `fn deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type needs to deserialize a value whose type
   doesn't matter because it is ignored.
@@ -543,19 +584,19 @@ a basic JSON `Deserializer`.
 
 #### Provided Methods
 
-- `fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i128` value.
   
   The default behavior unconditionally returns an error.
 
-- `fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn Deserializer::deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `u128` value.
   
   The default behavior unconditionally returns an error.
 
-- `fn is_human_readable(&self) -> bool`
+- `fn Deserializer::is_human_readable(&self) -> bool`
 
   Determine whether `Deserialize` implementations should expect to
   deserialize their human-readable form.
@@ -662,7 +703,7 @@ a basic JSON `Deserializer`.
 trait Serialize { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../.source_1765900590/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
 
 A **data structure** that can be serialized into any data format supported
 by Serde.
@@ -691,7 +732,7 @@ provides an implementation of `Serialize` for it.
 
 #### Required Methods
 
-- `fn serialize<S>(&self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
+- `fn Serialize::serialize<S>(&self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
 
   Serialize this value into the given Serde serializer.
   
@@ -865,7 +906,7 @@ provides an implementation of `Serialize` for it.
 trait Serializer: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../.source_1765900590/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
 
 A **data format** that can serialize any data structure supported by Serde.
 
@@ -942,6 +983,49 @@ The [example data format] presented on the website contains example code for
 a basic JSON `Serializer`.
 
 
+<details>
+<summary><strong>Methods (34)</strong> - click to expand</summary>
+
+**Required:**
+- [`Serializer::serialize_bool`](#fn-serializerserialize-bool)
+- [`Serializer::serialize_i8`](#fn-serializerserialize-i8)
+- [`Serializer::serialize_i16`](#fn-serializerserialize-i16)
+- [`Serializer::serialize_i32`](#fn-serializerserialize-i32)
+- [`Serializer::serialize_i64`](#fn-serializerserialize-i64)
+- [`Serializer::serialize_u8`](#fn-serializerserialize-u8)
+- [`Serializer::serialize_u16`](#fn-serializerserialize-u16)
+- [`Serializer::serialize_u32`](#fn-serializerserialize-u32)
+- [`Serializer::serialize_u64`](#fn-serializerserialize-u64)
+- [`Serializer::serialize_f32`](#fn-serializerserialize-f32)
+- [`Serializer::serialize_f64`](#fn-serializerserialize-f64)
+- [`Serializer::serialize_char`](#fn-serializerserialize-char)
+- [`Serializer::serialize_str`](#fn-serializerserialize-str)
+- [`Serializer::serialize_bytes`](#fn-serializerserialize-bytes)
+- [`Serializer::serialize_none`](#fn-serializerserialize-none)
+- [`Serializer::serialize_some`](#fn-serializerserialize-some)
+- [`Serializer::serialize_unit`](#fn-serializerserialize-unit)
+- [`Serializer::serialize_unit_struct`](#fn-serializerserialize-unit-struct)
+- [`Serializer::serialize_unit_variant`](#fn-serializerserialize-unit-variant)
+- [`Serializer::serialize_newtype_struct`](#fn-serializerserialize-newtype-struct)
+- [`Serializer::serialize_newtype_variant`](#fn-serializerserialize-newtype-variant)
+- [`Serializer::serialize_seq`](#fn-serializerserialize-seq)
+- [`Serializer::serialize_tuple`](#fn-serializerserialize-tuple)
+- [`Serializer::serialize_tuple_struct`](#fn-serializerserialize-tuple-struct)
+- [`Serializer::serialize_tuple_variant`](#fn-serializerserialize-tuple-variant)
+- [`Serializer::serialize_map`](#fn-serializerserialize-map)
+- [`Serializer::serialize_struct`](#fn-serializerserialize-struct)
+- [`Serializer::serialize_struct_variant`](#fn-serializerserialize-struct-variant)
+
+**Provided:**
+- [`Serializer::serialize_i128`](#fn-serializerserialize-i128)
+- [`Serializer::serialize_u128`](#fn-serializerserialize-u128)
+- [`Serializer::collect_seq`](#fn-serializercollect-seq)
+- [`Serializer::collect_map`](#fn-serializercollect-map)
+- [`Serializer::collect_str`](#fn-serializercollect-str)
+- [`Serializer::is_human_readable`](#fn-serializeris-human-readable)
+
+</details>
+
 #### Associated Types
 
 - `type Ok`
@@ -964,7 +1048,7 @@ a basic JSON `Serializer`.
 
 #### Required Methods
 
-- `fn serialize_bool(self, v: bool) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_bool(self, v: bool) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `bool` value.
   
@@ -983,7 +1067,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_i8(self, v: i8) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_i8(self, v: i8) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i8` value.
   
@@ -1006,7 +1090,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_i16(self, v: i16) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_i16(self, v: i16) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i16` value.
   
@@ -1029,7 +1113,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_i32(self, v: i32) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_i32(self, v: i32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i32` value.
   
@@ -1052,7 +1136,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_i64(self, v: i64) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_i64(self, v: i64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i64` value.
   
@@ -1071,7 +1155,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_u8(self, v: u8) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_u8(self, v: u8) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u8` value.
   
@@ -1094,7 +1178,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_u16(self, v: u16) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_u16(self, v: u16) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u16` value.
   
@@ -1117,7 +1201,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_u32(self, v: u32) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_u32(self, v: u32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u32` value.
   
@@ -1140,7 +1224,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_u64(self, v: u64) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_u64(self, v: u64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u64` value.
   
@@ -1159,7 +1243,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_f32(self, v: f32) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_f32(self, v: f32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `f32` value.
   
@@ -1182,7 +1266,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_f64(self, v: f64) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_f64(self, v: f64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `f64` value.
   
@@ -1201,7 +1285,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_char(self, v: char) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_char(self, v: char) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a character.
   
@@ -1223,7 +1307,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_str(self, v: &str) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_str(self, v: &str) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `&str`.
   
@@ -1242,7 +1326,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_bytes(self, v: &[u8]) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_bytes(self, v: &[u8]) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a chunk of raw byte data.
   
@@ -1278,7 +1362,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_none(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_none(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `None` value.
   
@@ -1310,7 +1394,7 @@ a basic JSON `Serializer`.
   fn main() {}
   ```
 
-- `fn serialize_some<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_some<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `Some(T)` value.
   
@@ -1342,7 +1426,7 @@ a basic JSON `Serializer`.
   fn main() {}
   ```
 
-- `fn serialize_unit(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_unit(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `()` value.
   
@@ -1361,7 +1445,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_unit_struct(self, name: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_unit_struct(self, name: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a unit struct like `struct Unit` or `PhantomData<T>`.
   
@@ -1382,7 +1466,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_unit_variant(self, name: &'static str, variant_index: u32, variant: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_unit_variant(self, name: &'static str, variant_index: u32, variant: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a unit variant like `E::A` in `enum E { A, B }`.
   
@@ -1411,7 +1495,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_newtype_struct<T>(self, name: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_newtype_struct<T>(self, name: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a newtype struct like `struct Millimeters(u8)`.
   
@@ -1434,7 +1518,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_newtype_variant<T>(self, name: &'static str, variant_index: u32, variant: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_newtype_variant<T>(self, name: &'static str, variant_index: u32, variant: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a newtype variant like `E::N` in `enum E { N(u8) }`.
   
@@ -1463,7 +1547,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_seq(self, len: Option<usize>) -> Result<<Self as >::SerializeSeq, <Self as >::Error>`
+- `fn Serializer::serialize_seq(self, len: Option<usize>) -> Result<<Self as >::SerializeSeq, <Self as >::Error>`
 
   Begin to serialize a variably sized sequence. This call must be
   followed by zero or more calls to `serialize_element`, then a call to
@@ -1512,7 +1596,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_tuple(self, len: usize) -> Result<<Self as >::SerializeTuple, <Self as >::Error>`
+- `fn Serializer::serialize_tuple(self, len: usize) -> Result<<Self as >::SerializeTuple, <Self as >::Error>`
 
   Begin to serialize a statically sized sequence whose length will be
   known at deserialization time without looking at the serialized data.
@@ -1569,7 +1653,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_tuple_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct, <Self as >::Error>`
+- `fn Serializer::serialize_tuple_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct, <Self as >::Error>`
 
   Begin to serialize a tuple struct like `struct Rgb(u8, u8, u8)`. This
   call must be followed by zero or more calls to `serialize_field`, then a
@@ -1597,7 +1681,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_tuple_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant, <Self as >::Error>`
+- `fn Serializer::serialize_tuple_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant, <Self as >::Error>`
 
   Begin to serialize a tuple variant like `E::T` in `enum E { T(u8, u8)
   }`. This call must be followed by zero or more calls to
@@ -1639,7 +1723,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_map(self, len: Option<usize>) -> Result<<Self as >::SerializeMap, <Self as >::Error>`
+- `fn Serializer::serialize_map(self, len: Option<usize>) -> Result<<Self as >::SerializeMap, <Self as >::Error>`
 
   Begin to serialize a map. This call must be followed by zero or more
   calls to `serialize_key` and `serialize_value`, then a call to `end`.
@@ -1688,7 +1772,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct, <Self as >::Error>`
+- `fn Serializer::serialize_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct, <Self as >::Error>`
 
   Begin to serialize a struct like `struct Rgb { r: u8, g: u8, b: u8 }`.
   This call must be followed by zero or more calls to `serialize_field`,
@@ -1721,7 +1805,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn serialize_struct_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant, <Self as >::Error>`
+- `fn Serializer::serialize_struct_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant, <Self as >::Error>`
 
   Begin to serialize a struct variant like `E::S` in `enum E { S { r: u8,
   g: u8, b: u8 } }`. This call must be followed by zero or more calls to
@@ -1764,7 +1848,7 @@ a basic JSON `Serializer`.
 
 #### Provided Methods
 
-- `fn serialize_i128(self, v: i128) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_i128(self, v: i128) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i128` value.
   
@@ -1785,7 +1869,7 @@ a basic JSON `Serializer`.
   
   The default behavior unconditionally returns an error.
 
-- `fn serialize_u128(self, v: u128) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::serialize_u128(self, v: u128) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u128` value.
   
@@ -1806,7 +1890,7 @@ a basic JSON `Serializer`.
   
   The default behavior unconditionally returns an error.
 
-- `fn collect_seq<I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::collect_seq<I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Collect an iterator as a sequence.
   
@@ -1831,7 +1915,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn collect_map<K, V, I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::collect_map<K, V, I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Collect an iterator as a map.
   
@@ -1858,7 +1942,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn collect_str<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn Serializer::collect_str<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a string produced by an implementation of `Display`.
   
@@ -1886,7 +1970,7 @@ a basic JSON `Serializer`.
   }
   ```
 
-- `fn is_human_readable(&self) -> bool`
+- `fn Serializer::is_human_readable(&self) -> bool`
 
   Determine whether `Serialize` implementations should serialize in
   human-readable form.
@@ -1945,11 +2029,11 @@ a basic JSON `Serializer`.
 
 ### `tri!`
 
-*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../.source_1765894658/serde_core-1.0.228/src/lib.rs#L111)*
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../.source_1765900590/serde_core-1.0.228/src/lib.rs#L111)*
 
 ### `forward_to_deserialize_any!`
 
-*Defined in [`serde_core-1.0.228/src/macros.rs:110-118`](../../.source_1765894658/serde_core-1.0.228/src/macros.rs#L110-L118)*
+*Defined in [`serde_core-1.0.228/src/macros.rs:110-118`](../../.source_1765900590/serde_core-1.0.228/src/macros.rs#L110-L118)*
 
 Helper macro when implementing the `Deserializer` part of a new data format
 for Serde.

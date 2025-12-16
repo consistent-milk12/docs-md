@@ -46,7 +46,7 @@ struct Error {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:17-22`](../../../.source_1765894658/serde_json-1.0.145/src/error.rs#L17-L22)*
+*Defined in [`serde_json-1.0.145/src/error.rs:17-22`](../../../.source_1765900590/serde_json-1.0.145/src/error.rs#L17-L22)*
 
 This type represents all possible errors that can occur when serializing or
 deserializing JSON data.
@@ -119,7 +119,7 @@ deserializing JSON data.
   The kind reported by the underlying standard library I/O error, if this
   error was caused by a failure to read or write bytes on an I/O stream.
   
-  # Example
+  ##### Example
   
   ```rust
   use serde_json::Value;
@@ -230,7 +230,7 @@ struct ErrorImpl {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:230-234`](../../../.source_1765894658/serde_json-1.0.145/src/error.rs#L230-L234)*
+*Defined in [`serde_json-1.0.145/src/error.rs:230-234`](../../../.source_1765900590/serde_json-1.0.145/src/error.rs#L230-L234)*
 
 #### Trait Implementations
 
@@ -287,7 +287,7 @@ struct ErrorImpl {
 struct JsonUnexpected<'a>(de::Unexpected<'a>);
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:465`](../../../.source_1765894658/serde_json-1.0.145/src/error.rs#L465)*
+*Defined in [`serde_json-1.0.145/src/error.rs:465`](../../../.source_1765900590/serde_json-1.0.145/src/error.rs#L465)*
 
 #### Trait Implementations
 
@@ -351,7 +351,7 @@ enum Category {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:166-185`](../../../.source_1765894658/serde_json-1.0.145/src/error.rs#L166-L185)*
+*Defined in [`serde_json-1.0.145/src/error.rs:166-185`](../../../.source_1765900590/serde_json-1.0.145/src/error.rs#L166-L185)*
 
 Categorizes the cause of a `serde_json::Error`.
 
@@ -483,7 +483,7 @@ enum ErrorCode {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:236-311`](../../../.source_1765894658/serde_json-1.0.145/src/error.rs#L236-L311)*
+*Defined in [`serde_json-1.0.145/src/error.rs:236-311`](../../../.source_1765900590/serde_json-1.0.145/src/error.rs#L236-L311)*
 
 #### Variants
 
@@ -644,7 +644,7 @@ enum ErrorCode {
 fn make_error(msg: alloc::string::String) -> Error
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:483-492`](../../../.source_1765894658/serde_json-1.0.145/src/error.rs#L483-L492)*
+*Defined in [`serde_json-1.0.145/src/error.rs:483-492`](../../../.source_1765900590/serde_json-1.0.145/src/error.rs#L483-L492)*
 
 ### `parse_line_col`
 
@@ -652,7 +652,7 @@ fn make_error(msg: alloc::string::String) -> Error
 fn parse_line_col(msg: &mut alloc::string::String) -> Option<(usize, usize)>
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:494-534`](../../../.source_1765894658/serde_json-1.0.145/src/error.rs#L494-L534)*
+*Defined in [`serde_json-1.0.145/src/error.rs:494-534`](../../../.source_1765900590/serde_json-1.0.145/src/error.rs#L494-L534)*
 
 ### `starts_with_digit`
 
@@ -660,7 +660,7 @@ fn parse_line_col(msg: &mut alloc::string::String) -> Option<(usize, usize)>
 fn starts_with_digit(slice: &str) -> bool
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:536-541`](../../../.source_1765894658/serde_json-1.0.145/src/error.rs#L536-L541)*
+*Defined in [`serde_json-1.0.145/src/error.rs:536-541`](../../../.source_1765900590/serde_json-1.0.145/src/error.rs#L536-L541)*
 
 ## Type Aliases
 
@@ -670,7 +670,7 @@ fn starts_with_digit(slice: &str) -> bool
 type Result<T> = result::Result<T, Error>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/error.rs:25`](../../../.source_1765894658/serde_json-1.0.145/src/error.rs#L25)*
+*Defined in [`serde_json-1.0.145/src/error.rs:25`](../../../.source_1765900590/serde_json-1.0.145/src/error.rs#L25)*
 
 Alias for a `Result` with the error type `serde_json::Error`.
 

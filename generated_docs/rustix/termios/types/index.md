@@ -62,9 +62,9 @@ struct Termios {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L14-L75)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L14-L75)*
 
-`struct termios` for use with [`tcgetattr`](../index.md) and [`tcsetattr`](../index.md).
+`struct termios` for use with [`tcgetattr`](../../backend/termios/syscalls/index.md) and [`tcsetattr`](../index.md).
 
 
 
@@ -234,7 +234,7 @@ struct Termios {
 struct InputModes(<InputModes as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:245-311`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L245-L311)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:245-311`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L245-L311)*
 
 Flags controlling terminal input.
 
@@ -473,7 +473,7 @@ Flags controlling terminal input.
 struct OutputModes(<OutputModes as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:313-526`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L313-L526)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:313-526`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L313-L526)*
 
 Flags controlling terminal output.
 
@@ -744,7 +744,7 @@ Flags controlling terminal output.
 struct ControlModes(<ControlModes as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:528-592`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L528-L592)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:528-592`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L528-L592)*
 
 Flags controlling special terminal modes.
 
@@ -985,7 +985,7 @@ probably these flags.
 struct LocalModes(<LocalModes as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:594-664`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L594-L664)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:594-664`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L594-L664)*
 
 Flags controlling “local” terminal modes.
 
@@ -1226,7 +1226,7 @@ Flags controlling “local” terminal modes.
 struct SpecialCodes([linux_raw_sys::general::cc_t; 19]);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1124`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1124)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1124`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L1124)*
 
 An array indexed by [`SpecialCodeIndex`](../index.md) indicating the current values of
 various special control codes.
@@ -1308,7 +1308,7 @@ various special control codes.
 struct SpecialCode(u8);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1162`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1162)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1162`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L1162)*
 
 A newtype for pretty printing.
 
@@ -1363,7 +1363,7 @@ A newtype for pretty printing.
 struct SpecialCodeIndex(usize);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1183`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1183)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1183`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L1183)*
 
 Indices for use with `Termios::special_codes`.
 
@@ -1499,9 +1499,9 @@ struct Winsize {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1436-1444`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1436-L1444)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1436-1444`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L1436-L1444)*
 
-`struct winsize` for use with [`tcgetwinsize`](../index.md).
+`struct winsize` for use with [`tcgetwinsize`](../../backend/termios/syscalls/index.md).
 
 
 #### Fields
@@ -1601,7 +1601,7 @@ enum OptionalActions {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1372-1385`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1372-L1385)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1372-1385`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L1372-L1385)*
 
 `TCSA*` values for use with [`tcsetattr`](../index.md).
 
@@ -1706,7 +1706,7 @@ enum QueueSelector {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1392-1404`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1392-L1404)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1392-1404`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L1392-L1404)*
 
 `TC*` values for use with [`tcflush`](../index.md).
 
@@ -1811,9 +1811,9 @@ enum Action {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1411-1427`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1411-L1427)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1411-1427`](../../../../.source_1765900590/rustix-1.1.2/src/termios/types.rs#L1411-L1427)*
 
-`TC*` values for use with [`tcflow`](../../backend/termios/syscalls/index.md).
+`TC*` values for use with [`tcflow`](../index.md).
 
 
 #### Variants

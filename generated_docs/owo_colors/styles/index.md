@@ -44,7 +44,7 @@ Different display styles (strikethrough, bold, etc.)
 struct BoldDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:26`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L26)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:26`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L26)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of boldening it. Recommended to be constructed using
@@ -59,7 +59,7 @@ with the addition of boldening it. Recommended to be constructed using
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::OwoColorize;
@@ -164,7 +164,7 @@ with the addition of boldening it. Recommended to be constructed using
 struct DimDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:66`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L66)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:66`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L66)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of dimming it. Recommended to be constructed using
@@ -179,7 +179,7 @@ with the addition of dimming it. Recommended to be constructed using
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::OwoColorize;
@@ -284,7 +284,7 @@ with the addition of dimming it. Recommended to be constructed using
 struct ItalicDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:106`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L106)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:106`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L106)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of italics. Recommended to be constructed using
@@ -299,7 +299,7 @@ with the addition of italics. Recommended to be constructed using
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::OwoColorize;
@@ -404,7 +404,7 @@ with the addition of italics. Recommended to be constructed using
 struct UnderlineDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:146`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L146)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:146`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L146)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 while underlining it. Recommended to be constructed using
@@ -419,7 +419,7 @@ while underlining it. Recommended to be constructed using
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::OwoColorize;
@@ -524,7 +524,7 @@ while underlining it. Recommended to be constructed using
 struct BlinkDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:186`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L186)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:186`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L186)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 while blinking. Recommended to be constructed using
@@ -539,7 +539,7 @@ while blinking. Recommended to be constructed using
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::OwoColorize;
@@ -644,7 +644,7 @@ while blinking. Recommended to be constructed using
 struct BlinkFastDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:225`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L225)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:225`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L225)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blink_fast)
@@ -658,7 +658,7 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::OwoColorize;
@@ -763,7 +763,7 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 struct ReversedDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:264`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L264)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:264`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L264)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize::reversed)
@@ -777,7 +777,7 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::OwoColorize;
@@ -882,7 +882,7 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 struct HiddenDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:303`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L303)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:303`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L303)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
@@ -896,7 +896,7 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::OwoColorize;
@@ -1001,7 +1001,7 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 struct StrikeThroughDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:343`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L343)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:343`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L343)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 crossed out. Recommended to be constructed using
@@ -1016,7 +1016,7 @@ crossed out. Recommended to be constructed using
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   ```rust
   use owo_colors::OwoColorize;
@@ -1119,5 +1119,5 @@ crossed out. Recommended to be constructed using
 
 ### `impl_fmt_for_style!`
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:8-20`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L8-L20)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:8-20`](../../../.source_1765900590/owo-colors-4.2.3/src/styles.rs#L8-L20)*
 

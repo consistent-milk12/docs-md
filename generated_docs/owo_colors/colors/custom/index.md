@@ -38,7 +38,7 @@
 struct CustomColor<const R: u8, const G: u8, const B: u8>;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:83`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/custom.rs#L83)*
+*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:83`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/custom.rs#L83)*
 
 A custom RGB color, determined at compile time
 
@@ -116,7 +116,7 @@ enum Plane {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:21-24`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/custom.rs#L21-L24)*
+*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:21-24`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/custom.rs#L21-L24)*
 
 #### Trait Implementations
 
@@ -169,7 +169,7 @@ enum Plane {
 const fn generate_lookup() -> [[u8; 3]; 256]
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:5-19`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/custom.rs#L5-L19)*
+*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:5-19`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/custom.rs#L5-L19)*
 
 ### `rgb_to_ansi`
 
@@ -177,7 +177,7 @@ const fn generate_lookup() -> [[u8; 3]; 256]
 const fn rgb_to_ansi(r: u8, g: u8, b: u8, plane: Plane) -> [u8; 19]
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:26-52`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/custom.rs#L26-L52)*
+*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:26-52`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/custom.rs#L26-L52)*
 
 ### `rgb_to_ansi_color`
 
@@ -185,7 +185,7 @@ const fn rgb_to_ansi(r: u8, g: u8, b: u8, plane: Plane) -> [u8; 19]
 const fn rgb_to_ansi_color(r: u8, g: u8, b: u8, plane: Plane) -> [u8; 16]
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:54-80`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/custom.rs#L54-L80)*
+*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:54-80`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/custom.rs#L54-L80)*
 
 ### `bytes_to_str`
 
@@ -193,7 +193,7 @@ const fn rgb_to_ansi_color(r: u8, g: u8, b: u8, plane: Plane) -> [u8; 16]
 const fn bytes_to_str(bytes: &'static [u8]) -> &'static str
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:86-91`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/custom.rs#L86-L91)*
+*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:86-91`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/custom.rs#L86-L91)*
 
 This exists since unwrap() isn't const-safe (it invokes formatting infrastructure)
 
@@ -204,5 +204,5 @@ This exists since unwrap() isn't const-safe (it invokes formatting infrastructur
 const U8_TO_STR: [[u8; 3]; 256];
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:3`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/custom.rs#L3)*
+*Defined in [`owo-colors-4.2.3/src/colors/custom.rs:3`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/custom.rs#L3)*
 

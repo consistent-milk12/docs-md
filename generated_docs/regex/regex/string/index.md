@@ -54,7 +54,7 @@ struct Regex {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:101-104`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L101-L104)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:101-104`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L101-L104)*
 
 A compiled regular expression for searching Unicode haystacks.
 
@@ -163,7 +163,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   reuse it. For example, it's a bad idea to compile the same regex
   repeatedly in a loop.
   
-  # Errors
+  ##### Errors
   
   If an invalid pattern is given, then an error is returned.
   An error is also returned if the pattern is valid, but would
@@ -171,7 +171,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   `RegexBuilder::size_limit`. (A reasonable size limit is enabled by
   default.)
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::Regex;
@@ -195,7 +195,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   whether a match exists, since the underlying matching engine may be
   able to do less work.
   
-  # Example
+  ##### Example
   
   Test if some haystack contains at least one word with exactly 13
   Unicode word characters:
@@ -220,7 +220,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   it's potentially faster to use `Regex::is_match(hay)` instead of
   `Regex::find(hay).is_some()`.
   
-  # Example
+  ##### Example
   
   Find the first word with exactly 13 Unicode word characters:
   
@@ -239,14 +239,14 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   Returns an iterator that yields successive non-overlapping matches in
   the given haystack. The iterator yields values of type [`Match`](../../index.md).
   
-  # Time complexity
+  ##### Time complexity
   
   Note that since `find_iter` runs potentially many searches on the
   haystack and since each search has worst case `O(m * n)` time
   complexity, the overall worst case time complexity for iteration is
   `O(m * n^2)`.
   
-  # Example
+  ##### Example
   
   Find every word with exactly 13 Unicode word characters:
   
@@ -283,7 +283,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   matches. Otherwise, `Regex::find` is generally faster for discovering
   just the overall match.
   
-  # Example
+  ##### Example
   
   Say you have some haystack with movie names and their release years,
   like "'Citizen Kane' (1941)". It'd be nice if we could search for
@@ -365,14 +365,14 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   over `find_iter` when they actually need access to the capture group
   matches.
   
-  # Time complexity
+  ##### Time complexity
   
   Note that since `captures_iter` runs potentially many searches on the
   haystack and since each search has worst case `O(m * n)` time
   complexity, the overall worst case time complexity for iteration is
   `O(m * n^2)`.
   
-  # Example
+  ##### Example
   
   We can use this to find all movie titles and their release years in
   some haystack, where the movie is formatted like "'Title' (xxxx)":
@@ -422,14 +422,14 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   match of the regex. Namely, each element of the iterator corresponds to
   a part of the haystack that *isn't* matched by the regular expression.
   
-  # Time complexity
+  ##### Time complexity
   
   Since iterators over all matches requires running potentially many
   searches on the haystack, and since each search has worst case
   `O(m * n)` time complexity, the overall worst case time complexity for
   this routine is `O(m * n^2)`.
   
-  # Example
+  ##### Example
   
   To split a string delimited by arbitrary amounts of spaces or tabs:
   
@@ -442,7 +442,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   assert_eq!(fields, vec!["a", "b", "c", "d", "e"]);
   ```
   
-  # Example: more cases
+  ##### Example: more cases
   
   Basic usage:
   
@@ -553,7 +553,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   The remainder of the haystack that is not split will be the last
   element in the iterator.
   
-  # Time complexity
+  ##### Time complexity
   
   Since iterators over all matches requires running potentially many
   searches on the haystack, and since each search has worst case
@@ -563,7 +563,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   Although note that the worst case time here has an upper bound given
   by the `limit` parameter.
   
-  # Example
+  ##### Example
   
   Get the first two words in some haystack:
   
@@ -576,7 +576,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   assert_eq!(fields, vec!["Hey", "How", "are you?"]);
   ```
   
-  # Examples: more cases
+  ##### Examples: more cases
   
   ```rust
   use regex::Regex;
@@ -631,7 +631,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   When a `Cow::Borrowed` is returned, the value returned is guaranteed
   to be equivalent to the `haystack` given.
   
-  # Replacement string syntax
+  ##### Replacement string syntax
   
   All instances of `$ref` in the replacement string are replaced with
   the substring corresponding to the capture group identified by `ref`.
@@ -650,7 +650,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   
   To write a literal `$` use `$$`.
   
-  # Example
+  ##### Example
   
   Note that this function is polymorphic with respect to the replacement.
   In typical usage, this can just be a normal string:
@@ -741,14 +741,14 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   The documentation for `Regex::replace` goes into more detail about
   what kinds of replacement strings are supported.
   
-  # Time complexity
+  ##### Time complexity
   
   Since iterators over all matches requires running potentially many
   searches on the haystack, and since each search has worst case
   `O(m * n)` time complexity, the overall worst case time complexity for
   this routine is `O(m * n^2)`.
   
-  # Fallibility
+  ##### Fallibility
   
   If you need to write a replacement routine where any individual
   replacement might "fail," doing so with this API isn't really feasible
@@ -792,7 +792,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   assert!(replace_all(&re, "hi there", &replacement).is_err());
   ```
   
-  # Example
+  ##### Example
   
   This example shows how to flip the order of whitespace (excluding line
   terminators) delimited fields, and normalizes the whitespace that
@@ -836,7 +836,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   The documentation for `Regex::replace` goes into more detail about
   what kinds of replacement strings are supported.
   
-  # Time complexity
+  ##### Time complexity
   
   Since iterators over all matches requires running potentially many
   searches on the haystack, and since each search has worst case
@@ -846,12 +846,12 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
   Although note that the worst case time here has an upper bound given
   by the `limit` parameter.
   
-  # Fallibility
+  ##### Fallibility
   
   See the corresponding section in the docs for `Regex::replace_all`
   for tips on how to deal with a replacement routine that can fail.
   
-  # Example
+  ##### Example
   
   This example shows how to flip the order of whitespace (excluding line
   terminators) delimited fields, and normalizes the whitespace that
@@ -969,7 +969,7 @@ struct Match<'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:1490-1494`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L1490-L1494)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:1490-1494`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L1490-L1494)*
 
 Represents a single match of a regex in a haystack.
 
@@ -1162,7 +1162,7 @@ struct Captures<'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:1642-1646`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L1642-L1646)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:1642-1646`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L1642-L1646)*
 
 Represents the capture groups for a single match.
 
@@ -1226,7 +1226,7 @@ assert_eq!("y", &caps["last"]);
   
   When `i == 0`, this is guaranteed to return a non-`None` value.
   
-  # Examples
+  ##### Examples
   
   Get the substring that matched with a default of an empty string if the
   group didn't participate in the match:
@@ -1250,7 +1250,7 @@ assert_eq!("y", &caps["last"]);
   This returns the match for index `0`. That is it is equivalent to
   `m.get(0).unwrap()`
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::Regex;
@@ -1275,7 +1275,7 @@ assert_eq!("y", &caps["last"]);
   the haystack. In some cases, it may be necessary to use this method to
   access the matching substring instead of the `caps["name"]` notation.
   
-  # Examples
+  ##### Examples
   
   Get the substring that matched with a default of an empty string if the
   group didn't participate in the match:
@@ -1304,7 +1304,7 @@ assert_eq!("y", &caps["last"]);
   an array of substrings, with each corresponding to the substring that
   matched for a particular capture group.
   
-  # Panics
+  ##### Panics
   
   This panics if the number of possible matching groups in this
   `Captures` value is not fixed to `N` in all circumstances.
@@ -1322,7 +1322,7 @@ assert_eq!("y", &caps["last"]);
   the number of capture groups in every match is always equivalent,
   even if the capture _indices_ in each match are not.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::Regex;
@@ -1337,7 +1337,7 @@ assert_eq!("y", &caps["last"]);
   assert_eq!("14", day);
   ```
   
-  # Example: iteration
+  ##### Example: iteration
   
   This example shows how to use this method when iterating over all
   `Captures` matches in a haystack.
@@ -1359,7 +1359,7 @@ assert_eq!("y", &caps["last"]);
   ]);
   ```
   
-  # Example: parsing different formats
+  ##### Example: parsing different formats
   
   This API is particularly useful when you need to extract a particular
   value that might occur in a different format. Consider, for example,
@@ -1385,7 +1385,7 @@ assert_eq!("y", &caps["last"]);
   group that participated in the match, then it is replaced with the
   empty string.
   
-  # Format
+  ##### Format
   
   The format of the replacement string supports two different kinds of
   capture references: unbraced and braced.
@@ -1416,7 +1416,7 @@ assert_eq!("y", &caps["last"]);
   
   To write a literal `$`, use `$$`.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::Regex;
@@ -1444,7 +1444,7 @@ assert_eq!("y", &caps["last"]);
   The elements yielded have type `Option<Match<'h>>`, where a non-`None`
   value is present if the capture group matches.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::Regex;
@@ -1470,7 +1470,7 @@ assert_eq!("y", &caps["last"]);
   greater than zero since every `Captures` value always includes the
   match for the entire regex.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::Regex;
@@ -1537,7 +1537,7 @@ assert_eq!("y", &caps["last"]);
 struct CaptureLocations(captures::Captures);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2093`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2093)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2093`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2093)*
 
 A low level representation of the byte offsets of each capture group.
 
@@ -1586,7 +1586,7 @@ assert_eq!(None, locs.get(9944060567225171988));
   `i`. This returns `None` if `i` is not a valid capture group or if the
   capture group did not match.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::Regex;
@@ -1607,7 +1607,7 @@ assert_eq!(None, locs.get(9944060567225171988));
   This is always at least `1` since every regex has at least `1`
   capturing group that corresponds to the entire match.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::Regex;
@@ -1704,7 +1704,7 @@ struct Matches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2193-2196`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2193-L2196)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2193-2196`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2193-L2196)*
 
 An iterator over all non-overlapping matches in a haystack.
 
@@ -1794,7 +1794,7 @@ struct CaptureMatches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2237-2240`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2237-L2240)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2237-2240`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2237-L2240)*
 
 An iterator over all non-overlapping capture matches in a haystack.
 
@@ -1884,7 +1884,7 @@ struct Split<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2281-2284`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2281-L2284)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2281-2284`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2281-L2284)*
 
 An iterator over all substrings delimited by a regex match.
 
@@ -1969,7 +1969,7 @@ struct SplitN<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2316-2319`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2316-L2319)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2316-2319`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2316-L2319)*
 
 An iterator over at most `N` substrings delimited by a regex match.
 
@@ -2059,7 +2059,7 @@ by the `limit` parameter to `Regex::splitn`.
 struct CaptureNames<'r>(captures::GroupInfoPatternNames<'r>);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2348`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2348)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2348`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2348)*
 
 An iterator over the names of all capture groups in a regex.
 
@@ -2164,7 +2164,7 @@ struct SubCaptureMatches<'c, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2390-2393`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2390-L2393)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2390-2393`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2390-L2393)*
 
 An iterator over all group matches in a [`Captures`](../../index.md) value.
 
@@ -2272,7 +2272,7 @@ matched haystack.
 struct ReplacerRef<'a, R: ?Sized>(&'a mut R);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2567`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2567)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2567`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2567)*
 
 A by-reference adaptor for a [`Replacer`](../../index.md).
 
@@ -2338,7 +2338,7 @@ This type is created by `Replacer::by_ref`.
 struct NoExpand<'s>(&'s str);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2599`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2599)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2599`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2599)*
 
 A helper type for forcing literal string replacement.
 
@@ -2435,7 +2435,7 @@ assert_eq!(result, "$2 $last");
 trait Replacer { ... }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2452-2498`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2452-L2498)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2452-2498`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2452-L2498)*
 
 A trait for types that can be used to replace matches in a haystack.
 
@@ -2472,7 +2472,7 @@ assert_eq!(result, "Bruce Springsteen");
 
 #### Required Methods
 
-- `fn replace_append(&mut self, caps: &Captures<'_>, dst: &mut String)`
+- `fn Replacer::replace_append(&mut self, caps: &Captures<'_>, dst: &mut String)`
 
   Appends possibly empty data to `dst` to replace the current match.
   
@@ -2483,7 +2483,7 @@ assert_eq!(result, "Bruce Springsteen");
 
 #### Provided Methods
 
-- `fn no_expansion<'r>(self: &'r mut Self) -> Option<Cow<'r, str>>`
+- `fn Replacer::no_expansion<'r>(self: &'r mut Self) -> Option<Cow<'r, str>>`
 
   Return a fixed unchanging replacement string.
   
@@ -2494,7 +2494,7 @@ assert_eq!(result, "Bruce Springsteen");
   In general, this is called once for every call to a replacement routine
   such as `Regex::replace_all`.
 
-- `fn by_ref<'r>(self: &'r mut Self) -> ReplacerRef<'r, Self>`
+- `fn Replacer::by_ref<'r>(self: &'r mut Self) -> ReplacerRef<'r, Self>`
 
   Returns a type that implements `Replacer`, but that borrows and wraps
   this `Replacer`.
@@ -2503,7 +2503,7 @@ assert_eq!(result, "Bruce Springsteen");
   not be cloneable) and use it without consuming it, so it can be used
   more than once.
   
-  # Example
+  ##### Example
   
   ```rust
   use regex::{Regex, Replacer};
@@ -2538,7 +2538,7 @@ assert_eq!(result, "Bruce Springsteen");
 fn no_expansion<T: AsRef<str>>(replacement: &T) -> Option<alloc::borrow::Cow<'_, str>>
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2619-2625`](../../../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2619-L2625)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2619-2625`](../../../../.source_1765900590/regex-1.12.2/src/regex/string.rs#L2619-L2625)*
 
 Quickly checks the given replacement string for whether interpolation
 should be done on it. It returns `None` if a `$` was found anywhere in the

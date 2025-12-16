@@ -44,7 +44,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L25-L31)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L25-L31)*
 
 The table of section headers in an ELF file.
 
@@ -271,7 +271,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L358-L365)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L358-L365)*
 
 An iterator for the sections in an [`ElfFile`](../index.md).
 
@@ -351,7 +351,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L406-L414)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L406-L414)*
 
 A section in an [`ElfFile`](../index.md).
 
@@ -494,9 +494,54 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 trait SectionHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
 
 A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) and [`elf::SectionHeader64`](../../../elf/index.md).
+
+<details>
+<summary><strong>Methods (36)</strong> - click to expand</summary>
+
+**Required:**
+- [`SectionHeader::sh_name`](#fn-sectionheadersh-name)
+- [`SectionHeader::sh_type`](#fn-sectionheadersh-type)
+- [`SectionHeader::sh_flags`](#fn-sectionheadersh-flags)
+- [`SectionHeader::sh_addr`](#fn-sectionheadersh-addr)
+- [`SectionHeader::sh_offset`](#fn-sectionheadersh-offset)
+- [`SectionHeader::sh_size`](#fn-sectionheadersh-size)
+- [`SectionHeader::sh_link`](#fn-sectionheadersh-link)
+- [`SectionHeader::sh_info`](#fn-sectionheadersh-info)
+- [`SectionHeader::sh_addralign`](#fn-sectionheadersh-addralign)
+- [`SectionHeader::sh_entsize`](#fn-sectionheadersh-entsize)
+
+**Provided:**
+- [`SectionHeader::name`](#fn-sectionheadername)
+- [`SectionHeader::link`](#fn-sectionheaderlink)
+- [`SectionHeader::has_info_link`](#fn-sectionheaderhas-info-link)
+- [`SectionHeader::info_link`](#fn-sectionheaderinfo-link)
+- [`SectionHeader::file_range`](#fn-sectionheaderfile-range)
+- [`SectionHeader::data`](#fn-sectionheaderdata)
+- [`SectionHeader::data_as_array`](#fn-sectionheaderdata-as-array)
+- [`SectionHeader::strings`](#fn-sectionheaderstrings)
+- [`SectionHeader::symbols`](#fn-sectionheadersymbols)
+- [`SectionHeader::rel`](#fn-sectionheaderrel)
+- [`SectionHeader::rela`](#fn-sectionheaderrela)
+- [`SectionHeader::relr`](#fn-sectionheaderrelr)
+- [`SectionHeader::crel`](#fn-sectionheadercrel)
+- [`SectionHeader::dynamic`](#fn-sectionheaderdynamic)
+- [`SectionHeader::notes`](#fn-sectionheadernotes)
+- [`SectionHeader::group`](#fn-sectionheadergroup)
+- [`SectionHeader::hash_header`](#fn-sectionheaderhash-header)
+- [`SectionHeader::hash`](#fn-sectionheaderhash)
+- [`SectionHeader::gnu_hash_header`](#fn-sectionheadergnu-hash-header)
+- [`SectionHeader::gnu_hash`](#fn-sectionheadergnu-hash)
+- [`SectionHeader::gnu_versym`](#fn-sectionheadergnu-versym)
+- [`SectionHeader::gnu_verdef`](#fn-sectionheadergnu-verdef)
+- [`SectionHeader::gnu_verneed`](#fn-sectionheadergnu-verneed)
+- [`SectionHeader::gnu_attributes`](#fn-sectionheadergnu-attributes)
+- [`SectionHeader::attributes`](#fn-sectionheaderattributes)
+- [`SectionHeader::compression`](#fn-sectionheadercompression)
+
+</details>
 
 #### Associated Types
 
@@ -508,63 +553,63 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
 
 #### Required Methods
 
-- `fn sh_name(&self, endian: <Self as >::Endian) -> u32`
+- `fn SectionHeader::sh_name(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_type(&self, endian: <Self as >::Endian) -> u32`
+- `fn SectionHeader::sh_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_link(&self, endian: <Self as >::Endian) -> u32`
+- `fn SectionHeader::sh_link(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_info(&self, endian: <Self as >::Endian) -> u32`
+- `fn SectionHeader::sh_info(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn SectionHeader::sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 #### Provided Methods
 
-- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
+- `fn SectionHeader::name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
   Parse the section name from the string table.
 
-- `fn link(&self, endian: <Self as >::Endian) -> SectionIndex`
+- `fn SectionHeader::link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_link` field as a section index.
   
   This may return a null section index, and does not check for validity.
 
-- `fn has_info_link(&self, endian: <Self as >::Endian) -> bool`
+- `fn SectionHeader::has_info_link(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the `SHF_INFO_LINK` flag is set.
 
-- `fn info_link(&self, endian: <Self as >::Endian) -> SectionIndex`
+- `fn SectionHeader::info_link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_info` field as a section index.
   
   This does not check the `SHF_INFO_LINK` flag.
   This may return a null section index, and does not check for validity.
 
-- `fn file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
+- `fn SectionHeader::file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
   
   Returns `None` for sections that have no data in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [u8]>`
+- `fn SectionHeader::data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [u8]>`
 
   Return the section data.
   
   Returns `Ok(&[])` if the section has no data.
   Returns `Err` for invalid values.
 
-- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [T]>`
+- `fn SectionHeader::data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [T]>`
 
   Return the section data as a slice of the given type.
   
@@ -572,14 +617,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(&[])` if the section has no data.
   Returns `Err` for invalid values, including bad alignment.
 
-- `fn strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<StringTable<'data, R>>>`
+- `fn SectionHeader::strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<StringTable<'data, R>>>`
 
   Return the strings in the section.
   
   Returns `Ok(None)` if the section does not contain strings.
   Returns `Err` for invalid values.
 
-- `fn symbols<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &SectionTable<'data, <Self as >::Elf, R>, section_index: SectionIndex) -> read::Result<Option<SymbolTable<'data, <Self as >::Elf, R>>>`
+- `fn SectionHeader::symbols<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &SectionTable<'data, <Self as >::Elf, R>, section_index: SectionIndex) -> read::Result<Option<SymbolTable<'data, <Self as >::Elf, R>>>`
 
   Return the symbols in the section.
   
@@ -591,7 +636,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section does not contain symbols.
   Returns `Err` for invalid values.
 
-- `fn rel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rel], SectionIndex)>>`
+- `fn SectionHeader::rel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rel], SectionIndex)>>`
 
   Return the `Elf::Rel` entries in the section.
   
@@ -600,7 +645,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section does not contain relocations.
   Returns `Err` for invalid values.
 
-- `fn rela<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rela], SectionIndex)>>`
+- `fn SectionHeader::rela<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rela], SectionIndex)>>`
 
   Return the `Elf::Rela` entries in the section.
   
@@ -609,21 +654,21 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section does not contain relocations.
   Returns `Err` for invalid values.
 
-- `fn relr<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<RelrIterator<'data, <Self as >::Elf>>>`
+- `fn SectionHeader::relr<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<RelrIterator<'data, <Self as >::Elf>>>`
 
   Return the `Elf::Relr` entries in the section.
   
   Returns `Ok(None)` if the section does not contain relative relocations.
   Returns `Err` for invalid values.
 
-- `fn crel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(CrelIterator<'data>, SectionIndex)>>`
+- `fn SectionHeader::crel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(CrelIterator<'data>, SectionIndex)>>`
 
   Return the `Crel` entries in the section.
   
   Returns `Ok(None)` if the section does not contain compact relocations.
   Returns `Err` for invalid values.
 
-- `fn dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Dyn], SectionIndex)>>`
+- `fn SectionHeader::dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Dyn], SectionIndex)>>`
 
   Return entries in a dynamic section.
   
@@ -632,14 +677,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section type is not `SHT_DYNAMIC`.
   Returns `Err` for invalid values.
 
-- `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
+- `fn SectionHeader::notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the section data.
   
   Returns `Ok(None)` if the section does not contain notes.
   Returns `Err` for invalid values.
 
-- `fn group<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(u32, &'data [U32Bytes<<Self as >::Endian>])>>`
+- `fn SectionHeader::group<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(u32, &'data [U32Bytes<<Self as >::Endian>])>>`
 
   Return the contents of a group section.
   
@@ -649,14 +694,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section does not define a group.
   Returns `Err` for invalid values.
 
-- `fn hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Self as >::Endian>>>`
+- `fn SectionHeader::hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Self as >::Endian>>>`
 
   Return the header of a SysV hash section.
   
   Returns `Ok(None)` if the section does not contain a SysV hash.
   Returns `Err` for invalid values.
 
-- `fn hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn SectionHeader::hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a SysV hash section.
   
@@ -665,14 +710,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section does not contain a SysV hash.
   Returns `Err` for invalid values.
 
-- `fn gnu_hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Self as >::Endian>>>`
+- `fn SectionHeader::gnu_hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Self as >::Endian>>>`
 
   Return the header of a GNU hash section.
   
   Returns `Ok(None)` if the section does not contain a GNU hash.
   Returns `Err` for invalid values.
 
-- `fn gnu_hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn SectionHeader::gnu_hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a GNU hash section.
   
@@ -681,7 +726,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section does not contain a GNU hash.
   Returns `Err` for invalid values.
 
-- `fn gnu_versym<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Self as >::Endian>], SectionIndex)>>`
+- `fn SectionHeader::gnu_versym<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Self as >::Endian>], SectionIndex)>>`
 
   Return the contents of a `SHT_GNU_VERSYM` section.
   
@@ -690,7 +735,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section type is not `SHT_GNU_VERSYM`.
   Returns `Err` for invalid values.
 
-- `fn gnu_verdef<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn SectionHeader::gnu_verdef<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERDEF` section.
   
@@ -699,7 +744,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section type is not `SHT_GNU_VERDEF`.
   Returns `Err` for invalid values.
 
-- `fn gnu_verneed<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn SectionHeader::gnu_verneed<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERNEED` section.
   
@@ -708,14 +753,14 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   Returns `Ok(None)` if the section type is not `SHT_GNU_VERNEED`.
   Returns `Err` for invalid values.
 
-- `fn gnu_attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<AttributesSection<'data, <Self as >::Elf>>>`
+- `fn SectionHeader::gnu_attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<AttributesSection<'data, <Self as >::Elf>>>`
 
   Return the contents of a `SHT_GNU_ATTRIBUTES` section.
   
   Returns `Ok(None)` if the section type is not `SHT_GNU_ATTRIBUTES`.
   Returns `Err` for invalid values.
 
-- `fn attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<AttributesSection<'data, <Self as >::Elf>>`
+- `fn SectionHeader::attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<AttributesSection<'data, <Self as >::Elf>>`
 
   Parse the contents of the section as attributes.
   
@@ -724,7 +769,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
   
   Returns `Err` for invalid values.
 
-- `fn compression<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
+- `fn SectionHeader::compression<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
 
   Parse the compression header if present.
   
@@ -747,7 +792,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
 type ElfSectionIterator32<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L350-L351)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L350-L351)*
 
 An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 
@@ -757,7 +802,7 @@ An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 type ElfSectionIterator64<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L353-L354)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L353-L354)*
 
 An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 
@@ -767,7 +812,7 @@ An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 type ElfSection32<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L396-L397)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L396-L397)*
 
 A section in an [`ElfFile32`](super::ElfFile32).
 
@@ -777,7 +822,7 @@ A section in an [`ElfFile32`](super::ElfFile32).
 type ElfSection64<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L399-L400)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../../.source_1765900590/object-0.37.3/src/read/elf/section.rs#L399-L400)*
 
 A section in an [`ElfFile64`](super::ElfFile64).
 

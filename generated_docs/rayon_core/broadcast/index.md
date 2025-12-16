@@ -25,7 +25,7 @@ struct BroadcastContext<'a> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:45-50`](../../../.source_1765894658/rayon-core-1.13.0/src/broadcast/mod.rs#L45-L50)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:45-50`](../../../.source_1765900590/rayon-core-1.13.0/src/broadcast/mod.rs#L45-L50)*
 
 Provides context to a closure called by `broadcast`.
 
@@ -47,7 +47,7 @@ Provides context to a closure called by `broadcast`.
 
   The number of threads receiving the broadcast in the thread pool.
   
-  # Future compatibility note
+  ##### Future compatibility note
   
   Future versions of Rayon might vary the number of threads over time, but
   this method will always return the number of threads which are actually
@@ -123,7 +123,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:19-26`](../../../.source_1765894658/rayon-core-1.13.0/src/broadcast/mod.rs#L19-L26)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:19-26`](../../../.source_1765900590/rayon-core-1.13.0/src/broadcast/mod.rs#L19-L26)*
 
 Executes `op` within every thread in the current thread pool. If this is
 called from a non-Rayon thread, it will execute in the global thread pool.
@@ -142,7 +142,7 @@ where
     OP: Fn(BroadcastContext<'_>) + Send + Sync + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:36-42`](../../../.source_1765894658/rayon-core-1.13.0/src/broadcast/mod.rs#L36-L42)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:36-42`](../../../.source_1765900590/rayon-core-1.13.0/src/broadcast/mod.rs#L36-L42)*
 
 Spawns an asynchronous task on every thread in this thread pool. This task
 will run in the implicit, global scope, which means that it may outlast the
@@ -161,7 +161,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:97-120`](../../../.source_1765894658/rayon-core-1.13.0/src/broadcast/mod.rs#L97-L120)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:97-120`](../../../.source_1765900590/rayon-core-1.13.0/src/broadcast/mod.rs#L97-L120)*
 
 Execute `op` on every thread in the pool. It will be executed on each
 thread when they have nothing else to do locally, before they try to
@@ -178,7 +178,7 @@ where
     OP: Fn(BroadcastContext<'_>) + Send + Sync + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:128-150`](../../../.source_1765894658/rayon-core-1.13.0/src/broadcast/mod.rs#L128-L150)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:128-150`](../../../.source_1765900590/rayon-core-1.13.0/src/broadcast/mod.rs#L128-L150)*
 
 Execute `op` on every thread in the pool. It will be executed on each
 thread when they have nothing else to do locally, before they try to

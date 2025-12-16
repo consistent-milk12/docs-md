@@ -19,7 +19,7 @@
 struct BlankHighlighter;
 ```
 
-*Defined in [`miette-7.6.0/src/highlighters/blank.rs:10`](../../../../.source_1765894658/miette-7.6.0/src/highlighters/blank.rs#L10)*
+*Defined in [`miette-7.6.0/src/highlighters/blank.rs:10`](../../../../.source_1765900590/miette-7.6.0/src/highlighters/blank.rs#L10)*
 
 The default syntax highlighter. It applies `Style::default()` to input text.
 This is used by default when no syntax highlighting features are enabled.
@@ -101,7 +101,7 @@ This is used by default when no syntax highlighting features are enabled.
 struct BlankHighlighterState;
 ```
 
-*Defined in [`miette-7.6.0/src/highlighters/blank.rs:30`](../../../../.source_1765894658/miette-7.6.0/src/highlighters/blank.rs#L30)*
+*Defined in [`miette-7.6.0/src/highlighters/blank.rs:30`](../../../../.source_1765900590/miette-7.6.0/src/highlighters/blank.rs#L30)*
 
 The default highlighter state. It applies `Style::default()` to input text.
 This is used by default when no syntax highlighting features are enabled.

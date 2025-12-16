@@ -23,7 +23,7 @@ struct ArrayBuilder<T, const N: usize> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/next_array.rs:4-14`](../../../.source_1765894658/itertools-0.14.0/src/next_array.rs#L4-L14)*
+*Defined in [`itertools-0.14.0/src/next_array.rs:4-14`](../../../.source_1765900590/itertools-0.14.0/src/next_array.rs#L4-L14)*
 
 An array of at most `N` elements.
 
@@ -51,7 +51,7 @@ An array of at most `N` elements.
 
   Pushes `value` onto the end of the array.
   
-  # Panics
+  ##### Panics
   
   This panics if `self.len >= N`.
 
@@ -121,7 +121,7 @@ An array of at most `N` elements.
 unsafe fn slice_assume_init_mut<T>(slice: &mut [core::mem::MaybeUninit<T>]) -> &mut [T]
 ```
 
-*Defined in [`itertools-0.14.0/src/next_array.rs:128-134`](../../../.source_1765894658/itertools-0.14.0/src/next_array.rs#L128-L134)*
+*Defined in [`itertools-0.14.0/src/next_array.rs:128-134`](../../../.source_1765900590/itertools-0.14.0/src/next_array.rs#L128-L134)*
 
 Assuming all the elements are initialized, get a mutable slice to them.
 
@@ -138,7 +138,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/next_array.rs:137-146`](../../../.source_1765894658/itertools-0.14.0/src/next_array.rs#L137-L146)*
+*Defined in [`itertools-0.14.0/src/next_array.rs:137-146`](../../../.source_1765900590/itertools-0.14.0/src/next_array.rs#L137-L146)*
 
 Equivalent to `it.next_array()`.
 

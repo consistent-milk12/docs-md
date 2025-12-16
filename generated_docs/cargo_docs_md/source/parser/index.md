@@ -56,7 +56,7 @@ Parser for Rust source code using `syn`.
 
   Parse an entire crate starting from its root.
   
-  # Errors
+  ##### Errors
   
   Returns an error if any source file cannot be parsed.
 
@@ -138,7 +138,7 @@ Parser for Rust source code using `syn`.
   
   Useful for quick parsing of individual files.
   
-  # Errors
+  ##### Errors
   
   Returns an error if the file cannot be read or parsed.
 

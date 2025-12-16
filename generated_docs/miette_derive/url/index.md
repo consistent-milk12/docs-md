@@ -21,7 +21,7 @@ enum Url {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/url.rs:18-21`](../../../.source_1765894658/miette-derive-7.6.0/src/url.rs#L18-L21)*
+*Defined in [`miette-derive-7.6.0/src/url.rs:18-21`](../../../.source_1765900590/miette-derive-7.6.0/src/url.rs#L18-L21)*
 
 #### Implementations
 

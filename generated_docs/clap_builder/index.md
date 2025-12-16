@@ -148,7 +148,7 @@ struct Command {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../.source_1765894658/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../.source_1765900590/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
 
 Build a command-line interface.
 
@@ -200,7 +200,7 @@ let m = Command::new("My Program")
   
   See also [`command!`](crate::command!) and [`crate_name!`](crate::crate_name!).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -213,7 +213,7 @@ let m = Command::new("My Program")
 
   Adds an [argument] to the list of valid possibilities.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -239,7 +239,7 @@ let m = Command::new("My Program")
 
   Adds multiple [arguments] to the list of valid possibilities.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -256,11 +256,11 @@ let m = Command::new("My Program")
 
   Allows one to mutate an [`Arg`](builder/arg/index.md) after it's been added to a [`Command`](builder/command/index.md).
   
-  # Panics
+  ##### Panics
   
   If the argument is undefined
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -289,7 +289,7 @@ let m = Command::new("My Program")
   
   This does not affect the built-in `--help` or `--version` arguments.
   
-  # Examples
+  ##### Examples
   
   ```ignore
   use clap_builder as clap;
@@ -325,11 +325,11 @@ let m = Command::new("My Program")
 
   Allows one to mutate an [`ArgGroup`](builder/arg_group/index.md) after it's been added to a [`Command`](builder/command/index.md).
   
-  # Panics
+  ##### Panics
   
   If the argument is undefined
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -353,11 +353,11 @@ let m = Command::new("My Program")
   This can be useful for modifying auto-generated arguments of nested subcommands with
   `Command::mut_arg`.
   
-  # Panics
+  ##### Panics
   
   If the subcommand is undefined
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -383,7 +383,7 @@ let m = Command::new("My Program")
   
   This does not affect the built-in `--help` or `--version` arguments.
   
-  # Examples
+  ##### Examples
   
   ```ignore
   use clap_builder as clap;
@@ -430,7 +430,7 @@ let m = Command::new("My Program")
   - Ensure exclusion between arguments.
   - Extract a value from a group instead of determining exactly which argument was used.
   
-  # Examples
+  ##### Examples
   
   The following example demonstrates using an [`ArgGroup`](builder/arg_group/index.md) to ensure that one, and only one,
   of the arguments from the specified group is present at runtime.
@@ -453,7 +453,7 @@ let m = Command::new("My Program")
 
   Adds multiple [`ArgGroup`](builder/arg_group/index.md)s to the [`Command`](builder/command/index.md) at once.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -487,7 +487,7 @@ let m = Command::new("My Program")
   - The argument the user passes in
   - Programmatically looking up the subcommand
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -505,7 +505,7 @@ let m = Command::new("My Program")
 
   Adds multiple subcommands to the list of valid possibilities.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -525,7 +525,7 @@ let m = Command::new("My Program")
   This is useful for large applications to delay definitions of subcommands until they are
   being invoked.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -552,7 +552,7 @@ let m = Command::new("My Program")
   **Note:** This will not help with asserts in [`ArgMatches`](parser/matches/arg_matches/index.md), those will need exhaustive
   testing of your CLI.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -582,11 +582,11 @@ let m = Command::new("My Program")
   **Note:** this will ensure the `Command` has been sufficiently `built` for any
   relevant context, including usage.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -599,11 +599,11 @@ let m = Command::new("My Program")
 
   Parse `env::args_os`, `exiting` on failure.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -620,11 +620,11 @@ let m = Command::new("My Program")
   
   Like `Command::get_matches` but doesn't consume the `Command`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -649,11 +649,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -682,11 +682,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -720,11 +720,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -768,11 +768,11 @@ let m = Command::new("My Program")
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```no_run
   use clap_builder as clap;
@@ -796,11 +796,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -817,11 +817,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -841,11 +841,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -867,11 +867,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -891,11 +891,11 @@ let m = Command::new("My Program")
   
   See also `Command::render_long_version`.
   
-  ### Coloring
+  ###### Coloring
   
   This function does not try to color the message nor it inserts any [ANSI escape codes].
   
-  ### Examples
+  ###### Examples
   
   ```rust
   use clap_builder as clap;
@@ -914,11 +914,11 @@ let m = Command::new("My Program")
   
   See also `Command::render_version`.
   
-  ### Coloring
+  ###### Coloring
   
   This function does not try to color the message nor it inserts any [ANSI escape codes].
   
-  ### Examples
+  ###### Examples
   
   ```rust
   use clap_builder as clap;
@@ -937,11 +937,11 @@ let m = Command::new("My Program")
   
   **Note:** this will ensure the `Command` has been sufficiently `built`.
   
-  # Panics
+  ##### Panics
   
   If contradictory arguments or settings exist (debug builds).
   
-  ### Examples
+  ###### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1068,7 +1068,7 @@ struct Arg {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../.source_1765894658/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../.source_1765900590/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
 
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
@@ -1120,7 +1120,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1144,7 +1144,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   (`disable_help_flag`,
   `disable_version_flag`) and define your own.
   
-  # Examples
+  ##### Examples
   
   When calling `short`, use a single valid UTF-8 character which will allow using the
   argument via a single hyphen (`-`) such as `-c`:
@@ -1198,7 +1198,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   To set `long` use a word containing valid UTF-8. If you supply a double leading
   `--` such as `--config` they will be stripped. Hyphens in the middle of the word, however,
@@ -1227,7 +1227,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden arguments as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1250,7 +1250,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden arguments as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1273,7 +1273,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden subcommands as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1298,7 +1298,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   This is more efficient, and easier than creating multiple hidden subcommands as one only
   needs to check for the existence of this command, and not all variants.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1322,7 +1322,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::alias`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1344,7 +1344,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::short_alias`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1366,7 +1366,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::aliases`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1388,7 +1388,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   Like `Arg::short_aliases`, except that they are visible inside the help message.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1437,13 +1437,13 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Panics
+  ##### Panics
   
-  [`Command`](builder/command/index.md) will `panic!` if indexes are skipped (such as defining `index(1)` and `index(3)`
+  [`Command`](#command) will `panic!` if indexes are skipped (such as defining `index(1)` and `index(3)`
   but not `index(2)`, or a positional argument is defined as multiple and is not the highest
   index (debug builds)
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1499,7 +1499,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1532,7 +1532,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   <div class="warning">
   
-  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](builder/command/index.md#dont-collapse-args-in-usage) because failing
+  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](#dont-collapse-args-in-usage) because failing
   to set this can make the usage string very confusing.
   
   </div>
@@ -1553,13 +1553,13 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   **WARNING:** Using this setting *and* having child subcommands is not
   recommended with the exception of *also* using
-  [`crate::Command::args_conflicts_with_subcommands`](builder/command/index.md#args-conflicts-with-subcommands)
-  (or [`crate::Command::subcommand_negates_reqs`](builder/command/index.md#subcommand-negates-reqs) if the argument marked `Last` is also
+  [`crate::Command::args_conflicts_with_subcommands`](#args-conflicts-with-subcommands)
+  (or [`crate::Command::subcommand_negates_reqs`](#subcommand-negates-reqs) if the argument marked `Last` is also
   marked `Arg::required`)
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1627,7 +1627,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   is if the operation is destructive in nature, and the user is essentially proving to you,
   "Yes, I know what I'm doing."
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1684,7 +1684,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1739,7 +1739,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
   This argument must be passed alone; it conflicts with all other arguments.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -1784,7 +1784,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
   
   </div>
   
-  # Examples
+  ##### Examples
   
   Assume an application with two subcommands, and you'd like to define a
   `--verbose` flag that can be called on any of the subcommands and parent, but you don't
@@ -1916,7 +1916,7 @@ struct ArgGroup {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../.source_1765894658/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../.source_1765900590/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
 
 Specifies a logical group of [arguments]
 
@@ -1990,7 +1990,7 @@ assert_eq!(matches
   The name will be used to get values from the group or refer to the group inside of conflict
   and requirement rules.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2003,7 +2003,7 @@ assert_eq!(matches
 
   Sets the group name.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2016,7 +2016,7 @@ assert_eq!(matches
 
   Adds an [argument] to this group by name
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2042,7 +2042,7 @@ assert_eq!(matches
 
   Adds multiple [arguments] to this group by name
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2067,7 +2067,7 @@ assert_eq!(matches
 
   Getters for all args. It will return a vector of `Id`
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -2082,9 +2082,9 @@ assert_eq!(matches
 
 - <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
 
-  Allows more than one of the [`Arg`](builder/arg/index.md)s in this group to be used. (Default: `false`)
+  Allows more than one of the [`Arg`](#arg)s in this group to be used. (Default: `false`)
   
-  # Examples
+  ##### Examples
   
   Notice in this example we use *both* the `-f` and `-c` flags which are both part of the
   group
@@ -2133,7 +2133,7 @@ assert_eq!(matches
   Return true if the group allows more than one of the arguments
   in this group to be used. (Default: `false`)
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -2154,7 +2154,7 @@ assert_eq!(matches
   
   <div class="warning">
   
-  **NOTE:** This setting only applies to the current [`Command`](builder/command/index.md) / [`Subcommand`](derive/index.md)s, and not
+  **NOTE:** This setting only applies to the current [`Command`](#command) / [`Subcommand`](derive/index.md)s, and not
   globally.
   
   </div>
@@ -2168,7 +2168,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2206,7 +2206,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2247,7 +2247,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2291,7 +2291,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2329,7 +2329,7 @@ assert_eq!(matches
   
   </div>
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2442,7 +2442,7 @@ struct ArgMatches {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../.source_1765900590/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
 
 Container for parse results.
 
@@ -2510,12 +2510,12 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_get_one`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2538,11 +2538,11 @@ if matches.contains_id("out") {
 
   Gets the value of a specific `ArgAction::Count` flag
   
-  # Panic
+  ##### Panic
   
   If the argument's action is not `ArgAction::Count`
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2566,11 +2566,11 @@ if matches.contains_id("out") {
 
   Gets the value of a specific `ArgAction::SetTrue` or `ArgAction::SetFalse` flag
   
-  # Panic
+  ##### Panic
   
   If the argument's action is not `ArgAction::SetTrue` or `ArgAction::SetFalse`
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2601,12 +2601,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_get_many`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2639,12 +2639,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panics
+  ##### Panics
   
   If the argument definition and access mismatch (debug builds). To handle this case programmatically, see
   `ArgMatches::try_get_occurrences`.
   
-  # Examples
+  ##### Examples
   ```rust
   use clap_builder as clap;
   use clap::{Command,Arg, ArgAction, value_parser};
@@ -2670,12 +2670,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_get_raw`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(unix)] {
@@ -2716,12 +2716,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_get_raw_occurrences`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   #[cfg(unix)] {
@@ -2772,12 +2772,12 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_remove_one`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2805,12 +2805,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_remove_many`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2841,12 +2841,12 @@ if matches.contains_id("out") {
   
   Returns `None` if the option wasn't present.
   
-  # Panic
+  ##### Panic
   
   If the argument definition and access mismatch.  To handle this case programmatically, see
   `ArgMatches::try_remove_occurrences`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2874,12 +2874,12 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If `id` is not a valid argument or group name (debug builds).  To handle this case programmatically, see
   `ArgMatches::try_contains_id`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2899,7 +2899,7 @@ if matches.contains_id("out") {
 
   Iterate over `Arg` and `ArgGroup` [`Id`](util/id/index.md)s via `ArgMatches::ids`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2927,7 +2927,7 @@ if matches.contains_id("out") {
   See `ArgMatches::subcommand_name()` or `ArgMatches::subcommand()` to check if a
   subcommand was present on the command line.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2950,11 +2950,11 @@ if matches.contains_id("out") {
 
   Report where argument value came from
   
-  # Panics
+  ##### Panics
   
   If `id` is not a valid argument or group id (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -2995,11 +2995,11 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If `id` is not a valid argument or group id (debug builds).
   
-  # Examples
+  ##### Examples
   
   The argv indices are listed in the comments below. See how they correspond to the clap
   indices. Note that if it's not listed in a clap index, this is because it's not saved in
@@ -3142,11 +3142,11 @@ if matches.contains_id("out") {
   
   </div>
   
-  # Panics
+  ##### Panics
   
   If `id` is not a valid argument or group id (debug builds).
   
-  # Examples
+  ##### Examples
   
   ```rust
   use clap_builder as clap;
@@ -3286,7 +3286,7 @@ if matches.contains_id("out") {
 struct Id(crate::builder::Str);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../.source_1765894658/clap_builder-4.5.53/src/util/id.rs#L11)*
+*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../.source_1765900590/clap_builder-4.5.53/src/util/id.rs#L11)*
 
 `Arg` or `ArgGroup` identifier
 
@@ -3435,7 +3435,7 @@ enum ArgAction {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../.source_1765894658/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../.source_1765900590/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
 
 Behavior of arguments when they are encountered while parsing
 
@@ -3907,7 +3907,7 @@ enum ValueHint {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../.source_1765894658/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../.source_1765900590/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
 
 Provide shell with hint on how to complete an argument.
 
@@ -4097,7 +4097,7 @@ enum ColorChoice {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../.source_1765894658/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
+*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../.source_1765900590/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
 
 Represents the color preferences for program output
 
@@ -4266,7 +4266,7 @@ Represents the color preferences for program output
 trait Args: FromArgMatches + Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:227-246`](../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L227-L246)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:227-246`](../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L227-L246)*
 
 Parse a set of arguments into a user-defined container.
 
@@ -4284,7 +4284,7 @@ with:
 
 #### Required Methods
 
-- `fn augment_args(cmd: Command) -> Command`
+- `fn Args::augment_args(cmd: Command) -> Command`
 
   Append to [`Command`](builder/command/index.md) so it can instantiate `Self` via
   `FromArgMatches::from_arg_matches_mut`
@@ -4293,7 +4293,7 @@ with:
   
   See also `CommandFactory::command`.
 
-- `fn augment_args_for_update(cmd: Command) -> Command`
+- `fn Args::augment_args_for_update(cmd: Command) -> Command`
 
   Append to [`Command`](builder/command/index.md) so it can instantiate `self` via
   `FromArgMatches::update_from_arg_matches_mut`
@@ -4304,7 +4304,7 @@ with:
 
 #### Provided Methods
 
-- `fn group_id() -> Option<crate::Id>`
+- `fn Args::group_id() -> Option<crate::Id>`
 
   Report the `ArgGroup::id` for this set of arguments
 
@@ -4319,7 +4319,7 @@ with:
 trait CommandFactory: Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:116-125`](../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L116-L125)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:116-125`](../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L116-L125)*
 
 Create a [`Command`](builder/command/index.md) relevant for a user-defined container.
 
@@ -4327,13 +4327,13 @@ Derived as part of [`Parser`](derive/index.md).
 
 #### Required Methods
 
-- `fn command() -> Command`
+- `fn CommandFactory::command() -> Command`
 
   Build a [`Command`](builder/command/index.md) that can instantiate `Self`.
   
   See `FromArgMatches::from_arg_matches_mut` for instantiating `Self`.
 
-- `fn command_for_update() -> Command`
+- `fn CommandFactory::command_for_update() -> Command`
 
   Build a [`Command`](builder/command/index.md) that can update `self`.
   
@@ -4349,7 +4349,7 @@ Derived as part of [`Parser`](derive/index.md).
 trait FromArgMatches: Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:130-212`](../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L130-L212)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:130-212`](../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L130-L212)*
 
 Converts an instance of [`ArgMatches`](parser/matches/arg_matches/index.md) to a user-defined container.
 
@@ -4357,7 +4357,7 @@ Derived as part of [`Parser`](derive/index.md), [`Args`](derive/index.md), and [
 
 #### Required Methods
 
-- `fn from_arg_matches(matches: &ArgMatches) -> Result<Self, Error>`
+- `fn FromArgMatches::from_arg_matches(matches: &ArgMatches) -> Result<Self, Error>`
 
   Instantiate `Self` from [`ArgMatches`](parser/matches/arg_matches/index.md), parsing the arguments as needed.
   
@@ -4394,13 +4394,13 @@ Derived as part of [`Parser`](derive/index.md), [`Args`](derive/index.md), and [
   }
   ```
 
-- `fn update_from_arg_matches(&mut self, matches: &ArgMatches) -> Result<(), Error>`
+- `fn FromArgMatches::update_from_arg_matches(&mut self, matches: &ArgMatches) -> Result<(), Error>`
 
   Assign values from `ArgMatches` to `self`.
 
 #### Provided Methods
 
-- `fn from_arg_matches_mut(matches: &mut ArgMatches) -> Result<Self, Error>`
+- `fn FromArgMatches::from_arg_matches_mut(matches: &mut ArgMatches) -> Result<Self, Error>`
 
   Instantiate `Self` from [`ArgMatches`](parser/matches/arg_matches/index.md), parsing the arguments as needed.
   
@@ -4437,7 +4437,7 @@ Derived as part of [`Parser`](derive/index.md), [`Args`](derive/index.md), and [
   }
   ```
 
-- `fn update_from_arg_matches_mut(&mut self, matches: &mut ArgMatches) -> Result<(), Error>`
+- `fn FromArgMatches::update_from_arg_matches_mut(&mut self, matches: &mut ArgMatches) -> Result<(), Error>`
 
   Assign values from `ArgMatches` to `self`.
 
@@ -4453,7 +4453,7 @@ Derived as part of [`Parser`](derive/index.md), [`Args`](derive/index.md), and [
 trait Parser: FromArgMatches + CommandFactory + Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:29-111`](../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L29-L111)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:29-111`](../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L29-L111)*
 
 Parse command-line arguments into `Self`.
 
@@ -4477,23 +4477,23 @@ See also [`Subcommand`](derive/index.md) and [`Args`](derive/index.md).
 
 #### Provided Methods
 
-- `fn parse() -> Self`
+- `fn Parser::parse() -> Self`
 
   Parse from `std::env::args_os()`, `exit` on error.
 
-- `fn try_parse() -> Result<Self, Error>`
+- `fn Parser::try_parse() -> Result<Self, Error>`
 
   Parse from `std::env::args_os()`, return Err on error.
 
-- `fn parse_from<I, T>(itr: I) -> Self`
+- `fn Parser::parse_from<I, T>(itr: I) -> Self`
 
   Parse from iterator, `exit` on error.
 
-- `fn try_parse_from<I, T>(itr: I) -> Result<Self, Error>`
+- `fn Parser::try_parse_from<I, T>(itr: I) -> Result<Self, Error>`
 
   Parse from iterator, return Err on error.
 
-- `fn update_from<I, T>(&mut self, itr: I)`
+- `fn Parser::update_from<I, T>(&mut self, itr: I)`
 
   Update from iterator, `exit` on error.
   
@@ -4501,7 +4501,7 @@ See also [`Subcommand`](derive/index.md) and [`Args`](derive/index.md).
   The assumption is that all required fields are already provided and any [`Args`](derive/index.md) or
   [`Subcommand`](derive/index.md)s provided by the user will modify only what is specified.
 
-- `fn try_update_from<I, T>(&mut self, itr: I) -> Result<(), Error>`
+- `fn Parser::try_update_from<I, T>(&mut self, itr: I) -> Result<(), Error>`
 
   Update from iterator, return Err on error.
 
@@ -4515,7 +4515,7 @@ See also [`Subcommand`](derive/index.md) and [`Args`](derive/index.md).
 trait Subcommand: FromArgMatches + Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:262-279`](../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L262-L279)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:262-279`](../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L262-L279)*
 
 Parse a sub-command into a user-defined enum.
 
@@ -4534,7 +4534,7 @@ with:
 
 #### Required Methods
 
-- `fn augment_subcommands(cmd: Command) -> Command`
+- `fn Subcommand::augment_subcommands(cmd: Command) -> Command`
 
   Append to [`Command`](builder/command/index.md) so it can instantiate `Self` via
   `FromArgMatches::from_arg_matches_mut`
@@ -4543,7 +4543,7 @@ with:
   
   See also `CommandFactory::command`.
 
-- `fn augment_subcommands_for_update(cmd: Command) -> Command`
+- `fn Subcommand::augment_subcommands_for_update(cmd: Command) -> Command`
 
   Append to [`Command`](builder/command/index.md) so it can instantiate `self` via
   `FromArgMatches::update_from_arg_matches_mut`
@@ -4552,7 +4552,7 @@ with:
   
   See also `CommandFactory::command_for_update`.
 
-- `fn has_subcommand(name: &str) -> bool`
+- `fn Subcommand::has_subcommand(name: &str) -> bool`
 
   Test whether `Self` can parse a specific subcommand
 
@@ -4568,7 +4568,7 @@ with:
 trait ValueEnum: Sized + Clone { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/derive.rs:293-314`](../../.source_1765894658/clap_builder-4.5.53/src/derive.rs#L293-L314)*
+*Defined in [`clap_builder-4.5.53/src/derive.rs:293-314`](../../.source_1765900590/clap_builder-4.5.53/src/derive.rs#L293-L314)*
 
 Parse arguments into enums.
 
@@ -4585,11 +4585,11 @@ When deriving [`Parser`](derive/index.md), a field whose type implements `ValueE
 
 #### Required Methods
 
-- `fn value_variants<'a>() -> &'a [Self]`
+- `fn ValueEnum::value_variants<'a>() -> &'a [Self]`
 
   All possible argument values, in display order.
 
-- `fn to_possible_value(&self) -> Option<PossibleValue>`
+- `fn ValueEnum::to_possible_value(&self) -> Option<PossibleValue>`
 
   The canonical argument value.
   
@@ -4597,7 +4597,7 @@ When deriving [`Parser`](derive/index.md), a field whose type implements `ValueE
 
 #### Provided Methods
 
-- `fn from_str(input: &str, ignore_case: bool) -> Result<Self, String>`
+- `fn ValueEnum::from_str(input: &str, ignore_case: bool) -> Result<Self, String>`
 
   Parse an argument into `Self`.
 
@@ -4613,7 +4613,7 @@ When deriving [`Parser`](derive/index.md), a field whose type implements `ValueE
 type Error = error::Error<error::DefaultFormatter>;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/lib.rs:30`](../../.source_1765894658/clap_builder-4.5.53/src/lib.rs#L30)*
+*Defined in [`clap_builder-4.5.53/src/lib.rs:30`](../../.source_1765900590/clap_builder-4.5.53/src/lib.rs#L30)*
 
 Command Line Argument Parser Error
 
@@ -4627,23 +4627,23 @@ See `Command::error` to create an error.
 const INTERNAL_ERROR_MSG: &str;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/lib.rs:48-49`](../../.source_1765894658/clap_builder-4.5.53/src/lib.rs#L48-L49)*
+*Defined in [`clap_builder-4.5.53/src/lib.rs:48-49`](../../.source_1765900590/clap_builder-4.5.53/src/lib.rs#L48-L49)*
 
 ## Macros
 
 ### `command!`
 
-*Defined in [`clap_builder-4.5.53/src/macros.rs:155-162`](../../.source_1765894658/clap_builder-4.5.53/src/macros.rs#L155-L162)*
+*Defined in [`clap_builder-4.5.53/src/macros.rs:155-162`](../../.source_1765900590/clap_builder-4.5.53/src/macros.rs#L155-L162)*
 
 Requires `cargo` feature flag to be enabled.
 
 ### `arg!`
 
-*Defined in [`clap_builder-4.5.53/src/macros.rs:532-563`](../../.source_1765894658/clap_builder-4.5.53/src/macros.rs#L532-L563)*
+*Defined in [`clap_builder-4.5.53/src/macros.rs:532-563`](../../.source_1765900590/clap_builder-4.5.53/src/macros.rs#L532-L563)*
 
-Create an [`Arg`](builder/arg/index.md) from a usage string.
+Create an [`Arg`](#arg) from a usage string.
 
-Allows creation of basic settings for the [`Arg`](builder/arg/index.md).
+Allows creation of basic settings for the [`Arg`](#arg).
 
 <div class="warning">
 
@@ -4738,7 +4738,7 @@ assert_eq!(m.get_one::<String>("input"), None);
 
 ### `value_parser!`
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2626-2632`](../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2626-L2632)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2626-2632`](../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L2626-L2632)*
 
 Select a [`ValueParser`](builder/value_parser/index.md) implementation from the intended type
 

@@ -22,7 +22,7 @@ struct Error {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../../.source_1765894658/walkdir-2.5.0/src/error.rs#L28-L31)*
+*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../../.source_1765900590/walkdir-2.5.0/src/error.rs#L28-L31)*
 
 An error produced by recursively walking a directory.
 
@@ -90,7 +90,7 @@ accessing the underlying error data in a structured form.
   > [`impl From<Error> for std::io::Error`][impl] which contains additional context about the
   error.
   
-  # Example
+  ##### Example
   
   ```rust,no_run
   use std::io;
@@ -225,7 +225,7 @@ enum ErrorInner {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/error.rs:34-37`](../../../.source_1765894658/walkdir-2.5.0/src/error.rs#L34-L37)*
+*Defined in [`walkdir-2.5.0/src/error.rs:34-37`](../../../.source_1765900590/walkdir-2.5.0/src/error.rs#L34-L37)*
 
 #### Trait Implementations
 

@@ -22,7 +22,7 @@ struct ProcessResults<'a, I, E: 'a> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/process_results_impl.rs:11-14`](../../../.source_1765894658/itertools-0.14.0/src/process_results_impl.rs#L11-L14)*
+*Defined in [`itertools-0.14.0/src/process_results_impl.rs:11-14`](../../../.source_1765900590/itertools-0.14.0/src/process_results_impl.rs#L11-L14)*
 
 An iterator that produces only the `T` values as long as the
 inner iterator produces `Ok(T)`.
@@ -122,7 +122,7 @@ where
     F: FnOnce(ProcessResults<'_, <I as >::IntoIter, E>) -> R
 ```
 
-*Defined in [`itertools-0.14.0/src/process_results_impl.rs:94-108`](../../../.source_1765894658/itertools-0.14.0/src/process_results_impl.rs#L94-L108)*
+*Defined in [`itertools-0.14.0/src/process_results_impl.rs:94-108`](../../../.source_1765900590/itertools-0.14.0/src/process_results_impl.rs#L94-L108)*
 
 “Lift” a function of the values of an iterator so that it can process
 an iterator of `Result` values instead.

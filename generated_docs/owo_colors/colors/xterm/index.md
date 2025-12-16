@@ -545,7 +545,7 @@ XTerm 256-bit colors. Not as widely supported as standard ANSI but contains 240 
 struct UserBlack;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -606,7 +606,7 @@ struct UserBlack;
 struct UserRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -667,7 +667,7 @@ struct UserRed;
 struct UserGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -728,7 +728,7 @@ struct UserGreen;
 struct UserYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -789,7 +789,7 @@ struct UserYellow;
 struct UserBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -850,7 +850,7 @@ struct UserBlue;
 struct UserMagenta;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -911,7 +911,7 @@ struct UserMagenta;
 struct UserCyan;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -972,7 +972,7 @@ struct UserCyan;
 struct UserWhite;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1033,7 +1033,7 @@ struct UserWhite;
 struct UserBrightBlack;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1094,7 +1094,7 @@ struct UserBrightBlack;
 struct UserBrightRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1155,7 +1155,7 @@ struct UserBrightRed;
 struct UserBrightGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1216,7 +1216,7 @@ struct UserBrightGreen;
 struct UserBrightYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1277,7 +1277,7 @@ struct UserBrightYellow;
 struct UserBrightBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1338,7 +1338,7 @@ struct UserBrightBlue;
 struct UserBrightMagenta;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1399,7 +1399,7 @@ struct UserBrightMagenta;
 struct UserBrightCyan;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1460,7 +1460,7 @@ struct UserBrightCyan;
 struct UserBrightWhite;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1521,7 +1521,7 @@ struct UserBrightWhite;
 struct Black;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1582,7 +1582,7 @@ struct Black;
 struct StratosBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1643,7 +1643,7 @@ struct StratosBlue;
 struct NavyBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1704,7 +1704,7 @@ struct NavyBlue;
 struct MidnightBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1765,7 +1765,7 @@ struct MidnightBlue;
 struct DarkBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1826,7 +1826,7 @@ struct DarkBlue;
 struct Blue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1887,7 +1887,7 @@ struct Blue;
 struct CamaroneGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1948,7 +1948,7 @@ struct CamaroneGreen;
 struct BlueStone;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2009,7 +2009,7 @@ struct BlueStone;
 struct OrientBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2070,7 +2070,7 @@ struct OrientBlue;
 struct EndeavourBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2131,7 +2131,7 @@ struct EndeavourBlue;
 struct ScienceBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2192,7 +2192,7 @@ struct ScienceBlue;
 struct BlueRibbon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2253,7 +2253,7 @@ struct BlueRibbon;
 struct JapaneseLaurel;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2314,7 +2314,7 @@ struct JapaneseLaurel;
 struct DeepSeaGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2375,7 +2375,7 @@ struct DeepSeaGreen;
 struct Teal;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2436,7 +2436,7 @@ struct Teal;
 struct DeepCerulean;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2497,7 +2497,7 @@ struct DeepCerulean;
 struct LochmaraBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2558,7 +2558,7 @@ struct LochmaraBlue;
 struct AzureRadiance;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2619,7 +2619,7 @@ struct AzureRadiance;
 struct LightJapaneseLaurel;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2680,7 +2680,7 @@ struct LightJapaneseLaurel;
 struct Jade;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2741,7 +2741,7 @@ struct Jade;
 struct PersianGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2802,7 +2802,7 @@ struct PersianGreen;
 struct BondiBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2863,7 +2863,7 @@ struct BondiBlue;
 struct Cerulean;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2924,7 +2924,7 @@ struct Cerulean;
 struct LightAzureRadiance;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2985,7 +2985,7 @@ struct LightAzureRadiance;
 struct DarkGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3046,7 +3046,7 @@ struct DarkGreen;
 struct Malachite;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3107,7 +3107,7 @@ struct Malachite;
 struct CaribbeanGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3168,7 +3168,7 @@ struct CaribbeanGreen;
 struct LightCaribbeanGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3229,7 +3229,7 @@ struct LightCaribbeanGreen;
 struct RobinEggBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3290,7 +3290,7 @@ struct RobinEggBlue;
 struct Aqua;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3351,7 +3351,7 @@ struct Aqua;
 struct Green;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3412,7 +3412,7 @@ struct Green;
 struct DarkSpringGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3473,7 +3473,7 @@ struct DarkSpringGreen;
 struct SpringGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3534,7 +3534,7 @@ struct SpringGreen;
 struct LightSpringGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3595,7 +3595,7 @@ struct LightSpringGreen;
 struct BrightTurquoise;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3656,7 +3656,7 @@ struct BrightTurquoise;
 struct Cyan;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3717,7 +3717,7 @@ struct Cyan;
 struct Rosewood;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3778,7 +3778,7 @@ struct Rosewood;
 struct PompadourMagenta;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3839,7 +3839,7 @@ struct PompadourMagenta;
 struct PigmentIndigo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3900,7 +3900,7 @@ struct PigmentIndigo;
 struct DarkPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3961,7 +3961,7 @@ struct DarkPurple;
 struct ElectricIndigo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4022,7 +4022,7 @@ struct ElectricIndigo;
 struct ElectricPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4083,7 +4083,7 @@ struct ElectricPurple;
 struct VerdunGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4144,7 +4144,7 @@ struct VerdunGreen;
 struct ScorpionOlive;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4205,7 +4205,7 @@ struct ScorpionOlive;
 struct Lilac;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4266,7 +4266,7 @@ struct Lilac;
 struct ScampiIndigo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4327,7 +4327,7 @@ struct ScampiIndigo;
 struct Indigo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4388,7 +4388,7 @@ struct Indigo;
 struct DarkCornflowerBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4449,7 +4449,7 @@ struct DarkCornflowerBlue;
 struct DarkLimeade;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4510,7 +4510,7 @@ struct DarkLimeade;
 struct GladeGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4571,7 +4571,7 @@ struct GladeGreen;
 struct JuniperGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4632,7 +4632,7 @@ struct JuniperGreen;
 struct HippieBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4693,7 +4693,7 @@ struct HippieBlue;
 struct HavelockBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4754,7 +4754,7 @@ struct HavelockBlue;
 struct CornflowerBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4815,7 +4815,7 @@ struct CornflowerBlue;
 struct Limeade;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4876,7 +4876,7 @@ struct Limeade;
 struct FernGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4937,7 +4937,7 @@ struct FernGreen;
 struct SilverTree;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4998,7 +4998,7 @@ struct SilverTree;
 struct Tradewind;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5059,7 +5059,7 @@ struct Tradewind;
 struct ShakespeareBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5120,7 +5120,7 @@ struct ShakespeareBlue;
 struct DarkMalibuBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5181,7 +5181,7 @@ struct DarkMalibuBlue;
 struct DarkBrightGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5242,7 +5242,7 @@ struct DarkBrightGreen;
 struct DarkPastelGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5303,7 +5303,7 @@ struct DarkPastelGreen;
 struct PastelGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5364,7 +5364,7 @@ struct PastelGreen;
 struct DownyTeal;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5425,7 +5425,7 @@ struct DownyTeal;
 struct Viking;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5486,7 +5486,7 @@ struct Viking;
 struct MalibuBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5547,7 +5547,7 @@ struct MalibuBlue;
 struct BrightGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5608,7 +5608,7 @@ struct BrightGreen;
 struct DarkScreaminGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5669,7 +5669,7 @@ struct DarkScreaminGreen;
 struct ScreaminGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5730,7 +5730,7 @@ struct ScreaminGreen;
 struct DarkAquamarine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5791,7 +5791,7 @@ struct DarkAquamarine;
 struct Aquamarine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5852,7 +5852,7 @@ struct Aquamarine;
 struct LightAquamarine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5913,7 +5913,7 @@ struct LightAquamarine;
 struct Maroon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5974,7 +5974,7 @@ struct Maroon;
 struct DarkFreshEggplant;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6035,7 +6035,7 @@ struct DarkFreshEggplant;
 struct LightFreshEggplant;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6096,7 +6096,7 @@ struct LightFreshEggplant;
 struct Purple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6157,7 +6157,7 @@ struct Purple;
 struct ElectricViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6218,7 +6218,7 @@ struct ElectricViolet;
 struct LightElectricViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6279,7 +6279,7 @@ struct LightElectricViolet;
 struct Brown;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6340,7 +6340,7 @@ struct Brown;
 struct CopperRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6401,7 +6401,7 @@ struct CopperRose;
 struct StrikemasterPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6462,7 +6462,7 @@ struct StrikemasterPurple;
 struct DelugePurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6523,7 +6523,7 @@ struct DelugePurple;
 struct DarkMediumPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6584,7 +6584,7 @@ struct DarkMediumPurple;
 struct DarkHeliotropePurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6645,7 +6645,7 @@ struct DarkHeliotropePurple;
 struct Olive;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6706,7 +6706,7 @@ struct Olive;
 struct ClayCreekOlive;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6767,7 +6767,7 @@ struct ClayCreekOlive;
 struct DarkGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6828,7 +6828,7 @@ struct DarkGray;
 struct WildBlueYonder;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6889,7 +6889,7 @@ struct WildBlueYonder;
 struct ChetwodeBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6950,7 +6950,7 @@ struct ChetwodeBlue;
 struct SlateBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7011,7 +7011,7 @@ struct SlateBlue;
 struct LightLimeade;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7072,7 +7072,7 @@ struct LightLimeade;
 struct ChelseaCucumber;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7133,7 +7133,7 @@ struct ChelseaCucumber;
 struct BayLeaf;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7194,7 +7194,7 @@ struct BayLeaf;
 struct GulfStream;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7255,7 +7255,7 @@ struct GulfStream;
 struct PoloBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7316,7 +7316,7 @@ struct PoloBlue;
 struct LightMalibuBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7377,7 +7377,7 @@ struct LightMalibuBlue;
 struct Pistachio;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7438,7 +7438,7 @@ struct Pistachio;
 struct LightPastelGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7499,7 +7499,7 @@ struct LightPastelGreen;
 struct DarkFeijoaGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7560,7 +7560,7 @@ struct DarkFeijoaGreen;
 struct VistaBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7621,7 +7621,7 @@ struct VistaBlue;
 struct Bermuda;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7682,7 +7682,7 @@ struct Bermuda;
 struct DarkAnakiwaBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7743,7 +7743,7 @@ struct DarkAnakiwaBlue;
 struct ChartreuseGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7804,7 +7804,7 @@ struct ChartreuseGreen;
 struct LightScreaminGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7865,7 +7865,7 @@ struct LightScreaminGreen;
 struct DarkMintGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7926,7 +7926,7 @@ struct DarkMintGreen;
 struct MintGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7987,7 +7987,7 @@ struct MintGreen;
 struct LighterAquamarine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8048,7 +8048,7 @@ struct LighterAquamarine;
 struct AnakiwaBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8109,7 +8109,7 @@ struct AnakiwaBlue;
 struct BrightRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8170,7 +8170,7 @@ struct BrightRed;
 struct DarkFlirt;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8231,7 +8231,7 @@ struct DarkFlirt;
 struct Flirt;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8292,7 +8292,7 @@ struct Flirt;
 struct LightFlirt;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8353,7 +8353,7 @@ struct LightFlirt;
 struct DarkViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8414,7 +8414,7 @@ struct DarkViolet;
 struct BrightElectricViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8475,7 +8475,7 @@ struct BrightElectricViolet;
 struct RoseofSharonOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8536,7 +8536,7 @@ struct RoseofSharonOrange;
 struct MatrixPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8597,7 +8597,7 @@ struct MatrixPink;
 struct TapestryPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8658,7 +8658,7 @@ struct TapestryPink;
 struct FuchsiaPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8719,7 +8719,7 @@ struct FuchsiaPink;
 struct MediumPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8780,7 +8780,7 @@ struct MediumPurple;
 struct Heliotrope;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8841,7 +8841,7 @@ struct Heliotrope;
 struct PirateGold;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8902,7 +8902,7 @@ struct PirateGold;
 struct MuesliOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8963,7 +8963,7 @@ struct MuesliOrange;
 struct PharlapPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9024,7 +9024,7 @@ struct PharlapPink;
 struct Bouquet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9085,7 +9085,7 @@ struct Bouquet;
 struct Lavender;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9146,7 +9146,7 @@ struct Lavender;
 struct LightHeliotrope;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9207,7 +9207,7 @@ struct LightHeliotrope;
 struct BuddhaGold;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9268,7 +9268,7 @@ struct BuddhaGold;
 struct OliveGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9329,7 +9329,7 @@ struct OliveGreen;
 struct HillaryOlive;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9390,7 +9390,7 @@ struct HillaryOlive;
 struct SilverChalice;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9451,7 +9451,7 @@ struct SilverChalice;
 struct WistfulLilac;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9512,7 +9512,7 @@ struct WistfulLilac;
 struct MelroseLilac;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9573,7 +9573,7 @@ struct MelroseLilac;
 struct RioGrandeGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9634,7 +9634,7 @@ struct RioGrandeGreen;
 struct ConiferGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9695,7 +9695,7 @@ struct ConiferGreen;
 struct Feijoa;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9756,7 +9756,7 @@ struct Feijoa;
 struct PixieGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9817,7 +9817,7 @@ struct PixieGreen;
 struct JungleMist;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9878,7 +9878,7 @@ struct JungleMist;
 struct LightAnakiwaBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9939,7 +9939,7 @@ struct LightAnakiwaBlue;
 struct Lime;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10000,7 +10000,7 @@ struct Lime;
 struct GreenYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10061,7 +10061,7 @@ struct GreenYellow;
 struct LightMintGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10122,7 +10122,7 @@ struct LightMintGreen;
 struct Celadon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10183,7 +10183,7 @@ struct Celadon;
 struct AeroBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10244,7 +10244,7 @@ struct AeroBlue;
 struct FrenchPassLightBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10305,7 +10305,7 @@ struct FrenchPassLightBlue;
 struct GuardsmanRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10366,7 +10366,7 @@ struct GuardsmanRed;
 struct RazzmatazzCerise;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10427,7 +10427,7 @@ struct RazzmatazzCerise;
 struct MediumVioletRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10488,7 +10488,7 @@ struct MediumVioletRed;
 struct HollywoodCerise;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10549,7 +10549,7 @@ struct HollywoodCerise;
 struct DarkPurplePizzazz;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10610,7 +10610,7 @@ struct DarkPurplePizzazz;
 struct BrighterElectricViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10671,7 +10671,7 @@ struct BrighterElectricViolet;
 struct TennOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10732,7 +10732,7 @@ struct TennOrange;
 struct RomanOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10793,7 +10793,7 @@ struct RomanOrange;
 struct CranberryPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10854,7 +10854,7 @@ struct CranberryPink;
 struct HopbushPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10915,7 +10915,7 @@ struct HopbushPink;
 struct Orchid;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10976,7 +10976,7 @@ struct Orchid;
 struct LighterHeliotrope;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11037,7 +11037,7 @@ struct LighterHeliotrope;
 struct MangoTango;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11098,7 +11098,7 @@ struct MangoTango;
 struct Copperfield;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11159,7 +11159,7 @@ struct Copperfield;
 struct SeaPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11220,7 +11220,7 @@ struct SeaPink;
 struct CanCanPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11281,7 +11281,7 @@ struct CanCanPink;
 struct LightOrchid;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11342,7 +11342,7 @@ struct LightOrchid;
 struct BrightHeliotrope;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11403,7 +11403,7 @@ struct BrightHeliotrope;
 struct DarkCorn;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11464,7 +11464,7 @@ struct DarkCorn;
 struct DarkTachaOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11525,7 +11525,7 @@ struct DarkTachaOrange;
 struct TanBeige;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11586,7 +11586,7 @@ struct TanBeige;
 struct ClamShell;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11647,7 +11647,7 @@ struct ClamShell;
 struct ThistlePink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11708,7 +11708,7 @@ struct ThistlePink;
 struct Mauve;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11769,7 +11769,7 @@ struct Mauve;
 struct Corn;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11830,7 +11830,7 @@ struct Corn;
 struct TachaOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11891,7 +11891,7 @@ struct TachaOrange;
 struct DecoOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11952,7 +11952,7 @@ struct DecoOrange;
 struct PaleGoldenrod;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12013,7 +12013,7 @@ struct PaleGoldenrod;
 struct AltoBeige;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12074,7 +12074,7 @@ struct AltoBeige;
 struct FogPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12135,7 +12135,7 @@ struct FogPink;
 struct ChartreuseYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12196,7 +12196,7 @@ struct ChartreuseYellow;
 struct Canary;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12257,7 +12257,7 @@ struct Canary;
 struct Honeysuckle;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12318,7 +12318,7 @@ struct Honeysuckle;
 struct ReefPaleYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12379,7 +12379,7 @@ struct ReefPaleYellow;
 struct SnowyMint;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12440,7 +12440,7 @@ struct SnowyMint;
 struct OysterBay;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12501,7 +12501,7 @@ struct OysterBay;
 struct Red;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12562,7 +12562,7 @@ struct Red;
 struct DarkRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12623,7 +12623,7 @@ struct DarkRose;
 struct Rose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12684,7 +12684,7 @@ struct Rose;
 struct LightHollywoodCerise;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12745,7 +12745,7 @@ struct LightHollywoodCerise;
 struct PurplePizzazz;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12806,7 +12806,7 @@ struct PurplePizzazz;
 struct Fuchsia;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12867,7 +12867,7 @@ struct Fuchsia;
 struct BlazeOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12928,7 +12928,7 @@ struct BlazeOrange;
 struct BittersweetOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12989,7 +12989,7 @@ struct BittersweetOrange;
 struct WildWatermelon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13050,7 +13050,7 @@ struct WildWatermelon;
 struct DarkHotPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13111,7 +13111,7 @@ struct DarkHotPink;
 struct HotPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13172,7 +13172,7 @@ struct HotPink;
 struct PinkFlamingo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13233,7 +13233,7 @@ struct PinkFlamingo;
 struct FlushOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13294,7 +13294,7 @@ struct FlushOrange;
 struct Salmon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13355,7 +13355,7 @@ struct Salmon;
 struct VividTangerine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13416,7 +13416,7 @@ struct VividTangerine;
 struct PinkSalmon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13477,7 +13477,7 @@ struct PinkSalmon;
 struct DarkLavenderRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13538,7 +13538,7 @@ struct DarkLavenderRose;
 struct BlushPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13599,7 +13599,7 @@ struct BlushPink;
 struct YellowSea;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13660,7 +13660,7 @@ struct YellowSea;
 struct TexasRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13721,7 +13721,7 @@ struct TexasRose;
 struct Tacao;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13782,7 +13782,7 @@ struct Tacao;
 struct Sundown;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13843,7 +13843,7 @@ struct Sundown;
 struct CottonCandy;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13904,7 +13904,7 @@ struct CottonCandy;
 struct LavenderRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13965,7 +13965,7 @@ struct LavenderRose;
 struct Gold;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14026,7 +14026,7 @@ struct Gold;
 struct Dandelion;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14087,7 +14087,7 @@ struct Dandelion;
 struct GrandisCaramel;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14148,7 +14148,7 @@ struct GrandisCaramel;
 struct Caramel;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14209,7 +14209,7 @@ struct Caramel;
 struct CosmosSalmon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14270,7 +14270,7 @@ struct CosmosSalmon;
 struct PinkLace;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14331,7 +14331,7 @@ struct PinkLace;
 struct Yellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14392,7 +14392,7 @@ struct Yellow;
 struct LaserLemon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14453,7 +14453,7 @@ struct LaserLemon;
 struct DollyYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14514,7 +14514,7 @@ struct DollyYellow;
 struct PortafinoYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14575,7 +14575,7 @@ struct PortafinoYellow;
 struct Cumulus;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14636,7 +14636,7 @@ struct Cumulus;
 struct White;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14697,7 +14697,7 @@ struct White;
 struct DarkCodGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14758,7 +14758,7 @@ struct DarkCodGray;
 struct CodGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14819,7 +14819,7 @@ struct CodGray;
 struct LightCodGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14880,7 +14880,7 @@ struct LightCodGray;
 struct DarkMineShaft;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14941,7 +14941,7 @@ struct DarkMineShaft;
 struct MineShaft;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15002,7 +15002,7 @@ struct MineShaft;
 struct LightMineShaft;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15063,7 +15063,7 @@ struct LightMineShaft;
 struct DarkTundora;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15124,7 +15124,7 @@ struct DarkTundora;
 struct Tundora;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15185,7 +15185,7 @@ struct Tundora;
 struct ScorpionGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15246,7 +15246,7 @@ struct ScorpionGray;
 struct DarkDoveGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15307,7 +15307,7 @@ struct DarkDoveGray;
 struct DoveGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15368,7 +15368,7 @@ struct DoveGray;
 struct Boulder;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15429,7 +15429,7 @@ struct Boulder;
 struct Gray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15490,7 +15490,7 @@ struct Gray;
 struct LightGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15551,7 +15551,7 @@ struct LightGray;
 struct DustyGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15612,7 +15612,7 @@ struct DustyGray;
 struct NobelGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15673,7 +15673,7 @@ struct NobelGray;
 struct DarkSilverChalice;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15734,7 +15734,7 @@ struct DarkSilverChalice;
 struct LightSilverChalice;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15795,7 +15795,7 @@ struct LightSilverChalice;
 struct DarkSilver;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15856,7 +15856,7 @@ struct DarkSilver;
 struct Silver;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15917,7 +15917,7 @@ struct Silver;
 struct DarkAlto;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15978,7 +15978,7 @@ struct DarkAlto;
 struct Alto;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16039,7 +16039,7 @@ struct Alto;
 struct Mercury;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16100,7 +16100,7 @@ struct Mercury;
 struct GalleryGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16159,5 +16159,5 @@ struct GalleryGray;
 
 ### `xterm_colors!`
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:1-121`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L1-L121)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:1-121`](../../../../.source_1765900590/owo-colors-4.2.3/src/colors/xterm.rs#L1-L121)*
 

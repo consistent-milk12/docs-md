@@ -182,7 +182,7 @@ struct Interleave<I, J> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:28-32`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L28-L32)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:28-32`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L28-L32)*
 
 An iterator adaptor that alternates elements from two iterators until both
 run out.
@@ -293,7 +293,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:123-131`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L123-L131)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:123-131`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L123-L131)*
 
 An iterator adaptor that alternates elements from the two iterators until
 one of them runs out.
@@ -403,7 +403,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:243-249`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L243-L249)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:243-249`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L243-L249)*
 
 An iterator adaptor that allows putting back a single
 item to the front of the iterator.
@@ -538,7 +538,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:360-371`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L360-L371)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:360-371`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L360-L371)*
 
 An iterator adaptor that iterates over the cartesian product of
 the element sets of two iterators `I` and `J`.
@@ -653,7 +653,7 @@ struct Batching<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:479-482`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L479-L482)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:479-482`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L479-L482)*
 
 A “meta iterator adaptor”. Its closure receives a reference to the iterator
 and may pick off as many elements as it likes, to produce the next iterator element.
@@ -754,7 +754,7 @@ struct TakeWhileRef<'a, I: 'a, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:513-516`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L513-L516)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:513-516`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L513-L516)*
 
 An iterator adaptor that borrows from a `Clone`-able iterator
 to only pick off elements while the predicate returns `true`.
@@ -838,7 +838,7 @@ struct WhileSome<I> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:566-568`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L566-L568)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:566-568`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L566-L568)*
 
 An iterator adaptor that filters `Option<A>` iterator elements
 and produces `A`. Stops on the first `None` encountered.
@@ -944,7 +944,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:616-623`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L616-L623)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:616-623`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L616-L623)*
 
 An iterator to iterate through all combinations in a `Clone`-able iterator that produces tuples
 of a specific size.
@@ -1051,7 +1051,7 @@ struct Tuple1Combination<I> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:677-679`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L677-L679)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:677-679`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L677-L679)*
 
 #### Trait Implementations
 
@@ -1152,7 +1152,7 @@ struct Tuple2Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:825`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L825)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:825`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L825)*
 
 #### Trait Implementations
 
@@ -1253,7 +1253,7 @@ struct Tuple3Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:826`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L826)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:826`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L826)*
 
 #### Trait Implementations
 
@@ -1354,7 +1354,7 @@ struct Tuple4Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:827`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L827)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:827`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L827)*
 
 #### Trait Implementations
 
@@ -1455,7 +1455,7 @@ struct Tuple5Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:828`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L828)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:828`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L828)*
 
 #### Trait Implementations
 
@@ -1556,7 +1556,7 @@ struct Tuple6Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:829`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L829)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:829`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L829)*
 
 #### Trait Implementations
 
@@ -1657,7 +1657,7 @@ struct Tuple7Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:830`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L830)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:830`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L830)*
 
 #### Trait Implementations
 
@@ -1758,7 +1758,7 @@ struct Tuple8Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:831`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L831)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:831`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L831)*
 
 #### Trait Implementations
 
@@ -1859,7 +1859,7 @@ struct Tuple9Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:832`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L832)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:832`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L832)*
 
 #### Trait Implementations
 
@@ -1960,7 +1960,7 @@ struct Tuple10Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:833`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L833)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:833`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L833)*
 
 #### Trait Implementations
 
@@ -2061,7 +2061,7 @@ struct Tuple11Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:834`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L834)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:834`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L834)*
 
 #### Trait Implementations
 
@@ -2162,7 +2162,7 @@ struct Tuple12Combination<I: Iterator> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:835`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L835)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:835`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L835)*
 
 #### Trait Implementations
 
@@ -2262,7 +2262,7 @@ struct FilterOk<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:878-881`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L878-L881)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:878-881`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L878-L881)*
 
 An iterator adapter to filter values within a nested `Result::Ok`.
 
@@ -2370,7 +2370,7 @@ struct FilterMapOk<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:975-978`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L975-L978)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:975-978`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L975-L978)*
 
 An iterator adapter to filter and apply a transformation on values within a nested `Result::Ok`.
 
@@ -2478,7 +2478,7 @@ struct Positions<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1080-1083`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L1080-L1083)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1080-1083`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L1080-L1083)*
 
 An iterator adapter to get the positions of each element that matches a predicate.
 
@@ -2584,7 +2584,7 @@ struct Update<I, F> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1171-1174`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L1171-L1174)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1171-1174`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L1171-L1174)*
 
 An iterator adapter to apply a mutating function to each element before yielding it.
 
@@ -2700,7 +2700,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:7-18`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L7-L18)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:7-18`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L7-L18)*
 
 #### Fields
 
@@ -2805,7 +2805,7 @@ where
 struct NoCount;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:113`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L113)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:113`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L113)*
 
 #### Trait Implementations
 
@@ -2862,7 +2862,7 @@ struct NoCount;
 struct WithCount;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:115`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L115)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:115`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L115)*
 
 #### Trait Implementations
 
@@ -2919,7 +2919,7 @@ struct WithCount;
 struct DedupPred2CoalescePred<DP>(DP);
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:170`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L170)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:170`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L170)*
 
 #### Trait Implementations
 
@@ -2994,7 +2994,7 @@ struct DedupPred2CoalescePred<DP>(DP);
 struct DedupEq;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:195`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L195)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:195`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L195)*
 
 #### Trait Implementations
 
@@ -3069,7 +3069,7 @@ struct DedupEq;
 struct DedupPredWithCount2CoalescePred<DP>(DP);
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:243`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L243)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:243`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L243)*
 
 #### Trait Implementations
 
@@ -3147,7 +3147,7 @@ where
     <I as >::Item: Clone;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:18-21`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/multi_product.rs#L18-L21)*
+*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:18-21`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/multi_product.rs#L18-L21)*
 
 An iterator adaptor that iterates over the cartesian product of
 multiple iterators of type `I`.
@@ -3256,7 +3256,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:25-34`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/multi_product.rs#L25-L34)*
+*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:25-34`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/multi_product.rs#L25-L34)*
 
 Internals for `MultiProduct`.
 
@@ -3345,7 +3345,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:74-81`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/multi_product.rs#L74-L81)*
+*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:74-81`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/multi_product.rs#L74-L81)*
 
 Holds the state of a single iterator within a `MultiProduct`.
 
@@ -3424,7 +3424,7 @@ Holds the state of a single iterator within a `MultiProduct`.
 trait HasCombination<I>: Sized { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:625-627`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L625-L627)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:625-627`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L625-L627)*
 
 #### Associated Types
 
@@ -3451,11 +3451,11 @@ trait HasCombination<I>: Sized { ... }
 trait CoalescePredicate<Item, T> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:39-41`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L39-L41)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:39-41`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L39-L41)*
 
 #### Required Methods
 
-- `fn coalesce_pair(&mut self, t: T, item: Item) -> Result<T, (T, T)>`
+- `fn CoalescePredicate::coalesce_pair(&mut self, t: T, item: Item) -> Result<T, (T, T)>`
 
 #### Implementors
 
@@ -3469,7 +3469,7 @@ trait CoalescePredicate<Item, T> { ... }
 trait CountItem<T> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:117-120`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L117-L120)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:117-120`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L117-L120)*
 
 #### Associated Types
 
@@ -3477,7 +3477,7 @@ trait CountItem<T> { ... }
 
 #### Required Methods
 
-- `fn new(t: T) -> <Self as >::CItem`
+- `fn CountItem::new(t: T) -> <Self as >::CItem`
 
 #### Implementors
 
@@ -3490,11 +3490,11 @@ trait CountItem<T> { ... }
 trait DedupPredicate<T> { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:176-179`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L176-L179)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:176-179`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L176-L179)*
 
 #### Required Methods
 
-- `fn dedup_pair(&mut self, a: &T, b: &T) -> bool`
+- `fn DedupPredicate::dedup_pair(&mut self, a: &T, b: &T) -> bool`
 
 #### Implementors
 
@@ -3509,7 +3509,7 @@ trait DedupPredicate<T> { ... }
 fn map_into<I, R>(iter: I) -> MapInto<I, R>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:125-130`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L125-L130)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:125-130`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L125-L130)*
 
 Create a new [`MapInto`](map/index.md) iterator.
 
@@ -3522,7 +3522,7 @@ where
     F: FnMut(T) -> U
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:88-97`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L88-L97)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:88-97`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L88-L97)*
 
 Create a new `MapOk` iterator.
 
@@ -3535,7 +3535,7 @@ where
     J: IntoIterator<Item = <I as >::Item>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:37-50`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L37-L50)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:37-50`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L37-L50)*
 
 Create an iterator that interleaves elements in `i` and `j`.
 
@@ -3550,7 +3550,7 @@ where
     J: Iterator<Item = <I as >::Item>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:134-144`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L134-L144)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:134-144`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L134-L144)*
 
 Create a new `InterleaveShortest` iterator.
 
@@ -3562,7 +3562,7 @@ where
     I: IntoIterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:252-260`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L252-L260)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:252-260`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L252-L260)*
 
 Create an iterator where you can put back a single item
 
@@ -3576,7 +3576,7 @@ where
     <I as >::Item: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:376-388`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L376-L388)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:376-388`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L376-L388)*
 
 Create a new cartesian product iterator
 
@@ -3588,7 +3588,7 @@ Iterator element type is `(I::Item, J::Item)`.
 fn batching<I, F>(iter: I, f: F) -> Batching<I, F>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:492-494`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L492-L494)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:492-494`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L492-L494)*
 
 Create a new Batching iterator.
 
@@ -3600,7 +3600,7 @@ where
     I: Iterator + Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:526-531`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L526-L531)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:526-531`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L526-L531)*
 
 Create a new `TakeWhileRef` from a reference to clonable iterator.
 
@@ -3610,7 +3610,7 @@ Create a new `TakeWhileRef` from a reference to clonable iterator.
 fn while_some<I>(iter: I) -> WhileSome<I>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:571-573`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L571-L573)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:571-573`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L571-L573)*
 
 Create a new `WhileSome<I>`.
 
@@ -3624,7 +3624,7 @@ where
     T: HasCombination<I>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:630-640`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L630-L640)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:630-640`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L630-L640)*
 
 Create a new `TupleCombinations` from a clonable iterator.
 
@@ -3634,7 +3634,7 @@ Create a new `TupleCombinations` from a clonable iterator.
 fn checked_binomial(n: usize, k: usize) -> Option<usize>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:838-852`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L838-L852)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:838-852`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L838-L852)*
 
 ### `filter_ok`
 
@@ -3645,7 +3645,7 @@ where
     F: FnMut(&T) -> bool
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:891-897`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L891-L897)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:891-897`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L891-L897)*
 
 Create a new `FilterOk` iterator.
 
@@ -3655,7 +3655,7 @@ Create a new `FilterOk` iterator.
 fn transpose_result<T, E>(result: Result<Option<T>, E>) -> Option<Result<T, E>>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:987-993`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L987-L993)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:987-993`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L987-L993)*
 
 ### `filter_map_ok`
 
@@ -3666,7 +3666,7 @@ where
     F: FnMut(T) -> Option<U>
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:996-1002`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L996-L1002)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:996-1002`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L996-L1002)*
 
 Create a new `FilterOk` iterator.
 
@@ -3679,7 +3679,7 @@ where
     F: FnMut(<I as >::Item) -> bool
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1093-1100`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L1093-L1100)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1093-1100`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L1093-L1100)*
 
 Create a new `Positions` iterator.
 
@@ -3692,7 +3692,7 @@ where
     F: FnMut(&mut <I as >::Item)
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1184-1190`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L1184-L1190)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:1184-1190`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L1184-L1190)*
 
 Create a new `Update` iterator.
 
@@ -3704,7 +3704,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:153-162`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L153-L162)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:153-162`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L153-L162)*
 
 Create a new `Coalesce`.
 
@@ -3716,7 +3716,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:210-219`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L210-L219)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:210-219`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L210-L219)*
 
 Create a new `DedupBy`.
 
@@ -3728,7 +3728,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:227-232`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L227-L232)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:227-232`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L227-L232)*
 
 Create a new `Dedup`.
 
@@ -3740,7 +3740,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:269-278`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L269-L278)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:269-278`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L269-L278)*
 
 Create a new `DedupByWithCount`.
 
@@ -3752,7 +3752,7 @@ where
     I: Iterator
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:281-286`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L281-L286)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:281-286`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L281-L286)*
 
 Create a new `DedupWithCount`.
 
@@ -3767,7 +3767,7 @@ where
     <<H as >::Item as IntoIterator>::Item: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:56-70`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/multi_product.rs#L56-L70)*
+*Defined in [`itertools-0.14.0/src/adaptors/multi_product.rs:56-70`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/multi_product.rs#L56-L70)*
 
 Create a new cartesian product iterator over an arbitrary number
 of iterators of the same type.
@@ -3782,7 +3782,7 @@ Iterator element is of type `Vec<H::Item::Item>`.
 type MapInto<I, R> = MapSpecialCase<I, MapSpecialCaseFnInto<R>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:102`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L102)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:102`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L102)*
 
 An iterator adapter to apply `Into` conversion to each element.
 
@@ -3794,7 +3794,7 @@ See [`.map_into()`](crate::Itertools::map_into) for more information.
 type MapOk<I, F> = MapSpecialCase<I, MapSpecialCaseFnOk<F>>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/map.rs:68`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/map.rs#L68)*
+*Defined in [`itertools-0.14.0/src/adaptors/map.rs:68`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/map.rs#L68)*
 
 An iterator adapter to apply a transformation within a nested `Result::Ok`.
 
@@ -3806,7 +3806,7 @@ See [`.map_ok()`](crate::Itertools::map_ok) for more information.
 type Coalesce<I, F> = CoalesceBy<I, F, NoCount>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:141`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L141)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:141`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L141)*
 
 An iterator adaptor that may join together adjacent elements.
 
@@ -3818,7 +3818,7 @@ See [`.coalesce()`](crate::Itertools::coalesce) for more information.
 type DedupBy<I, Pred> = CoalesceBy<I, DedupPred2CoalescePred<Pred>, NoCount>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:167`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L167)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:167`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L167)*
 
 An iterator adaptor that removes repeated duplicates, determining equality using a comparison function.
 
@@ -3830,7 +3830,7 @@ See [`.dedup_by()`](crate::Itertools::dedup_by) or [`.dedup()`](crate::Itertools
 type Dedup<I> = DedupBy<I, DedupEq>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:224`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L224)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:224`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L224)*
 
 An iterator adaptor that removes repeated duplicates.
 
@@ -3842,7 +3842,7 @@ See [`.dedup()`](crate::Itertools::dedup) for more information.
 type DedupByWithCount<I, Pred> = CoalesceBy<I, DedupPredWithCount2CoalescePred<Pred>, WithCount>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:239-240`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L239-L240)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:239-240`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L239-L240)*
 
 An iterator adaptor that removes repeated duplicates, while keeping a count of how many
 repeated elements were present. This will determine equality using a comparison function.
@@ -3856,7 +3856,7 @@ See [`.dedup_by_with_count()`](crate::Itertools::dedup_by_with_count) or
 type DedupWithCount<I> = DedupByWithCount<I, DedupEq>;
 ```
 
-*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:266`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/coalesce.rs#L266)*
+*Defined in [`itertools-0.14.0/src/adaptors/coalesce.rs:266`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/coalesce.rs#L266)*
 
 An iterator adaptor that removes repeated duplicates, while keeping a count of how many
 repeated elements were present.
@@ -3867,5 +3867,5 @@ See [`.dedup_with_count()`](crate::Itertools::dedup_with_count) for more informa
 
 ### `impl_tuple_combination!`
 
-*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:714-811`](../../../.source_1765894658/itertools-0.14.0/src/adaptors/mod.rs#L714-L811)*
+*Defined in [`itertools-0.14.0/src/adaptors/mod.rs:714-811`](../../../.source_1765900590/itertools-0.14.0/src/adaptors/mod.rs#L714-L811)*
 

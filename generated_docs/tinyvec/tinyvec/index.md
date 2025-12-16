@@ -26,7 +26,7 @@ struct TinyVecSplice<'p, A: Array, I: Iterator<Item = <A as >::Item>> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1215-1220`](../../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L1215-L1220)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1215-1220`](../../../.source_1765900590/tinyvec-1.10.0/src/tinyvec.rs#L1215-L1220)*
 
 Splicing iterator for `TinyVec`
 See [`TinyVec::splice`](TinyVec::<A>::splice)
@@ -113,7 +113,7 @@ enum TinyVec<A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:96-101`](../../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L96-L101)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:96-101`](../../../.source_1765900590/tinyvec-1.10.0/src/tinyvec.rs#L96-L101)*
 
 A vector that starts inline, but can automatically move to the heap.
 
@@ -245,7 +245,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
     `Vec<T>`, then into a `Box<[T]>`. Requiring only a single heap
     allocation.
   
-  ## Example
+  ###### Example
   
   ```rust
   use core::mem::size_of_val as mem_size_of;
@@ -274,7 +274,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
   - For `TinyVec::Heap(vec_data)`, `.into_vec()` will take `vec_data`
     without heap reallocation.
   
-  ## Example
+  ###### Example
   
   ```rust
   use tinyvec::TinyVec;
@@ -466,7 +466,7 @@ enum TinyVecDrain<'p, A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1166-1171`](../../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L1166-L1171)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1166-1171`](../../../.source_1765900590/tinyvec-1.10.0/src/tinyvec.rs#L1166-L1171)*
 
 Draining iterator for `TinyVecDrain`
 
@@ -552,7 +552,7 @@ enum TinyVecIterator<A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1483-1488`](../../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L1483-L1488)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1483-1488`](../../../.source_1765900590/tinyvec-1.10.0/src/tinyvec.rs#L1483-L1488)*
 
 Iterator for consuming an `TinyVec` and returning owned elements.
 

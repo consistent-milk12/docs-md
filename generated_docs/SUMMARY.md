@@ -122,6 +122,7 @@
     - [impl_category](cargo_docs_md/generator/impl_category/index.md)
     - [impls](cargo_docs_md/generator/impls/index.md)
     - [items](cargo_docs_md/generator/items/index.md)
+    - [method_pages](cargo_docs_md/generator/method_pages/index.md)
     - [module](cargo_docs_md/generator/module/index.md)
     - [nested](cargo_docs_md/generator/nested/index.md)
     - [quick_ref](cargo_docs_md/generator/quick_ref/index.md)

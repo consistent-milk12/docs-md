@@ -53,7 +53,7 @@
 struct private;
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/lib.rs:45`](../../.source_1765894658/thiserror-impl-2.0.17/src/lib.rs#L45)*
+*Defined in [`thiserror-impl-2.0.17/src/lib.rs:45`](../../.source_1765900590/thiserror-impl-2.0.17/src/lib.rs#L45)*
 
 #### Trait Implementations
 

@@ -25,7 +25,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/multipeek_impl.rs:11-18`](../../../.source_1765894658/itertools-0.14.0/src/multipeek_impl.rs#L11-L18)*
+*Defined in [`itertools-0.14.0/src/multipeek_impl.rs:11-18`](../../../.source_1765900590/itertools-0.14.0/src/multipeek_impl.rs#L11-L18)*
 
 See [`multipeek()`](#multipeek) for more information.
 
@@ -138,7 +138,7 @@ where
     I: IntoIterator
 ```
 
-*Defined in [`itertools-0.14.0/src/multipeek_impl.rs:24-33`](../../../.source_1765894658/itertools-0.14.0/src/multipeek_impl.rs#L24-L33)*
+*Defined in [`itertools-0.14.0/src/multipeek_impl.rs:24-33`](../../../.source_1765900590/itertools-0.14.0/src/multipeek_impl.rs#L24-L33)*
 
 An iterator adaptor that allows the user to peek at multiple `.next()`
 values without advancing the base iterator.

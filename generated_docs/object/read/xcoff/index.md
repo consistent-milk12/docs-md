@@ -190,7 +190,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:35-45`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L35-L45)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:35-45`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L35-L45)*
 
 A partially parsed XCOFF file.
 
@@ -349,7 +349,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/section.rs:23-30`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/section.rs#L23-L30)*
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:23-30`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/section.rs#L23-L30)*
 
 An iterator for the sections in an [`XcoffFile`](#xcofffile).
 
@@ -425,7 +425,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/section.rs:59-67`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/section.rs#L59-L67)*
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:59-67`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/section.rs#L59-L67)*
 
 A section in an [`XcoffFile`](#xcofffile).
 
@@ -542,7 +542,7 @@ struct SectionTable<'data, Xcoff: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/section.rs:228-230`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/section.rs#L228-L230)*
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:228-230`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/section.rs#L228-L230)*
 
 The table of section headers in an XCOFF file.
 
@@ -655,7 +655,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:23-31`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L23-L31)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:23-31`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L23-L31)*
 
 A table of symbol entries in an XCOFF file.
 
@@ -779,7 +779,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:182-189`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L182-L189)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:182-189`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L182-L189)*
 
 An iterator for symbol entries in an XCOFF file.
 
@@ -856,7 +856,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:217-224`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L217-L224)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:217-224`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L217-L224)*
 
 A symbol table in an [`XcoffFile`](#xcofffile).
 
@@ -947,7 +947,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:263-270`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L263-L270)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:263-270`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L263-L270)*
 
 An iterator for the symbols in an [`XcoffFile`](#xcofffile).
 
@@ -1024,7 +1024,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:307-316`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L307-L316)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:307-316`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L307-L316)*
 
 A symbol in an [`XcoffFile`](#xcofffile).
 
@@ -1151,7 +1151,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:23-32`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/relocation.rs#L23-L32)*
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:23-32`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/relocation.rs#L23-L32)*
 
 An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
@@ -1225,7 +1225,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:21-28`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/comdat.rs#L21-L28)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:21-28`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/comdat.rs#L21-L28)*
 
 An iterator for the COMDAT section groups in a [`XcoffFile`](#xcofffile).
 
@@ -1301,7 +1301,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:55-62`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/comdat.rs#L55-L62)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:55-62`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/comdat.rs#L55-L62)*
 
 A COMDAT section group in a [`XcoffFile`](#xcofffile).
 
@@ -1379,7 +1379,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:115-122`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/comdat.rs#L115-L122)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:115-122`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/comdat.rs#L115-L122)*
 
 An iterator for the sections in a COMDAT section group in a [`XcoffFile`](#xcofffile).
 
@@ -1455,7 +1455,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:22-29`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/segment.rs#L22-L29)*
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:22-29`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/segment.rs#L22-L29)*
 
 An iterator for the segments in an [`XcoffFile`](#xcofffile).
 
@@ -1531,7 +1531,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:54-61`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/segment.rs#L54-L61)*
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:54-61`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/segment.rs#L54-L61)*
 
 A loadable section in an [`XcoffFile`](#xcofffile).
 
@@ -1612,9 +1612,31 @@ This is a stub that doesn't implement any functionality.
 trait FileHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:306-387`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L306-L387)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:306-387`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L306-L387)*
 
 A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and [`xcoff::FileHeader64`](../../xcoff/index.md).
+
+<details>
+<summary><strong>Methods (13)</strong> - click to expand</summary>
+
+**Required:**
+- [`FileHeader::is_type_64`](#fn-fileheaderis-type-64)
+- [`FileHeader::f_magic`](#fn-fileheaderf-magic)
+- [`FileHeader::f_nscns`](#fn-fileheaderf-nscns)
+- [`FileHeader::f_timdat`](#fn-fileheaderf-timdat)
+- [`FileHeader::f_symptr`](#fn-fileheaderf-symptr)
+- [`FileHeader::f_nsyms`](#fn-fileheaderf-nsyms)
+- [`FileHeader::f_opthdr`](#fn-fileheaderf-opthdr)
+- [`FileHeader::f_flags`](#fn-fileheaderf-flags)
+
+**Provided:**
+- [`FileHeader::parse`](#fn-fileheaderparse)
+- [`FileHeader::is_supported`](#fn-fileheaderis-supported)
+- [`FileHeader::aux_header`](#fn-fileheaderaux-header)
+- [`FileHeader::sections`](#fn-fileheadersections)
+- [`FileHeader::symbols`](#fn-fileheadersymbols)
+
+</details>
 
 #### Associated Types
 
@@ -1634,43 +1656,43 @@ A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and 
 
 #### Required Methods
 
-- `fn is_type_64(&self) -> bool`
+- `fn FileHeader::is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
 
-- `fn f_magic(&self) -> u16`
+- `fn FileHeader::f_magic(&self) -> u16`
 
-- `fn f_nscns(&self) -> u16`
+- `fn FileHeader::f_nscns(&self) -> u16`
 
-- `fn f_timdat(&self) -> u32`
+- `fn FileHeader::f_timdat(&self) -> u32`
 
-- `fn f_symptr(&self) -> <Self as >::Word`
+- `fn FileHeader::f_symptr(&self) -> <Self as >::Word`
 
-- `fn f_nsyms(&self) -> u32`
+- `fn FileHeader::f_nsyms(&self) -> u32`
 
-- `fn f_opthdr(&self) -> u16`
+- `fn FileHeader::f_opthdr(&self) -> u16`
 
-- `fn f_flags(&self) -> u16`
+- `fn FileHeader::f_flags(&self) -> u16`
 
 #### Provided Methods
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>`
+- `fn FileHeader::parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>`
 
   Read the file header.
   
   Also checks that the magic field in the file header is a supported format.
 
-- `fn is_supported(&self) -> bool`
+- `fn FileHeader::is_supported(&self) -> bool`
 
-- `fn aux_header<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<Option<&'data <Self as >::AuxHeader>>`
+- `fn FileHeader::aux_header<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<Option<&'data <Self as >::AuxHeader>>`
 
   Read the auxiliary file header.
 
-- `fn sections<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<SectionTable<'data, Self>>`
+- `fn FileHeader::sections<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<SectionTable<'data, Self>>`
 
   Read the section table.
 
-- `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> Result<SymbolTable<'data, Self, R>>`
+- `fn FileHeader::symbols<'data, R: ReadRef<'data>>(&self, data: R) -> Result<SymbolTable<'data, Self, R>>`
 
   Return the symbol table.
 
@@ -1685,9 +1707,46 @@ A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and 
 trait AuxHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:475-508`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L475-L508)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:475-508`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L475-L508)*
 
 A trait for generic access to [`xcoff::AuxHeader32`](../../xcoff/index.md) and [`xcoff::AuxHeader64`](../../xcoff/index.md).
+
+<details>
+<summary><strong>Methods (30)</strong> - click to expand</summary>
+
+**Required:**
+- [`AuxHeader::o_mflag`](#fn-auxheadero-mflag)
+- [`AuxHeader::o_vstamp`](#fn-auxheadero-vstamp)
+- [`AuxHeader::o_tsize`](#fn-auxheadero-tsize)
+- [`AuxHeader::o_dsize`](#fn-auxheadero-dsize)
+- [`AuxHeader::o_bsize`](#fn-auxheadero-bsize)
+- [`AuxHeader::o_entry`](#fn-auxheadero-entry)
+- [`AuxHeader::o_text_start`](#fn-auxheadero-text-start)
+- [`AuxHeader::o_data_start`](#fn-auxheadero-data-start)
+- [`AuxHeader::o_toc`](#fn-auxheadero-toc)
+- [`AuxHeader::o_snentry`](#fn-auxheadero-snentry)
+- [`AuxHeader::o_sntext`](#fn-auxheadero-sntext)
+- [`AuxHeader::o_sndata`](#fn-auxheadero-sndata)
+- [`AuxHeader::o_sntoc`](#fn-auxheadero-sntoc)
+- [`AuxHeader::o_snloader`](#fn-auxheadero-snloader)
+- [`AuxHeader::o_snbss`](#fn-auxheadero-snbss)
+- [`AuxHeader::o_algntext`](#fn-auxheadero-algntext)
+- [`AuxHeader::o_algndata`](#fn-auxheadero-algndata)
+- [`AuxHeader::o_modtype`](#fn-auxheadero-modtype)
+- [`AuxHeader::o_cpuflag`](#fn-auxheadero-cpuflag)
+- [`AuxHeader::o_cputype`](#fn-auxheadero-cputype)
+- [`AuxHeader::o_maxstack`](#fn-auxheadero-maxstack)
+- [`AuxHeader::o_maxdata`](#fn-auxheadero-maxdata)
+- [`AuxHeader::o_debugger`](#fn-auxheadero-debugger)
+- [`AuxHeader::o_textpsize`](#fn-auxheadero-textpsize)
+- [`AuxHeader::o_datapsize`](#fn-auxheadero-datapsize)
+- [`AuxHeader::o_stackpsize`](#fn-auxheadero-stackpsize)
+- [`AuxHeader::o_flags`](#fn-auxheadero-flags)
+- [`AuxHeader::o_sntdata`](#fn-auxheadero-sntdata)
+- [`AuxHeader::o_sntbss`](#fn-auxheadero-sntbss)
+- [`AuxHeader::o_x64flags`](#fn-auxheadero-x64flags)
+
+</details>
 
 #### Associated Types
 
@@ -1695,65 +1754,65 @@ A trait for generic access to [`xcoff::AuxHeader32`](../../xcoff/index.md) and [
 
 #### Required Methods
 
-- `fn o_mflag(&self) -> u16`
+- `fn AuxHeader::o_mflag(&self) -> u16`
 
-- `fn o_vstamp(&self) -> u16`
+- `fn AuxHeader::o_vstamp(&self) -> u16`
 
-- `fn o_tsize(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_tsize(&self) -> <Self as >::Word`
 
-- `fn o_dsize(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_dsize(&self) -> <Self as >::Word`
 
-- `fn o_bsize(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_bsize(&self) -> <Self as >::Word`
 
-- `fn o_entry(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_entry(&self) -> <Self as >::Word`
 
-- `fn o_text_start(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_text_start(&self) -> <Self as >::Word`
 
-- `fn o_data_start(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_data_start(&self) -> <Self as >::Word`
 
-- `fn o_toc(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_toc(&self) -> <Self as >::Word`
 
-- `fn o_snentry(&self) -> u16`
+- `fn AuxHeader::o_snentry(&self) -> u16`
 
-- `fn o_sntext(&self) -> u16`
+- `fn AuxHeader::o_sntext(&self) -> u16`
 
-- `fn o_sndata(&self) -> u16`
+- `fn AuxHeader::o_sndata(&self) -> u16`
 
-- `fn o_sntoc(&self) -> u16`
+- `fn AuxHeader::o_sntoc(&self) -> u16`
 
-- `fn o_snloader(&self) -> u16`
+- `fn AuxHeader::o_snloader(&self) -> u16`
 
-- `fn o_snbss(&self) -> u16`
+- `fn AuxHeader::o_snbss(&self) -> u16`
 
-- `fn o_algntext(&self) -> u16`
+- `fn AuxHeader::o_algntext(&self) -> u16`
 
-- `fn o_algndata(&self) -> u16`
+- `fn AuxHeader::o_algndata(&self) -> u16`
 
-- `fn o_modtype(&self) -> u16`
+- `fn AuxHeader::o_modtype(&self) -> u16`
 
-- `fn o_cpuflag(&self) -> u8`
+- `fn AuxHeader::o_cpuflag(&self) -> u8`
 
-- `fn o_cputype(&self) -> u8`
+- `fn AuxHeader::o_cputype(&self) -> u8`
 
-- `fn o_maxstack(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_maxstack(&self) -> <Self as >::Word`
 
-- `fn o_maxdata(&self) -> <Self as >::Word`
+- `fn AuxHeader::o_maxdata(&self) -> <Self as >::Word`
 
-- `fn o_debugger(&self) -> u32`
+- `fn AuxHeader::o_debugger(&self) -> u32`
 
-- `fn o_textpsize(&self) -> u8`
+- `fn AuxHeader::o_textpsize(&self) -> u8`
 
-- `fn o_datapsize(&self) -> u8`
+- `fn AuxHeader::o_datapsize(&self) -> u8`
 
-- `fn o_stackpsize(&self) -> u8`
+- `fn AuxHeader::o_stackpsize(&self) -> u8`
 
-- `fn o_flags(&self) -> u8`
+- `fn AuxHeader::o_flags(&self) -> u8`
 
-- `fn o_sntdata(&self) -> u16`
+- `fn AuxHeader::o_sntdata(&self) -> u16`
 
-- `fn o_sntbss(&self) -> u16`
+- `fn AuxHeader::o_sntbss(&self) -> u16`
 
-- `fn o_x64flags(&self) -> Option<u16>`
+- `fn AuxHeader::o_x64flags(&self) -> Option<u16>`
 
 #### Implementors
 
@@ -1766,9 +1825,32 @@ A trait for generic access to [`xcoff::AuxHeader32`](../../xcoff/index.md) and [
 trait SectionHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/section.rs:290-335`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/section.rs#L290-L335)*
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:290-335`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/section.rs#L290-L335)*
 
 A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) and [`xcoff::SectionHeader64`](../../xcoff/index.md).
+
+<details>
+<summary><strong>Methods (14)</strong> - click to expand</summary>
+
+**Required:**
+- [`SectionHeader::s_name`](#fn-sectionheaders-name)
+- [`SectionHeader::s_paddr`](#fn-sectionheaders-paddr)
+- [`SectionHeader::s_vaddr`](#fn-sectionheaders-vaddr)
+- [`SectionHeader::s_size`](#fn-sectionheaders-size)
+- [`SectionHeader::s_scnptr`](#fn-sectionheaders-scnptr)
+- [`SectionHeader::s_relptr`](#fn-sectionheaders-relptr)
+- [`SectionHeader::s_lnnoptr`](#fn-sectionheaders-lnnoptr)
+- [`SectionHeader::s_nreloc`](#fn-sectionheaders-nreloc)
+- [`SectionHeader::s_nlnno`](#fn-sectionheaders-nlnno)
+- [`SectionHeader::s_flags`](#fn-sectionheaders-flags)
+- [`SectionHeader::relocations`](#fn-sectionheaderrelocations)
+
+**Provided:**
+- [`SectionHeader::name`](#fn-sectionheadername)
+- [`SectionHeader::file_range`](#fn-sectionheaderfile-range)
+- [`SectionHeader::data`](#fn-sectionheaderdata)
+
+</details>
 
 #### Associated Types
 
@@ -1782,41 +1864,41 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) a
 
 #### Required Methods
 
-- `fn s_name(&self) -> &[u8; 8]`
+- `fn SectionHeader::s_name(&self) -> &[u8; 8]`
 
-- `fn s_paddr(&self) -> <Self as >::Word`
+- `fn SectionHeader::s_paddr(&self) -> <Self as >::Word`
 
-- `fn s_vaddr(&self) -> <Self as >::Word`
+- `fn SectionHeader::s_vaddr(&self) -> <Self as >::Word`
 
-- `fn s_size(&self) -> <Self as >::Word`
+- `fn SectionHeader::s_size(&self) -> <Self as >::Word`
 
-- `fn s_scnptr(&self) -> <Self as >::Word`
+- `fn SectionHeader::s_scnptr(&self) -> <Self as >::Word`
 
-- `fn s_relptr(&self) -> <Self as >::Word`
+- `fn SectionHeader::s_relptr(&self) -> <Self as >::Word`
 
-- `fn s_lnnoptr(&self) -> <Self as >::Word`
+- `fn SectionHeader::s_lnnoptr(&self) -> <Self as >::Word`
 
-- `fn s_nreloc(&self) -> <Self as >::HalfWord`
+- `fn SectionHeader::s_nreloc(&self) -> <Self as >::HalfWord`
 
-- `fn s_nlnno(&self) -> <Self as >::HalfWord`
+- `fn SectionHeader::s_nlnno(&self) -> <Self as >::HalfWord`
 
-- `fn s_flags(&self) -> u32`
+- `fn SectionHeader::s_flags(&self) -> u32`
 
-- `fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
+- `fn SectionHeader::relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
 
   Read the relocations.
 
 #### Provided Methods
 
-- `fn name(&self) -> &[u8]`
+- `fn SectionHeader::name(&self) -> &[u8]`
 
   Return the section name.
 
-- `fn file_range(&self) -> Option<(u64, u64)>`
+- `fn SectionHeader::file_range(&self) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(&self, data: R) -> result::Result<&'data [u8], ()>`
+- `fn SectionHeader::data<'data, R: ReadRef<'data>>(&self, data: R) -> result::Result<&'data [u8], ()>`
 
   Return the section data.
   
@@ -1834,9 +1916,30 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) a
 trait Symbol: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:540-593`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L540-L593)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:540-593`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L540-L593)*
 
 A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xcoff::Symbol64`](../../xcoff/index.md).
+
+<details>
+<summary><strong>Methods (12)</strong> - click to expand</summary>
+
+**Required:**
+- [`Symbol::n_value`](#fn-symboln-value)
+- [`Symbol::n_scnum`](#fn-symboln-scnum)
+- [`Symbol::n_type`](#fn-symboln-type)
+- [`Symbol::n_sclass`](#fn-symboln-sclass)
+- [`Symbol::n_numaux`](#fn-symboln-numaux)
+- [`Symbol::name_offset`](#fn-symbolname-offset)
+- [`Symbol::name`](#fn-symbolname)
+
+**Provided:**
+- [`Symbol::section`](#fn-symbolsection)
+- [`Symbol::is_null`](#fn-symbolis-null)
+- [`Symbol::is_undefined`](#fn-symbolis-undefined)
+- [`Symbol::has_aux_file`](#fn-symbolhas-aux-file)
+- [`Symbol::has_aux_csect`](#fn-symbolhas-aux-csect)
+
+</details>
 
 #### Associated Types
 
@@ -1844,39 +1947,39 @@ A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xc
 
 #### Required Methods
 
-- `fn n_value(&self) -> <Self as >::Word`
+- `fn Symbol::n_value(&self) -> <Self as >::Word`
 
-- `fn n_scnum(&self) -> i16`
+- `fn Symbol::n_scnum(&self) -> i16`
 
-- `fn n_type(&self) -> u16`
+- `fn Symbol::n_type(&self) -> u16`
 
-- `fn n_sclass(&self) -> u8`
+- `fn Symbol::n_sclass(&self) -> u8`
 
-- `fn n_numaux(&self) -> u8`
+- `fn Symbol::n_numaux(&self) -> u8`
 
-- `fn name_offset(&self) -> Option<u32>`
+- `fn Symbol::name_offset(&self) -> Option<u32>`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
+- `fn Symbol::name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
 #### Provided Methods
 
-- `fn section(&self) -> Option<SectionIndex>`
+- `fn Symbol::section(&self) -> Option<SectionIndex>`
 
   Return the section index for the symbol.
 
-- `fn is_null(&self) -> bool`
+- `fn Symbol::is_null(&self) -> bool`
 
   Return true if the symbol is a null placeholder.
 
-- `fn is_undefined(&self) -> bool`
+- `fn Symbol::is_undefined(&self) -> bool`
 
   Return true if the symbol is undefined.
 
-- `fn has_aux_file(&self) -> bool`
+- `fn Symbol::has_aux_file(&self) -> bool`
 
   Return true if the symbol has file auxiliary entry.
 
-- `fn has_aux_csect(&self) -> bool`
+- `fn Symbol::has_aux_csect(&self) -> bool`
 
   Return true if the symbol has csect auxiliary entry.
   
@@ -1894,23 +1997,23 @@ A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xc
 trait FileAux: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:687-720`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L687-L720)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:687-720`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L687-L720)*
 
 A trait for generic access to [`xcoff::FileAux32`](../../xcoff/index.md) and [`xcoff::FileAux64`](../../xcoff/index.md).
 
 #### Required Methods
 
-- `fn x_fname(&self) -> &[u8; 8]`
+- `fn FileAux::x_fname(&self) -> &[u8; 8]`
 
-- `fn x_ftype(&self) -> u8`
+- `fn FileAux::x_ftype(&self) -> u8`
 
-- `fn x_auxtype(&self) -> Option<u8>`
+- `fn FileAux::x_auxtype(&self) -> Option<u8>`
 
 #### Provided Methods
 
-- `fn name_offset(&self) -> Option<u32>`
+- `fn FileAux::name_offset(&self) -> Option<u32>`
 
-- `fn fname<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
+- `fn FileAux::fname<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
   Parse the x_fname field, which may be an inline string or a string table offset.
 
@@ -1925,33 +2028,52 @@ A trait for generic access to [`xcoff::FileAux32`](../../xcoff/index.md) and [`x
 trait CsectAux: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:752-768`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L752-L768)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:752-768`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L752-L768)*
 
 A trait for generic access to [`xcoff::CsectAux32`](../../xcoff/index.md) and [`xcoff::CsectAux64`](../../xcoff/index.md).
 
+<details>
+<summary><strong>Methods (10)</strong> - click to expand</summary>
+
+**Required:**
+- [`CsectAux::x_scnlen`](#fn-csectauxx-scnlen)
+- [`CsectAux::x_parmhash`](#fn-csectauxx-parmhash)
+- [`CsectAux::x_snhash`](#fn-csectauxx-snhash)
+- [`CsectAux::x_smtyp`](#fn-csectauxx-smtyp)
+- [`CsectAux::x_smclas`](#fn-csectauxx-smclas)
+- [`CsectAux::x_stab`](#fn-csectauxx-stab)
+- [`CsectAux::x_snstab`](#fn-csectauxx-snstab)
+- [`CsectAux::x_auxtype`](#fn-csectauxx-auxtype)
+
+**Provided:**
+- [`CsectAux::alignment`](#fn-csectauxalignment)
+- [`CsectAux::sym_type`](#fn-csectauxsym-type)
+
+</details>
+
 #### Required Methods
 
-- `fn x_scnlen(&self) -> u64`
+- `fn CsectAux::x_scnlen(&self) -> u64`
 
-- `fn x_parmhash(&self) -> u32`
+- `fn CsectAux::x_parmhash(&self) -> u32`
 
-- `fn x_snhash(&self) -> u16`
+- `fn CsectAux::x_snhash(&self) -> u16`
 
-- `fn x_smtyp(&self) -> u8`
+- `fn CsectAux::x_smtyp(&self) -> u8`
 
-- `fn x_smclas(&self) -> u8`
+- `fn CsectAux::x_smclas(&self) -> u8`
 
-- `fn x_stab(&self) -> Option<u32>`
+- `fn CsectAux::x_stab(&self) -> Option<u32>`
 
-- `fn x_snstab(&self) -> Option<u16>`
+- `fn CsectAux::x_snstab(&self) -> Option<u16>`
 
-- `fn x_auxtype(&self) -> Option<u8>`
+- `fn CsectAux::x_auxtype(&self) -> Option<u8>`
 
 #### Provided Methods
 
-- `fn alignment(&self) -> u8`
+- `fn CsectAux::alignment(&self) -> u8`
 
-- `fn sym_type(&self) -> u8`
+- `fn CsectAux::sym_type(&self) -> u8`
 
 #### Implementors
 
@@ -1964,7 +2086,7 @@ A trait for generic access to [`xcoff::CsectAux32`](../../xcoff/index.md) and [`
 trait Rel: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:88-98`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/relocation.rs#L88-L98)*
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:88-98`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/relocation.rs#L88-L98)*
 
 A trait for generic access to [`xcoff::Rel32`](../../xcoff/index.md) and [`xcoff::Rel64`](../../xcoff/index.md).
 
@@ -1974,17 +2096,17 @@ A trait for generic access to [`xcoff::Rel32`](../../xcoff/index.md) and [`xcoff
 
 #### Required Methods
 
-- `fn r_vaddr(&self) -> <Self as >::Word`
+- `fn Rel::r_vaddr(&self) -> <Self as >::Word`
 
-- `fn r_symndx(&self) -> u32`
+- `fn Rel::r_symndx(&self) -> u32`
 
-- `fn r_rsize(&self) -> u8`
+- `fn Rel::r_rsize(&self) -> u8`
 
-- `fn r_rtype(&self) -> u8`
+- `fn Rel::r_rtype(&self) -> u8`
 
 #### Provided Methods
 
-- `fn symbol(&self) -> SymbolIndex`
+- `fn Rel::symbol(&self) -> SymbolIndex`
 
 #### Implementors
 
@@ -1999,7 +2121,7 @@ A trait for generic access to [`xcoff::Rel32`](../../xcoff/index.md) and [`xcoff
 type XcoffFile32<'data, R> = XcoffFile<'data, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:24`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L24)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:24`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L24)*
 
 A 32-bit XCOFF object file.
 
@@ -2012,7 +2134,7 @@ to [`crate::FileKind::Xcoff32`](../../index.md).
 type XcoffFile64<'data, R> = XcoffFile<'data, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:29`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L29)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:29`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/file.rs#L29)*
 
 A 64-bit XCOFF object file.
 
@@ -2025,7 +2147,7 @@ to [`crate::FileKind::Xcoff64`](../../index.md).
 type XcoffSectionIterator32<'data, 'file, R> = XcoffSectionIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/section.rs:15-16`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/section.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:15-16`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/section.rs#L15-L16)*
 
 An iterator for the sections in an [`XcoffFile32`](super::XcoffFile32).
 
@@ -2035,7 +2157,7 @@ An iterator for the sections in an [`XcoffFile32`](super::XcoffFile32).
 type XcoffSectionIterator64<'data, 'file, R> = XcoffSectionIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/section.rs:18-19`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/section.rs#L18-L19)*
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:18-19`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/section.rs#L18-L19)*
 
 An iterator for the sections in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -2045,7 +2167,7 @@ An iterator for the sections in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSection32<'data, 'file, R> = XcoffSection<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/section.rs:49-50`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/section.rs#L49-L50)*
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:49-50`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/section.rs#L49-L50)*
 
 A section in an [`XcoffFile32`](super::XcoffFile32).
 
@@ -2055,7 +2177,7 @@ A section in an [`XcoffFile32`](super::XcoffFile32).
 type XcoffSection64<'data, 'file, R> = XcoffSection<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/section.rs:52-53`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/section.rs#L52-L53)*
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:52-53`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/section.rs#L52-L53)*
 
 A section in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -2065,7 +2187,7 @@ A section in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSymbolTable32<'data, 'file, R> = XcoffSymbolTable<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:209-210`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L209-L210)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:209-210`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L209-L210)*
 
 A symbol table in an [`XcoffFile32`](super::XcoffFile32).
 
@@ -2075,7 +2197,7 @@ A symbol table in an [`XcoffFile32`](super::XcoffFile32).
 type XcoffSymbolTable64<'data, 'file, R> = XcoffSymbolTable<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:212-213`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L212-L213)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:212-213`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L212-L213)*
 
 A symbol table in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -2085,7 +2207,7 @@ A symbol table in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSymbolIterator32<'data, 'file, R> = XcoffSymbolIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:256-257`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L256-L257)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:256-257`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L256-L257)*
 
 An iterator for the symbols in an [`XcoffFile32`](super::XcoffFile32).
 
@@ -2095,7 +2217,7 @@ An iterator for the symbols in an [`XcoffFile32`](super::XcoffFile32).
 type XcoffSymbolIterator64<'data, 'file, R> = XcoffSymbolIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:259-260`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L259-L260)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:259-260`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L259-L260)*
 
 An iterator for the symbols in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -2105,7 +2227,7 @@ An iterator for the symbols in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSymbol32<'data, 'file, R> = XcoffSymbol<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:297-298`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L297-L298)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:297-298`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L297-L298)*
 
 A symbol in an [`XcoffFile32`](super::XcoffFile32).
 
@@ -2115,7 +2237,7 @@ A symbol in an [`XcoffFile32`](super::XcoffFile32).
 type XcoffSymbol64<'data, 'file, R> = XcoffSymbol<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:300-301`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/symbol.rs#L300-L301)*
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:300-301`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/symbol.rs#L300-L301)*
 
 A symbol in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -2125,7 +2247,7 @@ A symbol in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffRelocationIterator32<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:16-17`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/relocation.rs#L16-L17)*
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:16-17`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/relocation.rs#L16-L17)*
 
 An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 
@@ -2135,7 +2257,7 @@ An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 type XcoffRelocationIterator64<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:19-20`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/relocation.rs#L19-L20)*
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:19-20`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/relocation.rs#L19-L20)*
 
 An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64).
 
@@ -2145,7 +2267,7 @@ An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64).
 type XcoffComdatIterator32<'data, 'file, R> = XcoffComdatIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:11-12`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/comdat.rs#L11-L12)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:11-12`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/comdat.rs#L11-L12)*
 
 An iterator for the COMDAT section groups in a [`XcoffFile32`](super::XcoffFile32).
 
@@ -2155,7 +2277,7 @@ An iterator for the COMDAT section groups in a [`XcoffFile32`](super::XcoffFile3
 type XcoffComdatIterator64<'data, 'file, R> = XcoffComdatIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:14-15`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/comdat.rs#L14-L15)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:14-15`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/comdat.rs#L14-L15)*
 
 An iterator for the COMDAT section groups in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -2165,7 +2287,7 @@ An iterator for the COMDAT section groups in a [`XcoffFile64`](super::XcoffFile6
 type XcoffComdat32<'data, 'file, R> = XcoffComdat<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:44-45`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/comdat.rs#L44-L45)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:44-45`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/comdat.rs#L44-L45)*
 
 A COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 
@@ -2175,7 +2297,7 @@ A COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 type XcoffComdat64<'data, 'file, R> = XcoffComdat<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:48-49`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/comdat.rs#L48-L49)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:48-49`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/comdat.rs#L48-L49)*
 
 A COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -2185,7 +2307,7 @@ A COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 type XcoffComdatSectionIterator32<'data, 'file, R> = XcoffComdatSectionIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:105-106`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/comdat.rs#L105-L106)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:105-106`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/comdat.rs#L105-L106)*
 
 An iterator for the sections in a COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 
@@ -2195,7 +2317,7 @@ An iterator for the sections in a COMDAT section group in a [`XcoffFile32`](supe
 type XcoffComdatSectionIterator64<'data, 'file, R> = XcoffComdatSectionIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:108-109`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/comdat.rs#L108-L109)*
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:108-109`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/comdat.rs#L108-L109)*
 
 An iterator for the sections in a COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -2205,7 +2327,7 @@ An iterator for the sections in a COMDAT section group in a [`XcoffFile64`](supe
 type XcoffSegmentIterator32<'data, 'file, R> = XcoffSegmentIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:12-13`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/segment.rs#L12-L13)*
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:12-13`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/segment.rs#L12-L13)*
 
 An iterator for the segments in an [`XcoffFile32`](super::XcoffFile32).
 
@@ -2215,7 +2337,7 @@ An iterator for the segments in an [`XcoffFile32`](super::XcoffFile32).
 type XcoffSegmentIterator64<'data, 'file, R> = XcoffSegmentIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:15-16`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/segment.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:15-16`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/segment.rs#L15-L16)*
 
 An iterator for the segments in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -2225,7 +2347,7 @@ An iterator for the segments in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSegment32<'data, 'file, R> = XcoffSegment<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:44-45`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/segment.rs#L44-L45)*
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:44-45`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/segment.rs#L44-L45)*
 
 A segment in an [`XcoffFile32`](super::XcoffFile32).
 
@@ -2235,7 +2357,7 @@ A segment in an [`XcoffFile32`](super::XcoffFile32).
 type XcoffSegment64<'data, 'file, R> = XcoffSegment<'data, 'file, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:47-48`](../../../../.source_1765894658/object-0.37.3/src/read/xcoff/segment.rs#L47-L48)*
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:47-48`](../../../../.source_1765900590/object-0.37.3/src/read/xcoff/segment.rs#L47-L48)*
 
 A segment in an [`XcoffFile64`](super::XcoffFile64).
 

@@ -35,7 +35,7 @@ enum Precedence {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/precedence.rs:18-54`](../../../.source_1765894658/syn-2.0.111/src/precedence.rs#L18-L54)*
+*Defined in [`syn-2.0.111/src/precedence.rs:18-54`](../../../.source_1765900590/syn-2.0.111/src/precedence.rs#L18-L54)*
 
 #### Implementations
 

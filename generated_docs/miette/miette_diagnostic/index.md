@@ -25,7 +25,7 @@ struct MietteDiagnostic {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../../.source_1765894658/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
+*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../../.source_1765900590/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
 
 Diagnostic that can be created at runtime.
 
@@ -68,7 +68,7 @@ Diagnostic that can be created at runtime.
 
   Create a new dynamic diagnostic with the given message.
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::{Diagnostic, MietteDiagnostic, Severity};
   
@@ -81,7 +81,7 @@ Diagnostic that can be created at runtime.
 
   Return new diagnostic with the given code.
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::{Diagnostic, MietteDiagnostic};
   
@@ -94,7 +94,7 @@ Diagnostic that can be created at runtime.
 
   Return new diagnostic with the given severity.
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::{Diagnostic, MietteDiagnostic, Severity};
   
@@ -107,7 +107,7 @@ Diagnostic that can be created at runtime.
 
   Return new diagnostic with the given help message.
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::{Diagnostic, MietteDiagnostic};
   
@@ -120,7 +120,7 @@ Diagnostic that can be created at runtime.
 
   Return new diagnostic with the given URL.
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::{Diagnostic, MietteDiagnostic};
   
@@ -139,7 +139,7 @@ Diagnostic that can be created at runtime.
   
   Discards previous labels
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
   
@@ -157,7 +157,7 @@ Diagnostic that can be created at runtime.
   
   Discards previous labels
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
   
@@ -176,7 +176,7 @@ Diagnostic that can be created at runtime.
 
   Return new diagnostic with new label added to the existing ones.
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
   
@@ -195,7 +195,7 @@ Diagnostic that can be created at runtime.
 
   Return new diagnostic with new labels added to the existing ones.
   
-  # Examples
+  ##### Examples
   ```rust
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
   

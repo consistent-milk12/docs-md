@@ -22,7 +22,7 @@ enum EitherOrBoth<A, B> {
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/either_or_both.rs:9-16`](../../../.source_1765894658/itertools-0.14.0/src/either_or_both.rs#L9-L16)*
+*Defined in [`itertools-0.14.0/src/either_or_both.rs:9-16`](../../../.source_1765900590/itertools-0.14.0/src/either_or_both.rs#L9-L16)*
 
 Value that either holds a single A or B, or both.
 
@@ -83,7 +83,7 @@ Value that either holds a single A or B, or both.
 
   If `Left`, return `Some` with the left value. If `Right` or `Both`, return `None`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   // On the `Left` variant.
@@ -104,7 +104,7 @@ Value that either holds a single A or B, or both.
 
   If `Right`, return `Some` with the right value. If `Left` or `Both`, return `None`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   // On the `Left` variant.
@@ -190,7 +190,7 @@ Value that either holds a single A or B, or both.
   the result of a function call, it is recommended to use `or_else`,
   which is lazily evaluated.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::EitherOrBoth;
@@ -212,7 +212,7 @@ Value that either holds a single A or B, or both.
   missing value with the supplied closure. The first argument (`l`) is used for a
   missing `Left` value. The second argument (`r`) is used for a missing `Right` value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use itertools::EitherOrBoth;
@@ -247,7 +247,7 @@ Value that either holds a single A or B, or both.
   Sets the `left` value of this instance, and returns a mutable reference to it.
   Does not affect the `right` value.
   
-  # Examples
+  ##### Examples
   ```rust
   use itertools::{EitherOrBoth, EitherOrBoth::{Left, Right, Both}};
   
@@ -266,7 +266,7 @@ Value that either holds a single A or B, or both.
   Sets the `right` value of this instance, and returns a mutable reference to it.
   Does not affect the `left` value.
   
-  # Examples
+  ##### Examples
   ```rust
   use itertools::{EitherOrBoth, EitherOrBoth::{Left, Both}};
   // Overwriting a pre-existing value.

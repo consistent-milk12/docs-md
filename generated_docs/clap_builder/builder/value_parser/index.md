@@ -68,7 +68,7 @@
 struct ValueParser(ValueParserInner);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
 
 Parse/validate argument values
 
@@ -137,7 +137,7 @@ assert_eq!(port, 3001);
   - [`RangedI64ValueParser`](#rangedi64valueparser) and [`RangedU64ValueParser`](#rangedu64valueparser)
   - [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -171,7 +171,7 @@ assert_eq!(port, 3001);
   - [`BoolishValueParser`](#boolishvalueparser) for different human readable bool representations
   - [`FalseyValueParser`](#falseyvalueparser) for assuming non-false is true
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -197,7 +197,7 @@ assert_eq!(port, 3001);
   See also:
   - [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -218,7 +218,7 @@ assert_eq!(port, 3001);
 
   `OsString` parser for argument values
   
-  # Example
+  ##### Example
   
   ```rust
   #[cfg(unix)] {
@@ -249,7 +249,7 @@ assert_eq!(port, 3001);
 
   `PathBuf` parser for argument values
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -342,7 +342,7 @@ struct StringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
 
 Implementation for `ValueParser::string`
 
@@ -440,7 +440,7 @@ struct OsStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
 
 Implementation for `ValueParser::os_string`
 
@@ -538,7 +538,7 @@ struct PathBufValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
 
 Implementation for `ValueParser::path_buf`
 
@@ -635,7 +635,7 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 struct EnumValueParser<E: crate::ValueEnum + Clone + Send + Sync + 'static>(std::marker::PhantomData<E>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
 
 Parse an `ValueEnum` value.
 
@@ -765,7 +765,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), Colo
 struct PossibleValuesParser(Vec<super::PossibleValue>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
 
 Verify the value is from an enumerated set of `PossibleValue`.
 
@@ -897,7 +897,7 @@ struct RangedI64ValueParser<T: TryFrom<i64> + Clone + Send + Sync> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
 
 Parse number that fall within a range of values
 
@@ -1044,7 +1044,7 @@ struct RangedU64ValueParser<T: TryFrom<u64>> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
 
 Parse number that fall within a range of values
 
@@ -1181,7 +1181,7 @@ struct BoolValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
 
 Implementation for `ValueParser::bool`
 
@@ -1281,7 +1281,7 @@ struct FalseyValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
 
 Parse false-like string values, everything else is `true`
 
@@ -1418,7 +1418,7 @@ struct BoolishValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
 
 Parse bool-like string values
 
@@ -1559,7 +1559,7 @@ struct NonEmptyStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
 
 Parse non-empty string values
 
@@ -1688,7 +1688,7 @@ struct MapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -1782,7 +1782,7 @@ struct TryMapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -1874,7 +1874,7 @@ struct UnknownArgumentValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
 
 When encountered, report `ErrorKind::UnknownArgument`
 
@@ -2011,7 +2011,7 @@ enum ValueParserInner {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:65-75`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L65-L75)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:65-75`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L65-L75)*
 
 #### Trait Implementations
 
@@ -2062,25 +2062,25 @@ enum ValueParserInner {
 trait AnyValueParser: Send + Sync + 'static { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:591-617`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L591-L617)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:591-617`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L591-L617)*
 
 A type-erased wrapper for [`TypedValueParser`](#typedvalueparser).
 
 #### Required Methods
 
-- `fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<AnyValue, crate::Error>`
+- `fn AnyValueParser::parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<AnyValue, crate::Error>`
 
-- `fn type_id(&self) -> AnyValueId`
+- `fn AnyValueParser::type_id(&self) -> AnyValueId`
 
   Describes the content of `AnyValue`
 
-- `fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
+- `fn AnyValueParser::possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
 
-- `fn clone_any(&self) -> Box<dyn AnyValueParser>`
+- `fn AnyValueParser::clone_any(&self) -> Box<dyn AnyValueParser>`
 
 #### Provided Methods
 
-- `fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<AnyValue, crate::Error>`
+- `fn AnyValueParser::parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<AnyValue, crate::Error>`
 
 #### Implementors
 
@@ -2092,7 +2092,7 @@ A type-erased wrapper for [`TypedValueParser`](#typedvalueparser).
 trait TypedValueParser: Clone + Send + Sync + 'static { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
 
 Parse/validate argument values
 
@@ -2152,7 +2152,7 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 
 #### Required Methods
 
-- `fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>`
+- `fn TypedValueParser::parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
   
@@ -2160,36 +2160,36 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 
 #### Provided Methods
 
-- `fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
+- `fn TypedValueParser::parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
   
   When `arg` is `None`, an external subcommand value is being parsed.
 
-- `fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>`
+- `fn TypedValueParser::parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
   
   When `arg` is `None`, an external subcommand value is being parsed.
 
-- `fn parse_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
+- `fn TypedValueParser::parse_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
   
   When `arg` is `None`, an external subcommand value is being parsed.
 
-- `fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
+- `fn TypedValueParser::possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
 
   Reflect on enumerated value properties
   
   Error checking should not be done with this; it is mostly targeted at user-facing
   applications like errors and completion.
 
-- `fn map<T, F>(self, func: F) -> MapValueParser<Self, F>`
+- `fn TypedValueParser::map<T, F>(self, func: F) -> MapValueParser<Self, F>`
 
   Adapt a `TypedValueParser` from one value to another
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -2225,11 +2225,11 @@ impl clap::builder::TypedValueParser for CustomValueParser {
   );
   ```
 
-- `fn try_map<T, E, F>(self, func: F) -> TryMapValueParser<Self, F>`
+- `fn TypedValueParser::try_map<T, E, F>(self, func: F) -> TryMapValueParser<Self, F>`
 
   Adapt a `TypedValueParser` from one value to another
   
-  # Example
+  ##### Example
   
   ```rust
   use clap_builder as clap;
@@ -2294,7 +2294,7 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 trait ValueParserFactory { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../../.source_1765900590/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
 
 Register a type with [`value_parser!`][crate::value_parser!]
 
@@ -2338,7 +2338,7 @@ let parser: CustomValueParser = clap::value_parser!(Custom);
 
 #### Required Methods
 
-- `fn value_parser() -> <Self as >::Parser`
+- `fn ValueParserFactory::value_parser() -> <Self as >::Parser`
 
   Create the specified `Self::Parser`
 

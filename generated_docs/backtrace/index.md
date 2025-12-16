@@ -163,7 +163,7 @@ struct Frame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:76-78`](../../.source_1765894658/backtrace-0.3.76/src/backtrace/mod.rs#L76-L78)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:76-78`](../../.source_1765900590/backtrace-0.3.76/src/backtrace/mod.rs#L76-L78)*
 
 A trait representing one frame of a backtrace, yielded to the `trace`
 function of this crate.
@@ -276,7 +276,7 @@ struct Symbol {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:190-195`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L190-L195)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:190-195`](../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L190-L195)*
 
 A trait representing the resolution of a symbol in a file.
 
@@ -334,7 +334,7 @@ always available in a symbol, however, so all methods return an `Option`.
   debuginfo. If neither of these conditions is met then this will likely
   return `None`.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -393,7 +393,7 @@ struct SymbolName<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:300-305`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L300-L305)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:300-305`](../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L300-L305)*
 
 A wrapper around a symbol name to provide ergonomic accessors to the
 demangled name, the raw bytes, the raw string, etc.
@@ -478,7 +478,7 @@ struct BacktraceFmt<'a, 'b> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:17-23`](../../.source_1765894658/backtrace-0.3.76/src/print.rs#L17-L23)*
+*Defined in [`backtrace-0.3.76/src/print.rs:17-23`](../../.source_1765900590/backtrace-0.3.76/src/print.rs#L17-L23)*
 
 A formatter for backtraces.
 
@@ -586,7 +586,7 @@ struct BacktraceFrameFmt<'fmt, 'a, 'b> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:111-114`](../../.source_1765894658/backtrace-0.3.76/src/print.rs#L111-L114)*
+*Defined in [`backtrace-0.3.76/src/print.rs:111-114`](../../.source_1765900590/backtrace-0.3.76/src/print.rs#L111-L114)*
 
 A formatter for just one frame of a backtrace.
 
@@ -601,7 +601,7 @@ This type is created by the `BacktraceFmt::frame` function.
   This will recursively print all `BacktraceSymbol` instances within the
   `BacktraceFrame`.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -610,7 +610,7 @@ This type is created by the `BacktraceFmt::frame` function.
 
   Prints a `BacktraceSymbol` within a `BacktraceFrame`.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -695,7 +695,7 @@ struct Backtrace {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L29-L32)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../.source_1765900590/backtrace-0.3.76/src/capture.rs#L29-L32)*
 
 Representation of an owned and self-contained backtrace.
 
@@ -728,7 +728,7 @@ enabled, and the `std` feature is enabled by default.
   avoids the symbol resolution step (which typically takes the longest)
   and allows deferring that to a later date.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use backtrace::Backtrace;
@@ -736,7 +736,7 @@ enabled, and the `std` feature is enabled by default.
   let current_backtrace = Backtrace::new();
   ```
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -751,7 +751,7 @@ enabled, and the `std` feature is enabled by default.
   the resolution process can sometimes take a significant amount of time
   whereas any one backtrace may only be rarely printed.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use backtrace::Backtrace;
@@ -762,7 +762,7 @@ enabled, and the `std` feature is enabled by default.
   println!("{current_backtrace:?}"); // symbol names now present
   ```
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -777,7 +777,7 @@ enabled, and the `std` feature is enabled by default.
   and the last frame is likely something about how this thread or the main
   function started.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -790,7 +790,7 @@ enabled, and the `std` feature is enabled by default.
   If this backtrace has been previously resolved or was created through
   `new`, this function does nothing.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -869,7 +869,7 @@ struct BacktraceFrame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L144-L147)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../.source_1765900590/backtrace-0.3.76/src/capture.rs#L144-L147)*
 
 Captured version of a frame in a backtrace.
 
@@ -887,7 +887,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Frame::ip`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -896,7 +896,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Frame::symbol_address`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -905,7 +905,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Frame::module_base_address`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -922,7 +922,7 @@ enabled, and the `std` feature is enabled by default.
   Note that if this frame came from an unresolved backtrace then this will
   return an empty list.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -933,7 +933,7 @@ enabled, and the `std` feature is enabled by default.
   
   If this frame has been previously resolved, this function does nothing.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -1011,7 +1011,7 @@ struct BacktraceSymbol {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L222-L228)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../.source_1765900590/backtrace-0.3.76/src/capture.rs#L222-L228)*
 
 Captured version of a symbol in a backtrace.
 
@@ -1029,7 +1029,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::name`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -1038,7 +1038,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::addr`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -1047,7 +1047,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::filename`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -1056,7 +1056,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::lineno`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -1065,7 +1065,7 @@ enabled, and the `std` feature is enabled by default.
 
   Same as `Symbol::colno`
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -1142,7 +1142,7 @@ enum BytesOrWideString<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../.source_1765894658/backtrace-0.3.76/src/types.rs#L17-L22)*
+*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../.source_1765900590/backtrace-0.3.76/src/types.rs#L17-L22)*
 
 A platform independent representation of a string. When working with `std`
 enabled it is recommended to the convenience methods for providing
@@ -1165,7 +1165,7 @@ conversions to `std` types.
   Lossy converts to a `Cow<str>`, will allocate if `Bytes` is not valid
   UTF-8 or if `BytesOrWideString` is `Wide`.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -1174,7 +1174,7 @@ conversions to `std` types.
 
   Provides a `Path` representation of `BytesOrWideString`.
   
-  # Required features
+  ##### Required features
   
   This function requires the `std` feature of the `backtrace` crate to be
   enabled, and the `std` feature is enabled by default.
@@ -1241,7 +1241,7 @@ enum PrintFmt {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:28-33`](../../.source_1765894658/backtrace-0.3.76/src/print.rs#L28-L33)*
+*Defined in [`backtrace-0.3.76/src/print.rs:28-33`](../../.source_1765900590/backtrace-0.3.76/src/print.rs#L28-L33)*
 
 The styles of printing that we can print
 
@@ -1330,7 +1330,7 @@ The styles of printing that we can print
 unsafe fn trace_unsynchronized<F: FnMut(&Frame) -> bool>(cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../.source_1765894658/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../.source_1765900590/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
 
 Same as `trace`, only unsafe as it's unsynchronized.
 
@@ -1350,7 +1350,7 @@ where
     F: FnMut(&Symbol)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:174-179`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L174-L179)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:174-179`](../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L174-L179)*
 
 Same as `resolve_frame`, only unsafe as it's unsynchronized.
 
@@ -1370,7 +1370,7 @@ where
     F: FnMut(&Symbol)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:158-163`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L158-L163)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:158-163`](../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L158-L163)*
 
 Same as `resolve`, only unsafe as it's unsynchronized.
 
@@ -1388,7 +1388,7 @@ See information on `resolve` for caveats on `cb` panicking.
 fn clear_symbol_cache()
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:426-431`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L426-L431)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:426-431`](../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L426-L431)*
 
 Attempt to reclaim that cached memory used to symbolicate addresses.
 
@@ -1410,7 +1410,7 @@ function has any effect.
 fn trace<F: FnMut(&Frame) -> bool>(cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../.source_1765894658/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../.source_1765900590/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
 
 Inspects the current call-stack, passing all active frames into the closure
 provided to calculate a stack trace.
@@ -1465,7 +1465,7 @@ fn main() {
 fn resolve<F: FnMut(&Symbol)>(addr: *mut core::ffi::c_void, cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:61-64`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L61-L64)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:61-64`](../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L61-L64)*
 
 Resolve an address to a symbol, passing the symbol to the specified
 closure.
@@ -1519,7 +1519,7 @@ fn main() {
 fn resolve_frame<F: FnMut(&Symbol)>(frame: &super::backtrace::Frame, cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:103-106`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L103-L106)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:103-106`](../../.source_1765900590/backtrace-0.3.76/src/symbolize/mod.rs#L103-L106)*
 
 Resolve a previously captured frame to a symbol, passing the symbol to the
 specified closure.

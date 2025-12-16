@@ -21,7 +21,7 @@
 struct ComboColorDisplay<'a, Fg: Color, Bg: Color, T: ?Sized>(&'a T, core::marker::PhantomData<(Fg, Bg)>);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:11`](../../../.source_1765894658/owo-colors-4.2.3/src/combo.rs#L11)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:11`](../../../.source_1765900590/owo-colors-4.2.3/src/combo.rs#L11)*
 
 A wrapper type which applies both a foreground and background color
 
@@ -35,7 +35,7 @@ A wrapper type which applies both a foreground and background color
   This is a const function: in non-const contexts, calling the [`OwoColorize`](../index.md)
   functions may be more convenient.
   
-  # Example
+  ##### Example
   
   Usage in const contexts:
   
@@ -56,7 +56,7 @@ A wrapper type which applies both a foreground and background color
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   Typical use:
   
@@ -371,7 +371,7 @@ A wrapper type which applies both a foreground and background color
 struct ComboDynColorDisplay<'a, Fg: DynColor, Bg: DynColor, T: ?Sized>(&'a T, Fg, Bg);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:17`](../../../.source_1765894658/owo-colors-4.2.3/src/combo.rs#L17)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:17`](../../../.source_1765900590/owo-colors-4.2.3/src/combo.rs#L17)*
 
 Wrapper around a type which implements all the formatters the wrapped type does, with the
 addition of changing the foreground and background color.
@@ -387,7 +387,7 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](#com
   
   This is a const function: in non-const contexts, other functions may be more convenient.
   
-  # Example
+  ##### Example
   
   Usage in const contexts:
   
@@ -412,7 +412,7 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](#com
   This method erases color-related type parameters, and can be
   used to unify types across branches.
   
-  # Example
+  ##### Example
   
   Typical use:
   
@@ -541,11 +541,11 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](#com
 
 ### `impl_fmt_for_combo!`
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:19-51`](../../../.source_1765894658/owo-colors-4.2.3/src/combo.rs#L19-L51)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:19-51`](../../../.source_1765900590/owo-colors-4.2.3/src/combo.rs#L19-L51)*
 
 ### `color_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:66-516`](../../../.source_1765894658/owo-colors-4.2.3/src/combo.rs#L66-L516)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:66-516`](../../../.source_1765900590/owo-colors-4.2.3/src/combo.rs#L66-L516)*
 
 implement specialized color methods for FgColorDisplay BgColorDisplay, ComboColorDisplay
 

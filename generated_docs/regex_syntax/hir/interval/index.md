@@ -24,7 +24,7 @@ struct IntervalSet<I> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:34-54`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/interval.rs#L34-L54)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:34-54`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/interval.rs#L34-L54)*
 
 #### Fields
 
@@ -197,7 +197,7 @@ struct IntervalSet<I> {
 struct IntervalSetIter<'a, I>(slice::Iter<'a, I>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:386`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/interval.rs#L386)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:386`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/interval.rs#L386)*
 
 An iterator over intervals.
 
@@ -268,7 +268,28 @@ An iterator over intervals.
 trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:396-508`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/interval.rs#L396-L508)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:396-508`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/interval.rs#L396-L508)*
+
+<details>
+<summary><strong>Methods (12)</strong> - click to expand</summary>
+
+**Required:**
+- [`Interval::lower`](#fn-intervallower)
+- [`Interval::upper`](#fn-intervalupper)
+- [`Interval::set_lower`](#fn-intervalset-lower)
+- [`Interval::set_upper`](#fn-intervalset-upper)
+- [`Interval::case_fold_simple`](#fn-intervalcase-fold-simple)
+
+**Provided:**
+- [`Interval::create`](#fn-intervalcreate)
+- [`Interval::union`](#fn-intervalunion)
+- [`Interval::intersect`](#fn-intervalintersect)
+- [`Interval::difference`](#fn-intervaldifference)
+- [`Interval::is_contiguous`](#fn-intervalis-contiguous)
+- [`Interval::is_intersection_empty`](#fn-intervalis-intersection-empty)
+- [`Interval::is_subset`](#fn-intervalis-subset)
+
+</details>
 
 #### Associated Types
 
@@ -276,35 +297,35 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 
 #### Required Methods
 
-- `fn lower(&self) -> <Self as >::Bound`
+- `fn Interval::lower(&self) -> <Self as >::Bound`
 
-- `fn upper(&self) -> <Self as >::Bound`
+- `fn Interval::upper(&self) -> <Self as >::Bound`
 
-- `fn set_lower(&mut self, bound: <Self as >::Bound)`
+- `fn Interval::set_lower(&mut self, bound: <Self as >::Bound)`
 
-- `fn set_upper(&mut self, bound: <Self as >::Bound)`
+- `fn Interval::set_upper(&mut self, bound: <Self as >::Bound)`
 
-- `fn case_fold_simple(&self, intervals: &mut Vec<Self>) -> Result<(), unicode::CaseFoldError>`
+- `fn Interval::case_fold_simple(&self, intervals: &mut Vec<Self>) -> Result<(), unicode::CaseFoldError>`
 
 #### Provided Methods
 
-- `fn create(lower: <Self as >::Bound, upper: <Self as >::Bound) -> Self`
+- `fn Interval::create(lower: <Self as >::Bound, upper: <Self as >::Bound) -> Self`
 
   Create a new interval.
 
-- `fn union(&self, other: &Self) -> Option<Self>`
+- `fn Interval::union(&self, other: &Self) -> Option<Self>`
 
   Union the given overlapping range into this range.
   
   If the two ranges aren't contiguous, then this returns `None`.
 
-- `fn intersect(&self, other: &Self) -> Option<Self>`
+- `fn Interval::intersect(&self, other: &Self) -> Option<Self>`
 
   Intersect this range with the given range and return the result.
   
   If the intersection is empty, then this returns `None`.
 
-- `fn difference(&self, other: &Self) -> (Option<Self>, Option<Self>)`
+- `fn Interval::difference(&self, other: &Self) -> (Option<Self>, Option<Self>)`
 
   Subtract the given range from this range and return the resulting
   ranges.
@@ -312,18 +333,18 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
   If subtraction would result in an empty range, then no ranges are
   returned.
 
-- `fn is_contiguous(&self, other: &Self) -> bool`
+- `fn Interval::is_contiguous(&self, other: &Self) -> bool`
 
   Returns true if and only if the two ranges are contiguous. Two ranges
   are contiguous if and only if the ranges are either overlapping or
   adjacent.
 
-- `fn is_intersection_empty(&self, other: &Self) -> bool`
+- `fn Interval::is_intersection_empty(&self, other: &Self) -> bool`
 
   Returns true if and only if the intersection of this range and the
   other range is empty.
 
-- `fn is_subset(&self, other: &Self) -> bool`
+- `fn Interval::is_subset(&self, other: &Self) -> bool`
 
   Returns true if and only if this range is a subset of the other range.
 
@@ -338,19 +359,19 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 trait Bound: Copy + Clone + Debug + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:510-518`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/interval.rs#L510-L518)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:510-518`](../../../../.source_1765900590/regex-syntax-0.8.8/src/hir/interval.rs#L510-L518)*
 
 #### Required Methods
 
-- `fn min_value() -> Self`
+- `fn Bound::min_value() -> Self`
 
-- `fn max_value() -> Self`
+- `fn Bound::max_value() -> Self`
 
-- `fn as_u32(self) -> u32`
+- `fn Bound::as_u32(self) -> u32`
 
-- `fn increment(self) -> Self`
+- `fn Bound::increment(self) -> Self`
 
-- `fn decrement(self) -> Self`
+- `fn Bound::decrement(self) -> Self`
 
 #### Implementors
 

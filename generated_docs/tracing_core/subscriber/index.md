@@ -23,7 +23,7 @@ Collectors collect and record trace data.
 struct Interest(InterestKind);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../../.source_1765894658/tracing-core-0.1.35/src/subscriber.rs#L589)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../../.source_1765900590/tracing-core-0.1.35/src/subscriber.rs#L589)*
 
 Indicates a [`Subscriber`](#subscriber)'s interest in a particular callsite.
 
@@ -151,7 +151,7 @@ in order to determine whether that span should be enabled or disabled.
 struct NoSubscriber(());
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:672`](../../../.source_1765894658/tracing-core-0.1.35/src/subscriber.rs#L672)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:672`](../../../.source_1765900590/tracing-core-0.1.35/src/subscriber.rs#L672)*
 
 A no-op [`Subscriber`](#subscriber).
 
@@ -261,7 +261,7 @@ enum InterestKind {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:592-596`](../../../.source_1765894658/tracing-core-0.1.35/src/subscriber.rs#L592-L596)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:592-596`](../../../.source_1765900590/tracing-core-0.1.35/src/subscriber.rs#L592-L596)*
 
 #### Trait Implementations
 
@@ -350,7 +350,7 @@ enum InterestKind {
 trait Subscriber: 'static { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../../.source_1765894658/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../../.source_1765900590/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
 
 Trait representing the functions required to collect trace data.
 
@@ -425,9 +425,34 @@ The following methods are likely of interest:
 
 
 
+<details>
+<summary><strong>Methods (16)</strong> - click to expand</summary>
+
+**Required:**
+- [`Subscriber::enabled`](#fn-subscriberenabled)
+- [`Subscriber::new_span`](#fn-subscribernew-span)
+- [`Subscriber::record`](#fn-subscriberrecord)
+- [`Subscriber::record_follows_from`](#fn-subscriberrecord-follows-from)
+- [`Subscriber::event`](#fn-subscriberevent)
+- [`Subscriber::enter`](#fn-subscriberenter)
+- [`Subscriber::exit`](#fn-subscriberexit)
+
+**Provided:**
+- [`Subscriber::on_register_dispatch`](#fn-subscriberon-register-dispatch)
+- [`Subscriber::register_callsite`](#fn-subscriberregister-callsite)
+- [`Subscriber::max_level_hint`](#fn-subscribermax-level-hint)
+- [`Subscriber::event_enabled`](#fn-subscriberevent-enabled)
+- [`Subscriber::clone_span`](#fn-subscriberclone-span)
+- [`Subscriber::drop_span`](#fn-subscriberdrop-span)
+- [`Subscriber::try_close`](#fn-subscribertry-close)
+- [`Subscriber::current_span`](#fn-subscribercurrent-span)
+- [`Subscriber::downcast_raw`](#fn-subscriberdowncast-raw)
+
+</details>
+
 #### Required Methods
 
-- `fn enabled(&self, metadata: &Metadata<'_>) -> bool`
+- `fn Subscriber::enabled(&self, metadata: &Metadata<'_>) -> bool`
 
   Returns true if a span or event with the specified [`metadata`](../metadata/index.md) would be
   recorded.
@@ -448,7 +473,7 @@ The following methods are likely of interest:
   
   
 
-- `fn new_span(&self, span: &span::Attributes<'_>) -> span::Id`
+- `fn Subscriber::new_span(&self, span: &span::Attributes<'_>) -> span::Id`
 
   Visit the construction of a new span, returning a new [span ID] for the
   span being constructed.
@@ -473,7 +498,7 @@ The following methods are likely of interest:
   
   
 
-- `fn record(&self, span: &span::Id, values: &span::Record<'_>)`
+- `fn Subscriber::record(&self, span: &span::Id, values: &span::Record<'_>)`
 
   Record a set of values on a span.
   
@@ -487,7 +512,7 @@ The following methods are likely of interest:
   The subscriber is expected to provide a [`visitor`](../../regex_syntax/ast/visitor/index.md) to the `Record`'s
   [`record` method] in order to record the added values.
   
-  # Example
+  ##### Example
    "foo = 3" will be recorded when `record` is called on the
   `Attributes` passed to `new_span`.
   Since values are not provided for the `bar` and `baz` fields,
@@ -510,7 +535,7 @@ The following methods are likely of interest:
   
   
 
-- `fn record_follows_from(&self, span: &span::Id, follows: &span::Id)`
+- `fn Subscriber::record_follows_from(&self, span: &span::Id, follows: &span::Id)`
 
   Adds an indication that `span` follows from the span with the id
   `follows`.
@@ -531,7 +556,7 @@ The following methods are likely of interest:
   (i.e., some span _a_ which proceeds some other span _b_ may not also
   follow from _b_), it may silently do nothing.
 
-- `fn event(&self, event: &Event<'_>)`
+- `fn Subscriber::event(&self, event: &Event<'_>)`
 
   Records that an [`Event`](../event/index.md) has occurred.
   
@@ -550,7 +575,7 @@ The following methods are likely of interest:
   
   
 
-- `fn enter(&self, span: &span::Id)`
+- `fn Subscriber::enter(&self, span: &span::Id)`
 
   Records that a span has been entered.
   
@@ -559,7 +584,7 @@ The following methods are likely of interest:
   [span ID] of the entered span, and should update any internal state
   tracking the current span accordingly.
 
-- `fn exit(&self, span: &span::Id)`
+- `fn Subscriber::exit(&self, span: &span::Id)`
 
   Records that a span has been exited.
   
@@ -572,11 +597,11 @@ The following methods are likely of interest:
 
 #### Provided Methods
 
-- `fn on_register_dispatch(&self, subscriber: &Dispatch)`
+- `fn Subscriber::on_register_dispatch(&self, subscriber: &Dispatch)`
 
   Invoked when this subscriber becomes a [`Dispatch`](../dispatcher/index.md).
   
-  ## Avoiding Memory Leaks
+  ###### Avoiding Memory Leaks
   
   `Subscriber`s should not store their own [`Dispatch`](../dispatcher/index.md). Because the
   `Dispatch` owns the `Subscriber`, storing the `Dispatch` within the
@@ -592,7 +617,7 @@ The following methods are likely of interest:
   the `Dispatch` must be accessed by the `Subscriber`.
   
 
-- `fn register_callsite(&self, metadata: &'static Metadata<'static>) -> Interest`
+- `fn Subscriber::register_callsite(&self, metadata: &'static Metadata<'static>) -> Interest`
 
   Registers a new [`callsite`](../callsite/index.md) with this subscriber, returning whether or not
   the subscriber is interested in being notified about the callsite.
@@ -651,7 +676,7 @@ The following methods are likely of interest:
   See the [documentation on the callsite registry][cs-reg] for more
   details on how and when the `register_callsite` method is called.
   
-  # Notes
+  ##### Notes
   This function may be called again when a new subscriber is created or
   when the registry is invalidated.
   
@@ -664,7 +689,7 @@ The following methods are likely of interest:
   
   
 
-- `fn max_level_hint(&self) -> Option<LevelFilter>`
+- `fn Subscriber::max_level_hint(&self) -> Option<LevelFilter>`
 
   Returns the highest [verbosity level][`level`](../../tracing_attributes/attr/kw/index.md) that this `Subscriber` will
   enable, or `None`, if the subscriber does not implement level-based
@@ -687,7 +712,7 @@ The following methods are likely of interest:
   level changes.
   
 
-- `fn event_enabled(&self, event: &Event<'_>) -> bool`
+- `fn Subscriber::event_enabled(&self, event: &Event<'_>) -> bool`
 
   Determine if an [`Event`](../event/index.md) should be recorded.
   
@@ -696,7 +721,7 @@ The following methods are likely of interest:
   more complicated, this can be used to determine if `event` should be
   called at all, separating out the decision from the processing.
 
-- `fn clone_span(&self, id: &span::Id) -> span::Id`
+- `fn Subscriber::clone_span(&self, id: &span::Id) -> span::Id`
 
   Notifies the subscriber that a [span ID] has been cloned.
   
@@ -717,7 +742,7 @@ The following methods are likely of interest:
   what that means for the specified pointer.
   
 
-- `fn drop_span(&self, _id: span::Id)`
+- `fn Subscriber::drop_span(&self, _id: span::Id)`
 
   **This method is deprecated.**
   
@@ -727,7 +752,7 @@ The following methods are likely of interest:
   
   The default implementation of this function does nothing.
 
-- `fn try_close(&self, id: span::Id) -> bool`
+- `fn Subscriber::try_close(&self, id: span::Id) -> bool`
 
   Notifies the subscriber that a [span ID] has been dropped, and returns
   `true` if there are now 0 IDs that refer to that span.
@@ -764,7 +789,7 @@ The following methods are likely of interest:
   
   
 
-- `fn current_span(&self) -> span::Current`
+- `fn Subscriber::current_span(&self) -> span::Current`
 
   Returns a type representing this subscriber's view of the current span.
   
@@ -778,7 +803,7 @@ The following methods are likely of interest:
   implement a current span, it should not override this method.
   
 
-- `fn downcast_raw(&self, id: TypeId) -> Option<*const ()>`
+- `fn Subscriber::downcast_raw(&self, id: TypeId) -> Option<*const ()>`
 
   If `self` is the same type as the provided `TypeId`, returns an untyped
   `*const` pointer to that type. Otherwise, returns `None`.
@@ -797,7 +822,7 @@ The following methods are likely of interest:
   subscribers might allow `downcast_raw` by returning references to those
   component if they contain components with the given `TypeId`.
   
-  # Safety
+  ##### Safety
   
   The `downcast_ref` method expects that the pointer returned by
   `downcast_raw` is non-null and points to a valid instance of the type

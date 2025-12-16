@@ -43,7 +43,7 @@ struct FatArch32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/macho.rs:717-728`](../../../../../.source_1765894658/object-0.37.3/src/macho.rs#L717-L728)*
+*Defined in [`object-0.37.3/src/macho.rs:717-728`](../../../../../.source_1765900590/object-0.37.3/src/macho.rs#L717-L728)*
 
 #### Fields
 
@@ -161,7 +161,7 @@ struct FatArch64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/macho.rs:743-756`](../../../../../.source_1765894658/object-0.37.3/src/macho.rs#L743-L756)*
+*Defined in [`object-0.37.3/src/macho.rs:743-756`](../../../../../.source_1765900590/object-0.37.3/src/macho.rs#L743-L756)*
 
 #### Fields
 
@@ -279,7 +279,7 @@ struct FatHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/macho.rs:708-713`](../../../../../.source_1765894658/object-0.37.3/src/macho.rs#L708-L713)*
+*Defined in [`object-0.37.3/src/macho.rs:708-713`](../../../../../.source_1765900590/object-0.37.3/src/macho.rs#L708-L713)*
 
 #### Fields
 
@@ -365,7 +365,7 @@ struct MachOFatFile<'data, Fat: FatArch> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:25-28`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L25-L28)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:25-28`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/fat.rs#L25-L28)*
 
 A Mach-O universal binary.
 
@@ -455,7 +455,7 @@ to [`crate::FileKind::MachOFat32`](../../../index.md) or [`crate::FileKind::Mach
 trait FatArch: Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:59-90`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L59-L90)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:59-90`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/fat.rs#L59-L90)*
 
 A trait for generic access to [`macho::FatArch32`](../../../macho/index.md) and [`macho::FatArch64`](../../../macho/index.md).
 
@@ -469,23 +469,23 @@ A trait for generic access to [`macho::FatArch32`](../../../macho/index.md) and 
 
 #### Required Methods
 
-- `fn cputype(&self) -> u32`
+- `fn FatArch::cputype(&self) -> u32`
 
-- `fn cpusubtype(&self) -> u32`
+- `fn FatArch::cpusubtype(&self) -> u32`
 
-- `fn offset(&self) -> <Self as >::Word`
+- `fn FatArch::offset(&self) -> <Self as >::Word`
 
-- `fn size(&self) -> <Self as >::Word`
+- `fn FatArch::size(&self) -> <Self as >::Word`
 
-- `fn align(&self) -> u32`
+- `fn FatArch::align(&self) -> u32`
 
 #### Provided Methods
 
-- `fn architecture(&self) -> Architecture`
+- `fn FatArch::architecture(&self) -> Architecture`
 
-- `fn file_range(&self) -> (u64, u64)`
+- `fn FatArch::file_range(&self) -> (u64, u64)`
 
-- `fn data<'data, R: ReadRef<'data>>(&self, file: R) -> Result<&'data [u8]>`
+- `fn FatArch::data<'data, R: ReadRef<'data>>(&self, file: R) -> Result<&'data [u8]>`
 
 #### Implementors
 
@@ -500,7 +500,7 @@ A trait for generic access to [`macho::FatArch32`](../../../macho/index.md) and 
 type MachOFatFile32<'data> = MachOFatFile<'data, macho::FatArch32>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:12`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L12)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:12`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/fat.rs#L12)*
 
 A 32-bit Mach-O universal binary.
 
@@ -513,7 +513,7 @@ to [`crate::FileKind::MachOFat32`](../../../index.md).
 type MachOFatFile64<'data> = MachOFatFile<'data, macho::FatArch64>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:18`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L18)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:18`](../../../../../.source_1765900590/object-0.37.3/src/read/macho/fat.rs#L18)*
 
 A 64-bit Mach-O universal binary.
 

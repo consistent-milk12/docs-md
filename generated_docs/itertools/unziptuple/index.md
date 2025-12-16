@@ -20,7 +20,7 @@
 trait MultiUnzip<FromI>: Iterator { ... }
 ```
 
-*Defined in [`itertools-0.14.0/src/unziptuple.rs:32-35`](../../../.source_1765894658/itertools-0.14.0/src/unziptuple.rs#L32-L35)*
+*Defined in [`itertools-0.14.0/src/unziptuple.rs:32-35`](../../../.source_1765900590/itertools-0.14.0/src/unziptuple.rs#L32-L35)*
 
 An iterator that can be unzipped into multiple collections.
 
@@ -28,7 +28,7 @@ See [`.multiunzip()`](crate::Itertools::multiunzip) for more information.
 
 #### Required Methods
 
-- `fn multiunzip(self) -> FromI`
+- `fn MultiUnzip::multiunzip(self) -> FromI`
 
   Unzip this iterator into multiple collections.
 
@@ -47,7 +47,7 @@ where
     <I as >::IntoIter: MultiUnzip<FromI>
 ```
 
-*Defined in [`itertools-0.14.0/src/unziptuple.rs:21-27`](../../../.source_1765894658/itertools-0.14.0/src/unziptuple.rs#L21-L27)*
+*Defined in [`itertools-0.14.0/src/unziptuple.rs:21-27`](../../../.source_1765900590/itertools-0.14.0/src/unziptuple.rs#L21-L27)*
 
 Converts an iterator of tuples into a tuple of containers.
 
@@ -73,5 +73,5 @@ assert_eq!(c, vec![3, 6, 9]);
 
 ### `impl_unzip_iter!`
 
-*Defined in [`itertools-0.14.0/src/unziptuple.rs:37-66`](../../../.source_1765894658/itertools-0.14.0/src/unziptuple.rs#L37-L66)*
+*Defined in [`itertools-0.14.0/src/unziptuple.rs:37-66`](../../../.source_1765900590/itertools-0.14.0/src/unziptuple.rs#L37-L66)*
 

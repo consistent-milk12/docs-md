@@ -18,7 +18,7 @@
 trait Sealed { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/ext.rs:133`](../../../../.source_1765894658/quote-1.0.42/src/ext.rs#L133)*
+*Defined in [`quote-1.0.42/src/ext.rs:133`](../../../../.source_1765900590/quote-1.0.42/src/ext.rs#L133)*
 
 #### Implementors
 

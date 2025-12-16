@@ -27,7 +27,7 @@ where
 }
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations_with_replacement.rs:15-23`](../../../.source_1765894658/itertools-0.14.0/src/combinations_with_replacement.rs#L15-L23)*
+*Defined in [`itertools-0.14.0/src/combinations_with_replacement.rs:15-23`](../../../.source_1765900590/itertools-0.14.0/src/combinations_with_replacement.rs#L15-L23)*
 
 An iterator to iterate through all the `n`-length combinations in an iterator, with replacement.
 
@@ -141,7 +141,7 @@ where
     <I as >::Item: Clone
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations_with_replacement.rs:34-47`](../../../.source_1765894658/itertools-0.14.0/src/combinations_with_replacement.rs#L34-L47)*
+*Defined in [`itertools-0.14.0/src/combinations_with_replacement.rs:34-47`](../../../.source_1765900590/itertools-0.14.0/src/combinations_with_replacement.rs#L34-L47)*
 
 Create a new `CombinationsWithReplacement` from a clonable iterator.
 
@@ -151,7 +151,7 @@ Create a new `CombinationsWithReplacement` from a clonable iterator.
 fn remaining_for(n: usize, first: bool, indices: &[usize]) -> Option<usize>
 ```
 
-*Defined in [`itertools-0.14.0/src/combinations_with_replacement.rs:149-188`](../../../.source_1765894658/itertools-0.14.0/src/combinations_with_replacement.rs#L149-L188)*
+*Defined in [`itertools-0.14.0/src/combinations_with_replacement.rs:149-188`](../../../.source_1765900590/itertools-0.14.0/src/combinations_with_replacement.rs#L149-L188)*
 
 For a given size `n`, return the count of remaining combinations with replacement or None if it would overflow.
 

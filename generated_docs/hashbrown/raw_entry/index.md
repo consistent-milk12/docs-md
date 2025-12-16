@@ -24,7 +24,7 @@ struct RawEntryBuilderMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:216-218`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L216-L218)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:216-218`](../../../.source_1765900590/hashbrown-0.16.1/src/raw_entry.rs#L216-L218)*
 
 A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
@@ -86,7 +86,7 @@ assert_eq!(map.len(), 6);
 
   Creates a `RawEntryMut` from the given key.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -102,7 +102,7 @@ assert_eq!(map.len(), 6);
 
   Creates a `RawEntryMut` from the given key and its hash.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use core::hash::{BuildHasher, Hash};
@@ -178,7 +178,7 @@ struct RawOccupiedEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:395-399`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L395-L399)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:395-399`](../../../.source_1765900590/hashbrown-0.16.1/src/raw_entry.rs#L395-L399)*
 
 A view into an occupied entry in a `HashMap`.
 It is part of the [`RawEntryMut`](#rawentrymut) enum.
@@ -245,7 +245,7 @@ assert_eq!(map.len(), 1);
 
   Gets a reference to the key in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -262,7 +262,7 @@ assert_eq!(map.len(), 1);
 
   Gets a mutable reference to the key in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -292,7 +292,7 @@ assert_eq!(map.len(), 1);
   Converts the entry into a mutable reference to the key in the entry
   with a lifetime bound to the map itself.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -323,7 +323,7 @@ assert_eq!(map.len(), 1);
 
   Gets a reference to the value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -341,7 +341,7 @@ assert_eq!(map.len(), 1);
   Converts the `OccupiedEntry` into a mutable reference to the value in the entry
   with a lifetime bound to the map itself.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -363,7 +363,7 @@ assert_eq!(map.len(), 1);
 
   Gets a mutable reference to the value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -382,7 +382,7 @@ assert_eq!(map.len(), 1);
 
   Gets a reference to the key and value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -399,7 +399,7 @@ assert_eq!(map.len(), 1);
 
   Gets a mutable reference to the key and value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -431,7 +431,7 @@ assert_eq!(map.len(), 1);
   Converts the `OccupiedEntry` into a mutable reference to the key and value in the entry
   with a lifetime bound to the map itself.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -466,7 +466,7 @@ assert_eq!(map.len(), 1);
 
   Sets the value of the entry, and returns the entry's old value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -485,7 +485,7 @@ assert_eq!(map.len(), 1);
 
   Sets the value of the entry, and returns the entry's old value.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -515,7 +515,7 @@ assert_eq!(map.len(), 1);
 
   Takes the value out of the entry, and returns it.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -533,7 +533,7 @@ assert_eq!(map.len(), 1);
 
   Take the ownership of the key and value from the map.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -553,7 +553,7 @@ assert_eq!(map.len(), 1);
   the entry and allows to replace or remove it based on the
   value of the returned option.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -641,7 +641,7 @@ struct RawVacantEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:466-469`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L466-L469)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:466-469`](../../../.source_1765900590/hashbrown-0.16.1/src/raw_entry.rs#L466-L469)*
 
 A view into a vacant entry in a `HashMap`.
 It is part of the [`RawEntryMut`](#rawentrymut) enum.
@@ -697,7 +697,7 @@ assert!(map[&"c"] == 30 && map.len() == 3);
   Sets the value of the entry with the `VacantEntry`'s key,
   and returns a mutable reference to it.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::hash_map::{HashMap, RawEntryMut};
@@ -717,7 +717,7 @@ assert!(map[&"c"] == 30 && map.len() == 3);
   Sets the value of the entry with the `VacantEntry`'s key,
   and returns a mutable reference to it.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use core::hash::{BuildHasher, Hash};
@@ -749,7 +749,7 @@ assert!(map[&"c"] == 30 && map.len() == 3);
 
   Set the value of an entry with a custom hasher function.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use core::hash::{BuildHasher, Hash};
@@ -839,7 +839,7 @@ struct RawEntryBuilder<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:505-507`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L505-L507)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:505-507`](../../../.source_1765900590/hashbrown-0.16.1/src/raw_entry.rs#L505-L507)*
 
 A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
@@ -880,7 +880,7 @@ for k in 0..6 {
 
   Access an immutable entry by key.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -894,7 +894,7 @@ for k in 0..6 {
 
   Access an immutable entry by a key and its hash.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use core::hash::{BuildHasher, Hash};
@@ -919,7 +919,7 @@ for k in 0..6 {
 
   Access an immutable entry by hash and matching function.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use core::hash::{BuildHasher, Hash};
@@ -994,7 +994,7 @@ enum RawEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:304-333`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L304-L333)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:304-333`](../../../.source_1765900590/hashbrown-0.16.1/src/raw_entry.rs#L304-L333)*
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
@@ -1119,7 +1119,7 @@ assert_eq!(vec, [('a', 10), ('b', 20), ('c', 30), ('d', 40), ('e', 50), ('f', 60
 
   Sets the value of the entry, and returns a `RawOccupiedEntryMut`.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -1135,7 +1135,7 @@ assert_eq!(vec, [('a', 10), ('b', 20), ('c', 30), ('d', 40), ('e', 50), ('f', 60
   Ensures a value is in the entry by inserting the default if empty, and returns
   mutable references to the key and value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -1154,7 +1154,7 @@ assert_eq!(vec, [('a', 10), ('b', 20), ('c', 30), ('d', 40), ('e', 50), ('f', 60
   Ensures a value is in the entry by inserting the result of the default function if empty,
   and returns mutable references to the key and value in the entry.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -1173,7 +1173,7 @@ assert_eq!(vec, [('a', 10), ('b', 20), ('c', 30), ('d', 40), ('e', 50), ('f', 60
   Provides in-place mutable access to an occupied entry before any
   potential inserts into the map.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
@@ -1199,7 +1199,7 @@ assert_eq!(vec, [('a', 10), ('b', 20), ('c', 30), ('d', 40), ('e', 50), ('f', 60
   an occupied entry and allows to replace or remove it based on the
   value of the returned option.
   
-  # Examples
+  ##### Examples
   
   ```rust
   use hashbrown::HashMap;
