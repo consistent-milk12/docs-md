@@ -24,7 +24,7 @@
 struct Type<'a>(&'a super::Value);
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/index.rs:144`](../../../../.source_1765633015/serde_json-1.0.145/src/value/index.rs#L144)*
+*Defined in [`serde_json-1.0.145/src/value/index.rs:144`](../../../../.source_1765894658/serde_json-1.0.145/src/value/index.rs#L144)*
 
 Used in panic messages.
 
@@ -57,11 +57,8 @@ Used in panic messages.
 - <span id="type-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Type<'a>`
@@ -88,7 +85,7 @@ Used in panic messages.
 trait Index: private::Sealed { ... }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/index.rs:37-52`](../../../../.source_1765633015/serde_json-1.0.145/src/value/index.rs#L37-L52)*
+*Defined in [`serde_json-1.0.145/src/value/index.rs:37-52`](../../../../.source_1765894658/serde_json-1.0.145/src/value/index.rs#L37-L52)*
 
 A type that can be used to index into a `serde_json::Value`.
 

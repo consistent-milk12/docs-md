@@ -40,7 +40,7 @@ struct JobRef {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:33-36`](../../../.source_1765633015/rayon-core-1.13.0/src/job.rs#L33-L36)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:33-36`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L33-L36)*
 
 Effectively a Job trait object. Each JobRef **must** be executed
 exactly once, or else data may leak.
@@ -54,13 +54,11 @@ it. We also carry the "execute fn" from the `Job` trait.
 - <span id="jobref-new"></span>`unsafe fn new<T>(data: *const T) -> JobRef` — [`JobRef`](#jobref)
 
   Unsafe: caller asserts that `data` will remain valid until the
-
   job is executed.
 
 - <span id="jobref-id"></span>`fn id(&self) -> impl Eq`
 
   Returns an opaque handle that can be saved and compared,
-
   without making `JobRef` itself `Copy + Eq`.
 
 - <span id="jobref-execute"></span>`unsafe fn execute(self)`
@@ -90,11 +88,8 @@ it. We also carry the "execute fn" from the `Job` trait.
 - <span id="jobref-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for JobRef`
@@ -141,7 +136,7 @@ where
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:72-81`](../../../.source_1765633015/rayon-core-1.13.0/src/job.rs#L72-L81)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:72-81`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L72-L81)*
 
 A job that will be owned by a stack slot. This means that when it
 executes it need not free any heap data, the cleanup occurs when
@@ -183,11 +178,8 @@ the stack frame is later popped.  The function parameter indicates
 - <span id="stackjob-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<L, F, R> Job for StackJob<L, F, R>`
@@ -230,7 +222,7 @@ where
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:132-137`](../../../.source_1765633015/rayon-core-1.13.0/src/job.rs#L132-L137)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:132-137`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L132-L137)*
 
 Represents a job stored in the heap. Used to implement
 `scope`. Unlike `StackJob`, when executed, `HeapJob` simply
@@ -246,9 +238,7 @@ signal that the job executed.
 - <span id="heapjob-into-job-ref"></span>`unsafe fn into_job_ref(self: Box<Self>) -> JobRef` — [`JobRef`](#jobref)
 
   Creates a `JobRef` from this job -- note that this hides all
-
   lifetimes, so it is up to you to ensure that this JobRef
-
   doesn't outlive any data that it closes over.
 
 - <span id="heapjob-into-static-job-ref"></span>`fn into_static_job_ref(self: Box<Self>) -> JobRef` — [`JobRef`](#jobref)
@@ -280,11 +270,8 @@ signal that the job executed.
 - <span id="heapjob-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<BODY> Job for HeapJob<BODY>`
@@ -327,7 +314,7 @@ where
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:175-180`](../../../.source_1765633015/rayon-core-1.13.0/src/job.rs#L175-L180)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:175-180`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L175-L180)*
 
 Represents a job stored in an `Arc` -- like `HeapJob`, but may
 be turned into multiple `JobRef`s and called multiple times.
@@ -339,9 +326,7 @@ be turned into multiple `JobRef`s and called multiple times.
 - <span id="arcjob-as-job-ref"></span>`unsafe fn as_job_ref(this: &Arc<Self>) -> JobRef` — [`JobRef`](#jobref)
 
   Creates a `JobRef` from this job -- note that this hides all
-
   lifetimes, so it is up to you to ensure that this JobRef
-
   doesn't outlive any data that it closes over.
 
 - <span id="arcjob-as-static-job-ref"></span>`fn as_static_job_ref(this: &Arc<Self>) -> JobRef` — [`JobRef`](#jobref)
@@ -373,11 +358,8 @@ be turned into multiple `JobRef`s and called multiple times.
 - <span id="arcjob-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<BODY> Job for ArcJob<BODY>`
@@ -418,7 +400,7 @@ struct JobFifo {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:238-240`](../../../.source_1765633015/rayon-core-1.13.0/src/job.rs#L238-L240)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:238-240`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L238-L240)*
 
 Indirect queue to provide FIFO job priority.
 
@@ -453,11 +435,8 @@ Indirect queue to provide FIFO job priority.
 - <span id="jobfifo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Job for JobFifo`
@@ -502,7 +481,7 @@ enum JobResult<T> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:9-13`](../../../.source_1765633015/rayon-core-1.13.0/src/job.rs#L9-L13)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:9-13`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L9-L13)*
 
 #### Implementations
 
@@ -511,11 +490,8 @@ enum JobResult<T> {
 - <span id="jobresult-into-return-value"></span>`fn into_return_value(self) -> T`
 
   Convert the `JobResult` for a job that has finished (and hence
-
   its JobResult is populated) into its return value.
-
   
-
   NB. This will panic if the job panicked.
 
 #### Trait Implementations
@@ -543,11 +519,8 @@ enum JobResult<T> {
 - <span id="jobresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for JobResult<T>`
@@ -584,7 +557,7 @@ enum JobResult<T> {
 trait Job { ... }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/job.rs:20-25`](../../../.source_1765633015/rayon-core-1.13.0/src/job.rs#L20-L25)*
+*Defined in [`rayon-core-1.13.0/src/job.rs:20-25`](../../../.source_1765894658/rayon-core-1.13.0/src/job.rs#L20-L25)*
 
 A `Job` is used to advertise work for other threads that they may
 want to steal. In accordance with time honored tradition, jobs are
@@ -597,6 +570,8 @@ deque is managed by the `thread_pool` module.
 - `fn execute(this: *const ())`
 
   Unsafe: this may be called from a different thread than the one
+  which scheduled the job, so the implementer must ensure the
+  appropriate traits are met, whether `Send`, `Sync`, or both.
 
 #### Implementors
 

@@ -21,7 +21,7 @@ Line ending detection and conversion.
 struct NonEmptyLines<'a>(&'a str);
 ```
 
-*Defined in [`textwrap-0.16.2/src/line_ending.rs:35`](../../../.source_1765633015/textwrap-0.16.2/src/line_ending.rs#L35)*
+*Defined in [`textwrap-0.16.2/src/line_ending.rs:35`](../../../.source_1765894658/textwrap-0.16.2/src/line_ending.rs#L35)*
 
 An iterator over the lines of a string, as tuples of string slice
 and [`LineEnding`](#lineending) value; it only emits non-empty lines (i.e. having
@@ -68,11 +68,8 @@ This struct is used internally by the library.
 - <span id="nonemptylines-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for NonEmptyLines<'a>`
@@ -120,7 +117,7 @@ enum LineEnding {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/line_ending.rs:8-16`](../../../.source_1765633015/textwrap-0.16.2/src/line_ending.rs#L8-L16)*
+*Defined in [`textwrap-0.16.2/src/line_ending.rs:8-16`](../../../.source_1765894658/textwrap-0.16.2/src/line_ending.rs#L8-L16)*
 
 Supported line endings. Like in the Rust standard library, two line
 endings are supported: `\r\n` and `\n`
@@ -185,11 +182,8 @@ endings are supported: `\r\n` and `\n`
 - <span id="lineending-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LineEnding`

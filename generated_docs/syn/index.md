@@ -818,7 +818,7 @@ struct Attribute {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L19-L179)*
+*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../.source_1765894658/syn-2.0.111/src/attr.rs#L19-L179)*
 
 An attribute, like `#[repr(transparent)]`.
 
@@ -974,377 +974,201 @@ assert_eq!(doc, attr);
 - <span id="attribute-path"></span>`fn path(&self) -> &Path` — [`Path`](path/index.md#path)
 
   Returns the path that identifies the interpretation of this attribute.
-
   
-
   For example this would return the `test` in `#[test]`, the `derive` in
-
   `#[derive(Copy)]`, and the `path` in `#[path = "sys/windows.rs"]`.
 
 - <span id="attribute-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](error/index.md#result)
 
   Parse the arguments to the attribute as a syntax tree.
-
   
-
   This is similar to pulling out the `TokenStream` from `Meta::List` and
-
   doing `syn::parse2::<T>(meta_list.tokens)`, except that using
-
   `parse_args` the error message has a more useful span when `tokens` is
-
   empty.
-
   
-
   The surrounding delimiters are *not* included in the input to the
-
   parser.
-
   
-
   ```text
-
   #[my_attr(value < 5)]
-
             ^^^^^^^^^ what gets parsed
-
   ```
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{parse_quote, Attribute, Expr};
-
   
-
   let attr: Attribute = parse_quote! {
-
       #[precondition(value < 5)]
-
   };
-
   
-
   if attr.path().is_ident("precondition") {
-
       let precondition: Expr = attr.parse_args()?;
-
       // ...
-
   }
-
   anyhow::Ok(())
-
   ```
 
 - <span id="attribute-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](error/index.md#result), [`Parser`](parse/index.md#parser)
 
   Parse the arguments to the attribute using the given parser.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{parse_quote, Attribute};
-
   
-
   let attr: Attribute = parse_quote! {
-
       #[inception { #[brrrrrrraaaaawwwwrwrrrmrmrmmrmrmmmmm] }]
-
   };
-
   
-
   let bwom = attr.parse_args_with(Attribute::parse_outer)?;
-
   
-
   // Attribute does not have a Parse impl, so we couldn't directly do:
-
   // let bwom: Attribute = attr.parse_args()?;
-
   anyhow::Ok(())
-
   ```
 
 - <span id="attribute-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](meta/index.md#parsenestedmeta), [`Result`](error/index.md#result)
 
   Parse the arguments to the attribute, expecting it to follow the
-
   conventional structure used by most of Rust's built-in attributes.
-
   
-
   The [*Meta Item Attribute Syntax*][`syntax`](../regex_automata/util/syntax/index.md) section in the Rust reference
-
   explains the convention in more detail. Not all attributes follow this
-
   convention, so `parse_args()` is available if you
-
   need to parse arbitrarily goofy attribute syntax.
-
   
-
   # Example
-
   
-
   We'll parse a struct, and then parse some of Rust's `#[repr]` attribute
-
   syntax.
-
   
-
   ```rust
-
   use syn::{parenthesized, parse_quote, token, ItemStruct, LitInt};
-
   
-
   let input: ItemStruct = parse_quote! {
-
       #[repr(C, align(4))]
-
       pub struct MyStruct(u16, u32);
-
   };
-
   
-
   let mut repr_c = false;
-
   let mut repr_transparent = false;
-
   let mut repr_align = None::<usize>;
-
   let mut repr_packed = None::<usize>;
-
   for attr in &input.attrs {
-
       if attr.path().is_ident("repr") {
-
           attr.parse_nested_meta(|meta| {
-
               // #[repr(C)]
-
               if meta.path.is_ident("C") {
-
                   repr_c = true;
-
                   return Ok(());
-
               }
-
   
-
               // #[repr(transparent)]
-
               if meta.path.is_ident("transparent") {
-
                   repr_transparent = true;
-
                   return Ok(());
-
               }
-
   
-
               // #[repr(align(N))]
-
               if meta.path.is_ident("align") {
-
                   let content;
-
                   parenthesized!(content in meta.input);
-
                   let lit: LitInt = content.parse()?;
-
                   let n: usize = lit.base10_parse()?;
-
                   repr_align = Some(n);
-
                   return Ok(());
-
               }
-
   
-
               // #[repr(packed)] or #[repr(packed(N))], omitted N means 1
-
               if meta.path.is_ident("packed") {
-
                   if meta.input.peek(token::Paren) {
-
                       let content;
-
                       parenthesized!(content in meta.input);
-
                       let lit: LitInt = content.parse()?;
-
                       let n: usize = lit.base10_parse()?;
-
                       repr_packed = Some(n);
-
                   } else {
-
                       repr_packed = Some(1);
-
                   }
-
                   return Ok(());
-
               }
-
   
-
               Err(meta.error("unrecognized repr"))
-
           })?;
-
       }
-
   }
-
   anyhow::Ok(())
-
   ```
-
   
-
   # Alternatives
-
   
-
   In some cases, for attributes which have nested layers of structured
-
   content, the following less flexible approach might be more convenient:
-
   
-
   ```rust
-
   use syn::{parse_quote, ItemStruct};
-
   
-
   let input: ItemStruct = parse_quote! {
-
       #[repr(C, align(4))]
-
       pub struct MyStruct(u16, u32);
-
   };
-
   
-
   use syn::punctuated::Punctuated;
-
   use syn::{parenthesized, token, Error, LitInt, Meta, Token};
-
   
-
   let mut repr_c = false;
-
   let mut repr_transparent = false;
-
   let mut repr_align = None::<usize>;
-
   let mut repr_packed = None::<usize>;
-
   for attr in &input.attrs {
-
       if attr.path().is_ident("repr") {
-
           let nested = attr.parse_args_with(Punctuated::<Meta, Token![,]>::parse_terminated)?;
-
           for meta in nested {
-
               match meta {
-
                   // #[repr(C)]
-
                   Meta::Path(path) if path.is_ident("C") => {
-
                       repr_c = true;
-
                   }
-
   
-
                   // #[repr(align(N))]
-
                   Meta::List(meta) if meta.path.is_ident("align") => {
-
                       let lit: LitInt = meta.parse_args()?;
-
                       let n: usize = lit.base10_parse()?;
-
                       repr_align = Some(n);
-
                   }
-
   
-
                   /* ... */
-
   
-
                   _ => {
-
                       return Err(Error::new_spanned(meta, "unrecognized repr"));
-
                   }
-
               }
-
           }
-
       }
-
   }
-
   Ok(())
-
   ```
 
 - <span id="attribute-parse-outer"></span>`fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
 
   Parses zero or more outer attributes from the stream.
-
   
-
   # Example
-
   
-
   See
-
   [*Parsing from tokens to Attribute*](#parsing-from-tokens-to-attribute).
 
 - <span id="attribute-parse-inner"></span>`fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
 
   Parses zero or more inner attributes from the stream.
-
   
-
   # Example
-
   
-
   See
-
   [*Parsing from tokens to Attribute*](#parsing-from-tokens-to-attribute).
 
 #### Trait Implementations
@@ -1390,11 +1214,8 @@ assert_eq!(doc, attr);
 - <span id="attribute-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Attribute`
@@ -1441,7 +1262,7 @@ struct MetaList {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L484-L492)*
+*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../.source_1765894658/syn-2.0.111/src/attr.rs#L484-L492)*
 
 A structured list within an attribute, like `derive(Copy, Clone)`.
 
@@ -1502,11 +1323,8 @@ A structured list within an attribute, like `derive(Copy, Clone)`.
 - <span id="metalist-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::attr::MetaList`
@@ -1557,7 +1375,7 @@ struct MetaNameValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L494-L502)*
+*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../.source_1765894658/syn-2.0.111/src/attr.rs#L494-L502)*
 
 A name-value pair within an attribute, like `feature = "nightly"`.
 
@@ -1608,11 +1426,8 @@ A name-value pair within an attribute, like `feature = "nightly"`.
 - <span id="metanamevalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::attr::MetaNameValue`
@@ -1666,7 +1481,7 @@ struct Field {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../.source_1765633015/syn-2.0.111/src/data.rs#L181-L200)*
+*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../.source_1765894658/syn-2.0.111/src/data.rs#L181-L200)*
 
 A field of a struct or enum variant.
 
@@ -1731,11 +1546,8 @@ A field of a struct or enum variant.
 - <span id="field-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Field`
@@ -1781,7 +1593,7 @@ struct FieldsNamed {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../.source_1765633015/syn-2.0.111/src/data.rs#L48-L56)*
+*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../.source_1765894658/syn-2.0.111/src/data.rs#L48-L56)*
 
 Named fields of a struct or struct variant such as `Point { x: f64,
 y: f64 }`.
@@ -1833,11 +1645,8 @@ y: f64 }`.
 - <span id="fieldsnamed-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::data::FieldsNamed`
@@ -1887,7 +1696,7 @@ struct FieldsUnnamed {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../.source_1765633015/syn-2.0.111/src/data.rs#L58-L65)*
+*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../.source_1765894658/syn-2.0.111/src/data.rs#L58-L65)*
 
 Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
@@ -1938,11 +1747,8 @@ Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 - <span id="fieldsunnamed-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::data::FieldsUnnamed`
@@ -1994,7 +1800,7 @@ struct Variant {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../.source_1765633015/syn-2.0.111/src/data.rs#L9-L24)*
+*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../.source_1765894658/syn-2.0.111/src/data.rs#L9-L24)*
 
 An enum variant.
 
@@ -2055,11 +1861,8 @@ An enum variant.
 - <span id="variant-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::data::Variant`
@@ -2110,7 +1913,7 @@ struct DataEnum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L47-L55)*
+*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../.source_1765894658/syn-2.0.111/src/derive.rs#L47-L55)*
 
 An enum input to a `proc_macro_derive` macro.
 
@@ -2161,11 +1964,8 @@ An enum input to a `proc_macro_derive` macro.
 - <span id="dataenum-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::DataEnum`
@@ -2202,7 +2002,7 @@ struct DataStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L37-L45)*
+*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../.source_1765894658/syn-2.0.111/src/derive.rs#L37-L45)*
 
 A struct input to a `proc_macro_derive` macro.
 
@@ -2253,11 +2053,8 @@ A struct input to a `proc_macro_derive` macro.
 - <span id="datastruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::DataStruct`
@@ -2293,7 +2090,7 @@ struct DataUnion {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L57-L64)*
+*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../.source_1765894658/syn-2.0.111/src/derive.rs#L57-L64)*
 
 An untagged union input to a `proc_macro_derive` macro.
 
@@ -2344,11 +2141,8 @@ An untagged union input to a `proc_macro_derive` macro.
 - <span id="dataunion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::DataUnion`
@@ -2387,7 +2181,7 @@ struct DeriveInput {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L9-L19)*
+*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../.source_1765894658/syn-2.0.111/src/derive.rs#L9-L19)*
 
 Data structure sent to a `proc_macro_derive` macro.
 
@@ -2434,11 +2228,8 @@ Data structure sent to a `proc_macro_derive` macro.
 - <span id="deriveinput-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::derive::DeriveInput`
@@ -2487,7 +2278,7 @@ struct Error {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../.source_1765633015/syn-2.0.111/src/error.rs#L101-L103)*
+*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../.source_1765894658/syn-2.0.111/src/error.rs#L101-L103)*
 
 Error returned when a Syn parser cannot parse the input tokens.
 
@@ -2573,179 +2364,102 @@ mod expand {
 - <span id="error-new"></span>`fn new<T: Display>(span: Span, message: T) -> Self`
 
   Usually the `ParseStream::error` method will be used instead, which
-
   automatically uses the correct span from the current position of the
-
   parse stream.
-
   
-
   Use `Error::new` when the error needs to be triggered on some span other
-
   than where the parse stream is currently positioned.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{Error, Ident, LitStr, Result, Token};
-
   use syn::parse::ParseStream;
-
   
-
   // Parses input that looks like `name = "string"` where the key must be
-
   // the identifier `name` and the value may be any string literal.
-
   // Returns the string literal.
-
   fn parse_name(input: ParseStream) -> Result<LitStr> {
-
       let name_token: Ident = input.parse()?;
-
       if name_token != "name" {
-
           // Trigger an error not on the current position of the stream,
-
           // but on the position of the unexpected identifier.
-
           return Err(Error::new(name_token.span(), "expected `name`"));
-
       }
-
       input.parse::<Token![=]>()?;
-
       let s: LitStr = input.parse()?;
-
       Ok(s)
-
   }
-
   ```
 
 - <span id="error-new-spanned"></span>`fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
 
   Creates an error with the specified message spanning the given syntax
-
   tree node.
-
   
-
   Unlike the `Error::new` constructor, this constructor takes an argument
-
   `tokens` which is a syntax tree node. This allows the resulting `Error`
-
   to attempt to span all tokens inside of `tokens`. While you would
-
   typically be able to use the `Spanned` trait with the above `Error::new`
-
   constructor, implementation limitations today mean that
-
   `Error::new_spanned` may provide a higher-quality error message on
-
   stable Rust.
-
   
-
   When in doubt it's recommended to stick to `Error::new` (or
-
   `ParseStream::error`)!
 
 - <span id="error-span"></span>`fn span(&self) -> Span`
 
   The source location of the error.
-
   
-
   Spans are not thread-safe so this function returns `Span::call_site()`
-
   if called from a different thread than the one on which the `Error` was
-
   originally created.
 
 - <span id="error-to-compile-error"></span>`fn to_compile_error(&self) -> TokenStream`
 
   Render the error as an invocation of `compile_error!`.
-
   
-
   The `parse_macro_input!` macro provides a convenient way to invoke
-
   this method correctly in a procedural macro.
-
   
 
 - <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
   Render the error as an invocation of `compile_error!`.
-
   
-
   # Example
-
   
-
   ```rust
-
   extern crate proc_macro;
-
   
-
   use proc_macro::TokenStream;
-
   use syn::{parse_macro_input, DeriveInput, Error};
-
   
-
   const _: &str = stringify! {
-
   #[proc_macro_derive(MyTrait)]
-
   };
-
   pub fn derive_my_trait(input: TokenStream) -> TokenStream {
-
       let input = parse_macro_input!(input as DeriveInput);
-
       my_trait::expand(input)
-
           .unwrap_or_else(Error::into_compile_error)
-
           .into()
-
   }
-
   
-
   mod my_trait {
-
       use proc_macro2::TokenStream;
-
       use syn::{DeriveInput, Result};
-
   
-
       pub(crate) fn expand(input: DeriveInput) -> Result<TokenStream> {
-
           /* ... */
-
           unimplemented!()
-
       }
-
   }
-
   ```
 
 - <span id="error-combine"></span>`fn combine(&mut self, another: Error)` — [`Error`](error/index.md#error)
 
   Add another error message to self such that when `to_compile_error()` is
-
   called, both errors will be emitted together.
 
 #### Trait Implementations
@@ -2795,11 +2509,8 @@ mod expand {
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Error`
@@ -2847,7 +2558,7 @@ struct Arm {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1119-L1146)*
+*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L1119-L1146)*
 
 One arm of a `match` expression: `0..=10 => { return true; }`.
 
@@ -2914,11 +2625,8 @@ match n {
 - <span id="arm-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Arm`
@@ -2968,7 +2676,7 @@ struct Label {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1109-L1116)*
+*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L1109-L1116)*
 
 A lifetime labeling a `for`, `while`, or `loop`.
 
@@ -3015,11 +2723,8 @@ A lifetime labeling a `for`, `while`, or `loop`.
 - <span id="label-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Label`
@@ -3071,7 +2776,7 @@ struct ExprBinary {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L312-L321)*
+*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L312-L321)*
 
 A binary operation: `a + b`, `a += b`.
 
@@ -3122,11 +2827,8 @@ A binary operation: `a + b`, `a += b`.
 - <span id="exprbinary-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprBinary`
@@ -3178,7 +2880,7 @@ struct ExprCall {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L345-L354)*
+*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L345-L354)*
 
 A function call expression: `invoke(a, b)`.
 
@@ -3229,11 +2931,8 @@ A function call expression: `invoke(a, b)`.
 - <span id="exprcall-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprCall`
@@ -3285,7 +2984,7 @@ struct ExprCast {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L356-L365)*
+*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L356-L365)*
 
 A cast expression: `foo as f64`.
 
@@ -3336,11 +3035,8 @@ A cast expression: `foo as f64`.
 - <span id="exprcast-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprCast`
@@ -3392,7 +3088,7 @@ struct ExprField {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L405-L415)*
+*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L405-L415)*
 
 Access of a named struct field (`obj.k`) or unnamed tuple struct
 field (`obj.0`).
@@ -3444,11 +3140,8 @@ field (`obj.0`).
 - <span id="exprfield-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprField`
@@ -3500,7 +3193,7 @@ struct ExprIndex {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L461-L470)*
+*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L461-L470)*
 
 A square bracketed indexing expression: `vector[2]`.
 
@@ -3551,11 +3244,8 @@ A square bracketed indexing expression: `vector[2]`.
 - <span id="exprindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprIndex`
@@ -3605,7 +3295,7 @@ struct ExprLit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L493-L500)*
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L493-L500)*
 
 A literal in place of an expression: `1`, `"foo"`.
 
@@ -3656,11 +3346,8 @@ A literal in place of an expression: `1`, `"foo"`.
 - <span id="exprlit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprLit`
@@ -3710,7 +3397,7 @@ struct ExprMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L513-L520)*
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L513-L520)*
 
 A macro invocation expression: `format!("{}", q)`.
 
@@ -3761,11 +3448,8 @@ A macro invocation expression: `format!("{}", q)`.
 - <span id="exprmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprMacro`
@@ -3820,7 +3504,7 @@ struct ExprMethodCall {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L534-L546)*
+*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L534-L546)*
 
 A method call expression: `x.foo::<T>(a, b)`.
 
@@ -3871,11 +3555,8 @@ A method call expression: `x.foo::<T>(a, b)`.
 - <span id="exprmethodcall-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprMethodCall`
@@ -3926,7 +3607,7 @@ struct ExprParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L548-L556)*
+*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L548-L556)*
 
 A parenthesized expression: `(a + b)`.
 
@@ -3977,11 +3658,8 @@ A parenthesized expression: `(a + b)`.
 - <span id="exprparen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprParen`
@@ -4032,7 +3710,7 @@ struct ExprPath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L558-L569)*
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L558-L569)*
 
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
@@ -4086,11 +3764,8 @@ A plain identifier like `x` is a path of length 1.
 - <span id="exprpath-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprPath`
@@ -4142,7 +3817,7 @@ struct ExprReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L594-L603)*
+*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L594-L603)*
 
 A referencing operation: `&a` or `&mut a`.
 
@@ -4193,11 +3868,8 @@ A referencing operation: `&a` or `&mut a`.
 - <span id="exprreference-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprReference`
@@ -4252,7 +3924,7 @@ struct ExprStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L627-L642)*
+*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L627-L642)*
 
 A struct literal expression: `Point { x: 1, y: 1 }`.
 
@@ -4306,11 +3978,8 @@ The `rest` provides the value of the remaining fields as in `S { a:
 - <span id="exprstruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprStruct`
@@ -4361,7 +4030,7 @@ struct ExprUnary {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L674-L682)*
+*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L674-L682)*
 
 A unary operation: `!x`, `*x`.
 
@@ -4412,11 +4081,8 @@ A unary operation: `!x`, `*x`.
 - <span id="exprunary-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprUnary`
@@ -4468,7 +4134,7 @@ struct FieldValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1093-L1106)*
+*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L1093-L1106)*
 
 A field-value pair in a struct literal.
 
@@ -4522,11 +4188,8 @@ A field-value pair in a struct literal.
 - <span id="fieldvalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::FieldValue`
@@ -4576,7 +4239,7 @@ struct Index {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1049-L1056)*
+*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L1049-L1056)*
 
 The index of an unnamed tuple struct field.
 
@@ -4629,11 +4292,8 @@ The index of an unnamed tuple struct field.
 - <span id="index-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Index`
@@ -4684,7 +4344,7 @@ struct ExprArray {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L269-L277)*
+*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L269-L277)*
 
 A slice literal expression: `[a, b, c, d]`.
 
@@ -4735,11 +4395,8 @@ A slice literal expression: `[a, b, c, d]`.
 - <span id="exprarray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprArray`
@@ -4791,7 +4448,7 @@ struct ExprAssign {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L279-L288)*
+*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L279-L288)*
 
 An assignment expression: `a = compute()`.
 
@@ -4842,11 +4499,8 @@ An assignment expression: `a = compute()`.
 - <span id="exprassign-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprAssign`
@@ -4898,7 +4552,7 @@ struct ExprAsync {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L290-L299)*
+*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L290-L299)*
 
 An async block: `async { ... }`.
 
@@ -4949,11 +4603,8 @@ An async block: `async { ... }`.
 - <span id="exprasync-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprAsync`
@@ -5005,7 +4656,7 @@ struct ExprAwait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L301-L310)*
+*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L301-L310)*
 
 An await expression: `fut.await`.
 
@@ -5056,11 +4707,8 @@ An await expression: `fut.await`.
 - <span id="exprawait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprAwait`
@@ -5111,7 +4759,7 @@ struct ExprBlock {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L323-L331)*
+*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L323-L331)*
 
 A blocked scope: `{ ... }`.
 
@@ -5162,11 +4810,8 @@ A blocked scope: `{ ... }`.
 - <span id="exprblock-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprBlock`
@@ -5218,7 +4863,7 @@ struct ExprBreak {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L333-L343)*
+*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L333-L343)*
 
 A `break`, with an optional label to break and an optional
 expression.
@@ -5270,11 +4915,8 @@ expression.
 - <span id="exprbreak-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprBreak`
@@ -5333,7 +4975,7 @@ struct ExprClosure {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L367-L383)*
+*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L367-L383)*
 
 A closure expression: `|a, b| a + b`.
 
@@ -5384,11 +5026,8 @@ A closure expression: `|a, b| a + b`.
 - <span id="exprclosure-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprClosure`
@@ -5439,7 +5078,7 @@ struct ExprConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L385-L393)*
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
@@ -5490,11 +5129,8 @@ A const block: `const { ... }`.
 - <span id="exprconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprConst`
@@ -5545,7 +5181,7 @@ struct ExprContinue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L395-L403)*
+*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L395-L403)*
 
 A `continue`, with an optional label.
 
@@ -5596,11 +5232,8 @@ A `continue`, with an optional label.
 - <span id="exprcontinue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprContinue`
@@ -5655,7 +5288,7 @@ struct ExprForLoop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L417-L429)*
+*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L417-L429)*
 
 A for loop: `for pat in expr { ... }`.
 
@@ -5706,11 +5339,8 @@ A for loop: `for pat in expr { ... }`.
 - <span id="exprforloop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprForLoop`
@@ -5761,7 +5391,7 @@ struct ExprGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L431-L443)*
+*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L431-L443)*
 
 An expression contained within invisible delimiters.
 
@@ -5816,11 +5446,8 @@ of expressions and is related to `None`-delimited spans in a
 - <span id="exprgroup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::ExprGroup`
@@ -5869,7 +5496,7 @@ struct ExprIf {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L445-L459)*
+*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L445-L459)*
 
 An `if` expression with an optional `else` block: `if expr { ... }
 else { ... }`.
@@ -5924,11 +5551,8 @@ expression, not any of the other types of expression.
 - <span id="exprif-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprIf`
@@ -5978,7 +5602,7 @@ struct ExprInfer {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L472-L479)*
+*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L472-L479)*
 
 The inferred value of a const generic argument, denoted `_`.
 
@@ -6029,11 +5653,8 @@ The inferred value of a const generic argument, denoted `_`.
 - <span id="exprinfer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprInfer`
@@ -6086,7 +5707,7 @@ struct ExprLet {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L481-L491)*
+*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L481-L491)*
 
 A `let` guard: `let Some(x) = opt`.
 
@@ -6137,11 +5758,8 @@ A `let` guard: `let Some(x) = opt`.
 - <span id="exprlet-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprLet`
@@ -6193,7 +5811,7 @@ struct ExprLoop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L502-L511)*
+*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L502-L511)*
 
 Conditionless loop: `loop { ... }`.
 
@@ -6244,11 +5862,8 @@ Conditionless loop: `loop { ... }`.
 - <span id="exprloop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprLoop`
@@ -6301,7 +5916,7 @@ struct ExprMatch {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L522-L532)*
+*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L522-L532)*
 
 A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
@@ -6352,11 +5967,8 @@ A `match` expression: `match n { Some(n) => {}, None => {} }`.
 - <span id="exprmatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprMatch`
@@ -6408,7 +6020,7 @@ struct ExprRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L571-L580)*
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L571-L580)*
 
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
@@ -6459,11 +6071,8 @@ A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 - <span id="exprrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprRange`
@@ -6516,7 +6125,7 @@ struct ExprRawAddr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L582-L592)*
+*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L582-L592)*
 
 Address-of operation: `&raw const place` or `&raw mut place`.
 
@@ -6567,11 +6176,8 @@ Address-of operation: `&raw const place` or `&raw mut place`.
 - <span id="exprrawaddr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprRawAddr`
@@ -6624,7 +6230,7 @@ struct ExprRepeat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L605-L615)*
+*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L605-L615)*
 
 An array literal constructed from one repeated element: `[0u8; N]`.
 
@@ -6675,11 +6281,8 @@ An array literal constructed from one repeated element: `[0u8; N]`.
 - <span id="exprrepeat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprRepeat`
@@ -6730,7 +6333,7 @@ struct ExprReturn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L617-L625)*
+*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L617-L625)*
 
 A `return`, with an optional value to be returned.
 
@@ -6781,11 +6384,8 @@ A `return`, with an optional value to be returned.
 - <span id="exprreturn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprReturn`
@@ -6836,7 +6436,7 @@ struct ExprTry {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L644-L652)*
+*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L644-L652)*
 
 A try-expression: `expr?`.
 
@@ -6887,11 +6487,8 @@ A try-expression: `expr?`.
 - <span id="exprtry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprTry`
@@ -6942,7 +6539,7 @@ struct ExprTryBlock {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L654-L662)*
+*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L654-L662)*
 
 A try block: `try { ... }`.
 
@@ -6993,11 +6590,8 @@ A try block: `try { ... }`.
 - <span id="exprtryblock-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprTryBlock`
@@ -7048,7 +6642,7 @@ struct ExprTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L664-L672)*
+*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L664-L672)*
 
 A tuple expression: `(a, b, c, d)`.
 
@@ -7099,11 +6693,8 @@ A tuple expression: `(a, b, c, d)`.
 - <span id="exprtuple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprTuple`
@@ -7154,7 +6745,7 @@ struct ExprUnsafe {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L684-L692)*
+*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L684-L692)*
 
 An unsafe block: `unsafe { ... }`.
 
@@ -7205,11 +6796,8 @@ An unsafe block: `unsafe { ... }`.
 - <span id="exprunsafe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprUnsafe`
@@ -7262,7 +6850,7 @@ struct ExprWhile {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L694-L704)*
+*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L694-L704)*
 
 A while loop: `while expr { ... }`.
 
@@ -7313,11 +6901,8 @@ A while loop: `while expr { ... }`.
 - <span id="exprwhile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprWhile`
@@ -7368,7 +6953,7 @@ struct ExprYield {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L706-L714)*
+*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L706-L714)*
 
 A yield expression: `yield expr`.
 
@@ -7419,11 +7004,8 @@ A yield expression: `yield expr`.
 - <span id="expryield-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprYield`
@@ -7474,7 +7056,7 @@ struct File {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/file.rs:4-84`](../../.source_1765633015/syn-2.0.111/src/file.rs#L4-L84)*
+*Defined in [`syn-2.0.111/src/file.rs:4-84`](../../.source_1765894658/syn-2.0.111/src/file.rs#L4-L84)*
 
 A complete file of Rust source code.
 
@@ -7591,11 +7173,8 @@ File {
 - <span id="file-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::file::File`
@@ -7647,7 +7226,7 @@ struct BoundLifetimes {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L352-L361)*
+*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L352-L361)*
 
 A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
@@ -7698,11 +7277,8 @@ A set of bound lifetimes: `for<'a, 'b, 'c>`.
 - <span id="boundlifetimes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::BoundLifetimes`
@@ -7757,7 +7333,7 @@ struct ConstParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L80-L92)*
+*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L80-L92)*
 
 A const generic parameter: `const LENGTH: usize`.
 
@@ -7804,11 +7380,8 @@ A const generic parameter: `const LENGTH: usize`.
 - <span id="constparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::ConstParam`
@@ -7860,7 +7433,7 @@ struct Generics {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L15-L32)*
+*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L15-L32)*
 
 Lifetimes and type parameters attached to a declaration of a function,
 enum, trait, etc.
@@ -7904,39 +7477,22 @@ grammar, there may be other tokens in between these two things.
 - <span id="generics-split-for-impl"></span>`fn split_for_impl(&self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](generics/index.md#implgenerics), [`TypeGenerics`](generics/index.md#typegenerics), [`WhereClause`](generics/index.md#whereclause)
 
   Split a type's generics into the pieces required for impl'ing a trait
-
   for that type.
-
   
-
   ```rust
-
   use proc_macro2::{Span, Ident};
-
   use quote::quote;
-
   
-
   let generics: syn::Generics = Default::default();
-
   let name = Ident::new("MyType", Span::call_site());
-
   
-
   let (impl_generics, ty_generics, where_clause) = generics.split_for_impl();
-
   quote! {
-
       impl #impl_generics MyTrait for #name #ty_generics #where_clause {
-
           // ...
-
       }
-
   }
-
   ;
-
   ```
 
 #### Trait Implementations
@@ -7986,11 +7542,8 @@ grammar, there may be other tokens in between these two things.
 - <span id="generics-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::Generics`
@@ -8042,7 +7595,7 @@ struct LifetimeParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L56-L65)*
+*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L56-L65)*
 
 A lifetime definition: `'a: 'b + 'c + 'd`.
 
@@ -8093,11 +7646,8 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 - <span id="lifetimeparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::LifetimeParam`
@@ -8148,7 +7698,7 @@ struct PredicateLifetime {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L490-L498)*
+*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L490-L498)*
 
 A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
@@ -8195,11 +7745,8 @@ A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 - <span id="predicatelifetime-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PredicateLifetime`
@@ -8247,7 +7794,7 @@ struct PredicateType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L500-L512)*
+*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L500-L512)*
 
 A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
@@ -8308,11 +7855,8 @@ A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 - <span id="predicatetype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PredicateType`
@@ -8360,7 +7904,7 @@ struct TraitBound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L410-L421)*
+*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L410-L421)*
 
 A trait used as a bound on a type parameter.
 
@@ -8421,11 +7965,8 @@ A trait used as a bound on a type parameter.
 - <span id="traitbound-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::TraitBound`
@@ -8479,7 +8020,7 @@ struct TypeParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L67-L78)*
+*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L67-L78)*
 
 A generic type parameter: `T: Into<String>`.
 
@@ -8526,11 +8067,8 @@ A generic type parameter: `T: Into<String>`.
 - <span id="typeparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::TypeParam`
@@ -8580,7 +8118,7 @@ struct WhereClause {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L461-L469)*
+*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L461-L469)*
 
 A `where` clause in a definition: `where T: Deserialize<'de>, D:
 'static`.
@@ -8628,11 +8166,8 @@ A `where` clause in a definition: `where T: Deserialize<'de>, D:
 - <span id="whereclause-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::WhereClause`
@@ -8684,7 +8219,7 @@ struct PreciseCapture {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L433-L443)*
+*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L433-L443)*
 
 Precise capturing bound: the 'use&lt;&hellip;&gt;' in `impl Trait +
 use<'a, T>`.
@@ -8732,11 +8267,8 @@ use<'a, T>`.
 - <span id="precisecapture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::PreciseCapture`
@@ -8783,7 +8315,7 @@ use<'a, T>`.
 struct ImplGenerics<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:275`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L275)*
+*Defined in [`syn-2.0.111/src/generics.rs:275`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L275)*
 
 Returned by `Generics::split_for_impl`.
 
@@ -8830,11 +8362,8 @@ Returned by `Generics::split_for_impl`.
 - <span id="implgenerics-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ImplGenerics<'a>`
@@ -8877,7 +8406,7 @@ Returned by `Generics::split_for_impl`.
 struct Turbofish<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:291`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L291)*
+*Defined in [`syn-2.0.111/src/generics.rs:291`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L291)*
 
 Returned by `TypeGenerics::as_turbofish`.
 
@@ -8924,11 +8453,8 @@ Returned by `TypeGenerics::as_turbofish`.
 - <span id="turbofish-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Turbofish<'a>`
@@ -8971,7 +8497,7 @@ Returned by `TypeGenerics::as_turbofish`.
 struct TypeGenerics<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:283`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L283)*
+*Defined in [`syn-2.0.111/src/generics.rs:283`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L283)*
 
 Returned by `Generics::split_for_impl`.
 
@@ -9024,11 +8550,8 @@ Returned by `Generics::split_for_impl`.
 - <span id="typegenerics-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TypeGenerics<'a>`
@@ -9076,7 +8599,7 @@ struct ForeignItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:542-551`](../../.source_1765633015/syn-2.0.111/src/item.rs#L542-L551)*
+*Defined in [`syn-2.0.111/src/item.rs:542-551`](../../.source_1765894658/syn-2.0.111/src/item.rs#L542-L551)*
 
 A foreign function in an `extern` block.
 
@@ -9127,11 +8650,8 @@ A foreign function in an `extern` block.
 - <span id="foreignitemfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemFn`
@@ -9182,7 +8702,7 @@ struct ForeignItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:581-589`](../../.source_1765633015/syn-2.0.111/src/item.rs#L581-L589)*
+*Defined in [`syn-2.0.111/src/item.rs:581-589`](../../.source_1765894658/syn-2.0.111/src/item.rs#L581-L589)*
 
 A macro invocation within an extern block.
 
@@ -9233,11 +8753,8 @@ A macro invocation within an extern block.
 - <span id="foreignitemmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemMacro`
@@ -9293,7 +8810,7 @@ struct ForeignItemStatic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:553-566`](../../.source_1765633015/syn-2.0.111/src/item.rs#L553-L566)*
+*Defined in [`syn-2.0.111/src/item.rs:553-566`](../../.source_1765894658/syn-2.0.111/src/item.rs#L553-L566)*
 
 A foreign static item in an `extern` block: `static ext: u8`.
 
@@ -9344,11 +8861,8 @@ A foreign static item in an `extern` block: `static ext: u8`.
 - <span id="foreignitemstatic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemStatic`
@@ -9402,7 +8916,7 @@ struct ForeignItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:568-579`](../../.source_1765633015/syn-2.0.111/src/item.rs#L568-L579)*
+*Defined in [`syn-2.0.111/src/item.rs:568-579`](../../.source_1765894658/syn-2.0.111/src/item.rs#L568-L579)*
 
 A foreign type in an `extern` block: `type void`.
 
@@ -9453,11 +8967,8 @@ A foreign type in an `extern` block: `type void`.
 - <span id="foreignitemtype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemType`
@@ -9516,7 +9027,7 @@ struct ImplItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:734-750`](../../.source_1765633015/syn-2.0.111/src/item.rs#L734-L750)*
+*Defined in [`syn-2.0.111/src/item.rs:734-750`](../../.source_1765894658/syn-2.0.111/src/item.rs#L734-L750)*
 
 An associated constant within an impl block.
 
@@ -9567,11 +9078,8 @@ An associated constant within an impl block.
 - <span id="implitemconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemConst`
@@ -9624,7 +9132,7 @@ struct ImplItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:752-762`](../../.source_1765633015/syn-2.0.111/src/item.rs#L752-L762)*
+*Defined in [`syn-2.0.111/src/item.rs:752-762`](../../.source_1765894658/syn-2.0.111/src/item.rs#L752-L762)*
 
 An associated function within an impl block.
 
@@ -9675,11 +9183,8 @@ An associated function within an impl block.
 - <span id="implitemfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemFn`
@@ -9730,7 +9235,7 @@ struct ImplItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:780-788`](../../.source_1765633015/syn-2.0.111/src/item.rs#L780-L788)*
+*Defined in [`syn-2.0.111/src/item.rs:780-788`](../../.source_1765894658/syn-2.0.111/src/item.rs#L780-L788)*
 
 A macro invocation within an impl block.
 
@@ -9781,11 +9286,8 @@ A macro invocation within an impl block.
 - <span id="implitemmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemMacro`
@@ -9842,7 +9344,7 @@ struct ImplItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:764-778`](../../.source_1765633015/syn-2.0.111/src/item.rs#L764-L778)*
+*Defined in [`syn-2.0.111/src/item.rs:764-778`](../../.source_1765894658/syn-2.0.111/src/item.rs#L764-L778)*
 
 An associated type within an impl block.
 
@@ -9893,11 +9395,8 @@ An associated type within an impl block.
 - <span id="implitemtype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemType`
@@ -9955,7 +9454,7 @@ struct ItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:101-116`](../../.source_1765633015/syn-2.0.111/src/item.rs#L101-L116)*
+*Defined in [`syn-2.0.111/src/item.rs:101-116`](../../.source_1765894658/syn-2.0.111/src/item.rs#L101-L116)*
 
 A constant item: `const MAX: u16 = 65535`.
 
@@ -10006,11 +9505,8 @@ A constant item: `const MAX: u16 = 65535`.
 - <span id="itemconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemConst`
@@ -10065,7 +9561,7 @@ struct ItemEnum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:118-130`](../../.source_1765633015/syn-2.0.111/src/item.rs#L118-L130)*
+*Defined in [`syn-2.0.111/src/item.rs:118-130`](../../.source_1765894658/syn-2.0.111/src/item.rs#L118-L130)*
 
 An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 
@@ -10116,11 +9612,8 @@ An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 - <span id="itemenum-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemEnum`
@@ -10175,7 +9668,7 @@ struct ItemExternCrate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:132-144`](../../.source_1765633015/syn-2.0.111/src/item.rs#L132-L144)*
+*Defined in [`syn-2.0.111/src/item.rs:132-144`](../../.source_1765894658/syn-2.0.111/src/item.rs#L132-L144)*
 
 An `extern crate` item: `extern crate serde`.
 
@@ -10226,11 +9719,8 @@ An `extern crate` item: `extern crate serde`.
 - <span id="itemexterncrate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemExternCrate`
@@ -10282,7 +9772,7 @@ struct ItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:146-155`](../../.source_1765633015/syn-2.0.111/src/item.rs#L146-L155)*
+*Defined in [`syn-2.0.111/src/item.rs:146-155`](../../.source_1765894658/syn-2.0.111/src/item.rs#L146-L155)*
 
 A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 
@@ -10333,11 +9823,8 @@ A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 - <span id="itemfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemFn`
@@ -10390,7 +9877,7 @@ struct ItemForeignMod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:157-167`](../../.source_1765633015/syn-2.0.111/src/item.rs#L157-L167)*
+*Defined in [`syn-2.0.111/src/item.rs:157-167`](../../.source_1765894658/syn-2.0.111/src/item.rs#L157-L167)*
 
 A block of foreign items: `extern "C" { ... }`.
 
@@ -10441,11 +9928,8 @@ A block of foreign items: `extern "C" { ... }`.
 - <span id="itemforeignmod-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemForeignMod`
@@ -10502,7 +9986,7 @@ struct ItemImpl {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:169-186`](../../.source_1765633015/syn-2.0.111/src/item.rs#L169-L186)*
+*Defined in [`syn-2.0.111/src/item.rs:169-186`](../../.source_1765894658/syn-2.0.111/src/item.rs#L169-L186)*
 
 An impl block providing trait or associated items: `impl<A> Trait
 for Data<A> { ... }`.
@@ -10564,11 +10048,8 @@ for Data<A> { ... }`.
 - <span id="itemimpl-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemImpl`
@@ -10620,7 +10101,7 @@ struct ItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:188-198`](../../.source_1765633015/syn-2.0.111/src/item.rs#L188-L198)*
+*Defined in [`syn-2.0.111/src/item.rs:188-198`](../../.source_1765894658/syn-2.0.111/src/item.rs#L188-L198)*
 
 A macro invocation, which includes `macro_rules!` definitions.
 
@@ -10677,11 +10158,8 @@ A macro invocation, which includes `macro_rules!` definitions.
 - <span id="itemmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemMacro`
@@ -10736,7 +10214,7 @@ struct ItemMod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:200-212`](../../.source_1765633015/syn-2.0.111/src/item.rs#L200-L212)*
+*Defined in [`syn-2.0.111/src/item.rs:200-212`](../../.source_1765894658/syn-2.0.111/src/item.rs#L200-L212)*
 
 A module or module declaration: `mod m` or `mod m { ... }`.
 
@@ -10787,11 +10265,8 @@ A module or module declaration: `mod m` or `mod m { ... }`.
 - <span id="itemmod-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemMod`
@@ -10849,7 +10324,7 @@ struct ItemStatic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:214-229`](../../.source_1765633015/syn-2.0.111/src/item.rs#L214-L229)*
+*Defined in [`syn-2.0.111/src/item.rs:214-229`](../../.source_1765894658/syn-2.0.111/src/item.rs#L214-L229)*
 
 A static item: `static BIKE: Shed = Shed(42)`.
 
@@ -10900,11 +10375,8 @@ A static item: `static BIKE: Shed = Shed(42)`.
 - <span id="itemstatic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemStatic`
@@ -10959,7 +10431,7 @@ struct ItemStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:231-243`](../../.source_1765633015/syn-2.0.111/src/item.rs#L231-L243)*
+*Defined in [`syn-2.0.111/src/item.rs:231-243`](../../.source_1765894658/syn-2.0.111/src/item.rs#L231-L243)*
 
 A struct definition: `struct Foo<A> { x: A }`.
 
@@ -11010,11 +10482,8 @@ A struct definition: `struct Foo<A> { x: A }`.
 - <span id="itemstruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemStruct`
@@ -11074,7 +10543,7 @@ struct ItemTrait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:245-262`](../../.source_1765633015/syn-2.0.111/src/item.rs#L245-L262)*
+*Defined in [`syn-2.0.111/src/item.rs:245-262`](../../.source_1765894658/syn-2.0.111/src/item.rs#L245-L262)*
 
 A trait definition: `pub trait Iterator { ... }`.
 
@@ -11125,11 +10594,8 @@ A trait definition: `pub trait Iterator { ... }`.
 - <span id="itemtrait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemTrait`
@@ -11185,7 +10651,7 @@ struct ItemTraitAlias {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:264-277`](../../.source_1765633015/syn-2.0.111/src/item.rs#L264-L277)*
+*Defined in [`syn-2.0.111/src/item.rs:264-277`](../../.source_1765894658/syn-2.0.111/src/item.rs#L264-L277)*
 
 A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 
@@ -11236,11 +10702,8 @@ A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 - <span id="itemtraitalias-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemTraitAlias`
@@ -11296,7 +10759,7 @@ struct ItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:279-292`](../../.source_1765633015/syn-2.0.111/src/item.rs#L279-L292)*
+*Defined in [`syn-2.0.111/src/item.rs:279-292`](../../.source_1765894658/syn-2.0.111/src/item.rs#L279-L292)*
 
 A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 
@@ -11347,11 +10810,8 @@ A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 - <span id="itemtype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemType`
@@ -11405,7 +10865,7 @@ struct ItemUnion {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:294-305`](../../.source_1765633015/syn-2.0.111/src/item.rs#L294-L305)*
+*Defined in [`syn-2.0.111/src/item.rs:294-305`](../../.source_1765894658/syn-2.0.111/src/item.rs#L294-L305)*
 
 A union definition: `union Foo<A, B> { x: A, y: B }`.
 
@@ -11456,11 +10916,8 @@ A union definition: `union Foo<A, B> { x: A, y: B }`.
 - <span id="itemunion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemUnion`
@@ -11514,7 +10971,7 @@ struct ItemUse {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:307-318`](../../.source_1765633015/syn-2.0.111/src/item.rs#L307-L318)*
+*Defined in [`syn-2.0.111/src/item.rs:307-318`](../../.source_1765894658/syn-2.0.111/src/item.rs#L307-L318)*
 
 A use declaration: `use std::collections::HashMap`.
 
@@ -11565,11 +11022,8 @@ A use declaration: `use std::collections::HashMap`.
 - <span id="itemuse-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemUse`
@@ -11623,7 +11077,7 @@ struct Receiver {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:832-849`](../../.source_1765633015/syn-2.0.111/src/item.rs#L832-L849)*
+*Defined in [`syn-2.0.111/src/item.rs:832-849`](../../.source_1765894658/syn-2.0.111/src/item.rs#L832-L849)*
 
 The `self` argument of an associated method.
 
@@ -11680,11 +11134,8 @@ shorthand case, the type in `ty` is reconstructed as one of `Self`,
 - <span id="receiver-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::Receiver`
@@ -11743,7 +11194,7 @@ struct Signature {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:790-807`](../../.source_1765633015/syn-2.0.111/src/item.rs#L790-L807)*
+*Defined in [`syn-2.0.111/src/item.rs:790-807`](../../.source_1765894658/syn-2.0.111/src/item.rs#L790-L807)*
 
 A function signature in a trait or implementation: `unsafe fn
 initialize(&self)`.
@@ -11797,11 +11248,8 @@ initialize(&self)`.
 - <span id="signature-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::Signature`
@@ -11857,7 +11305,7 @@ struct TraitItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:637-650`](../../.source_1765633015/syn-2.0.111/src/item.rs#L637-L650)*
+*Defined in [`syn-2.0.111/src/item.rs:637-650`](../../.source_1765894658/syn-2.0.111/src/item.rs#L637-L650)*
 
 An associated constant within the definition of a trait.
 
@@ -11908,11 +11356,8 @@ An associated constant within the definition of a trait.
 - <span id="traititemconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemConst`
@@ -11964,7 +11409,7 @@ struct TraitItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:652-661`](../../.source_1765633015/syn-2.0.111/src/item.rs#L652-L661)*
+*Defined in [`syn-2.0.111/src/item.rs:652-661`](../../.source_1765894658/syn-2.0.111/src/item.rs#L652-L661)*
 
 An associated function within the definition of a trait.
 
@@ -12015,11 +11460,8 @@ An associated function within the definition of a trait.
 - <span id="traititemfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemFn`
@@ -12070,7 +11512,7 @@ struct TraitItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:678-686`](../../.source_1765633015/syn-2.0.111/src/item.rs#L678-L686)*
+*Defined in [`syn-2.0.111/src/item.rs:678-686`](../../.source_1765894658/syn-2.0.111/src/item.rs#L678-L686)*
 
 A macro invocation within the definition of a trait.
 
@@ -12121,11 +11563,8 @@ A macro invocation within the definition of a trait.
 - <span id="traititemmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemMacro`
@@ -12181,7 +11620,7 @@ struct TraitItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:663-676`](../../.source_1765633015/syn-2.0.111/src/item.rs#L663-L676)*
+*Defined in [`syn-2.0.111/src/item.rs:663-676`](../../.source_1765894658/syn-2.0.111/src/item.rs#L663-L676)*
 
 An associated type within the definition of a trait.
 
@@ -12232,11 +11671,8 @@ An associated type within the definition of a trait.
 - <span id="traititemtype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemType`
@@ -12285,7 +11721,7 @@ struct UseGlob {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:479-485`](../../.source_1765633015/syn-2.0.111/src/item.rs#L479-L485)*
+*Defined in [`syn-2.0.111/src/item.rs:479-485`](../../.source_1765894658/syn-2.0.111/src/item.rs#L479-L485)*
 
 A glob import in a `use` item: `*`.
 
@@ -12332,11 +11768,8 @@ A glob import in a `use` item: `*`.
 - <span id="useglob-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UseGlob`
@@ -12382,7 +11815,7 @@ struct UseGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:487-494`](../../.source_1765633015/syn-2.0.111/src/item.rs#L487-L494)*
+*Defined in [`syn-2.0.111/src/item.rs:487-494`](../../.source_1765894658/syn-2.0.111/src/item.rs#L487-L494)*
 
 A braced group of imports in a `use` item: `{A, B, C}`.
 
@@ -12429,11 +11862,8 @@ A braced group of imports in a `use` item: `{A, B, C}`.
 - <span id="usegroup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UseGroup`
@@ -12478,7 +11908,7 @@ struct UseName {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:461-467`](../../.source_1765633015/syn-2.0.111/src/item.rs#L461-L467)*
+*Defined in [`syn-2.0.111/src/item.rs:461-467`](../../.source_1765894658/syn-2.0.111/src/item.rs#L461-L467)*
 
 An identifier imported by a `use` item: `HashMap`.
 
@@ -12525,11 +11955,8 @@ An identifier imported by a `use` item: `HashMap`.
 - <span id="usename-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UseName`
@@ -12576,7 +12003,7 @@ struct UsePath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:451-459`](../../.source_1765633015/syn-2.0.111/src/item.rs#L451-L459)*
+*Defined in [`syn-2.0.111/src/item.rs:451-459`](../../.source_1765894658/syn-2.0.111/src/item.rs#L451-L459)*
 
 A path prefix of imports in a `use` item: `std::...`.
 
@@ -12623,11 +12050,8 @@ A path prefix of imports in a `use` item: `std::...`.
 - <span id="usepath-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UsePath`
@@ -12674,7 +12098,7 @@ struct UseRename {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:469-477`](../../.source_1765633015/syn-2.0.111/src/item.rs#L469-L477)*
+*Defined in [`syn-2.0.111/src/item.rs:469-477`](../../.source_1765894658/syn-2.0.111/src/item.rs#L469-L477)*
 
 An renamed identifier imported by a `use` item: `HashMap as Map`.
 
@@ -12721,11 +12145,8 @@ An renamed identifier imported by a `use` item: `HashMap as Map`.
 - <span id="userename-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UseRename`
@@ -12773,7 +12194,7 @@ struct Variadic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:857-876`](../../.source_1765633015/syn-2.0.111/src/item.rs#L857-L876)*
+*Defined in [`syn-2.0.111/src/item.rs:857-876`](../../.source_1765894658/syn-2.0.111/src/item.rs#L857-L876)*
 
 The variadic argument of a foreign function.
 
@@ -12830,11 +12251,8 @@ extern "C" {
 - <span id="variadic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Variadic`
@@ -12880,7 +12298,7 @@ struct Lifetime {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../.source_1765633015/syn-2.0.111/src/lifetime.rs#L18-L21)*
+*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../.source_1765894658/syn-2.0.111/src/lifetime.rs#L18-L21)*
 
 A Rust lifetime: `'a`.
 
@@ -12898,31 +12316,18 @@ Lifetime names must conform to the following rules:
 - <span id="lifetime-new"></span>`fn new(symbol: &str, span: Span) -> Self`
 
   # Panics
-
   
-
   Panics if the lifetime does not conform to the bulleted rules above.
-
   
-
   # Invocation
-
   
-
   ```rust
-
   use proc_macro2::Span;
-
   use syn::Lifetime;
-
   
-
   fn f() -> Lifetime {
-
   Lifetime::new("'a", Span::call_site())
-
   }
-
   ```
 
 - <span id="lifetime-span"></span>`fn span(&self) -> Span`
@@ -12976,11 +12381,8 @@ Lifetime names must conform to the following rules:
 - <span id="lifetime-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Lifetime`
@@ -13044,7 +12446,7 @@ struct LitBool {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:126-132`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L126-L132)*
+*Defined in [`syn-2.0.111/src/lit.rs:126-132`](../../.source_1765894658/syn-2.0.111/src/lit.rs#L126-L132)*
 
 A boolean literal: `true` or `false`.
 
@@ -13095,11 +12497,8 @@ A boolean literal: `true` or `false`.
 - <span id="litbool-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::lit::LitBool`
@@ -13150,7 +12549,7 @@ struct LitByte {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:79-84`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L79-L84)*
+*Defined in [`syn-2.0.111/src/lit.rs:79-84`](../../.source_1765894658/syn-2.0.111/src/lit.rs#L79-L84)*
 
 A byte literal: `b'f'`.
 
@@ -13201,11 +12600,8 @@ A byte literal: `b'f'`.
 - <span id="litbyte-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::lit::LitByte`
@@ -13256,7 +12652,7 @@ struct LitByteStr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:65-70`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L65-L70)*
+*Defined in [`syn-2.0.111/src/lit.rs:65-70`](../../.source_1765894658/syn-2.0.111/src/lit.rs#L65-L70)*
 
 A byte string literal: `b"foo"`.
 
@@ -13307,11 +12703,8 @@ A byte string literal: `b"foo"`.
 - <span id="litbytestr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::lit::LitByteStr`
@@ -13362,7 +12755,7 @@ struct LitCStr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:72-77`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L72-L77)*
+*Defined in [`syn-2.0.111/src/lit.rs:72-77`](../../.source_1765894658/syn-2.0.111/src/lit.rs#L72-L77)*
 
 A nul-terminated C-string literal: `c"foo"`.
 
@@ -13413,11 +12806,8 @@ A nul-terminated C-string literal: `c"foo"`.
 - <span id="litcstr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::lit::LitCStr`
@@ -13468,7 +12858,7 @@ struct LitChar {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:86-91`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L86-L91)*
+*Defined in [`syn-2.0.111/src/lit.rs:86-91`](../../.source_1765894658/syn-2.0.111/src/lit.rs#L86-L91)*
 
 A character literal: `'a'`.
 
@@ -13519,11 +12909,8 @@ A character literal: `'a'`.
 - <span id="litchar-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::lit::LitChar`
@@ -13574,7 +12961,7 @@ struct LitFloat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:111-118`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L111-L118)*
+*Defined in [`syn-2.0.111/src/lit.rs:111-118`](../../.source_1765894658/syn-2.0.111/src/lit.rs#L111-L118)*
 
 A floating point literal: `1f64` or `1.0e10f64`.
 
@@ -13631,11 +13018,8 @@ Must be finite. May not be infinite or NaN.
 - <span id="litfloat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::lit::LitFloat`
@@ -13690,7 +13074,7 @@ struct LitInt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:98-103`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L98-L103)*
+*Defined in [`syn-2.0.111/src/lit.rs:98-103`](../../.source_1765894658/syn-2.0.111/src/lit.rs#L98-L103)*
 
 An integer literal: `1` or `1u16`.
 
@@ -13745,11 +13129,8 @@ An integer literal: `1` or `1u16`.
 - <span id="litint-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::lit::LitInt`
@@ -13804,7 +13185,7 @@ struct LitStr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:58-63`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L58-L63)*
+*Defined in [`syn-2.0.111/src/lit.rs:58-63`](../../.source_1765894658/syn-2.0.111/src/lit.rs#L58-L63)*
 
 A UTF-8 string literal: `"foo"`.
 
@@ -13855,11 +13236,8 @@ A UTF-8 string literal: `"foo"`.
 - <span id="litstr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::lit::LitStr`
@@ -13913,7 +13291,7 @@ struct Macro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../.source_1765633015/syn-2.0.111/src/mac.rs#L14-L23)*
+*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../.source_1765894658/syn-2.0.111/src/mac.rs#L14-L23)*
 
 A macro invocation: `println!("{}", mac)`.
 
@@ -13922,173 +13300,91 @@ A macro invocation: `println!("{}", mac)`.
 - <span id="macro-parse-body"></span>`fn parse_body<T: Parse>(&self) -> Result<T>` — [`Result`](error/index.md#result)
 
   Parse the tokens within the macro invocation's delimiters into a syntax
-
   tree.
-
   
-
   This is equivalent to `syn::parse2::<T>(mac.tokens)` except that it
-
   produces a more useful span when `tokens` is empty.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{parse_quote, Expr, ExprLit, Ident, Lit, LitStr, Macro, Token};
-
   use syn::ext::IdentExt;
-
   use syn::parse::{Error, Parse, ParseStream, Result};
-
   use syn::punctuated::Punctuated;
-
   
-
   // The arguments expected by libcore's format_args macro, and as a
-
   // result most other formatting and printing macros like println.
-
   //
-
   //     println!("{} is {number:.prec$}", "x", prec=5, number=0.01)
-
   struct FormatArgs {
-
       format_string: Expr,
-
       positional_args: Vec<Expr>,
-
       named_args: Vec<(Ident, Expr)>,
-
   }
-
   
-
   impl Parse for FormatArgs {
-
       fn parse(input: ParseStream) -> Result<Self> {
-
           let format_string: Expr;
-
           let mut positional_args = Vec::new();
-
           let mut named_args = Vec::new();
-
   
-
           format_string = input.parse()?;
-
           while !input.is_empty() {
-
               input.parse::<Token![,]>()?;
-
               if input.is_empty() {
-
                   break;
-
               }
-
               if input.peek(Ident::peek_any) && input.peek2(Token![=]) {
-
                   while !input.is_empty() {
-
                       let name: Ident = input.call(Ident::parse_any)?;
-
                       input.parse::<Token![=]>()?;
-
                       let value: Expr = input.parse()?;
-
                       named_args.push((name, value));
-
                       if input.is_empty() {
-
                           break;
-
                       }
-
                       input.parse::<Token![,]>()?;
-
                   }
-
                   break;
-
               }
-
               positional_args.push(input.parse()?);
-
           }
-
   
-
           Ok(FormatArgs {
-
               format_string,
-
               positional_args,
-
               named_args,
-
           })
-
       }
-
   }
-
   
-
   // Extract the first argument, the format string literal, from an
-
   // invocation of a formatting or printing macro.
-
   fn get_format_string(m: &Macro) -> Result<LitStr> {
-
       let args: FormatArgs = m.parse_body()?;
-
       match args.format_string {
-
           Expr::Lit(ExprLit { lit: Lit::Str(lit), .. }) => Ok(lit),
-
           other => {
-
               // First argument was not a string literal expression.
-
               // Maybe something like: println!(concat!(...), ...)
-
               Err(Error::new_spanned(other, "format string must be a string literal"))
-
           }
-
       }
-
   }
-
   
-
   fn main() {
-
       let invocation = parse_quote! {
-
           println!("{:?}", Instant::now())
-
       };
-
       let lit = get_format_string(&invocation).unwrap();
-
       assert_eq!(lit.value(), "{:?}");
-
   }
-
   ```
 
 - <span id="macro-parse-body-with"></span>`fn parse_body_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](error/index.md#result), [`Parser`](parse/index.md#parser)
 
   Parse the tokens within the macro invocation's delimiters using the
-
   given parser.
 
 #### Trait Implementations
@@ -14134,11 +13430,8 @@ A macro invocation: `println!("{}", mac)`.
 - <span id="macro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::mac::Macro`
@@ -14190,7 +13483,7 @@ struct FieldPat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:224-236`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L224-L236)*
+*Defined in [`syn-2.0.111/src/pat.rs:224-236`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L224-L236)*
 
 A single field in a struct pattern.
 
@@ -14240,11 +13533,8 @@ the same as `x: x, y: ref y, z: ref mut z` but there is no colon token.
 - <span id="fieldpat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::FieldPat`
@@ -14291,7 +13581,7 @@ struct PatConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L385-L393)*
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
@@ -14342,11 +13632,8 @@ A const block: `const { ... }`.
 - <span id="exprconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprConst`
@@ -14399,7 +13686,7 @@ struct PatIdent {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:104-117`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L104-L117)*
+*Defined in [`syn-2.0.111/src/pat.rs:104-117`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L104-L117)*
 
 A pattern that binds a new variable: `ref mut binding @ SUBPATTERN`.
 
@@ -14453,11 +13740,8 @@ constant; these cannot be distinguished syntactically.
 - <span id="patident-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatIdent`
@@ -14503,7 +13787,7 @@ struct PatLit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L493-L500)*
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L493-L500)*
 
 A literal in place of an expression: `1`, `"foo"`.
 
@@ -14554,11 +13838,8 @@ A literal in place of an expression: `1`, `"foo"`.
 - <span id="exprlit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprLit`
@@ -14608,7 +13889,7 @@ struct PatMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L513-L520)*
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L513-L520)*
 
 A macro invocation expression: `format!("{}", q)`.
 
@@ -14659,11 +13940,8 @@ A macro invocation expression: `format!("{}", q)`.
 - <span id="exprmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprMacro`
@@ -14714,7 +13992,7 @@ struct PatOr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:119-127`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L119-L127)*
+*Defined in [`syn-2.0.111/src/pat.rs:119-127`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L119-L127)*
 
 A pattern that matches any one of a set of cases.
 
@@ -14765,11 +14043,8 @@ A pattern that matches any one of a set of cases.
 - <span id="pator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatOr`
@@ -14816,7 +14091,7 @@ struct PatParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:129-137`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L129-L137)*
+*Defined in [`syn-2.0.111/src/pat.rs:129-137`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L129-L137)*
 
 A parenthesized pattern: `(A | B)`.
 
@@ -14867,11 +14142,8 @@ A parenthesized pattern: `(A | B)`.
 - <span id="patparen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatParen`
@@ -14918,7 +14190,7 @@ struct PatPath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L558-L569)*
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L558-L569)*
 
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
@@ -14972,11 +14244,8 @@ A plain identifier like `x` is a path of length 1.
 - <span id="exprpath-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprPath`
@@ -15028,7 +14297,7 @@ struct PatRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L571-L580)*
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L571-L580)*
 
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
@@ -15079,11 +14348,8 @@ A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 - <span id="exprrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprRange`
@@ -15135,7 +14401,7 @@ struct PatReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:139-148`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L139-L148)*
+*Defined in [`syn-2.0.111/src/pat.rs:139-148`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L139-L148)*
 
 A reference pattern: `&mut var`.
 
@@ -15186,11 +14452,8 @@ A reference pattern: `&mut var`.
 - <span id="patreference-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatReference`
@@ -15236,7 +14499,7 @@ struct PatRest {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:150-157`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L150-L157)*
+*Defined in [`syn-2.0.111/src/pat.rs:150-157`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L150-L157)*
 
 The dots in a tuple or slice pattern: `[0, 1, ..]`.
 
@@ -15287,11 +14550,8 @@ The dots in a tuple or slice pattern: `[0, 1, ..]`.
 - <span id="patrest-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatRest`
@@ -15338,7 +14598,7 @@ struct PatSlice {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:159-167`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L159-L167)*
+*Defined in [`syn-2.0.111/src/pat.rs:159-167`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L159-L167)*
 
 A dynamically sized slice pattern: `[a, b, ref i @ .., y, z]`.
 
@@ -15389,11 +14649,8 @@ A dynamically sized slice pattern: `[a, b, ref i @ .., y, z]`.
 - <span id="patslice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatSlice`
@@ -15443,7 +14700,7 @@ struct PatStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:169-180`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L169-L180)*
+*Defined in [`syn-2.0.111/src/pat.rs:169-180`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L169-L180)*
 
 A struct or struct variant pattern: `Variant { x, y, .. }`.
 
@@ -15494,11 +14751,8 @@ A struct or struct variant pattern: `Variant { x, y, .. }`.
 - <span id="patstruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatStruct`
@@ -15545,7 +14799,7 @@ struct PatTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:182-190`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L182-L190)*
+*Defined in [`syn-2.0.111/src/pat.rs:182-190`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L182-L190)*
 
 A tuple pattern: `(a, b)`.
 
@@ -15596,11 +14850,8 @@ A tuple pattern: `(a, b)`.
 - <span id="pattuple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatTuple`
@@ -15649,7 +14900,7 @@ struct PatTupleStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:192-202`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L192-L202)*
+*Defined in [`syn-2.0.111/src/pat.rs:192-202`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L192-L202)*
 
 A tuple struct or tuple variant pattern: `Variant(x, y, .., z)`.
 
@@ -15700,11 +14951,8 @@ A tuple struct or tuple variant pattern: `Variant(x, y, .., z)`.
 - <span id="pattuplestruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatTupleStruct`
@@ -15752,7 +15000,7 @@ struct PatType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:204-213`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L204-L213)*
+*Defined in [`syn-2.0.111/src/pat.rs:204-213`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L204-L213)*
 
 A type ascription pattern: `foo: f64`.
 
@@ -15803,11 +15051,8 @@ A type ascription pattern: `foo: f64`.
 - <span id="pattype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::pat::PatType`
@@ -15857,7 +15102,7 @@ struct PatWild {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:215-222`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L215-L222)*
+*Defined in [`syn-2.0.111/src/pat.rs:215-222`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L215-L222)*
 
 A pattern that matches any value: `_`.
 
@@ -15908,11 +15153,8 @@ A pattern that matches any value: `_`.
 - <span id="patwild-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatWild`
@@ -15960,7 +15202,7 @@ struct AngleBracketedGenericArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../.source_1765633015/syn-2.0.111/src/path.rs#L196-L206)*
+*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../.source_1765894658/syn-2.0.111/src/path.rs#L196-L206)*
 
 Angle bracketed arguments of a path segment: the `<K, V>` in `HashMap<K,
 V>`.
@@ -15970,11 +15212,8 @@ V>`.
 - <span id="cratepathanglebracketedgenericarguments-parse-turbofish"></span>`fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
 
   Parse `::<…>` with mandatory leading `::`.
-
   
-
   The ordinary [`Parse`](parse/index.md) impl for `AngleBracketedGenericArguments`
-
   parses optional leading `::`.
 
 - <span id="cratepathanglebracketedgenericarguments-do-parse"></span>`fn do_parse(colon2_token: Option<token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](token/index.md#pathsep), [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
@@ -16022,11 +15261,8 @@ V>`.
 - <span id="anglebracketedgenericarguments-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::AngleBracketedGenericArguments`
@@ -16078,7 +15314,7 @@ struct AssocConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../.source_1765633015/syn-2.0.111/src/path.rs#L220-L230)*
+*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../.source_1765894658/syn-2.0.111/src/path.rs#L220-L230)*
 
 An equality constraint on an associated constant: the `PANIC = false` in
 `Trait<PANIC = false>`.
@@ -16126,11 +15362,8 @@ An equality constraint on an associated constant: the `PANIC = false` in
 - <span id="assocconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::AssocConst`
@@ -16178,7 +15411,7 @@ struct AssocType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../.source_1765633015/syn-2.0.111/src/path.rs#L208-L218)*
+*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../.source_1765894658/syn-2.0.111/src/path.rs#L208-L218)*
 
 A binding (equality constraint) on an associated type: the `Item = u8`
 in `Iterator<Item = u8>`.
@@ -16226,11 +15459,8 @@ in `Iterator<Item = u8>`.
 - <span id="assoctype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::AssocType`
@@ -16278,7 +15508,7 @@ struct Constraint {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../.source_1765633015/syn-2.0.111/src/path.rs#L232-L241)*
+*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../.source_1765894658/syn-2.0.111/src/path.rs#L232-L241)*
 
 An associated type bound: `Iterator<Item: Display>`.
 
@@ -16325,11 +15555,8 @@ An associated type bound: `Iterator<Item: Display>`.
 - <span id="constraint-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Constraint`
@@ -16376,7 +15603,7 @@ struct ParenthesizedGenericArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../.source_1765633015/syn-2.0.111/src/path.rs#L243-L254)*
+*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../.source_1765894658/syn-2.0.111/src/path.rs#L243-L254)*
 
 Arguments of a function path segment: the `(A, B) -> C` in `Fn(A,B) ->
 C`.
@@ -16438,11 +15665,8 @@ C`.
 - <span id="parenthesizedgenericarguments-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::ParenthesizedGenericArguments`
@@ -16492,7 +15716,7 @@ struct Path {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../.source_1765633015/syn-2.0.111/src/path.rs#L11-L18)*
+*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../.source_1765894658/syn-2.0.111/src/path.rs#L11-L18)*
 
 A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
@@ -16501,63 +15725,34 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 - <span id="cratepathpath-parse-mod-style"></span>`fn parse_mod_style(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
 
   Parse a `Path` containing no path arguments on any of its segments.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{Path, Result, Token};
-
   use syn::parse::{Parse, ParseStream};
-
   
-
   // A simplified single `use` statement like:
-
   //
-
   //     use std::collections::HashMap;
-
   //
-
   // Note that generic parameters are not allowed in a `use` statement
-
   // so the following must not be accepted.
-
   //
-
   //     use a::<b>::c;
-
   struct SingleUse {
-
       use_token: Token![use],
-
       path: Path,
-
   }
-
   
-
   impl Parse for SingleUse {
-
       fn parse(input: ParseStream) -> Result<Self> {
-
           Ok(SingleUse {
-
               use_token: input.parse()?,
-
               path: input.call(Path::parse_mod_style)?,
-
           })
-
       }
-
   }
-
   ```
 
 - <span id="cratepathpath-parse-helper"></span>`fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
@@ -16609,11 +15804,8 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 - <span id="path-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::Path`
@@ -16665,7 +15857,7 @@ struct PathSegment {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../.source_1765633015/syn-2.0.111/src/path.rs#L107-L114)*
+*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../.source_1765894658/syn-2.0.111/src/path.rs#L107-L114)*
 
 A segment of a path together with any path arguments on that segment.
 
@@ -16716,11 +15908,8 @@ A segment of a path together with any path arguments on that segment.
 - <span id="pathsegment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::PathSegment`
@@ -16773,7 +15962,7 @@ struct QSelf {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../.source_1765633015/syn-2.0.111/src/path.rs#L256-L281)*
+*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../.source_1765894658/syn-2.0.111/src/path.rs#L256-L281)*
 
 The explicit Self type in a qualified path: the `T` in `<T as
 Display>::fmt`.
@@ -16835,11 +16024,8 @@ item qualified with this Self type.
 - <span id="qself-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::QSelf`
@@ -16883,7 +16069,7 @@ struct VisRestricted {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../.source_1765633015/syn-2.0.111/src/restriction.rs#L27-L37)*
+*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../.source_1765894658/syn-2.0.111/src/restriction.rs#L27-L37)*
 
 A visibility level restricted to some path: `pub(self)` or
 `pub(super)` or `pub(crate)` or `pub(in some::module)`.
@@ -16935,11 +16121,8 @@ A visibility level restricted to some path: `pub(self)` or
 - <span id="visrestricted-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::VisRestricted`
@@ -16985,7 +16168,7 @@ struct Block {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:8-16`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L8-L16)*
+*Defined in [`syn-2.0.111/src/stmt.rs:8-16`](../../.source_1765894658/syn-2.0.111/src/stmt.rs#L8-L16)*
 
 A braced block containing Rust statements.
 
@@ -17000,101 +16183,53 @@ A braced block containing Rust statements.
 - <span id="cratestmtblock-parse-within"></span>`fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result), [`Stmt`](stmt/index.md#stmt)
 
   Parse the body of a block as zero or more statements, possibly
-
   including one trailing expression.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{braced, token, Attribute, Block, Ident, Result, Stmt, Token};
-
   use syn::parse::{Parse, ParseStream};
-
   
-
   // Parse a function with no generics or parameter list.
-
   //
-
   //     fn playground {
-
   //         let mut x = 1;
-
   //         x += 1;
-
   //         println!("{}", x);
-
   //     }
-
   struct MiniFunction {
-
       attrs: Vec<Attribute>,
-
       fn_token: Token![fn],
-
       name: Ident,
-
       brace_token: token::Brace,
-
       stmts: Vec<Stmt>,
-
   }
-
   
-
   impl Parse for MiniFunction {
-
       fn parse(input: ParseStream) -> Result<Self> {
-
           let outer_attrs = input.call(Attribute::parse_outer)?;
-
           let fn_token: Token![fn] = input.parse()?;
-
           let name: Ident = input.parse()?;
-
   
-
           let content;
-
           let brace_token = braced!(content in input);
-
           let inner_attrs = content.call(Attribute::parse_inner)?;
-
           let stmts = content.call(Block::parse_within)?;
-
   
-
           Ok(MiniFunction {
-
               attrs: {
-
                   let mut attrs = outer_attrs;
-
                   attrs.extend(inner_attrs);
-
                   attrs
-
               },
-
               fn_token,
-
               name,
-
               brace_token,
-
               stmts,
-
           })
-
       }
-
   }
-
   ```
 
 #### Trait Implementations
@@ -17140,11 +16275,8 @@ A braced block containing Rust statements.
 - <span id="block-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::stmt::Block`
@@ -17197,7 +16329,7 @@ struct Local {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:40-50`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L40-L50)*
+*Defined in [`syn-2.0.111/src/stmt.rs:40-50`](../../.source_1765894658/syn-2.0.111/src/stmt.rs#L40-L50)*
 
 A local `let` binding: `let x: u64 = s.parse()?;`.
 
@@ -17248,11 +16380,8 @@ A local `let` binding: `let x: u64 = s.parse()?;`.
 - <span id="local-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Local`
@@ -17299,7 +16428,7 @@ struct LocalInit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:52-64`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L52-L64)*
+*Defined in [`syn-2.0.111/src/stmt.rs:52-64`](../../.source_1765894658/syn-2.0.111/src/stmt.rs#L52-L64)*
 
 The expression assigned in a local `let` binding, including optional
 diverging `else` block.
@@ -17350,11 +16479,8 @@ diverging `else` block.
 - <span id="localinit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::LocalInit`
@@ -17391,7 +16517,7 @@ struct StmtMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:66-78`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L66-L78)*
+*Defined in [`syn-2.0.111/src/stmt.rs:66-78`](../../.source_1765894658/syn-2.0.111/src/stmt.rs#L66-L78)*
 
 A macro invocation in statement position.
 
@@ -17446,11 +16572,8 @@ expression.
 - <span id="stmtmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::StmtMacro`
@@ -17496,7 +16619,7 @@ struct Abi {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:230-237`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L230-L237)*
+*Defined in [`syn-2.0.111/src/ty.rs:230-237`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L230-L237)*
 
 The binary interface of a function: `extern "C"`.
 
@@ -17543,11 +16666,8 @@ The binary interface of a function: `extern "C"`.
 - <span id="abi-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::Abi`
@@ -17598,7 +16718,7 @@ struct BareFnArg {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:239-247`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L239-L247)*
+*Defined in [`syn-2.0.111/src/ty.rs:239-247`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L239-L247)*
 
 An argument in a function type: the `usize` in `fn(usize) -> bool`.
 
@@ -17645,11 +16765,8 @@ An argument in a function type: the `usize` in `fn(usize) -> bool`.
 - <span id="barefnarg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::BareFnArg`
@@ -17701,7 +16818,7 @@ struct BareVariadic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:249-258`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L249-L258)*
+*Defined in [`syn-2.0.111/src/ty.rs:249-258`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L249-L258)*
 
 The variadic argument of a function pointer like `fn(usize, ...)`.
 
@@ -17748,11 +16865,8 @@ The variadic argument of a function pointer like `fn(usize, ...)`.
 - <span id="barevariadic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::BareVariadic`
@@ -17800,7 +16914,7 @@ struct TypeArray {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:92-101`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L92-L101)*
+*Defined in [`syn-2.0.111/src/ty.rs:92-101`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L92-L101)*
 
 A fixed size array type: `[T; n]`.
 
@@ -17851,11 +16965,8 @@ A fixed size array type: `[T; n]`.
 - <span id="typearray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeArray`
@@ -17911,7 +17022,7 @@ struct TypeBareFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:103-116`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L103-L116)*
+*Defined in [`syn-2.0.111/src/ty.rs:103-116`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L103-L116)*
 
 A bare function type: `fn(usize) -> bool`.
 
@@ -17962,11 +17073,8 @@ A bare function type: `fn(usize) -> bool`.
 - <span id="typebarefn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeBareFn`
@@ -18016,7 +17124,7 @@ struct TypeGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:118-125`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L118-L125)*
+*Defined in [`syn-2.0.111/src/ty.rs:118-125`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L118-L125)*
 
 A type contained within invisible delimiters.
 
@@ -18067,11 +17175,8 @@ A type contained within invisible delimiters.
 - <span id="typegroup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeGroup`
@@ -18121,7 +17226,7 @@ struct TypeImplTrait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:127-135`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L127-L135)*
+*Defined in [`syn-2.0.111/src/ty.rs:127-135`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L127-L135)*
 
 An `impl Bound1 + Bound2 + Bound3` type where `Bound` is a trait or
 a lifetime.
@@ -18175,11 +17280,8 @@ a lifetime.
 - <span id="typeimpltrait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeImplTrait`
@@ -18228,7 +17330,7 @@ struct TypeInfer {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:137-143`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L137-L143)*
+*Defined in [`syn-2.0.111/src/ty.rs:137-143`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L137-L143)*
 
 Indication that a type should be inferred by the compiler: `_`.
 
@@ -18279,11 +17381,8 @@ Indication that a type should be inferred by the compiler: `_`.
 - <span id="typeinfer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeInfer`
@@ -18332,7 +17431,7 @@ struct TypeMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:145-151`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L145-L151)*
+*Defined in [`syn-2.0.111/src/ty.rs:145-151`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L145-L151)*
 
 A macro in the type position.
 
@@ -18383,11 +17482,8 @@ A macro in the type position.
 - <span id="typemacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeMacro`
@@ -18436,7 +17532,7 @@ struct TypeNever {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:153-159`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L153-L159)*
+*Defined in [`syn-2.0.111/src/ty.rs:153-159`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L153-L159)*
 
 The never type: `!`.
 
@@ -18487,11 +17583,8 @@ The never type: `!`.
 - <span id="typenever-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeNever`
@@ -18541,7 +17634,7 @@ struct TypeParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:161-168`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L161-L168)*
+*Defined in [`syn-2.0.111/src/ty.rs:161-168`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L161-L168)*
 
 A parenthesized type equivalent to the inner type.
 
@@ -18592,11 +17685,8 @@ A parenthesized type equivalent to the inner type.
 - <span id="typeparen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeParen`
@@ -18646,7 +17736,7 @@ struct TypePath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:170-178`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L170-L178)*
+*Defined in [`syn-2.0.111/src/ty.rs:170-178`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L170-L178)*
 
 A path like `std::slice::Iter`, optionally qualified with a
 self-type as in `<Vec<T> as SomeTrait>::Associated`.
@@ -18698,11 +17788,8 @@ self-type as in `<Vec<T> as SomeTrait>::Associated`.
 - <span id="typepath-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypePath`
@@ -18754,7 +17841,7 @@ struct TypePtr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:180-189`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L180-L189)*
+*Defined in [`syn-2.0.111/src/ty.rs:180-189`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L180-L189)*
 
 A raw pointer type: `*const T` or `*mut T`.
 
@@ -18805,11 +17892,8 @@ A raw pointer type: `*const T` or `*mut T`.
 - <span id="typeptr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypePtr`
@@ -18861,7 +17945,7 @@ struct TypeReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:191-200`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L191-L200)*
+*Defined in [`syn-2.0.111/src/ty.rs:191-200`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L191-L200)*
 
 A reference type: `&'a T` or `&'a mut T`.
 
@@ -18912,11 +17996,8 @@ A reference type: `&'a T` or `&'a mut T`.
 - <span id="typereference-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeReference`
@@ -18966,7 +18047,7 @@ struct TypeSlice {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:202-209`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L202-L209)*
+*Defined in [`syn-2.0.111/src/ty.rs:202-209`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L202-L209)*
 
 A dynamically sized slice type: `[T]`.
 
@@ -19017,11 +18098,8 @@ A dynamically sized slice type: `[T]`.
 - <span id="typeslice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeSlice`
@@ -19071,7 +18149,7 @@ struct TypeTraitObject {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:211-219`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L211-L219)*
+*Defined in [`syn-2.0.111/src/ty.rs:211-219`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L211-L219)*
 
 A trait object type `dyn Bound1 + Bound2 + Bound3` where `Bound` is a
 trait or a lifetime.
@@ -19127,11 +18205,8 @@ trait or a lifetime.
 - <span id="typetraitobject-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeTraitObject`
@@ -19181,7 +18256,7 @@ struct TypeTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:221-228`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L221-L228)*
+*Defined in [`syn-2.0.111/src/ty.rs:221-228`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L221-L228)*
 
 A tuple type: `(A, B, C, String)`.
 
@@ -19232,11 +18307,8 @@ A tuple type: `(A, B, C, String)`.
 - <span id="typetuple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::TypeTuple`
@@ -19288,7 +18360,7 @@ enum AttrStyle {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L429-L449)*
+*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../.source_1765894658/syn-2.0.111/src/attr.rs#L429-L449)*
 
 Distinguishes between attributes that decorate an item and attributes
 that are contained within an item.
@@ -19350,11 +18422,8 @@ that are contained within an item.
 - <span id="attrstyle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::AttrStyle`
@@ -19391,7 +18460,7 @@ enum Meta {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../.source_1765633015/syn-2.0.111/src/attr.rs#L451-L482)*
+*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../.source_1765894658/syn-2.0.111/src/attr.rs#L451-L482)*
 
 Content of a compile-time structured attribute.
 
@@ -19428,11 +18497,8 @@ This type is a [syntax tree enum].
 - <span id="meta-path"></span>`fn path(&self) -> &Path` — [`Path`](path/index.md#path)
 
   Returns the path that begins this structured meta item.
-
   
-
   For example this would return the `test` in `#[test]`, the `derive` in
-
   `#[derive(Copy)]`, and the `path` in `#[path = "sys/windows.rs"]`.
 
 - <span id="meta-require-path-only"></span>`fn require_path_only(&self) -> Result<&Path>` — [`Result`](error/index.md#result), [`Path`](path/index.md#path)
@@ -19490,11 +18556,8 @@ This type is a [syntax tree enum].
 - <span id="meta-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::attr::Meta`
@@ -19545,7 +18608,7 @@ enum Fields {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../.source_1765633015/syn-2.0.111/src/data.rs#L26-L46)*
+*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../.source_1765894658/syn-2.0.111/src/data.rs#L26-L46)*
 
 Data stored within an enum variant or struct.
 
@@ -19574,17 +18637,13 @@ This type is a [syntax tree enum].
 - <span id="fields-iter"></span>`fn iter(&self) -> punctuated::Iter<'_, Field>` — [`Iter`](punctuated/index.md#iter), [`Field`](data/index.md#field)
 
   Get an iterator over the borrowed [`Field`](data/index.md) items in this object. This
-
   iterator can be used to iterate over a named or unnamed struct or
-
   variant's fields uniformly.
 
 - <span id="fields-iter-mut"></span>`fn iter_mut(&mut self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](punctuated/index.md#itermut), [`Field`](data/index.md#field)
 
   Get an iterator over the mutably borrowed [`Field`](data/index.md) items in this
-
   object. This iterator can be used to iterate over a named or unnamed
-
   struct or variant's fields uniformly.
 
 - <span id="fields-len"></span>`fn len(&self) -> usize`
@@ -19598,67 +18657,36 @@ This type is a [syntax tree enum].
 - <span id="fields-members"></span>`fn members(&self) -> Members<'_>` — [`Members`](data/index.md#members)
 
   Get an iterator over the fields of a struct or variant as [`Member`](expr/index.md)s.
-
   This iterator can be used to iterate over a named or unnamed struct or
-
   variant's fields uniformly.
-
   
-
   # Example
-
   
-
-  The following is a simplistic [`Clone`](../fs_err/index.md) derive for structs. (A more
-
+  The following is a simplistic `Clone` derive for structs. (A more
   complete implementation would additionally want to infer trait bounds on
-
   the generic type parameters.)
-
   
-
   ```rust
-
   use quote::quote;
-
   
-
   fn derive_clone(input: &syn::ItemStruct) -> proc_macro2::TokenStream {
-
       let ident = &input.ident;
-
       let members = input.fields.members();
-
       let (impl_generics, ty_generics, where_clause) = input.generics.split_for_impl();
-
       quote! {
-
           impl #impl_generics Clone for #ident #ty_generics #where_clause {
-
               fn clone(&self) -> Self {
-
                   Self {
-
                       #(#members: self.#members.clone()),*
-
                   }
-
               }
-
           }
-
       }
-
   }
-
   ```
-
   
-
   For structs with named fields, it produces an expression like `Self { a:
-
   self.a.clone() }`. For structs with unnamed fields, `Self { 0:
-
   self.0.clone() }`. And for unit structs, `Self {}`.
 
 #### Trait Implementations
@@ -19704,11 +18732,8 @@ This type is a [syntax tree enum].
 - <span id="fields-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Fields`
@@ -19763,7 +18788,7 @@ enum Data {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../.source_1765633015/syn-2.0.111/src/derive.rs#L21-L35)*
+*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../.source_1765894658/syn-2.0.111/src/derive.rs#L21-L35)*
 
 The storage of a struct, enum or union data structure.
 
@@ -19815,11 +18840,8 @@ This type is a [syntax tree enum].
 - <span id="data-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Data`
@@ -19855,7 +18877,7 @@ enum PointerMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1161-L1169)*
+*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L1161-L1169)*
 
 Mutability of a raw pointer (`*const T`, `*mut T`), in which non-mutable
 isn't the implicit default.
@@ -19903,11 +18925,8 @@ isn't the implicit default.
 - <span id="pointermutability-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::PointerMutability`
@@ -19957,7 +18976,7 @@ enum RangeLimits {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L1149-L1158)*
+*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L1149-L1158)*
 
 Limit types of a range, inclusive or exclusive.
 
@@ -20020,11 +19039,8 @@ Limit types of a range, inclusive or exclusive.
 - <span id="rangelimits-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::RangeLimits`
@@ -20112,7 +19128,7 @@ enum Expr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L35-L267)*
+*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L35-L267)*
 
 A Rust expression.
 
@@ -20374,289 +19390,151 @@ see names getting repeated in your code, like accessing
 - <span id="expr-parse-without-eager-brace"></span>`fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result), [`Expr`](expr/index.md#expr)
 
   An alternative to the primary `Expr::parse` parser (from the [`Parse`](parse/index.md)
-
   trait) for ambiguous syntactic positions in which a trailing brace
-
   should not be taken as part of the expression.
-
   
-
   Rust grammar has an ambiguity where braces sometimes turn a path
-
   expression into a struct initialization and sometimes do not. In the
-
   following code, the expression `S {}` is one expression. Presumably
-
   there is an empty struct `struct S {}` defined somewhere which it is
-
   instantiating.
-
   
-
   ```rust
-
   struct S;
-
   impl std::ops::Deref for S {
-
       type Target = bool;
-
       fn deref(&self) -> &Self::Target {
-
           &true
-
       }
-
   }
-
   let _ = *S {};
-
   
-
   // parsed by rustc as: `*(S {})`
-
   ```
-
   
-
   We would want to parse the above using `Expr::parse` after the `=`
-
   token.
-
   
-
   But in the following, `S {}` is *not* a struct init expression.
-
   
-
   ```rust
-
   const S: &bool = &true;
-
   if *S {} {}
-
   
-
   // parsed by rustc as:
-
   //
-
   //    if (*S) {
-
   //        /* empty block */
-
   //    }
-
   //    {
-
   //        /* another empty block */
-
   //    }
-
   ```
-
   
-
   For that reason we would want to parse if-conditions using
-
   `Expr::parse_without_eager_brace` after the `if` token. Same for similar
-
   syntactic positions such as the condition expr after a `while` token or
-
   the expr at the top of a `match`.
-
   
-
   The Rust grammar's choices around which way this ambiguity is resolved
-
   at various syntactic positions is fairly arbitrary. Really either parse
-
   behavior could work in most positions, and language designers just
-
   decide each case based on which is more likely to be what the programmer
-
   had in mind most of the time.
-
   
-
   ```rust
-
   struct S;
-
   fn doc() -> S {
-
   if return S {} {}
-
   unreachable!()
-
   }
-
   
-
   // parsed by rustc as:
-
   //
-
   //    if (return (S {})) {
-
   //    }
-
   //
-
   // but could equally well have been this other arbitrary choice:
-
   //
-
   //    if (return S) {
-
   //    }
-
   //    {}
-
   ```
-
   
-
   Note the grammar ambiguity on trailing braces is distinct from
-
   precedence and is not captured by assigning a precedence level to the
-
   braced struct init expr in relation to other operators. This can be
-
   illustrated by `return 0..S {}` vs `match 0..S {}`. The former parses as
-
   `return (0..(S {}))` implying tighter precedence for struct init than
-
   `..`, while the latter parses as `match (0..S) {}` implying tighter
-
   precedence for `..` than struct init, a contradiction.
 
 - <span id="expr-parse-with-earlier-boundary-rule"></span>`fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result), [`Expr`](expr/index.md#expr)
 
   An alternative to the primary `Expr::parse` parser (from the [`Parse`](parse/index.md)
-
   trait) for syntactic positions in which expression boundaries are placed
-
   more eagerly than done by the typical expression grammar. This includes
-
   expressions at the head of a statement or in the right-hand side of a
-
   `match` arm.
-
   
-
   Compare the following cases:
-
   
-
   1.
-
     ```rust
-
     let result = ();
-
     let guard = false;
-
     let cond = true;
-
     let f = true;
-
     let g = f;
-
   
-
     let _ = match result {
-
         () if guard => if cond { f } else { g }
-
         () => false,
-
     };
-
     ```
-
   
-
   2.
-
     ```rust
-
     let cond = true;
-
     let f = ();
-
     let g = f;
-
   
-
     let _ = || {
-
         if cond { f } else { g }
-
         ()
-
     };
-
     ```
-
   
-
   3.
-
     ```rust
-
     let cond = true;
-
     let f = || ();
-
     let g = f;
-
   
-
     let _ = [if cond { f } else { g } ()];
-
     ```
-
   
-
   The same sequence of tokens `if cond { f } else { g } ()` appears in
-
   expression position 3 times. The first two syntactic positions use eager
-
   placement of expression boundaries, and parse as `Expr::If`, with the
-
   adjacent `()` becoming `Pat::Tuple` or `Expr::Tuple`. In contrast, the
-
   third case uses standard expression boundaries and parses as
-
   `Expr::Call`.
-
   
-
   As with `parse_without_eager_brace`, this ambiguity in the Rust
-
   grammar is independent of precedence.
 
 - <span id="expr-peek"></span>`fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](parse/index.md#parsestream)
 
   Returns whether the next token in the parse stream is one that might
-
   possibly form the beginning of an expr.
-
   
-
   This classification is a load-bearing part of the grammar of some Rust
-
   expressions, notably `return` and `break`. For example `return < …` will
-
   never parse `<` as a binary operator regardless of what comes after,
-
   because `<` is a legal starting token for an expression and so it's
-
   required to be continued as a return value, such as `return <Struct as
-
   Trait>::CONST`. Meanwhile `return > …` treats the `>` as a binary
-
   operator because it cannot be a starting token for any Rust expression.
 
 - <span id="expr-replace-attrs"></span>`fn replace_attrs(&mut self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](attr/index.md#attribute)
@@ -20704,11 +19582,8 @@ see names getting repeated in your code, like accessing
 - <span id="expr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Expr`
@@ -20758,7 +19633,7 @@ enum Member {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../.source_1765633015/syn-2.0.111/src/expr.rs#L971-L981)*
+*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../.source_1765894658/syn-2.0.111/src/expr.rs#L971-L981)*
 
 A struct or tuple struct field accessed in a struct literal or field
 expression.
@@ -20826,11 +19701,8 @@ expression.
 - <span id="member-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Member`
@@ -20881,7 +19753,7 @@ enum GenericParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L34-L54)*
+*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L34-L54)*
 
 A generic type parameter, lifetime, or const generic: `T: Into<String>`,
 `'a: 'b`, `const LEN: usize`.
@@ -20948,11 +19820,8 @@ This type is a [syntax tree enum].
 - <span id="genericparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::GenericParam`
@@ -21002,7 +19871,7 @@ enum TraitBoundModifier {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L423-L431)*
+*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L423-L431)*
 
 A modifier on a trait bound, currently only used for the `?` in
 `?Sized`.
@@ -21052,11 +19921,8 @@ A modifier on a trait bound, currently only used for the `?` in
 - <span id="traitboundmodifier-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::TraitBoundModifier`
@@ -21108,7 +19974,7 @@ enum TypeParamBound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L398-L408)*
+*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L398-L408)*
 
 A trait or lifetime used as a bound on a type parameter.
 
@@ -21161,11 +20027,8 @@ A trait or lifetime used as a bound on a type parameter.
 - <span id="typeparambound-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::TypeParamBound`
@@ -21215,7 +20078,7 @@ enum WherePredicate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L471-L488)*
+*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L471-L488)*
 
 A single predicate in a `where` clause: `T: Deserialize<'de>`.
 
@@ -21277,11 +20140,8 @@ This type is a [syntax tree enum].
 - <span id="wherepredicate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::WherePredicate`
@@ -21331,7 +20191,7 @@ enum CapturedParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../.source_1765633015/syn-2.0.111/src/generics.rs#L446-L459)*
+*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../.source_1765894658/syn-2.0.111/src/generics.rs#L446-L459)*
 
 Single parameter in a precise capturing bound.
 
@@ -21391,11 +20251,8 @@ Single parameter in a precise capturing bound.
 - <span id="capturedparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::CapturedParam`
@@ -21445,7 +20302,7 @@ enum FnArg {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:820-830`](../../.source_1765633015/syn-2.0.111/src/item.rs#L820-L830)*
+*Defined in [`syn-2.0.111/src/item.rs:820-830`](../../.source_1765894658/syn-2.0.111/src/item.rs#L820-L830)*
 
 An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
@@ -21502,11 +20359,8 @@ An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 - <span id="fnarg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::FnArg`
@@ -21559,7 +20413,7 @@ enum ForeignItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:496-540`](../../.source_1765633015/syn-2.0.111/src/item.rs#L496-L540)*
+*Defined in [`syn-2.0.111/src/item.rs:496-540`](../../.source_1765894658/syn-2.0.111/src/item.rs#L496-L540)*
 
 An item within an `extern` block.
 
@@ -21633,11 +20487,8 @@ This type is a [syntax tree enum].
 - <span id="foreignitem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItem`
@@ -21690,7 +20541,7 @@ enum ImplItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:688-732`](../../.source_1765633015/syn-2.0.111/src/item.rs#L688-L732)*
+*Defined in [`syn-2.0.111/src/item.rs:688-732`](../../.source_1765894658/syn-2.0.111/src/item.rs#L688-L732)*
 
 An item within an impl block.
 
@@ -21764,11 +20615,8 @@ This type is a [syntax tree enum].
 - <span id="implitem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItem`
@@ -21816,7 +20664,7 @@ enum ImplRestriction {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:888-903`](../../.source_1765633015/syn-2.0.111/src/item.rs#L888-L903)*
+*Defined in [`syn-2.0.111/src/item.rs:888-903`](../../.source_1765894658/syn-2.0.111/src/item.rs#L888-L903)*
 
 Unused, but reserved for RFC 3323 restrictions.
 
@@ -21863,11 +20711,8 @@ Unused, but reserved for RFC 3323 restrictions.
 - <span id="implrestriction-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::ImplRestriction`
@@ -21917,7 +20762,7 @@ enum Item {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:20-99`](../../.source_1765633015/syn-2.0.111/src/item.rs#L20-L99)*
+*Defined in [`syn-2.0.111/src/item.rs:20-99`](../../.source_1765894658/syn-2.0.111/src/item.rs#L20-L99)*
 
 Things that can appear directly inside of a module or scope.
 
@@ -22041,11 +20886,8 @@ This type is a [syntax tree enum].
 - <span id="item-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::Item`
@@ -22095,7 +20937,7 @@ enum StaticMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:878-886`](../../.source_1765633015/syn-2.0.111/src/item.rs#L878-L886)*
+*Defined in [`syn-2.0.111/src/item.rs:878-886`](../../.source_1765894658/syn-2.0.111/src/item.rs#L878-L886)*
 
 The mutability of an `Item::Static` or `ForeignItem::Static`.
 
@@ -22142,11 +20984,8 @@ The mutability of an `Item::Static` or `ForeignItem::Static`.
 - <span id="staticmutability-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::StaticMutability`
@@ -22199,7 +21038,7 @@ enum TraitItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:591-635`](../../.source_1765633015/syn-2.0.111/src/item.rs#L591-L635)*
+*Defined in [`syn-2.0.111/src/item.rs:591-635`](../../.source_1765894658/syn-2.0.111/src/item.rs#L591-L635)*
 
 An item declaration within the definition of a trait.
 
@@ -22273,11 +21112,8 @@ This type is a [syntax tree enum].
 - <span id="traititem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItem`
@@ -22330,7 +21166,7 @@ enum UseTree {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:424-449`](../../.source_1765633015/syn-2.0.111/src/item.rs#L424-L449)*
+*Defined in [`syn-2.0.111/src/item.rs:424-449`](../../.source_1765894658/syn-2.0.111/src/item.rs#L424-L449)*
 
 A suffix of an import tree in a `use` item: `Type as Renamed` or `*`.
 
@@ -22404,11 +21240,8 @@ This type is a [syntax tree enum].
 - <span id="usetree-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::UseTree`
@@ -22465,7 +21298,7 @@ enum Lit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/lit.rs:17-56`](../../.source_1765633015/syn-2.0.111/src/lit.rs#L17-L56)*
+*Defined in [`syn-2.0.111/src/lit.rs:17-56`](../../.source_1765894658/syn-2.0.111/src/lit.rs#L17-L56)*
 
 A Rust literal such as a string or integer or boolean.
 
@@ -22571,11 +21404,8 @@ This type is a [syntax tree enum].
 - <span id="lit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::lit::Lit`
@@ -22628,7 +21458,7 @@ enum MacroDelimiter {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../.source_1765633015/syn-2.0.111/src/mac.rs#L25-L33)*
+*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../.source_1765894658/syn-2.0.111/src/mac.rs#L25-L33)*
 
 A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]`.
 
@@ -22679,11 +21509,8 @@ A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]
 - <span id="macrodelimiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::MacroDelimiter`
@@ -22745,7 +21572,7 @@ enum BinOp {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../.source_1765633015/syn-2.0.111/src/op.rs#L1-L63)*
+*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../.source_1765894658/syn-2.0.111/src/op.rs#L1-L63)*
 
 A binary operator: `+`, `+=`, `&`.
 
@@ -22908,11 +21735,8 @@ A binary operator: `+`, `+=`, `&`.
 - <span id="binop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::op::BinOp`
@@ -22963,7 +21787,7 @@ enum UnOp {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../.source_1765633015/syn-2.0.111/src/op.rs#L65-L77)*
+*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../.source_1765894658/syn-2.0.111/src/op.rs#L65-L77)*
 
 A unary operator: `*`, `!`, `-`.
 
@@ -23026,11 +21850,8 @@ A unary operator: `*`, `!`, `-`.
 - <span id="unop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::op::UnOp`
@@ -23095,7 +21916,7 @@ enum Pat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:15-102`](../../.source_1765633015/syn-2.0.111/src/pat.rs#L15-L102)*
+*Defined in [`syn-2.0.111/src/pat.rs:15-102`](../../.source_1765894658/syn-2.0.111/src/pat.rs#L15-L102)*
 
 A pattern in a local binding, function signature, match expression, or
 various other places.
@@ -23186,51 +22007,28 @@ This type is a [syntax tree enum].
 - <span id="cratepatpat-parse-single"></span>`fn parse_single(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
 
   Parse a pattern that does _not_ involve `|` at the top level.
-
   
-
   This parser matches the behavior of the `$:pat_param` macro_rules
-
   matcher, and on editions prior to Rust 2021, the behavior of
-
   `$:pat`.
-
   
-
   In Rust syntax, some examples of where this syntax would occur are
-
   in the argument pattern of functions and closures. Patterns using
-
   `|` are not allowed to occur in these positions.
-
   
-
   ```compile_fail
-
   fn f(Some(_) | None: Option<T>) {
-
       let _ = |Some(_) | None: Option<T>| {};
-
       //       ^^^^^^^^^^^^^^^^^^^^^^^^^??? :(
-
   }
-
   ```
-
   
-
   ```console
-
   error: top-level or-patterns are not allowed in function parameters
-
    --> src/main.rs:1:6
-
     |
-
   1 | fn f(Some(_) | None: Option<T>) {
-
     |      ^^^^^^^^^^^^^^ help: wrap the pattern in parentheses: `(Some(_) | None)`
-
   ```
 
 - <span id="cratepatpat-parse-multi"></span>`fn parse_multi(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
@@ -23240,87 +22038,46 @@ This type is a [syntax tree enum].
 - <span id="cratepatpat-parse-multi-with-leading-vert"></span>`fn parse_multi_with_leading_vert(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
 
   Parse a pattern, possibly involving `|`, possibly including a
-
   leading `|`.
-
   
-
   This parser matches the behavior of the Rust 2021 edition's `$:pat`
-
   macro_rules matcher.
-
   
-
   In Rust syntax, an example of where this syntax would occur is in
-
   the pattern of a `match` arm, where the language permits an optional
-
   leading `|`, although it is not idiomatic to write one there in
-
   handwritten code.
-
   
-
   ```rust
-
   let wat = None;
-
   match wat {
-
       | None | Some(false) => {}
-
       | Some(true) => {}
-
   }
-
   ```
-
   
-
   The compiler accepts it only to facilitate some situations in
-
   macro-generated code where a macro author might need to write:
-
   
-
   ```rust
-
   macro_rules! doc {
-
       ($value:expr, ($($conditions1:pat),*), ($($conditions2:pat),*), $then:expr) => {
-
   match $value {
-
       $(| $conditions1)* $(| $conditions2)* => $then
-
   }
-
       };
-
   }
-
   
-
   doc!(true, (true), (false), {});
-
   doc!(true, (), (true, false), {});
-
   doc!(true, (true, false), (), {});
-
   ```
-
   
-
   Expressing the same thing correctly in the case that either one (but
-
   not both) of `$conditions1` and `$conditions2` might be empty,
-
   without leading `|`, is complex.
-
   
-
   Use `Pat::parse_multi` instead if you are not intending to support
-
   macro-generated macro input.
 
 #### Trait Implementations
@@ -23366,11 +22123,8 @@ This type is a [syntax tree enum].
 - <span id="pat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Pat`
@@ -23420,7 +22174,7 @@ enum GenericArgument {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../.source_1765633015/syn-2.0.111/src/path.rs#L171-L194)*
+*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../.source_1765894658/syn-2.0.111/src/path.rs#L171-L194)*
 
 An individual generic argument, like `'a`, `T`, or `Item = T`.
 
@@ -23498,11 +22252,8 @@ An individual generic argument, like `'a`, `T`, or `Item = T`.
 - <span id="genericargument-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::GenericArgument`
@@ -23553,7 +22304,7 @@ enum PathArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../.source_1765633015/syn-2.0.111/src/path.rs#L128-L146)*
+*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../.source_1765894658/syn-2.0.111/src/path.rs#L128-L146)*
 
 Angle bracketed or parenthesized arguments of a path segment.
 
@@ -23628,11 +22379,8 @@ The `(A, B) -> C` in `Fn(A, B) -> C`.
 - <span id="patharguments-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PathArguments`
@@ -23677,7 +22425,7 @@ enum FieldMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../.source_1765633015/syn-2.0.111/src/restriction.rs#L39-L57)*
+*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../.source_1765894658/syn-2.0.111/src/restriction.rs#L39-L57)*
 
 Unused, but reserved for RFC 3323 restrictions.
 
@@ -23724,11 +22472,8 @@ Unused, but reserved for RFC 3323 restrictions.
 - <span id="fieldmutability-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::FieldMutability`
@@ -23765,7 +22510,7 @@ enum Visibility {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../.source_1765633015/syn-2.0.111/src/restriction.rs#L4-L25)*
+*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../.source_1765894658/syn-2.0.111/src/restriction.rs#L4-L25)*
 
 The visibility level of an item: inherited or `pub` or
 `pub(restricted)`.
@@ -23837,11 +22582,8 @@ This type is a [syntax tree enum].
 - <span id="visibility-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::restriction::Visibility`
@@ -23893,7 +22635,7 @@ enum Stmt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:18-38`](../../.source_1765633015/syn-2.0.111/src/stmt.rs#L18-L38)*
+*Defined in [`syn-2.0.111/src/stmt.rs:18-38`](../../.source_1765894658/syn-2.0.111/src/stmt.rs#L18-L38)*
 
 A statement, usually ending in a semicolon.
 
@@ -23962,11 +22704,8 @@ A statement, usually ending in a semicolon.
 - <span id="stmt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::stmt::Stmt`
@@ -24016,7 +22755,7 @@ enum ReturnType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:260-271`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L260-L271)*
+*Defined in [`syn-2.0.111/src/ty.rs:260-271`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L260-L271)*
 
 Return type of a function signature.
 
@@ -24081,11 +22820,8 @@ Return type of a function signature.
 - <span id="returntype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::ReturnType`
@@ -24148,7 +22884,7 @@ enum Type {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/ty.rs:13-90`](../../.source_1765633015/syn-2.0.111/src/ty.rs#L13-L90)*
+*Defined in [`syn-2.0.111/src/ty.rs:13-90`](../../.source_1765894658/syn-2.0.111/src/ty.rs#L13-L90)*
 
 The possible types that a Rust value could have.
 
@@ -24227,13 +22963,9 @@ This type is a [syntax tree enum].
 - <span id="cratetytype-without-plus"></span>`fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md#parsestream), [`Result`](error/index.md#result)
 
   In some positions, types may not contain the `+` character, to
-
   disambiguate them. For example in the expression `1 as T`, T may not
-
   contain a `+` character.
-
   
-
   This parser does not allow a `+`, while the default parser does.
 
 #### Trait Implementations
@@ -24279,11 +23011,8 @@ This type is a [syntax tree enum].
 - <span id="type-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::ty::Type`
@@ -24332,7 +23061,7 @@ This type is a [syntax tree enum].
 fn parse<T: parse::Parse>(tokens: proc_macro::TokenStream) -> Result<T>
 ```
 
-*Defined in [`syn-2.0.111/src/lib.rs:902-904`](../../.source_1765633015/syn-2.0.111/src/lib.rs#L902-L904)*
+*Defined in [`syn-2.0.111/src/lib.rs:902-904`](../../.source_1765894658/syn-2.0.111/src/lib.rs#L902-L904)*
 
 Parse tokens of source code into the chosen syntax tree node.
 
@@ -24354,7 +23083,7 @@ unparsed tokens at the end of the stream, an error is returned.
 fn parse2<T: parse::Parse>(tokens: proc_macro2::TokenStream) -> Result<T>
 ```
 
-*Defined in [`syn-2.0.111/src/lib.rs:920-922`](../../.source_1765633015/syn-2.0.111/src/lib.rs#L920-L922)*
+*Defined in [`syn-2.0.111/src/lib.rs:920-922`](../../.source_1765894658/syn-2.0.111/src/lib.rs#L920-L922)*
 
 Parse a proc-macro2 token stream into the chosen syntax tree node.
 
@@ -24373,7 +23102,7 @@ unparsed tokens at the end of the stream, an error is returned.
 fn parse_str<T: parse::Parse>(s: &str) -> Result<T>
 ```
 
-*Defined in [`syn-2.0.111/src/lib.rs:950-952`](../../.source_1765633015/syn-2.0.111/src/lib.rs#L950-L952)*
+*Defined in [`syn-2.0.111/src/lib.rs:950-952`](../../.source_1765894658/syn-2.0.111/src/lib.rs#L950-L952)*
 
 Parse a string of Rust code into the chosen syntax tree node.
 
@@ -24406,7 +23135,7 @@ run().unwrap();
 fn parse_file(content: &str) -> Result<File>
 ```
 
-*Defined in [`syn-2.0.111/src/lib.rs:985-1009`](../../.source_1765633015/syn-2.0.111/src/lib.rs#L985-L1009)*
+*Defined in [`syn-2.0.111/src/lib.rs:985-1009`](../../.source_1765894658/syn-2.0.111/src/lib.rs#L985-L1009)*
 
 Parse the content of a file of Rust code.
 
@@ -24446,7 +23175,7 @@ run().unwrap();
 type Result<T> = std::result::Result<T, Error>;
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:15`](../../.source_1765633015/syn-2.0.111/src/error.rs#L15)*
+*Defined in [`syn-2.0.111/src/error.rs:15`](../../.source_1765894658/syn-2.0.111/src/error.rs#L15)*
 
 The result of a Syn parser.
 
@@ -24454,7 +23183,7 @@ The result of a Syn parser.
 
 ### `parenthesized!`
 
-*Defined in [`syn-2.0.111/src/group.rs:146-159`](../../.source_1765633015/syn-2.0.111/src/group.rs#L146-L159)*
+*Defined in [`syn-2.0.111/src/group.rs:146-159`](../../.source_1765894658/syn-2.0.111/src/group.rs#L146-L159)*
 
 Parse a set of parentheses and expose their content to subsequent parsers.
 
@@ -24501,7 +23230,7 @@ fn main() {
 
 ### `braced!`
 
-*Defined in [`syn-2.0.111/src/group.rs:225-238`](../../.source_1765633015/syn-2.0.111/src/group.rs#L225-L238)*
+*Defined in [`syn-2.0.111/src/group.rs:225-238`](../../.source_1765894658/syn-2.0.111/src/group.rs#L225-L238)*
 
 Parse a set of curly braces and expose their content to subsequent parsers.
 
@@ -24568,7 +23297,7 @@ fn main() {
 
 ### `bracketed!`
 
-*Defined in [`syn-2.0.111/src/group.rs:281-294`](../../.source_1765633015/syn-2.0.111/src/group.rs#L281-L294)*
+*Defined in [`syn-2.0.111/src/group.rs:281-294`](../../.source_1765894658/syn-2.0.111/src/group.rs#L281-L294)*
 
 Parse a set of square brackets and expose their content to subsequent
 parsers.
@@ -24612,7 +23341,7 @@ fn main() {
 
 ### `Token!`
 
-*Defined in [`syn-2.0.111/src/token.rs:871-972`](../../.source_1765633015/syn-2.0.111/src/token.rs#L871-L972)*
+*Defined in [`syn-2.0.111/src/token.rs:871-972`](../../.source_1765894658/syn-2.0.111/src/token.rs#L871-L972)*
 
 A type-macro that expands to the name of the Rust type representation of a
 given token.
@@ -24683,7 +23412,7 @@ See the [token module] documentation for details and examples.
 
 ### `custom_keyword!`
 
-*Defined in [`syn-2.0.111/src/custom_keyword.rs:90-123`](../../.source_1765633015/syn-2.0.111/src/custom_keyword.rs#L90-L123)*
+*Defined in [`syn-2.0.111/src/custom_keyword.rs:90-123`](../../.source_1765894658/syn-2.0.111/src/custom_keyword.rs#L90-L123)*
 
 Define a type that supports parsing and printing a given identifier as if it
 were a keyword.
@@ -24774,7 +23503,7 @@ impl Parse for Argument {
 
 ### `custom_punctuation!`
 
-*Defined in [`syn-2.0.111/src/custom_punctuation.rs:79-110`](../../.source_1765633015/syn-2.0.111/src/custom_punctuation.rs#L79-L110)*
+*Defined in [`syn-2.0.111/src/custom_punctuation.rs:79-110`](../../.source_1765894658/syn-2.0.111/src/custom_punctuation.rs#L79-L110)*
 
 Define a type that supports parsing and printing a multi-character symbol
 as if it were a punctuation token.
@@ -24854,7 +23583,7 @@ fn main() {
 
 ### `parse_macro_input!`
 
-*Defined in [`syn-2.0.111/src/parse_macro_input.rs:108-128`](../../.source_1765633015/syn-2.0.111/src/parse_macro_input.rs#L108-L128)*
+*Defined in [`syn-2.0.111/src/parse_macro_input.rs:108-128`](../../.source_1765894658/syn-2.0.111/src/parse_macro_input.rs#L108-L128)*
 
 Parse the input TokenStream of a macro, triggering a compile error if the
 tokens fail to parse.
@@ -24960,7 +23689,7 @@ fn test(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 
 ### `parse_quote!`
 
-*Defined in [`syn-2.0.111/src/parse_quote.rs:80-84`](../../.source_1765633015/syn-2.0.111/src/parse_quote.rs#L80-L84)*
+*Defined in [`syn-2.0.111/src/parse_quote.rs:80-84`](../../.source_1765894658/syn-2.0.111/src/parse_quote.rs#L80-L84)*
 
 Quasi-quotation macro that accepts input like the `quote!` macro but uses
 type inference to figure out a return type for those tokens.
@@ -25036,7 +23765,7 @@ valid.
 
 ### `parse_quote_spanned!`
 
-*Defined in [`syn-2.0.111/src/parse_quote.rs:112-116`](../../.source_1765633015/syn-2.0.111/src/parse_quote.rs#L112-L116)*
+*Defined in [`syn-2.0.111/src/parse_quote.rs:112-116`](../../.source_1765894658/syn-2.0.111/src/parse_quote.rs#L112-L116)*
 
 This macro is [`parse_quote!`](#parse-quote) + `quote_spanned!`.
 

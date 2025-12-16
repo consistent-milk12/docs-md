@@ -24,7 +24,7 @@ struct CollectConsumer<'c, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:7-12`](../../../../../.source_1765633015/rayon-1.11.0/src/iter/collect/consumer.rs#L7-L12)*
+*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:7-12`](../../../../../.source_1765894658/rayon-1.11.0/src/iter/collect/consumer.rs#L7-L12)*
 
 #### Fields
 
@@ -77,11 +77,8 @@ struct CollectConsumer<'c, T: Send> {
 - <span id="collectconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for CollectConsumer<'c, T>`
@@ -129,7 +126,7 @@ struct CollectResult<'c, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:44-55`](../../../../../.source_1765633015/rayon-1.11.0/src/iter/collect/consumer.rs#L44-L55)*
+*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:44-55`](../../../../../.source_1765894658/rayon-1.11.0/src/iter/collect/consumer.rs#L44-L55)*
 
 CollectResult represents an initialized part of the target slice.
 
@@ -202,11 +199,8 @@ the elements will be dropped, unless its ownership is released before then.
 - <span id="collectresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for CollectResult<'c, T>`
@@ -249,7 +243,7 @@ the elements will be dropped, unless its ownership is released before then.
 struct CollectReducer;
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:166`](../../../../../.source_1765633015/rayon-1.11.0/src/iter/collect/consumer.rs#L166)*
+*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:166`](../../../../../.source_1765894658/rayon-1.11.0/src/iter/collect/consumer.rs#L166)*
 
 CollectReducer combines adjacent chunks; the result must always
 be contiguous so that it is one combined slice.
@@ -279,11 +273,8 @@ be contiguous so that it is one combined slice.
 - <span id="collectreducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectReducer`

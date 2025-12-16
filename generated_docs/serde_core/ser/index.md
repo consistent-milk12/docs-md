@@ -175,7 +175,7 @@ struct Impossible<Ok, Error> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:60-64`](../../../.source_1765633015/serde_core-1.0.228/src/ser/impossible.rs#L60-L64)*
+*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:60-64`](../../../.source_1765894658/serde_core-1.0.228/src/ser/impossible.rs#L60-L64)*
 
 Helper type for implementing a `Serializer` that does not support
 serializing one of the compound types.
@@ -252,11 +252,8 @@ impl Serializer for MySerializer {
 - <span id="impossible-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Ok, Error> SerializeMap for Impossible<Ok, Error>`
@@ -351,7 +348,7 @@ impl Serializer for MySerializer {
 trait Error: Sized + StdError { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:192`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L192)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:192`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L192)*
 
 Trait used by `Serialize` implementations to generically construct
 errors belonging to the `Serializer` against which they are
@@ -368,6 +365,38 @@ type appropriate for a basic JSON data format.
 - `fn custom<T>(msg: T) -> Self`
 
   Used when a [`Serialize`](#serialize) implementation encounters any error
+  while serializing a type.
+  
+  The message should not be capitalized and should not end with a
+  period.
+  
+  For example, a filesystem [`Path`](../../rustdoc_types/index.md) may refuse to serialize
+  itself if it contains invalid UTF-8 data.
+  
+  ```edition2021
+  struct Path;
+  
+  impl Path {
+      fn to_str(&self) -> Option<&str> {
+          unimplemented!()
+      }
+  }
+  
+  use serde::ser::{self, Serialize, Serializer};
+  
+  impl Serialize for Path {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          match self.to_str() {
+              Some(s) => serializer.serialize_str(s),
+              None => Err(ser::Error::custom("path contains invalid UTF-8 characters")),
+          }
+      }
+  }
+  ```
+  
 
 #### Implementors
 
@@ -380,7 +409,7 @@ type appropriate for a basic JSON data format.
 trait Serialize { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
 
 A **data structure** that can be serialized into any data format supported
 by Serde.
@@ -412,6 +441,33 @@ provides an implementation of `Serialize` for it.
 - `fn serialize<S>(&self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
 
   Serialize this value into the given Serde serializer.
+  
+  See the [Implementing `Serialize`] section of the manual for more
+  information about how to implement this method.
+  
+  ```edition2021
+  use serde::ser::{Serialize, SerializeStruct, Serializer};
+  
+  struct Person {
+      name: String,
+      age: u8,
+      phones: Vec<String>,
+  }
+  
+  // This is what #[derive(Serialize)] would generate.
+  impl Serialize for Person {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          let mut s = serializer.serialize_struct("Person", 3)?;
+          s.serialize_field("name", &self.name)?;
+          s.serialize_field("age", &self.age)?;
+          s.serialize_field("phones", &self.phones)?;
+          s.end()
+      }
+  }
+  ```
 
 #### Implementors
 
@@ -556,7 +612,7 @@ provides an implementation of `Serialize` for it.
 trait Serializer: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
 
 A **data format** that can serialize any data structure supported by Serde.
 
@@ -658,140 +714,975 @@ a basic JSON `Serializer`.
 - `fn serialize_bool(self, v: bool) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `bool` value.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for bool {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_bool(*self)
+      }
+  }
+  ```
 
 - `fn serialize_i8(self, v: i8) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i8` value.
+  
+  If the format does not differentiate between `i8` and `i64`, a
+  reasonable implementation would be to cast the value to `i64` and
+  forward to `serialize_i64`.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for i8 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_i8(*self)
+      }
+  }
+  ```
 
 - `fn serialize_i16(self, v: i16) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i16` value.
+  
+  If the format does not differentiate between `i16` and `i64`, a
+  reasonable implementation would be to cast the value to `i64` and
+  forward to `serialize_i64`.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for i16 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_i16(*self)
+      }
+  }
+  ```
 
 - `fn serialize_i32(self, v: i32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i32` value.
+  
+  If the format does not differentiate between `i32` and `i64`, a
+  reasonable implementation would be to cast the value to `i64` and
+  forward to `serialize_i64`.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for i32 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_i32(*self)
+      }
+  }
+  ```
 
 - `fn serialize_i64(self, v: i64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i64` value.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for i64 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_i64(*self)
+      }
+  }
+  ```
 
 - `fn serialize_u8(self, v: u8) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u8` value.
+  
+  If the format does not differentiate between `u8` and `u64`, a
+  reasonable implementation would be to cast the value to `u64` and
+  forward to `serialize_u64`.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for u8 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_u8(*self)
+      }
+  }
+  ```
 
 - `fn serialize_u16(self, v: u16) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u16` value.
+  
+  If the format does not differentiate between `u16` and `u64`, a
+  reasonable implementation would be to cast the value to `u64` and
+  forward to `serialize_u64`.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for u16 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_u16(*self)
+      }
+  }
+  ```
 
 - `fn serialize_u32(self, v: u32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u32` value.
+  
+  If the format does not differentiate between `u32` and `u64`, a
+  reasonable implementation would be to cast the value to `u64` and
+  forward to `serialize_u64`.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for u32 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_u32(*self)
+      }
+  }
+  ```
 
 - `fn serialize_u64(self, v: u64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u64` value.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for u64 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_u64(*self)
+      }
+  }
+  ```
 
 - `fn serialize_f32(self, v: f32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `f32` value.
+  
+  If the format does not differentiate between `f32` and `f64`, a
+  reasonable implementation would be to cast the value to `f64` and
+  forward to `serialize_f64`.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for f32 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_f32(*self)
+      }
+  }
+  ```
 
 - `fn serialize_f64(self, v: f64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `f64` value.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for f64 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_f64(*self)
+      }
+  }
+  ```
 
 - `fn serialize_char(self, v: char) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a character.
+  
+  If the format does not support characters, it is reasonable to serialize
+  it as a single element `str` or a `u32`.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for char {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_char(*self)
+      }
+  }
+  ```
 
 - `fn serialize_str(self, v: &str) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `&str`.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for str {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_str(self)
+      }
+  }
+  ```
 
 - `fn serialize_bytes(self, v: &[u8]) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a chunk of raw byte data.
+  
+  Enables serializers to serialize byte slices more compactly or more
+  efficiently than other types of slices. If no efficient implementation
+  is available, a reasonable implementation would be to forward to
+  `serialize_seq`. If forwarded, the implementation looks usually just
+  like this:
+  
+  ```edition2021
+  use serde::ser::{Serializer, SerializeSeq};
+  use serde_core::__private::doc::Error;
+  
+  struct MySerializer;
+  
+  impl Serializer for MySerializer {
+      type Ok = ();
+      type Error = Error;
+  
+  fn serialize_bytes(self, v: &[u8]) -> Result<Self::Ok, Self::Error> {
+      let mut seq = self.serialize_seq(Some(v.len()))?;
+      for b in v {
+          seq.serialize_element(b)?;
+      }
+      seq.end()
+  }
+  
+      serde_core::__serialize_unimplemented! {
+          bool i8 i16 i32 i64 u8 u16 u32 u64 f32 f64 char str none some
+          unit unit_struct unit_variant newtype_struct newtype_variant
+          seq tuple tuple_struct tuple_variant map struct struct_variant
+      }
+  }
+  ```
 
 - `fn serialize_none(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `None` value.
+  
+  ```edition2021
+  use serde::{Serialize, Serializer};
+  
+  enum Option<T> {
+      Some(T),
+      None,
+  }
+  
+  use self::Option::{Some, None};
+  
+  impl<T> Serialize for Option<T>
+  where
+      T: Serialize,
+  {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          match *self {
+              Some(ref value) => serializer.serialize_some(value),
+              None => serializer.serialize_none(),
+          }
+      }
+  }
+  
+  fn main() {}
+  ```
 
 - `fn serialize_some<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `Some(T)` value.
+  
+  ```edition2021
+  use serde::{Serialize, Serializer};
+  
+  enum Option<T> {
+      Some(T),
+      None,
+  }
+  
+  use self::Option::{Some, None};
+  
+  impl<T> Serialize for Option<T>
+  where
+      T: Serialize,
+  {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          match *self {
+              Some(ref value) => serializer.serialize_some(value),
+              None => serializer.serialize_none(),
+          }
+      }
+  }
+  
+  fn main() {}
+  ```
 
 - `fn serialize_unit(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `()` value.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for () {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_unit()
+      }
+  }
+  ```
 
 - `fn serialize_unit_struct(self, name: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a unit struct like `struct Unit` or `PhantomData<T>`.
+  
+  A reasonable implementation would be to forward to `serialize_unit`.
+  
+  ```edition2021
+  use serde::{Serialize, Serializer};
+  
+  struct Nothing;
+  
+  impl Serialize for Nothing {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_unit_struct("Nothing")
+      }
+  }
+  ```
 
 - `fn serialize_unit_variant(self, name: &'static str, variant_index: u32, variant: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a unit variant like `E::A` in `enum E { A, B }`.
+  
+  The `name` is the name of the enum, the `variant_index` is the index of
+  this variant within the enum, and the `variant` is the name of the
+  variant.
+  
+  ```edition2021
+  use serde::{Serialize, Serializer};
+  
+  enum E {
+      A,
+      B,
+  }
+  
+  impl Serialize for E {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          match *self {
+              E::A => serializer.serialize_unit_variant("E", 0, "A"),
+              E::B => serializer.serialize_unit_variant("E", 1, "B"),
+          }
+      }
+  }
+  ```
 
 - `fn serialize_newtype_struct<T>(self, name: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a newtype struct like `struct Millimeters(u8)`.
+  
+  Serializers are encouraged to treat newtype structs as insignificant
+  wrappers around the data they contain. A reasonable implementation would
+  be to forward to `value.serialize(self)`.
+  
+  ```edition2021
+  use serde::{Serialize, Serializer};
+  
+  struct Millimeters(u8);
+  
+  impl Serialize for Millimeters {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_newtype_struct("Millimeters", &self.0)
+      }
+  }
+  ```
 
 - `fn serialize_newtype_variant<T>(self, name: &'static str, variant_index: u32, variant: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a newtype variant like `E::N` in `enum E { N(u8) }`.
+  
+  The `name` is the name of the enum, the `variant_index` is the index of
+  this variant within the enum, and the `variant` is the name of the
+  variant. The `value` is the data contained within this newtype variant.
+  
+  ```edition2021
+  use serde::{Serialize, Serializer};
+  
+  enum E {
+      M(String),
+      N(u8),
+  }
+  
+  impl Serialize for E {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          match *self {
+              E::M(ref s) => serializer.serialize_newtype_variant("E", 0, "M", s),
+              E::N(n) => serializer.serialize_newtype_variant("E", 1, "N", &n),
+          }
+      }
+  }
+  ```
 
 - `fn serialize_seq(self, len: Option<usize>) -> Result<<Self as >::SerializeSeq, <Self as >::Error>`
 
   Begin to serialize a variably sized sequence. This call must be
+  followed by zero or more calls to `serialize_element`, then a call to
+  `end`.
+  
+  The argument is the number of elements in the sequence, which may or may
+  not be computable before the sequence is iterated. Some serializers only
+  support sequences whose length is known up front.
+  
+  ```edition2021
+  use std::marker::PhantomData;
+  
+  struct Vec<T>(PhantomData<T>);
+  
+  impl<T> Vec<T> {
+      fn len(&self) -> usize {
+          unimplemented!()
+      }
+  }
+  
+  impl<'a, T> IntoIterator for &'a Vec<T> {
+      type Item = &'a T;
+      type IntoIter = Box<dyn Iterator<Item = &'a T>>;
+  
+      fn into_iter(self) -> Self::IntoIter {
+          unimplemented!()
+      }
+  }
+  
+  use serde::ser::{Serialize, SerializeSeq, Serializer};
+  
+  impl<T> Serialize for Vec<T>
+  where
+      T: Serialize,
+  {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          let mut seq = serializer.serialize_seq(Some(self.len()))?;
+          for element in self {
+              seq.serialize_element(element)?;
+          }
+          seq.end()
+      }
+  }
+  ```
 
 - `fn serialize_tuple(self, len: usize) -> Result<<Self as >::SerializeTuple, <Self as >::Error>`
 
   Begin to serialize a statically sized sequence whose length will be
+  known at deserialization time without looking at the serialized data.
+  This call must be followed by zero or more calls to `serialize_element`,
+  then a call to `end`.
+  
+  ```edition2021
+  use serde::ser::{Serialize, SerializeTuple, Serializer};
+  
+  mod fool {
+      trait Serialize {}
+  impl<A, B, C> Serialize for (A, B, C)
+      {}
+  }
+  
+  struct Tuple3<A, B, C>(A, B, C);
+  
+  impl<A, B, C> Serialize for Tuple3<A, B, C>
+  where
+      A: Serialize,
+      B: Serialize,
+      C: Serialize,
+  {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          let mut tup = serializer.serialize_tuple(3)?;
+          tup.serialize_element(&self.0)?;
+          tup.serialize_element(&self.1)?;
+          tup.serialize_element(&self.2)?;
+          tup.end()
+      }
+  }
+  ```
+  
+  ```edition2021
+  use serde::ser::{Serialize, SerializeTuple, Serializer};
+  
+  const VRAM_SIZE: usize = 386;
+  struct Vram([u16; VRAM_SIZE]);
+  
+  impl Serialize for Vram {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          let mut seq = serializer.serialize_tuple(VRAM_SIZE)?;
+          for element in &self.0[..] {
+              seq.serialize_element(element)?;
+          }
+          seq.end()
+      }
+  }
+  ```
 
 - `fn serialize_tuple_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct, <Self as >::Error>`
 
   Begin to serialize a tuple struct like `struct Rgb(u8, u8, u8)`. This
+  call must be followed by zero or more calls to `serialize_field`, then a
+  call to `end`.
+  
+  The `name` is the name of the tuple struct and the `len` is the number
+  of data fields that will be serialized.
+  
+  ```edition2021
+  use serde::ser::{Serialize, SerializeTupleStruct, Serializer};
+  
+  struct Rgb(u8, u8, u8);
+  
+  impl Serialize for Rgb {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          let mut ts = serializer.serialize_tuple_struct("Rgb", 3)?;
+          ts.serialize_field(&self.0)?;
+          ts.serialize_field(&self.1)?;
+          ts.serialize_field(&self.2)?;
+          ts.end()
+      }
+  }
+  ```
 
 - `fn serialize_tuple_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant, <Self as >::Error>`
 
   Begin to serialize a tuple variant like `E::T` in `enum E { T(u8, u8)
+  }`. This call must be followed by zero or more calls to
+  `serialize_field`, then a call to `end`.
+  
+  The `name` is the name of the enum, the `variant_index` is the index of
+  this variant within the enum, the `variant` is the name of the variant,
+  and the `len` is the number of data fields that will be serialized.
+  
+  ```edition2021
+  use serde::ser::{Serialize, SerializeTupleVariant, Serializer};
+  
+  enum E {
+      T(u8, u8),
+      U(String, u32, u32),
+  }
+  
+  impl Serialize for E {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          match *self {
+              E::T(ref a, ref b) => {
+                  let mut tv = serializer.serialize_tuple_variant("E", 0, "T", 2)?;
+                  tv.serialize_field(a)?;
+                  tv.serialize_field(b)?;
+                  tv.end()
+              }
+              E::U(ref a, ref b, ref c) => {
+                  let mut tv = serializer.serialize_tuple_variant("E", 1, "U", 3)?;
+                  tv.serialize_field(a)?;
+                  tv.serialize_field(b)?;
+                  tv.serialize_field(c)?;
+                  tv.end()
+              }
+          }
+      }
+  }
+  ```
 
 - `fn serialize_map(self, len: Option<usize>) -> Result<<Self as >::SerializeMap, <Self as >::Error>`
 
   Begin to serialize a map. This call must be followed by zero or more
+  calls to `serialize_key` and `serialize_value`, then a call to `end`.
+  
+  The argument is the number of elements in the map, which may or may not
+  be computable before the map is iterated. Some serializers only support
+  maps whose length is known up front.
+  
+  ```edition2021
+  use std::marker::PhantomData;
+  
+  struct HashMap<K, V>(PhantomData<K>, PhantomData<V>);
+  
+  impl<K, V> HashMap<K, V> {
+      fn len(&self) -> usize {
+          unimplemented!()
+      }
+  }
+  
+  impl<'a, K, V> IntoIterator for &'a HashMap<K, V> {
+      type Item = (&'a K, &'a V);
+      type IntoIter = Box<dyn Iterator<Item = (&'a K, &'a V)>>;
+  
+      fn into_iter(self) -> Self::IntoIter {
+          unimplemented!()
+      }
+  }
+  
+  use serde::ser::{Serialize, SerializeMap, Serializer};
+  
+  impl<K, V> Serialize for HashMap<K, V>
+  where
+      K: Serialize,
+      V: Serialize,
+  {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          let mut map = serializer.serialize_map(Some(self.len()))?;
+          for (k, v) in self {
+              map.serialize_entry(k, v)?;
+          }
+          map.end()
+      }
+  }
+  ```
 
 - `fn serialize_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct, <Self as >::Error>`
 
   Begin to serialize a struct like `struct Rgb { r: u8, g: u8, b: u8 }`.
+  This call must be followed by zero or more calls to `serialize_field`,
+  then a call to `end`.
+  
+  The `name` is the name of the struct and the `len` is the number of
+  data fields that will be serialized. `len` does not include fields
+  which are skipped with `SerializeStruct::skip_field`.
+  
+  ```edition2021
+  use serde::ser::{Serialize, SerializeStruct, Serializer};
+  
+  struct Rgb {
+      r: u8,
+      g: u8,
+      b: u8,
+  }
+  
+  impl Serialize for Rgb {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          let mut rgb = serializer.serialize_struct("Rgb", 3)?;
+          rgb.serialize_field("r", &self.r)?;
+          rgb.serialize_field("g", &self.g)?;
+          rgb.serialize_field("b", &self.b)?;
+          rgb.end()
+      }
+  }
+  ```
 
 - `fn serialize_struct_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant, <Self as >::Error>`
 
   Begin to serialize a struct variant like `E::S` in `enum E { S { r: u8,
+  g: u8, b: u8 } }`. This call must be followed by zero or more calls to
+  `serialize_field`, then a call to `end`.
+  
+  The `name` is the name of the enum, the `variant_index` is the index of
+  this variant within the enum, the `variant` is the name of the variant,
+  and the `len` is the number of data fields that will be serialized.
+  `len` does not include fields which are skipped with
+  `SerializeStructVariant::skip_field`.
+  
+  ```edition2021
+  use serde::ser::{Serialize, SerializeStructVariant, Serializer};
+  
+  enum E {
+      S { r: u8, g: u8, b: u8 },
+  }
+  
+  impl Serialize for E {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          match *self {
+              E::S {
+                  ref r,
+                  ref g,
+                  ref b,
+              } => {
+                  let mut sv = serializer.serialize_struct_variant("E", 0, "S", 3)?;
+                  sv.serialize_field("r", r)?;
+                  sv.serialize_field("g", g)?;
+                  sv.serialize_field("b", b)?;
+                  sv.end()
+              }
+          }
+      }
+  }
+  ```
 
 #### Provided Methods
 
 - `fn serialize_i128(self, v: i128) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i128` value.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for i128 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_i128(*self)
+      }
+  }
+  ```
+  
+  The default behavior unconditionally returns an error.
 
 - `fn serialize_u128(self, v: u128) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u128` value.
+  
+  ```edition2021
+  use serde::Serializer;
+  
+  serde_core::__private_serialize!();
+  
+  impl Serialize for u128 {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_u128(*self)
+      }
+  }
+  ```
+  
+  The default behavior unconditionally returns an error.
 
 - `fn collect_seq<I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Collect an iterator as a sequence.
+  
+  The default implementation serializes each item yielded by the iterator
+  using `serialize_seq`. Implementors should not need to override this
+  method.
+  
+  ```edition2021
+  use serde::{Serialize, Serializer};
+  
+  struct SecretlyOneHigher {
+      data: Vec<i32>,
+  }
+  
+  impl Serialize for SecretlyOneHigher {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.collect_seq(self.data.iter().map(|x| x + 1))
+      }
+  }
+  ```
 
 - `fn collect_map<K, V, I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Collect an iterator as a map.
+  
+  The default implementation serializes each pair yielded by the iterator
+  using `serialize_map`. Implementors should not need to override this
+  method.
+  
+  ```edition2021
+  use serde::{Serialize, Serializer};
+  use std::collections::BTreeSet;
+  
+  struct MapToUnit {
+      keys: BTreeSet<i32>,
+  }
+  
+  // Serializes as a map in which the values are all unit.
+  impl Serialize for MapToUnit {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.collect_map(self.keys.iter().map(|k| (k, ())))
+      }
+  }
+  ```
 
 - `fn collect_str<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a string produced by an implementation of `Display`.
+  
+  The default implementation builds a heap-allocated [`String`](../lib/index.md) and
+  delegates to `serialize_str`. Serializers are encouraged to provide a
+  more efficient implementation if possible.
+  
+  ```edition2021
+  struct DateTime;
+  
+  impl DateTime {
+      fn naive_local(&self) -> () { () }
+      fn offset(&self) -> () { () }
+  }
+  
+  use serde::{Serialize, Serializer};
+  
+  impl Serialize for DateTime {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.collect_str(&format_args!("{:?}{:?}", self.naive_local(), self.offset()))
+      }
+  }
+  ```
 
 - `fn is_human_readable(&self) -> bool`
 
   Determine whether `Serialize` implementations should serialize in
+  human-readable form.
+  
+  Some types have a human-readable form that may be somewhat expensive to
+  construct, as well as a binary form that is compact and efficient.
+  Generally text-based formats like JSON and YAML will prefer to use the
+  human-readable one and binary formats like Postcard will prefer the
+  compact one.
+  
+  ```edition2021
+  use std::fmt::{self, Display};
+  
+  struct Timestamp;
+  
+  impl Timestamp {
+      fn seconds_since_epoch(&self) -> u64 { unimplemented!() }
+  }
+  
+  impl Display for Timestamp {
+      fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+          unimplemented!()
+      }
+  }
+  
+  use serde::{Serialize, Serializer};
+  
+  impl Serialize for Timestamp {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          if serializer.is_human_readable() {
+              // Serialize to a human-readable string "2015-05-15T17:01:00Z".
+              self.to_string().serialize(serializer)
+          } else {
+              // Serialize to a compact binary representation.
+              self.seconds_since_epoch().serialize(serializer)
+          }
+      }
+  }
+  ```
+  
+  The default implementation of this method returns `true`. Data formats
+  may override this to `false` to request a compact form for types that
+  support one. Note that modifying this method to change a format from
+  human-readable to compact or vice versa should be regarded as a breaking
+  change, as a value serialized in human-readable mode is not required to
+  deserialize from the same data in compact mode.
 
 #### Implementors
 
@@ -803,7 +1694,7 @@ a basic JSON `Serializer`.
 trait SerializeSeq { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1518-1532`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1518-L1532)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1518-1532`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L1518-L1532)*
 
 Returned from `Serializer::serialize_seq`.
 
@@ -879,7 +1770,7 @@ implementation of `SerializeSeq` for a basic JSON data format.
 trait SerializeTuple { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1624-1638`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1624-L1638)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1624-1638`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L1624-L1638)*
 
 Returned from `Serializer::serialize_tuple`.
 
@@ -991,7 +1882,7 @@ implementation of `SerializeTuple` for a basic JSON data format.
 trait SerializeTupleStruct { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1675-1689`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1675-L1689)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1675-1689`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L1675-L1689)*
 
 Returned from `Serializer::serialize_tuple_struct`.
 
@@ -1048,7 +1939,7 @@ implementation of `SerializeTupleStruct` for a basic JSON data format.
 trait SerializeTupleVariant { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1739-1753`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1739-L1753)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1739-1753`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L1739-L1753)*
 
 Returned from `Serializer::serialize_tuple_variant`.
 
@@ -1118,7 +2009,7 @@ implementation of `SerializeTupleVariant` for a basic JSON data format.
 trait SerializeMap { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1811-1866`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1811-L1866)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1811-1866`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L1811-L1866)*
 
 Returned from `Serializer::serialize_map`.
 
@@ -1181,10 +2072,20 @@ implementation of `SerializeMap` for a basic JSON data format.
 - `fn serialize_key<T>(&mut self, key: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a map key.
+  
+  If possible, `Serialize` implementations are encouraged to use
+  `serialize_entry` instead as it may be implemented more efficiently in
+  some formats compared to a pair of calls to `serialize_key` and
+  `serialize_value`.
 
 - `fn serialize_value<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a map value.
+  
+  # Panics
+  
+  Calling `serialize_value` before `serialize_key` is incorrect and is
+  allowed to panic or produce bogus results.
 
 - `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
@@ -1195,6 +2096,20 @@ implementation of `SerializeMap` for a basic JSON data format.
 - `fn serialize_entry<K, V>(&mut self, key: &K, value: &V) -> Result<(), <Self as >::Error>`
 
   Serialize a map entry consisting of a key and a value.
+  
+  Some [`Serialize`](#serialize) types are not able to hold a key and value in memory
+  at the same time so `SerializeMap` implementations are required to
+  support `serialize_key` and `serialize_value` individually. The
+  `serialize_entry` method allows serializers to optimize for the case
+  where key and value are both available. [`Serialize`](#serialize) implementations
+  are encouraged to use `serialize_entry` if possible.
+  
+  The default implementation delegates to `serialize_key` and
+  `serialize_value`. This is appropriate for serializers that do not
+  care about performance or are not able to optimize `serialize_entry` any
+  better than this.
+  
+  
 
 #### Implementors
 
@@ -1206,7 +2121,7 @@ implementation of `SerializeMap` for a basic JSON data format.
 trait SerializeStruct { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1907-1930`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1907-L1930)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1907-1930`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L1907-L1930)*
 
 Returned from `Serializer::serialize_struct`.
 
@@ -1262,6 +2177,8 @@ implementation of `SerializeStruct` for a basic JSON data format.
 - `fn skip_field(&mut self, key: &'static str) -> Result<(), <Self as >::Error>`
 
   Indicate that a struct field has been skipped.
+  
+  The default implementation does nothing.
 
 #### Implementors
 
@@ -1273,7 +2190,7 @@ implementation of `SerializeStruct` for a basic JSON data format.
 trait SerializeStructVariant { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1977-2000`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L1977-L2000)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1977-2000`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L1977-L2000)*
 
 Returned from `Serializer::serialize_struct_variant`.
 
@@ -1335,6 +2252,8 @@ implementation of `SerializeStructVariant` for a basic JSON data format.
 - `fn skip_field(&mut self, key: &'static str) -> Result<(), <Self as >::Error>`
 
   Indicate that a struct variant field has been skipped.
+  
+  The default implementation does nothing.
 
 #### Implementors
 
@@ -1350,11 +2269,11 @@ where
     I: Iterator
 ```
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:2002-2010`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L2002-L2010)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:2002-2010`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L2002-L2010)*
 
 ## Macros
 
 ### `declare_error_trait!`
 
-*Defined in [`serde_core-1.0.228/src/ser/mod.rs:130-189`](../../../.source_1765633015/serde_core-1.0.228/src/ser/mod.rs#L130-L189)*
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:130-189`](../../../.source_1765894658/serde_core-1.0.228/src/ser/mod.rs#L130-L189)*
 

@@ -58,7 +58,7 @@ diagnostic error code: ruget::api::bad_json
 ## Features
 
 - Generic [`Diagnostic`](#diagnostic) protocol, compatible (and dependent on)
-  [`std::error::Error`](../addr2line/index.md).
+  `std::error::Error`.
 - Unique error codes on every [`Diagnostic`](#diagnostic).
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
@@ -182,7 +182,7 @@ diagnostic help: try doing it better next time?">
 
 `miette` is _fully compatible_ with library usage. Consumers who don't know
 about, or don't want, `miette` features can safely use its error types as
-regular [`std::error::Error`](../addr2line/index.md).
+regular `std::error::Error`.
 
 We highly recommend using something like [`thiserror`](https://docs.rs/thiserror)
 to define unique error types and error wrappers for your library.
@@ -979,7 +979,7 @@ struct Report {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
 
 Core Diagnostic wrapper type.
 
@@ -992,109 +992,61 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-new"></span>`fn new<E>(error: E) -> Self`
 
   Create a new error object from any error type.
-
   
-
   The error type must be thread safe and `'static`, so that the `Report`
-
   will be as well.
-
   
-
   If the error type does not provide a backtrace, a backtrace will be
-
   created here to ensure that a backtrace exists.
 
 - <span id="superreport-msg"></span>`fn msg<M>(message: M) -> Self`
 
   Create a new error object from a printable error message.
-
   
-
-  If the argument implements [`std::error::Error`](../addr2line/index.md), prefer `Report::new`
-
+  If the argument implements `std::error::Error`, prefer `Report::new`
   instead which preserves the underlying error's cause chain and
-
-  backtrace. If the argument may or may not implement [`std::error::Error`](../addr2line/index.md)
-
+  backtrace. If the argument may or may not implement `std::error::Error`
   now or in the future, use `miette!(err)` which handles either way
-
   correctly.
-
   
-
   `Report::msg("...")` is equivalent to `miette!("...")` but occasionally
-
   convenient in places where a function is preferable over a macro, such
-
   as iterator or stream combinators:
-
   
-
   ```rust
-
   mod ffi {
-
       pub struct Input;
-
       pub struct Output;
-
       pub async fn do_some_work(_: Input) -> Result<Output, &'static str> {
-
           unimplemented!()
-
       }
-
   }
-
   
-
   use ffi::{Input, Output};
-
   
-
   use futures::stream::{Stream, StreamExt, TryStreamExt};
-
   use miette::{Report, Result};
-
   
-
   async fn demo<S>(stream: S) -> Result<Vec<Output>>
-
   where
-
       S: Stream<Item = Input>,
-
   {
-
       stream
-
           .then(ffi::do_some_work) // returns Result<Output, &str>
-
           .map_err(Report::msg)
-
           .try_collect()
-
           .await
-
   }
-
   ```
 
 - <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](#diagnostic)
 
   Create a new error object from a boxed [`Diagnostic`](#diagnostic).
-
   
-
   The boxed type must be thread safe and 'static, so that the `Report`
-
   will be as well.
-
   
-
   Boxed `Diagnostic`s don't implement `Diagnostic` themselves due to trait coherence issues.
-
   This method allows you to create a `Report` from a boxed `Diagnostic`.
 
 - <span id="superreport-from-std"></span>`fn from_std<E>(error: E) -> Self`
@@ -1110,21 +1062,13 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
   Create a new error from an error message to wrap the existing error.
-
   
-
   For attaching a higher level error message to a `Result` as it is
-
   propagated, the [`WrapErr`](crate::WrapErr) extension trait may be more
-
   convenient than this function.
-
   
-
   The primary reason to use `error.wrap_err(...)` instead of
-
   `result.wrap_err(...)` via the `WrapErr` trait would be if the
-
   message needs to depend on some data held by the underlying error:
 
 - <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
@@ -1134,71 +1078,42 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](chain/index.md#chain)
 
   An iterator of the chain of source errors contained by this Report.
-
   
-
   This iterator will visit every error in the cause chain of this error
-
   object, beginning with the error that this error object was created
-
   from.
-
   
-
   # Example
-
   
-
   ```rust
-
   use miette::Report;
-
   use std::io;
-
   
-
   pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
-
       for cause in error.chain() {
-
           if let Some(io_error) = cause.downcast_ref::<io::Error>() {
-
               return Some(io_error.kind());
-
           }
-
       }
-
       None
-
   }
-
   ```
 
 - <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
 
   The lowest level cause of this error &mdash; this error's cause's
-
   cause's cause etc.
-
   
-
   The root cause is the last error in the iterator produced by
-
   [`chain()`](Report::chain).
 
 - <span id="superreport-is"></span>`fn is<E>(&self) -> bool`
 
   Returns true if `E` is the type held by this error object.
-
   
-
   For errors constructed from messages, this method returns true if `E`
-
   matches the type of the message `D` **or** the type of the error on
-
   which the message has been attached. For details about the
-
   interaction between message and downcasting, [see here].
 
 - <span id="superreport-downcast"></span>`fn downcast<E>(self) -> Result<E, Self>`
@@ -1208,75 +1123,40 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-downcast-ref"></span>`fn downcast_ref<E>(&self) -> Option<&E>`
 
   Downcast this error object by reference.
-
   
-
   # Example
-
   
-
   ```rust
-
   use miette::{Report, miette};
-
   use std::fmt::{self, Display};
-
   use std::task::Poll;
-
   
-
   #[derive(Debug)]
-
   enum DataStoreError {
-
       Censored(()),
-
   }
-
   
-
   impl Display for DataStoreError {
-
       fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-
           unimplemented!()
-
       }
-
   }
-
   
-
   impl std::error::Error for DataStoreError {}
-
   
-
   const REDACTED_CONTENT: () = ();
-
   
-
   let error: Report = miette!("...");
-
   let root_cause = &error;
-
   
-
   let ret =
-
   // If the error was caused by redaction, then return a tombstone instead
-
   // of the content.
-
   match root_cause.downcast_ref::<DataStoreError>() {
-
       Some(DataStoreError::Censored(_)) => Ok(Poll::Ready(REDACTED_CONTENT)),
-
       None => Err(error),
-
   }
-
   ;
-
   ```
 
 - <span id="superreport-downcast-mut"></span>`fn downcast_mut<E>(&mut self) -> Option<&mut E>`
@@ -1354,11 +1234,8 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="report-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Report`
@@ -1395,7 +1272,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 struct InstallError;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L69)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L69)*
 
 Error indicating that [`set_hook()`](#set-hook) was unable to install the provided
 [`ErrorHook`](#errorhook).
@@ -1441,11 +1318,8 @@ Error indicating that [`set_hook()`](#set-hook) was unable to install the provid
 - <span id="installerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for InstallError`
@@ -1493,7 +1367,7 @@ struct MietteHandlerOpts {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../.source_1765633015/miette-7.6.0/src/handler.rs#L42-L61)*
+*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../.source_1765894658/miette-7.6.0/src/handler.rs#L42-L61)*
 
 Create a custom [`MietteHandler`](#miettehandler) from options.
 
@@ -1519,75 +1393,46 @@ miette::set_hook(Box::new(|_| {
 - <span id="miettehandleropts-terminal-links"></span>`fn terminal_links(self, linkify: bool) -> Self`
 
   If true, specify whether the graphical handler will make codes be
-
   clickable links in supported terminals. Defaults to auto-detection
-
   based on known supported terminals.
 
 - <span id="miettehandleropts-graphical-theme"></span>`fn graphical_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](handlers/index.md#graphicaltheme)
 
   Set a graphical theme for the handler when rendering in graphical mode.
-
   Use [`force_graphical()`](`MietteHandlerOpts::force_graphical) to force
-
   graphical mode. This option overrides
-
   [`color()`](`MietteHandlerOpts::color).
 
 - <span id="miettehandleropts-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](highlighters/index.md#highlighter)
 
   Set a syntax highlighter when rendering in graphical mode.
-
   Use [`force_graphical()`](MietteHandlerOpts::force_graphical()) to
-
   force graphical mode.
-
   
-
   Syntax highlighting is disabled by default unless the
-
   `syntect-highlighter` feature is enabled. Call this method
-
   to override the default and use a custom highlighter
-
   implementation instead.
-
   
-
   Use
-
   [`without_syntax_highlighting()`](MietteHandlerOpts::without_syntax_highlighting())
-
   To disable highlighting completely.
-
   
-
   Setting this option will not force color output. In all cases, the
-
   current color configuration via
-
   [`color()`](MietteHandlerOpts::color()) takes precedence over
-
   highlighter configuration. However, this option does take precedence over
-
   [`rgb_colors()`](MietteHandlerOpts::rgb_colors()) (meaning syntax highlighting will be
-
   enabled regardless of the value of `MietteHandlerOpts::rgb_colors`).
 
 - <span id="miettehandleropts-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
   Disables syntax highlighting when rendering in graphical mode.
-
   Use [`force_graphical()`](MietteHandlerOpts::force_graphical()) to
-
   force graphical mode.
-
   
-
   Syntax highlighting is disabled by default unless the
-
   `syntect-highlighter` feature is enabled. Call this method if you want
-
   to disable highlighting when building with this feature.
 
 - <span id="miettehandleropts-width"></span>`fn width(self, width: usize) -> Self`
@@ -1597,25 +1442,17 @@ miette::set_hook(Box::new(|_| {
 - <span id="miettehandleropts-wrap-lines"></span>`fn wrap_lines(self, wrap_lines: bool) -> Self`
 
   If true, long lines can be wrapped.
-
   
-
   If false, long lines will not be broken when they exceed the width.
-
   
-
   Defaults to true.
 
 - <span id="miettehandleropts-break-words"></span>`fn break_words(self, break_words: bool) -> Self`
 
   If true, long words can be broken when wrapping.
-
   
-
   If false, long words will not be broken when they exceed the width.
-
   
-
   Defaults to true.
 
 - <span id="miettehandleropts-word-separator"></span>`fn word_separator(self, word_separator: textwrap::WordSeparator) -> Self`
@@ -1645,57 +1482,37 @@ miette::set_hook(Box::new(|_| {
 - <span id="miettehandleropts-color"></span>`fn color(self, color: bool) -> Self`
 
   If true, colors will be used during graphical rendering, regardless
-
   of whether or not the terminal supports them.
-
   
-
   If false, colors will never be used.
-
   
-
   If unspecified, colors will be used only if the terminal supports them.
-
   
-
   The actual format depends on the value of
-
   `MietteHandlerOpts::rgb_colors`.
 
 - <span id="miettehandleropts-rgb-colors"></span>`fn rgb_colors(self, color: RgbColors) -> Self` — [`RgbColors`](#rgbcolors)
 
   Controls which color format to use if colors are used in graphical
-
   rendering.
-
   
-
   The default is `Never`.
-
   
-
   This value does not control whether or not colors are being used in the
-
   first place. That is handled by the `MietteHandlerOpts::color`
-
   setting. If colors are not being used, the value of `rgb_colors` has
-
   no effect.
-
   
-
   It also does not control colors when a syntax highlighter is in use.
 
 - <span id="miettehandleropts-unicode"></span>`fn unicode(self, unicode: bool) -> Self`
 
   If true, forces unicode display for graphical output. If set to false,
-
   forces ASCII art display.
 
 - <span id="miettehandleropts-force-graphical"></span>`fn force_graphical(self, force: bool) -> Self`
 
   If true, graphical rendering will be used regardless of terminal
-
   detection.
 
 - <span id="miettehandleropts-force-narrated"></span>`fn force_narrated(self, force: bool) -> Self`
@@ -1765,11 +1582,8 @@ miette::set_hook(Box::new(|_| {
 - <span id="miettehandleropts-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteHandlerOpts`
@@ -1802,7 +1616,7 @@ struct MietteHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../.source_1765633015/miette-7.6.0/src/handler.rs#L387-L389)*
+*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../.source_1765894658/miette-7.6.0/src/handler.rs#L387-L389)*
 
 A [`ReportHandler`](#reporthandler) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -1852,11 +1666,8 @@ printer.
 - <span id="miettehandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteHandler`
@@ -1890,7 +1701,7 @@ struct MietteDiagnostic {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../.source_1765633015/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
+*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../.source_1765894658/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
 
 Diagnostic that can be created at runtime.
 
@@ -1932,259 +1743,148 @@ Diagnostic that can be created at runtime.
 - <span id="miettediagnostic-new"></span>`fn new(message: impl Into<String>) -> Self`
 
   Create a new dynamic diagnostic with the given message.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic, Severity};
-
   
-
   let diag = MietteDiagnostic::new("Oops, something went wrong!");
-
   assert_eq!(diag.to_string(), "Oops, something went wrong!");
-
   assert_eq!(diag.message, "Oops, something went wrong!");
-
   ```
 
 - <span id="miettediagnostic-with-code"></span>`fn with_code(self, code: impl Into<String>) -> Self`
 
   Return new diagnostic with the given code.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic};
-
   
-
   let diag = MietteDiagnostic::new("Oops, something went wrong!").with_code("foo::bar::baz");
-
   assert_eq!(diag.message, "Oops, something went wrong!");
-
   assert_eq!(diag.code, Some("foo::bar::baz".to_string()));
-
   ```
 
 - <span id="miettediagnostic-with-severity"></span>`fn with_severity(self, severity: Severity) -> Self` — [`Severity`](#severity)
 
   Return new diagnostic with the given severity.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic, Severity};
-
   
-
   let diag = MietteDiagnostic::new("I warn you to stop!").with_severity(Severity::Warning);
-
   assert_eq!(diag.message, "I warn you to stop!");
-
   assert_eq!(diag.severity, Some(Severity::Warning));
-
   ```
 
 - <span id="miettediagnostic-with-help"></span>`fn with_help(self, help: impl Into<String>) -> Self`
 
   Return new diagnostic with the given help message.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic};
-
   
-
   let diag = MietteDiagnostic::new("PC is not working").with_help("Try to reboot it again");
-
   assert_eq!(diag.message, "PC is not working");
-
   assert_eq!(diag.help, Some("Try to reboot it again".to_string()));
-
   ```
 
 - <span id="miettediagnostic-with-url"></span>`fn with_url(self, url: impl Into<String>) -> Self`
 
   Return new diagnostic with the given URL.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic};
-
   
-
   let diag = MietteDiagnostic::new("PC is not working")
-
       .with_url("https://letmegooglethat.com/?q=Why+my+pc+doesn%27t+work");
-
   assert_eq!(diag.message, "PC is not working");
-
   assert_eq!(
-
       diag.url,
-
       Some("https://letmegooglethat.com/?q=Why+my+pc+doesn%27t+work".to_string())
-
   );
-
   ```
 
 - <span id="miettediagnostic-with-label"></span>`fn with_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
   Return new diagnostic with the given label.
-
   
-
   Discards previous labels
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
-
   
-
   let source = "cpp is the best language";
-
   
-
   let label = LabeledSpan::at(0..3, "This should be Rust");
-
   let diag = MietteDiagnostic::new("Wrong best language").with_label(label.clone());
-
   assert_eq!(diag.message, "Wrong best language");
-
   assert_eq!(diag.labels, Some(vec![label]));
-
   ```
 
 - <span id="miettediagnostic-with-labels"></span>`fn with_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
   Return new diagnostic with the given labels.
-
   
-
   Discards previous labels
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
-
   
-
   let source = "helo wrld";
-
   
-
   let labels = vec![
-
       LabeledSpan::at_offset(3, "add 'l'"),
-
       LabeledSpan::at_offset(6, "add 'r'"),
-
   ];
-
   let diag = MietteDiagnostic::new("Typos in 'hello world'").with_labels(labels.clone());
-
   assert_eq!(diag.message, "Typos in 'hello world'");
-
   assert_eq!(diag.labels, Some(labels));
-
   ```
 
 - <span id="miettediagnostic-and-label"></span>`fn and_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
   Return new diagnostic with new label added to the existing ones.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
-
   
-
   let source = "helo wrld";
-
   
-
   let label1 = LabeledSpan::at_offset(3, "add 'l'");
-
   let label2 = LabeledSpan::at_offset(6, "add 'r'");
-
   let diag = MietteDiagnostic::new("Typos in 'hello world'")
-
       .and_label(label1.clone())
-
       .and_label(label2.clone());
-
   assert_eq!(diag.message, "Typos in 'hello world'");
-
   assert_eq!(diag.labels, Some(vec![label1, label2]));
-
   ```
 
 - <span id="miettediagnostic-and-labels"></span>`fn and_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
   Return new diagnostic with new labels added to the existing ones.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
-
   
-
   let source = "helo wrld";
-
   
-
   let label1 = LabeledSpan::at_offset(3, "add 'l'");
-
   let label2 = LabeledSpan::at_offset(6, "add 'r'");
-
   let label3 = LabeledSpan::at_offset(9, "add '!'");
-
   let diag = MietteDiagnostic::new("Typos in 'hello world!'")
-
       .and_label(label1.clone())
-
       .and_labels([label2.clone(), label3.clone()]);
-
   assert_eq!(diag.message, "Typos in 'hello world!'");
-
   assert_eq!(diag.labels, Some(vec![label1, label2, label3]));
-
   ```
 
 #### Trait Implementations
@@ -2248,11 +1948,8 @@ Diagnostic that can be created at runtime.
 - <span id="miettediagnostic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteDiagnostic`
@@ -2299,10 +1996,10 @@ struct NamedSource<S: SourceCode + 'static> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/named_source.rs:7-11`](../../.source_1765633015/miette-7.6.0/src/named_source.rs#L7-L11)*
+*Defined in [`miette-7.6.0/src/named_source.rs:7-11`](../../.source_1765894658/miette-7.6.0/src/named_source.rs#L7-L11)*
 
 Utility struct for when you have a regular [`SourceCode`](#sourcecode) type that doesn't
-implement `name`. For example [`String`](../cargo_platform/index.md). Or if you want to override the
+implement `name`. For example `String`. Or if you want to override the
 `name` returned by the `SourceCode`.
 
 #### Implementations
@@ -2310,7 +2007,6 @@ implement `name`. For example [`String`](../cargo_platform/index.md). Or if you 
 - <span id="namedsource-new"></span>`fn new(name: impl AsRef<str>, source: S) -> Self`
 
   Create a new `NamedSource` using a regular [`SourceCode`](#sourcecode) and giving
-
   its returned [`SpanContents`](#spancontents) a name.
 
 - <span id="namedsource-name"></span>`fn name(&self) -> &str`
@@ -2320,7 +2016,6 @@ implement `name`. For example [`String`](../cargo_platform/index.md). Or if you 
 - <span id="namedsource-inner"></span>`fn inner(&self) -> &S`
 
   Returns a reference the inner [`SourceCode`](#sourcecode) type for this
-
   `NamedSource`.
 
 - <span id="namedsource-with-language"></span>`fn with_language(self, language: impl Into<String>) -> Self`
@@ -2370,11 +2065,8 @@ implement `name`. For example [`String`](../cargo_platform/index.md). Or if you 
 - <span id="namedsource-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<S: cmp::Ord + SourceCode + 'static> Ord for NamedSource<S>`
@@ -2423,7 +2115,7 @@ implement `name`. For example [`String`](../cargo_platform/index.md). Or if you 
 struct Panic(String);
 ```
 
-*Defined in [`miette-7.6.0/src/panic.rs:30`](../../.source_1765633015/miette-7.6.0/src/panic.rs#L30)*
+*Defined in [`miette-7.6.0/src/panic.rs:30`](../../.source_1765894658/miette-7.6.0/src/panic.rs#L30)*
 
 #### Implementations
 
@@ -2472,11 +2164,8 @@ struct Panic(String);
 - <span id="panic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Panic`
@@ -2509,7 +2198,7 @@ struct LabeledSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L250-L255)*
+*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L250-L255)*
 
 A labeled [`SourceSpan`](#sourcespan).
 
@@ -2534,79 +2223,46 @@ A labeled [`SourceSpan`](#sourcespan).
 - <span id="labeledspan-at"></span>`fn at(span: impl Into<SourceSpan>, label: impl Into<String>) -> Self` — [`SourceSpan`](#sourcespan)
 
   Makes a new label at specified span
-
   
-
   # Examples
-
   ```rust
-
   use miette::LabeledSpan;
-
   
-
   let source = "Cpp is the best";
-
   let label = LabeledSpan::at(0..3, "should be Rust");
-
   assert_eq!(
-
       label,
-
       LabeledSpan::new(Some("should be Rust".to_string()), 0, 3)
-
   )
-
   ```
 
 - <span id="labeledspan-at-offset"></span>`fn at_offset(offset: ByteOffset, label: impl Into<String>) -> Self` — [`ByteOffset`](#byteoffset)
 
   Makes a new label that points at a specific offset.
-
   
-
   # Examples
-
   ```rust
-
   use miette::LabeledSpan;
-
   
-
   let source = "(2 + 2";
-
   let label = LabeledSpan::at_offset(4, "expected a closing parenthesis");
-
   assert_eq!(
-
       label,
-
       LabeledSpan::new(Some("expected a closing parenthesis".to_string()), 4, 0)
-
   )
-
   ```
 
 - <span id="labeledspan-underline"></span>`fn underline(span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
 
   Makes a new label without text, that underlines a specific span.
-
   
-
   # Examples
-
   ```rust
-
   use miette::LabeledSpan;
-
   
-
   let source = "You have an eror here";
-
   let label = LabeledSpan::underline(12..16);
-
   assert_eq!(label, LabeledSpan::new(None, 12, 4))
-
   ```
 
 - <span id="labeledspan-label"></span>`fn label(&self) -> Option<&str>`
@@ -2672,11 +2328,8 @@ A labeled [`SourceSpan`](#sourcespan).
 - <span id="labeledspan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LabeledSpan`
@@ -2721,7 +2374,7 @@ struct MietteSpanContents<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L458-L473)*
+*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L458-L473)*
 
 Basic implementation of the [`SpanContents`](#spancontents) trait, for convenience.
 
@@ -2776,11 +2429,8 @@ Basic implementation of the [`SpanContents`](#spancontents) trait, for convenien
 - <span id="miettespancontents-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteSpanContents<'a>`
@@ -2830,7 +2480,7 @@ struct SourceSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L549-L554)*
+*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L549-L554)*
 
 Span within a [`SourceCode`](#sourcecode)
 
@@ -2861,7 +2511,6 @@ Span within a [`SourceCode`](#sourcecode)
 - <span id="sourcespan-is-empty"></span>`const fn is_empty(&self) -> bool`
 
   Whether this [`SourceSpan`](#sourcespan) has a length of zero. It may still be useful
-
   to point to a specific point.
 
 #### Trait Implementations
@@ -2909,11 +2558,8 @@ Span within a [`SourceCode`](#sourcecode)
 - <span id="sourcespan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for SourceSpan`
@@ -2958,7 +2604,7 @@ Span within a [`SourceCode`](#sourcecode)
 struct SourceOffset(ByteOffset);
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L673)*
+*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L673)*
 
 Newtype that represents the [`ByteOffset`](#byteoffset) from the beginning of a [`SourceCode`](#sourcecode)
 
@@ -2971,37 +2617,23 @@ Newtype that represents the [`ByteOffset`](#byteoffset) from the beginning of a 
 - <span id="sourceoffset-from-location"></span>`fn from_location(source: impl AsRef<str>, loc_line: usize, loc_col: usize) -> Self`
 
   Little utility to help convert 1-based line/column locations into
-
   miette-compatible Spans
-
   
-
   This function is infallible: Giving an out-of-range line/column pair
-
   will return the offset of the last byte in the source.
 
 - <span id="sourceoffset-from-current-location"></span>`fn from_current_location() -> Result<(String, Self), MietteError>` — [`MietteError`](#mietteerror)
 
   Returns an offset for the _file_ location of wherever this function is
-
   called. If you want to get _that_ caller's location, mark this
-
   function's caller with `#[track_caller]` (and so on and so forth).
-
   
-
   Returns both the filename that was given and the offset of the caller
-
   as a [`SourceOffset`](#sourceoffset).
-
   
-
   Keep in mind that this fill only work if the file your Rust source
-
   file was compiled from is actually available at that location. If
-
   you're shipping binaries for your application, you'll want to ignore
-
   the Err case or otherwise report it.
 
 #### Trait Implementations
@@ -3049,11 +2681,8 @@ Newtype that represents the [`ByteOffset`](#byteoffset) from the beginning of a 
 - <span id="sourceoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for SourceOffset`
@@ -3103,7 +2732,7 @@ enum MietteError {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../.source_1765633015/miette-7.6.0/src/error.rs#L13-L21)*
+*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../.source_1765894658/miette-7.6.0/src/error.rs#L13-L21)*
 
 Error enum for miette. Used by certain operations in the protocol.
 
@@ -3111,7 +2740,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../addr2line/index.md). This is returned when something went
+  Wrapper around `std::io::Error`. This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**
@@ -3168,11 +2797,8 @@ Error enum for miette. Used by certain operations in the protocol.
 - <span id="mietteerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteError`
@@ -3205,7 +2831,7 @@ enum RgbColors {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../.source_1765633015/miette-7.6.0/src/handler.rs#L15-L23)*
+*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../.source_1765894658/miette-7.6.0/src/handler.rs#L15-L23)*
 
 Settings to control the color format used for graphical rendering.
 
@@ -3268,11 +2894,8 @@ Settings to control the color format used for graphical rendering.
 - <span id="rgbcolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for RgbColors`
@@ -3312,7 +2935,7 @@ enum HighlighterOption {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../.source_1765633015/miette-7.6.0/src/handler.rs#L414-L419)*
+*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../.source_1765894658/miette-7.6.0/src/handler.rs#L414-L419)*
 
 #### Implementations
 
@@ -3347,11 +2970,8 @@ enum HighlighterOption {
 - <span id="highlighteroption-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for HighlighterOption`
@@ -3378,7 +2998,7 @@ enum Severity {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L189-L198)*
+*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L189-L198)*
 
 [`Diagnostic`](#diagnostic) severity. Intended to be used by
 [`ReportHandler`](crate::ReportHandler)s to change the way different
@@ -3444,11 +3064,8 @@ enum Severity {
 - <span id="severity-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Severity`
@@ -3495,7 +3112,7 @@ enum Severity {
 trait ReportHandler: core::any::Any + Send + Sync { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
 
 Error Report Handler trait for customizing `miette::Report`
 
@@ -3504,6 +3121,35 @@ Error Report Handler trait for customizing `miette::Report`
 - `fn debug(&self, error: &dyn Diagnostic, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
   Define the report format
+  
+  Used to override the report format of `miette::Report`
+  
+  # Example
+  
+  ```rust
+  use indenter::indented;
+  use miette::{Diagnostic, ReportHandler};
+  
+  pub struct Handler;
+  
+  impl ReportHandler for Handler {
+      fn debug(
+          &self,
+          error: &dyn Diagnostic,
+          f: &mut core::fmt::Formatter<'_>,
+      ) -> core::fmt::Result {
+          use core::fmt::Write as _;
+  
+          if f.alternate() {
+              return core::fmt::Debug::fmt(error, f);
+          }
+  
+          write!(f, "{}", error)?;
+  
+          Ok(())
+      }
+  }
+  ```
 
 #### Provided Methods
 
@@ -3529,7 +3175,7 @@ Error Report Handler trait for customizing `miette::Report`
 trait WrapErr<T, E>: context::private::Sealed { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
 
 Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](#result).
 
@@ -3715,6 +3361,7 @@ supports both of the following use cases:
 - `fn wrap_err_with<D, F>(self, f: F) -> Result<T, Report>`
 
   Wrap the error value with a new adhoc error that is evaluated lazily
+  only once an error does occur.
 
 - `fn context<D>(self, msg: D) -> Result<T, Report>`
 
@@ -3735,7 +3382,7 @@ supports both of the following use cases:
 trait Diagnostic: std::error::Error { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L20-L70)*
+*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L20-L70)*
 
 Adds rich metadata to your Error that can be used by
 [`Report`](crate::Report) to print really nice and human-friendly error
@@ -3746,18 +3393,28 @@ messages.
 - `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
   Unique diagnostic code that can be used to look up more information
+  about this `Diagnostic`. Ideally also globally unique, and documented
+  in the toplevel crate's documentation for easy searching. Rust path
+  format (`foo::bar::baz`) is recommended, but more classic codes like
+  `E0123` or enums will work just fine.
 
 - `fn severity(&self) -> Option<Severity>`
 
   Diagnostic severity. This may be used by
+  [`ReportHandler`](crate::ReportHandler)s to change the display format
+  of this diagnostic.
+  
+  If `None`, reporters should treat this as [`Severity::Error`](#severityerror).
 
 - `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
   Additional help text related to this `Diagnostic`. Do you have any
+  advice for the poor soul who's just run into this issue?
 
 - `fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
   URL to visit for a more detailed explanation/help about this
+  `Diagnostic`.
 
 - `fn source_code(&self) -> Option<&dyn SourceCode>`
 
@@ -3795,11 +3452,11 @@ messages.
 trait SourceCode: Send + Sync { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L236-L245)*
+*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L236-L245)*
 
 Represents readable source code of some sort.
 
-This trait is able to support simple `SourceCode` types like [`String`](../cargo_platform/index.md)s, as
+This trait is able to support simple `SourceCode` types like `String`s, as
 well as more involved types like indexes into centralized `SourceMap`-like
 types, file handles, and even network streams.
 
@@ -3812,6 +3469,7 @@ gigabytes or larger in size.
 - `fn read_span<'a>(self: &'a Self, span: &SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>`
 
   Read the bytes for a specific span from this `SourceCode`, keeping a
+  certain number of lines before and after the span as context.
 
 #### Implementors
 
@@ -3831,7 +3489,7 @@ gigabytes or larger in size.
 trait SpanContents<'a> { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L426-L452)*
+*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L426-L452)*
 
 Contents of a [`SourceCode`](#sourcecode) covered by [`SourceSpan`](#sourcespan).
 
@@ -3850,10 +3508,12 @@ Includes line and column information to optimize highlight calculations.
 - `fn line(&self) -> usize`
 
   The 0-indexed line in the associated [`SourceCode`](#sourcecode) where the data
+  begins.
 
 - `fn column(&self) -> usize`
 
   The 0-indexed column in the associated [`SourceCode`](#sourcecode) where the data
+  begins, relative to `line`.
 
 - `fn line_count(&self) -> usize`
 
@@ -3868,6 +3528,9 @@ Includes line and column information to optimize highlight calculations.
 - `fn language(&self) -> Option<&str>`
 
   Optional method. The language name for this source code, if any.
+  This is used to drive syntax highlighting.
+  
+  Examples: Rust, TOML, C
 
 #### Implementors
 
@@ -3881,7 +3544,7 @@ Includes line and column information to optimize highlight calculations.
 fn set_hook(hook: ErrorHook) -> Result<(), InstallError>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
 
 Set the error hook.
 
@@ -3891,7 +3554,7 @@ Set the error hook.
 fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
 
 ### `get_default_printer`
 
@@ -3899,7 +3562,7 @@ fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
 
 ### `set_panic_hook`
 
@@ -3907,7 +3570,7 @@ fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 fn set_panic_hook()
 ```
 
-*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../.source_1765633015/miette-7.6.0/src/panic.rs#L8-L27)*
+*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../.source_1765894658/miette-7.6.0/src/panic.rs#L8-L27)*
 
 Tells miette to render panics using its rendering engine.
 
@@ -3919,7 +3582,7 @@ Tells miette to render panics using its rendering engine.
 type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + Send>;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
 
 ### `Result<T, E>`
 
@@ -3927,7 +3590,7 @@ type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + 
 type Result<T, E> = core::result::Result<T, E>;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L257)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L257)*
 
 type alias for `Result<T, Report>`
 
@@ -3990,7 +3653,7 @@ You can just replace `use`s of `anyhow::Result`/`eyre::Result` with
 type ByteOffset = usize;
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L666)*
+*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L666)*
 
 "Raw" type for the byte offset from the beginning of a [`SourceCode`](#sourcecode).
 
@@ -3998,7 +3661,7 @@ type ByteOffset = usize;
 
 ### `bail!`
 
-*Defined in [`miette-7.6.0/src/eyreish/macros.rs:80-89`](../../.source_1765633015/miette-7.6.0/src/eyreish/macros.rs#L80-L89)*
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:80-89`](../../.source_1765894658/miette-7.6.0/src/eyreish/macros.rs#L80-L89)*
 
 Return early with an error.
 
@@ -4067,7 +3730,7 @@ fn divide(x: f64, y: f64) -> Result<f64> {
 
 ### `ensure!`
 
-*Defined in [`miette-7.6.0/src/eyreish/macros.rs:156-169`](../../.source_1765633015/miette-7.6.0/src/eyreish/macros.rs#L156-L169)*
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:156-169`](../../.source_1765894658/miette-7.6.0/src/eyreish/macros.rs#L156-L169)*
 
 Return early with an error if a condition is not satisfied.
 
@@ -4129,7 +3792,7 @@ fn divide(x: f64, y: f64) -> Result<f64> {
 
 ### `miette!`
 
-*Defined in [`miette-7.6.0/src/eyreish/macros.rs:229-240`](../../.source_1765633015/miette-7.6.0/src/eyreish/macros.rs#L229-L240)*
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:229-240`](../../.source_1765894658/miette-7.6.0/src/eyreish/macros.rs#L229-L240)*
 
 Construct an ad-hoc [`Report`](#report).
 
@@ -4176,7 +3839,7 @@ You can just replace `use`s of the `anyhow!`/`eyre!` macros with `miette!`.
 
 ### `diagnostic!`
 
-*Defined in [`miette-7.6.0/src/eyreish/macros.rs:291-300`](../../.source_1765633015/miette-7.6.0/src/eyreish/macros.rs#L291-L300)*
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:291-300`](../../.source_1765894658/miette-7.6.0/src/eyreish/macros.rs#L291-L300)*
 
 Construct a [`MietteDiagnostic`](#miettediagnostic) in more user-friendly way.
 
@@ -4214,9 +3877,9 @@ assert_eq!(diag.message, "1 + 2 = 3");
 
 ### `box_error_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L72-L86)*
+*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L72-L86)*
 
 ### `box_borrow_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../.source_1765633015/miette-7.6.0/src/protocol.rs#L94-L104)*
+*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../.source_1765894658/miette-7.6.0/src/protocol.rs#L94-L104)*
 

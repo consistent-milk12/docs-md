@@ -87,7 +87,7 @@ struct SegmentIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L532-L534)*
+*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L532-L534)*
 
 An iterator for the loadable segments in a [`File`](../index.md).
 
@@ -120,11 +120,8 @@ An iterator for the loadable segments in a [`File`](../index.md).
 - <span id="segmentiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SegmentIterator<'data, 'file, R>`
@@ -161,7 +158,7 @@ struct Segment<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L574-L576)*
+*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L574-L576)*
 
 A loadable segment in a [`File`](../index.md).
 
@@ -196,11 +193,8 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 - <span id="segment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectSegment for Segment<'data, 'file, R>`
@@ -245,7 +239,7 @@ struct SectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L665-L667)*
+*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L665-L667)*
 
 An iterator for the sections in a [`File`](../index.md).
 
@@ -278,11 +272,8 @@ An iterator for the sections in a [`File`](../index.md).
 - <span id="sectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SectionIterator<'data, 'file, R>`
@@ -319,7 +310,7 @@ struct Section<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L708-L710)*
+*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L708-L710)*
 
 A section in a [`File`](../index.md).
 
@@ -354,11 +345,8 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 - <span id="section-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectSection for Section<'data, 'file, R>`
@@ -421,7 +409,7 @@ struct ComdatIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L843-L845)*
+*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L843-L845)*
 
 An iterator for the COMDAT section groups in a [`File`](../index.md).
 
@@ -454,11 +442,8 @@ An iterator for the COMDAT section groups in a [`File`](../index.md).
 - <span id="comdatiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ComdatIterator<'data, 'file, R>`
@@ -495,7 +480,7 @@ struct Comdat<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L885-L887)*
+*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L885-L887)*
 
 A COMDAT section group in a [`File`](../index.md).
 
@@ -530,11 +515,8 @@ Most functionality is provided by the [`ObjectComdat`](../index.md) trait implem
 - <span id="comdat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectComdat for Comdat<'data, 'file, R>`
@@ -573,7 +555,7 @@ struct ComdatSectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L959-L961)*
+*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L959-L961)*
 
 An iterator for the sections in a [`Comdat`](../index.md).
 
@@ -606,11 +588,8 @@ An iterator for the sections in a [`Comdat`](../index.md).
 - <span id="comdatsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ComdatSectionIterator<'data, 'file, R>`
@@ -649,7 +628,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1001-L1006)*
+*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1001-L1006)*
 
 A symbol table in a [`File`](../index.md).
 
@@ -684,11 +663,8 @@ Most functionality is provided by the [`ObjectSymbolTable`](../index.md) trait i
 - <span id="symboltable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectSymbolTable for SymbolTable<'data, 'file, R>`
@@ -725,7 +701,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1085-L1090)*
+*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1085-L1090)*
 
 An iterator for the symbols in a [`SymbolTable`](../index.md).
 
@@ -758,11 +734,8 @@ An iterator for the symbols in a [`SymbolTable`](../index.md).
 - <span id="symboliterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SymbolIterator<'data, 'file, R>`
@@ -801,7 +774,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1165-L1170)*
+*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1165-L1170)*
 
 An symbol in a [`SymbolTable`](../index.md).
 
@@ -836,11 +809,8 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 - <span id="symbol-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectSymbol for Symbol<'data, 'file, R>`
@@ -899,7 +869,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1301-L1306)*
+*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1301-L1306)*
 
 An iterator for the dynamic relocation entries in a [`File`](../index.md).
 
@@ -932,11 +902,8 @@ An iterator for the dynamic relocation entries in a [`File`](../index.md).
 - <span id="dynamicrelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DynamicRelocationIterator<'data, 'file, R>`
@@ -973,7 +940,7 @@ struct SectionRelocationIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1338-L1340)*
+*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1338-L1340)*
 
 An iterator for the relocation entries in a [`Section`](../index.md).
 
@@ -1006,11 +973,8 @@ An iterator for the relocation entries in a [`Section`](../index.md).
 - <span id="sectionrelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SectionRelocationIterator<'data, 'file, R>`
@@ -1058,7 +1022,7 @@ enum File<'data, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L213-L236)*
+*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L213-L236)*
 
 An object file that can be any supported file format.
 
@@ -1107,11 +1071,8 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 - <span id="file-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Object for File<'data, R>`
@@ -1225,7 +1186,7 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L537-L560)*
+*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L537-L560)*
 
 #### Trait Implementations
 
@@ -1256,11 +1217,8 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="segmentiteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SegmentIteratorInternal<'data, 'file, R>`
@@ -1292,7 +1250,7 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L579-L602)*
+*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L579-L602)*
 
 #### Trait Implementations
 
@@ -1323,11 +1281,8 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="segmentinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SegmentInternal<'data, 'file, R>`
@@ -1359,7 +1314,7 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L671-L694)*
+*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L671-L694)*
 
 #### Trait Implementations
 
@@ -1390,11 +1345,8 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="sectioniteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SectionIteratorInternal<'data, 'file, R>`
@@ -1426,7 +1378,7 @@ enum SectionInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L712-L735)*
+*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L712-L735)*
 
 #### Trait Implementations
 
@@ -1453,11 +1405,8 @@ enum SectionInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="sectioninternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SectionInternal<'data, 'file, R>`
@@ -1489,7 +1438,7 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L848-L871)*
+*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L848-L871)*
 
 #### Trait Implementations
 
@@ -1520,11 +1469,8 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="comdatiteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ComdatIteratorInternal<'data, 'file, R>`
@@ -1556,7 +1502,7 @@ enum ComdatInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L889-L912)*
+*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L889-L912)*
 
 #### Trait Implementations
 
@@ -1583,11 +1529,8 @@ enum ComdatInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="comdatinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ComdatInternal<'data, 'file, R>`
@@ -1619,7 +1562,7 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L964-L987)*
+*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L964-L987)*
 
 #### Trait Implementations
 
@@ -1650,11 +1593,8 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="comdatsectioniteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ComdatSectionIteratorInternal<'data, 'file, R>`
@@ -1688,7 +1628,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1009-L1055)*
+*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1009-L1055)*
 
 #### Trait Implementations
 
@@ -1719,11 +1659,8 @@ where
 - <span id="symboltableinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SymbolTableInternal<'data, 'file, R>`
@@ -1757,7 +1694,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1093-L1149)*
+*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1093-L1149)*
 
 #### Trait Implementations
 
@@ -1788,11 +1725,8 @@ where
 - <span id="symboliteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SymbolIteratorInternal<'data, 'file, R>`
@@ -1826,7 +1760,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1172-L1218)*
+*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1172-L1218)*
 
 #### Trait Implementations
 
@@ -1853,11 +1787,8 @@ where
 - <span id="symbolinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SymbolInternal<'data, 'file, R>`
@@ -1884,7 +1815,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1309-L1320)*
+*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1309-L1320)*
 
 #### Trait Implementations
 
@@ -1915,11 +1846,8 @@ where
 - <span id="dynamicrelocationiteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DynamicRelocationIteratorInternal<'data, 'file, R>`
@@ -1951,7 +1879,7 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1343-L1366)*
+*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1343-L1366)*
 
 #### Trait Implementations
 
@@ -1982,11 +1910,8 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="sectionrelocationiteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SectionRelocationIteratorInternal<'data, 'file, R>`
@@ -2005,7 +1930,7 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 ### `with_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L30-L57)*
+*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L30-L57)*
 
 Evaluate an expression on the contents of a file format enum.
 
@@ -2013,27 +1938,27 @@ This is a hack to avoid virtual calls.
 
 ### `with_inner_mut!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L59-L86)*
+*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L59-L86)*
 
 ### `map_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L89-L116)*
+*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L89-L116)*
 
 Like `with_inner!`, but wraps the result in another enum.
 
 ### `map_inner_option!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L119-L146)*
+*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L119-L146)*
 
 Like `map_inner!`, but the result is a Result or Option.
 
 ### `map_inner_option_mut!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L148-L175)*
+*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L148-L175)*
 
 ### `next_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../../.source_1765633015/object-0.37.3/src/read/any.rs#L178-L205)*
+*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../../.source_1765894658/object-0.37.3/src/read/any.rs#L178-L205)*
 
 Call `next` for a file format iterator.
 

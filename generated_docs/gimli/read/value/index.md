@@ -35,7 +35,7 @@ enum ValueType {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:26-51`](../../../../.source_1765633015/gimli-0.32.3/src/read/value.rs#L26-L51)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:26-51`](../../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L26-L51)*
 
 The type of an entry on the DWARF stack.
 
@@ -142,11 +142,8 @@ The type of an entry on the DWARF stack.
 - <span id="valuetype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ValueType`
@@ -193,7 +190,7 @@ enum Value {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:55-78`](../../../../.source_1765633015/gimli-0.32.3/src/read/value.rs#L55-L78)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:55-78`](../../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L55-L78)*
 
 The value of an entry on the DWARF stack.
 
@@ -256,367 +253,238 @@ The value of an entry on the DWARF stack.
 - <span id="value-to-u64"></span>`fn to_u64(self, addr_mask: u64) -> Result<u64>` — [`Result`](../../index.md#result)
 
   Convert a `Value` to a `u64`.
-
   
-
   The `ValueType` of `self` must be integral.
-
   Values are sign extended if the source value is signed.
 
 - <span id="value-from-u64"></span>`fn from_u64(value_type: ValueType, value: u64) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
   Create a `Value` with the given `value_type` from a `u64` value.
-
   
-
   The `value_type` may be integral or floating point.
-
   The result is truncated if the `u64` value does
-
   not fit the bounds of the `value_type`.
 
 - <span id="value-from-f32"></span>`fn from_f32(value_type: ValueType, value: f32) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
   Create a `Value` with the given `value_type` from a `f32` value.
-
   
-
   The `value_type` may be integral or floating point.
-
   The result is not defined if the `f32` value does
-
   not fit the bounds of the `value_type`.
 
 - <span id="value-from-f64"></span>`fn from_f64(value_type: ValueType, value: f64) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
   Create a `Value` with the given `value_type` from a `f64` value.
-
   
-
   The `value_type` may be integral or floating point.
-
   The result is not defined if the `f64` value does
-
   not fit the bounds of the `value_type`.
 
 - <span id="value-convert"></span>`fn convert(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
   Convert a `Value` to the given `value_type`.
-
   
-
   When converting between integral types, the result is truncated
-
   if the source value does not fit the bounds of the `value_type`.
-
   When converting from floating point types, the result is not defined
-
   if the source value does not fit the bounds of the `value_type`.
-
   
-
   This corresponds to the DWARF `DW_OP_convert` operation.
 
 - <span id="value-reinterpret"></span>`fn reinterpret(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](../index.md#valuetype), [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
   Reinterpret the bits in a `Value` as the given `value_type`.
-
   
-
   The source and result value types must have equal sizes.
-
   
-
   This corresponds to the DWARF `DW_OP_reinterpret` operation.
 
 - <span id="value-abs"></span>`fn abs(self, addr_mask: u64) -> Result<Value>` — [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
   Perform an absolute value operation.
-
   
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_abs` operation.
 
 - <span id="value-neg"></span>`fn neg(self, addr_mask: u64) -> Result<Value>` — [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
   Perform a negation operation.
-
   
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_neg` operation.
 
 - <span id="value-add"></span>`fn add(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform an addition operation.
-
   
-
   This operation requires matching types.
-
   
-
   This corresponds to the DWARF `DW_OP_plus` operation.
 
 - <span id="value-sub"></span>`fn sub(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform a subtraction operation.
-
   
-
   This operation requires matching types.
-
   
-
   This corresponds to the DWARF `DW_OP_minus` operation.
 
 - <span id="value-mul"></span>`fn mul(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform a multiplication operation.
-
   
-
   This operation requires matching types.
-
   
-
   This corresponds to the DWARF `DW_OP_mul` operation.
 
 - <span id="value-div"></span>`fn div(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform a division operation.
-
   
-
   This operation requires matching types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_div` operation.
 
 - <span id="value-rem"></span>`fn rem(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform a remainder operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as an unsigned value.
-
   
-
   This corresponds to the DWARF `DW_OP_mod` operation.
 
 - <span id="value-not"></span>`fn not(self, addr_mask: u64) -> Result<Value>` — [`Result`](../../index.md#result), [`Value`](../index.md#value)
 
   Perform a bitwise not operation.
-
   
-
   This operation requires matching integral types.
-
   
-
   This corresponds to the DWARF `DW_OP_not` operation.
 
 - <span id="value-and"></span>`fn and(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform a bitwise and operation.
-
   
-
   This operation requires matching integral types.
-
   
-
   This corresponds to the DWARF `DW_OP_and` operation.
 
 - <span id="value-or"></span>`fn or(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform a bitwise or operation.
-
   
-
   This operation requires matching integral types.
-
   
-
   This corresponds to the DWARF `DW_OP_or` operation.
 
 - <span id="value-xor"></span>`fn xor(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform a bitwise exclusive-or operation.
-
   
-
   This operation requires matching integral types.
-
   
-
   This corresponds to the DWARF `DW_OP_xor` operation.
 
 - <span id="value-shift-length"></span>`fn shift_length(self) -> Result<u64>` — [`Result`](../../index.md#result)
 
   Convert value to bit length suitable for a shift operation.
-
   
-
   If the value is negative then an error is returned.
 
 - <span id="value-shl"></span>`fn shl(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform a shift left operation.
-
   
-
   This operation requires integral types.
-
   If the shift length exceeds the type size, then 0 is returned.
-
   If the shift length is negative then an error is returned.
-
   
-
   This corresponds to the DWARF `DW_OP_shl` operation.
 
 - <span id="value-shr"></span>`fn shr(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform a logical shift right operation.
-
   
-
   This operation requires an unsigned integral type for the value.
-
   If the value type is `Generic`, then it is interpreted as an unsigned value.
-
   
-
   This operation requires an integral type for the shift length.
-
   If the shift length exceeds the type size, then 0 is returned.
-
   If the shift length is negative then an error is returned.
-
   
-
   This corresponds to the DWARF `DW_OP_shr` operation.
 
 - <span id="value-shra"></span>`fn shra(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform an arithmetic shift right operation.
-
   
-
   This operation requires a signed integral type for the value.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This operation requires an integral type for the shift length.
-
   If the shift length exceeds the type size, then 0 is returned for positive values,
-
   and -1 is returned for negative values.
-
   If the shift length is negative then an error is returned.
-
   
-
   This corresponds to the DWARF `DW_OP_shra` operation.
 
 - <span id="value-eq"></span>`fn eq(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform the `==` relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_eq` operation.
 
 - <span id="value-ge"></span>`fn ge(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform the `>=` relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_ge` operation.
 
 - <span id="value-gt"></span>`fn gt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform the `>` relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_gt` operation.
 
 - <span id="value-le"></span>`fn le(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform the `<= relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_le` operation.
 
 - <span id="value-lt"></span>`fn lt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform the `< relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_lt` operation.
 
 - <span id="value-ne"></span>`fn ne(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](../index.md#value), [`Result`](../../index.md#result)
 
   Perform the `!= relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_ne` operation.
 
 #### Trait Implementations
@@ -658,11 +526,8 @@ The value of an entry on the DWARF stack.
 - <span id="value-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Value`
@@ -699,7 +564,7 @@ The value of an entry on the DWARF stack.
 fn sign_extend(value: u64, mask: u64) -> i64
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:13-17`](../../../../.source_1765633015/gimli-0.32.3/src/read/value.rs#L13-L17)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:13-17`](../../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L13-L17)*
 
 Convert a u64 to an i64, with sign extension if required.
 
@@ -712,5 +577,5 @@ as a signed value.
 fn mask_bit_size(addr_mask: u64) -> u32
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:20-22`](../../../../.source_1765633015/gimli-0.32.3/src/read/value.rs#L20-L22)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:20-22`](../../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L20-L22)*
 

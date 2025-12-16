@@ -49,13 +49,9 @@ side effects.
 - <span id="markdowncapture-insert"></span>`fn insert(&mut self, path: String, content: String)`
 
   Add a file to the capture.
-
   
-
   # Arguments
-
   * `path` - Relative path of the file (e.g., "index.md" or "span/index.md")
-
   * `content` - The markdown content for this file
 
 - <span id="markdowncapture-get"></span>`fn get(&self, path: &str) -> Option<&String>`
@@ -77,9 +73,7 @@ side effects.
 - <span id="markdowncapture-to-snapshot-string"></span>`fn to_snapshot_string(&self) -> String`
 
   Convert all captured files to a single string for snapshot testing.
-
   
-
   Files are sorted by path and separated with clear headers.
 
 - <span id="markdowncapture-into-inner"></span>`fn into_inner(self) -> HashMap<String, String>`
@@ -121,11 +115,8 @@ side effects.
 - <span id="markdowncapture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MarkdownCapture`

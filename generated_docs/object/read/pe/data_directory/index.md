@@ -20,7 +20,7 @@ struct DataDirectories<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/data_directory.rs:16-18`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/data_directory.rs#L16-L18)*
+*Defined in [`object-0.37.3/src/read/pe/data_directory.rs:16-18`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/data_directory.rs#L16-L18)*
 
 The table of data directories in a PE file.
 
@@ -31,15 +31,10 @@ Returned by [`ImageNtHeaders::parse`](super::ImageNtHeaders::parse).
 - <span id="datadirectories-parse"></span>`fn parse(data: &'data [u8], number: u32) -> Result<Self>` — [`Result`](../../../index.md#result)
 
   Parse the data directory table.
-
   
-
   `data` must be the remaining optional data following the
-
   [optional header](pe::ImageOptionalHeader64).  `number` must be from the
-
   [`number_of_rva_and_sizes`](pe::ImageOptionalHeader64::number_of_rva_and_sizes)
-
   field of the optional header.
 
 - <span id="datadirectories-len"></span>`fn len(&self) -> usize`
@@ -57,63 +52,46 @@ Returned by [`ImageNtHeaders::parse`](super::ImageNtHeaders::parse).
 - <span id="datadirectories-get"></span>`fn get(&self, index: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../../pe/index.md#imagedatadirectory)
 
   Returns the data directory at the given index.
-
   
-
   Index should be one of the `IMAGE_DIRECTORY_ENTRY_*` constants.
-
   
-
   Returns `None` if the index is larger than the table size,
-
   or if the entry at the index has a zero virtual address.
 
 - <span id="datadirectories-export-directory"></span>`fn export_directory<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<&'data pe::ImageExportDirectory>>` — [`SectionTable`](../../coff/index.md#sectiontable), [`Result`](../../../index.md#result), [`ImageExportDirectory`](../../../pe/index.md#imageexportdirectory)
 
   Returns the unparsed export directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-export-table"></span>`fn export_table<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<ExportTable<'data>>>` — [`SectionTable`](../../coff/index.md#sectiontable), [`Result`](../../../index.md#result), [`ExportTable`](../index.md#exporttable)
 
   Returns the partially parsed export directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-import-table"></span>`fn import_table<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<ImportTable<'data>>>` — [`SectionTable`](../../coff/index.md#sectiontable), [`Result`](../../../index.md#result), [`ImportTable`](../index.md#importtable)
 
   Returns the partially parsed import directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-delay-load-import-table"></span>`fn delay_load_import_table<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<DelayLoadImportTable<'data>>>` — [`SectionTable`](../../coff/index.md#sectiontable), [`Result`](../../../index.md#result), [`DelayLoadImportTable`](../index.md#delayloadimporttable)
 
   Returns the partially parsed delay-load import directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-relocation-blocks"></span>`fn relocation_blocks<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<RelocationBlockIterator<'data>>>` — [`SectionTable`](../../coff/index.md#sectiontable), [`Result`](../../../index.md#result), [`RelocationBlockIterator`](../index.md#relocationblockiterator)
 
   Returns the blocks in the base relocation directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-resource-directory"></span>`fn resource_directory<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<ResourceDirectory<'data>>>` — [`SectionTable`](../../coff/index.md#sectiontable), [`Result`](../../../index.md#result), [`ResourceDirectory`](../index.md#resourcedirectory)
 
   Returns the resource directory.
-
   
-
   `data` must be the entire file data.
 
 #### Trait Implementations
@@ -155,11 +133,8 @@ Returned by [`ImageNtHeaders::parse`](super::ImageNtHeaders::parse).
 - <span id="datadirectories-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DataDirectories<'data>`

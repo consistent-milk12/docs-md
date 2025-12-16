@@ -62,7 +62,7 @@ Two-Way can be found in the `memmem` implementations in at least [GNU libc] and
 struct Finder(TwoWay);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:37`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/twoway.rs#L37)*
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:37`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/twoway.rs#L37)*
 
 A forward substring searcher that uses the Two-Way algorithm.
 
@@ -71,49 +71,31 @@ A forward substring searcher that uses the Two-Way algorithm.
 - <span id="finder-new"></span>`fn new(needle: &[u8]) -> Finder` — [`Finder`](#finder)
 
   Create a searcher that finds occurrences of the given `needle`.
-
   
-
   An empty `needle` results in a match at every position in a haystack,
-
   including at `haystack.len()`.
 
 - <span id="finder-find"></span>`fn find(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
   Returns the first occurrence of `needle` in the given `haystack`, or
-
   `None` if no such occurrence could be found.
-
   
-
   The `needle` given must be the same as the `needle` provided to
-
   `Finder::new`.
-
   
-
   An empty `needle` results in a match at every position in a haystack,
-
   including at `haystack.len()`.
 
 - <span id="finder-find-with-prefilter"></span>`fn find_with_prefilter(&self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8]) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md#pre)
 
   This is like `Finder::find`, but it accepts a prefilter for
-
   accelerating searches.
-
   
-
   Currently this is not exposed in the public API because, at the time
-
   of writing, I didn't want to spend time thinking about how to expose
-
   the prefilter infrastructure (if at all). If you have a compelling use
-
   case for exposing this routine, please create an issue. Do *not* open
-
   a PR that just exposes `Pre` and friends. Exporting this routine will
-
   require API design.
 
 - <span id="finder-find-small-imp"></span>`fn find_small_imp(&self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md#pre)
@@ -159,11 +141,8 @@ A forward substring searcher that uses the Two-Way algorithm.
 - <span id="finder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Finder`
@@ -192,7 +171,7 @@ A forward substring searcher that uses the Two-Way algorithm.
 struct FinderRev(TwoWay);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:41`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/twoway.rs#L41)*
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:41`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/twoway.rs#L41)*
 
 A reverse substring searcher that uses the Two-Way algorithm.
 
@@ -201,29 +180,19 @@ A reverse substring searcher that uses the Two-Way algorithm.
 - <span id="finderrev-new"></span>`fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](#finderrev)
 
   Create a searcher that finds occurrences of the given `needle`.
-
   
-
   An empty `needle` results in a match at every position in a haystack,
-
   including at `haystack.len()`.
 
 - <span id="finderrev-rfind"></span>`fn rfind(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
   Returns the last occurrence of `needle` in the given `haystack`, or
-
   `None` if no such occurrence could be found.
-
   
-
   The `needle` given must be the same as the `needle` provided to
-
   `FinderRev::new`.
-
   
-
   An empty `needle` results in a match at every position in a haystack,
-
   including at `haystack.len()`.
 
 - <span id="finderrev-rfind-small-imp"></span>`fn rfind_small_imp(&self, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>`
@@ -269,11 +238,8 @@ A reverse substring searcher that uses the Two-Way algorithm.
 - <span id="finderrev-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for FinderRev`
@@ -306,7 +272,7 @@ struct TwoWay {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:80-106`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/twoway.rs#L80-L106)*
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:80-106`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/twoway.rs#L80-L106)*
 
 An implementation of the TwoWay substring search algorithm.
 
@@ -417,11 +383,8 @@ consistent forward or reverse APIs.
 - <span id="twoway-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for TwoWay`
@@ -453,7 +416,7 @@ struct Suffix {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:483-497`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/twoway.rs#L483-L497)*
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:483-497`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/twoway.rs#L483-L497)*
 
 A suffix extracted from a needle along with its period.
 
@@ -511,11 +474,8 @@ A suffix extracted from a needle along with its period.
 - <span id="suffix-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Suffix`
@@ -536,7 +496,7 @@ A suffix extracted from a needle along with its period.
 struct ApproximateByteSet(u64);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:651`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/twoway.rs#L651)*
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:651`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/twoway.rs#L651)*
 
 A bitset used to track whether a particular byte exists in a needle or not.
 
@@ -554,7 +514,6 @@ in the haystack by needle.len() bytes.
 - <span id="approximatebyteset-contains"></span>`fn contains(&self, byte: u8) -> bool`
 
   Return true if and only if the given byte might be in this set. This
-
   may return a false positive, but will never return a false negative.
 
 #### Trait Implementations
@@ -596,11 +555,8 @@ in the haystack by needle.len() bytes.
 - <span id="approximatebyteset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ApproximateByteSet`
@@ -638,7 +594,7 @@ enum Shift {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:428-431`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/twoway.rs#L428-L431)*
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:428-431`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/twoway.rs#L428-L431)*
 
 A representation of the amount we're allowed to shift by during Two-Way
 search.
@@ -676,29 +632,19 @@ grok why the authors didn't pursue that path.
 - <span id="shift-forward"></span>`fn forward(needle: &[u8], period_lower_bound: usize, critical_pos: usize) -> Shift` — [`Shift`](#shift)
 
   Compute the shift for a given needle in the forward direction.
-
   
-
   This requires a lower bound on the period and a critical position.
-
   These can be computed by extracting both the minimal and maximal
-
   lexicographic suffixes, and choosing the right-most starting position.
-
   The lower bound on the period is then the period of the chosen suffix.
 
 - <span id="shift-reverse"></span>`fn reverse(needle: &[u8], period_lower_bound: usize, critical_pos: usize) -> Shift` — [`Shift`](#shift)
 
   Compute the shift for a given needle in the reverse direction.
-
   
-
   This requires a lower bound on the period and a critical position.
-
   These can be computed by extracting both the minimal and maximal
-
   lexicographic suffixes, and choosing the left-most starting position.
-
   The lower bound on the period is then the period of the chosen suffix.
 
 #### Trait Implementations
@@ -740,11 +686,8 @@ grok why the authors didn't pursue that path.
 - <span id="shift-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Shift`
@@ -776,7 +719,7 @@ enum SuffixKind {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:590-605`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/twoway.rs#L590-L605)*
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:590-605`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/twoway.rs#L590-L605)*
 
 The kind of suffix to extract.
 
@@ -805,9 +748,7 @@ The kind of suffix to extract.
 - <span id="suffixkind-cmp"></span>`fn cmp(self, current: u8, candidate: u8) -> SuffixOrdering` — [`SuffixOrdering`](#suffixordering)
 
   Returns true if and only if the given candidate byte indicates that
-
   it should replace the current suffix as the maximal (or minimal)
-
   suffix.
 
 #### Trait Implementations
@@ -849,11 +790,8 @@ The kind of suffix to extract.
 - <span id="suffixkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SuffixKind`
@@ -886,7 +824,7 @@ enum SuffixOrdering {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:609-624`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/twoway.rs#L609-L624)*
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:609-624`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/twoway.rs#L609-L624)*
 
 The result of comparing corresponding bytes between two suffixes.
 
@@ -951,11 +889,8 @@ The result of comparing corresponding bytes between two suffixes.
 - <span id="suffixordering-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SuffixOrdering`

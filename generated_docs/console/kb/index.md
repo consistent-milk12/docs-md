@@ -40,7 +40,7 @@ enum Key {
 }
 ```
 
-*Defined in [`console-0.16.1/src/kb.rs:9-32`](../../../.source_1765633015/console-0.16.1/src/kb.rs#L9-L32)*
+*Defined in [`console-0.16.1/src/kb.rs:9-32`](../../../.source_1765894658/console-0.16.1/src/kb.rs#L9-L32)*
 
 Key mapping
 
@@ -96,11 +96,8 @@ from the keyboard.
 - <span id="key-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Key`

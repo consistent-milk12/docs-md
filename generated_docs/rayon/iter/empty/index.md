@@ -22,7 +22,7 @@ struct Empty<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/empty.rs:33-35`](../../../../.source_1765633015/rayon-1.11.0/src/iter/empty.rs#L33-L35)*
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:33-35`](../../../../.source_1765894658/rayon-1.11.0/src/iter/empty.rs#L33-L35)*
 
 Iterator adaptor for [the `empty()` function].
 
@@ -72,11 +72,8 @@ Iterator adaptor for [the `empty()` function].
 - <span id="empty-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Empty<T>`
@@ -137,7 +134,7 @@ Iterator adaptor for [the `empty()` function].
 struct EmptyProducer<T: Send>(std::marker::PhantomData<T>);
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/empty.rs:87`](../../../../.source_1765633015/rayon-1.11.0/src/iter/empty.rs#L87)*
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:87`](../../../../.source_1765894658/rayon-1.11.0/src/iter/empty.rs#L87)*
 
 Private empty producer
 
@@ -166,11 +163,8 @@ Private empty producer
 - <span id="emptyproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for EmptyProducer<T>`
@@ -221,7 +215,7 @@ Private empty producer
 fn empty<T: Send>() -> Empty<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/empty.rs:24-28`](../../../../.source_1765633015/rayon-1.11.0/src/iter/empty.rs#L24-L28)*
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:24-28`](../../../../.source_1765894658/rayon-1.11.0/src/iter/empty.rs#L24-L28)*
 
 Creates a parallel iterator that produces nothing.
 

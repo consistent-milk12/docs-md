@@ -26,7 +26,7 @@ struct DelimSpan {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/extra.rs:82-85`](../../../.source_1765633015/proc-macro2-1.0.103/src/extra.rs#L82-L85)*
+*Defined in [`proc-macro2-1.0.103/src/extra.rs:82-85`](../../../.source_1765894658/proc-macro2-1.0.103/src/extra.rs#L82-L85)*
 
 An object that holds a [`Group`](../index.md)'s `span_open()` and `span_close()` together
 in a more compact representation than holding those 2 spans individually.
@@ -87,11 +87,8 @@ in a more compact representation than holding those 2 spans individually.
 - <span id="delimspan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DelimSpan`
@@ -129,7 +126,7 @@ enum DelimSpanEnum {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/extra.rs:88-96`](../../../.source_1765633015/proc-macro2-1.0.103/src/extra.rs#L88-L96)*
+*Defined in [`proc-macro2-1.0.103/src/extra.rs:88-96`](../../../.source_1765894658/proc-macro2-1.0.103/src/extra.rs#L88-L96)*
 
 #### Trait Implementations
 
@@ -166,11 +163,8 @@ enum DelimSpanEnum {
 - <span id="delimspanenum-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DelimSpanEnum`
@@ -201,7 +195,7 @@ enum DelimSpanEnum {
 fn invalidate_current_thread_spans()
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/extra.rs:73-75`](../../../.source_1765633015/proc-macro2-1.0.103/src/extra.rs#L73-L75)*
+*Defined in [`proc-macro2-1.0.103/src/extra.rs:73-75`](../../../.source_1765894658/proc-macro2-1.0.103/src/extra.rs#L73-L75)*
 
 Invalidate any `proc_macro2::Span` that exist on the current thread.
 

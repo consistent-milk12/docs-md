@@ -48,7 +48,7 @@ struct TranslatorBuilder {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:20-24`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/translate.rs#L20-L24)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:20-24`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/translate.rs#L20-L24)*
 
 A builder for constructing an AST->HIR translator.
 
@@ -65,75 +65,42 @@ A builder for constructing an AST->HIR translator.
 - <span id="translatorbuilder-utf8"></span>`fn utf8(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
   When disabled, translation will permit the construction of a regular
-
   expression that may match invalid UTF-8.
-
   
-
   When enabled (the default), the translator is guaranteed to produce an
-
   expression that, for non-empty matches, will only ever produce spans
-
   that are entirely valid UTF-8 (otherwise, the translator will return an
-
   error).
-
   
-
   Perhaps surprisingly, when UTF-8 is enabled, an empty regex or even
-
   a negated ASCII word boundary (uttered as `(?-u:\B)` in the concrete
-
   syntax) will be allowed even though they can produce matches that split
-
   a UTF-8 encoded codepoint. This only applies to zero-width or "empty"
-
   matches, and it is expected that the regex engine itself must handle
-
   these cases if necessary (perhaps by suppressing any zero-width matches
-
   that split a codepoint).
 
 - <span id="translatorbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
   Sets the line terminator for use with `(?u-s:.)` and `(?-us:.)`.
-
   
-
   Namely, instead of `.` (by default) matching everything except for `\n`,
-
   this will cause `.` to match everything except for the byte given.
-
   
-
   If `.` is used in a context where Unicode mode is enabled and this byte
-
   isn't ASCII, then an error will be returned. When Unicode mode is
-
   disabled, then any byte is permitted, but will return an error if UTF-8
-
   mode is enabled and it is a non-ASCII byte.
-
   
-
   In short, any ASCII value for a line terminator is always okay. But a
-
   non-ASCII byte might result in an error depending on whether Unicode
-
   mode or UTF-8 mode are enabled.
-
   
-
   Note that if `R` mode is enabled then it always takes precedence and
-
   the line terminator will be treated as `\r` and `\n` simultaneously.
-
   
-
   Note also that this *doesn't* impact the look-around assertions
-
   `(?m:^)` and `(?m:$)`. That's usually controlled by additional
-
   configuration in the regex engine itself.
 
 - <span id="translatorbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
@@ -147,7 +114,6 @@ A builder for constructing an AST->HIR translator.
 - <span id="translatorbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
   Enable or disable the "dot matches any character" flag (`s`) by
-
   default.
 
 - <span id="translatorbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
@@ -203,11 +169,8 @@ A builder for constructing an AST->HIR translator.
 - <span id="translatorbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for TranslatorBuilder`
@@ -241,7 +204,7 @@ struct Translator {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:147-156`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/translate.rs#L147-L156)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:147-156`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/translate.rs#L147-L156)*
 
 A translator maps abstract syntax to a high level intermediate
 representation.
@@ -279,21 +242,13 @@ A `Translator` can be configured in more detail via a
 - <span id="translator-translate"></span>`fn translate(&mut self, pattern: &str, ast: &Ast) -> core::result::Result<Hir, crate::hir::Error>` — [`Ast`](../../ast/index.md#ast), [`Hir`](../index.md#hir), [`Error`](../index.md#error)
 
   Translate the given abstract syntax tree (AST) into a high level
-
   intermediate representation (HIR).
-
   
-
   If there was a problem doing the translation, then an HIR-specific
-
   error is returned.
-
   
-
   The original pattern string used to produce the `Ast` *must* also be
-
   provided. The translator does not use the pattern string during any
-
   correct translation, but is used for error reporting.
 
 #### Trait Implementations
@@ -333,11 +288,8 @@ A `Translator` can be configured in more detail via a
 - <span id="translator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Translator`
@@ -369,7 +321,7 @@ struct TranslatorI<'t, 'p> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:674-677`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/translate.rs#L674-L677)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:674-677`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/translate.rs#L674-L677)*
 
 The internal implementation of a translator.
 
@@ -395,25 +347,17 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 - <span id="translatori-push-char"></span>`fn push_char(&self, ch: char)`
 
   Push the given literal char on to the call stack.
-
   
-
   If the top-most element of the stack is a literal, then the char
-
   is appended to the end of that literal. Otherwise, a new literal
-
   containing just the given char is pushed to the top of the stack.
 
 - <span id="translatori-push-byte"></span>`fn push_byte(&self, byte: u8)`
 
   Push the given literal byte on to the call stack.
-
   
-
   If the top-most element of the stack is a literal, then the byte
-
   is appended to the end of that literal. Otherwise, a new literal
-
   containing just the given byte is pushed to the top of the stack.
 
 - <span id="translatori-pop"></span>`fn pop(&self) -> Option<HirFrame>` — [`HirFrame`](#hirframe)
@@ -423,21 +367,15 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 - <span id="translatori-pop-concat-expr"></span>`fn pop_concat_expr(&self) -> Option<Hir>` — [`Hir`](../index.md#hir)
 
   Pop an HIR expression from the top of the stack for a concatenation.
-
   
-
   This returns None if the stack is empty or when a concat frame is seen.
-
   Otherwise, it panics if it could not find an HIR expression.
 
 - <span id="translatori-pop-alt-expr"></span>`fn pop_alt_expr(&self) -> Option<Hir>` — [`Hir`](../index.md#hir)
 
   Pop an HIR expression from the top of the stack for an alternation.
-
   
-
   This returns None if the stack is empty or when an alternation frame is
-
   seen. Otherwise, it panics if it could not find an HIR expression.
 
 - <span id="translatori-error"></span>`fn error(&self, span: Span, kind: ErrorKind) -> Error` — [`Span`](../../ast/index.md#span), [`ErrorKind`](../index.md#errorkind), [`Error`](../index.md#error)
@@ -451,27 +389,18 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 - <span id="translatori-set-flags"></span>`fn set_flags(&self, ast_flags: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md#flags)
 
   Set the flags of this translator from the flags set in the given AST.
-
   Then, return the old flags.
 
 - <span id="translatori-ast-literal-to-scalar"></span>`fn ast_literal_to_scalar(&self, lit: &ast::Literal) -> core::result::Result<Either<char, u8>, crate::hir::Error>` — [`Literal`](../../ast/index.md#literal), [`Either`](../../either/index.md#either), [`Error`](../index.md#error)
 
   Convert an Ast literal to its scalar representation.
-
   
-
   When Unicode mode is enabled, then this always succeeds and returns a
-
   `char` (Unicode scalar value).
-
   
-
   When Unicode mode is disabled, then a `char` will still be returned
-
   whenever possible. A byte is returned only when invalid UTF-8 is
-
   allowed and when the byte is not ASCII. Otherwise, a non-ASCII byte
-
   will result in an error when invalid UTF-8 is not allowed.
 
 - <span id="translatori-case-fold-char"></span>`fn case_fold_char(&self, span: Span, c: char) -> core::result::Result<Option<Hir>, crate::hir::Error>` — [`Span`](../../ast/index.md#span), [`Hir`](../index.md#hir), [`Error`](../index.md#error)
@@ -497,11 +426,8 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 - <span id="translatori-convert-unicode-class-error"></span>`fn convert_unicode_class_error(&self, span: &Span, result: core::result::Result<hir::ClassUnicode, unicode::Error>) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`Span`](../../ast/index.md#span), [`ClassUnicode`](../index.md#classunicode), [`Error`](../../unicode/index.md#error)
 
   Converts the given Unicode specific error to an HIR translation error.
-
   
-
   The span given should approximate the position at which an error would
-
   occur.
 
 - <span id="translatori-unicode-fold-and-negate"></span>`fn unicode_fold_and_negate(&self, span: &Span, negated: bool, class: &mut hir::ClassUnicode) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md#span), [`ClassUnicode`](../index.md#classunicode), [`Error`](../index.md#error)
@@ -511,7 +437,6 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 - <span id="translatori-class-literal-byte"></span>`fn class_literal_byte(&self, ast: &ast::Literal) -> core::result::Result<u8, crate::hir::Error>` — [`Literal`](../../ast/index.md#literal), [`Error`](../index.md#error)
 
   Return a scalar byte value suitable for use as a literal in a byte
-
   character class.
 
 #### Trait Implementations
@@ -551,11 +476,8 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 - <span id="translatori-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for TranslatorI<'t, 'p>`
@@ -615,7 +537,7 @@ struct Flags {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1222-1231`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/translate.rs#L1222-L1231)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1222-1231`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/translate.rs#L1222-L1231)*
 
 A translator's representation of a regular expression's flags at any given
 moment in time.
@@ -684,11 +606,8 @@ present but enabled.
 - <span id="flags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Flags`
@@ -731,7 +650,7 @@ enum HirFrame {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:185-249`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/translate.rs#L185-L249)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:185-249`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/translate.rs#L185-L249)*
 
 An HirFrame is a single stack frame, represented explicitly, which is
 created for each item in the Ast that we traverse.
@@ -818,33 +737,27 @@ traversing the Ast itself.
 - <span id="hirframe-unwrap-class-unicode"></span>`fn unwrap_class_unicode(self) -> hir::ClassUnicode` — [`ClassUnicode`](../index.md#classunicode)
 
   Assert that the current stack frame is a Unicode class expression and
-
   return it.
 
 - <span id="hirframe-unwrap-class-bytes"></span>`fn unwrap_class_bytes(self) -> hir::ClassBytes` — [`ClassBytes`](../index.md#classbytes)
 
   Assert that the current stack frame is a byte class expression and
-
   return it.
 
 - <span id="hirframe-unwrap-repetition"></span>`fn unwrap_repetition(self)`
 
   Assert that the current stack frame is a repetition sentinel. If it
-
   isn't, then panic.
 
 - <span id="hirframe-unwrap-group"></span>`fn unwrap_group(self) -> Flags` — [`Flags`](#flags)
 
   Assert that the current stack frame is a group indicator and return
-
   its corresponding flags (the flags that were active at the time the
-
   group was entered).
 
 - <span id="hirframe-unwrap-alternation-pipe"></span>`fn unwrap_alternation_pipe(self)`
 
   Assert that the current stack frame is an alternation pipe sentinel. If
-
   it isn't, then panic.
 
 #### Trait Implementations
@@ -884,11 +797,8 @@ traversing the Ast itself.
 - <span id="hirframe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for HirFrame`
@@ -919,7 +829,7 @@ traversing the Ast itself.
 fn hir_ascii_class_bytes(kind: &ast::ClassAsciiKind) -> hir::ClassBytes
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1312-1317`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/translate.rs#L1312-L1317)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1312-1317`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/translate.rs#L1312-L1317)*
 
 ### `ascii_class`
 
@@ -927,7 +837,7 @@ fn hir_ascii_class_bytes(kind: &ast::ClassAsciiKind) -> hir::ClassBytes
 fn ascii_class(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (u8, u8)>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1319-1346`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/translate.rs#L1319-L1346)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1319-1346`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/translate.rs#L1319-L1346)*
 
 ### `ascii_class_as_chars`
 
@@ -935,7 +845,7 @@ fn ascii_class(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (u8, u8)>
 fn ascii_class_as_chars(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (char, char)>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1348-1352`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/translate.rs#L1348-L1352)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1348-1352`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/translate.rs#L1348-L1352)*
 
 ## Type Aliases
 
@@ -945,5 +855,5 @@ fn ascii_class_as_chars(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (cha
 type Result<T> = core::result::Result<T, crate::hir::Error>;
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:16`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/translate.rs#L16)*
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:16`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/translate.rs#L16)*
 

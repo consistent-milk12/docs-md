@@ -28,7 +28,7 @@ values that are shared safely across multiple threads simultaneously.
 struct Lazy<T, F>(lazy::Lazy<T, F>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/lazy.rs:52`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/lazy.rs#L52)*
+*Defined in [`regex-automata-0.4.13/src/util/lazy.rs:52`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/lazy.rs#L52)*
 
 A lazily initialized value that implements `Deref` for `T`.
 
@@ -76,11 +76,8 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 - <span id="lazy-new"></span>`const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
   Create a new `Lazy` value that is initialized via the given function.
-
   
-
   The `T` type is automatically inferred from the return type of the
-
   `create` function given.
 
 #### Trait Implementations
@@ -118,11 +115,8 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 - <span id="lazy-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for Lazy<T, F>`

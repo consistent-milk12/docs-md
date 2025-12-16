@@ -1120,6 +1120,28 @@ impl<'a> SingleCrateView<'a> {
             );
 
             if let Some(external_crate) = path_info.path.first() {
+                // Skip standard library crates - they're not in our docs and we shouldn't
+                // accidentally link to unrelated crates with similar names
+                if Self::is_std_crate(external_crate) {
+                    tracing::trace!(
+                        strategy = "external_paths",
+                        external_crate = %external_crate,
+                        "Skipping standard library crate - render as inline code"
+                    );
+                    return None;
+                }
+
+                // Skip crates that aren't in our documentation set
+                // This prevents linking to random crates that happen to share item names
+                if !self.crate_in_docs(external_crate) {
+                    tracing::trace!(
+                        strategy = "external_paths",
+                        external_crate = %external_crate,
+                        "Skipping external crate not in docs set"
+                    );
+                    return None;
+                }
+
                 // Strategy 2a: Try direct ID lookup in external crate
                 if let Some(target_path) = self.registry.get_path(external_crate, id) {
                     tracing::trace!(
@@ -1157,6 +1179,21 @@ impl<'a> SingleCrateView<'a> {
                         resolved_id = ?resolved_id,
                         "Name resolved to crate and ID"
                     );
+
+                    // IMPORTANT: Only accept the resolution if it's in the SAME crate
+                    // as path_info indicated. Otherwise we'd be linking to an unrelated
+                    // crate that happens to have an item with the same name.
+                    // For example: path_info says "std::iter::Iterator" but resolve_name
+                    // finds "cargo_docs_md::Iterator" - that's wrong!
+                    if resolved_crate.as_str() != *external_crate {
+                        tracing::trace!(
+                            strategy = "external_name_lookup",
+                            expected_crate = %external_crate,
+                            resolved_crate = %resolved_crate,
+                            "Resolved to wrong crate - skipping"
+                        );
+                        return None;
+                    }
 
                     if let Some(target_path) = self.registry.get_path(&resolved_crate, resolved_id)
                     {
@@ -1595,6 +1632,26 @@ impl<'a> SingleCrateView<'a> {
         // Single PascalCase words are usually local items, not external
         // (External items would be referenced with full paths)
         false
+    }
+
+    /// Check if a crate name is a Rust standard library crate.
+    ///
+    /// These crates are not part of our documentation set and should not
+    /// be linked to other crates that happen to have similarly named items.
+    /// Items from these crates should render as inline code without links.
+    fn is_std_crate(crate_name: &str) -> bool {
+        matches!(
+            crate_name,
+            "std" | "core" | "alloc" | "proc_macro" | "test"
+        )
+    }
+
+    /// Check if a crate is in our documentation set.
+    ///
+    /// Returns `true` if we have generated docs for this crate, `false` otherwise.
+    /// Used to prevent linking to random crates that happen to share item names.
+    fn crate_in_docs(&self, crate_name: &str) -> bool {
+        self.ctx.crates.get(crate_name).is_some()
     }
 }
 

@@ -25,7 +25,7 @@ struct Chain<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/chain.rs:32-34`](../../../.source_1765633015/miette-7.6.0/src/chain.rs#L32-L34)*
+*Defined in [`miette-7.6.0/src/chain.rs:32-34`](../../../.source_1765894658/miette-7.6.0/src/chain.rs#L32-L34)*
 
 Iterator of a chain of source errors.
 
@@ -96,11 +96,8 @@ pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
 - <span id="chain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Chain<'a>`
@@ -156,7 +153,7 @@ enum ChainState<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/chain.rs:37-44`](../../../.source_1765633015/miette-7.6.0/src/chain.rs#L37-L44)*
+*Defined in [`miette-7.6.0/src/chain.rs:37-44`](../../../.source_1765894658/miette-7.6.0/src/chain.rs#L37-L44)*
 
 #### Trait Implementations
 
@@ -191,11 +188,8 @@ enum ChainState<'a> {
 - <span id="chainstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ChainState<'a>`

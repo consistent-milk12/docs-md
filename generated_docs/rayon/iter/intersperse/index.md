@@ -27,7 +27,7 @@ where
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:13-19`](../../../../.source_1765633015/rayon-1.11.0/src/iter/intersperse.rs#L13-L19)*
+*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:13-19`](../../../../.source_1765894658/rayon-1.11.0/src/iter/intersperse.rs#L13-L19)*
 
 `Intersperse` is an iterator that inserts a particular item between each
 item of the adapted iterator.  This struct is created by the
@@ -85,11 +85,8 @@ item of the adapted iterator.  This struct is created by the
 - <span id="intersperse-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Intersperse<I>`
@@ -157,7 +154,7 @@ where
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:109-117`](../../../../.source_1765633015/rayon-1.11.0/src/iter/intersperse.rs#L109-L117)*
+*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:109-117`](../../../../.source_1765894658/rayon-1.11.0/src/iter/intersperse.rs#L109-L117)*
 
 #### Implementations
 
@@ -188,11 +185,8 @@ where
 - <span id="intersperseproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IntersperseProducer<P>`
@@ -252,7 +246,7 @@ where
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:201-209`](../../../../.source_1765633015/rayon-1.11.0/src/iter/intersperse.rs#L201-L209)*
+*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:201-209`](../../../../.source_1765894658/rayon-1.11.0/src/iter/intersperse.rs#L201-L209)*
 
 #### Trait Implementations
 
@@ -287,11 +281,8 @@ where
 - <span id="intersperseiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IntersperseIter<I>`
@@ -348,7 +339,7 @@ struct IntersperseConsumer<C, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:270-274`](../../../../.source_1765633015/rayon-1.11.0/src/iter/intersperse.rs#L270-L274)*
+*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:270-274`](../../../../.source_1765894658/rayon-1.11.0/src/iter/intersperse.rs#L270-L274)*
 
 #### Implementations
 
@@ -393,11 +384,8 @@ struct IntersperseConsumer<C, T> {
 - <span id="intersperseconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IntersperseConsumer<C, T>`
@@ -444,7 +432,7 @@ struct IntersperseFolder<C, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:346-350`](../../../../.source_1765633015/rayon-1.11.0/src/iter/intersperse.rs#L346-L350)*
+*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:346-350`](../../../../.source_1765894658/rayon-1.11.0/src/iter/intersperse.rs#L346-L350)*
 
 #### Trait Implementations
 
@@ -483,11 +471,8 @@ struct IntersperseFolder<C, T> {
 - <span id="interspersefolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IntersperseFolder<C, T>`

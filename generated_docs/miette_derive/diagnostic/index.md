@@ -25,7 +25,7 @@ struct DiagnosticDef {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:30-34`](../../../.source_1765633015/miette-derive-7.6.0/src/diagnostic.rs#L30-L34)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:30-34`](../../../.source_1765894658/miette-derive-7.6.0/src/diagnostic.rs#L30-L34)*
 
 #### Trait Implementations
 
@@ -52,11 +52,8 @@ struct DiagnosticDef {
 - <span id="diagnosticdef-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DiagnosticDef`
@@ -87,7 +84,7 @@ struct DiagnosticConcreteArgs {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:61-71`](../../../.source_1765633015/miette-derive-7.6.0/src/diagnostic.rs#L61-L71)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:61-71`](../../../.source_1765894658/miette-derive-7.6.0/src/diagnostic.rs#L61-L71)*
 
 #### Implementations
 
@@ -124,11 +121,8 @@ struct DiagnosticConcreteArgs {
 - <span id="diagnosticconcreteargs-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DiagnosticConcreteArgs`
@@ -163,7 +157,7 @@ enum Diagnostic {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:16-28`](../../../.source_1765633015/miette-derive-7.6.0/src/diagnostic.rs#L16-L28)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:16-28`](../../../.source_1765894658/miette-derive-7.6.0/src/diagnostic.rs#L16-L28)*
 
 #### Implementations
 
@@ -196,11 +190,8 @@ enum Diagnostic {
 - <span id="diagnostic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Diagnostic`
@@ -224,7 +215,7 @@ enum DiagnosticDefArgs {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:36-39`](../../../.source_1765633015/miette-derive-7.6.0/src/diagnostic.rs#L36-L39)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:36-39`](../../../.source_1765894658/miette-derive-7.6.0/src/diagnostic.rs#L36-L39)*
 
 #### Implementations
 
@@ -255,11 +246,8 @@ enum DiagnosticDefArgs {
 - <span id="diagnosticdefargs-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DiagnosticDefArgs`

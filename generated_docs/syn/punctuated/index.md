@@ -84,7 +84,7 @@ struct Punctuated<T, P> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:49-52`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L49-L52)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:49-52`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L49-L52)*
 
 **A punctuated sequence of syntax tree nodes of type `T` separated by
 punctuation of type `P`.**
@@ -101,17 +101,13 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="punctuated-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Determines whether this punctuated sequence is empty, meaning it
-
   contains no syntax tree nodes or punctuation.
 
 - <span id="punctuated-len"></span>`fn len(&self) -> usize`
 
   Returns the number of syntax tree nodes in this punctuated sequence.
-
   
-
   This is the number of nodes of type `T`, not counting the punctuation of
-
   type `P`.
 
 - <span id="punctuated-first"></span>`fn first(&self) -> Option<&T>`
@@ -145,117 +141,83 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="punctuated-iter-mut"></span>`fn iter_mut(&mut self) -> IterMut<'_, T>` — [`IterMut`](#itermut)
 
   Returns an iterator over mutably borrowed syntax tree nodes of type
-
   `&mut T`.
 
 - <span id="punctuated-pairs"></span>`fn pairs(&self) -> Pairs<'_, T, P>` — [`Pairs`](#pairs)
 
   Returns an iterator over the contents of this sequence as borrowed
-
   punctuated pairs.
 
 - <span id="punctuated-pairs-mut"></span>`fn pairs_mut(&mut self) -> PairsMut<'_, T, P>` — [`PairsMut`](#pairsmut)
 
   Returns an iterator over the contents of this sequence as mutably
-
   borrowed punctuated pairs.
 
 - <span id="punctuated-into-pairs"></span>`fn into_pairs(self) -> IntoPairs<T, P>` — [`IntoPairs`](#intopairs)
 
   Returns an iterator over the contents of this sequence as owned
-
   punctuated pairs.
 
 - <span id="punctuated-push-value"></span>`fn push_value(&mut self, value: T)`
 
   Appends a syntax tree node onto the end of this punctuated sequence. The
-
   sequence must already have a trailing punctuation, or be empty.
-
   
-
   Use `push` instead if the punctuated sequence may or may not already
-
   have trailing punctuation.
-
   
-
   # Panics
-
   
-
   Panics if the sequence is nonempty and does not already have a trailing
-
   punctuation.
 
 - <span id="punctuated-push-punct"></span>`fn push_punct(&mut self, punctuation: P)`
 
   Appends a trailing punctuation onto the end of this punctuated sequence.
-
   The sequence must be non-empty and must not already have trailing
-
   punctuation.
-
   
-
   # Panics
-
   
-
   Panics if the sequence is empty or already has a trailing punctuation.
 
 - <span id="punctuated-pop"></span>`fn pop(&mut self) -> Option<Pair<T, P>>` — [`Pair`](#pair)
 
   Removes the last punctuated pair from this sequence, or `None` if the
-
   sequence is empty.
 
 - <span id="punctuated-pop-punct"></span>`fn pop_punct(&mut self) -> Option<P>`
 
   Removes the trailing punctuation from this punctuated sequence, or
-
   `None` if there isn't any.
 
 - <span id="punctuated-trailing-punct"></span>`fn trailing_punct(&self) -> bool`
 
   Determines whether this punctuated sequence ends with a trailing
-
   punctuation.
 
 - <span id="punctuated-empty-or-trailing"></span>`fn empty_or_trailing(&self) -> bool`
 
   Returns true if either this `Punctuated` is empty, or it has a trailing
-
   punctuation.
-
   
-
   Equivalent to `punctuated.is_empty() || punctuated.trailing_punct()`.
 
 - <span id="punctuated-push"></span>`fn push(&mut self, value: T)`
 
   Appends a syntax tree node onto the end of this punctuated sequence.
-
   
-
   If there is not a trailing punctuation in this sequence when this method
-
   is called, the default value of punctuation type `P` is inserted before
-
   the given value of type `T`.
 
 - <span id="punctuated-insert"></span>`fn insert(&mut self, index: usize, value: T)`
 
   Inserts an element at position `index`.
-
   
-
   # Panics
-
   
-
   Panics if `index` is greater than the number of elements previously in
-
   this punctuated sequence.
 
 - <span id="punctuated-clear"></span>`fn clear(&mut self)`
@@ -265,57 +227,37 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="punctuated-parse-terminated"></span>`fn parse_terminated(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parses zero or more occurrences of `T` separated by punctuation of type
-
   `P`, with optional trailing punctuation.
-
   
-
   Parsing continues until the end of this parse stream. The entire content
-
   of this parse stream must consist of `T` and `P`.
 
 - <span id="punctuated-parse-terminated-with"></span>`fn parse_terminated_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parses zero or more occurrences of `T` using the given parse function,
-
   separated by punctuation of type `P`, with optional trailing
-
   punctuation.
-
   
-
   Like `parse_terminated`, the entire content of this stream is expected
-
   to be parsed.
 
 - <span id="punctuated-parse-separated-nonempty"></span>`fn parse_separated_nonempty(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parses one or more occurrences of `T` separated by punctuation of type
-
   `P`, not accepting trailing punctuation.
-
   
-
   Parsing continues as long as punctuation `P` is present at the head of
-
   the stream. This method returns upon parsing a `T` and observing that it
-
   is not followed by a `P`, even if there are remaining tokens in the
-
   stream.
 
 - <span id="punctuated-parse-separated-nonempty-with"></span>`fn parse_separated_nonempty_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parses one or more occurrences of `T` using the given parse function,
-
   separated by punctuation of type `P`, not accepting trailing
-
   punctuation.
-
   
-
   Like `parse_separated_nonempty`, may complete early without parsing
-
   the entire content of this stream.
 
 #### Trait Implementations
@@ -385,11 +327,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="punctuated-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, P> IntoIterator for Punctuated<T, P>`
@@ -443,7 +382,7 @@ struct Pairs<'a, T: 'a, P: 'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:567-570`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L567-L570)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:567-570`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L567-L570)*
 
 An iterator over borrowed pairs of type `Pair<&T, &P>`.
 
@@ -491,11 +430,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="pairs-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Pairs<'a, T, P>`
@@ -543,7 +479,7 @@ struct PairsMut<'a, T: 'a, P: 'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:617-620`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L617-L620)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:617-620`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L617-L620)*
 
 An iterator over mutably borrowed pairs of type `Pair<&mut T, &mut P>`.
 
@@ -583,11 +519,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="pairsmut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PairsMut<'a, T, P>`
@@ -627,7 +560,7 @@ struct IntoPairs<T, P> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:657-660`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L657-L660)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:657-660`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L657-L660)*
 
 An iterator over owned pairs of type `Pair<T, P>`.
 
@@ -675,11 +608,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="intopairs-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoPairs<T, P>`
@@ -726,7 +656,7 @@ struct IntoIter<T> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:710-712`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L710-L712)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:710-712`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L710-L712)*
 
 An iterator over owned values of type `T`.
 
@@ -774,11 +704,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter<T>`
@@ -825,7 +752,7 @@ struct Iter<'a, T: 'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:754-756`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L754-L756)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:754-756`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L754-L756)*
 
 An iterator over borrowed values of type `&T`.
 
@@ -873,11 +800,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter<'a, T>`
@@ -925,7 +849,7 @@ struct PrivateIter<'a, T: 'a, P: 'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:762-765`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L762-L765)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:762-765`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L762-L765)*
 
 #### Trait Implementations
 
@@ -968,11 +892,8 @@ struct PrivateIter<'a, T: 'a, P: 'a> {
 - <span id="privateiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PrivateIter<'a, T, P>`
@@ -1019,7 +940,7 @@ struct IterMut<'a, T: 'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:868-870`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L868-L870)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:868-870`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L868-L870)*
 
 An iterator over mutably borrowed values of type `&mut T`.
 
@@ -1059,11 +980,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="itermut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterMut<'a, T>`
@@ -1103,7 +1021,7 @@ struct PrivateIterMut<'a, T: 'a, P: 'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:877-880`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L877-L880)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:877-880`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L877-L880)*
 
 #### Trait Implementations
 
@@ -1138,11 +1056,8 @@ struct PrivateIterMut<'a, T: 'a, P: 'a> {
 - <span id="privateitermut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PrivateIterMut<'a, T, P>`
@@ -1184,7 +1099,7 @@ enum Pair<T, P> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:958-961`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L958-L961)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:958-961`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L958-L961)*
 
 A single syntax tree node of type `T` followed by its trailing punctuation
 of type `P` if any.
@@ -1197,7 +1112,6 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="pair-into-value"></span>`fn into_value(self) -> T`
 
   Extracts the syntax tree node from this punctuated pair, discarding the
-
   following punctuation.
 
 - <span id="pair-value"></span>`fn value(&self) -> &T`
@@ -1211,57 +1125,37 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="pair-punct"></span>`fn punct(&self) -> Option<&P>`
 
   Borrows the punctuation from this punctuated pair, unless this pair is
-
   the final one and there is no trailing punctuation.
 
 - <span id="pair-punct-mut"></span>`fn punct_mut(&mut self) -> Option<&mut P>`
 
   Mutably borrows the punctuation from this punctuated pair, unless the
-
   pair is the final one and there is no trailing punctuation.
-
   
-
   # Example
-
   
-
   ```rust
-
   use proc_macro2::Span;
-
   use syn::punctuated::Punctuated;
-
   use syn::{parse_quote, Token, TypeParamBound};
-
   
-
   let mut punctuated = Punctuated::<TypeParamBound, Token![+]>::new();
-
   let span = Span::call_site();
-
   
-
   punctuated.insert(0, parse_quote!('lifetime));
-
   if let Some(punct) = punctuated.pairs_mut().next().unwrap().punct_mut() {
-
       punct.span = span;
-
   }
-
   ```
 
 - <span id="pair-new"></span>`fn new(t: T, p: Option<P>) -> Self`
 
   Creates a punctuated pair out of a syntax tree node and an optional
-
   following punctuation.
 
 - <span id="pair-into-tuple"></span>`fn into_tuple(self) -> (T, Option<P>)`
 
   Produces this punctuated pair as a tuple of syntax tree node and
-
   optional following punctuation.
 
 #### Trait Implementations
@@ -1307,11 +1201,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 - <span id="pair-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Sealed for Pair<T, P>`
@@ -1352,7 +1243,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 trait IterTrait<'a, T: 'a>: Iterator<Item = &'a T> + DoubleEndedIterator + ExactSizeIterator { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:758-760`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L758-L760)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:758-760`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L758-L760)*
 
 #### Required Methods
 
@@ -1368,7 +1259,7 @@ trait IterTrait<'a, T: 'a>: Iterator<Item = &'a T> + DoubleEndedIterator + Exact
 trait IterMutTrait<'a, T: 'a>: DoubleEndedIterator<Item = &'a mut T> + ExactSizeIterator<Item = &'a mut T> { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:872-875`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L872-L875)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:872-875`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L872-L875)*
 
 #### Implementors
 
@@ -1384,7 +1275,7 @@ where
     I: Iterator<Item = Pair<T, P>>
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:499-516`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L499-L516)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:499-516`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L499-L516)*
 
 ### `empty_punctuated_iter`
 
@@ -1392,7 +1283,7 @@ where
 fn empty_punctuated_iter<'a, T>() -> Iter<'a, T>
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:775-779`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L775-L779)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:775-779`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L775-L779)*
 
 ### `empty_punctuated_iter_mut`
 
@@ -1400,5 +1291,5 @@ fn empty_punctuated_iter<'a, T>() -> Iter<'a, T>
 fn empty_punctuated_iter_mut<'a, T>() -> IterMut<'a, T>
 ```
 
-*Defined in [`syn-2.0.111/src/punctuated.rs:890-894`](../../../.source_1765633015/syn-2.0.111/src/punctuated.rs#L890-L894)*
+*Defined in [`syn-2.0.111/src/punctuated.rs:890-894`](../../../.source_1765894658/syn-2.0.111/src/punctuated.rs#L890-L894)*
 

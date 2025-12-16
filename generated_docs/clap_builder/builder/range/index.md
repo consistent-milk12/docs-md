@@ -21,7 +21,7 @@ struct ValueRange {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
+*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
 
 Values per occurrence for an argument
 
@@ -38,53 +38,29 @@ Values per occurrence for an argument
 - <span id="valuerange-new"></span>`fn new(range: impl Into<Self>) -> Self`
 
   Create a range
-
   
-
   # Panics
-
   
-
   If the end is less than the start (debug builds)
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::builder::ValueRange;
-
   let range = ValueRange::new(5);
-
   let range = ValueRange::new(5..10);
-
   let range = ValueRange::new(5..=10);
-
   let range = ValueRange::new(5..);
-
   let range = ValueRange::new(..10);
-
   let range = ValueRange::new(..=10);
-
   ```
-
   
-
   While this will panic:
-
   ```should_panic
-
   use clap_builder as clap;
-
   use clap::builder::ValueRange;
-
   let range = ValueRange::new(10..5);  // Panics!
-
   ```
 
 - <span id="valuerange-raw"></span>`fn raw(start_inclusive: usize, end_inclusive: usize) -> Self`
@@ -100,29 +76,17 @@ Values per occurrence for an argument
 - <span id="valuerange-takes-values"></span>`fn takes_values(&self) -> bool`
 
   Report whether the argument takes any values (ie is a flag)
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::builder::ValueRange;
-
   let range = ValueRange::new(5);
-
   assert!(range.takes_values());
-
   
-
   let range = ValueRange::new(0);
-
   assert!(!range.takes_values());
-
   ```
 
 - <span id="valuerange-is-unbounded"></span>`fn is_unbounded(&self) -> bool`
@@ -188,11 +152,8 @@ Values per occurrence for an argument
 - <span id="valuerange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for ValueRange`

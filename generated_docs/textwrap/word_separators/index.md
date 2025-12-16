@@ -42,7 +42,7 @@ enum WordSeparator {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:42-123`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L42-L123)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:42-123`](../../../.source_1765894658/textwrap-0.16.2/src/word_separators.rs#L42-L123)*
 
 Describes where words occur in a line of text.
 
@@ -155,13 +155,9 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 - <span id="wordseparator-new"></span>`const fn new() -> Self`
 
   Create a new word separator.
-
   
-
   The best available algorithm is used by default, i.e.,
-
   [`WordSeparator::UnicodeBreakProperties`](../index.md) if available,
-
   otherwise [`WordSeparator::AsciiSpace`](../index.md).
 
 - <span id="wordseparator-find-words"></span>`fn find_words<'a>(&self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](../core/index.md#word)
@@ -207,11 +203,8 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 - <span id="wordseparator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for WordSeparator`
@@ -219,49 +212,27 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 - <span id="wordseparator-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
   Compare two word separators.
-
   
-
   ```rust
-
   use textwrap::WordSeparator;
-
   
-
   assert_eq!(WordSeparator::AsciiSpace, WordSeparator::AsciiSpace);
-
   #[cfg(feature = "unicode-linebreak")] {
-
       assert_eq!(WordSeparator::UnicodeBreakProperties,
-
                  WordSeparator::UnicodeBreakProperties);
-
   }
-
   ```
-
   
-
   Note that `WordSeparator::Custom` values never compare equal:
-
   
-
   ```rust
-
   use textwrap::WordSeparator;
-
   use textwrap::core::Word;
-
   fn word_separator(line: &str) -> Box<dyn Iterator<Item = Word<'_>> + '_> {
-
       Box::new(line.split_inclusive(' ').map(Word::from))
-
   }
-
   assert_ne!(WordSeparator::Custom(word_separator),
-
              WordSeparator::Custom(word_separator));
-
   ```
 
 ##### `impl ToOwned for WordSeparator`
@@ -292,7 +263,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 fn find_words_ascii_space<'a>(line: &'a str) -> Box<dyn Iterator<Item = crate::core::Word<'a>>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:191-216`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L191-L216)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:191-216`](../../../.source_1765894658/textwrap-0.16.2/src/word_separators.rs#L191-L216)*
 
 ### `strip_ansi_escape_sequences`
 
@@ -300,7 +271,7 @@ fn find_words_ascii_space<'a>(line: &'a str) -> Box<dyn Iterator<Item = crate::c
 fn strip_ansi_escape_sequences(text: &str) -> String
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:220-232`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L220-L232)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:220-232`](../../../.source_1765894658/textwrap-0.16.2/src/word_separators.rs#L220-L232)*
 
 ### `find_words_unicode_break_properties`
 
@@ -308,7 +279,7 @@ fn strip_ansi_escape_sequences(text: &str) -> String
 fn find_words_unicode_break_properties<'a>(line: &'a str) -> Box<dyn Iterator<Item = crate::core::Word<'a>>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:243-305`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L243-L305)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:243-305`](../../../.source_1765894658/textwrap-0.16.2/src/word_separators.rs#L243-L305)*
 
 Find words in line. ANSI escape sequences are ignored in `line`.
 
@@ -319,7 +290,7 @@ Find words in line. ANSI escape sequences are ignored in `line`.
 const SHY: char = '\u{ad}';
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_separators.rs:239`](../../../.source_1765633015/textwrap-0.16.2/src/word_separators.rs#L239)*
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:239`](../../../.source_1765894658/textwrap-0.16.2/src/word_separators.rs#L239)*
 
 Soft hyphen, also knows as a “shy hyphen”. Should show up as ‘-’
 if a line is broken at this point, and otherwise be invisible.

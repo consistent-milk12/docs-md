@@ -21,7 +21,7 @@ enum Either<Left, Right> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/either.rs:5-8`](../../../.source_1765633015/regex-syntax-0.8.8/src/either.rs#L5-L8)*
+*Defined in [`regex-syntax-0.8.8/src/either.rs:5-8`](../../../.source_1765894658/regex-syntax-0.8.8/src/either.rs#L5-L8)*
 
 A simple binary sum type.
 
@@ -66,11 +66,8 @@ This is occasionally useful in an ad hoc fashion.
 - <span id="either-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Left: cmp::PartialEq, Right: cmp::PartialEq> PartialEq for Either<Left, Right>`

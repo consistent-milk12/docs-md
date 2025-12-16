@@ -48,41 +48,25 @@ the current module, with each segment being a clickable link.
 - <span id="breadcrumbgenerator-new"></span>`const fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
 
   Create a new breadcrumb generator.
-
   
-
   # Arguments
-
   
-
   * `module_path` - The module path segments
-
   * `crate_name` - The name of the crate for the root link
 
 - <span id="breadcrumbgenerator-generate"></span>`fn generate(&self) -> String`
 
   Generate breadcrumb navigation markdown.
-
   
-
   Returns empty string for root module.
-
   
-
   # Example Output
-
   
-
   For `module_path = ["error", "types"]` and `crate_name = "docs_md"`:
-
   ```markdown
-
   *[docs_md](../../index.md) / [error](../index.md) / [types](index.md)*
-
   
-
   ---
-
   ```
 
 #### Trait Implementations
@@ -112,11 +96,8 @@ the current module, with each segment being a clickable link.
 - <span id="breadcrumbgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for BreadcrumbGenerator<'a>`

@@ -127,7 +127,7 @@ struct Error {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:52-54`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L52-L54)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:52-54`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L52-L54)*
 
 A minimal representation of all possible errors that can occur using the
 `IntoDeserializer` trait.
@@ -177,11 +177,8 @@ A minimal representation of all possible errors that can occur using the
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Error`
@@ -222,7 +219,7 @@ struct UnitDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:137-139`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L137-L139)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:137-139`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L137-L139)*
 
 A deserializer holding a `()`.
 
@@ -335,11 +332,8 @@ A deserializer holding a `()`.
 - <span id="unitdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for UnitDeserializer<E>`
@@ -377,7 +371,7 @@ struct BoolDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:328`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L328)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:328`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L328)*
 
 A deserializer holding
 a `bool`.
@@ -491,11 +485,8 @@ a `bool`.
 - <span id="booldeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for BoolDeserializer<E>`
@@ -533,7 +524,7 @@ struct I8Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:329`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L329)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:329`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L329)*
 
 A deserializer holding
 an `i8`.
@@ -647,11 +638,8 @@ an `i8`.
 - <span id="i8deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I8Deserializer<E>`
@@ -689,7 +677,7 @@ struct I16Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:330`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L330)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:330`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L330)*
 
 A deserializer holding
 an `i16`.
@@ -803,11 +791,8 @@ an `i16`.
 - <span id="i16deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I16Deserializer<E>`
@@ -845,7 +830,7 @@ struct I32Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:331`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L331)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:331`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L331)*
 
 A deserializer holding
 an `i32`.
@@ -959,11 +944,8 @@ an `i32`.
 - <span id="i32deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I32Deserializer<E>`
@@ -1001,7 +983,7 @@ struct I64Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:332`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L332)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:332`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L332)*
 
 A deserializer holding
 an `i64`.
@@ -1115,11 +1097,8 @@ an `i64`.
 - <span id="i64deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I64Deserializer<E>`
@@ -1157,7 +1136,7 @@ struct I128Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:333`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L333)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:333`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L333)*
 
 A deserializer holding
 an `i128`.
@@ -1271,11 +1250,8 @@ an `i128`.
 - <span id="i128deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for I128Deserializer<E>`
@@ -1313,7 +1289,7 @@ struct IsizeDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:334`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L334)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:334`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L334)*
 
 A deserializer holding
 an `isize`.
@@ -1427,11 +1403,8 @@ an `isize`.
 - <span id="isizedeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for IsizeDeserializer<E>`
@@ -1469,7 +1442,7 @@ struct U8Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:335`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L335)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:335`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L335)*
 
 A deserializer holding
 a `u8`.
@@ -1583,11 +1556,8 @@ a `u8`.
 - <span id="u8deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U8Deserializer<E>`
@@ -1625,7 +1595,7 @@ struct U16Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:336`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L336)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:336`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L336)*
 
 A deserializer holding
 a `u16`.
@@ -1739,11 +1709,8 @@ a `u16`.
 - <span id="u16deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U16Deserializer<E>`
@@ -1781,7 +1748,7 @@ struct U64Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:337`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L337)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:337`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L337)*
 
 A deserializer holding
 a `u64`.
@@ -1895,11 +1862,8 @@ a `u64`.
 - <span id="u64deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U64Deserializer<E>`
@@ -1937,7 +1901,7 @@ struct U128Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:338`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L338)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:338`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L338)*
 
 A deserializer holding
 a `u128`.
@@ -2051,11 +2015,8 @@ a `u128`.
 - <span id="u128deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U128Deserializer<E>`
@@ -2093,7 +2054,7 @@ struct UsizeDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:339`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L339)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:339`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L339)*
 
 A deserializer holding
 a `usize`.
@@ -2207,11 +2168,8 @@ a `usize`.
 - <span id="usizedeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for UsizeDeserializer<E>`
@@ -2249,7 +2207,7 @@ struct F32Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:340`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L340)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:340`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L340)*
 
 A deserializer holding
 an `f32`.
@@ -2363,11 +2321,8 @@ an `f32`.
 - <span id="f32deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for F32Deserializer<E>`
@@ -2405,7 +2360,7 @@ struct F64Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:341`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L341)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:341`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L341)*
 
 A deserializer holding
 an `f64`.
@@ -2519,11 +2474,8 @@ an `f64`.
 - <span id="f64deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for F64Deserializer<E>`
@@ -2561,7 +2513,7 @@ struct CharDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:342`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L342)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:342`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L342)*
 
 A deserializer holding
 a `char`.
@@ -2675,11 +2627,8 @@ a `char`.
 - <span id="chardeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for CharDeserializer<E>`
@@ -2717,7 +2666,7 @@ struct U32Deserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:345-348`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L345-L348)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:345-348`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L345-L348)*
 
 A deserializer holding a `u32`.
 
@@ -2838,11 +2787,8 @@ A deserializer holding a `u32`.
 - <span id="u32deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for U32Deserializer<E>`
@@ -2880,7 +2826,7 @@ struct StrDeserializer<'a, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:445-448`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L445-L448)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:445-448`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L445-L448)*
 
 A deserializer holding a `&str`.
 
@@ -3001,11 +2947,8 @@ A deserializer holding a `&str`.
 - <span id="strdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for StrDeserializer<'a, E>`
@@ -3043,7 +2986,7 @@ struct BorrowedStrDeserializer<'de, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:546-549`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L546-L549)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:546-549`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L546-L549)*
 
 A deserializer holding a `&str` with a lifetime tied to another
 deserializer.
@@ -3167,11 +3110,8 @@ deserializer.
 - <span id="borrowedstrdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for BorrowedStrDeserializer<'de, E>`
@@ -3209,7 +3149,7 @@ struct StringDeserializer<E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:637-640`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L637-L640)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:637-640`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L637-L640)*
 
 A deserializer holding a `String`.
 
@@ -3328,11 +3268,8 @@ A deserializer holding a `String`.
 - <span id="stringdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for StringDeserializer<E>`
@@ -3370,7 +3307,7 @@ struct CowStrDeserializer<'a, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:754-757`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L754-L757)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:754-757`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L754-L757)*
 
 A deserializer holding a `Cow<str>`.
 
@@ -3489,11 +3426,8 @@ A deserializer holding a `Cow<str>`.
 - <span id="cowstrdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for CowStrDeserializer<'a, E>`
@@ -3531,7 +3465,7 @@ struct BytesDeserializer<'a, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:872-875`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L872-L875)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:872-875`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L872-L875)*
 
 A deserializer holding a `&[u8]`. Always calls `Visitor::visit_bytes`.
 
@@ -3646,11 +3580,8 @@ A deserializer holding a `&[u8]`. Always calls `Visitor::visit_bytes`.
 - <span id="bytesdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for BytesDeserializer<'a, E>`
@@ -3688,7 +3619,7 @@ struct BorrowedBytesDeserializer<'de, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:942-945`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L942-L945)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:942-945`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L942-L945)*
 
 A deserializer holding a `&[u8]` with a lifetime tied to another
 deserializer. Always calls `Visitor::visit_borrowed_bytes`.
@@ -3804,11 +3735,8 @@ deserializer. Always calls `Visitor::visit_borrowed_bytes`.
 - <span id="borrowedbytesdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<E> IntoDeserializer for BorrowedBytesDeserializer<'de, E>`
@@ -3847,7 +3775,7 @@ struct SeqDeserializer<I, E> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1003-1007`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L1003-L1007)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1003-1007`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L1003-L1007)*
 
 A deserializer that iterates over a sequence.
 
@@ -3960,11 +3888,8 @@ A deserializer that iterates over a sequence.
 - <span id="seqdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I, E> IntoDeserializer for SeqDeserializer<I, E>`
@@ -4007,7 +3932,7 @@ A deserializer that iterates over a sequence.
 struct ExpectedInSeq(usize);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1108`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L1108)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1108`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L1108)*
 
 #### Trait Implementations
 
@@ -4038,11 +3963,8 @@ struct ExpectedInSeq(usize);
 - <span id="expectedinseq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ExpectedInSeq`
@@ -4065,7 +3987,7 @@ struct SeqAccessDeserializer<A> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1182-1184`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L1182-L1184)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1182-1184`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L1182-L1184)*
 
 A deserializer holding a `SeqAccess`.
 
@@ -4178,11 +4100,8 @@ A deserializer holding a `SeqAccess`.
 - <span id="seqaccessdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A> IntoDeserializer for SeqAccessDeserializer<A>`
@@ -4226,7 +4145,7 @@ where
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1227-1237`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L1227-L1237)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1227-1237`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L1227-L1237)*
 
 A deserializer that iterates over a map.
 
@@ -4339,11 +4258,8 @@ A deserializer that iterates over a map.
 - <span id="mapdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I, E> IntoDeserializer for MapDeserializer<'de, I, E>`
@@ -4398,7 +4314,7 @@ A deserializer that iterates over a map.
 struct PairDeserializer<A, B, E>(A, B, PhantomData<E>);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1475`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L1475)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1475`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L1475)*
 
 #### Trait Implementations
 
@@ -4491,11 +4407,8 @@ struct PairDeserializer<A, B, E>(A, B, PhantomData<E>);
 - <span id="pairdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for PairDeserializer<A, B, E>`
@@ -4516,7 +4429,7 @@ struct PairDeserializer<A, B, E>(A, B, PhantomData<E>);
 struct PairVisitor<A, B, E>(Option<A>, Option<B>, PhantomData<E>);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1528`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L1528)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1528`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L1528)*
 
 #### Trait Implementations
 
@@ -4543,11 +4456,8 @@ struct PairVisitor<A, B, E>(Option<A>, Option<B>, PhantomData<E>);
 - <span id="pairvisitor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A, B, E> SeqAccess for PairVisitor<A, B, E>`
@@ -4576,7 +4486,7 @@ struct PairVisitor<A, B, E>(Option<A>, Option<B>, PhantomData<E>);
 struct ExpectedInMap(usize);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1562`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L1562)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1562`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L1562)*
 
 #### Trait Implementations
 
@@ -4607,11 +4517,8 @@ struct ExpectedInMap(usize);
 - <span id="expectedinmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ExpectedInMap`
@@ -4634,7 +4541,7 @@ struct MapAccessDeserializer<A> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1611-1613`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L1611-L1613)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1611-1613`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L1611-L1613)*
 
 A deserializer holding a `MapAccess`.
 
@@ -4755,11 +4662,8 @@ A deserializer holding a `MapAccess`.
 - <span id="mapaccessdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A> IntoDeserializer for MapAccessDeserializer<A>`
@@ -4796,7 +4700,7 @@ struct EnumAccessDeserializer<A> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:1687-1689`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L1687-L1689)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1687-1689`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L1687-L1689)*
 
 A deserializer holding an `EnumAccess`.
 
@@ -4909,11 +4813,8 @@ A deserializer holding an `EnumAccess`.
 - <span id="enumaccessdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A> IntoDeserializer for EnumAccessDeserializer<A>`
@@ -4950,15 +4851,15 @@ A deserializer holding an `EnumAccess`.
 type ErrorImpl = Box<str>;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:57`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L57)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:57`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L57)*
 
 ## Macros
 
 ### `impl_copy_clone!`
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:35-45`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L35-L45)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:35-45`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L35-L45)*
 
 ### `primitive_deserializer!`
 
-*Defined in [`serde_core-1.0.228/src/de/value.rs:254-326`](../../../../.source_1765633015/serde_core-1.0.228/src/de/value.rs#L254-L326)*
+*Defined in [`serde_core-1.0.228/src/de/value.rs:254-326`](../../../../.source_1765894658/serde_core-1.0.228/src/de/value.rs#L254-L326)*
 

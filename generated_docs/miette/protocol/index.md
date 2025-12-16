@@ -55,7 +55,7 @@ struct LabeledSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L250-L255)*
+*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L250-L255)*
 
 A labeled [`SourceSpan`](../index.md).
 
@@ -80,79 +80,46 @@ A labeled [`SourceSpan`](../index.md).
 - <span id="labeledspan-at"></span>`fn at(span: impl Into<SourceSpan>, label: impl Into<String>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
   Makes a new label at specified span
-
   
-
   # Examples
-
   ```rust
-
   use miette::LabeledSpan;
-
   
-
   let source = "Cpp is the best";
-
   let label = LabeledSpan::at(0..3, "should be Rust");
-
   assert_eq!(
-
       label,
-
       LabeledSpan::new(Some("should be Rust".to_string()), 0, 3)
-
   )
-
   ```
 
 - <span id="labeledspan-at-offset"></span>`fn at_offset(offset: ByteOffset, label: impl Into<String>) -> Self` — [`ByteOffset`](../index.md#byteoffset)
 
   Makes a new label that points at a specific offset.
-
   
-
   # Examples
-
   ```rust
-
   use miette::LabeledSpan;
-
   
-
   let source = "(2 + 2";
-
   let label = LabeledSpan::at_offset(4, "expected a closing parenthesis");
-
   assert_eq!(
-
       label,
-
       LabeledSpan::new(Some("expected a closing parenthesis".to_string()), 4, 0)
-
   )
-
   ```
 
 - <span id="labeledspan-underline"></span>`fn underline(span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](../index.md#sourcespan)
 
   Makes a new label without text, that underlines a specific span.
-
   
-
   # Examples
-
   ```rust
-
   use miette::LabeledSpan;
-
   
-
   let source = "You have an eror here";
-
   let label = LabeledSpan::underline(12..16);
-
   assert_eq!(label, LabeledSpan::new(None, 12, 4))
-
   ```
 
 - <span id="labeledspan-label"></span>`fn label(&self) -> Option<&str>`
@@ -218,11 +185,8 @@ A labeled [`SourceSpan`](../index.md).
 - <span id="labeledspan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LabeledSpan`
@@ -267,7 +231,7 @@ struct MietteSpanContents<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L458-L473)*
+*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L458-L473)*
 
 Basic implementation of the [`SpanContents`](../index.md) trait, for convenience.
 
@@ -322,11 +286,8 @@ Basic implementation of the [`SpanContents`](../index.md) trait, for convenience
 - <span id="miettespancontents-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteSpanContents<'a>`
@@ -376,7 +337,7 @@ struct SourceSpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L549-L554)*
+*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L549-L554)*
 
 Span within a [`SourceCode`](../index.md)
 
@@ -407,7 +368,6 @@ Span within a [`SourceCode`](../index.md)
 - <span id="sourcespan-is-empty"></span>`const fn is_empty(&self) -> bool`
 
   Whether this [`SourceSpan`](../index.md) has a length of zero. It may still be useful
-
   to point to a specific point.
 
 #### Trait Implementations
@@ -455,11 +415,8 @@ Span within a [`SourceCode`](../index.md)
 - <span id="sourcespan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for SourceSpan`
@@ -504,7 +461,7 @@ Span within a [`SourceCode`](../index.md)
 struct SourceOffset(ByteOffset);
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L673)*
+*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L673)*
 
 Newtype that represents the [`ByteOffset`](../index.md) from the beginning of a [`SourceCode`](../index.md)
 
@@ -517,37 +474,23 @@ Newtype that represents the [`ByteOffset`](../index.md) from the beginning of a 
 - <span id="sourceoffset-from-location"></span>`fn from_location(source: impl AsRef<str>, loc_line: usize, loc_col: usize) -> Self`
 
   Little utility to help convert 1-based line/column locations into
-
   miette-compatible Spans
-
   
-
   This function is infallible: Giving an out-of-range line/column pair
-
   will return the offset of the last byte in the source.
 
 - <span id="sourceoffset-from-current-location"></span>`fn from_current_location() -> Result<(String, Self), MietteError>` — [`MietteError`](../index.md#mietteerror)
 
   Returns an offset for the _file_ location of wherever this function is
-
   called. If you want to get _that_ caller's location, mark this
-
   function's caller with `#[track_caller]` (and so on and so forth).
-
   
-
   Returns both the filename that was given and the offset of the caller
-
   as a [`SourceOffset`](../index.md).
-
   
-
   Keep in mind that this fill only work if the file your Rust source
-
   file was compiled from is actually available at that location. If
-
   you're shipping binaries for your application, you'll want to ignore
-
   the Err case or otherwise report it.
 
 #### Trait Implementations
@@ -595,11 +538,8 @@ Newtype that represents the [`ByteOffset`](../index.md) from the beginning of a 
 - <span id="sourceoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for SourceOffset`
@@ -650,7 +590,7 @@ enum Severity {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L189-L198)*
+*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L189-L198)*
 
 [`Diagnostic`](../index.md) severity. Intended to be used by
 [`ReportHandler`](crate::ReportHandler)s to change the way different
@@ -716,11 +656,8 @@ enum Severity {
 - <span id="severity-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Severity`
@@ -767,7 +704,7 @@ enum Severity {
 trait Diagnostic: std::error::Error { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L20-L70)*
+*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L20-L70)*
 
 Adds rich metadata to your Error that can be used by
 [`Report`](crate::Report) to print really nice and human-friendly error
@@ -778,18 +715,28 @@ messages.
 - `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
   Unique diagnostic code that can be used to look up more information
+  about this `Diagnostic`. Ideally also globally unique, and documented
+  in the toplevel crate's documentation for easy searching. Rust path
+  format (`foo::bar::baz`) is recommended, but more classic codes like
+  `E0123` or enums will work just fine.
 
 - `fn severity(&self) -> Option<Severity>`
 
   Diagnostic severity. This may be used by
+  [`ReportHandler`](crate::ReportHandler)s to change the display format
+  of this diagnostic.
+  
+  If `None`, reporters should treat this as [`Severity::Error`](../index.md).
 
 - `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
   Additional help text related to this `Diagnostic`. Do you have any
+  advice for the poor soul who's just run into this issue?
 
 - `fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
   URL to visit for a more detailed explanation/help about this
+  `Diagnostic`.
 
 - `fn source_code(&self) -> Option<&dyn SourceCode>`
 
@@ -827,11 +774,11 @@ messages.
 trait SourceCode: Send + Sync { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L236-L245)*
+*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L236-L245)*
 
 Represents readable source code of some sort.
 
-This trait is able to support simple `SourceCode` types like [`String`](../../cargo_platform/index.md)s, as
+This trait is able to support simple `SourceCode` types like `String`s, as
 well as more involved types like indexes into centralized `SourceMap`-like
 types, file handles, and even network streams.
 
@@ -844,6 +791,7 @@ gigabytes or larger in size.
 - `fn read_span<'a>(self: &'a Self, span: &SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>`
 
   Read the bytes for a specific span from this `SourceCode`, keeping a
+  certain number of lines before and after the span as context.
 
 #### Implementors
 
@@ -863,7 +811,7 @@ gigabytes or larger in size.
 trait SpanContents<'a> { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L426-L452)*
+*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L426-L452)*
 
 Contents of a [`SourceCode`](../index.md) covered by [`SourceSpan`](../index.md).
 
@@ -882,10 +830,12 @@ Includes line and column information to optimize highlight calculations.
 - `fn line(&self) -> usize`
 
   The 0-indexed line in the associated [`SourceCode`](../index.md) where the data
+  begins.
 
 - `fn column(&self) -> usize`
 
   The 0-indexed column in the associated [`SourceCode`](../index.md) where the data
+  begins, relative to `line`.
 
 - `fn line_count(&self) -> usize`
 
@@ -900,6 +850,9 @@ Includes line and column information to optimize highlight calculations.
 - `fn language(&self) -> Option<&str>`
 
   Optional method. The language name for this source code, if any.
+  This is used to drive syntax highlighting.
+  
+  Examples: Rust, TOML, C
 
 #### Implementors
 
@@ -913,7 +866,7 @@ Includes line and column information to optimize highlight calculations.
 type ByteOffset = usize;
 ```
 
-*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L666)*
+*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L666)*
 
 "Raw" type for the byte offset from the beginning of a [`SourceCode`](../index.md).
 
@@ -921,9 +874,9 @@ type ByteOffset = usize;
 
 ### `box_error_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L72-L86)*
+*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L72-L86)*
 
 ### `box_borrow_impls!`
 
-*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../../.source_1765633015/miette-7.6.0/src/protocol.rs#L94-L104)*
+*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../../.source_1765894658/miette-7.6.0/src/protocol.rs#L94-L104)*
 

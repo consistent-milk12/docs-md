@@ -22,7 +22,7 @@ struct OnceBox<T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:361-364`](../../../../.source_1765633015/once_cell-1.21.3/src/race.rs#L361-L364)*
+*Defined in [`once_cell-1.21.3/src/race.rs:361-364`](../../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L361-L364)*
 
 A thread-safe cell which can be written to only once.
 
@@ -43,41 +43,27 @@ A thread-safe cell which can be written to only once.
 - <span id="oncebox-set"></span>`fn set(&self, value: Box<T>) -> Result<(), Box<T>>`
 
   Sets the contents of this cell to `value`.
-
   
-
   Returns `Ok(())` if the cell was empty and `Err(value)` if it was
-
   full.
 
 - <span id="oncebox-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> &T`
 
   Gets the contents of the cell, initializing it with `f` if the cell was
-
   empty.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="oncebox-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<&T, E>`
 
   Gets the contents of the cell, initializing it with `f` if
-
   the cell was empty. If the cell was empty and `f` failed, an
-
   error is returned.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="oncebox-init"></span>`fn init<E>(&self, f: impl FnOnce() -> Result<Box<T>, E>) -> Result<&T, E>`
@@ -127,11 +113,8 @@ A thread-safe cell which can be written to only once.
 - <span id="oncebox-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: Sync + Send> Sync for OnceBox<T>`
@@ -164,7 +147,7 @@ A thread-safe cell which can be written to only once.
 fn _dummy()
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:497`](../../../../.source_1765633015/once_cell-1.21.3/src/race.rs#L497)*
+*Defined in [`once_cell-1.21.3/src/race.rs:497`](../../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L497)*
 
 ```compile_fail
 struct S(*mut ());

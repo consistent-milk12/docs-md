@@ -55,7 +55,7 @@ struct Input<'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:102-107`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L102-L107)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:102-107`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L102-L107)*
 
 The parameters for a regex search including the haystack to search.
 
@@ -155,1081 +155,579 @@ results in no match being reported.
 - <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](../../index.md#input)
 
   Set the span for this search.
-
   
-
   This routine does not panic if the span given is not a valid range for
-
   this search's haystack. If this search is run with an invalid range,
-
   then the most likely outcome is that the actual search execution will
-
   panic.
-
   
-
   This routine is generic over how a span is provided. While
-
   a [`Span`](../../index.md) may be given directly, one may also provide a
-
   `std::ops::Range<usize>`. To provide anything supported by range
-
   syntax, use the `Input::range` method.
-
   
-
   The default span is the entire haystack.
-
   
-
   Note that `Input::range` overrides this method and vice versa.
-
   
-
   # Panics
-
   
-
   This panics if the given span does not correspond to valid bounds in
-
   the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   This example shows how the span of the search can impact whether a
-
   match is reported or not. This is particularly relevant for look-around
-
   operators, which might take things outside of the span into account
-
   when determining whether they match.
-
   
-
   ```rust
-
   if cfg!(miri) { return Ok(()); } // miri takes too long
-
   use regex_automata::{
-
       nfa::thompson::pikevm::PikeVM,
-
       Match, Input,
-
   };
-
   
-
   // Look for 'at', but as a distinct word.
-
   let re = PikeVM::new(r"\bat\b")?;
-
   let mut cache = re.create_cache();
-
   let mut caps = re.create_captures();
-
   
-
   // Our haystack contains 'at', but not as a distinct word.
-
   let haystack = "batter";
-
   
-
   // A standard search finds nothing, as expected.
-
   let input = Input::new(haystack);
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(None, caps.get_match());
-
   
-
   // But if we wanted to search starting at position '1', we might
-
   // slice the haystack. If we do this, it's impossible for the \b
-
   // anchors to take the surrounding context into account! And thus,
-
   // a match is produced.
-
   let input = Input::new(&haystack[1..3]);
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(Some(Match::must(0, 0..2)), caps.get_match());
-
   
-
   // But if we specify the span of the search instead of slicing the
-
   // haystack, then the regex engine can "see" outside of the span
-
   // and resolve the anchors correctly.
-
   let input = Input::new(haystack).span(1..3);
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(None, caps.get_match());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
-
   
-
   This may seem a little ham-fisted, but this scenario tends to come up
-
   if some other regex engine found the match span and now you need to
-
   re-process that span to look for capturing groups. (e.g., Run a faster
-
   DFA first, find a match, then run the PikeVM on just the match span to
-
   resolve capturing groups.) In order to implement that sort of logic
-
   correctly, you need to set the span on the search instead of slicing
-
   the haystack directly.
-
   
-
   The other advantage of using this routine to specify the bounds of the
-
   search is that the match offsets are still reported in terms of the
-
   original haystack. For example, the second search in the example above
-
   reported a match at position `0`, even though `at` starts at offset
-
   `1` because we sliced the haystack.
 
 - <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](../../index.md#input)
 
   Like `Input::span`, but accepts any range instead.
-
   
-
   This routine does not panic if the range given is not a valid range for
-
   this search's haystack. If this search is run with an invalid range,
-
   then the most likely outcome is that the actual search execution will
-
   panic.
-
   
-
   The default range is the entire haystack.
-
   
-
   Note that `Input::span` overrides this method and vice versa.
-
   
-
   # Panics
-
   
-
   This routine will panic if the given range could not be converted
-
-  to a valid [`Range`](../../../gimli/read/index.md). For example, this would panic when given
-
+  to a valid `Range`. For example, this would panic when given
   `0..=usize::MAX` since it cannot be represented using a half-open
-
   interval in terms of `usize`.
-
   
-
   This also panics if the given range does not correspond to valid bounds
-
   in the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   
-
   let input = Input::new("foobar").range(2..=4);
-
   assert_eq!(2..5, input.get_range());
-
   ```
 
 - <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](../../index.md#anchored), [`Input`](../../index.md#input)
 
   Sets the anchor mode of a search.
-
   
-
   When a search is anchored (so that's [`Anchored::Yes`](../../index.md) or
-
   [`Anchored::Pattern`](../../index.md)), a match must begin at the start of a search.
-
   When a search is not anchored (that's [`Anchored::No`](../../index.md)), regex engines
-
   will behave as if the pattern started with a `(?s-u:.)*?`. This prefix
-
   permits a match to appear anywhere.
-
   
-
   By default, the anchored mode is [`Anchored::No`](../../index.md).
-
   
-
   **WARNING:** this is subtly different than using a `^` at the start of
-
   your regex. A `^` forces a regex to match exclusively at the start of
-
   a haystack, regardless of where you begin your search. In contrast,
-
   anchoring a search will allow your regex to match anywhere in your
-
   haystack, but the match must start at the beginning of a search.
-
   
-
   For example, consider the haystack `aba` and the following searches:
-
   
-
   1. The regex `^a` is compiled with `Anchored::No` and searches `aba`
-
      starting at position `2`. Since `^` requires the match to start at
-
      the beginning of the haystack and `2 > 0`, no match is found.
-
   2. The regex `a` is compiled with `Anchored::Yes` and searches `aba`
-
      starting at position `2`. This reports a match at `[2, 3]` since
-
      the match starts where the search started. Since there is no `^`,
-
      there is no requirement for the match to start at the beginning of
-
      the haystack.
-
   3. The regex `a` is compiled with `Anchored::Yes` and searches `aba`
-
      starting at position `1`. Since `b` corresponds to position `1` and
-
      since the search is anchored, it finds no match. While the regex
-
      matches at other positions, configuring the search to be anchored
-
      requires that it only report a match that begins at the same offset
-
      as the beginning of the search.
-
   4. The regex `a` is compiled with `Anchored::No` and searches `aba`
-
      starting at position `1`. Since the search is not anchored and
-
      the regex does not start with `^`, the search executes as if there
-
      is a `(?s:.)*?` prefix that permits it to match anywhere. Thus, it
-
      reports a match at `[2, 3]`.
-
   
-
   Note that the [`Anchored::Pattern`](../../index.md) mode is like `Anchored::Yes`,
-
   except it only reports matches for a particular pattern.
-
   
-
   # Example
-
   
-
   This demonstrates the differences between an anchored search and
-
   a pattern that begins with `^` (as described in the above warning
-
   message).
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::pikevm::PikeVM,
-
       Anchored, Match, Input,
-
   };
-
   
-
   let haystack = "aba";
-
   
-
   let re = PikeVM::new(r"^a")?;
-
   let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
-
   let input = Input::new(haystack).span(2..3).anchored(Anchored::No);
-
   re.search(&mut cache, &input, &mut caps);
-
   // No match is found because 2 is not the beginning of the haystack,
-
   // which is what ^ requires.
-
   assert_eq!(None, caps.get_match());
-
   
-
   let re = PikeVM::new(r"a")?;
-
   let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
-
   let input = Input::new(haystack).span(2..3).anchored(Anchored::Yes);
-
   re.search(&mut cache, &input, &mut caps);
-
   // An anchored search can still match anywhere in the haystack, it just
-
   // must begin at the start of the search which is '2' in this case.
-
   assert_eq!(Some(Match::must(0, 2..3)), caps.get_match());
-
   
-
   let re = PikeVM::new(r"a")?;
-
   let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
-
   let input = Input::new(haystack).span(1..3).anchored(Anchored::Yes);
-
   re.search(&mut cache, &input, &mut caps);
-
   // No match is found since we start searching at offset 1 which
-
   // corresponds to 'b'. Since there is no '(?s:.)*?' prefix, no match
-
   // is found.
-
   assert_eq!(None, caps.get_match());
-
   
-
   let re = PikeVM::new(r"a")?;
-
   let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
-
   let input = Input::new(haystack).span(1..3).anchored(Anchored::No);
-
   re.search(&mut cache, &input, &mut caps);
-
   // Since anchored=no, an implicit '(?s:.)*?' prefix was added to the
-
   // pattern. Even though the search starts at 'b', the 'match anything'
-
   // prefix allows the search to match 'a'.
-
   let expected = Some(Match::must(0, 2..3));
-
   assert_eq!(expected, caps.get_match());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](../../index.md#input)
 
   Whether to execute an "earliest" search or not.
-
   
-
   When running a non-overlapping search, an "earliest" search will return
-
   the match location as early as possible. For example, given a pattern
-
   of `foo[0-9]+` and a haystack of `foo12345`, a normal leftmost search
-
   will return `foo12345` as a match. But an "earliest" search for regex
-
   engines that support "earliest" semantics will return `foo1` as a
-
   match, since as soon as the first digit following `foo` is seen, it is
-
   known to have found a match.
-
   
-
   Note that "earliest" semantics generally depend on the regex engine.
-
   Different regex engines may determine there is a match at different
-
   points. So there is no guarantee that "earliest" matches will always
-
   return the same offsets for all regex engines. The "earliest" notion
-
   is really about when the particular regex engine determines there is
-
   a match rather than a consistent semantic unto itself. This is often
-
   useful for implementing "did a match occur or not" predicates, but
-
   sometimes the offset is useful as well.
-
   
-
   This is disabled by default.
-
   
-
   # Example
-
   
-
   This example shows the difference between "earliest" searching and
-
   normal searching.
-
   
-
   ```rust
-
   use regex_automata::{nfa::thompson::pikevm::PikeVM, Match, Input};
-
   
-
   let re = PikeVM::new(r"foo[0-9]+")?;
-
   let mut cache = re.create_cache();
-
   let mut caps = re.create_captures();
-
   
-
   // A normal search implements greediness like you expect.
-
   let input = Input::new("foo12345");
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(Some(Match::must(0, 0..8)), caps.get_match());
-
   
-
   // When 'earliest' is enabled and the regex engine supports
-
   // it, the search will bail once it knows a match has been
-
   // found.
-
   let input = Input::new("foo12345").earliest(true);
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(Some(Match::must(0, 0..4)), caps.get_match());
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="input-set-span"></span>`fn set_span<S: Into<Span>>(&mut self, span: S)`
 
   Set the span for this search configuration.
-
   
-
   This is like the `Input::span` method, except this mutates the
-
   span in place.
-
   
-
   This routine is generic over how a span is provided. While
-
   a [`Span`](../../index.md) may be given directly, one may also provide a
-
   `std::ops::Range<usize>`.
-
   
-
   # Panics
-
   
-
   This panics if the given span does not correspond to valid bounds in
-
   the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   input.set_span(2..4);
-
   assert_eq!(2..4, input.get_range());
-
   ```
 
 - <span id="input-set-range"></span>`fn set_range<R: RangeBounds<usize>>(&mut self, range: R)`
 
   Set the span for this search configuration given any range.
-
   
-
   This is like the `Input::range` method, except this mutates the
-
   span in place.
-
   
-
   This routine does not panic if the range given is not a valid range for
-
   this search's haystack. If this search is run with an invalid range,
-
   then the most likely outcome is that the actual search execution will
-
   panic.
-
   
-
   # Panics
-
   
-
   This routine will panic if the given range could not be converted
-
-  to a valid [`Range`](../../../gimli/read/index.md). For example, this would panic when given
-
+  to a valid `Range`. For example, this would panic when given
   `0..=usize::MAX` since it cannot be represented using a half-open
-
   interval in terms of `usize`.
-
   
-
   This also panics if the given span does not correspond to valid bounds
-
   in the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   input.set_range(2..=4);
-
   assert_eq!(2..5, input.get_range());
-
   ```
 
 - <span id="input-set-start"></span>`fn set_start(&mut self, start: usize)`
 
   Set the starting offset for the span for this search configuration.
-
   
-
   This is a convenience routine for only mutating the start of a span
-
   without having to set the entire span.
-
   
-
   # Panics
-
   
-
   This panics if the span resulting from the new start position does not
-
   correspond to valid bounds in the haystack or the termination of a
-
   search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   input.set_start(5);
-
   assert_eq!(5..6, input.get_range());
-
   ```
 
 - <span id="input-set-end"></span>`fn set_end(&mut self, end: usize)`
 
   Set the ending offset for the span for this search configuration.
-
   
-
   This is a convenience routine for only mutating the end of a span
-
   without having to set the entire span.
-
   
-
   # Panics
-
   
-
   This panics if the span resulting from the new end position does not
-
   correspond to valid bounds in the haystack or the termination of a
-
   search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   input.set_end(5);
-
   assert_eq!(0..5, input.get_range());
-
   ```
 
 - <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](../../index.md#anchored)
 
   Set the anchor mode of a search.
-
   
-
   This is like `Input::anchored`, except it mutates the search
-
   configuration in place.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{Anchored, Input, PatternID};
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(Anchored::No, input.get_anchored());
-
   
-
   let pid = PatternID::must(5);
-
   input.set_anchored(Anchored::Pattern(pid));
-
   assert_eq!(Anchored::Pattern(pid), input.get_anchored());
-
   ```
 
 - <span id="input-set-earliest"></span>`fn set_earliest(&mut self, yes: bool)`
 
   Set whether the search should execute in "earliest" mode or not.
-
   
-
   This is like `Input::earliest`, except it mutates the search
-
   configuration in place.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert!(!input.get_earliest());
-
   input.set_earliest(true);
-
   assert!(input.get_earliest());
-
   ```
 
 - <span id="input-haystack"></span>`fn haystack(&self) -> &'h [u8]`
 
   Return a borrow of the underlying haystack as a slice of bytes.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(b"foobar", input.haystack());
-
   ```
 
 - <span id="input-start"></span>`fn start(&self) -> usize`
 
   Return the start position of this search.
-
   
-
   This is a convenience routine for `search.get_span().start()`.
-
   
-
   When `Input::is_done` is `false`, this is guaranteed to return
-
   an offset that is less than or equal to `Input::end`. Otherwise,
-
   the offset is one greater than `Input::end`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(0, input.start());
-
   
-
   let input = Input::new("foobar").span(2..4);
-
   assert_eq!(2, input.start());
-
   ```
 
 - <span id="input-end"></span>`fn end(&self) -> usize`
 
   Return the end position of this search.
-
   
-
   This is a convenience routine for `search.get_span().end()`.
-
   
-
   This is guaranteed to return an offset that is a valid exclusive end
-
   bound for this input's haystack.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(6, input.end());
-
   
-
   let input = Input::new("foobar").span(2..4);
-
   assert_eq!(4, input.end());
-
   ```
 
 - <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](../../index.md#span)
 
   Return the span for this search configuration.
-
   
-
   If one was not explicitly set, then the span corresponds to the entire
-
   range of the haystack.
-
   
-
   When `Input::is_done` is `false`, the span returned is guaranteed
-
   to correspond to valid bounds for this input's haystack.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{Input, Span};
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(Span { start: 0, end: 6 }, input.get_span());
-
   ```
 
 - <span id="input-get-range"></span>`fn get_range(&self) -> Range<usize>`
 
   Return the span as a range for this search configuration.
-
   
-
   If one was not explicitly set, then the span corresponds to the entire
-
   range of the haystack.
-
   
-
   When `Input::is_done` is `false`, the range returned is guaranteed
-
   to correspond to valid bounds for this input's haystack.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   ```
 
 - <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](../../index.md#anchored)
 
   Return the anchored mode for this search configuration.
-
   
-
   If no anchored mode was set, then it defaults to [`Anchored::No`](../../index.md).
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{Anchored, Input, PatternID};
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(Anchored::No, input.get_anchored());
-
   
-
   let pid = PatternID::must(5);
-
   input.set_anchored(Anchored::Pattern(pid));
-
   assert_eq!(Anchored::Pattern(pid), input.get_anchored());
-
   ```
 
 - <span id="input-get-earliest"></span>`fn get_earliest(&self) -> bool`
 
   Return whether this search should execute in "earliest" mode.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert!(!input.get_earliest());
-
   ```
 
 - <span id="input-is-done"></span>`fn is_done(&self) -> bool`
 
   Return true if and only if this search can never return any other
-
   matches.
-
   
-
   This occurs when the start position of this search is greater than the
-
   end position of the search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert!(!input.is_done());
-
   input.set_start(6);
-
   assert!(!input.is_done());
-
   input.set_start(7);
-
   assert!(input.is_done());
-
   ```
 
 - <span id="input-is-char-boundary"></span>`fn is_char_boundary(&self, offset: usize) -> bool`
 
   Returns true if and only if the given offset in this search's haystack
-
   falls on a valid UTF-8 encoded codepoint boundary.
-
   
-
   If the haystack is not valid UTF-8, then the behavior of this routine
-
   is unspecified.
-
   
-
   # Example
-
   
-
   This shows where codepoint boundaries do and don't exist in valid
-
   UTF-8.
-
   
-
   ```rust
-
   use regex_automata::Input;
-
   
-
   let input = Input::new("☃");
-
   assert!(input.is_char_boundary(0));
-
   assert!(!input.is_char_boundary(1));
-
   assert!(!input.is_char_boundary(2));
-
   assert!(input.is_char_boundary(3));
-
   assert!(!input.is_char_boundary(4));
-
   ```
 
 #### Trait Implementations
@@ -1269,11 +767,8 @@ results in no match being reported.
 - <span id="input-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Input<'h>`
@@ -1305,7 +800,7 @@ struct Span {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:807-812`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L807-L812)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:807-812`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L807-L812)*
 
 A representation of a span reported by a regex engine.
 
@@ -1346,25 +841,19 @@ which means things like `Span::from(5..10)` work.
 - <span id="span-len"></span>`fn len(&self) -> usize`
 
   Returns the length of this span.
-
   
-
   This returns `0` in precisely the cases that `is_empty` returns `true`.
 
 - <span id="span-contains"></span>`fn contains(&self, offset: usize) -> bool`
 
   Returns true when the given offset is contained within this span.
-
   
-
   Note that an empty span contains no offsets and will always return
-
   false.
 
 - <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](../../index.md#span)
 
   Returns a new span with `offset` added to this span's `start` and `end`
-
   values.
 
 #### Trait Implementations
@@ -1422,11 +911,8 @@ which means things like `Span::from(5..10)` work.
 - <span id="span-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Span`
@@ -1464,7 +950,7 @@ struct HalfMatch {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:924-932`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L924-L932)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:924-932`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L924-L932)*
 
 A representation of "half" of a match reported by a DFA.
 
@@ -1501,37 +987,25 @@ have a pattern ID of `0`.
 - <span id="halfmatch-must"></span>`fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](../../index.md#halfmatch)
 
   Create a new half match from a pattern ID and a byte offset.
-
   
-
   This is like `HalfMatch::new`, but accepts a `usize` instead of a
-
   [`PatternID`](../primitives/index.md). This panics if the given `usize` is not representable
-
   as a `PatternID`.
 
 - <span id="halfmatch-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../primitives/index.md#patternid)
 
   Returns the ID of the pattern that matched.
-
   
-
   The ID of a pattern is derived from the position in which it was
-
   originally inserted into the corresponding DFA. The first pattern has
-
   identifier `0`, and each subsequent pattern is `1`, `2` and so on.
 
 - <span id="halfmatch-offset"></span>`fn offset(&self) -> usize`
 
   The position of the match.
-
   
-
   If this match was produced by a forward search, then the offset is
-
   exclusive. If this match was produced by a reverse search, then the
-
   offset is inclusive.
 
 #### Trait Implementations
@@ -1579,11 +1053,8 @@ have a pattern ID of `0`.
 - <span id="halfmatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for HalfMatch`
@@ -1621,7 +1092,7 @@ struct Match {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:985-990`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L985-L990)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:985-990`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L985-L990)*
 
 A representation of a match reported by a regex engine.
 
@@ -1651,143 +1122,84 @@ start offset as less than or equal to its end offset.
 - <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../primitives/index.md#patternid), [`Match`](../../index.md#match)
 
   Create a new match from a pattern ID and a span.
-
   
-
   This constructor is generic over how a span is provided. While
-
   a [`Span`](../../index.md) may be given directly, one may also provide a
-
   `std::ops::Range<usize>`.
-
   
-
   # Panics
-
   
-
   This panics if `end < start`.
-
   
-
   # Example
-
   
-
   This shows how to create a match for the first pattern in a regex
-
   object using convenient range syntax.
-
   
-
   ```rust
-
   use regex_automata::{Match, PatternID};
-
   
-
   let m = Match::new(PatternID::ZERO, 5..10);
-
   assert_eq!(0, m.pattern().as_usize());
-
   assert_eq!(5, m.start());
-
   assert_eq!(10, m.end());
-
   ```
 
 - <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../../index.md#match)
 
   Create a new match from a pattern ID and a byte offset span.
-
   
-
   This constructor is generic over how a span is provided. While
-
   a [`Span`](../../index.md) may be given directly, one may also provide a
-
   `std::ops::Range<usize>`.
-
   
-
   This is like `Match::new`, but accepts a `usize` instead of a
-
   [`PatternID`](../primitives/index.md). This panics if the given `usize` is not representable
-
   as a `PatternID`.
-
   
-
   # Panics
-
   
-
   This panics if `end < start` or if `pattern > PatternID::MAX`.
-
   
-
   # Example
-
   
-
   This shows how to create a match for the third pattern in a regex
-
   object using convenient range syntax.
-
   
-
   ```rust
-
   use regex_automata::Match;
-
   
-
   let m = Match::must(3, 5..10);
-
   assert_eq!(3, m.pattern().as_usize());
-
   assert_eq!(5, m.start());
-
   assert_eq!(10, m.end());
-
   ```
 
 - <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../primitives/index.md#patternid)
 
   Returns the ID of the pattern that matched.
-
   
-
   The ID of a pattern is derived from the position in which it was
-
   originally inserted into the corresponding regex engine. The first
-
   pattern has identifier `0`, and each subsequent pattern is `1`, `2` and
-
   so on.
 
 - <span id="match-start"></span>`fn start(&self) -> usize`
 
   The starting position of the match.
-
   
-
   This is a convenience routine for `Match::span().start`.
 
 - <span id="match-end"></span>`fn end(&self) -> usize`
 
   The ending position of the match.
-
   
-
   This is a convenience routine for `Match::span().end`.
 
 - <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
 
   Returns the match span as a range.
-
   
-
   This is a convenience routine for `Match::span().range()`.
 
 - <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](../../index.md#span)
@@ -1797,19 +1209,14 @@ start offset as less than or equal to its end offset.
 - <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns true when the span in this match is empty.
-
   
-
   An empty match can only be returned when the regex itself can match
-
   the empty string.
 
 - <span id="match-len"></span>`fn len(&self) -> usize`
 
   Returns the length of this match.
-
   
-
   This returns `0` in precisely the cases that `is_empty` returns `true`.
 
 #### Trait Implementations
@@ -1857,11 +1264,8 @@ start offset as less than or equal to its end offset.
 - <span id="match-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Match`
@@ -1899,7 +1303,7 @@ struct PatternSet {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1149-1172`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1149-L1172)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1149-1172`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1149-L1172)*
 
 A set of `PatternID`s.
 
@@ -1968,29 +1372,17 @@ assert!(set.is_empty());
 - <span id="patternset-new"></span>`fn new(capacity: usize) -> PatternSet` — [`PatternSet`](../../index.md#patternset)
 
   Create a new set of pattern identifiers with the given capacity.
-
   
-
   The given capacity typically corresponds to (at least) the number of
-
   patterns in a compiled regex object.
-
   
-
   # Panics
-
   
-
   This panics if the given capacity exceeds `PatternID::LIMIT`. This is
-
   impossible if you use the `pattern_len()` method as defined on any of
-
   the regex engines in this crate. Namely, a regex will fail to build by
-
   returning an error if the number of patterns given to it exceeds the
-
   limit. Therefore, the number of patterns in a valid regex is always
-
   a correct capacity to provide here.
 
 - <span id="patternset-clear"></span>`fn clear(&mut self)`
@@ -2004,45 +1396,27 @@ assert!(set.is_empty());
 - <span id="patternset-insert"></span>`fn insert(&mut self, pid: PatternID) -> bool` — [`PatternID`](../primitives/index.md#patternid)
 
   Insert the given pattern identifier into this set and return `true` if
-
   the given pattern ID was not previously in this set.
-
   
-
   If the pattern identifier is already in this set, then this is a no-op.
-
   
-
   Use `PatternSet::try_insert` for a fallible version of this routine.
-
   
-
   # Panics
-
   
-
   This panics if this pattern set has insufficient capacity to
-
   store the given pattern ID.
 
 - <span id="patternset-try-insert"></span>`fn try_insert(&mut self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](../primitives/index.md#patternid), [`PatternSetInsertError`](../../index.md#patternsetinserterror)
 
   Insert the given pattern identifier into this set and return `true` if
-
   the given pattern ID was not previously in this set.
-
   
-
   If the pattern identifier is already in this set, then this is a no-op.
-
   
-
   # Errors
-
   
-
   This returns an error if this pattern set has insufficient capacity to
-
   store the given pattern ID.
 
 - <span id="patternset-is-empty"></span>`fn is_empty(&self) -> bool`
@@ -2052,23 +1426,14 @@ assert!(set.is_empty());
 - <span id="patternset-is-full"></span>`fn is_full(&self) -> bool`
 
   Return true if and only if this set has the maximum number of pattern
-
   identifiers in the set. This occurs precisely when `PatternSet::len()
-
   == PatternSet::capacity()`.
-
   
-
   This particular property is useful to test because it may allow one to
-
   stop a search earlier than you might otherwise. Namely, if a search is
-
   only reporting which patterns match a haystack and if you know all of
-
   the patterns match at a given point, then there's no new information
-
   that can be learned by continuing the search. (Because a pattern set
-
   does not keep track of offset information.)
 
 - <span id="patternset-len"></span>`fn len(&self) -> usize`
@@ -2078,27 +1443,18 @@ assert!(set.is_empty());
 - <span id="patternset-capacity"></span>`fn capacity(&self) -> usize`
 
   Returns the total number of pattern identifiers that may be stored
-
   in this set.
-
   
-
   This is guaranteed to be less than or equal to `PatternID::LIMIT`.
-
   
-
   Typically, the capacity of a pattern set matches the number of patterns
-
   in a regex object with which you are searching.
 
 - <span id="patternset-iter"></span>`fn iter(&self) -> PatternSetIter<'_>` — [`PatternSetIter`](../../index.md#patternsetiter)
 
   Returns an iterator over all pattern identifiers in this set.
-
   
-
   The iterator yields pattern identifiers in ascending order, starting
-
   at zero.
 
 #### Trait Implementations
@@ -2140,11 +1496,8 @@ assert!(set.is_empty());
 - <span id="patternset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for PatternSet`
@@ -2182,7 +1535,7 @@ struct PatternSetInsertError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1335-1338`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1335-L1338)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1335-1338`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1335-L1338)*
 
 An error that occurs when a `PatternID` failed to insert into a
 `PatternSet`.
@@ -2235,11 +1588,8 @@ This error is created by the `PatternSet::try_insert` routine.
 - <span id="patternsetinserterror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PatternSetInsertError`
@@ -2274,7 +1624,7 @@ struct PatternSetIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1364-1366`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1364-L1366)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1364-1366`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1364-L1366)*
 
 An iterator over all pattern identifiers in a [`PatternSet`](../../index.md).
 
@@ -2324,11 +1674,8 @@ This iterator is created by the `PatternSet::iter` method.
 - <span id="patternsetiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PatternSetIter<'a>`
@@ -2373,7 +1720,7 @@ This iterator is created by the `PatternSet::iter` method.
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1778-1781`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1778-L1781)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1778-1781`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1778-L1781)*
 
 An error indicating that a search stopped before reporting whether a
 match exists or not.
@@ -2428,11 +1775,8 @@ with a [one-pass DFA](crate::dfa::onepass).
 - <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../../index.md#matcherrorkind), [`MatchError`](../../index.md#matcherror)
 
   Create a new error value with the given kind.
-
   
-
   This is a more verbose version of the kind-specific constructors,
-
   e.g., `MatchError::quit`.
 
 - <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](../../index.md#matcherrorkind)
@@ -2442,53 +1786,35 @@ with a [one-pass DFA](crate::dfa::onepass).
 - <span id="matcherror-quit"></span>`fn quit(byte: u8, offset: usize) -> MatchError` — [`MatchError`](../../index.md#matcherror)
 
   Create a new "quit" error. The given `byte` corresponds to the value
-
   that tripped a search's quit condition, and `offset` corresponds to the
-
   location in the haystack at which the search quit.
-
   
-
   This is the same as calling `MatchError::new` with a
-
   [`MatchErrorKind::Quit`](../../index.md) kind.
 
 - <span id="matcherror-gave-up"></span>`fn gave_up(offset: usize) -> MatchError` — [`MatchError`](../../index.md#matcherror)
 
   Create a new "gave up" error. The given `offset` corresponds to the
-
   location in the haystack at which the search gave up.
-
   
-
   This is the same as calling `MatchError::new` with a
-
   [`MatchErrorKind::GaveUp`](../../index.md) kind.
 
 - <span id="matcherror-haystack-too-long"></span>`fn haystack_too_long(len: usize) -> MatchError` — [`MatchError`](../../index.md#matcherror)
 
   Create a new "haystack too long" error. The given `len` corresponds to
-
   the length of the haystack that was problematic.
-
   
-
   This is the same as calling `MatchError::new` with a
-
   [`MatchErrorKind::HaystackTooLong`](../../index.md) kind.
 
 - <span id="matcherror-unsupported-anchored"></span>`fn unsupported_anchored(mode: Anchored) -> MatchError` — [`Anchored`](../../index.md#anchored), [`MatchError`](../../index.md#matcherror)
 
   Create a new "unsupported anchored" error. This occurs when the caller
-
   requests a search with an anchor mode that is not supported by the
-
   regex engine.
-
   
-
   This is the same as calling `MatchError::new` with a
-
   [`MatchErrorKind::UnsupportedAnchored`](../../index.md) kind.
 
 #### Trait Implementations
@@ -2536,11 +1862,8 @@ with a [one-pass DFA](crate::dfa::onepass).
 - <span id="matcherror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MatchError`
@@ -2585,7 +1908,7 @@ enum Anchored {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1501-1516`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1501-L1516)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1501-1516`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1501-L1516)*
 
 The type of anchored search to perform.
 
@@ -2709,63 +2032,36 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
   Returns true if and only if this anchor mode corresponds to any kind of
-
   anchored search.
-
   
-
   # Example
-
   
-
   This examples shows that both `Anchored::Yes` and `Anchored::Pattern`
-
   are considered anchored searches.
-
   
-
   ```rust
-
   use regex_automata::{Anchored, PatternID};
-
   
-
   assert!(!Anchored::No.is_anchored());
-
   assert!(Anchored::Yes.is_anchored());
-
   assert!(Anchored::Pattern(PatternID::ZERO).is_anchored());
-
   ```
 
 - <span id="anchored-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md#patternid)
 
   Returns the pattern ID associated with this configuration if it is an
-
   anchored search for a specific pattern. Otherwise `None` is returned.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{Anchored, PatternID};
-
   
-
   assert_eq!(None, Anchored::No.pattern());
-
   assert_eq!(None, Anchored::Yes.pattern());
-
   
-
   let pid = PatternID::must(5);
-
   assert_eq!(Some(pid), Anchored::Pattern(pid).pattern());
-
   ```
 
 #### Trait Implementations
@@ -2809,11 +2105,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="anchored-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Anchored`
@@ -2851,7 +2144,7 @@ enum MatchKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1698-1721`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1698-L1721)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1698-1721`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1698-L1721)*
 
 The kind of match semantics to use for a regex pattern.
 
@@ -3049,11 +2342,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="matchkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MatchKind`
@@ -3102,7 +2392,7 @@ enum MatchErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/search.rs:1849-1890`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/search.rs#L1849-L1890)*
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1849-1890`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/search.rs#L1849-L1890)*
 
 The underlying kind of a [`MatchError`](../../index.md).
 
@@ -3183,11 +2473,8 @@ a semver-compatible release.
 - <span id="matcherrorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MatchErrorKind`

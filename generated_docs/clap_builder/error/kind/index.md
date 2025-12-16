@@ -36,7 +36,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/kind.rs:4-330`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/kind.rs#L4-L330)*
+*Defined in [`clap_builder-4.5.53/src/error/kind.rs:4-330`](../../../../.source_1765894658/clap_builder-4.5.53/src/error/kind.rs#L4-L330)*
 
 Command line argument parser kind of error
 
@@ -433,11 +433,8 @@ Command line argument parser kind of error
 - <span id="errorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ErrorKind`

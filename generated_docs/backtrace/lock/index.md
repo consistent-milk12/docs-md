@@ -20,7 +20,7 @@
 struct LockGuard(Option<std::sync::MutexGuard<'static, ()>>);
 ```
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:145`](../../../.source_1765633015/backtrace-0.3.76/src/lib.rs#L145)*
+*Defined in [`backtrace-0.3.76/src/lib.rs:145`](../../../.source_1765894658/backtrace-0.3.76/src/lib.rs#L145)*
 
 A "Maybe" LockGuard
 
@@ -53,11 +53,8 @@ A "Maybe" LockGuard
 - <span id="lockguard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for LockGuard`
@@ -80,7 +77,7 @@ A "Maybe" LockGuard
 fn lock() -> LockGuard
 ```
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:217-228`](../../../.source_1765633015/backtrace-0.3.76/src/lib.rs#L217-L228)*
+*Defined in [`backtrace-0.3.76/src/lib.rs:217-228`](../../../.source_1765894658/backtrace-0.3.76/src/lib.rs#L217-L228)*
 
 Acquire a partially unsound(!!!) global re-entrant lock over
 backtrace's internals.
@@ -140,5 +137,5 @@ that prevents two backtraces from getting interleaved during printing.
 const LOCK_HELD: thread::LocalKey<std::cell::Cell<bool>>;
 ```
 
-*Defined in [`backtrace-0.3.76/src/lib.rs:150`](../../../.source_1765633015/backtrace-0.3.76/src/lib.rs#L150)*
+*Defined in [`backtrace-0.3.76/src/lib.rs:150`](../../../.source_1765894658/backtrace-0.3.76/src/lib.rs#L150)*
 

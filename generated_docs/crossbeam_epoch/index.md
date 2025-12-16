@@ -134,7 +134,7 @@ struct Atomic<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
 
 An atomic pointer that can be safely shared between threads.
 
@@ -151,23 +151,14 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 - <span id="atomic-new"></span>`fn new(init: T) -> Atomic<T>` — [`Atomic`](atomic/index.md#atomic)
 
   Allocates `value` on the heap and returns a new atomic pointer pointing to it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::Atomic;
-
   
-
   let a = Atomic::new(1234);
-
   unsafe { drop(a.into_owned()); } // avoid leak
-
   ```
 
 #### Trait Implementations
@@ -189,11 +180,8 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 - <span id="atomic-clone"></span>`fn clone(&self) -> Self`
 
   Returns a copy of the atomic value.
-
   
-
   Note that a `Relaxed` load is used here. If you need synchronization, use it with other
-
   atomics or fences.
 
 ##### `impl<T> CloneToUninit for Atomic<T>`
@@ -219,11 +207,8 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 - <span id="atomic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Atomic<T>`
@@ -277,7 +262,7 @@ struct CompareExchangeError<'g, T: ?Sized + Pointable, P: Pointer<T>> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
 
 The error returned on failed compare-and-swap operation.
 
@@ -320,11 +305,8 @@ The error returned on failed compare-and-swap operation.
 - <span id="compareexchangeerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for CompareExchangeError<'g, T, P>`
@@ -362,7 +344,7 @@ struct Owned<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
 
 An owned heap-allocated object.
 
@@ -376,91 +358,52 @@ least significant bits of the address.
 - <span id="owned-from-raw"></span>`unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](atomic/index.md#owned)
 
   Returns a new owned pointer pointing to `raw`.
-
   
-
   This function is unsafe because improper use may lead to memory problems. Argument `raw`
-
   must be a valid pointer. Also, a double-free may occur if the function is called twice on
-
   the same raw pointer.
-
   
-
   # Panics
-
   
-
   Panics if `raw` is not properly aligned.
-
   
-
   # Safety
-
   
-
   The given `raw` should have been derived from `Owned`, and one `raw` should not be converted
-
   back by `Owned::from_raw()` multiple times.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::Owned;
-
   
-
   let o = unsafe { Owned::from_raw(Box::into_raw(Box::new(1234))) };
-
   ```
 
 - <span id="owned-into-box"></span>`fn into_box(self) -> Box<T>`
 
   Converts the owned pointer into a `Box`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::Owned;
-
   
-
   let o = Owned::new(1234);
-
   let b: Box<i32> = o.into_box();
-
   assert_eq!(*b, 1234);
-
   ```
 
 - <span id="owned-new"></span>`fn new(init: T) -> Owned<T>` — [`Owned`](atomic/index.md#owned)
 
   Allocates `value` on the heap and returns a new owned pointer pointing to it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::Owned;
-
   
-
   let o = Owned::new(1234);
-
   ```
 
 #### Trait Implementations
@@ -522,11 +465,8 @@ least significant bits of the address.
 - <span id="owned-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Owned<T>`
@@ -550,13 +490,9 @@ least significant bits of the address.
 - <span id="owned-pointer-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
   Returns a new pointer pointing to the tagged pointer `data`.
-
   
-
   # Panics
-
   
-
   Panics if the data is zero in debug mode.
 
 ##### `impl<T> Receiver for Owned<T>`
@@ -592,7 +528,7 @@ struct Shared<'g, T: 'g + ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
 
 A pointer to an object protected by the epoch GC.
 
@@ -606,37 +542,21 @@ least significant bits of the address.
 - <span id="shared-as-raw"></span>`fn as_raw(&self) -> *const T`
 
   Converts the pointer to a raw pointer (without the tag).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::{self as epoch, Atomic, Owned};
-
   use std::sync::atomic::Ordering::SeqCst;
-
   
-
   let o = Owned::new(1234);
-
   let raw = &*o as *const _;
-
   let a = Atomic::from(o);
-
   
-
   let guard = &epoch::pin();
-
   let p = a.load(SeqCst, guard);
-
   assert_eq!(p.as_raw(), raw);
-
   unsafe { drop(a.into_owned()); } // avoid leak
-
   ```
 
 #### Trait Implementations
@@ -684,11 +604,8 @@ least significant bits of the address.
 - <span id="shared-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + Pointable> Ord for Shared<'_, T>`
@@ -751,7 +668,7 @@ struct Collector {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
 
 An epoch-based garbage collector.
 
@@ -810,11 +727,8 @@ An epoch-based garbage collector.
 - <span id="collector-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Collector`
@@ -869,7 +783,7 @@ struct LocalHandle {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
 
 A handle to a garbage collector.
 
@@ -920,11 +834,8 @@ A handle to a garbage collector.
 - <span id="localhandle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for LocalHandle`
@@ -961,7 +872,7 @@ struct Guard {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:69-71`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/guard.rs#L69-L71)*
 
 A guard that keeps the current thread pinned.
 
@@ -1028,551 +939,290 @@ assert!(!epoch::is_pinned());
 - <span id="guard-defer"></span>`fn defer<F, R>(&self, f: F)`
 
   Stores a function so that it can be executed at some point after all currently pinned
-
   threads get unpinned.
-
   
-
   This method first stores `f` into the thread-local (or handle-local) cache. If this cache
-
   becomes full, some functions are moved into the global cache. At the same time, some
-
   functions from both local and global caches may get executed in order to incrementally
-
   clean up the caches as they fill up.
-
   
-
   There is no guarantee when exactly `f` will be executed. The only guarantee is that it
-
   won't be executed until all currently pinned threads get unpinned. In theory, `f` might
-
   never run, but the epoch-based garbage collection will make an effort to execute it
-
   reasonably soon.
-
   
-
   If this method is called from an [`unprotected`](guard/index.md) guard, the function will simply be
-
   executed immediately.
 
 - <span id="guard-defer-unchecked"></span>`unsafe fn defer_unchecked<F, R>(&self, f: F)`
 
   Stores a function so that it can be executed at some point after all currently pinned
-
   threads get unpinned.
-
   
-
   This method first stores `f` into the thread-local (or handle-local) cache. If this cache
-
   becomes full, some functions are moved into the global cache. At the same time, some
-
   functions from both local and global caches may get executed in order to incrementally
-
   clean up the caches as they fill up.
-
   
-
   There is no guarantee when exactly `f` will be executed. The only guarantee is that it
-
   won't be executed until all currently pinned threads get unpinned. In theory, `f` might
-
   never run, but the epoch-based garbage collection will make an effort to execute it
-
   reasonably soon.
-
   
-
   If this method is called from an [`unprotected`](guard/index.md) guard, the function will simply be
-
   executed immediately.
-
   
-
   # Safety
-
   
-
   The given function must not hold reference onto the stack. It is highly recommended that
-
   the passed function is **always** marked with `move` in order to prevent accidental
-
   borrows.
-
   
-
   ```rust
-
   use crossbeam_epoch as epoch;
-
   
-
   let guard = &epoch::pin();
-
   let message = "Hello!";
-
   unsafe {
-
       // ALWAYS use `move` when sending a closure into `defer_unchecked`.
-
       guard.defer_unchecked(move || {
-
           println!("{}", message);
-
       });
-
   }
-
   ```
-
   
-
   Apart from that, keep in mind that another thread may execute `f`, so anything accessed by
-
   the closure must be `Send`.
-
   
-
   We intentionally didn't require `F: Send`, because Rust's type systems usually cannot prove
-
   `F: Send` for typical use cases. For example, consider the following code snippet, which
-
   exemplifies the typical use case of deferring the deallocation of a shared reference:
-
   
-
   ```ignore
-
   let shared = Owned::new(7i32).into_shared(guard);
-
   guard.defer_unchecked(move || shared.into_owned()); // `Shared` is not `Send`!
-
   ```
-
   
-
   While `Shared` is not `Send`, it's safe for another thread to call the deferred function,
-
   because it's called only after the grace period and `shared` is no longer shared with other
-
   threads. But we don't expect type systems to prove this.
-
   
-
   # Examples
-
   
-
   When a heap-allocated object in a data structure becomes unreachable, it has to be
-
   deallocated. However, the current thread and other threads may be still holding references
-
   on the stack to that same object. Therefore it cannot be deallocated before those references
-
   get dropped. This method can defer deallocation until all those threads get unpinned and
-
   consequently drop all their references on the stack.
-
   
-
   ```rust
-
   use crossbeam_epoch::{self as epoch, Atomic, Owned};
-
   use std::sync::atomic::Ordering::SeqCst;
-
   
-
   let a = Atomic::new("foo");
-
   
-
   // Now suppose that `a` is shared among multiple threads and concurrently
-
   // accessed and modified...
-
   
-
   // Pin the current thread.
-
   let guard = &epoch::pin();
-
   
-
   // Steal the object currently stored in `a` and swap it with another one.
-
   let p = a.swap(Owned::new("bar").into_shared(guard), SeqCst, guard);
-
   
-
   if !p.is_null() {
-
       // The object `p` is pointing to is now unreachable.
-
       // Defer its deallocation until all currently pinned threads get unpinned.
-
       unsafe {
-
           // ALWAYS use `move` when sending a closure into `defer_unchecked`.
-
           guard.defer_unchecked(move || {
-
               println!("{} is now being deallocated.", p.deref());
-
               // Now we have unique access to the object pointed to by `p` and can turn it
-
               // into an `Owned`. Dropping the `Owned` will deallocate the object.
-
               drop(p.into_owned());
-
           });
-
       }
-
   }
-
   unsafe { drop(a.into_owned()); } // avoid leak
-
   ```
 
 - <span id="guard-defer-destroy"></span>`unsafe fn defer_destroy<T>(&self, ptr: Shared<'_, T>)` — [`Shared`](atomic/index.md#shared)
 
   Stores a destructor for an object so that it can be deallocated and dropped at some point
-
   after all currently pinned threads get unpinned.
-
   
-
   This method first stores the destructor into the thread-local (or handle-local) cache. If
-
   this cache becomes full, some destructors are moved into the global cache. At the same
-
   time, some destructors from both local and global caches may get executed in order to
-
   incrementally clean up the caches as they fill up.
-
   
-
   There is no guarantee when exactly the destructor will be executed. The only guarantee is
-
   that it won't be executed until all currently pinned threads get unpinned. In theory, the
-
   destructor might never run, but the epoch-based garbage collection will make an effort to
-
   execute it reasonably soon.
-
   
-
   If this method is called from an [`unprotected`](guard/index.md) guard, the destructor will simply be
-
   executed immediately.
-
   
-
   # Safety
-
   
-
   The object must not be reachable by other threads anymore, otherwise it might be still in
-
   use when the destructor runs.
-
   
-
   Apart from that, keep in mind that another thread may execute the destructor, so the object
-
   must be sendable to other threads.
-
   
-
   We intentionally didn't require `T: Send`, because Rust's type systems usually cannot prove
-
   `T: Send` for typical use cases. For example, consider the following code snippet, which
-
   exemplifies the typical use case of deferring the deallocation of a shared reference:
-
   
-
   ```ignore
-
   let shared = Owned::new(7i32).into_shared(guard);
-
   guard.defer_destroy(shared); // `Shared` is not `Send`!
-
   ```
-
   
-
   While `Shared` is not `Send`, it's safe for another thread to call the destructor, because
-
   it's called only after the grace period and `shared` is no longer shared with other
-
   threads. But we don't expect type systems to prove this.
-
   
-
   # Examples
-
   
-
   When a heap-allocated object in a data structure becomes unreachable, it has to be
-
   deallocated. However, the current thread and other threads may be still holding references
-
   on the stack to that same object. Therefore it cannot be deallocated before those references
-
   get dropped. This method can defer deallocation until all those threads get unpinned and
-
   consequently drop all their references on the stack.
-
   
-
   ```rust
-
   use crossbeam_epoch::{self as epoch, Atomic, Owned};
-
   use std::sync::atomic::Ordering::SeqCst;
-
   
-
   let a = Atomic::new("foo");
-
   
-
   // Now suppose that `a` is shared among multiple threads and concurrently
-
   // accessed and modified...
-
   
-
   // Pin the current thread.
-
   let guard = &epoch::pin();
-
   
-
   // Steal the object currently stored in `a` and swap it with another one.
-
   let p = a.swap(Owned::new("bar").into_shared(guard), SeqCst, guard);
-
   
-
   if !p.is_null() {
-
       // The object `p` is pointing to is now unreachable.
-
       // Defer its deallocation until all currently pinned threads get unpinned.
-
       unsafe {
-
           guard.defer_destroy(p);
-
       }
-
   }
-
   unsafe { drop(a.into_owned()); } // avoid leak
-
   ```
 
 - <span id="guard-flush"></span>`fn flush(&self)`
 
   Clears up the thread-local cache of deferred functions by executing them or moving into the
-
   global cache.
-
   
-
   Call this method after deferring execution of a function if you want to get it executed as
-
   soon as possible. Flushing will make sure it is residing in in the global cache, so that
-
   any thread has a chance of taking the function and executing it.
-
   
-
   If this method is called from an [`unprotected`](guard/index.md) guard, it is a no-op (nothing happens).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch as epoch;
-
   
-
   let guard = &epoch::pin();
-
   guard.defer(move || {
-
       println!("This better be printed as soon as possible!");
-
   });
-
   guard.flush();
-
   ```
 
 - <span id="guard-repin"></span>`fn repin(&mut self)`
 
   Unpins and then immediately re-pins the thread.
-
   
-
   This method is useful when you don't want delay the advancement of the global epoch by
-
   holding an old epoch. For safety, you should not maintain any guard-based reference across
-
   the call (the latter is enforced by `&mut self`). The thread will only be repinned if this
-
   is the only active guard for the current thread.
-
   
-
   If this method is called from an [`unprotected`](guard/index.md) guard, then the call will be just no-op.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::{self as epoch, Atomic};
-
   use std::sync::atomic::Ordering::SeqCst;
-
   
-
   let a = Atomic::new(777);
-
   let mut guard = epoch::pin();
-
   {
-
       let p = a.load(SeqCst, &guard);
-
       assert_eq!(unsafe { p.as_ref() }, Some(&777));
-
   }
-
   guard.repin();
-
   {
-
       let p = a.load(SeqCst, &guard);
-
       assert_eq!(unsafe { p.as_ref() }, Some(&777));
-
   }
-
   unsafe { drop(a.into_owned()); } // avoid leak
-
   ```
 
 - <span id="guard-repin-after"></span>`fn repin_after<F, R>(&mut self, f: F) -> R`
 
   Temporarily unpins the thread, executes the given function and then re-pins the thread.
-
   
-
   This method is useful when you need to perform a long-running operation (e.g. sleeping)
-
   and don't need to maintain any guard-based reference across the call (the latter is enforced
-
   by `&mut self`). The thread will only be unpinned if this is the only active guard for the
-
   current thread.
-
   
-
   If this method is called from an [`unprotected`](guard/index.md) guard, then the passed function is called
-
   directly without unpinning the thread.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::{self as epoch, Atomic};
-
   use std::sync::atomic::Ordering::SeqCst;
-
   use std::thread;
-
   use std::time::Duration;
-
   
-
   let a = Atomic::new(777);
-
   let mut guard = epoch::pin();
-
   {
-
       let p = a.load(SeqCst, &guard);
-
       assert_eq!(unsafe { p.as_ref() }, Some(&777));
-
   }
-
   guard.repin_after(|| thread::sleep(Duration::from_millis(50)));
-
   {
-
       let p = a.load(SeqCst, &guard);
-
       assert_eq!(unsafe { p.as_ref() }, Some(&777));
-
   }
-
   unsafe { drop(a.into_owned()); } // avoid leak
-
   ```
 
 - <span id="guard-collector"></span>`fn collector(&self) -> Option<&Collector>` — [`Collector`](collector/index.md#collector)
 
   Returns the `Collector` associated with this guard.
-
   
-
   This method is useful when you need to ensure that all guards used with
-
   a data structure come from the same collector.
-
   
-
   If this method is called from an [`unprotected`](guard/index.md) guard, then `None` is returned.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch as epoch;
-
   
-
   let guard1 = epoch::pin();
-
   let guard2 = epoch::pin();
-
   assert!(guard1.collector() == guard2.collector());
-
   ```
 
 #### Trait Implementations
@@ -1608,11 +1258,8 @@ assert!(!epoch::is_pinned());
 - <span id="guard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Guard`
@@ -1649,7 +1296,7 @@ assert!(!epoch::is_pinned());
 trait CompareAndSetOrdering { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
 
 Memory orderings for compare-and-set operations.
 
@@ -1672,6 +1319,9 @@ The two ways of specifying orderings for compare-and-set are:
 - `fn failure(&self) -> Ordering`
 
   The ordering of the operation when it fails.
+  
+  The failure ordering can't be `Release` or `AcqRel` and must be equivalent or weaker than
+  the success ordering.
 
 #### Implementors
 
@@ -1684,7 +1334,7 @@ The two ways of specifying orderings for compare-and-set are:
 trait Pointable { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
 
 Types that are pointed to by a single word.
 
@@ -1720,18 +1370,42 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 - `fn init(init: <Self as >::Init) -> usize`
 
   Initializes a with the given initializer.
+  
+  # Safety
+  
+  The result should be a multiple of `ALIGN`.
 
 - `fn deref<'a>(ptr: usize) -> &'a Self`
 
   Dereferences the given pointer.
+  
+  # Safety
+  
+  - The given `ptr` should have been initialized with `Pointable::init`.
+  - `ptr` should not have yet been dropped by `Pointable::drop`.
+  - `ptr` should not be mutably dereferenced by `Pointable::deref_mut` concurrently.
 
 - `fn deref_mut<'a>(ptr: usize) -> &'a mut Self`
 
   Mutably dereferences the given pointer.
+  
+  # Safety
+  
+  - The given `ptr` should have been initialized with `Pointable::init`.
+  - `ptr` should not have yet been dropped by `Pointable::drop`.
+  - `ptr` should not be dereferenced by `Pointable::deref` or `Pointable::deref_mut`
+    concurrently.
 
 - `fn drop(ptr: usize)`
 
   Drops the object pointed to by the given pointer.
+  
+  # Safety
+  
+  - The given `ptr` should have been initialized with `Pointable::init`.
+  - `ptr` should not have yet been dropped by `Pointable::drop`.
+  - `ptr` should not be dereferenced by `Pointable::deref` or `Pointable::deref_mut`
+    concurrently.
 
 #### Implementors
 
@@ -1744,7 +1418,7 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 trait Pointer<T: ?Sized + Pointable> { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
 
 A trait for either `Owned` or `Shared` pointers.
 
@@ -1757,6 +1431,11 @@ A trait for either `Owned` or `Shared` pointers.
 - `fn from_usize(data: usize) -> Self`
 
   Returns a new pointer pointing to the tagged pointer `data`.
+  
+  # Safety
+  
+  The given `data` should have been created by `Pointer::into_usize()`, and one `data` should
+  not be converted back by `Pointer::from_usize()` multiple times.
 
 #### Implementors
 
@@ -1771,7 +1450,7 @@ A trait for either `Owned` or `Shared` pointers.
 unsafe fn unprotected() -> &'static Guard
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
+*Defined in [`crossbeam-epoch-0.9.18/src/guard.rs:513-523`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/guard.rs#L513-L523)*
 
 Returns a reference to a dummy guard that allows unprotected access to [`Atomic`](atomic/index.md)s.
 
@@ -1865,7 +1544,7 @@ impl<T> Drop for Stack<T> {
 fn default_collector() -> &'static crate::collector::Collector
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:50-52`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L50-L52)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:50-52`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/default.rs#L50-L52)*
 
 Returns the default global collector.
 
@@ -1875,7 +1554,7 @@ Returns the default global collector.
 fn is_pinned() -> bool
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:45-47`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L45-L47)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:45-47`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/default.rs#L45-L47)*
 
 Returns `true` if the current thread is pinned.
 
@@ -1885,7 +1564,7 @@ Returns `true` if the current thread is pinned.
 fn pin() -> crate::guard::Guard
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:39-41`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/default.rs#L39-L41)*
+*Defined in [`crossbeam-epoch-0.9.18/src/default.rs:39-41`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/default.rs#L39-L41)*
 
 Pins the current thread.
 
@@ -1897,7 +1576,7 @@ Pins the current thread.
 type CompareAndSetError<'g, T, P> = CompareExchangeError<'g, T, P>;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
 
 The error returned on failed compare-and-set operation.
 

@@ -56,7 +56,7 @@ where
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/frame.rs:43-52`](../../../../.source_1765633015/addr2line-0.25.1/src/frame.rs#L43-L52)*
+*Defined in [`addr2line-0.25.1/src/frame.rs:43-52`](../../../../.source_1765894658/addr2line-0.25.1/src/frame.rs#L43-L52)*
 
 *Re-exported from `addr2line`*
 
@@ -85,11 +85,8 @@ where
 - <span id="frameiterframes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for FrameIterFrames<'ctx, R>`
@@ -110,7 +107,7 @@ where
 struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../.source_1765894658/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
 
 `RWF_*` constants for use with [`preadv2`](../index.md) and [`pwritev2`](../index.md).
 
@@ -241,11 +238,8 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 - <span id="readwriteflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ReadWriteFlags`
@@ -291,11 +285,8 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 - <span id="readwriteflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl SubAssign for ReadWriteFlags`
@@ -303,11 +294,8 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 - <span id="readwriteflags-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl ToOwned for ReadWriteFlags`
@@ -342,7 +330,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 fn read<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf) -> io::Result<<Buf as >::Output>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:39-44`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L39-L44)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:39-44`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L39-L44)*
 
 `read(fd, buf)`—Reads from a stream.
 
@@ -372,7 +360,7 @@ fn read<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf) -> io::Result<<Buf as >::Ou
 fn write<Fd: AsFd>(fd: Fd, buf: &[u8]) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:69-71`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L69-L71)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:69-71`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L69-L71)*
 
 `write(fd, buf)`—Writes to a stream.
 
@@ -402,7 +390,7 @@ fn write<Fd: AsFd>(fd: Fd, buf: &[u8]) -> io::Result<usize>
 fn pread<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf, offset: u64) -> io::Result<<Buf as >::Output>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:97-106`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L97-L106)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:97-106`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L97-L106)*
 
 `pread(fd, buf, offset)`—Reads from a file at a given position.
 
@@ -432,7 +420,7 @@ fn pread<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf, offset: u64) -> io::Result
 fn pwrite<Fd: AsFd>(fd: Fd, buf: &[u8], offset: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:136-138`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L136-L138)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:136-138`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L136-L138)*
 
 `pwrite(fd, bufs)`—Writes to a file at a given position.
 
@@ -466,7 +454,7 @@ data to the end of the file.
 fn readv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:164-166`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L164-L166)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:164-166`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L164-L166)*
 
 `readv(fd, bufs)`—Reads from a stream into multiple buffers.
 
@@ -496,7 +484,7 @@ fn readv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>
 fn writev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>]) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:192-194`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L192-L194)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:192-194`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L192-L194)*
 
 `writev(fd, bufs)`—Writes to a stream from multiple buffers.
 
@@ -526,7 +514,7 @@ fn writev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>]) -> io::Result<usize>
 fn preadv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>], offset: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:227-229`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L227-L229)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:227-229`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L227-L229)*
 
 `preadv(fd, bufs, offset)`—Reads from a file at a given position into
 multiple buffers.
@@ -553,7 +541,7 @@ multiple buffers.
 fn pwritev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>], offset: u64) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:266-268`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L266-L268)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:266-268`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L266-L268)*
 
 `pwritev(fd, bufs, offset)`—Writes to a file at a given position from
 multiple buffers.
@@ -584,7 +572,7 @@ data to the end of the file.
 fn preadv2<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>], offset: u64, flags: ReadWriteFlags) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:282-289`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L282-L289)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:282-289`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L282-L289)*
 
 `preadv2(fd, bufs, offset, flags)`—Reads data, with several options.
 
@@ -602,7 +590,7 @@ An `offset` of `u64::MAX` means to use and update the current file offset.
 fn pwritev2<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>], offset: u64, flags: ReadWriteFlags) -> io::Result<usize>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/read_write.rs:303-310`](../../../../.source_1765633015/rustix-1.1.2/src/io/read_write.rs#L303-L310)*
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:303-310`](../../../../.source_1765894658/rustix-1.1.2/src/io/read_write.rs#L303-L310)*
 
 `pwritev2(fd, bufs, offset, flags)`—Writes data, with several options.
 

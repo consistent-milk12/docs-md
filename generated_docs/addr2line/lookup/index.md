@@ -28,7 +28,7 @@ struct SplitDwarfLoad<R> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:7-19`](../../../.source_1765633015/addr2line-0.25.1/src/lookup.rs#L7-L19)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:7-19`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L7-L19)*
 
 This struct contains the information needed to find split DWARF data
 and to produce a `gimli::Dwarf<R>` for it.
@@ -79,11 +79,8 @@ and to produce a `gimli::Dwarf<R>` for it.
 - <span id="splitdwarfload-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SplitDwarfLoad<R>`
@@ -110,7 +107,7 @@ where
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:118-125`](../../../.source_1765633015/addr2line-0.25.1/src/lookup.rs#L118-L125)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:118-125`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L118-L125)*
 
 #### Implementations
 
@@ -143,11 +140,8 @@ where
 - <span id="simplelookup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, R, F> LookupContinuation for SimpleLookup<T, R, F>`
@@ -182,7 +176,7 @@ where
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:163-170`](../../../.source_1765633015/addr2line-0.25.1/src/lookup.rs#L163-L170)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:163-170`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L163-L170)*
 
 #### Trait Implementations
 
@@ -209,11 +203,8 @@ where
 - <span id="mappedlookup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, L, F> LookupContinuation for MappedLookup<T, L, F>`
@@ -248,7 +239,7 @@ where
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:206-213`](../../../.source_1765633015/addr2line-0.25.1/src/lookup.rs#L206-L213)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:206-213`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L206-L213)*
 
 Some functions (e.g. `find_frames`) require considering multiple
 compilation units, each of which might require their own split DWARF
@@ -294,11 +285,8 @@ computation is resumed.
 - <span id="loopinglookup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, L, F> LookupContinuation for LoopingLookup<T, L, F>`
@@ -335,7 +323,7 @@ enum LookupResult<L: LookupContinuation> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:45-55`](../../../.source_1765633015/addr2line-0.25.1/src/lookup.rs#L45-L55)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:45-55`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L45-L55)*
 
 Operations that consult debug information may require additional files
 to be loaded if split DWARF is being used. This enum returns the result
@@ -377,13 +365,9 @@ This enum is intended to be used in a loop like so:
 - <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
 
   Callers that do not handle split DWARF can call `skip_all_loads`
-
   to fast-forward to the end result. This result is produced with
-
   the data that is available and may be less accurate than the
-
   the results that would be produced if the caller did properly
-
   support split DWARF.
 
 - <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](#lookupresult), [`MappedLookup`](#mappedlookup)
@@ -415,11 +399,8 @@ This enum is intended to be used in a loop like so:
 - <span id="lookupresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for LookupResult<L>`
@@ -442,7 +423,7 @@ This enum is intended to be used in a loop like so:
 trait LookupContinuation: Sized { ... }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:60-77`](../../../.source_1765633015/addr2line-0.25.1/src/lookup.rs#L60-L77)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:60-77`](../../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L60-L77)*
 
 This trait represents a partially complete operation that can be resumed
 once a load of needed split DWARF data is completed or abandoned by the
@@ -459,6 +440,15 @@ API consumer.
 - `fn resume(self, input: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>`
 
   Resumes the operation with the provided data.
+  
+  After the caller loads the split DWARF data required, call this
+  method to resume the operation. The return value of this method
+  indicates if the computation has completed or if further data is
+  required.
+  
+  If the additional data cannot be located, or the caller does not
+  support split DWARF, `resume(None)` can be used to continue the
+  operation with the data that is available.
 
 #### Implementors
 

@@ -53,7 +53,7 @@ enum Color {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765633015/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -109,11 +109,8 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 - <span id="ansicolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for AnsiColors`
@@ -144,7 +141,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 trait OwoColorize: Sized { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L263-L489)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L263-L489)*
 
 Extension trait for colorizing a type which implements any std formatter
 ([`Display`](core::fmt::Display), [`Debug`](core::fmt::Debug), [`UpperHex`](core::fmt::UpperHex),
@@ -204,10 +201,22 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](../index.md)
 - `fn fg<C: Color>(&self) -> FgColorDisplay<'_, C, Self>`
 
   Set the foreground color generically
+  
+  ```rust
+  use owo_colors::{OwoColorize, colors::*};
+  
+  println!("{}", "red foreground".fg::<Red>());
+  ```
 
 - `fn bg<C: Color>(&self) -> BgColorDisplay<'_, C, Self>`
 
   Set the background color generically.
+  
+  ```rust
+  use owo_colors::{OwoColorize, colors::*};
+  
+  println!("{}", "black background".bg::<Black>());
+  ```
 
 - `fn black(&self) -> FgColorDisplay<'_, colors::Black, Self>`
 
@@ -400,10 +409,26 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](../index.md)
 - `fn color<Color: DynColor>(&self, color: Color) -> FgDynColorDisplay<'_, Color, Self>`
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
+  compile-time. If the color is constant, use either `OwoColorize::fg` or
+  a color-specific method, such as `OwoColorize::green`,
+  
+  ```rust
+  use owo_colors::{OwoColorize, AnsiColors};
+  
+  println!("{}", "green".color(AnsiColors::Green));
+  ```
 
 - `fn on_color<Color: DynColor>(&self, color: Color) -> BgDynColorDisplay<'_, Color, Self>`
 
   Set the background color at runtime. Only use if you do not know what color to use at
+  compile-time. If the color is constant, use either `OwoColorize::bg` or
+  a color-specific method, such as `OwoColorize::on_yellow`,
+  
+  ```rust
+  use owo_colors::{OwoColorize, AnsiColors};
+  
+  println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
+  ```
 
 - `fn fg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> FgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
 

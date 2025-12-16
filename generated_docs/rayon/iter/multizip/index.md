@@ -24,7 +24,7 @@ struct MultiZip<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/multizip.rs:79-81`](../../../../.source_1765633015/rayon-1.11.0/src/iter/multizip.rs#L79-L81)*
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:79-81`](../../../../.source_1765894658/rayon-1.11.0/src/iter/multizip.rs#L79-L81)*
 
 `MultiZip` is an iterator that zips up a tuple of parallel iterators to
 produce tuples of their items.
@@ -146,11 +146,8 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 - <span id="multizip-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for MultiZip<T>`
@@ -209,17 +206,17 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ### `reduce!`
 
-*Defined in [`rayon-1.11.0/src/iter/multizip.rs:93-106`](../../../../.source_1765633015/rayon-1.11.0/src/iter/multizip.rs#L93-L106)*
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:93-106`](../../../../.source_1765894658/rayon-1.11.0/src/iter/multizip.rs#L93-L106)*
 
 ### `nest!`
 
-*Defined in [`rayon-1.11.0/src/iter/multizip.rs:108-117`](../../../../.source_1765633015/rayon-1.11.0/src/iter/multizip.rs#L108-L117)*
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:108-117`](../../../../.source_1765894658/rayon-1.11.0/src/iter/multizip.rs#L108-L117)*
 
 ### `flatten!`
 
-*Defined in [`rayon-1.11.0/src/iter/multizip.rs:119-127`](../../../../.source_1765633015/rayon-1.11.0/src/iter/multizip.rs#L119-L127)*
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:119-127`](../../../../.source_1765894658/rayon-1.11.0/src/iter/multizip.rs#L119-L127)*
 
 ### `multizip_impls!`
 
-*Defined in [`rayon-1.11.0/src/iter/multizip.rs:129-230`](../../../../.source_1765633015/rayon-1.11.0/src/iter/multizip.rs#L129-L230)*
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:129-230`](../../../../.source_1765894658/rayon-1.11.0/src/iter/multizip.rs#L129-L230)*
 

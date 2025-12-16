@@ -23,7 +23,7 @@ struct DiagnosticChain<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:10-12`](../../../.source_1765633015/miette-7.6.0/src/diagnostic_chain.rs#L10-L12)*
+*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:10-12`](../../../.source_1765894658/miette-7.6.0/src/diagnostic_chain.rs#L10-L12)*
 
 Iterator of a chain of cause errors.
 
@@ -74,11 +74,8 @@ Iterator of a chain of cause errors.
 - <span id="diagnosticchain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DiagnosticChain<'a>`
@@ -130,7 +127,7 @@ enum ErrorKind<'a> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:60-63`](../../../.source_1765633015/miette-7.6.0/src/diagnostic_chain.rs#L60-L63)*
+*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:60-63`](../../../.source_1765894658/miette-7.6.0/src/diagnostic_chain.rs#L60-L63)*
 
 #### Implementations
 
@@ -177,11 +174,8 @@ enum ErrorKind<'a> {
 - <span id="errorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ErrorKind<'a>`

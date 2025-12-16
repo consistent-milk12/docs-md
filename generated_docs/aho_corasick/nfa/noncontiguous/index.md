@@ -43,7 +43,7 @@ struct NFA {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:82-175`](../../../../.source_1765633015/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L82-L175)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:82-175`](../../../../.source_1765894658/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L82-L175)*
 
 A noncontiguous NFA implementation of Aho-Corasick.
 
@@ -217,21 +217,15 @@ It is also possible to implement your own version of `try_find`. See the
 - <span id="nfa-new"></span>`fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md#builderror)
 
   Create a new Aho-Corasick noncontiguous NFA using the default
-
   configuration.
-
   
-
   Use a [`Builder`](#builder) if you want to change the configuration.
 
 - <span id="nfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
   A convenience method for returning a new Aho-Corasick noncontiguous NFA
-
   builder.
-
   
-
   This usually permits one to just import the `NFA` type.
 
 #### Trait Implementations
@@ -303,11 +297,8 @@ It is also possible to implement your own version of `try_find`. See the
 - <span id="nfa-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Remappable for noncontiguous::NFA`
@@ -352,7 +343,7 @@ struct State {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:710-748`](../../../../.source_1765633015/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L710-L748)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:710-748`](../../../../.source_1765894658/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L710-L748)*
 
 A representation of a sparse NFA state for an Aho-Corasick automaton.
 
@@ -422,7 +413,6 @@ and the matches implied by visiting this state (if any).
 - <span id="state-depth"></span>`fn depth(&self) -> SmallIndex` — [`SmallIndex`](../../util/primitives/index.md#smallindex)
 
   Returns the depth of this state. That is, the number of transitions
-
   this state is from the start state of the NFA.
 
 #### Trait Implementations
@@ -462,11 +452,8 @@ and the matches implied by visiting this state (if any).
 - <span id="state-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for State`
@@ -499,7 +486,7 @@ struct Transition {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:771-775`](../../../../.source_1765633015/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L771-L775)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:771-775`](../../../../.source_1765894658/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L771-L775)*
 
 A single transition in a non-contiguous NFA.
 
@@ -560,11 +547,8 @@ A single transition in a non-contiguous NFA.
 - <span id="transition-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Transition`
@@ -596,7 +580,7 @@ struct Match {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:808-811`](../../../../.source_1765633015/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L808-L811)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:808-811`](../../../../.source_1765894658/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L808-L811)*
 
 A single match in a non-contiguous NFA.
 
@@ -653,11 +637,8 @@ A single match in a non-contiguous NFA.
 - <span id="match-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Match`
@@ -691,7 +672,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:842-847`](../../../../.source_1765633015/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L842-L847)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:842-847`](../../../../.source_1765894658/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L842-L847)*
 
 A builder for configuring an Aho-Corasick noncontiguous NFA.
 
@@ -708,61 +689,41 @@ their behavior is identical.
 - <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md#builderror)
 
   Build an Aho-Corasick noncontiguous NFA from the given iterator of
-
   patterns.
-
   
-
   A builder may be reused to create more NFAs.
 
 - <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../util/search/index.md#matchkind), [`Builder`](#builder)
 
   Set the desired match semantics.
-
   
-
   See
-
   [`AhoCorasickBuilder::match_kind`](crate::AhoCorasickBuilder::match_kind)
-
   for more documentation and examples.
 
 - <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
   Enable ASCII-aware case insensitive matching.
-
   
-
   See
-
   [`AhoCorasickBuilder::ascii_case_insensitive`](crate::AhoCorasickBuilder::ascii_case_insensitive)
-
   for more documentation and examples.
 
 - <span id="builder-dense-depth"></span>`fn dense_depth(&mut self, depth: usize) -> &mut Builder` — [`Builder`](#builder)
 
   Set the limit on how many states use a dense representation for their
-
   transitions. Other states will generally use a sparse representation.
-
   
-
   See
-
   [`AhoCorasickBuilder::dense_depth`](crate::AhoCorasickBuilder::dense_depth)
-
   for more documentation and examples.
 
 - <span id="builder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
   Enable heuristic prefilter optimizations.
-
   
-
   See
-
   [`AhoCorasickBuilder::prefilter`](crate::AhoCorasickBuilder::prefilter)
-
   for more documentation and examples.
 
 #### Trait Implementations
@@ -806,11 +767,8 @@ their behavior is identical.
 - <span id="builder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Builder`
@@ -844,7 +802,7 @@ struct Compiler<'a> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:932-937`](../../../../.source_1765633015/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L932-L937)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:932-937`](../../../../.source_1765894658/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L932-L937)*
 
 A compiler uses a builder configuration and builds up the NFA formulation
 of an Aho-Corasick automaton. This roughly corresponds to the standard
@@ -860,437 +818,239 @@ searching.
 - <span id="compiler-build-trie"></span>`fn build_trie<I, P>(&mut self, patterns: I) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md#builderror)
 
   This sets up the initial prefix trie that makes up the Aho-Corasick
-
   automaton. Effectively, it creates the basic structure of the
-
   automaton, where every pattern given has a path from the start state to
-
   the end of the pattern.
 
 - <span id="compiler-fill-failure-transitions"></span>`fn fill_failure_transitions(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md#builderror)
 
   This routine creates failure transitions according to the standard
-
   textbook formulation of the Aho-Corasick algorithm, with a couple small
-
   tweaks to support "leftmost" semantics.
-
   
-
   Building failure transitions is the most interesting part of building
-
   the Aho-Corasick automaton, because they are what allow searches to
-
   be performed in linear time. Specifically, a failure transition is
-
   a single transition associated with each state that points back to
-
   the longest proper suffix of the pattern being searched. The failure
-
   transition is followed whenever there exists no transition on the
-
   current state for the current input byte. If there is no other proper
-
   suffix, then the failure transition points back to the starting state.
-
   
-
   For example, let's say we built an Aho-Corasick automaton with the
-
   following patterns: 'abcd' and 'cef'. The trie looks like this:
-
   
-
   ```ignore
-
            a - S1 - b - S2 - c - S3 - d - S4*
-
           /
-
       S0 - c - S5 - e - S6 - f - S7*
-
   ```
-
   
-
   At this point, it should be fairly straight-forward to see how this
-
   trie can be used in a simplistic way. At any given position in the
-
   text we're searching (called the "subject" string), all we need to do
-
   is follow the transitions in the trie by consuming one transition for
-
   each byte in the subject string. If we reach a match state, then we can
-
   report that location as a match.
-
   
-
   The trick comes when searching a subject string like 'abcef'. We'll
-
   initially follow the transition from S0 to S1 and wind up in S3 after
-
   observng the 'c' byte. At this point, the next byte is 'e' but state
-
   S3 has no transition for 'e', so the search fails. We then would need
-
   to restart the search at the next position in 'abcef', which
-
   corresponds to 'b'. The match would fail, but the next search starting
-
   at 'c' would finally succeed. The problem with this approach is that
-
   we wind up searching the subject string potentially many times. In
-
   effect, this makes the algorithm have worst case `O(n * m)` complexity,
-
   where `n ~ len(subject)` and `m ~ len(all patterns)`. We would instead
-
   like to achieve a `O(n + m)` worst case complexity.
-
   
-
   This is where failure transitions come in. Instead of dying at S3 in
-
   the first search, the automaton can instruct the search to move to
-
   another part of the automaton that corresponds to a suffix of what
-
   we've seen so far. Recall that we've seen 'abc' in the subject string,
-
   and the automaton does indeed have a non-empty suffix, 'c', that could
-
   potentially lead to another match. Thus, the actual Aho-Corasick
-
   automaton for our patterns in this case looks like this:
-
   
-
   ```ignore
-
            a - S1 - b - S2 - c - S3 - d - S4*
-
           /                      /
-
          /       ----------------
-
         /       /
-
       S0 - c - S5 - e - S6 - f - S7*
-
   ```
-
   
-
   That is, we have a failure transition from S3 to S5, which is followed
-
   exactly in cases when we are in state S3 but see any byte other than
-
   'd' (that is, we've "failed" to find a match in this portion of our
-
   trie). We know we can transition back to S5 because we've already seen
-
   a 'c' byte, so we don't need to re-scan it. We can then pick back up
-
   with the search starting at S5 and complete our match.
-
   
-
   Adding failure transitions to a trie is fairly simple, but subtle. The
-
   key issue is that you might have multiple failure transition that you
-
   need to follow. For example, look at the trie for the patterns
-
   'abcd', 'b', 'bcd' and 'cd':
-
   
-
   ```ignore
-
            - a - S1 - b - S2* - c - S3 - d - S4*
-
           /               /         /
-
          /         -------   -------
-
         /         /         /
-
       S0 --- b - S5* - c - S6 - d - S7*
-
         \                  /
-
          \         --------
-
           \       /
-
            - c - S8 - d - S9*
-
   ```
-
   
-
   The failure transitions for this trie are defined from S2 to S5,
-
   S3 to S6 and S6 to S8. Moreover, state S2 needs to track that it
-
   corresponds to a match, since its failure transition to S5 is itself
-
   a match state.
-
   
-
   Perhaps simplest way to think about adding these failure transitions
-
   is recursively. That is, if you know the failure transitions for every
-
   possible previous state that could be visited (e.g., when computing the
-
   failure transition for S3, you already know the failure transitions
-
   for S0, S1 and S2), then you can simply follow the failure transition
-
   of the previous state and check whether the incoming transition is
-
   defined after following the failure transition.
-
   
-
   For example, when determining the failure state for S3, by our
-
   assumptions, we already know that there is a failure transition from
-
   S2 (the previous state) to S5. So we follow that transition and check
-
   whether the transition connecting S2 to S3 is defined. Indeed, it is,
-
   as there is a transition from S5 to S6 for the byte 'c'. If no such
-
   transition existed, we could keep following the failure transitions
-
   until we reach the start state, which is the failure transition for
-
   every state that has no corresponding proper suffix.
-
   
-
   We don't actually use recursion to implement this, but instead, use a
-
   breadth first search of the automaton. Our base case is the start
-
   state, whose failure transition is just a transition to itself.
-
   
-
   When building a leftmost automaton, we proceed as above, but only
-
   include a subset of failure transitions. Namely, we omit any failure
-
   transitions that appear after a match state in the trie. This is
-
   because failure transitions always point back to a proper suffix of
-
   what has been seen so far. Thus, following a failure transition after
-
   a match implies looking for a match that starts after the one that has
-
   already been seen, which is of course therefore not the leftmost match.
-
   
-
   N.B. I came up with this algorithm on my own, and after scouring all of
-
   the other AC implementations I know of (Perl, Snort, many on GitHub).
-
   I couldn't find any that implement leftmost semantics like this.
-
   Perl of course needs leftmost-first semantics, but they implement it
-
   with a seeming hack at *search* time instead of encoding it into the
-
   automaton. There are also a couple Java libraries that support leftmost
-
   longest semantics, but they do it by building a queue of matches at
-
   search time, which is even worse than what Perl is doing. ---AG
 
 - <span id="compiler-shuffle"></span>`fn shuffle(&mut self)`
 
   Shuffle the states so that they appear in this sequence:
-
   
-
     DEAD, FAIL, MATCH..., START, START, NON-MATCH...
-
   
-
   The idea here is that if we know how special states are laid out in our
-
   transition table, then we can determine what "kind" of state we're in
-
   just by comparing our current state ID with a particular value. In this
-
   way, we avoid doing extra memory lookups.
-
   
-
   Before shuffling begins, our states look something like this:
-
   
-
     DEAD, FAIL, START, START, (MATCH | NON-MATCH)...
-
   
-
   So all we need to do is move all of the MATCH states so that they
-
   all appear before any NON-MATCH state, like so:
-
   
-
     DEAD, FAIL, START, START, MATCH... NON-MATCH...
-
   
-
   Then it's just a simple matter of swapping the two START states with
-
   the last two MATCH states.
-
   
-
   (This is the same technique used for fully compiled DFAs in
-
   regex-automata.)
 
 - <span id="compiler-densify"></span>`fn densify(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md#builderror)
 
   Attempts to convert the transition representation of a subset of states
-
   in this NFA from sparse to dense. This can greatly improve search
-
   performance since states with a higher number of transitions tend to
-
   correlate with very active states.
-
   
-
   We generally only densify states that are close to the start state.
-
   These tend to be the most active states and thus benefit from a dense
-
   representation more than other states.
-
   
-
   This tends to best balance between memory usage and performance. In
-
   particular, the *vast majority* of all states in a typical Aho-Corasick
-
   automaton have only 1 transition and are usually farther from the start
-
   state and thus don't get densified.
-
   
-
   Note that this doesn't remove the sparse representation of transitions
-
   for states that are densified. It could be done, but actually removing
-
   entries from `NFA::sparse` is likely more expensive than it's worth.
 
 - <span id="compiler-queued-set"></span>`fn queued_set(&self) -> QueuedSet` — [`QueuedSet`](#queuedset)
 
   Returns a set that tracked queued states.
-
   
-
   This is only necessary when ASCII case insensitivity is enabled, since
-
   it is the only way to visit the same state twice. Otherwise, this
-
   returns an inert set that nevers adds anything and always reports
-
   `false` for every member test.
 
 - <span id="compiler-init-unanchored-start-state"></span>`fn init_unanchored_start_state(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md#builderror)
 
   Initializes the unanchored start state by making it dense. This is
-
   achieved by explicitly setting every transition to the FAIL state.
-
   This isn't necessary for correctness, since any missing transition is
-
   automatically assumed to be mapped to the FAIL state. We do this to
-
   make the unanchored starting state dense, and thus in turn make
-
   transition lookups on it faster. (Which is worth doing because it's
-
   the most active state.)
 
 - <span id="compiler-set-anchored-start-state"></span>`fn set_anchored_start_state(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md#builderror)
 
   Setup the anchored start state by copying all of the transitions and
-
   matches from the unanchored starting state with one change: the failure
-
   transition is changed to the DEAD state, so that for any undefined
-
   transitions, the search will stop.
 
 - <span id="compiler-add-unanchored-start-state-loop"></span>`fn add_unanchored_start_state_loop(&mut self)`
 
   Set the failure transitions on the start state to loop back to the
-
   start state. This effectively permits the Aho-Corasick automaton to
-
   match at any position. This is also required for finding the next
-
   state to terminate, namely, finding the next state should never return
-
   a fail_id.
-
   
-
   This must be done after building the initial trie, since trie
-
   construction depends on transitions to `fail_id` to determine whether a
-
   state already exists or not.
 
 - <span id="compiler-close-start-state-loop-for-leftmost"></span>`fn close_start_state_loop_for_leftmost(&mut self)`
 
   Remove the start state loop by rewriting any transitions on the start
-
   state back to the start state with transitions to the dead state.
-
   
-
   The loop is only closed when two conditions are met: the start state
-
   is a match state and the match kind is leftmost-first or
-
   leftmost-longest.
-
   
-
   The reason for this is that under leftmost semantics, a start state
-
   that is also a match implies that we should never restart the search
-
   process. We allow normal transitions out of the start state, but if
-
   none exist, we transition to the dead state, which signals that
-
   searching should stop.
 
 - <span id="compiler-add-dead-state-loop"></span>`fn add_dead_state_loop(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md#builderror)
 
   Sets all transitions on the dead state to point back to the dead state.
-
   Normally, missing transitions map back to the failure state, but the
-
   point of the dead state is to act as a sink that can never be escaped.
 
 #### Trait Implementations
@@ -1322,11 +1082,8 @@ searching.
 - <span id="compiler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Compiler<'a>`
@@ -1349,7 +1106,7 @@ struct QueuedSet {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:1657-1659`](../../../../.source_1765633015/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L1657-L1659)*
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:1657-1659`](../../../../.source_1765894658/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L1657-L1659)*
 
 A set of state identifiers used to avoid revisiting the same state multiple
 times when filling in failure transitions.
@@ -1364,7 +1121,6 @@ set when it is not needed.
 - <span id="queuedset-inert"></span>`fn inert() -> QueuedSet` — [`QueuedSet`](#queuedset)
 
   Return an inert set that returns `false` for every state ID membership
-
   test.
 
 - <span id="queuedset-active"></span>`fn active() -> QueuedSet` — [`QueuedSet`](#queuedset)
@@ -1374,13 +1130,11 @@ set when it is not needed.
 - <span id="queuedset-insert"></span>`fn insert(&mut self, state_id: StateID)` — [`StateID`](../../util/primitives/index.md#stateid)
 
   Inserts the given state ID into this set. (If the set is inert, then
-
   this is a no-op.)
 
 - <span id="queuedset-contains"></span>`fn contains(&self, state_id: StateID) -> bool` — [`StateID`](../../util/primitives/index.md#stateid)
 
   Returns true if and only if the given state ID is in this set. If the
-
   set is inert, this always returns false.
 
 #### Trait Implementations
@@ -1412,11 +1166,8 @@ set when it is not needed.
 - <span id="queuedset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for QueuedSet`

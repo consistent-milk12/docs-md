@@ -21,7 +21,7 @@ struct Stash {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli/stash.rs:11-14`](../../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli/stash.rs#L11-L14)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/stash.rs:11-14`](../../../../../.source_1765894658/backtrace-0.3.76/src/symbolize/gimli/stash.rs#L11-L14)*
 
 A simple arena allocator for byte buffers.
 
@@ -32,13 +32,11 @@ A simple arena allocator for byte buffers.
 - <span id="stash-allocate"></span>`fn allocate(&self, size: usize) -> &mut [u8]`
 
   Allocates a buffer of the specified size and returns a mutable reference
-
   to it.
 
 - <span id="stash-cache-mmap"></span>`fn cache_mmap(&self, map: Mmap) -> &[u8]` — [`Mmap`](../mmap/index.md#mmap)
 
   Stores a `Mmap` for the lifetime of this `Stash`, returning a pointer
-
   which is scoped to just this lifetime.
 
 #### Trait Implementations
@@ -66,11 +64,8 @@ A simple arena allocator for byte buffers.
 - <span id="stash-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Stash`

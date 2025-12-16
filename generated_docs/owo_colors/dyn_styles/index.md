@@ -66,7 +66,7 @@ struct Styled<T> {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:60-65`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L60-L65)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:60-65`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L60-L65)*
 
 A wrapper type which applies a [`Style`](../index.md) when displaying the inner type
 
@@ -89,9 +89,7 @@ A wrapper type which applies a [`Style`](../index.md) when displaying the inner 
 - <span id="styled-inner-mut"></span>`const fn inner_mut(&mut self) -> &mut T`
 
   Returns a mutable reference to the inner value to be styled.
-
   
-
   *This method is const on Rust 1.83+.*
 
 #### Trait Implementations
@@ -131,11 +129,8 @@ A wrapper type which applies a [`Style`](../index.md) when displaying the inner 
 - <span id="styled-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: Display> IsStyled for crate::Styled<T>`
@@ -195,7 +190,7 @@ struct Style {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:83-88`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L83-L88)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:83-88`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L83-L88)*
 
 A pre-computed style that can be applied to a struct using `OwoColorize::style`.
 
@@ -222,87 +217,54 @@ println!("{}", "red text, white background, struck through".style(my_style));
 - <span id="style-style"></span>`const fn style<T>(&self, target: T) -> Styled<T>` — [`Styled`](../index.md#styled)
 
   Apply the style to a given struct to output.
-
   
-
   # Example
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, Style, Styled};
-
   
-
   const STYLED_TEXT: Styled<&'static str> = Style::new().bold().italic().style("bold and italic text");
-
   
-
   println!("{}", STYLED_TEXT);
-
   assert_eq!(format!("{}", STYLED_TEXT), "\u{1b}[1;3mbold and italic text\u{1b}[0m");
-
   ```
 
 - <span id="style-fg"></span>`const fn fg<C: Color>(self) -> Self`
 
   Set the foreground color generically
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "red foreground".fg::<Red>());
-
   ```
 
 - <span id="style-bg"></span>`const fn bg<C: Color>(self) -> Self`
 
   Set the background color generically.
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "black background".bg::<Black>());
-
   ```
 
 - <span id="style-remove-fg"></span>`const fn remove_fg(self) -> Self`
 
   Removes the foreground color from the style. Note that this does not apply
-
   the default color, but rather represents not changing the current terminal color.
-
   
-
   If you wish to actively change the terminal color back to the default, see
-
   `Style::default_color`.
 
 - <span id="style-remove-bg"></span>`const fn remove_bg(self) -> Self`
 
   Removes the background color from the style. Note that this does not apply
-
   the default color, but rather represents not changing the current terminal color.
-
   
-
   If you wish to actively change the terminal color back to the default, see
-
   `Style::on_default_color`.
 
 - <span id="style-black"></span>`const fn black(self) -> Self`
@@ -520,41 +482,25 @@ println!("{}", "red text, white background, struck through".style(my_style));
 - <span id="style-color"></span>`fn color<Color: DynColor>(self, color: Color) -> Self`
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
-
   compile-time. If the color is constant, use either [`OwoColorize::fg`](crate::OwoColorize::fg) or
-
   a color-specific method, such as [`OwoColorize::green`](crate::OwoColorize::green),
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "green".color(AnsiColors::Green));
-
   ```
 
 - <span id="style-on-color"></span>`fn on_color<Color: DynColor>(self, color: Color) -> Self`
 
   Set the background color at runtime. Only use if you do not know what color to use at
-
   compile-time. If the color is constant, use either [`OwoColorize::bg`](crate::OwoColorize::bg) or
-
   a color-specific method, such as [`OwoColorize::on_yellow`](crate::OwoColorize::on_yellow),
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
-
   ```
 
 - <span id="style-fg-rgb"></span>`const fn fg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
@@ -580,63 +526,36 @@ println!("{}", "red text, white background, struck through".style(my_style));
 - <span id="style-prefix-formatter"></span>`const fn prefix_formatter(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md#styleprefixformatter)
 
   Returns a formatter for the style's ANSI prefix.
-
   
-
   This can be used to separate out the prefix and suffix of a style.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::Style;
-
   use std::fmt::Write;
-
   
-
   let style = Style::new().red().on_blue();
-
   let prefix = style.prefix_formatter();
-
   let suffix = style.suffix_formatter();
-
   
-
   // Write the prefix and suffix separately.
-
   let mut output = String::new();
-
   write!(output, "{}", prefix);
-
   output.push_str("Hello");
-
   write!(output, "{}", suffix);
-
   
-
   assert_eq!(output, "\x1b[31;44mHello\x1b[0m");
-
   ```
 
 - <span id="style-suffix-formatter"></span>`const fn suffix_formatter(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md#stylesuffixformatter)
 
   Returns a formatter for the style's ANSI suffix.
-
   
-
   This can be used to separate out the prefix and suffix of a style.
-
   
-
   # Example
-
   
-
   See `Style::prefix_formatter`.
 
 - <span id="style-fmt-prefix"></span>`fn fmt_prefix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
@@ -690,11 +609,8 @@ println!("{}", "red text, white background, struck through".style(my_style));
 - <span id="style-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Style`
@@ -723,7 +639,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 struct StyleFlags(u8);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:92`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L92)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:92`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L92)*
 
 #### Implementations
 
@@ -772,11 +688,8 @@ struct StyleFlags(u8);
 - <span id="styleflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StyleFlags`
@@ -805,7 +718,7 @@ struct StyleFlags(u8);
 struct StylePrefixFormatter(Style);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:597`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L597)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:597`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L597)*
 
 Formatter for the prefix of a [`Style`](../index.md).
 
@@ -855,11 +768,8 @@ the suffix, which is useful for formatting the prefix separately.
 - <span id="styleprefixformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StylePrefixFormatter`
@@ -888,7 +798,7 @@ the suffix, which is useful for formatting the prefix separately.
 struct StyleSuffixFormatter(Style);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:611`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L611)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:611`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L611)*
 
 Formatter for the suffix of a [`Style`](../index.md).
 
@@ -938,11 +848,8 @@ the prefix, which is useful for formatting the suffix separately.
 - <span id="stylesuffixformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StyleSuffixFormatter`
@@ -983,7 +890,7 @@ enum Effect {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:10-20`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L10-L20)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:10-20`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L10-L20)*
 
 A runtime-configurable text effect for use with [`Style`](../index.md)
 
@@ -1026,11 +933,8 @@ A runtime-configurable text effect for use with [`Style`](../index.md)
 - <span id="effect-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Effect`
@@ -1055,7 +959,7 @@ A runtime-configurable text effect for use with [`Style`](../index.md)
 const fn style() -> Style
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:626-628`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L626-L628)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:626-628`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L626-L628)*
 
 Helper to create [`Style`](../index.md)s more ergonomically
 
@@ -1066,72 +970,72 @@ Helper to create [`Style`](../index.md)s more ergonomically
 const DIMMED_SHIFT: u8 = 0u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:102`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L102)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:102`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L102)*
 
 ### `ITALIC_SHIFT`
 ```rust
 const ITALIC_SHIFT: u8 = 1u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:103`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L103)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:103`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L103)*
 
 ### `UNDERLINE_SHIFT`
 ```rust
 const UNDERLINE_SHIFT: u8 = 2u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:104`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L104)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:104`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L104)*
 
 ### `BLINK_SHIFT`
 ```rust
 const BLINK_SHIFT: u8 = 3u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:105`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L105)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:105`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L105)*
 
 ### `BLINK_FAST_SHIFT`
 ```rust
 const BLINK_FAST_SHIFT: u8 = 4u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:106`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L106)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:106`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L106)*
 
 ### `REVERSED_SHIFT`
 ```rust
 const REVERSED_SHIFT: u8 = 5u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:107`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L107)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:107`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L107)*
 
 ### `HIDDEN_SHIFT`
 ```rust
 const HIDDEN_SHIFT: u8 = 6u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:108`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L108)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:108`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L108)*
 
 ### `STRIKETHROUGH_SHIFT`
 ```rust
 const STRIKETHROUGH_SHIFT: u8 = 7u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:109`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L109)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:109`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L109)*
 
 ## Macros
 
 ### `color_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:22-42`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L22-L42)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:22-42`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L22-L42)*
 
 ### `style_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:44-55`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L44-L55)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:44-55`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L44-L55)*
 
 ### `style_flags_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:111-126`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L111-L126)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:111-126`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L111-L126)*
 
 ### `impl_fmt!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:653-666`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L653-L666)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:653-666`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L653-L666)*
 

@@ -29,11 +29,11 @@ struct IntoIter<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/option.rs:20-22`](../../../.source_1765633015/rayon-1.11.0/src/option.rs#L20-L22)*
+*Defined in [`rayon-1.11.0/src/option.rs:20-22`](../../../.source_1765894658/rayon-1.11.0/src/option.rs#L20-L22)*
 
-A parallel iterator over the value in [`Some`](#some) variant of an [`Option`](../../clap_derive/index.md).
+A parallel iterator over the value in [`Some`](#some) variant of an `Option`.
 
-The iterator yields one value if the [`Option`](../../clap_derive/index.md) is a [`Some`](#some), otherwise none.
+The iterator yields one value if the `Option` is a [`Some`](#some), otherwise none.
 
 This `struct` is created by the `into_par_iter` function.
 
@@ -83,11 +83,8 @@ This `struct` is created by the `into_par_iter` function.
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IntoIter<T>`
@@ -150,11 +147,11 @@ struct Iter<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/option.rs:83-85`](../../../.source_1765633015/rayon-1.11.0/src/option.rs#L83-L85)*
+*Defined in [`rayon-1.11.0/src/option.rs:83-85`](../../../.source_1765894658/rayon-1.11.0/src/option.rs#L83-L85)*
 
-A parallel iterator over a reference to the [`Some`](#some) variant of an [`Option`](../../clap_derive/index.md).
+A parallel iterator over a reference to the [`Some`](#some) variant of an `Option`.
 
-The iterator yields one value if the [`Option`](../../clap_derive/index.md) is a [`Some`](#some), otherwise none.
+The iterator yields one value if the `Option` is a [`Some`](#some), otherwise none.
 
 This `struct` is created by the `par_iter` function.
 
@@ -204,11 +201,8 @@ This `struct` is created by the `par_iter` function.
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Iter<'a, T>`
@@ -271,11 +265,11 @@ struct IterMut<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/option.rs:119-121`](../../../.source_1765633015/rayon-1.11.0/src/option.rs#L119-L121)*
+*Defined in [`rayon-1.11.0/src/option.rs:119-121`](../../../.source_1765894658/rayon-1.11.0/src/option.rs#L119-L121)*
 
-A parallel iterator over a mutable reference to the [`Some`](#some) variant of an [`Option`](../../clap_derive/index.md).
+A parallel iterator over a mutable reference to the [`Some`](#some) variant of an `Option`.
 
-The iterator yields one value if the [`Option`](../../clap_derive/index.md) is a [`Some`](#some), otherwise none.
+The iterator yields one value if the `Option` is a [`Some`](#some), otherwise none.
 
 This `struct` is created by the `par_iter_mut` function.
 
@@ -317,11 +311,8 @@ This `struct` is created by the `par_iter_mut` function.
 - <span id="itermut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IterMut<'a, T>`
@@ -376,7 +367,7 @@ struct OptionProducer<T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/option.rs:140-142`](../../../.source_1765633015/rayon-1.11.0/src/option.rs#L140-L142)*
+*Defined in [`rayon-1.11.0/src/option.rs:140-142`](../../../.source_1765894658/rayon-1.11.0/src/option.rs#L140-L142)*
 
 Private producer for an option
 
@@ -405,11 +396,8 @@ Private producer for an option
 - <span id="optionproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for OptionProducer<T>`

@@ -107,103 +107,66 @@ This struct is passed to all rendering components and provides:
 - <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../../index.md#args), [`RenderConfig`](../config/index.md#renderconfig)
 
   Create a new generator context from crate data and CLI arguments.
-
   
-
   Builds the path map, impl map, and link registry needed for generation.
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `args` - CLI arguments containing output path, format, and options
-
   * `config` - Rendering configuration options
 
 - <span id="generatorcontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
   Set the source directory for path transformation.
-
   
-
   This can be called after construction if a `.source_*` directory
-
   is detected or specified via CLI. Only has effect if `source_locations`
-
   is enabled in the config.
 
 - <span id="generatorcontext-build-impl-map"></span>`fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
 
   Build a map from type ID to all impl blocks for that type.
-
   
-
   This enables rendering the "Implementations" and "Trait Implementations"
-
   sections for structs, enums, and other types.
-
   
-
   Uses the `impls` field on Struct/Enum/Union items directly rather than
-
   scanning all items and checking the `for_` field. This provides clearer
-
   semantics and leverages `rustdoc_types` structured data.
 
 - <span id="generatorcontext-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
 
   Generate a sort key for an impl block.
-
   
-
   Inherent impls (no trait) sort before trait impls.
-
   Trait impls are sorted by trait name.
 
 - <span id="generatorcontext-should-include-item"></span>`const fn should_include_item(&self, item: &Item) -> bool`
 
   Check if an item should be included based on visibility settings.
-
   
-
   By default, all items are included. If `--exclude-private`
-
   is set, only public items are included.
-
   
-
   # Visibility Levels
-
   
-
   - `Public` - Always included
-
   - `Crate`, `Restricted`, `Default` - Included by default, excluded with `--exclude-private`
 
 - <span id="generatorcontext-count-modules"></span>`fn count_modules(&self, item: &Item) -> usize`
 
   Count the total number of modules that will be generated.
-
   
-
   Used to initialize the progress bar with the correct total.
-
   Respects the `--exclude-private` flag when counting.
 
 - <span id="generatorcontext-build-path-name-index"></span>`fn build_path_name_index(krate: &'a Crate) -> HashMap<&'a str, Vec<Id>>`
 
   Build an index mapping item names to their IDs for fast lookup.
-
   
-
   This index is built once at context construction time and shared
-
   across all `DocLinkProcessor` instances, eliminating redundant
-
   index building for each item with documentation.
 
 #### Trait Implementations
@@ -233,11 +196,8 @@ This struct is passed to all rendering components and provides:
 - <span id="generatorcontext-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for GeneratorContext<'a>`
@@ -351,6 +311,9 @@ Provides read-only access to the crate structure, items, and impl blocks.
 - `fn source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
 
   Get source path config for a specific file.
+  
+  Returns `None` if source locations are disabled or no source dir configured.
+  The returned config has the correct depth for the given file path.
 
 #### Implementors
 
@@ -382,6 +345,8 @@ Determines which items should be included in the generated documentation.
 - `fn include_blanket_impls(&self) -> bool`
 
   Whether blanket trait implementations should be included.
+  
+  When `false` (default), impls like `From`, `Into`, `Any`, `Borrow` are filtered.
 
 #### Implementors
 
@@ -405,14 +370,34 @@ Handles intra-doc link resolution and markdown link generation.
 - `fn link_registry(&self) -> Option<&LinkRegistry>`
 
   Get the link registry for single-crate mode.
+  
+  Returns `None` in multi-crate mode where `UnifiedLinkRegistry` is used instead.
 
 - `fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
   Process documentation string with intra-doc link resolution.
+  
+  Transforms `` [`Type`](../../index.md) `` style links in doc comments into proper
+  markdown links. Also strips duplicate titles and reference definitions.
+  
+  # Arguments
+  
+  * `item` - The item whose docs to process (provides docs and links map)
+  * `current_file` - Path of the current file (for relative link calculation)
 
 - `fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
   Create a markdown link to an item.
+  
+  # Arguments
+  
+  * `id` - The item ID to link to
+  * `current_file` - Path of the current file (for relative link calculation)
+  
+  # Returns
+  
+  A markdown link like `[`Name`](path/to/item.md)`, or `None` if the item
+  cannot be linked.
 
 #### Implementors
 

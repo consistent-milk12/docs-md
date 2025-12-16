@@ -18,7 +18,7 @@
 trait Pointer { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/ext.rs:2-18`](../../../.source_1765633015/memchr-2.7.6/src/ext.rs#L2-L18)*
+*Defined in [`memchr-2.7.6/src/ext.rs:2-18`](../../../.source_1765894658/memchr-2.7.6/src/ext.rs#L2-L18)*
 
 A trait for adding some helper routines to pointers.
 
@@ -27,10 +27,20 @@ A trait for adding some helper routines to pointers.
 - `fn distance(self, origin: Self) -> usize`
 
   Returns the distance, in units of `T`, between `self` and `origin`.
+  
+  # Safety
+  
+  Same as `ptr::offset_from` in addition to `self >= origin`.
 
 - `fn as_usize(self) -> usize`
 
   Casts this pointer to `usize`.
+  
+  Callers should not convert the `usize` back to a pointer if at all
+  possible. (And if you believe it's necessary, open an issue to discuss
+  why. Otherwise, it has the potential to violate pointer provenance.)
+  The purpose of this function is just to be able to do arithmetic, i.e.,
+  computing offsets or alignments.
 
 #### Implementors
 

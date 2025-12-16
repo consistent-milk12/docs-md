@@ -163,7 +163,7 @@ struct Frame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:76-78`](../../.source_1765633015/backtrace-0.3.76/src/backtrace/mod.rs#L76-L78)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:76-78`](../../.source_1765894658/backtrace-0.3.76/src/backtrace/mod.rs#L76-L78)*
 
 A trait representing one frame of a backtrace, yielded to the `trace`
 function of this crate.
@@ -177,47 +177,30 @@ until runtime.
 - <span id="frame-ip"></span>`fn ip(&self) -> *mut c_void`
 
   Returns the current instruction pointer of this frame.
-
   
-
   This is normally the next instruction to execute in the frame, but not
-
   all implementations list this with 100% accuracy (but it's generally
-
   pretty close).
-
   
-
   It is recommended to pass this value to `backtrace::resolve` to turn it
-
   into a symbol name.
 
 - <span id="frame-sp"></span>`fn sp(&self) -> *mut c_void`
 
   Returns the current stack pointer of this frame.
-
   
-
   In the case that a backend cannot recover the stack pointer for this
-
   frame, a null pointer is returned.
 
 - <span id="frame-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
   Returns the starting symbol address of the frame of this function.
-
   
-
   This will attempt to rewind the instruction pointer returned by `ip` to
-
   the start of the function, returning that value. In some cases, however,
-
   backends will just return `ip` from this function.
-
   
-
   The returned value can sometimes be used if `backtrace::resolve` failed
-
   on the `ip` given above.
 
 - <span id="frame-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
@@ -261,11 +244,8 @@ until runtime.
 - <span id="frame-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Frame`
@@ -296,7 +276,7 @@ struct Symbol {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:190-195`](../../.source_1765633015/backtrace-0.3.76/src/symbolize/mod.rs#L190-L195)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:190-195`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L190-L195)*
 
 A trait representing the resolution of a symbol in a file.
 
@@ -313,21 +293,13 @@ always available in a symbol, however, so all methods return an `Option`.
 - <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](symbolize/index.md#symbolname)
 
   Returns the name of this function.
-
   
-
   The returned structure can be used to query various properties about the
-
   symbol name:
-
   
-
   * The `Display` implementation will print out the demangled symbol.
-
   * The raw `str` value of the symbol can be accessed (if it's valid
-
     utf-8).
-
   * The raw bytes for the symbol name can be accessed.
 
 - <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
@@ -337,51 +309,34 @@ always available in a symbol, however, so all methods return an `Option`.
 - <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](types/index.md#bytesorwidestring)
 
   Returns the raw filename as a slice. This is mainly useful for `no_std`
-
   environments.
 
 - <span id="symbol-colno"></span>`fn colno(&self) -> Option<u32>`
 
   Returns the column number for where this symbol is currently executing.
-
   
-
   Only gimli currently provides a value here and even then only if `filename`
-
   returns `Some`, and so it is then consequently subject to similar caveats.
 
 - <span id="symbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
   Returns the line number for where this symbol is currently executing.
-
   
-
   This return value is typically `Some` if `filename` returns `Some`, and
-
   is consequently subject to similar caveats.
 
 - <span id="symbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
   Returns the file name where this function was defined.
-
   
-
   This is currently only available when libbacktrace or gimli is being
-
   used (e.g. unix platforms other) and when a binary is compiled with
-
   debuginfo. If neither of these conditions is met then this will likely
-
   return `None`.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
@@ -413,11 +368,8 @@ always available in a symbol, however, so all methods return an `Option`.
 - <span id="symbol-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Symbol`
@@ -441,7 +393,7 @@ struct SymbolName<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:300-305`](../../.source_1765633015/backtrace-0.3.76/src/symbolize/mod.rs#L300-L305)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:300-305`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L300-L305)*
 
 A wrapper around a symbol name to provide ergonomic accessors to the
 demangled name, the raw bytes, the raw string, etc.
@@ -455,9 +407,7 @@ demangled name, the raw bytes, the raw string, etc.
 - <span id="symbolname-as-str"></span>`fn as_str(&self) -> Option<&'a str>`
 
   Returns the raw (mangled) symbol name as a `str` if the symbol is valid utf-8.
-
   
-
   Use the `Display` implementation if you want the demangled version.
 
 - <span id="symbolname-as-bytes"></span>`fn as_bytes(&self) -> &'a [u8]`
@@ -497,11 +447,8 @@ demangled name, the raw bytes, the raw string, etc.
 - <span id="symbolname-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for SymbolName<'a>`
@@ -531,7 +478,7 @@ struct BacktraceFmt<'a, 'b> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:17-23`](../../.source_1765633015/backtrace-0.3.76/src/print.rs#L17-L23)*
+*Defined in [`backtrace-0.3.76/src/print.rs:17-23`](../../.source_1765894658/backtrace-0.3.76/src/print.rs#L17-L23)*
 
 A formatter for backtraces.
 
@@ -544,73 +491,49 @@ implementation already uses this printing format.
 - <span id="backtracefmt-new"></span>`fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self` — [`PrintFmt`](print/index.md#printfmt), [`BytesOrWideString`](types/index.md#bytesorwidestring)
 
   Create a new `BacktraceFmt` which will write output to the provided
-
   `fmt`.
-
   
-
   The `format` argument will control the style in which the backtrace is
-
   printed, and the `print_path` argument will be used to print the
-
   `BytesOrWideString` instances of filenames. This type itself doesn't do
-
   any printing of filenames, but this callback is required to do so.
 
 - <span id="backtracefmt-add-context"></span>`fn add_context(&mut self) -> fmt::Result`
 
   Prints a preamble for the backtrace about to be printed.
-
   
-
   This is required on some platforms for backtraces to be fully
-
   symbolicated later, and otherwise this should just be the first method
-
   you call after creating a `BacktraceFmt`.
 
 - <span id="backtracefmt-frame"></span>`fn frame(&mut self) -> BacktraceFrameFmt<'_, 'a, 'b>` — [`BacktraceFrameFmt`](print/index.md#backtraceframefmt)
 
   Adds a frame to the backtrace output.
-
   
-
   This commit returns an RAII instance of a `BacktraceFrameFmt` which can be used
-
   to actually print a frame, and on destruction it will increment the
-
   frame counter.
 
 - <span id="backtracefmt-finish"></span>`fn finish(&mut self) -> fmt::Result`
 
   Completes the backtrace output.
-
   
-
   This is currently a no-op but is added for future compatibility with
-
   backtrace formats.
 
 - <span id="backtracefmt-message"></span>`fn message(&mut self, msg: &str) -> fmt::Result`
 
   Inserts a message in the backtrace output.
-
   
-
   This allows information to be inserted between frames,
-
   and won't increment the `frame_index` unlike the `frame`
-
   method.
 
 - <span id="backtracefmt-formatter"></span>`fn formatter(&mut self) -> &mut fmt::Formatter<'b>`
 
   Return the inner formatter.
-
   
-
   This is used for writing custom information between frames with `write!` and `writeln!`,
-
   and won't increment the `frame_index` unlike the `frame` method.
 
 #### Trait Implementations
@@ -638,11 +561,8 @@ implementation already uses this printing format.
 - <span id="backtracefmt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for BacktraceFmt<'a, 'b>`
@@ -666,7 +586,7 @@ struct BacktraceFrameFmt<'fmt, 'a, 'b> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:111-114`](../../.source_1765633015/backtrace-0.3.76/src/print.rs#L111-L114)*
+*Defined in [`backtrace-0.3.76/src/print.rs:111-114`](../../.source_1765894658/backtrace-0.3.76/src/print.rs#L111-L114)*
 
 A formatter for just one frame of a backtrace.
 
@@ -677,65 +597,43 @@ This type is created by the `BacktraceFmt::frame` function.
 - <span id="backtraceframefmt-backtrace-frame"></span>`fn backtrace_frame(&mut self, frame: &BacktraceFrame) -> fmt::Result` — [`BacktraceFrame`](capture/index.md#backtraceframe)
 
   Prints a `BacktraceFrame` with this frame formatter.
-
   
-
   This will recursively print all `BacktraceSymbol` instances within the
-
   `BacktraceFrame`.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframefmt-backtrace-symbol"></span>`fn backtrace_symbol(&mut self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result` — [`BacktraceFrame`](capture/index.md#backtraceframe), [`BacktraceSymbol`](capture/index.md#backtracesymbol)
 
   Prints a `BacktraceSymbol` within a `BacktraceFrame`.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframefmt-symbol"></span>`fn symbol(&mut self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result` — [`Frame`](backtrace/index.md#frame), [`Symbol`](symbolize/index.md#symbol)
 
   Prints a raw traced `Frame` and `Symbol`, typically from within the raw
-
   callbacks of this crate.
 
 - <span id="backtraceframefmt-print-raw"></span>`fn print_raw(&mut self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result` — [`SymbolName`](symbolize/index.md#symbolname), [`BytesOrWideString`](types/index.md#bytesorwidestring)
 
   Adds a raw frame to the backtrace output.
-
   
-
   This method, unlike the previous, takes the raw arguments in case
-
   they're being source from different locations. Note that this may be
-
   called multiple times for one frame.
 
 - <span id="backtraceframefmt-print-raw-with-column"></span>`fn print_raw_with_column(&mut self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](symbolize/index.md#symbolname), [`BytesOrWideString`](types/index.md#bytesorwidestring)
 
   Adds a raw frame to the backtrace output, including column information.
-
   
-
   This method, like the previous, takes the raw arguments in case
-
   they're being source from different locations. Note that this may be
-
   called multiple times for one frame.
 
 - <span id="backtraceframefmt-print-raw-generic"></span>`fn print_raw_generic(&mut self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](symbolize/index.md#symbolname), [`BytesOrWideString`](types/index.md#bytesorwidestring)
@@ -773,11 +671,8 @@ This type is created by the `BacktraceFmt::frame` function.
 - <span id="backtraceframefmt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for BacktraceFrameFmt<'fmt, 'a, 'b>`
@@ -800,7 +695,7 @@ struct Backtrace {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L29-L32)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L29-L32)*
 
 Representation of an owned and self-contained backtrace.
 
@@ -820,103 +715,56 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtrace-new"></span>`fn new() -> Backtrace` — [`Backtrace`](capture/index.md#backtrace)
 
   Captures a backtrace at the callsite of this function, returning an
-
   owned representation.
-
   
-
   This function is useful for representing a backtrace as an object in
-
   Rust. This returned value can be sent across threads and printed
-
   elsewhere, and the purpose of this value is to be entirely self
-
   contained.
-
   
-
   Note that on some platforms acquiring a full backtrace and resolving it
-
   can be extremely expensive. If the cost is too much for your application
-
   it's recommended to instead use `Backtrace::new_unresolved()` which
-
   avoids the symbol resolution step (which typically takes the longest)
-
   and allows deferring that to a later date.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use backtrace::Backtrace;
-
   
-
   let current_backtrace = Backtrace::new();
-
   ```
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtrace-new-unresolved"></span>`fn new_unresolved() -> Backtrace` — [`Backtrace`](capture/index.md#backtrace)
 
   Similar to `new` except that this does not resolve any symbols, this
-
   simply captures the backtrace as a list of addresses.
-
   
-
   At a later time the `resolve` function can be called to resolve this
-
   backtrace's symbols into readable names. This function exists because
-
   the resolution process can sometimes take a significant amount of time
-
   whereas any one backtrace may only be rarely printed.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use backtrace::Backtrace;
-
   
-
   let mut current_backtrace = Backtrace::new_unresolved();
-
   println!("{current_backtrace:?}"); // no symbol names
-
   current_backtrace.resolve();
-
   println!("{current_backtrace:?}"); // symbol names now present
-
   ```
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtrace-create"></span>`fn create(ip: usize) -> Backtrace` — [`Backtrace`](capture/index.md#backtrace)
@@ -924,45 +772,27 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtrace-frames"></span>`fn frames(&self) -> &[BacktraceFrame]` — [`BacktraceFrame`](capture/index.md#backtraceframe)
 
   Returns the frames from when this backtrace was captured.
-
   
-
   The first entry of this slice is likely the function `Backtrace::new`,
-
   and the last frame is likely something about how this thread or the main
-
   function started.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtrace-resolve"></span>`fn resolve(&mut self)`
 
   If this backtrace was created from `new_unresolved` then this function
-
   will resolve all addresses in the backtrace to their symbolic names.
-
   
-
   If this backtrace has been previously resolved or was created through
-
   `new`, this function does nothing.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
@@ -1006,11 +836,8 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtrace-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Backtrace`
@@ -1042,7 +869,7 @@ struct BacktraceFrame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L144-L147)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L144-L147)*
 
 Captured version of a frame in a backtrace.
 
@@ -1059,91 +886,56 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtraceframe-ip"></span>`fn ip(&self) -> *mut c_void`
 
   Same as `Frame::ip`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
   Same as `Frame::symbol_address`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
   Same as `Frame::module_base_address`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-symbols"></span>`fn symbols(&self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](capture/index.md#backtracesymbol)
 
   Returns the list of symbols that this frame corresponds to.
-
   
-
   Normally there is only one symbol per frame, but sometimes if a number
-
   of functions are inlined into one frame then multiple symbols will be
-
   returned. The first symbol listed is the "innermost function", whereas
-
   the last symbol is the outermost (last caller).
-
   
-
   Note that if this frame came from an unresolved backtrace then this will
-
   return an empty list.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-resolve"></span>`fn resolve(&mut self)`
 
   Resolve all addresses in this frame to their symbolic names.
-
   
-
   If this frame has been previously resolved, this function does nothing.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
@@ -1183,11 +975,8 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtraceframe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BacktraceFrame`
@@ -1222,7 +1011,7 @@ struct BacktraceSymbol {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L222-L228)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L222-L228)*
 
 Captured version of a symbol in a backtrace.
 
@@ -1239,71 +1028,46 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtracesymbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](symbolize/index.md#symbolname)
 
   Same as `Symbol::name`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
   Same as `Symbol::addr`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
   Same as `Symbol::filename`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
   Same as `Symbol::lineno`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-colno"></span>`fn colno(&self) -> Option<u32>`
 
   Same as `Symbol::colno`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
@@ -1343,11 +1107,8 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtracesymbol-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BacktraceSymbol`
@@ -1381,7 +1142,7 @@ enum BytesOrWideString<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../.source_1765633015/backtrace-0.3.76/src/types.rs#L17-L22)*
+*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../.source_1765894658/backtrace-0.3.76/src/types.rs#L17-L22)*
 
 A platform independent representation of a string. When working with `std`
 enabled it is recommended to the convenience methods for providing
@@ -1402,31 +1163,20 @@ conversions to `std` types.
 - <span id="bytesorwidestring-to-str-lossy"></span>`fn to_str_lossy(&self) -> Cow<'a, str>`
 
   Lossy converts to a `Cow<str>`, will allocate if `Bytes` is not valid
-
   UTF-8 or if `BytesOrWideString` is `Wide`.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="bytesorwidestring-into-path-buf"></span>`fn into_path_buf(self) -> PathBuf`
 
   Provides a `Path` representation of `BytesOrWideString`.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
@@ -1462,11 +1212,8 @@ conversions to `std` types.
 - <span id="bytesorwidestring-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for BytesOrWideString<'a>`
@@ -1494,7 +1241,7 @@ enum PrintFmt {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/print.rs:28-33`](../../.source_1765633015/backtrace-0.3.76/src/print.rs#L28-L33)*
+*Defined in [`backtrace-0.3.76/src/print.rs:28-33`](../../.source_1765894658/backtrace-0.3.76/src/print.rs#L28-L33)*
 
 The styles of printing that we can print
 
@@ -1545,11 +1292,8 @@ The styles of printing that we can print
 - <span id="printfmt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for PrintFmt`
@@ -1586,7 +1330,7 @@ The styles of printing that we can print
 unsafe fn trace_unsynchronized<F: FnMut(&Frame) -> bool>(cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../.source_1765633015/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../.source_1765894658/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
 
 Same as `trace`, only unsafe as it's unsynchronized.
 
@@ -1606,7 +1350,7 @@ where
     F: FnMut(&Symbol)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:174-179`](../../.source_1765633015/backtrace-0.3.76/src/symbolize/mod.rs#L174-L179)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:174-179`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L174-L179)*
 
 Same as `resolve_frame`, only unsafe as it's unsynchronized.
 
@@ -1626,7 +1370,7 @@ where
     F: FnMut(&Symbol)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:158-163`](../../.source_1765633015/backtrace-0.3.76/src/symbolize/mod.rs#L158-L163)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:158-163`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L158-L163)*
 
 Same as `resolve`, only unsafe as it's unsynchronized.
 
@@ -1644,7 +1388,7 @@ See information on `resolve` for caveats on `cb` panicking.
 fn clear_symbol_cache()
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:426-431`](../../.source_1765633015/backtrace-0.3.76/src/symbolize/mod.rs#L426-L431)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:426-431`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L426-L431)*
 
 Attempt to reclaim that cached memory used to symbolicate addresses.
 
@@ -1666,7 +1410,7 @@ function has any effect.
 fn trace<F: FnMut(&Frame) -> bool>(cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../.source_1765633015/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../.source_1765894658/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
 
 Inspects the current call-stack, passing all active frames into the closure
 provided to calculate a stack trace.
@@ -1721,7 +1465,7 @@ fn main() {
 fn resolve<F: FnMut(&Symbol)>(addr: *mut core::ffi::c_void, cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:61-64`](../../.source_1765633015/backtrace-0.3.76/src/symbolize/mod.rs#L61-L64)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:61-64`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L61-L64)*
 
 Resolve an address to a symbol, passing the symbol to the specified
 closure.
@@ -1775,7 +1519,7 @@ fn main() {
 fn resolve_frame<F: FnMut(&Symbol)>(frame: &super::backtrace::Frame, cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:103-106`](../../.source_1765633015/backtrace-0.3.76/src/symbolize/mod.rs#L103-L106)*
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:103-106`](../../.source_1765894658/backtrace-0.3.76/src/symbolize/mod.rs#L103-L106)*
 
 Resolve a previously captured frame to a symbol, passing the symbol to the
 specified closure.

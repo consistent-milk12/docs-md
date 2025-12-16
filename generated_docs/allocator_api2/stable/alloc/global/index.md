@@ -18,7 +18,7 @@
 struct Global;
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
 
 The global memory allocator.
 
@@ -92,11 +92,8 @@ accessed through the [free functions in `alloc`](crate#functions).
 - <span id="global-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Global`

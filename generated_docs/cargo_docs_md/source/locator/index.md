@@ -50,13 +50,9 @@ or by using `cargo metadata` to find exact paths for dependencies.
 - <span id="sourcelocator-new"></span>`fn new() -> Result<Self, Error>` — [`Error`](../../error/index.md#error)
 
   Create a new `SourceLocator` with the default registry path.
-
   
-
   # Errors
-
   
-
   Returns an error if the home directory cannot be determined.
 
 - <span id="sourcelocator-with-registry-path"></span>`const fn with_registry_path(registry_path: PathBuf) -> Self`
@@ -66,49 +62,31 @@ or by using `cargo metadata` to find exact paths for dependencies.
 - <span id="sourcelocator-load-metadata"></span>`fn load_metadata(&mut self, manifest_path: &Path) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
   Load cargo metadata from a project directory.
-
   
-
   This enables more accurate source location by using the exact
-
   paths from cargo's dependency resolution.
-
   
-
   # Errors
-
   
-
   Returns an error if cargo metadata cannot be loaded.
 
 - <span id="sourcelocator-load-metadata-from-current-dir"></span>`fn load_metadata_from_current_dir(&mut self) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
   Load cargo metadata from the current directory.
-
   
-
   # Errors
-
   
-
   Returns an error if cargo metadata cannot be loaded.
 
 - <span id="sourcelocator-locate"></span>`fn locate(&self, name: &str, version: &str) -> Result<PathBuf, Error>` — [`Error`](../../error/index.md#error)
 
   Locate the source directory for a crate by name and version.
-
   
-
   First tries to use cargo metadata if available, then falls back
-
   to scanning the registry directory.
-
   
-
   # Errors
-
   
-
   Returns an error if the source cannot be found.
 
 - <span id="sourcelocator-locate-from-metadata"></span>`fn locate_from_metadata(metadata: &Metadata, name: &str, version: &str) -> Option<PathBuf>`
@@ -122,51 +100,34 @@ or by using `cargo metadata` to find exact paths for dependencies.
 - <span id="sourcelocator-packages"></span>`fn packages(&self) -> Option<&[Package]>`
 
   Get all packages from the loaded metadata.
-
   
-
   Returns `None` if metadata hasn't been loaded.
 
 - <span id="sourcelocator-workspace-root"></span>`fn workspace_root(&self) -> Option<&Path>`
 
   Get the workspace root from loaded metadata.
-
   
-
   Returns `None` if metadata hasn't been loaded.
 
 - <span id="sourcelocator-all-dependency-sources"></span>`fn all_dependency_sources(&self) -> Result<Vec<(String, String, PathBuf)>, Error>` — [`Error`](../../error/index.md#error)
 
   Find all dependency sources for a workspace.
-
   
-
   Returns a list of (name, version, path) tuples for all dependencies
-
   that have sources in the registry.
-
   
-
   # Errors
-
   
-
   Returns an error if metadata hasn't been loaded.
 
 - <span id="sourcelocator-list-registry-crates"></span>`fn list_registry_crates(&self) -> Result<Vec<(String, String)>, Error>` — [`Error`](../../error/index.md#error)
 
   List all available crate versions in the registry.
-
   
-
   Returns a list of (name, version) tuples.
-
   
-
   # Errors
-
   
-
   Returns an error if the registry cannot be read.
 
 #### Trait Implementations
@@ -200,11 +161,8 @@ or by using `cargo metadata` to find exact paths for dependencies.
 - <span id="sourcelocator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceLocator`
@@ -280,11 +238,8 @@ struct ParseUtils;
 - <span id="parseutils-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ParseUtils`

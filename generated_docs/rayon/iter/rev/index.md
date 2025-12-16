@@ -21,7 +21,7 @@ struct Rev<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/rev.rs:11-13`](../../../../.source_1765633015/rayon-1.11.0/src/iter/rev.rs#L11-L13)*
+*Defined in [`rayon-1.11.0/src/iter/rev.rs:11-13`](../../../../.source_1765894658/rayon-1.11.0/src/iter/rev.rs#L11-L13)*
 
 `Rev` is an iterator that produces elements in reverse order. This struct
 is created by the `rev()` method on [`IndexedParallelIterator`](../index.md)
@@ -78,11 +78,8 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../index.md)
 - <span id="rev-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Rev<I>`
@@ -146,7 +143,7 @@ struct RevProducer<P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/rev.rs:83-86`](../../../../.source_1765633015/rayon-1.11.0/src/iter/rev.rs#L83-L86)*
+*Defined in [`rayon-1.11.0/src/iter/rev.rs:83-86`](../../../../.source_1765894658/rayon-1.11.0/src/iter/rev.rs#L83-L86)*
 
 #### Trait Implementations
 
@@ -173,11 +170,8 @@ struct RevProducer<P> {
 - <span id="revproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for RevProducer<P>`

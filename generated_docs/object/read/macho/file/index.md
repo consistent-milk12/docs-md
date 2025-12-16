@@ -60,7 +60,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:37-49`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L37-L49)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:37-49`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L37-L49)*
 
 A partially parsed Mach-O file.
 
@@ -75,7 +75,6 @@ Most of the functionality of this type is provided by the [`Object`](../../index
 - <span id="machofile-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: Endian>(image: &DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](../index.md#dyldcacheimage), [`Result`](../../../index.md#result)
 
   Parse the Mach-O file for the given image from the dyld shared cache.
-
   This will read different sections from different subcaches, if necessary.
 
 - <span id="machofile-section-internal"></span>`fn section_internal(&self, index: SectionIndex) -> Result<&MachOSectionInternal<'data, Mach, R>>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`MachOSectionInternal`](../section/index.md#machosectioninternal)
@@ -105,9 +104,7 @@ Most of the functionality of this type is provided by the [`Object`](../../index
 - <span id="machofile-macho-symbol-table"></span>`fn macho_symbol_table(&self) -> &SymbolTable<'data, Mach, R>` — [`SymbolTable`](../index.md#symboltable)
 
   Get the Mach-O symbol table.
-
   
-
   Returns an empty symbol table if the file has no symbol table.
 
 - <span id="machofile-build-version"></span>`fn build_version(&self) -> Result<Option<&'data macho::BuildVersionCommand<<Mach as >::Endian>>>` — [`Result`](../../../index.md#result), [`BuildVersionCommand`](../../../macho/index.md#buildversioncommand), [`MachHeader`](../index.md#machheader)
@@ -143,11 +140,8 @@ Most of the functionality of this type is provided by the [`Object`](../../index
 - <span id="machofile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> Object for MachOFile<'data, Mach, R>`
@@ -245,7 +239,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:527-534`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L527-L534)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:527-534`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L527-L534)*
 
 An iterator for the COMDAT section groups in a [`MachOFile`](../index.md).
 
@@ -280,11 +274,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="machocomdatiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOComdatIterator<'data, 'file, Mach, R>`
@@ -324,7 +315,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:561-568`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L561-L568)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:561-568`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L561-L568)*
 
 A COMDAT section group in a [`MachOFile`](../index.md).
 
@@ -359,11 +350,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="machocomdat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectComdat for MachOComdat<'data, 'file, Mach, R>`
@@ -405,7 +393,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:621-628`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L621-L628)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:621-628`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L621-L628)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile`](../index.md).
 
@@ -440,11 +428,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="machocomdatsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
@@ -481,7 +466,7 @@ This is a stub that doesn't implement any functionality.
 trait MachHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:644-723`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L644-L723)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:644-723`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L644-L723)*
 
 A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) and [`macho::MachHeader64`](../../../macho/index.md).
 
@@ -502,6 +487,8 @@ A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) a
 - `fn is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
+  
+  This is a property of the type, not a value in the header data.
 
 - `fn is_big_endian(&self) -> bool`
 
@@ -530,6 +517,8 @@ A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) a
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<&'data Self>`
 
   Read the file header.
+  
+  Also checks that the magic field in the file header is a supported format.
 
 - `fn is_supported(&self) -> bool`
 
@@ -554,7 +543,7 @@ A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) a
 type MachOFile32<'data, Endian, R> = MachOFile<'data, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:24-25`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L24-L25)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:24-25`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L24-L25)*
 
 A 32-bit Mach-O object file.
 
@@ -567,7 +556,7 @@ to [`crate::FileKind::MachO32`](../../../index.md).
 type MachOFile64<'data, Endian, R> = MachOFile<'data, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:30-31`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L30-L31)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:30-31`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L30-L31)*
 
 A 64-bit Mach-O object file.
 
@@ -580,7 +569,7 @@ to [`crate::FileKind::MachO64`](../../../index.md).
 type MachOComdatIterator32<'data, 'file, Endian, R> = MachOComdatIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:517-518`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L517-L518)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:517-518`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L517-L518)*
 
 An iterator for the COMDAT section groups in a [`MachOFile64`](../index.md).
 
@@ -590,7 +579,7 @@ An iterator for the COMDAT section groups in a [`MachOFile64`](../index.md).
 type MachOComdatIterator64<'data, 'file, Endian, R> = MachOComdatIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:520-521`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L520-L521)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:520-521`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L520-L521)*
 
 An iterator for the COMDAT section groups in a [`MachOFile64`](../index.md).
 
@@ -600,7 +589,7 @@ An iterator for the COMDAT section groups in a [`MachOFile64`](../index.md).
 type MachOComdat32<'data, 'file, Endian, R> = MachOComdat<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:550-551`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L550-L551)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:550-551`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L550-L551)*
 
 A COMDAT section group in a [`MachOFile32`](../index.md).
 
@@ -610,7 +599,7 @@ A COMDAT section group in a [`MachOFile32`](../index.md).
 type MachOComdat64<'data, 'file, Endian, R> = MachOComdat<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:554-555`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L554-L555)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:554-555`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L554-L555)*
 
 A COMDAT section group in a [`MachOFile64`](../index.md).
 
@@ -620,7 +609,7 @@ A COMDAT section group in a [`MachOFile64`](../index.md).
 type MachOComdatSectionIterator32<'data, 'file, Endian, R> = MachOComdatSectionIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:611-612`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L611-L612)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:611-612`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L611-L612)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile32`](../index.md).
 
@@ -630,7 +619,7 @@ An iterator for the sections in a COMDAT section group in a [`MachOFile32`](../i
 type MachOComdatSectionIterator64<'data, 'file, Endian, R> = MachOComdatSectionIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:614-615`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L614-L615)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:614-615`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L614-L615)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile64`](../index.md).
 

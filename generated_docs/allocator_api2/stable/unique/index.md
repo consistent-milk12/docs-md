@@ -21,7 +21,7 @@ struct Unique<T: ?Sized> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/unique.rs:22-25`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/unique.rs#L22-L25)*
+*Defined in [`allocator-api2-0.2.21/src/stable/unique.rs:22-25`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/unique.rs#L22-L25)*
 
 A wrapper around a raw non-null `*mut T` that indicates that the possessor
 of this wrapper owns the referent. Useful for building abstractions like
@@ -49,13 +49,9 @@ for any type which upholds Unique's aliasing requirements.
 - <span id="unique-new-unchecked"></span>`const unsafe fn new_unchecked(ptr: *mut T) -> Self`
 
   Creates a new `Unique`.
-
   
-
   # Safety
-
   
-
   `ptr` must be non-null.
 
 - <span id="unique-as-ptr"></span>`const fn as_ptr(self) -> *mut T`
@@ -69,25 +65,17 @@ for any type which upholds Unique's aliasing requirements.
 - <span id="unique-as-ref"></span>`const unsafe fn as_ref(&self) -> &T`
 
   Dereferences the content.
-
   
-
   The resulting lifetime is bound to self so this behaves "as if"
-
   it were actually an instance of T that is getting borrowed. If a longer
-
   (unbound) lifetime is needed, use `&*my_ptr.as_ptr()`.
 
 - <span id="unique-as-mut"></span>`unsafe fn as_mut(&mut self) -> &mut T`
 
   Mutably dereferences the content.
-
   
-
   The resulting lifetime is bound to self so this behaves "as if"
-
   it were actually an instance of T that is getting borrowed. If a longer
-
   (unbound) lifetime is needed, use `&mut *my_ptr.as_ptr()`.
 
 #### Trait Implementations
@@ -125,11 +113,8 @@ for any type which upholds Unique's aliasing requirements.
 - <span id="unique-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: Send + ?Sized> Send for Unique<T>`

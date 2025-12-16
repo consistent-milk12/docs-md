@@ -22,7 +22,7 @@ struct DefaultHashBuilder {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../../.source_1765633015/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../../.source_1765894658/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
 
 Default hash builder for the `S` type parameter of
 [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
@@ -78,11 +78,8 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 - <span id="defaulthashbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DefaultHashBuilder`
@@ -113,7 +110,7 @@ struct DefaultHasher {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../../.source_1765633015/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../../.source_1765894658/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
 
 Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
@@ -180,11 +177,8 @@ Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 - <span id="defaulthasher-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DefaultHasher`
@@ -211,5 +205,5 @@ Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 ### `forward_writes!`
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:39-46`](../../../.source_1765633015/hashbrown-0.16.1/src/hasher.rs#L39-L46)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:39-46`](../../../.source_1765894658/hashbrown-0.16.1/src/hasher.rs#L39-L46)*
 

@@ -28,7 +28,7 @@ struct IntoIter<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/result.rs:16-18`](../../../.source_1765633015/rayon-1.11.0/src/result.rs#L16-L18)*
+*Defined in [`rayon-1.11.0/src/result.rs:16-18`](../../../.source_1765894658/rayon-1.11.0/src/result.rs#L16-L18)*
 
 Parallel iterator over a result
 
@@ -77,11 +77,8 @@ Parallel iterator over a result
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IntoIter<T>`
@@ -144,7 +141,7 @@ struct Iter<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/result.rs:38-40`](../../../.source_1765633015/rayon-1.11.0/src/result.rs#L38-L40)*
+*Defined in [`rayon-1.11.0/src/result.rs:38-40`](../../../.source_1765894658/rayon-1.11.0/src/result.rs#L38-L40)*
 
 Parallel iterator over an immutable reference to a result
 
@@ -193,11 +190,8 @@ Parallel iterator over an immutable reference to a result
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Iter<'a, T>`
@@ -260,7 +254,7 @@ struct IterMut<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/result.rs:68-70`](../../../.source_1765633015/rayon-1.11.0/src/result.rs#L68-L70)*
+*Defined in [`rayon-1.11.0/src/result.rs:68-70`](../../../.source_1765894658/rayon-1.11.0/src/result.rs#L68-L70)*
 
 Parallel iterator over a mutable reference to a result
 
@@ -301,11 +295,8 @@ Parallel iterator over a mutable reference to a result
 - <span id="itermut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IterMut<'a, T>`

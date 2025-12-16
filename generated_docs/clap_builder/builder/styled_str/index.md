@@ -18,7 +18,7 @@
 struct StyledStr(String);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
+*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
 
 Terminal-styling container
 
@@ -54,7 +54,6 @@ let cmd = clap::Command::new("mybin")
 - <span id="styledstr-push-string"></span>`fn push_string(&mut self, msg: String)`
 
   May allow the compiler to consolidate the `Drop`s for `msg`, reducing code size compared to
-
   `styled.push_str(&msg)`
 
 - <span id="styledstr-push-str"></span>`fn push_str(&mut self, msg: &str)`
@@ -130,11 +129,8 @@ let cmd = clap::Command::new("mybin")
 - <span id="styledstr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for StyledStr`

@@ -25,7 +25,7 @@ struct RabinKarp {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/rabinkarp.rs:36-53`](../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/rabinkarp.rs#L36-L53)*
+*Defined in [`aho-corasick-1.1.4/src/packed/rabinkarp.rs:36-53`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/rabinkarp.rs#L36-L53)*
 
 An implementation of the Rabin-Karp algorithm. The main idea of this
 algorithm is to maintain a rolling hash as it moves through the input, and
@@ -76,43 +76,30 @@ https://www-igm.univ-mlv.fr/~lecroq/string/node5.html
 - <span id="rabinkarp-new"></span>`fn new(patterns: &Arc<Patterns>) -> RabinKarp` — [`Patterns`](../pattern/index.md#patterns), [`RabinKarp`](#rabinkarp)
 
   Compile a new Rabin-Karp matcher from the patterns given.
-
   
-
   This panics if any of the patterns in the collection are empty, or if
-
   the collection is itself empty.
 
 - <span id="rabinkarp-find-at"></span>`fn find_at(&self, haystack: &[u8], at: usize) -> Option<Match>` — [`Match`](../../util/search/index.md#match)
 
   Return the first matching pattern in the given haystack, begining the
-
   search at `at`.
 
 - <span id="rabinkarp-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
   Returns the approximate total amount of heap used by this searcher, in
-
   units of bytes.
 
 - <span id="rabinkarp-verify"></span>`fn verify(&self, id: PatternID, haystack: &[u8], at: usize) -> Option<Match>` — [`PatternID`](../../util/primitives/index.md#patternid), [`Match`](../../util/search/index.md#match)
 
   Verify whether the pattern with the given id matches at
-
   `haystack[at..]`.
-
   
-
   We tag this function as `cold` because it helps improve codegen.
-
   Intuitively, it would seem like inlining it would be better. However,
-
   the only time this is called and a match is not found is when there
-
   there is a hash collision, or when a prefix of a pattern matches but
-
   the entire pattern doesn't match. This is hopefully fairly rare, and
-
   if it does occur a lot, it's going to be slow no matter what we do.
 
 - <span id="rabinkarp-hash"></span>`fn hash(&self, bytes: &[u8]) -> usize`
@@ -122,9 +109,7 @@ https://www-igm.univ-mlv.fr/~lecroq/string/node5.html
 - <span id="rabinkarp-update-hash"></span>`fn update_hash(&self, prev: usize, old_byte: u8, new_byte: u8) -> usize`
 
   Update the hash given based on removing `old_byte` at the beginning
-
   of some byte string, and appending `new_byte` to the end of that same
-
   byte string.
 
 #### Trait Implementations
@@ -164,11 +149,8 @@ https://www-igm.univ-mlv.fr/~lecroq/string/node5.html
 - <span id="rabinkarp-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RabinKarp`
@@ -199,7 +181,7 @@ https://www-igm.univ-mlv.fr/~lecroq/string/node5.html
 type Hash = usize;
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/rabinkarp.rs:6`](../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/rabinkarp.rs#L6)*
+*Defined in [`aho-corasick-1.1.4/src/packed/rabinkarp.rs:6`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/rabinkarp.rs#L6)*
 
 The type of the rolling hash used in the Rabin-Karp algorithm.
 
@@ -210,7 +192,7 @@ The type of the rolling hash used in the Rabin-Karp algorithm.
 const NUM_BUCKETS: usize = 64usize;
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/rabinkarp.rs:16`](../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/rabinkarp.rs#L16)*
+*Defined in [`aho-corasick-1.1.4/src/packed/rabinkarp.rs:16`](../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/rabinkarp.rs#L16)*
 
 The number of buckets to store our patterns in. We don't want this to be
 too big in order to avoid wasting memory, but we don't want it to be too

@@ -130,7 +130,7 @@ struct ExprArray {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L269-L277)*
+*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L269-L277)*
 
 A slice literal expression: `[a, b, c, d]`.
 
@@ -181,11 +181,8 @@ A slice literal expression: `[a, b, c, d]`.
 - <span id="exprarray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprArray`
@@ -237,7 +234,7 @@ struct ExprAssign {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L279-L288)*
+*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L279-L288)*
 
 An assignment expression: `a = compute()`.
 
@@ -288,11 +285,8 @@ An assignment expression: `a = compute()`.
 - <span id="exprassign-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprAssign`
@@ -344,7 +338,7 @@ struct ExprAsync {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L290-L299)*
+*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L290-L299)*
 
 An async block: `async { ... }`.
 
@@ -395,11 +389,8 @@ An async block: `async { ... }`.
 - <span id="exprasync-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprAsync`
@@ -451,7 +442,7 @@ struct ExprAwait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L301-L310)*
+*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L301-L310)*
 
 An await expression: `fut.await`.
 
@@ -502,11 +493,8 @@ An await expression: `fut.await`.
 - <span id="exprawait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprAwait`
@@ -558,7 +546,7 @@ struct ExprBinary {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L312-L321)*
+*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L312-L321)*
 
 A binary operation: `a + b`, `a += b`.
 
@@ -609,11 +597,8 @@ A binary operation: `a + b`, `a += b`.
 - <span id="exprbinary-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprBinary`
@@ -664,7 +649,7 @@ struct ExprBlock {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L323-L331)*
+*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L323-L331)*
 
 A blocked scope: `{ ... }`.
 
@@ -715,11 +700,8 @@ A blocked scope: `{ ... }`.
 - <span id="exprblock-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprBlock`
@@ -771,7 +753,7 @@ struct ExprBreak {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L333-L343)*
+*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L333-L343)*
 
 A `break`, with an optional label to break and an optional
 expression.
@@ -823,11 +805,8 @@ expression.
 - <span id="exprbreak-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprBreak`
@@ -879,7 +858,7 @@ struct ExprCall {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L345-L354)*
+*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L345-L354)*
 
 A function call expression: `invoke(a, b)`.
 
@@ -930,11 +909,8 @@ A function call expression: `invoke(a, b)`.
 - <span id="exprcall-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprCall`
@@ -986,7 +962,7 @@ struct ExprCast {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L356-L365)*
+*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L356-L365)*
 
 A cast expression: `foo as f64`.
 
@@ -1037,11 +1013,8 @@ A cast expression: `foo as f64`.
 - <span id="exprcast-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprCast`
@@ -1100,7 +1073,7 @@ struct ExprClosure {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L367-L383)*
+*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L367-L383)*
 
 A closure expression: `|a, b| a + b`.
 
@@ -1151,11 +1124,8 @@ A closure expression: `|a, b| a + b`.
 - <span id="exprclosure-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprClosure`
@@ -1206,7 +1176,7 @@ struct ExprConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L385-L393)*
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
@@ -1257,11 +1227,8 @@ A const block: `const { ... }`.
 - <span id="exprconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprConst`
@@ -1312,7 +1279,7 @@ struct ExprContinue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L395-L403)*
+*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L395-L403)*
 
 A `continue`, with an optional label.
 
@@ -1363,11 +1330,8 @@ A `continue`, with an optional label.
 - <span id="exprcontinue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprContinue`
@@ -1419,7 +1383,7 @@ struct ExprField {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L405-L415)*
+*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L405-L415)*
 
 Access of a named struct field (`obj.k`) or unnamed tuple struct
 field (`obj.0`).
@@ -1471,11 +1435,8 @@ field (`obj.0`).
 - <span id="exprfield-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprField`
@@ -1530,7 +1491,7 @@ struct ExprForLoop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L417-L429)*
+*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L417-L429)*
 
 A for loop: `for pat in expr { ... }`.
 
@@ -1581,11 +1542,8 @@ A for loop: `for pat in expr { ... }`.
 - <span id="exprforloop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprForLoop`
@@ -1636,7 +1594,7 @@ struct ExprGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L431-L443)*
+*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L431-L443)*
 
 An expression contained within invisible delimiters.
 
@@ -1691,11 +1649,8 @@ of expressions and is related to `None`-delimited spans in a
 - <span id="exprgroup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::ExprGroup`
@@ -1744,7 +1699,7 @@ struct ExprIf {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L445-L459)*
+*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L445-L459)*
 
 An `if` expression with an optional `else` block: `if expr { ... }
 else { ... }`.
@@ -1799,11 +1754,8 @@ expression, not any of the other types of expression.
 - <span id="exprif-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprIf`
@@ -1855,7 +1807,7 @@ struct ExprIndex {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L461-L470)*
+*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L461-L470)*
 
 A square bracketed indexing expression: `vector[2]`.
 
@@ -1906,11 +1858,8 @@ A square bracketed indexing expression: `vector[2]`.
 - <span id="exprindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprIndex`
@@ -1960,7 +1909,7 @@ struct ExprInfer {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L472-L479)*
+*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L472-L479)*
 
 The inferred value of a const generic argument, denoted `_`.
 
@@ -2011,11 +1960,8 @@ The inferred value of a const generic argument, denoted `_`.
 - <span id="exprinfer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprInfer`
@@ -2068,7 +2014,7 @@ struct ExprLet {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L481-L491)*
+*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L481-L491)*
 
 A `let` guard: `let Some(x) = opt`.
 
@@ -2119,11 +2065,8 @@ A `let` guard: `let Some(x) = opt`.
 - <span id="exprlet-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprLet`
@@ -2173,7 +2116,7 @@ struct ExprLit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L493-L500)*
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L493-L500)*
 
 A literal in place of an expression: `1`, `"foo"`.
 
@@ -2224,11 +2167,8 @@ A literal in place of an expression: `1`, `"foo"`.
 - <span id="exprlit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprLit`
@@ -2280,7 +2220,7 @@ struct ExprLoop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L502-L511)*
+*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L502-L511)*
 
 Conditionless loop: `loop { ... }`.
 
@@ -2331,11 +2271,8 @@ Conditionless loop: `loop { ... }`.
 - <span id="exprloop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprLoop`
@@ -2385,7 +2322,7 @@ struct ExprMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L513-L520)*
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L513-L520)*
 
 A macro invocation expression: `format!("{}", q)`.
 
@@ -2436,11 +2373,8 @@ A macro invocation expression: `format!("{}", q)`.
 - <span id="exprmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprMacro`
@@ -2493,7 +2427,7 @@ struct ExprMatch {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L522-L532)*
+*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L522-L532)*
 
 A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
@@ -2544,11 +2478,8 @@ A `match` expression: `match n { Some(n) => {}, None => {} }`.
 - <span id="exprmatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprMatch`
@@ -2603,7 +2534,7 @@ struct ExprMethodCall {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L534-L546)*
+*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L534-L546)*
 
 A method call expression: `x.foo::<T>(a, b)`.
 
@@ -2654,11 +2585,8 @@ A method call expression: `x.foo::<T>(a, b)`.
 - <span id="exprmethodcall-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprMethodCall`
@@ -2709,7 +2637,7 @@ struct ExprParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L548-L556)*
+*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L548-L556)*
 
 A parenthesized expression: `(a + b)`.
 
@@ -2760,11 +2688,8 @@ A parenthesized expression: `(a + b)`.
 - <span id="exprparen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprParen`
@@ -2815,7 +2740,7 @@ struct ExprPath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L558-L569)*
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L558-L569)*
 
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
@@ -2869,11 +2794,8 @@ A plain identifier like `x` is a path of length 1.
 - <span id="exprpath-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprPath`
@@ -2925,7 +2847,7 @@ struct ExprRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L571-L580)*
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L571-L580)*
 
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
@@ -2976,11 +2898,8 @@ A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 - <span id="exprrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprRange`
@@ -3033,7 +2952,7 @@ struct ExprRawAddr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L582-L592)*
+*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L582-L592)*
 
 Address-of operation: `&raw const place` or `&raw mut place`.
 
@@ -3084,11 +3003,8 @@ Address-of operation: `&raw const place` or `&raw mut place`.
 - <span id="exprrawaddr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprRawAddr`
@@ -3140,7 +3056,7 @@ struct ExprReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L594-L603)*
+*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L594-L603)*
 
 A referencing operation: `&a` or `&mut a`.
 
@@ -3191,11 +3107,8 @@ A referencing operation: `&a` or `&mut a`.
 - <span id="exprreference-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprReference`
@@ -3248,7 +3161,7 @@ struct ExprRepeat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L605-L615)*
+*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L605-L615)*
 
 An array literal constructed from one repeated element: `[0u8; N]`.
 
@@ -3299,11 +3212,8 @@ An array literal constructed from one repeated element: `[0u8; N]`.
 - <span id="exprrepeat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprRepeat`
@@ -3354,7 +3264,7 @@ struct ExprReturn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L617-L625)*
+*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L617-L625)*
 
 A `return`, with an optional value to be returned.
 
@@ -3405,11 +3315,8 @@ A `return`, with an optional value to be returned.
 - <span id="exprreturn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprReturn`
@@ -3464,7 +3371,7 @@ struct ExprStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L627-L642)*
+*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L627-L642)*
 
 A struct literal expression: `Point { x: 1, y: 1 }`.
 
@@ -3518,11 +3425,8 @@ The `rest` provides the value of the remaining fields as in `S { a:
 - <span id="exprstruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprStruct`
@@ -3573,7 +3477,7 @@ struct ExprTry {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L644-L652)*
+*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L644-L652)*
 
 A try-expression: `expr?`.
 
@@ -3624,11 +3528,8 @@ A try-expression: `expr?`.
 - <span id="exprtry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprTry`
@@ -3679,7 +3580,7 @@ struct ExprTryBlock {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L654-L662)*
+*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L654-L662)*
 
 A try block: `try { ... }`.
 
@@ -3730,11 +3631,8 @@ A try block: `try { ... }`.
 - <span id="exprtryblock-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprTryBlock`
@@ -3785,7 +3683,7 @@ struct ExprTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L664-L672)*
+*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L664-L672)*
 
 A tuple expression: `(a, b, c, d)`.
 
@@ -3836,11 +3734,8 @@ A tuple expression: `(a, b, c, d)`.
 - <span id="exprtuple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprTuple`
@@ -3891,7 +3786,7 @@ struct ExprUnary {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L674-L682)*
+*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L674-L682)*
 
 A unary operation: `!x`, `*x`.
 
@@ -3942,11 +3837,8 @@ A unary operation: `!x`, `*x`.
 - <span id="exprunary-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprUnary`
@@ -3997,7 +3889,7 @@ struct ExprUnsafe {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L684-L692)*
+*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L684-L692)*
 
 An unsafe block: `unsafe { ... }`.
 
@@ -4048,11 +3940,8 @@ An unsafe block: `unsafe { ... }`.
 - <span id="exprunsafe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprUnsafe`
@@ -4105,7 +3994,7 @@ struct ExprWhile {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L694-L704)*
+*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L694-L704)*
 
 A while loop: `while expr { ... }`.
 
@@ -4156,11 +4045,8 @@ A while loop: `while expr { ... }`.
 - <span id="exprwhile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprWhile`
@@ -4211,7 +4097,7 @@ struct ExprYield {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L706-L714)*
+*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L706-L714)*
 
 A yield expression: `yield expr`.
 
@@ -4262,11 +4148,8 @@ A yield expression: `yield expr`.
 - <span id="expryield-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprYield`
@@ -4316,7 +4199,7 @@ struct Index {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L1049-L1056)*
+*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1049-L1056)*
 
 The index of an unnamed tuple struct field.
 
@@ -4369,11 +4252,8 @@ The index of an unnamed tuple struct field.
 - <span id="index-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Index`
@@ -4425,7 +4305,7 @@ struct FieldValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L1093-L1106)*
+*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1093-L1106)*
 
 A field-value pair in a struct literal.
 
@@ -4479,11 +4359,8 @@ A field-value pair in a struct literal.
 - <span id="fieldvalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::FieldValue`
@@ -4533,7 +4410,7 @@ struct Label {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L1109-L1116)*
+*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1109-L1116)*
 
 A lifetime labeling a `for`, `while`, or `loop`.
 
@@ -4580,11 +4457,8 @@ A lifetime labeling a `for`, `while`, or `loop`.
 - <span id="label-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Label`
@@ -4638,7 +4512,7 @@ struct Arm {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L1119-L1146)*
+*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1119-L1146)*
 
 One arm of a `match` expression: `0..=10 => { return true; }`.
 
@@ -4705,11 +4579,8 @@ match n {
 - <span id="arm-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Arm`
@@ -4799,7 +4670,7 @@ enum Expr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L35-L267)*
+*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L35-L267)*
 
 A Rust expression.
 
@@ -5061,289 +4932,151 @@ see names getting repeated in your code, like accessing
 - <span id="expr-parse-without-eager-brace"></span>`fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result), [`Expr`](#expr)
 
   An alternative to the primary `Expr::parse` parser (from the [`Parse`](../parse/index.md)
-
   trait) for ambiguous syntactic positions in which a trailing brace
-
   should not be taken as part of the expression.
-
   
-
   Rust grammar has an ambiguity where braces sometimes turn a path
-
   expression into a struct initialization and sometimes do not. In the
-
   following code, the expression `S {}` is one expression. Presumably
-
   there is an empty struct `struct S {}` defined somewhere which it is
-
   instantiating.
-
   
-
   ```rust
-
   struct S;
-
   impl std::ops::Deref for S {
-
       type Target = bool;
-
       fn deref(&self) -> &Self::Target {
-
           &true
-
       }
-
   }
-
   let _ = *S {};
-
   
-
   // parsed by rustc as: `*(S {})`
-
   ```
-
   
-
   We would want to parse the above using `Expr::parse` after the `=`
-
   token.
-
   
-
   But in the following, `S {}` is *not* a struct init expression.
-
   
-
   ```rust
-
   const S: &bool = &true;
-
   if *S {} {}
-
   
-
   // parsed by rustc as:
-
   //
-
   //    if (*S) {
-
   //        /* empty block */
-
   //    }
-
   //    {
-
   //        /* another empty block */
-
   //    }
-
   ```
-
   
-
   For that reason we would want to parse if-conditions using
-
   `Expr::parse_without_eager_brace` after the `if` token. Same for similar
-
   syntactic positions such as the condition expr after a `while` token or
-
   the expr at the top of a `match`.
-
   
-
   The Rust grammar's choices around which way this ambiguity is resolved
-
   at various syntactic positions is fairly arbitrary. Really either parse
-
   behavior could work in most positions, and language designers just
-
   decide each case based on which is more likely to be what the programmer
-
   had in mind most of the time.
-
   
-
   ```rust
-
   struct S;
-
   fn doc() -> S {
-
   if return S {} {}
-
   unreachable!()
-
   }
-
   
-
   // parsed by rustc as:
-
   //
-
   //    if (return (S {})) {
-
   //    }
-
   //
-
   // but could equally well have been this other arbitrary choice:
-
   //
-
   //    if (return S) {
-
   //    }
-
   //    {}
-
   ```
-
   
-
   Note the grammar ambiguity on trailing braces is distinct from
-
   precedence and is not captured by assigning a precedence level to the
-
   braced struct init expr in relation to other operators. This can be
-
   illustrated by `return 0..S {}` vs `match 0..S {}`. The former parses as
-
   `return (0..(S {}))` implying tighter precedence for struct init than
-
   `..`, while the latter parses as `match (0..S) {}` implying tighter
-
   precedence for `..` than struct init, a contradiction.
 
 - <span id="expr-parse-with-earlier-boundary-rule"></span>`fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result), [`Expr`](#expr)
 
   An alternative to the primary `Expr::parse` parser (from the [`Parse`](../parse/index.md)
-
   trait) for syntactic positions in which expression boundaries are placed
-
   more eagerly than done by the typical expression grammar. This includes
-
   expressions at the head of a statement or in the right-hand side of a
-
   `match` arm.
-
   
-
   Compare the following cases:
-
   
-
   1.
-
     ```rust
-
     let result = ();
-
     let guard = false;
-
     let cond = true;
-
     let f = true;
-
     let g = f;
-
   
-
     let _ = match result {
-
         () if guard => if cond { f } else { g }
-
         () => false,
-
     };
-
     ```
-
   
-
   2.
-
     ```rust
-
     let cond = true;
-
     let f = ();
-
     let g = f;
-
   
-
     let _ = || {
-
         if cond { f } else { g }
-
         ()
-
     };
-
     ```
-
   
-
   3.
-
     ```rust
-
     let cond = true;
-
     let f = || ();
-
     let g = f;
-
   
-
     let _ = [if cond { f } else { g } ()];
-
     ```
-
   
-
   The same sequence of tokens `if cond { f } else { g } ()` appears in
-
   expression position 3 times. The first two syntactic positions use eager
-
   placement of expression boundaries, and parse as `Expr::If`, with the
-
   adjacent `()` becoming `Pat::Tuple` or `Expr::Tuple`. In contrast, the
-
   third case uses standard expression boundaries and parses as
-
   `Expr::Call`.
-
   
-
   As with `parse_without_eager_brace`, this ambiguity in the Rust
-
   grammar is independent of precedence.
 
 - <span id="expr-peek"></span>`fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](../parse/index.md#parsestream)
 
   Returns whether the next token in the parse stream is one that might
-
   possibly form the beginning of an expr.
-
   
-
   This classification is a load-bearing part of the grammar of some Rust
-
   expressions, notably `return` and `break`. For example `return < …` will
-
   never parse `<` as a binary operator regardless of what comes after,
-
   because `<` is a legal starting token for an expression and so it's
-
   required to be continued as a return value, such as `return <Struct as
-
   Trait>::CONST`. Meanwhile `return > …` treats the `>` as a binary
-
   operator because it cannot be a starting token for any Rust expression.
 
 - <span id="expr-replace-attrs"></span>`fn replace_attrs(&mut self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../attr/index.md#attribute)
@@ -5391,11 +5124,8 @@ see names getting repeated in your code, like accessing
 - <span id="expr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Expr`
@@ -5445,7 +5175,7 @@ enum Member {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L971-L981)*
+*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L971-L981)*
 
 A struct or tuple struct field accessed in a struct literal or field
 expression.
@@ -5513,11 +5243,8 @@ expression.
 - <span id="member-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::Member`
@@ -5567,7 +5294,7 @@ enum RangeLimits {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L1149-L1158)*
+*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1149-L1158)*
 
 Limit types of a range, inclusive or exclusive.
 
@@ -5630,11 +5357,8 @@ Limit types of a range, inclusive or exclusive.
 - <span id="rangelimits-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::RangeLimits`
@@ -5684,7 +5408,7 @@ enum PointerMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L1161-L1169)*
+*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L1161-L1169)*
 
 Mutability of a raw pointer (`*const T`, `*mut T`), in which non-mutable
 isn't the implicit default.
@@ -5732,11 +5456,8 @@ isn't the implicit default.
 - <span id="pointermutability-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::PointerMutability`

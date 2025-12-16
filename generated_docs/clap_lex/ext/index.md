@@ -28,7 +28,7 @@ struct Split<'s, 'n> {
 }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/ext.rs:247-250`](../../../.source_1765633015/clap_lex-0.7.6/src/ext.rs#L247-L250)*
+*Defined in [`clap_lex-0.7.6/src/ext.rs:247-250`](../../../.source_1765894658/clap_lex-0.7.6/src/ext.rs#L247-L250)*
 
 #### Trait Implementations
 
@@ -55,11 +55,8 @@ struct Split<'s, 'n> {
 - <span id="split-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Split<'s, 'n>`
@@ -96,39 +93,201 @@ struct Split<'s, 'n> {
 trait OsStrExt: private::Sealed { ... }
 ```
 
-*Defined in [`clap_lex-0.7.6/src/ext.rs:4-183`](../../../.source_1765633015/clap_lex-0.7.6/src/ext.rs#L4-L183)*
+*Defined in [`clap_lex-0.7.6/src/ext.rs:4-183`](../../../.source_1765894658/clap_lex-0.7.6/src/ext.rs#L4-L183)*
 
-String-like methods for [`OsStr`](../../clap_builder/builder/os_str/index.md)
+String-like methods for [`OsStr`](#osstr)
 
 #### Required Methods
 
 - `fn try_str(&self) -> Result<&str, std::str::Utf8Error>`
 
   Converts to a string slice.
+  
+  The `Utf8Error` is guaranteed to have a valid UTF8 boundary
+  in its `valid_up_to()`
 
 - `fn contains(&self, needle: &str) -> bool`
 
   Returns `true` if the given pattern matches a sub-slice of
+  this string slice.
+  
+  Returns `false` if it does not.
+  
+  # Examples
+  
+  ```rust
+  use clap_lex::OsStrExt as _;
+  let bananas = std::ffi::OsStr::new("bananas");
+  
+  assert!(bananas.contains("nana"));
+  assert!(!bananas.contains("apples"));
+  ```
 
 - `fn find(&self, needle: &str) -> Option<usize>`
 
   Returns the byte index of the first character of this string slice that
+  matches the pattern.
+  
+  Returns [`None`](#none) if the pattern doesn't match.
+  
+  # Examples
+  
+  ```rust
+  use clap_lex::OsStrExt as _;
+  let s = std::ffi::OsStr::new("Löwe 老虎 Léopard Gepardi");
+  
+  assert_eq!(s.find("L"), Some(0));
+  assert_eq!(s.find("é"), Some(14));
+  assert_eq!(s.find("par"), Some(17));
+  ```
+  
+  Not finding the pattern:
+  
+  ```rust
+  use clap_lex::OsStrExt as _;
+  let s = std::ffi::OsStr::new("Löwe 老虎 Léopard");
+  
+  assert_eq!(s.find("1"), None);
+  ```
 
 - `fn strip_prefix(&self, prefix: &str) -> Option<&OsStr>`
 
   Returns a string slice with the prefix removed.
+  
+  If the string starts with the pattern `prefix`, returns substring after the prefix, wrapped
+  in `Some`.
+  
+  If the string does not start with `prefix`, returns `None`.
+  
+  # Examples
+  
+  ```rust
+  use std::ffi::OsStr;
+  use clap_lex::OsStrExt as _;
+  assert_eq!(OsStr::new("foo:bar").strip_prefix("foo:"), Some(OsStr::new("bar")));
+  assert_eq!(OsStr::new("foo:bar").strip_prefix("bar"), None);
+  assert_eq!(OsStr::new("foofoo").strip_prefix("foo"), Some(OsStr::new("foo")));
+  ```
 
 - `fn starts_with(&self, prefix: &str) -> bool`
 
   Returns `true` if the given pattern matches a prefix of this
+  string slice.
+  
+  Returns `false` if it does not.
+  
+  # Examples
+  
+  ```rust
+  use clap_lex::OsStrExt as _;
+  let bananas = std::ffi::OsStr::new("bananas");
+  
+  assert!(bananas.starts_with("bana"));
+  assert!(!bananas.starts_with("nana"));
+  ```
 
 - `fn split<'s, 'n>(self: &'s Self, needle: &'n str) -> Split<'s, 'n>`
 
   An iterator over substrings of this string slice, separated by
+  characters matched by a pattern.
+  
+  # Examples
+  
+  Simple patterns:
+  
+  ```rust
+  use std::ffi::OsStr;
+  use clap_lex::OsStrExt as _;
+  let v: Vec<_> = OsStr::new("Mary had a little lamb").split(" ").collect();
+  assert_eq!(v, [OsStr::new("Mary"), OsStr::new("had"), OsStr::new("a"), OsStr::new("little"), OsStr::new("lamb")]);
+  
+  let v: Vec<_> = OsStr::new("").split("X").collect();
+  assert_eq!(v, [OsStr::new("")]);
+  
+  let v: Vec<_> = OsStr::new("lionXXtigerXleopard").split("X").collect();
+  assert_eq!(v, [OsStr::new("lion"), OsStr::new(""), OsStr::new("tiger"), OsStr::new("leopard")]);
+  
+  let v: Vec<_> = OsStr::new("lion::tiger::leopard").split("::").collect();
+  assert_eq!(v, [OsStr::new("lion"), OsStr::new("tiger"), OsStr::new("leopard")]);
+  ```
+  
+  If a string contains multiple contiguous separators, you will end up
+  with empty strings in the output:
+  
+  ```rust
+  use std::ffi::OsStr;
+  use clap_lex::OsStrExt as _;
+  let x = OsStr::new("||||a||b|c");
+  let d: Vec<_> = x.split("|").collect();
+  
+  assert_eq!(d, &[OsStr::new(""), OsStr::new(""), OsStr::new(""), OsStr::new(""), OsStr::new("a"), OsStr::new(""), OsStr::new("b"), OsStr::new("c")]);
+  ```
+  
+  Contiguous separators are separated by the empty string.
+  
+  ```rust
+  use std::ffi::OsStr;
+  use clap_lex::OsStrExt as _;
+  let x = OsStr::new("(///)");
+  let d: Vec<_> = x.split("/").collect();
+  
+  assert_eq!(d, &[OsStr::new("("), OsStr::new(""), OsStr::new(""), OsStr::new(")")]);
+  ```
+  
+  Separators at the start or end of a string are neighbored
+  by empty strings.
+  
+  ```rust
+  use std::ffi::OsStr;
+  use clap_lex::OsStrExt as _;
+  let d: Vec<_> = OsStr::new("010").split("0").collect();
+  assert_eq!(d, &[OsStr::new(""), OsStr::new("1"), OsStr::new("")]);
+  ```
+  
+  When the empty string is used as a separator, it panics
+  
+  ```should_panic
+  use std::ffi::OsStr;
+  use clap_lex::OsStrExt as _;
+  let f: Vec<_> = OsStr::new("rust").split("").collect();
+  assert_eq!(f, &[OsStr::new(""), OsStr::new("r"), OsStr::new("u"), OsStr::new("s"), OsStr::new("t"), OsStr::new("")]);
+  ```
+  
+  Contiguous separators can lead to possibly surprising behavior
+  when whitespace is used as the separator. This code is correct:
+  
+  ```rust
+  use std::ffi::OsStr;
+  use clap_lex::OsStrExt as _;
+  let x = OsStr::new("    a  b c");
+  let d: Vec<_> = x.split(" ").collect();
+  
+  assert_eq!(d, &[OsStr::new(""), OsStr::new(""), OsStr::new(""), OsStr::new(""), OsStr::new("a"), OsStr::new(""), OsStr::new("b"), OsStr::new("c")]);
+  ```
+  
+  It does _not_ give you:
+  
+  ```,ignore
+  assert_eq!(d, &[OsStr::new("a"), OsStr::new("b"), OsStr::new("c")]);
+  ```
+  
+  Use `split_whitespace` for this behavior.
 
 - `fn split_once(&self, needle: &str) -> Option<(&OsStr, &OsStr)>`
 
   Splits the string on the first occurrence of the specified delimiter and
+  returns prefix before delimiter and suffix after delimiter.
+  
+  # Examples
+  
+  ```rust
+  use std::ffi::OsStr;
+  use clap_lex::OsStrExt as _;
+  assert_eq!(OsStr::new("cfg").split_once("="), None);
+  assert_eq!(OsStr::new("cfg=").split_once("="), Some((OsStr::new("cfg"), OsStr::new(""))));
+  assert_eq!(OsStr::new("cfg=foo").split_once("="), Some((OsStr::new("cfg"), OsStr::new("foo"))));
+  assert_eq!(OsStr::new("cfg=foo=bar").split_once("="), Some((OsStr::new("cfg"), OsStr::new("foo=bar"))));
+  ```
 
 #### Implementors
 
@@ -142,7 +301,7 @@ String-like methods for [`OsStr`](../../clap_builder/builder/os_str/index.md)
 unsafe fn split_at(os: &std::ffi::OsStr, index: usize) -> (&std::ffi::OsStr, &std::ffi::OsStr)
 ```
 
-*Defined in [`clap_lex-0.7.6/src/ext.rs:275-284`](../../../.source_1765633015/clap_lex-0.7.6/src/ext.rs#L275-L284)*
+*Defined in [`clap_lex-0.7.6/src/ext.rs:275-284`](../../../.source_1765894658/clap_lex-0.7.6/src/ext.rs#L275-L284)*
 
 Split an `OsStr`
 

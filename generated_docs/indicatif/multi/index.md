@@ -24,7 +24,7 @@ struct MultiProgress {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../../.source_1765633015/indicatif-0.18.3/src/multi.rs#L18-L20)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L18-L20)*
 
 Manages multiple progress bars from different threads
 
@@ -33,15 +33,10 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-new"></span>`fn new() -> Self`
 
   Creates a new multi progress object.
-
   
-
   Progress bars added to this object by default draw directly to stderr, and refresh
-
   a maximum of 15 times a second. To change the refresh rate [`set`](../../hashbrown/set/index.md) the [draw target] to
-
   one with a different refresh rate.
-
   
 
 - <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md#progressdrawtarget)
@@ -51,19 +46,14 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md#progressdrawtarget)
 
   Sets a different draw target for the multiprogress bar.
-
   
-
   Use `MultiProgress::with_draw_target` to set the draw target during creation.
 
 - <span id="multiprogress-set-move-cursor"></span>`fn set_move_cursor(&self, move_cursor: bool)`
 
   Set whether we should try to move the cursor when possible instead of clearing lines.
-
   
-
   This can reduce flickering, but do not enable it if you intend to change the number of
-
   progress bars.
 
 - <span id="multiprogress-set-alignment"></span>`fn set_alignment(&self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](#multiprogressalignment)
@@ -73,125 +63,75 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
   Adds a progress bar.
-
   
-
   The progress bar added will have the draw target changed to a
-
   remote draw target that is intercepted by the multi progress
-
   object overriding custom [`ProgressDrawTarget`](../draw_target/index.md) settings.
-
   
-
   The progress bar will be positioned below all other bars currently
-
   in the [`MultiProgress`](#multiprogress).
-
   
-
   Adding a progress bar that is already a member of the [`MultiProgress`](#multiprogress)
-
   will have no effect.
 
 - <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
   Inserts a progress bar.
-
   
-
   The progress bar inserted at position `index` will have the draw
-
   target changed to a remote draw target that is intercepted by the
-
   multi progress object overriding custom [`ProgressDrawTarget`](../draw_target/index.md) settings.
-
   
-
   If `index >= MultiProgressState::objects.len()`, the progress bar
-
   is added to the end of the list.
-
   
-
   Inserting a progress bar that is already a member of the [`MultiProgress`](#multiprogress)
-
   will have no effect.
 
 - <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
   Inserts a progress bar from the back.
-
   
-
   The progress bar inserted at position `MultiProgressState::objects.len() - index`
-
   will have the draw target changed to a remote draw target that is
-
   intercepted by the multi progress object overriding custom
-
   [`ProgressDrawTarget`](../draw_target/index.md) settings.
-
   
-
   If `index >= MultiProgressState::objects.len()`, the progress bar
-
   is added to the start of the list.
-
   
-
   Inserting a progress bar that is already a member of the [`MultiProgress`](#multiprogress)
-
   will have no effect.
 
 - <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
   Inserts a progress bar before an existing one.
-
   
-
   The progress bar added will have the draw target changed to a
-
   remote draw target that is intercepted by the multi progress
-
   object overriding custom [`ProgressDrawTarget`](../draw_target/index.md) settings.
-
   
-
   Inserting a progress bar that is already a member of the [`MultiProgress`](#multiprogress)
-
   will have no effect.
 
 - <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
   Inserts a progress bar after an existing one.
-
   
-
   The progress bar added will have the draw target changed to a
-
   remote draw target that is intercepted by the multi progress
-
   object overriding custom [`ProgressDrawTarget`](../draw_target/index.md) settings.
-
   
-
   Inserting a progress bar that is already a member of the [`MultiProgress`](#multiprogress)
-
   will have no effect.
 
 - <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](../progress_bar/index.md#progressbar)
 
   Removes a progress bar.
-
   
-
   The progress bar is removed only if it was previously inserted or added
-
   by the methods `MultiProgress::insert` or `MultiProgress::add`.
-
   If the passed progress bar does not satisfy the condition above,
-
   the `remove` method does nothing.
 
 - <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](#insertlocation), [`ProgressBar`](../progress_bar/index.md#progressbar)
@@ -199,31 +139,20 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-println"></span>`fn println<I: AsRef<str>>(&self, msg: I) -> io::Result<()>`
 
   Print a log line above all progress bars in the [`MultiProgress`](#multiprogress)
-
   
-
   If the draw target is hidden (e.g. when standard output is not a terminal), `println()`
-
   will not do anything.
 
 - <span id="multiprogress-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
   Hide all progress bars temporarily, execute `f`, then redraw the [`MultiProgress`](#multiprogress)
-
   
-
   Executes 'f' even if the draw target is hidden.
-
   
-
   Useful for external code that writes to the standard output.
-
   
-
   **Note:** The internal lock is held while `f` is executed. Other threads trying to print
-
   anything on the progress bar will be blocked until `f` finishes.
-
   Therefore, it is recommended to avoid long-running operations in `f`.
 
 - <span id="multiprogress-clear"></span>`fn clear(&self) -> io::Result<()>`
@@ -271,11 +200,8 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MultiProgress`
@@ -312,7 +238,7 @@ struct MultiState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:207-224`](../../../.source_1765633015/indicatif-0.18.3/src/multi.rs#L207-L224)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:207-224`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L207-L224)*
 
 #### Fields
 
@@ -401,11 +327,8 @@ struct MultiState {
 - <span id="multistate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for MultiState`
@@ -429,7 +352,7 @@ struct MultiStateMember {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:471-477`](../../../.source_1765633015/indicatif-0.18.3/src/multi.rs#L471-L477)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:471-477`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L471-L477)*
 
 #### Fields
 
@@ -475,11 +398,8 @@ struct MultiStateMember {
 - <span id="multistatemember-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for MultiStateMember`
@@ -505,7 +425,7 @@ enum MultiProgressAlignment {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../../.source_1765633015/indicatif-0.18.3/src/multi.rs#L505-L509)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L505-L509)*
 
 Vertical alignment of a multi progress.
 
@@ -567,11 +487,8 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 - <span id="multiprogressalignment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MultiProgressAlignment`
@@ -606,7 +523,7 @@ enum InsertLocation {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:511-517`](../../../.source_1765633015/indicatif-0.18.3/src/multi.rs#L511-L517)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:511-517`](../../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L511-L517)*
 
 #### Trait Implementations
 
@@ -633,11 +550,8 @@ enum InsertLocation {
 - <span id="insertlocation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for InsertLocation`

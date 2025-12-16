@@ -51,7 +51,7 @@ struct AtomicCounters {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:3-16`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L3-L16)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:3-16`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L3-L16)*
 
 #### Fields
 
@@ -76,9 +76,7 @@ struct AtomicCounters {
 - <span id="atomiccounters-load"></span>`fn load(&self, ordering: Ordering) -> Counters` — [`Counters`](#counters)
 
   Load and return the current value of the various counters.
-
   This value can then be given to other method which will
-
   attempt to update the counters via compare-and-swap.
 
 - <span id="atomiccounters-try-exchange"></span>`fn try_exchange(&self, old_value: Counters, new_value: Counters, ordering: Ordering) -> bool` — [`Counters`](#counters)
@@ -86,49 +84,33 @@ struct AtomicCounters {
 - <span id="atomiccounters-add-inactive-thread"></span>`fn add_inactive_thread(&self)`
 
   Adds an inactive thread. This cannot fail.
-
   
-
   This should be invoked when a thread enters its idle loop looking
-
   for work. It is decremented when work is found. Note that it is
-
   not decremented if the thread transitions from idle to sleepy or sleeping;
-
   so the number of inactive threads is always greater-than-or-equal
-
   to the number of sleeping threads.
 
 - <span id="atomiccounters-increment-jobs-event-counter-if"></span>`fn increment_jobs_event_counter_if(&self, increment_when: impl Fn(JobsEventCounter) -> bool) -> Counters` — [`JobsEventCounter`](#jobseventcounter), [`Counters`](#counters)
 
   Increments the jobs event counter if `increment_when`, when applied to
-
   the current value, is true. Used to toggle the JEC from even (sleepy) to
-
   odd (active) or vice versa. Returns the final value of the counters, for
-
   which `increment_when` is guaranteed to return false.
 
 - <span id="atomiccounters-sub-inactive-thread"></span>`fn sub_inactive_thread(&self) -> usize`
 
   Subtracts an inactive thread. This cannot fail. It is invoked
-
   when a thread finds work and hence becomes active. It returns the
-
   number of sleeping threads to wake up (if any).
-
   
-
   See `add_inactive_thread`.
 
 - <span id="atomiccounters-sub-sleeping-thread"></span>`fn sub_sleeping_thread(&self)`
 
   Subtracts a sleeping thread. This cannot fail, but it is only
-
   safe to do if you you know the number of sleeping threads is
-
   non-zero (i.e., because you have just awoken a sleeping
-
   thread).
 
 - <span id="atomiccounters-try-add-sleeping-thread"></span>`fn try_add_sleeping_thread(&self, old_value: Counters) -> bool` — [`Counters`](#counters)
@@ -158,11 +140,8 @@ struct AtomicCounters {
 - <span id="atomiccounters-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for AtomicCounters`
@@ -199,7 +178,7 @@ struct Counters {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:19-21`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L19-L21)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:19-21`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L19-L21)*
 
 #### Implementations
 
@@ -212,7 +191,6 @@ struct Counters {
 - <span id="counters-inactive-threads"></span>`fn inactive_threads(self) -> usize`
 
   The number of threads that are not actively
-
   executing work. They may be idle, sleepy, or asleep.
 
 - <span id="counters-awake-but-idle-threads"></span>`fn awake_but_idle_threads(self) -> usize`
@@ -258,11 +236,8 @@ struct Counters {
 - <span id="counters-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Counters`
@@ -305,7 +280,7 @@ struct Counters {
 struct JobsEventCounter(usize);
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:27`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L27)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:27`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L27)*
 
 A value read from the **Jobs Event Counter**.
 See the [`README.md`](README.md) for more
@@ -320,19 +295,14 @@ coverage of how the jobs event counter works.
 - <span id="jobseventcounter-is-sleepy"></span>`fn is_sleepy(self) -> bool`
 
   The JEC "is sleepy" if the last thread to increment it was in the
-
   process of becoming sleepy. This is indicated by its value being *even*.
-
   When new jobs are posted, they check if the JEC is sleepy, and if so
-
   they incremented it.
 
 - <span id="jobseventcounter-is-active"></span>`fn is_active(self) -> bool`
 
   The JEC "is active" if the last thread to increment it was posting new
-
   work. This is indicated by its value being *odd*. When threads get
-
   sleepy, they will check if the JEC is active, and increment it.
 
 #### Trait Implementations
@@ -374,11 +344,8 @@ coverage of how the jobs event counter works.
 - <span id="jobseventcounter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for JobsEventCounter`
@@ -433,7 +400,7 @@ coverage of how the jobs event counter works.
 fn select_thread(word: usize, shift: usize) -> usize
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:210-212`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L210-L212)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:210-212`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L210-L212)*
 
 ### `select_jec`
 
@@ -441,7 +408,7 @@ fn select_thread(word: usize, shift: usize) -> usize
 fn select_jec(word: usize) -> usize
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:215-217`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L215-L217)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:215-217`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L215-L217)*
 
 ## Constants
 
@@ -450,7 +417,7 @@ fn select_jec(word: usize) -> usize
 const THREADS_BITS: usize = 16usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:57`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L57)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:57`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L57)*
 
 Number of bits used for the thread counters.
 
@@ -459,7 +426,7 @@ Number of bits used for the thread counters.
 const SLEEPING_SHIFT: usize = 0usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:65`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L65)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:65`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L65)*
 
 Bits to shift to select the sleeping threads
 (used with `select_bits`).
@@ -469,7 +436,7 @@ Bits to shift to select the sleeping threads
 const INACTIVE_SHIFT: usize = 16usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:70`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L70)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:70`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L70)*
 
 Bits to shift to select the inactive threads
 (used with `select_bits`).
@@ -479,7 +446,7 @@ Bits to shift to select the inactive threads
 const JEC_SHIFT: usize = 32usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:74`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L74)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:74`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L74)*
 
 Bits to shift to select the JEC
 (use JOBS_BITS).
@@ -489,7 +456,7 @@ Bits to shift to select the JEC
 const THREADS_MAX: usize = 65_535usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:77`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L77)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:77`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L77)*
 
 Max value for the thread counters.
 
@@ -498,7 +465,7 @@ Max value for the thread counters.
 const ONE_SLEEPING: usize = 1usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:80`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L80)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:80`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L80)*
 
 Constant that can be added to add one sleeping thread.
 
@@ -507,7 +474,7 @@ Constant that can be added to add one sleeping thread.
 const ONE_INACTIVE: usize = 65_536usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:84`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L84)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:84`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L84)*
 
 Constant that can be added to add one inactive thread.
 An inactive thread is either idle, sleepy, or sleeping.
@@ -517,7 +484,7 @@ An inactive thread is either idle, sleepy, or sleeping.
 const ONE_JEC: usize = 4_294_967_296usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:87`](../../../../.source_1765633015/rayon-core-1.13.0/src/sleep/counters.rs#L87)*
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:87`](../../../../.source_1765894658/rayon-core-1.13.0/src/sleep/counters.rs#L87)*
 
 Constant that can be added to add one to the JEC.
 

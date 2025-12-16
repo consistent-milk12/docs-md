@@ -18,5 +18,5 @@
 fn lookup(c: char) -> bool
 ```
 
-*Defined in [`compact_str-0.9.0/src/unicode_data.rs:132-138`](../../../../.source_1765633015/compact_str-0.9.0/src/unicode_data.rs#L132-L138)*
+*Defined in [`compact_str-0.9.0/src/unicode_data.rs:132-138`](../../../../.source_1765894658/compact_str-0.9.0/src/unicode_data.rs#L132-L138)*
 

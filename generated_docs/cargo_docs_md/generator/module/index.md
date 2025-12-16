@@ -61,95 +61,56 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](../context/index.md#rendercontext)
 
   Create a new module renderer.
-
   
-
   # Arguments
-
   
-
   * `ctx` - Render context (implements `RenderContext` trait)
-
   * `current_file` - Path of this file (for relative link calculation)
-
   * `is_root` - True if this is the crate root module
 
 - <span id="modulerenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
 
   Process documentation string to resolve intra-doc links.
-
   
-
   Delegates to the render context's `process_docs` method, which handles
-
   both single-crate and multi-crate link resolution.
 
 - <span id="modulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
 
   Generate the complete markdown content for a module.
-
   
-
   # Output Structure
-
   
-
   ```markdown
-
   Crate `name` (or Module `name`)
-
   
-
   [module documentation]
-
   
-
   ## Contents (if items exceed threshold)
-
   - [Structs](#structs)
-
     - [`Parser`](#parser)
-
   
-
   ## Modules
-
   - [submodule](link) - first line of docs
-
   
-
   ## Structs
-
   ### `StructName`
-
   [struct definition and docs]
-
   
-
   ## Enums
-
   ...
-
   ```
 
 - <span id="modulerenderer-categorize-items"></span>`fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](#categorizeditems)
 
   Categorize module items by type for organized rendering.
-
   
-
   Items are categorized into groups for structured documentation.
-
   - Modules (for navigation)
-
   - Types (structs, enums, unions, type aliases)
-
   - Traits
-
   - Functions
-
   - Constants and statics
-
   - Macros
 
 - <span id="modulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport(&self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)` — [`CategorizedItems`](#categorizeditems)
@@ -159,71 +120,40 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](#categorizeditems)
 
   Render all item sections with horizontal rule separators.
-
   
-
   Sections are rendered in this order:
-
   1. Modules (navigation, no separator before)
-
   2. Types (structs, enums, unions, type aliases)
-
   3. Traits
-
   4. Functions
-
   5. Constants
-
   6. Statics
-
   7. Macros
-
   
-
   Horizontal rules (`---`) are added between major sections for
-
   visual separation in the rendered output.
 
 - <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](#categorizeditems)
 
   Render the Types section (structs, enums, unions, type aliases).
-
   
-
   All type definitions are grouped under a single "Types" heading,
-
   with each item type rendered in subsections:
-
   
-
   ```markdown
-
   ## Types
-
   
-
   ### `MyStruct`
-
   [struct definition]
-
   
-
   ### `MyEnum`
-
   [enum definition]
-
   
-
   ### `MyUnion`
-
   [union definition]
-
   
-
   ### `MyAlias`
-
   [type alias definition]
-
   ```
 
 - <span id="modulerenderer-render-statics-section"></span>`fn render_statics_section(&self, md: &mut String, statics: &[&Item])`
@@ -233,45 +163,29 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](#categorizeditems), [`TocEntry`](../toc/index.md#tocentry)
 
   Build TOC entries from categorized items.
-
   
-
   Creates a hierarchical structure for the table of contents:
-
   - Modules section
-
   - Types section (with children: structs, enums, unions, type aliases)
-
   - Traits section
-
   - Functions section
-
   - Constants section
-
   - Statics section
-
   - Macros section
 
 - <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](#categorizeditems), [`QuickRefEntry`](../quick_ref/index.md#quickrefentry)
 
   Build quick reference entries from categorized items.
-
   
-
   Creates a flat list of entries for the quick reference table,
-
   including all item types with their names, kinds, and summaries.
-
   For re-exports, uses the target item's docs when the re-export lacks its own.
 
 - <span id="modulerenderer-get-item-summary"></span>`fn get_item_summary(&self, item: &Item, item_id: Id) -> String`
 
   Get summary for an item, with fallback for re-exports.
-
   
-
   For re-exports (`ItemEnum::Use`), if the item has no docs, falls back
-
   to the target item's documentation.
 
 - <span id="modulerenderer-render-modules-section"></span>`fn render_modules_section(&self, md: &mut String, modules: &[(&Id, &Item)])`
@@ -325,11 +239,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ModuleRenderer<'a>`
@@ -444,19 +355,14 @@ This organization improves navigation by grouping related items together.
 - <span id="categorizeditems-has-types"></span>`const fn has_types(&self) -> bool`
 
   Check if the Types section has any items.
-
   
-
   Returns true if there are any structs, enums, unions, or type aliases.
 
 - <span id="categorizeditems-sort"></span>`fn sort(&mut self)`
 
   Sort all item categories alphabetically by name for deterministic output.
-
   
-
   This ensures consistent ordering regardless of `HashMap` iteration order
-
   in the rustdoc JSON index.
 
 #### Trait Implementations
@@ -490,11 +396,8 @@ This organization improves navigation by grouping related items together.
 - <span id="categorizeditems-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CategorizedItems<'a>`

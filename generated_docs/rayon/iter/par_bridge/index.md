@@ -22,7 +22,7 @@ struct IterBridge<Iter> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:72-74`](../../../../.source_1765633015/rayon-1.11.0/src/iter/par_bridge.rs#L72-L74)*
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:72-74`](../../../../.source_1765894658/rayon-1.11.0/src/iter/par_bridge.rs#L72-L74)*
 
 `IterBridge` is a parallel iterator that wraps a sequential iterator.
 
@@ -66,11 +66,8 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 - <span id="iterbridge-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IterBridge<Iter>`
@@ -133,7 +130,7 @@ struct IterParallelProducer<'a, Iter> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:100-104`](../../../../.source_1765633015/rayon-1.11.0/src/iter/par_bridge.rs#L100-L104)*
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:100-104`](../../../../.source_1765894658/rayon-1.11.0/src/iter/par_bridge.rs#L100-L104)*
 
 #### Trait Implementations
 
@@ -160,11 +157,8 @@ struct IterParallelProducer<'a, Iter> {
 - <span id="iterparallelproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IterParallelProducer<'a, Iter>`
@@ -211,7 +205,7 @@ struct IterParallelProducer<'a, Iter> {
 trait ParallelBridge: Sized { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../../.source_1765633015/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../../.source_1765894658/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
 
 Conversion trait to convert an `Iterator` to a `ParallelIterator`.
 

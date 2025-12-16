@@ -32,7 +32,7 @@ struct Queue<T> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:22-25`](../../../../.source_1765633015/crossbeam-epoch-0.9.18/src/sync/queue.rs#L22-L25)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:22-25`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/queue.rs#L22-L25)*
 
 #### Implementations
 
@@ -43,7 +43,6 @@ struct Queue<T> {
 - <span id="queue-push-internal"></span>`fn push_internal(&self, onto: Shared<'_, Node<T>>, new: Shared<'_, Node<T>>, guard: &Guard) -> bool` — [`Shared`](../../atomic/index.md#shared), [`Node`](#node), [`Guard`](../../guard/index.md#guard)
 
   Attempts to atomically place `n` into the `next` pointer of `onto`, and returns `true` on
-
   success. The queue's `tail` pointer may be updated.
 
 - <span id="queue-push"></span>`fn push(&self, t: T, guard: &Guard)` — [`Guard`](../../guard/index.md#guard)
@@ -57,25 +56,19 @@ struct Queue<T> {
 - <span id="queue-pop-if-internal"></span>`fn pop_if_internal<F>(&self, condition: F, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md#guard)
 
   Attempts to pop a data node, if the data satisfies the given condition. `Ok(None)` if queue
-
   is empty or the data does not satisfy the condition; `Err(())` if lost race to pop.
 
 - <span id="queue-try-pop"></span>`fn try_pop(&self, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md#guard)
 
   Attempts to dequeue from the front.
-
   
-
   Returns `None` if the queue is observed to be empty.
 
 - <span id="queue-try-pop-if"></span>`fn try_pop_if<F>(&self, condition: F, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md#guard)
 
   Attempts to dequeue from the front, if the item satisfies the given condition.
-
   
-
   Returns `None` if the queue is observed to be empty, or the head does not satisfy the given
-
   condition.
 
 #### Trait Implementations
@@ -111,11 +104,8 @@ struct Queue<T> {
 - <span id="queue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Queue<T>`
@@ -157,7 +147,7 @@ struct Node<T> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:27-37`](../../../../.source_1765633015/crossbeam-epoch-0.9.18/src/sync/queue.rs#L27-L37)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:27-37`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/queue.rs#L27-L37)*
 
 #### Fields
 
@@ -195,11 +185,8 @@ struct Node<T> {
 - <span id="node-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Node<T>`

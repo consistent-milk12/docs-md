@@ -23,7 +23,7 @@ struct SumConsumer<S: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/sum.rs:19-21`](../../../../.source_1765633015/rayon-1.11.0/src/iter/sum.rs#L19-L21)*
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:19-21`](../../../../.source_1765894658/rayon-1.11.0/src/iter/sum.rs#L19-L21)*
 
 #### Implementations
 
@@ -68,11 +68,8 @@ struct SumConsumer<S: Send> {
 - <span id="sumconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SumConsumer<S>`
@@ -123,7 +120,7 @@ struct SumFolder<S> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/sum.rs:78-80`](../../../../.source_1765633015/rayon-1.11.0/src/iter/sum.rs#L78-L80)*
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:78-80`](../../../../.source_1765894658/rayon-1.11.0/src/iter/sum.rs#L78-L80)*
 
 #### Trait Implementations
 
@@ -162,11 +159,8 @@ struct SumFolder<S> {
 - <span id="sumfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SumFolder<S>`
@@ -208,7 +202,7 @@ where
     S: Send + Sum<<PI as >::Item> + Sum
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/sum.rs:7-13`](../../../../.source_1765633015/rayon-1.11.0/src/iter/sum.rs#L7-L13)*
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:7-13`](../../../../.source_1765894658/rayon-1.11.0/src/iter/sum.rs#L7-L13)*
 
 ### `add`
 
@@ -216,5 +210,5 @@ where
 fn add<T: Sum>(left: T, right: T) -> T
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/sum.rs:15-17`](../../../../.source_1765633015/rayon-1.11.0/src/iter/sum.rs#L15-L17)*
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:15-17`](../../../../.source_1765894658/rayon-1.11.0/src/iter/sum.rs#L15-L17)*
 

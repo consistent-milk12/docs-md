@@ -21,7 +21,7 @@ struct WaitGroup {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
 
 Enables threads to synchronize the beginning or end of some computation.
 
@@ -70,67 +70,38 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 - <span id="waitgroup-new"></span>`fn new() -> Self`
 
   Creates a new wait group and returns the single reference to it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::WaitGroup;
-
   
-
   let wg = WaitGroup::new();
-
   ```
 
 - <span id="waitgroup-wait"></span>`fn wait(self)`
 
   Drops this reference and waits until all other references are dropped.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::WaitGroup;
-
   use std::thread;
-
   
-
   let wg = WaitGroup::new();
-
   
-
   thread::spawn({
-
       let wg = wg.clone();
-
       move || {
-
           // Block until both threads have reached `wait()`.
-
           wg.wait();
-
       }
-
   });
-
   
-
   // Block until both threads have reached `wait()`.
-
   wg.wait();
-
   std::thread::sleep(std::time::Duration::from_millis(500)); // wait for background threads closed: https://github.com/rust-lang/miri/issues/1371
-
   ```
 
 #### Trait Implementations
@@ -178,11 +149,8 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 - <span id="waitgroup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for WaitGroup`
@@ -214,7 +182,7 @@ struct Inner {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:51-54`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L51-L54)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:51-54`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L51-L54)*
 
 Inner state of a `WaitGroup`.
 
@@ -243,11 +211,8 @@ Inner state of a `WaitGroup`.
 - <span id="inner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Inner`

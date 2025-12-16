@@ -25,7 +25,7 @@
 struct Quoted<D>(D);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/context.rs:228`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/context.rs#L228)*
+*Defined in [`miette-7.6.0/src/eyreish/context.rs:228`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/context.rs#L228)*
 
 #### Trait Implementations
 
@@ -56,11 +56,8 @@ struct Quoted<D>(D);
 - <span id="quoted-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<D> OwoColorize for Quoted<D>`

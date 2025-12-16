@@ -26,7 +26,7 @@ struct GlobalSeedStorage {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:181-184`](../../../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L181-L184)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:181-184`](../../../../.source_1765894658/foldhash-0.2.0/src/seed.rs#L181-L184)*
 
 #### Trait Implementations
 
@@ -53,11 +53,8 @@ struct GlobalSeedStorage {
 - <span id="globalseedstorage-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Sync for GlobalSeedStorage`
@@ -82,7 +79,7 @@ struct GlobalSeed {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:205-208`](../../../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L205-L208)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:205-208`](../../../../.source_1765894658/foldhash-0.2.0/src/seed.rs#L205-L208)*
 
 An object representing an initialized global seed.
 
@@ -136,11 +133,8 @@ This prevents inflating the RandomState size and in turn HashMap's size.
 - <span id="globalseed-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for GlobalSeed`
@@ -163,7 +157,7 @@ This prevents inflating the RandomState size and in turn HashMap's size.
 fn generate_global_seed() -> SharedSeed
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:140-174`](../../../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L140-L174)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:140-174`](../../../../.source_1765894658/foldhash-0.2.0/src/seed.rs#L140-L174)*
 
 ## Constants
 
@@ -172,19 +166,19 @@ fn generate_global_seed() -> SharedSeed
 const UNINIT: u8 = 0u8;
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:186`](../../../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L186)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:186`](../../../../.source_1765894658/foldhash-0.2.0/src/seed.rs#L186)*
 
 ### `LOCKED`
 ```rust
 const LOCKED: u8 = 1u8;
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:187`](../../../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L187)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:187`](../../../../.source_1765894658/foldhash-0.2.0/src/seed.rs#L187)*
 
 ### `INIT`
 ```rust
 const INIT: u8 = 2u8;
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:188`](../../../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L188)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:188`](../../../../.source_1765894658/foldhash-0.2.0/src/seed.rs#L188)*
 

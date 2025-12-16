@@ -245,7 +245,7 @@ struct Memchr<'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:288-291`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L288-L291)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:288-291`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L288-L291)*
 
 An iterator over all occurrences of a single byte in a haystack.
 
@@ -263,13 +263,9 @@ searched.
 - <span id="memchr-new"></span>`fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](memchr/index.md#memchr)
 
   Returns an iterator over all occurrences of the needle byte in the
-
   given haystack.
-
   
-
   The iterator returned implements `DoubleEndedIterator`. This means it
-
   can also be used to find occurrences in reverse order.
 
 #### Trait Implementations
@@ -315,11 +311,8 @@ searched.
 - <span id="memchr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Memchr<'h>`
@@ -370,7 +363,7 @@ struct Memchr2<'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:364-368`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L364-L368)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:364-368`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L364-L368)*
 
 An iterator over all occurrences of two possible bytes in a haystack.
 
@@ -388,13 +381,9 @@ searched.
 - <span id="memchr2-new"></span>`fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md#memchr2)
 
   Returns an iterator over all occurrences of the needle bytes in the
-
   given haystack.
-
   
-
   The iterator returned implements `DoubleEndedIterator`. This means it
-
   can also be used to find occurrences in reverse order.
 
 #### Trait Implementations
@@ -440,11 +429,8 @@ searched.
 - <span id="memchr2-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Memchr2<'h>`
@@ -494,7 +480,7 @@ struct Memchr3<'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:432-437`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L432-L437)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:432-437`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L432-L437)*
 
 An iterator over all occurrences of three possible bytes in a haystack.
 
@@ -512,13 +498,9 @@ searched.
 - <span id="memchr3-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md#memchr3)
 
   Returns an iterator over all occurrences of the needle bytes in the
-
   given haystack.
-
   
-
   The iterator returned implements `DoubleEndedIterator`. This means it
-
   can also be used to find occurrences in reverse order.
 
 #### Trait Implementations
@@ -564,11 +546,8 @@ searched.
 - <span id="memchr3-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Memchr3<'h>`
@@ -615,7 +594,7 @@ searched.
 fn memchr(needle: u8, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:27-35`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L27-L35)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:27-35`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L27-L35)*
 
 Search for the first occurrence of a byte in a slice.
 
@@ -645,7 +624,7 @@ assert_eq!(memchr(b'k', haystack), Some(8));
 fn memchr2(needle1: u8, needle2: u8, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:92-100`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L92-L100)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:92-100`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L92-L100)*
 
 Search for the first occurrence of two possible bytes in a haystack.
 
@@ -676,7 +655,7 @@ assert_eq!(memchr2(b'k', b'q', haystack), Some(4));
 fn memchr2_iter<'h>(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:232-238`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L232-L238)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:232-238`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L232-L238)*
 
 Returns an iterator over all occurrences of the needles in a haystack.
 
@@ -689,7 +668,7 @@ can also be used to find occurrences in reverse order.
 fn memchr3(needle1: u8, needle2: u8, needle3: u8, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:158-171`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L158-L171)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:158-171`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L158-L171)*
 
 Search for the first occurrence of three possible bytes in a haystack.
 
@@ -720,7 +699,7 @@ assert_eq!(memchr3(b'k', b'q', b'u', haystack), Some(4));
 fn memchr3_iter<'h>(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:256-263`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L256-L263)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:256-263`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L256-L263)*
 
 Returns an iterator over all occurrences of the needles in a haystack.
 
@@ -733,7 +712,7 @@ can also be used to find occurrences in reverse order.
 fn memchr_iter<'h>(needle: u8, haystack: &'h [u8]) -> Memchr<'h>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:216-218`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L216-L218)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:216-218`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L216-L218)*
 
 Returns an iterator over all occurrences of the needle in a haystack.
 
@@ -746,7 +725,7 @@ can also be used to find occurrences in reverse order.
 fn memrchr(needle: u8, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:59-67`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L59-L67)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:59-67`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L59-L67)*
 
 Search for the last occurrence of a byte in a slice.
 
@@ -776,7 +755,7 @@ assert_eq!(memrchr(b'o', haystack), Some(17));
 fn memrchr2(needle1: u8, needle2: u8, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:125-133`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L125-L133)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:125-133`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L125-L133)*
 
 Search for the last occurrence of two possible bytes in a haystack.
 
@@ -807,7 +786,7 @@ assert_eq!(memrchr2(b'k', b'o', haystack), Some(17));
 fn memrchr2_iter(needle1: u8, needle2: u8, haystack: &[u8]) -> core::iter::Rev<Memchr2<'_>>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:243-249`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L243-L249)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:243-249`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L243-L249)*
 
 Returns an iterator over all occurrences of the needles in a haystack, in
 reverse.
@@ -818,7 +797,7 @@ reverse.
 fn memrchr3(needle1: u8, needle2: u8, needle3: u8, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:196-209`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L196-L209)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:196-209`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L196-L209)*
 
 Search for the last occurrence of three possible bytes in a haystack.
 
@@ -849,7 +828,7 @@ assert_eq!(memrchr3(b'k', b'o', b'n', haystack), Some(17));
 fn memrchr3_iter(needle1: u8, needle2: u8, needle3: u8, haystack: &[u8]) -> core::iter::Rev<Memchr3<'_>>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:268-275`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L268-L275)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:268-275`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L268-L275)*
 
 Returns an iterator over all occurrences of the needles in a haystack, in
 reverse.
@@ -860,7 +839,7 @@ reverse.
 fn memrchr_iter(needle: u8, haystack: &[u8]) -> core::iter::Rev<Memchr<'_>>
 ```
 
-*Defined in [`memchr-2.7.6/src/memchr.rs:223-225`](../../.source_1765633015/memchr-2.7.6/src/memchr.rs#L223-L225)*
+*Defined in [`memchr-2.7.6/src/memchr.rs:223-225`](../../.source_1765894658/memchr-2.7.6/src/memchr.rs#L223-L225)*
 
 Returns an iterator over all occurrences of the needle in a haystack, in
 reverse.

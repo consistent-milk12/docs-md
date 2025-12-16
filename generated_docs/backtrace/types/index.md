@@ -23,7 +23,7 @@ enum BytesOrWideString<'a> {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../../.source_1765633015/backtrace-0.3.76/src/types.rs#L17-L22)*
+*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../../.source_1765894658/backtrace-0.3.76/src/types.rs#L17-L22)*
 
 A platform independent representation of a string. When working with `std`
 enabled it is recommended to the convenience methods for providing
@@ -44,31 +44,20 @@ conversions to `std` types.
 - <span id="bytesorwidestring-to-str-lossy"></span>`fn to_str_lossy(&self) -> Cow<'a, str>`
 
   Lossy converts to a `Cow<str>`, will allocate if `Bytes` is not valid
-
   UTF-8 or if `BytesOrWideString` is `Wide`.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="bytesorwidestring-into-path-buf"></span>`fn into_path_buf(self) -> PathBuf`
 
   Provides a `Path` representation of `BytesOrWideString`.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
@@ -104,11 +93,8 @@ conversions to `std` types.
 - <span id="bytesorwidestring-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for BytesOrWideString<'a>`

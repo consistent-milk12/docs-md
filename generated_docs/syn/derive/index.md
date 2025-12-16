@@ -48,7 +48,7 @@ struct DeriveInput {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L9-L19)*
+*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../../.source_1765894658/syn-2.0.111/src/derive.rs#L9-L19)*
 
 Data structure sent to a `proc_macro_derive` macro.
 
@@ -95,11 +95,8 @@ Data structure sent to a `proc_macro_derive` macro.
 - <span id="deriveinput-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::derive::DeriveInput`
@@ -150,7 +147,7 @@ struct DataStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L37-L45)*
+*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../../.source_1765894658/syn-2.0.111/src/derive.rs#L37-L45)*
 
 A struct input to a `proc_macro_derive` macro.
 
@@ -201,11 +198,8 @@ A struct input to a `proc_macro_derive` macro.
 - <span id="datastruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::DataStruct`
@@ -242,7 +236,7 @@ struct DataEnum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L47-L55)*
+*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../../.source_1765894658/syn-2.0.111/src/derive.rs#L47-L55)*
 
 An enum input to a `proc_macro_derive` macro.
 
@@ -293,11 +287,8 @@ An enum input to a `proc_macro_derive` macro.
 - <span id="dataenum-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::DataEnum`
@@ -333,7 +324,7 @@ struct DataUnion {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L57-L64)*
+*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../../.source_1765894658/syn-2.0.111/src/derive.rs#L57-L64)*
 
 An untagged union input to a `proc_macro_derive` macro.
 
@@ -384,11 +375,8 @@ An untagged union input to a `proc_macro_derive` macro.
 - <span id="dataunion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::DataUnion`
@@ -427,7 +415,7 @@ enum Data {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../../.source_1765633015/syn-2.0.111/src/derive.rs#L21-L35)*
+*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../../.source_1765894658/syn-2.0.111/src/derive.rs#L21-L35)*
 
 The storage of a struct, enum or union data structure.
 
@@ -479,11 +467,8 @@ This type is a [syntax tree enum].
 - <span id="data-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Data`

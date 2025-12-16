@@ -27,7 +27,7 @@ struct c_void {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:20-41`](../../../.source_1765633015/aho-corasick-1.1.4/src/packed/pattern.rs#L20-L41)*
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:20-41`](../../../.source_1765894658/aho-corasick-1.1.4/src/packed/pattern.rs#L20-L41)*
 
 *Re-exported from `aho_corasick`*
 
@@ -78,41 +78,29 @@ than once.
 - <span id="patterns-new"></span>`fn new() -> Patterns` — [`c_void`](#c-void)
 
   Create a new collection of patterns for the given match semantics. The
-
   ID of each pattern is the index of the pattern at which it occurs in
-
   the `by_id` slice.
-
   
-
   If any of the patterns in the slice given are empty, then this panics.
-
   Similarly, if the number of patterns given is zero, then this also
-
   panics.
 
 - <span id="patterns-add"></span>`fn add(&mut self, bytes: &[u8])`
 
   Add a pattern to this collection.
-
   
-
   This panics if the pattern given is empty.
 
 - <span id="patterns-set-match-kind"></span>`fn set_match_kind(&mut self, kind: MatchKind)` — [`tcdrain`](../backend/termios/syscalls/index.md#tcdrain)
 
   Set the match kind semantics for this collection of patterns.
-
   
-
   If the kind is not set, then the default is leftmost-first.
 
 - <span id="patterns-len"></span>`fn len(&self) -> usize`
 
   Return the number of patterns in this collection.
-
   
-
   This is guaranteed to be greater than zero.
 
 - <span id="patterns-is-empty"></span>`fn is_empty(&self) -> bool`
@@ -122,21 +110,17 @@ than once.
 - <span id="patterns-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
   Returns the approximate total amount of heap used by these patterns, in
-
   units of bytes.
 
 - <span id="patterns-reset"></span>`fn reset(&mut self)`
 
   Clears all heap memory associated with this collection of patterns and
-
   resets all state such that it is a valid empty collection.
 
 - <span id="patterns-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
   Returns the length, in bytes, of the smallest pattern.
-
   
-
   This is guaranteed to be at least one.
 
 - <span id="patterns-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`tcdrain`](../backend/termios/syscalls/index.md#tcdrain)
@@ -146,61 +130,37 @@ than once.
 - <span id="patterns-get"></span>`fn get(&self, id: PatternID) -> Pattern<'_>`
 
   Return the pattern with the given identifier. If such a pattern does
-
   not exist, then this panics.
 
 - <span id="patterns-get-unchecked"></span>`unsafe fn get_unchecked(&self, id: PatternID) -> Pattern<'_>`
 
   Return the pattern with the given identifier without performing bounds
-
   checks.
-
   
-
   # Safety
-
   
-
   Callers must ensure that a pattern with the given identifier exists
-
   before using this method.
 
 - <span id="patterns-iter"></span>`fn iter(&self) -> PatternIter<'_>`
 
   Return an iterator over all the patterns in this collection, in the
-
   order in which they should be matched.
-
   
-
   Specifically, in a naive multi-pattern matcher, the following is
-
   guaranteed to satisfy the match semantics of this collection of
-
   patterns:
-
   
-
   ```ignore
-
   for i in 0..haystack.len():
-
     for p in patterns.iter():
-
       if haystack[i..].starts_with(p.bytes()):
-
         return Match(p.id(), i, i + p.bytes().len())
-
   ```
-
   
-
   Namely, among the patterns in a collection, if they are matched in
-
   the order provided by this iterator, then the result is guaranteed
-
   to satisfy the correct match semantics. (Either leftmost-first or
-
   leftmost-longest.)
 
 #### Trait Implementations
@@ -240,11 +200,8 @@ than once.
 - <span id="patterns-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Patterns`
@@ -275,5 +232,5 @@ than once.
 fn c_uint(sections: &gimli::Dwarf<R>) -> Result<Self, gimli::Error>
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:504-521`](../../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L504-L521)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:504-521`](../../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L504-L521)*
 

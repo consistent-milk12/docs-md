@@ -69,31 +69,20 @@ for nested navigation.
 - <span id="tocentry-new"></span>`fn new(title: impl Into<String>, anchor: impl Into<String>) -> Self`
 
   Create a new TOC entry.
-
   
-
   # Arguments
-
   
-
   * `title` - Display title for the entry
-
   * `anchor` - Anchor link target (without `#`)
 
 - <span id="tocentry-with-children"></span>`fn with_children(title: impl Into<String>, anchor: impl Into<String>, children: Vec<Self>) -> Self`
 
   Create a new TOC entry with children.
-
   
-
   # Arguments
-
   
-
   * `title` - Display title for the entry
-
   * `anchor` - Anchor link target (without `#`)
-
   * `children` - Child entries for nested items
 
 - <span id="tocentry-count"></span>`fn count(&self) -> usize`
@@ -139,11 +128,8 @@ for nested navigation.
 - <span id="tocentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TocEntry`
@@ -213,37 +199,23 @@ modules with unnecessary navigation.
 - <span id="tocgenerator-new"></span>`const fn new(threshold: usize) -> Self`
 
   Create a new TOC generator with the given threshold.
-
   
-
   # Arguments
-
   
-
   * `threshold` - Minimum number of items required to generate a TOC
 
 - <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](#tocentry)
 
   Generate a markdown table of contents from the given entries.
-
   
-
   Returns `None` if the total item count is below the threshold.
-
   
-
   # Arguments
-
   
-
   * `entries` - Top-level TOC entries (typically section headings)
-
   
-
   # Returns
-
   
-
   A formatted markdown string with the TOC, or `None` if below threshold.
 
 - <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](#tocentry)
@@ -289,11 +261,8 @@ modules with unnecessary navigation.
 - <span id="tocgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TocGenerator`

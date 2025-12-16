@@ -22,7 +22,7 @@ enum Bound {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/bound.rs:10-13`](../../../.source_1765633015/rustversion-1.0.22/src/bound.rs#L10-L13)*
+*Defined in [`rustversion-1.0.22/src/bound.rs:10-13`](../../../.source_1765894658/rustversion-1.0.22/src/bound.rs#L10-L13)*
 
 #### Trait Implementations
 
@@ -49,11 +49,8 @@ enum Bound {
 - <span id="bound-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::version::Version`
@@ -84,5 +81,5 @@ enum Bound {
 fn parse(paren: proc_macro::Group, iter: &'_ mut IterImpl) -> std::result::Result<Bound, Error>
 ```
 
-*Defined in [`rustversion-1.0.22/src/bound.rs:15-31`](../../../.source_1765633015/rustversion-1.0.22/src/bound.rs#L15-L31)*
+*Defined in [`rustversion-1.0.22/src/bound.rs:15-31`](../../../.source_1765894658/rustversion-1.0.22/src/bound.rs#L15-L31)*
 

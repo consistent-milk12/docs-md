@@ -27,7 +27,7 @@ representation.
 struct DebugByte(u8);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/escape.rs:19`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/escape.rs#L19)*
+*Defined in [`regex-automata-0.4.13/src/util/escape.rs:19`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/escape.rs#L19)*
 
 Provides a convenient `Debug` implementation for a `u8`.
 
@@ -74,11 +74,8 @@ escape sequence.
 - <span id="debugbyte-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DebugByte`
@@ -107,7 +104,7 @@ escape sequence.
 struct DebugHaystack<'a>(&'a [u8]);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/escape.rs:49`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/escape.rs#L49)*
+*Defined in [`regex-automata-0.4.13/src/util/escape.rs:49`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/escape.rs#L49)*
 
 Provides a convenient `Debug` implementation for `&[u8]`.
 
@@ -144,11 +141,8 @@ emitted as hex escape sequences.
 - <span id="debughaystack-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugHaystack<'a>`

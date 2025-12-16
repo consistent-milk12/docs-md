@@ -24,7 +24,7 @@ struct RegexSet {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/bytes.rs:136-139`](../../../../.source_1765633015/regex-1.12.2/src/regexset/bytes.rs#L136-L139)*
+*Defined in [`regex-1.12.2/src/regexset/bytes.rs:136-139`](../../../../.source_1765894658/regex-1.12.2/src/regexset/bytes.rs#L136-L139)*
 
 Match multiple, possibly overlapping, regexes in a single search.
 
@@ -160,433 +160,235 @@ alternate isn't always obvious to reason about.
 - <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](../../error/index.md#error)
 
   Create a new regex set with the given regular expressions.
-
   
-
   This takes an iterator of `S`, where `S` is something that can produce
-
   a `&str`. If any of the strings in the iterator are not valid regular
-
   expressions, then an error is returned.
-
   
-
   # Example
-
   
-
   Create a new regex set from an iterator of strings:
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new([r"\w+", r"\d+"]).unwrap();
-
   assert!(set.is_match(b"foo"));
-
   ```
 
 - <span id="regexset-empty"></span>`fn empty() -> RegexSet` — [`RegexSet`](#regexset)
 
   Create a new empty regex set.
-
   
-
   An empty regex never matches anything.
-
   
-
   This is a convenience function for `RegexSet::new([])`, but doesn't
-
   require one to specify the type of the input.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::empty();
-
   assert!(set.is_empty());
-
   // an empty set matches nothing
-
   assert!(!set.is_match(b""));
-
   ```
 
 - <span id="regexset-is-match"></span>`fn is_match(&self, haystack: &[u8]) -> bool`
 
   Returns true if and only if one of the regexes in this set matches
-
   the haystack given.
-
   
-
   This method should be preferred if you only need to test whether any
-
   of the regexes in the set should match, but don't care about *which*
-
   regexes matched. This is because the underlying matching engine will
-
   quit immediately after seeing the first match instead of continuing to
-
   find all matches.
-
   
-
   Note that as with searches using [`Regex`](crate::bytes::Regex), the
-
   expression is unanchored by default. That is, if the regex does not
-
   start with `^` or `\A`, or end with `$` or `\z`, then it is permitted
-
   to match anywhere in the haystack.
-
   
-
   # Example
-
   
-
   Tests whether a set matches somewhere in a haystack:
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new([r"\w+", r"\d+"]).unwrap();
-
   assert!(set.is_match(b"foo"));
-
   assert!(!set.is_match("☃".as_bytes()));
-
   ```
 
 - <span id="regexset-is-match-at"></span>`fn is_match_at(&self, haystack: &[u8], start: usize) -> bool`
 
   Returns true if and only if one of the regexes in this set matches the
-
   haystack given, with the search starting at the offset given.
-
   
-
   The significance of the starting point is that it takes the surrounding
-
   context into consideration. For example, the `\A` anchor can only
-
   match when `start == 0`.
-
   
-
   # Panics
-
   
-
   This panics when `start >= haystack.len() + 1`.
-
   
-
   # Example
-
   
-
   This example shows the significance of `start`. Namely, consider a
-
   haystack `foobar` and a desire to execute a search starting at offset
-
   `3`. You could search a substring explicitly, but then the look-around
-
   assertions won't work correctly. Instead, you can use this method to
-
   specify the start position of a search.
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new([r"\bbar\b", r"(?m)^bar$"]).unwrap();
-
   let hay = b"foobar";
-
   // We get a match here, but it's probably not intended.
-
   assert!(set.is_match(&hay[3..]));
-
   // No match because the  assertions take the context into account.
-
   assert!(!set.is_match_at(hay, 3));
-
   ```
 
 - <span id="regexset-matches"></span>`fn matches(&self, haystack: &[u8]) -> SetMatches` — [`SetMatches`](#setmatches)
 
   Returns the set of regexes that match in the given haystack.
-
   
-
   The set returned contains the index of each regex that matches in
-
   the given haystack. The index is in correspondence with the order of
-
   regular expressions given to `RegexSet`'s constructor.
-
   
-
   The set can also be used to iterate over the matched indices. The order
-
   of iteration is always ascending with respect to the matching indices.
-
   
-
   Note that as with searches using [`Regex`](crate::bytes::Regex), the
-
   expression is unanchored by default. That is, if the regex does not
-
   start with `^` or `\A`, or end with `$` or `\z`, then it is permitted
-
   to match anywhere in the haystack.
-
   
-
   # Example
-
   
-
   Tests which regular expressions match the given haystack:
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"\w+",
-
       r"\d+",
-
       r"\pL+",
-
       r"foo",
-
       r"bar",
-
       r"barfoo",
-
       r"foobar",
-
   ]).unwrap();
-
   let matches: Vec<_> = set.matches(b"foobar").into_iter().collect();
-
   assert_eq!(matches, vec![0, 2, 3, 4, 6]);
-
   
-
   // You can also test whether a particular regex matched:
-
   let matches = set.matches(b"foobar");
-
   assert!(!matches.matched(5));
-
   assert!(matches.matched(6));
-
   ```
 
 - <span id="regexset-matches-at"></span>`fn matches_at(&self, haystack: &[u8], start: usize) -> SetMatches` — [`SetMatches`](#setmatches)
 
   Returns the set of regexes that match in the given haystack.
-
   
-
   The set returned contains the index of each regex that matches in
-
   the given haystack. The index is in correspondence with the order of
-
   regular expressions given to `RegexSet`'s constructor.
-
   
-
   The set can also be used to iterate over the matched indices. The order
-
   of iteration is always ascending with respect to the matching indices.
-
   
-
   The significance of the starting point is that it takes the surrounding
-
   context into consideration. For example, the `\A` anchor can only
-
   match when `start == 0`.
-
   
-
   # Panics
-
   
-
   This panics when `start >= haystack.len() + 1`.
-
   
-
   # Example
-
   
-
   Tests which regular expressions match the given haystack:
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new([r"\bbar\b", r"(?m)^bar$"]).unwrap();
-
   let hay = b"foobar";
-
   // We get matches here, but it's probably not intended.
-
   let matches: Vec<_> = set.matches(&hay[3..]).into_iter().collect();
-
   assert_eq!(matches, vec![0, 1]);
-
   // No matches because the  assertions take the context into account.
-
   let matches: Vec<_> = set.matches_at(hay, 3).into_iter().collect();
-
   assert_eq!(matches, vec![]);
-
   ```
 
 - <span id="regexset-len"></span>`fn len(&self) -> usize`
 
   Returns the total number of regexes in this set.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   assert_eq!(0, RegexSet::empty().len());
-
   assert_eq!(1, RegexSet::new([r"[0-9]"]).unwrap().len());
-
   assert_eq!(2, RegexSet::new([r"[0-9]", r"[a-z]"]).unwrap().len());
-
   ```
 
 - <span id="regexset-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns `true` if this set contains no regexes.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   assert!(RegexSet::empty().is_empty());
-
   assert!(!RegexSet::new([r"[0-9]"]).unwrap().is_empty());
-
   ```
 
 - <span id="regexset-patterns"></span>`fn patterns(&self) -> &[String]`
 
   Returns the regex patterns that this regex set was constructed from.
-
   
-
   This function can be used to determine the pattern for a match. The
-
   slice returned has exactly as many patterns givens to this regex set,
-
   and the order of the slice is the same as the order of the patterns
-
   provided to the set.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new(&[
-
       r"\w+",
-
       r"\d+",
-
       r"\pL+",
-
       r"foo",
-
       r"bar",
-
       r"barfoo",
-
       r"foobar",
-
   ]).unwrap();
-
   let matches: Vec<_> = set
-
       .matches(b"foobar")
-
       .into_iter()
-
       .map(|index| &set.patterns()[index])
-
       .collect();
-
   assert_eq!(matches, vec![r"\w+", r"\pL+", r"foo", r"bar", r"foobar"]);
-
   ```
 
 #### Trait Implementations
@@ -630,11 +432,8 @@ alternate isn't always obvious to reason about.
 - <span id="regexset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RegexSet`
@@ -663,7 +462,7 @@ alternate isn't always obvious to reason about.
 struct SetMatches(regex_automata::PatternSet);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/bytes.rs:463`](../../../../.source_1765633015/regex-1.12.2/src/regexset/bytes.rs#L463)*
+*Defined in [`regex-1.12.2/src/regexset/bytes.rs:463`](../../../../.source_1765894658/regex-1.12.2/src/regexset/bytes.rs#L463)*
 
 A set of matches returned by a regex set.
 
@@ -674,247 +473,134 @@ Values of this type are constructed by `RegexSet::matches`.
 - <span id="setmatches-matched-any"></span>`fn matched_any(&self) -> bool`
 
   Whether this set contains any matches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new(&[
-
       r"[a-z]+@[a-z]+\.(com|org|net)",
-
       r"[a-z]+\.(com|org|net)",
-
   ]).unwrap();
-
   let matches = set.matches(b"foo@example.com");
-
   assert!(matches.matched_any());
-
   ```
 
 - <span id="setmatches-matched-all"></span>`fn matched_all(&self) -> bool`
 
   Whether all patterns in this set matched.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new(&[
-
       r"^foo",
-
       r"[a-z]+\.com",
-
   ]).unwrap();
-
   let matches = set.matches(b"foo.example.com");
-
   assert!(matches.matched_all());
-
   ```
 
 - <span id="setmatches-matched"></span>`fn matched(&self, index: usize) -> bool`
 
   Whether the regex at the given index matched.
-
   
-
   The index for a regex is determined by its insertion order upon the
-
   initial construction of a `RegexSet`, starting at `0`.
-
   
-
   # Panics
-
   
-
   If `index` is greater than or equal to the number of regexes in the
-
   original set that produced these matches. Equivalently, when `index`
-
   is greater than or equal to `SetMatches::len`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"[a-z]+@[a-z]+\.(com|org|net)",
-
       r"[a-z]+\.(com|org|net)",
-
   ]).unwrap();
-
   let matches = set.matches(b"example.com");
-
   assert!(!matches.matched(0));
-
   assert!(matches.matched(1));
-
   ```
 
 - <span id="setmatches-len"></span>`fn len(&self) -> usize`
 
   The total number of regexes in the set that created these matches.
-
   
-
   **WARNING:** This always returns the same value as `RegexSet::len`.
-
   In particular, it does *not* return the number of elements yielded by
-
   `SetMatches::iter`. The only way to determine the total number of
-
   matched regexes is to iterate over them.
-
   
-
   # Example
-
   
-
   Notice that this method returns the total number of regexes in the
-
   original set, and *not* the total number of regexes that matched.
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"[a-z]+@[a-z]+\.(com|org|net)",
-
       r"[a-z]+\.(com|org|net)",
-
   ]).unwrap();
-
   let matches = set.matches(b"example.com");
-
   // Total number of patterns that matched.
-
   assert_eq!(1, matches.iter().count());
-
   // Total number of patterns in the set.
-
   assert_eq!(2, matches.len());
-
   ```
 
 - <span id="setmatches-iter"></span>`fn iter(&self) -> SetMatchesIter<'_>` — [`SetMatchesIter`](#setmatchesiter)
 
   Returns an iterator over the indices of the regexes that matched.
-
   
-
   This will always produces matches in ascending order, where the index
-
   yielded corresponds to the index of the regex that matched with respect
-
   to its position when initially building the set.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"[0-9]",
-
       r"[a-z]",
-
       r"[A-Z]",
-
       r"\p{Greek}",
-
   ]).unwrap();
-
   let hay = "βa1".as_bytes();
-
   let matches: Vec<_> = set.matches(hay).iter().collect();
-
   assert_eq!(matches, vec![0, 1, 3]);
-
   ```
-
   
-
   Note that `SetMatches` also implements the `IntoIterator` trait, so
-
   this method is not always needed. For example:
-
   
-
   ```rust
-
   use regex::bytes::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"[0-9]",
-
       r"[a-z]",
-
       r"[A-Z]",
-
       r"\p{Greek}",
-
   ]).unwrap();
-
   let hay = "βa1".as_bytes();
-
   let mut matches = vec![];
-
   for index in set.matches(hay) {
-
       matches.push(index);
-
   }
-
   assert_eq!(matches, vec![0, 1, 3]);
-
   ```
 
 #### Trait Implementations
@@ -954,11 +640,8 @@ Values of this type are constructed by `RegexSet::matches`.
 - <span id="setmatches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SetMatches`
@@ -998,7 +681,7 @@ struct SetMatchesIntoIter {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/bytes.rs:656-659`](../../../../.source_1765633015/regex-1.12.2/src/regexset/bytes.rs#L656-L659)*
+*Defined in [`regex-1.12.2/src/regexset/bytes.rs:656-659`](../../../../.source_1765894658/regex-1.12.2/src/regexset/bytes.rs#L656-L659)*
 
 An owned iterator over the set of matches from a regex set.
 
@@ -1063,11 +746,8 @@ assert_eq!(matches, vec![0, 1, 3]);
 - <span id="setmatchesintoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SetMatchesIntoIter`
@@ -1104,7 +784,7 @@ assert_eq!(matches, vec![0, 1, 3]);
 struct SetMatchesIter<'a>(regex_automata::PatternSetIter<'a>);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/bytes.rs:702`](../../../../.source_1765633015/regex-1.12.2/src/regexset/bytes.rs#L702)*
+*Defined in [`regex-1.12.2/src/regexset/bytes.rs:702`](../../../../.source_1765894658/regex-1.12.2/src/regexset/bytes.rs#L702)*
 
 A borrowed iterator over the set of matches from a regex set.
 
@@ -1160,11 +840,8 @@ This iterator is created by the `SetMatches::iter` method.
 - <span id="setmatchesiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SetMatchesIter<'a>`

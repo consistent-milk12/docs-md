@@ -18,7 +18,7 @@
 struct DebugReportHandler;
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/debug.rs:11`](../../../../.source_1765633015/miette-7.6.0/src/handlers/debug.rs#L11)*
+*Defined in [`miette-7.6.0/src/handlers/debug.rs:11`](../../../../.source_1765894658/miette-7.6.0/src/handlers/debug.rs#L11)*
 
 [`ReportHandler`](../../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -29,7 +29,6 @@ non-graphical environments, such as non-TTY output.
 - <span id="debugreporthandler-new"></span>`const fn new() -> Self`
 
   Create a new [`NarratableReportHandler`](crate::NarratableReportHandler)
-
   There are no customization options.
 
 #### Trait Implementations
@@ -73,11 +72,8 @@ non-graphical environments, such as non-TTY output.
 - <span id="debugreporthandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DebugReportHandler`

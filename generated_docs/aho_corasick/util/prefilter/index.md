@@ -65,7 +65,7 @@ struct Prefilter {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
 
 A prefilter for accelerating a search.
 
@@ -87,15 +87,10 @@ much else. If you have a use case for more APIs, please submit an issue.
 - <span id="prefilter-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md#span), [`Candidate`](#candidate)
 
   Execute a search in the haystack within the span given. If a match or
-
   a possible match is returned, then it is guaranteed to occur within
-
   the bounds of the span.
-
   
-
   If the span provided is invalid for the given haystack, then behavior
-
   is unspecified.
 
 - <span id="prefilter-memory-usage"></span>`fn memory_usage(&self) -> usize`
@@ -137,11 +132,8 @@ much else. If you have a use case for more APIs, please submit an issue.
 - <span id="prefilter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Prefilter`
@@ -178,7 +170,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:121-131`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L121-L131)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:121-131`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L121-L131)*
 
 A builder for constructing the best possible prefilter. When constructed,
 this builder will heuristically select the best prefilter it can build,
@@ -193,17 +185,13 @@ if any, and discard the rest.
 - <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(self, yes: bool) -> Builder` — [`Builder`](#builder)
 
   Enable ASCII case insensitivity. When set, byte strings added to this
-
   builder will be interpreted without respect to ASCII case.
 
 - <span id="builder-build"></span>`fn build(&self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
 
   Return a prefilter suitable for quickly finding potential matches.
-
   
-
   All patterns added to an Aho-Corasick automaton should be added to this
-
   builder before attempting to construct the prefilter.
 
 - <span id="builder-add"></span>`fn add(&mut self, bytes: &[u8])`
@@ -239,11 +227,8 @@ if any, and discard the rest.
 - <span id="builder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Builder`
@@ -264,7 +249,7 @@ if any, and discard the rest.
 struct Packed(packed::Searcher);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:328`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L328)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:328`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L328)*
 
 A type that wraps a packed searcher and implements the `Prefilter`
 interface.
@@ -306,11 +291,8 @@ interface.
 - <span id="packed-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for Packed`
@@ -346,7 +328,7 @@ struct MemmemBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:340-345`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L340-L345)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:340-345`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L340-L345)*
 
 A builder for constructing a prefilter that uses memmem.
 
@@ -399,11 +381,8 @@ A builder for constructing a prefilter that uses memmem.
 - <span id="memmembuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for MemmemBuilder`
@@ -424,7 +403,7 @@ A builder for constructing a prefilter that uses memmem.
 struct Memmem(memchr::memmem::Finder<'static>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:394`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L394)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:394`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L394)*
 
 A type that wraps a SIMD accelerated single substring search from the
 `memchr` crate for use as a prefilter.
@@ -478,11 +457,8 @@ feature detection.
 - <span id="memmem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for Memmem`
@@ -522,7 +498,7 @@ struct RareBytesBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:419-441`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L419-L441)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:419-441`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L419-L441)*
 
 A builder for constructing a rare byte prefilter.
 
@@ -574,29 +550,21 @@ bytes.
 - <span id="rarebytesbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(self, yes: bool) -> RareBytesBuilder` — [`RareBytesBuilder`](#rarebytesbuilder)
 
   Enable ASCII case insensitivity. When set, byte strings added to this
-
   builder will be interpreted without respect to ASCII case.
 
 - <span id="rarebytesbuilder-build"></span>`fn build(&self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
 
   Build the rare bytes prefilter.
-
   
-
   If there are more than 3 distinct rare bytes found, or if heuristics
-
   otherwise determine that this prefilter should not be used, then `None`
-
   is returned.
 
 - <span id="rarebytesbuilder-add"></span>`fn add(&mut self, bytes: &[u8])`
 
   Add a byte string to this builder.
-
   
-
   All patterns added to an Aho-Corasick automaton should be added to this
-
   builder before attempting to construct the prefilter.
 
 - <span id="rarebytesbuilder-set-offset"></span>`fn set_offset(&mut self, pos: usize, byte: u8)`
@@ -642,11 +610,8 @@ bytes.
 - <span id="rarebytesbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RareBytesBuilder`
@@ -677,7 +642,7 @@ struct RareByteOffsets {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:445-449`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L445-L449)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:445-449`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L445-L449)*
 
 A set of byte offsets, keyed by byte.
 
@@ -697,11 +662,8 @@ A set of byte offsets, keyed by byte.
 - <span id="rarebyteoffsets-set"></span>`fn set(&mut self, byte: u8, off: RareByteOffset)` — [`RareByteOffset`](#rarebyteoffset)
 
   Add the given offset for the given byte to this set. If the offset is
-
   greater than the existing offset, then it overwrites the previous
-
   value and returns false. If there is no previous value set, then this
-
   sets it and returns true.
 
 #### Trait Implementations
@@ -743,11 +705,8 @@ A set of byte offsets, keyed by byte.
 - <span id="rarebyteoffsets-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RareByteOffsets`
@@ -778,7 +737,7 @@ struct RareByteOffset {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:482-497`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L482-L497)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:482-497`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L482-L497)*
 
 Offsets associated with an occurrence of a "rare" byte in any of the
 patterns used to construct a single Aho-Corasick automaton.
@@ -806,9 +765,7 @@ patterns used to construct a single Aho-Corasick automaton.
 - <span id="rarebyteoffset-new"></span>`fn new(max: usize) -> Option<RareByteOffset>` — [`RareByteOffset`](#rarebyteoffset)
 
   Create a new rare byte offset. If the given offset is too big, then
-
   None is returned. In that case, callers should render the rare bytes
-
   prefilter inert.
 
 #### Trait Implementations
@@ -854,11 +811,8 @@ patterns used to construct a single Aho-Corasick automaton.
 - <span id="rarebyteoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RareByteOffset`
@@ -890,7 +844,7 @@ struct RareBytesOne {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:668-671`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L668-L671)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:668-671`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L668-L671)*
 
 A prefilter for scanning for a single "rare" byte.
 
@@ -931,11 +885,8 @@ A prefilter for scanning for a single "rare" byte.
 - <span id="rarebytesone-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for RareBytesOne`
@@ -972,7 +923,7 @@ struct RareBytesTwo {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:691-695`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L691-L695)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:691-695`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L691-L695)*
 
 A prefilter for scanning for two "rare" bytes.
 
@@ -1013,11 +964,8 @@ A prefilter for scanning for two "rare" bytes.
 - <span id="rarebytestwo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for RareBytesTwo`
@@ -1055,7 +1003,7 @@ struct RareBytesThree {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:713-718`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L713-L718)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:713-718`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L713-L718)*
 
 A prefilter for scanning for three "rare" bytes.
 
@@ -1096,11 +1044,8 @@ A prefilter for scanning for three "rare" bytes.
 - <span id="rarebytesthree-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for RareBytesThree`
@@ -1138,7 +1083,7 @@ struct StartBytesBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:746-757`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L746-L757)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:746-757`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L746-L757)*
 
 A builder for constructing a starting byte prefilter.
 
@@ -1182,29 +1127,21 @@ starting bytes.
 - <span id="startbytesbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(self, yes: bool) -> StartBytesBuilder` — [`StartBytesBuilder`](#startbytesbuilder)
 
   Enable ASCII case insensitivity. When set, byte strings added to this
-
   builder will be interpreted without respect to ASCII case.
 
 - <span id="startbytesbuilder-build"></span>`fn build(&self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
 
   Build the starting bytes prefilter.
-
   
-
   If there are more than 3 distinct starting bytes, or if heuristics
-
   otherwise determine that this prefilter should not be used, then `None`
-
   is returned.
 
 - <span id="startbytesbuilder-add"></span>`fn add(&mut self, bytes: &[u8])`
 
   Add a byte string to this builder.
-
   
-
   All patterns added to an Aho-Corasick automaton should be added to this
-
   builder before attempting to construct the prefilter.
 
 - <span id="startbytesbuilder-add-one-byte"></span>`fn add_one_byte(&mut self, byte: u8)`
@@ -1246,11 +1183,8 @@ starting bytes.
 - <span id="startbytesbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StartBytesBuilder`
@@ -1281,7 +1215,7 @@ struct StartBytesOne {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:858-860`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L858-L860)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:858-860`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L858-L860)*
 
 A prefilter for scanning for a single starting byte.
 
@@ -1322,11 +1256,8 @@ A prefilter for scanning for a single starting byte.
 - <span id="startbytesone-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for StartBytesOne`
@@ -1362,7 +1293,7 @@ struct StartBytesTwo {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:874-877`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L874-L877)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:874-877`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L874-L877)*
 
 A prefilter for scanning for two starting bytes.
 
@@ -1403,11 +1334,8 @@ A prefilter for scanning for two starting bytes.
 - <span id="startbytestwo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for StartBytesTwo`
@@ -1444,7 +1372,7 @@ struct StartBytesThree {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:891-895`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L891-L895)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:891-895`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L891-L895)*
 
 A prefilter for scanning for three starting bytes.
 
@@ -1485,11 +1413,8 @@ A prefilter for scanning for three starting bytes.
 - <span id="startbytesthree-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for StartBytesThree`
@@ -1528,7 +1453,7 @@ enum Candidate {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
 
 A candidate is the result of running a prefilter on a haystack at a
 particular position.
@@ -1567,9 +1492,7 @@ implementations are permitted to return false positives.
 - <span id="candidate-into-option"></span>`fn into_option(self) -> Option<usize>`
 
   Convert this candidate into an option. This is useful when callers
-
   do not distinguish between true positives and false positives (i.e.,
-
   the caller must always confirm the match).
 
 #### Trait Implementations
@@ -1609,11 +1532,8 @@ implementations are permitted to return false positives.
 - <span id="candidate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Candidate`
@@ -1644,7 +1564,7 @@ implementations are permitted to return false positives.
 trait PrefilterI: Send + Sync + RefUnwindSafe + UnwindSafe + Debug + 'static { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:99-108`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L99-L108)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:99-108`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L99-L108)*
 
 A prefilter describes the behavior of fast literal scanners for quickly
 skipping past bytes in the haystack that we know cannot possibly
@@ -1655,6 +1575,10 @@ participate in a match.
 - `fn find_in(&self, haystack: &[u8], span: Span) -> Candidate`
 
   Returns the next possible match candidate. This may yield false
+  positives, so callers must confirm a match starting at the position
+  returned. This, however, must never produce false negatives. That is,
+  this must, at minimum, return the starting position of the next match
+  in the given haystack after or at the given position.
 
 #### Implementors
 
@@ -1676,7 +1600,7 @@ participate in a match.
 fn opposite_ascii_case(b: u8) -> u8
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:909-917`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L909-L917)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:909-917`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L909-L917)*
 
 If the given byte is an ASCII letter, then return it in the opposite case.
 e.g., Given `b'A'`, this returns `b'a'`, and given `b'a'`, this returns
@@ -1688,7 +1612,7 @@ e.g., Given `b'A'`, this returns `b'a'`, and given `b'a'`, this returns
 fn freq_rank(b: u8) -> u8
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:921-924`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/prefilter.rs#L921-L924)*
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:921-924`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/prefilter.rs#L921-L924)*
 
 Return the frequency rank of the given byte. The higher the rank, the more
 common the byte (heuristically speaking).

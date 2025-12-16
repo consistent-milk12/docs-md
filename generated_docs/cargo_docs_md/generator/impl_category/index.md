@@ -207,135 +207,74 @@ The variants are ordered by their typical importance/frequency of use:
 - <span id="implcategory-from-trait-path"></span>`fn from_trait_path(path: Option<&str>) -> Self`
 
   Categorize a trait implementation by its trait path.
-
   
-
   This method examines the trait path and returns the appropriate category.
-
   It handles both simple trait names (`"Clone"`) and fully-qualified paths
-
   (`"std::clone::Clone"`).
-
   
-
   # Arguments
-
   
-
   * `path` - The trait path, or `None` for inherent implementations
-
   
-
   # Returns
-
   
-
   The [`ImplCategory`](#implcategory) that best matches the trait.
-
   
-
   # Examples
-
   
-
   ```rust,ignore
-
   // Inherent impl (no trait)
-
   assert_eq!(ImplCategory::from_trait_path(None), ImplCategory::Inherent);
-
   
-
   // Simple trait name
-
   assert_eq!(ImplCategory::from_trait_path(Some("Clone")), ImplCategory::Derive);
-
   
-
   // Fully-qualified path
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("std::clone::Clone")),
-
       ImplCategory::Derive
-
   );
-
   
-
   // Operator from std::ops
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("std::ops::Add")),
-
       ImplCategory::Operator
-
   );
-
   
-
   // Unknown trait
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("serde::Serialize")),
-
       ImplCategory::Other
-
   );
-
   ```
 
 - <span id="implcategory-display-name"></span>`const fn display_name(&self) -> &'static str`
 
   Get the human-readable display name for this category.
-
   
-
   This name is suitable for use as a section header in documentation.
-
   
-
   # Returns
-
   
-
   A static string with the display name.
-
   
-
   # Examples
-
   
-
   ```rust,ignore
-
   assert_eq!(ImplCategory::Inherent.display_name(), "Implementations");
-
   assert_eq!(ImplCategory::Derive.display_name(), "Derived Traits");
-
   assert_eq!(ImplCategory::Conversion.display_name(), "Conversion");
-
   ```
 
 - <span id="implcategory-sort-order"></span>`const fn sort_order(self) -> u8`
 
   Get the sort order for this category.
-
   
-
   Lower numbers appear first in documentation. This ordering reflects
-
   typical importance and frequency of use.
-
   
-
   # Returns
-
   
-
   A `u8` value representing the sort order (0-8).
 
 #### Trait Implementations
@@ -393,11 +332,8 @@ The variants are ordered by their typical importance/frequency of use:
 - <span id="implcategory-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ImplCategory`
@@ -407,13 +343,9 @@ The variants are ordered by their typical importance/frequency of use:
 - <span id="implcategory-ord-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
   Compare categories by their display order.
-
   
-
   Categories are ordered by typical importance/frequency:
-
   `Inherent` < `Derive` < `Conversion` < `Access` < `Iterator`
-
   < `Operator` < `Formatting` < `Io` < `Other`
 
 ##### `impl OwoColorize for ImplCategory`

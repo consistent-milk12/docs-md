@@ -25,7 +25,7 @@ struct Number {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L22-L24)*
+*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../../.source_1765894658/serde_json-1.0.145/src/number.rs#L22-L24)*
 
 Represents a JSON number, whether integer or floating point.
 
@@ -34,51 +34,36 @@ Represents a JSON number, whether integer or floating point.
 - <span id="number-is-i64"></span>`fn is_i64(&self) -> bool`
 
   Returns true if the `Number` is an integer between `i64::MIN` and
-
   `i64::MAX`.
-
   
-
   For any Number on which `is_i64` returns true, `as_i64` is guaranteed to
-
   return the integer value.
 
 - <span id="number-is-u64"></span>`fn is_u64(&self) -> bool`
 
   Returns true if the `Number` is an integer between zero and `u64::MAX`.
-
   
-
   For any Number on which `is_u64` returns true, `as_u64` is guaranteed to
-
   return the integer value.
 
 - <span id="number-is-f64"></span>`fn is_f64(&self) -> bool`
 
   Returns true if the `Number` can be represented by f64.
-
   
-
   For any Number on which `is_f64` returns true, `as_f64` is guaranteed to
-
   return the floating point value.
-
   
-
   Currently this function returns true if and only if both `is_i64` and
-
   `is_u64` return false but this is not a guarantee in the future.
 
 - <span id="number-as-i64"></span>`fn as_i64(&self) -> Option<i64>`
 
   If the `Number` is an integer, represent it as i64 if possible. Returns
-
   None otherwise.
 
 - <span id="number-as-u64"></span>`fn as_u64(&self) -> Option<u64>`
 
   If the `Number` is an integer, represent it as u64 if possible. Returns
-
   None otherwise.
 
 - <span id="number-as-f64"></span>`fn as_f64(&self) -> Option<f64>`
@@ -88,75 +73,48 @@ Represents a JSON number, whether integer or floating point.
 - <span id="number-from-f64"></span>`fn from_f64(f: f64) -> Option<Number>` — [`Number`](#number)
 
   Converts a finite `f64` to a `Number`. Infinite or NaN values are not JSON
-
   numbers.
-
   
-
   ```rust
-
   use serde_json::Number;
-
   
-
   assert!(Number::from_f64(256.0).is_some());
-
   
-
   assert!(Number::from_f64(f64::NAN).is_none());
-
   ```
 
 - <span id="number-as-i128"></span>`fn as_i128(&self) -> Option<i128>`
 
   If the `Number` is an integer, represent it as i128 if possible. Returns
-
   None otherwise.
 
 - <span id="number-as-u128"></span>`fn as_u128(&self) -> Option<u128>`
 
   If the `Number` is an integer, represent it as u128 if possible. Returns
-
   None otherwise.
 
 - <span id="number-from-i128"></span>`fn from_i128(i: i128) -> Option<Number>` — [`Number`](#number)
 
   Converts an `i128` to a `Number`. Numbers smaller than i64::MIN or
-
   larger than u64::MAX can only be represented in `Number` if serde_json's
-
   "arbitrary_precision" feature is enabled.
-
   
-
   ```rust
-
   use serde_json::Number;
-
   
-
   assert!(Number::from_i128(256).is_some());
-
   ```
 
 - <span id="number-from-u128"></span>`fn from_u128(i: u128) -> Option<Number>` — [`Number`](#number)
 
   Converts a `u128` to a `Number`. Numbers greater than u64::MAX can only
-
   be represented in `Number` if serde_json's "arbitrary_precision" feature
-
   is enabled.
-
   
-
   ```rust
-
   use serde_json::Number;
-
   
-
   assert!(Number::from_u128(256).is_some());
-
   ```
 
 - <span id="number-as-f32"></span>`fn as_f32(&self) -> Option<f32>`
@@ -288,11 +246,8 @@ Represents a JSON number, whether integer or floating point.
 - <span id="number-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Number`
@@ -341,7 +296,7 @@ enum N {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/number.rs:28-34`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L28-L34)*
+*Defined in [`serde_json-1.0.145/src/number.rs:28-34`](../../../.source_1765894658/serde_json-1.0.145/src/number.rs#L28-L34)*
 
 #### Variants
 
@@ -394,11 +349,8 @@ enum N {
 - <span id="n-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for N`
@@ -429,17 +381,17 @@ enum N {
 
 ### `deserialize_any!`
 
-*Defined in [`serde_json-1.0.145/src/number.rs:532-577`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L532-L577)*
+*Defined in [`serde_json-1.0.145/src/number.rs:532-577`](../../../.source_1765894658/serde_json-1.0.145/src/number.rs#L532-L577)*
 
 ### `deserialize_number!`
 
-*Defined in [`serde_json-1.0.145/src/number.rs:579-597`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L579-L597)*
+*Defined in [`serde_json-1.0.145/src/number.rs:579-597`](../../../.source_1765894658/serde_json-1.0.145/src/number.rs#L579-L597)*
 
 ### `impl_from_unsigned!`
 
-*Defined in [`serde_json-1.0.145/src/number.rs:737-757`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L737-L757)*
+*Defined in [`serde_json-1.0.145/src/number.rs:737-757`](../../../.source_1765894658/serde_json-1.0.145/src/number.rs#L737-L757)*
 
 ### `impl_from_signed!`
 
-*Defined in [`serde_json-1.0.145/src/number.rs:759-785`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L759-L785)*
+*Defined in [`serde_json-1.0.145/src/number.rs:759-785`](../../../.source_1765894658/serde_json-1.0.145/src/number.rs#L759-L785)*
 

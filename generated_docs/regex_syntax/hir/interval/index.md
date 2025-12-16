@@ -24,7 +24,7 @@ struct IntervalSet<I> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:34-54`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/interval.rs#L34-L54)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:34-54`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/interval.rs#L34-L54)*
 
 #### Fields
 
@@ -56,13 +56,9 @@ struct IntervalSet<I> {
 - <span id="intervalset-new"></span>`fn new<T: IntoIterator<Item = I>>(intervals: T) -> IntervalSet<I>` — [`IntervalSet`](#intervalset)
 
   Create a new set from a sequence of intervals. Each interval is
-
   specified as a pair of bounds, where both bounds are inclusive.
-
   
-
   The given ranges do not need to be in any specific order, and ranges
-
   may overlap.
 
 - <span id="intervalset-push"></span>`fn push(&mut self, interval: I)`
@@ -72,33 +68,23 @@ struct IntervalSet<I> {
 - <span id="intervalset-iter"></span>`fn iter(&self) -> IntervalSetIter<'_, I>` — [`IntervalSetIter`](#intervalsetiter)
 
   Return an iterator over all intervals in this set.
-
   
-
   The iterator yields intervals in ascending order.
 
 - <span id="intervalset-intervals"></span>`fn intervals(&self) -> &[I]`
 
   Return an immutable slice of intervals in this set.
-
   
-
   The sequence returned is in canonical ordering.
 
 - <span id="intervalset-case-fold-simple"></span>`fn case_fold_simple(&mut self) -> Result<(), unicode::CaseFoldError>` — [`CaseFoldError`](../../unicode/index.md#casefolderror)
 
   Expand this interval set such that it contains all case folded
-
   characters. For example, if this class consists of the range `a-z`,
-
   then applying case folding will result in the class containing both the
-
   ranges `a-z` and `A-Z`.
-
   
-
   This returns an error if the necessary case mapping data is not
-
   available.
 
 - <span id="intervalset-union"></span>`fn union(&mut self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
@@ -116,27 +102,18 @@ struct IntervalSet<I> {
 - <span id="intervalset-symmetric-difference"></span>`fn symmetric_difference(&mut self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
 
   Compute the symmetric difference of the two sets, in place.
-
   
-
   This computes the symmetric difference of two interval sets. This
-
   removes all elements in this set that are also in the given set,
-
   but also adds all elements from the given set that aren't in this
-
   set. That is, the set will contain all elements in either set,
-
   but will not contain any elements that are in both sets.
 
 - <span id="intervalset-negate"></span>`fn negate(&mut self)`
 
   Negate this interval set.
-
   
-
   For all `x` where `x` is any element, if `x` was in this set, then it
-
   will not be in this set after negation.
 
 - <span id="intervalset-canonicalize"></span>`fn canonicalize(&mut self)`
@@ -186,11 +163,8 @@ struct IntervalSet<I> {
 - <span id="intervalset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I: Interval> PartialEq for IntervalSet<I>`
@@ -223,7 +197,7 @@ struct IntervalSet<I> {
 struct IntervalSetIter<'a, I>(slice::Iter<'a, I>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:386`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/interval.rs#L386)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:386`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/interval.rs#L386)*
 
 An iterator over intervals.
 
@@ -256,11 +230,8 @@ An iterator over intervals.
 - <span id="intervalsetiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for IntervalSetIter<'a, I>`
@@ -297,7 +268,7 @@ An iterator over intervals.
 trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:396-508`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/interval.rs#L396-L508)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:396-508`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/interval.rs#L396-L508)*
 
 #### Associated Types
 
@@ -324,22 +295,33 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 - `fn union(&self, other: &Self) -> Option<Self>`
 
   Union the given overlapping range into this range.
+  
+  If the two ranges aren't contiguous, then this returns `None`.
 
 - `fn intersect(&self, other: &Self) -> Option<Self>`
 
   Intersect this range with the given range and return the result.
+  
+  If the intersection is empty, then this returns `None`.
 
 - `fn difference(&self, other: &Self) -> (Option<Self>, Option<Self>)`
 
   Subtract the given range from this range and return the resulting
+  ranges.
+  
+  If subtraction would result in an empty range, then no ranges are
+  returned.
 
 - `fn is_contiguous(&self, other: &Self) -> bool`
 
   Returns true if and only if the two ranges are contiguous. Two ranges
+  are contiguous if and only if the ranges are either overlapping or
+  adjacent.
 
 - `fn is_intersection_empty(&self, other: &Self) -> bool`
 
   Returns true if and only if the intersection of this range and the
+  other range is empty.
 
 - `fn is_subset(&self, other: &Self) -> bool`
 
@@ -356,7 +338,7 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 trait Bound: Copy + Clone + Debug + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:510-518`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/interval.rs#L510-L518)*
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:510-518`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/interval.rs#L510-L518)*
 
 #### Required Methods
 

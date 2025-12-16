@@ -30,7 +30,7 @@ enum Action {
 }
 ```
 
-*Defined in [`utf8parse-0.2.2/src/types.rs:5-22`](../../../.source_1765633015/utf8parse-0.2.2/src/types.rs#L5-L22)*
+*Defined in [`utf8parse-0.2.2/src/types.rs:5-22`](../../../.source_1765894658/utf8parse-0.2.2/src/types.rs#L5-L22)*
 
 Action to take when receiving a byte
 
@@ -107,11 +107,8 @@ Action to take when receiving a byte
 - <span id="action-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Action`
@@ -141,7 +138,7 @@ enum State {
 }
 ```
 
-*Defined in [`utf8parse-0.2.2/src/types.rs:30-48`](../../../.source_1765633015/utf8parse-0.2.2/src/types.rs#L30-L48)*
+*Defined in [`utf8parse-0.2.2/src/types.rs:30-48`](../../../.source_1765894658/utf8parse-0.2.2/src/types.rs#L30-L48)*
 
 States the parser can be in.
 
@@ -187,11 +184,8 @@ the following bytes are subject to different conditions than a tail byte.
 - <span id="state-advance"></span>`fn advance(self, byte: u8) -> (State, Action)` — [`State`](#state), [`Action`](#action)
 
   Advance the parser state.
-
   
-
   This takes the current state and input byte into consideration, to determine the next state
-
   and any action that should be taken.
 
 #### Trait Implementations
@@ -239,11 +233,8 @@ the following bytes are subject to different conditions than a tail byte.
 - <span id="state-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for State`

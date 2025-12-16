@@ -34,7 +34,7 @@ struct Dependency {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:52-85`](../../../.source_1765633015/cargo_metadata-0.23.1/src/dependency.rs#L52-L85)*
+*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:52-85`](../../../.source_1765894658/cargo_metadata-0.23.1/src/dependency.rs#L52-L85)*
 
 A dependency of the main crate
 
@@ -72,7 +72,7 @@ A dependency of the main crate
 
   The target this dependency is specific to.
   
-  Use the [`Display`]() trait to access the contents.
+  Use the `Display` trait to access the contents.
   
 
 - **`rename`**: `Option<String>`
@@ -141,11 +141,8 @@ A dependency of the main crate
 - <span id="dependency-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Dependency`
@@ -190,7 +187,7 @@ enum DependencyKind {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:15-29`](../../../.source_1765633015/cargo_metadata-0.23.1/src/dependency.rs#L15-L29)*
+*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:15-29`](../../../.source_1765894658/cargo_metadata-0.23.1/src/dependency.rs#L15-L29)*
 
 Dependencies can come in three kinds
 
@@ -267,11 +264,8 @@ Dependencies can come in three kinds
 - <span id="dependencykind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for DependencyKind`
@@ -318,7 +312,7 @@ where
     D: Deserializer<'de>
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:40-45`](../../../.source_1765633015/cargo_metadata-0.23.1/src/dependency.rs#L40-L45)*
+*Defined in [`cargo_metadata-0.23.1/src/dependency.rs:40-45`](../../../.source_1765894658/cargo_metadata-0.23.1/src/dependency.rs#L40-L45)*
 
 The `kind` can be `null`, which is interpreted as the default - `Normal`.
 

@@ -45,7 +45,7 @@ struct Flag<B> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:15-18`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L15-L18)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:15-18`](../../../.source_1765894658/bitflags-2.10.0/src/traits.rs#L15-L18)*
 
 A defined flags value that may be named or unnamed.
 
@@ -54,47 +54,34 @@ A defined flags value that may be named or unnamed.
 - <span id="flag-new"></span>`const fn new(name: &'static str, value: B) -> Self`
 
   Define a flag.
-
   
-
   If `name` is non-empty then the flag is named, otherwise it's unnamed.
-
       
 
 - <span id="flag-name"></span>`const fn name(&self) -> &'static str`
 
   Get the name of this flag.
-
   
-
   If the flag is unnamed then the returned string will be empty.
-
       
 
 - <span id="flag-value"></span>`const fn value(&self) -> &B`
 
   Get the flags value of this flag.
-
       
 
 - <span id="flag-is-named"></span>`const fn is_named(&self) -> bool`
 
   Whether the flag is named.
-
   
-
   If `Flag::name` returns a non-empty string then this method will return `true`.
-
       
 
 - <span id="flag-is-unnamed"></span>`const fn is_unnamed(&self) -> bool`
 
   Whether the flag is unnamed.
-
   
-
   If `Flag::name` returns a non-empty string then this method will return `false`.
-
       
 
 #### Trait Implementations
@@ -126,11 +113,8 @@ A defined flags value that may be named or unnamed.
 - <span id="flag-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Flag<B>`
@@ -153,7 +137,7 @@ A defined flags value that may be named or unnamed.
 trait Flags: Sized + 'static { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:132-341`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L132-L341)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:132-341`](../../../.source_1765894658/bitflags-2.10.0/src/traits.rs#L132-L341)*
 
 A set of defined flags using a bits type as storage.
 
@@ -234,6 +218,8 @@ assert_eq!(3, defined_flags::<MyFlags>());
 - `fn bits(&self) -> <Self as >::Bits`
 
   Get the underlying bits value.
+  
+  The returned value is exactly the bits set in this flags value.
 
 - `fn from_bits_retain(bits: <Self as >::Bits) -> Self`
 
@@ -256,6 +242,8 @@ assert_eq!(3, defined_flags::<MyFlags>());
 - `fn from_bits(bits: <Self as >::Bits) -> Option<Self>`
 
   Convert from a bits value.
+  
+  This method will return `None` if any unknown bits are set.
 
 - `fn from_bits_truncate(bits: <Self as >::Bits) -> Self`
 
@@ -264,14 +252,23 @@ assert_eq!(3, defined_flags::<MyFlags>());
 - `fn from_name(name: &str) -> Option<Self>`
 
   Get a flags value with the bits of a flag with the given name set.
+  
+  This method will return `None` if `name` is empty or doesn't
+  correspond to any named flag.
 
 - `fn iter(&self) -> iter::Iter<Self>`
 
   Yield a set of contained flags values.
+  
+  Each yielded flags value will correspond to a defined named flag. Any unknown bits
+  will be yielded together as a final flags value.
 
 - `fn iter_names(&self) -> iter::IterNames<Self>`
 
   Yield a set of contained named flags values.
+  
+  This method is like `Flags::iter`, except only yields bits in contained named flags.
+  Any unknown bits, or bits not corresponding to a contained flag will not be yielded.
 
 - `fn iter_defined_names() -> iter::IterDefinedNames<Self>`
 
@@ -304,6 +301,9 @@ assert_eq!(3, defined_flags::<MyFlags>());
 - `fn remove(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
+  
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+  `remove` won't truncate `other`, but the `!` operator will.
 
 - `fn toggle(&mut self, other: Self)`
 
@@ -328,6 +328,9 @@ assert_eq!(3, defined_flags::<MyFlags>());
 - `fn difference(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
+  
+  This method is not equivalent to `self & !other` when `other` has unknown bits set.
+  `difference` won't truncate `other`, but the `!` operator will.
 
 - `fn symmetric_difference(self, other: Self) -> Self`
 
@@ -343,7 +346,7 @@ assert_eq!(3, defined_flags::<MyFlags>());
 trait Bits: Clone + Copy + PartialEq + BitAnd<Output = Self> + BitOr<Output = Self> + BitXor<Output = Self> + Not<Output = Self> + Sized + 'static { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:346-362`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L346-L362)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:346-362`](../../../.source_1765894658/bitflags-2.10.0/src/traits.rs#L346-L362)*
 
 A bits type that can be used as storage for a flags type.
 
@@ -374,7 +377,7 @@ A bits type that can be used as storage for a flags type.
 trait Primitive { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:366`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L366)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:366`](../../../.source_1765894658/bitflags-2.10.0/src/traits.rs#L366)*
 
 #### Implementors
 
@@ -397,7 +400,7 @@ trait Primitive { ... }
 trait PublicFlags { ... }
 ```
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:422-428`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L422-L428)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:422-428`](../../../.source_1765894658/bitflags-2.10.0/src/traits.rs#L422-L428)*
 
 A trait for referencing the `bitflags`-owned internal type
 without exposing it publicly.
@@ -412,5 +415,5 @@ without exposing it publicly.
 
 ### `impl_bits!`
 
-*Defined in [`bitflags-2.10.0/src/traits.rs:368-409`](../../../.source_1765633015/bitflags-2.10.0/src/traits.rs#L368-L409)*
+*Defined in [`bitflags-2.10.0/src/traits.rs:368-409`](../../../.source_1765894658/bitflags-2.10.0/src/traits.rs#L368-L409)*
 

@@ -33,7 +33,7 @@ struct Sleep {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:21-27`](../../../.source_1765633015/rayon-core-1.13.0/src/sleep/mod.rs#L21-L27)*
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:21-27`](../../../.source_1765894658/rayon-core-1.13.0/src/sleep/mod.rs#L21-L27)*
 
 The `Sleep` struct is embedded into each registry. It governs the waking and sleeping
 of workers. It has callbacks that are invoked periodically at significant events,
@@ -67,57 +67,35 @@ events. See the `README.md` in this module for more details.
 - <span id="sleep-notify-worker-latch-is-set"></span>`fn notify_worker_latch_is_set(&self, target_worker_index: usize)`
 
   Notify the given thread that it should wake up (if it is
-
   sleeping).  When this method is invoked, we typically know the
-
   thread is asleep, though in rare cases it could have been
-
   awoken by (e.g.) new work having been posted.
 
 - <span id="sleep-new-injected-jobs"></span>`fn new_injected_jobs(&self, num_jobs: u32, queue_was_empty: bool)`
 
   Signals that `num_jobs` new jobs were injected into the thread
-
   pool from outside. This function will ensure that there are
-
   threads available to process them, waking threads from sleep
-
   if necessary.
-
   
-
   # Parameters
-
   
-
   - `num_jobs` -- lower bound on number of jobs available for stealing.
-
     We'll try to get at least one thread per job.
 
 - <span id="sleep-new-internal-jobs"></span>`fn new_internal_jobs(&self, num_jobs: u32, queue_was_empty: bool)`
 
   Signals that `num_jobs` new jobs were pushed onto a thread's
-
   local deque. This function will try to ensure that there are
-
   threads available to process them, waking threads from sleep
-
   if necessary. However, this is not guaranteed: under certain
-
   race conditions, the function may fail to wake any new
-
   threads; in that case the existing thread should eventually
-
   pop the job.
-
   
-
   # Parameters
-
   
-
   - `num_jobs` -- lower bound on number of jobs available for stealing.
-
     We'll try to get at least one thread per job.
 
 - <span id="sleep-new-jobs"></span>`fn new_jobs(&self, num_jobs: u32, queue_was_empty: bool)`
@@ -153,11 +131,8 @@ events. See the `README.md` in this module for more details.
 - <span id="sleep-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Sleep`
@@ -196,7 +171,7 @@ struct IdleState {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:34-44`](../../../.source_1765633015/rayon-core-1.13.0/src/sleep/mod.rs#L34-L44)*
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:34-44`](../../../.source_1765894658/rayon-core-1.13.0/src/sleep/mod.rs#L34-L44)*
 
 An instance of this struct is created when a thread becomes idle.
 It is consumed when the thread finds work, and passed by `&mut`
@@ -250,11 +225,8 @@ idle.) It tracks state such as how long the thread has been idle.
 - <span id="idlestate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for IdleState`
@@ -292,7 +264,7 @@ struct WorkerSleepState {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:48-54`](../../../.source_1765633015/rayon-core-1.13.0/src/sleep/mod.rs#L48-L54)*
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:48-54`](../../../.source_1765894658/rayon-core-1.13.0/src/sleep/mod.rs#L48-L54)*
 
 The "sleep state" for an individual worker.
 
@@ -332,11 +304,8 @@ The "sleep state" for an individual worker.
 - <span id="workersleepstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for WorkerSleepState`
@@ -372,12 +341,12 @@ The "sleep state" for an individual worker.
 const ROUNDS_UNTIL_SLEEPY: u32 = 32u32;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:56`](../../../.source_1765633015/rayon-core-1.13.0/src/sleep/mod.rs#L56)*
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:56`](../../../.source_1765894658/rayon-core-1.13.0/src/sleep/mod.rs#L56)*
 
 ### `ROUNDS_UNTIL_SLEEPING`
 ```rust
 const ROUNDS_UNTIL_SLEEPING: u32 = 33u32;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:57`](../../../.source_1765633015/rayon-core-1.13.0/src/sleep/mod.rs#L57)*
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:57`](../../../.source_1765894658/rayon-core-1.13.0/src/sleep/mod.rs#L57)*
 

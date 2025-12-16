@@ -80,7 +80,7 @@ Reporters included with `miette`.
 struct DebugReportHandler;
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/debug.rs:11`](../../../.source_1765633015/miette-7.6.0/src/handlers/debug.rs#L11)*
+*Defined in [`miette-7.6.0/src/handlers/debug.rs:11`](../../../.source_1765894658/miette-7.6.0/src/handlers/debug.rs#L11)*
 
 [`ReportHandler`](../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -91,7 +91,6 @@ non-graphical environments, such as non-TTY output.
 - <span id="debugreporthandler-new"></span>`const fn new() -> Self`
 
   Create a new [`NarratableReportHandler`](crate::NarratableReportHandler)
-
   There are no customization options.
 
 #### Trait Implementations
@@ -135,11 +134,8 @@ non-graphical environments, such as non-TTY output.
 - <span id="debugreporthandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DebugReportHandler`
@@ -190,7 +186,7 @@ struct GraphicalReportHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
 
 A [`ReportHandler`](../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -209,7 +205,6 @@ printer.
 - <span id="graphicalreporthandler-new"></span>`fn new() -> Self`
 
   Create a new `GraphicalReportHandler` with the default
-
   [`GraphicalTheme`](#graphicaltheme). This will use both unicode characters and colors.
 
 - <span id="graphicalreporthandler-new-themed"></span>`fn new_themed(theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](#graphicaltheme)
@@ -227,35 +222,28 @@ printer.
 - <span id="graphicalreporthandler-with-cause-chain"></span>`fn with_cause_chain(self) -> Self`
 
   Include the cause chain of the top-level error in the graphical output,
-
   if available.
 
 - <span id="graphicalreporthandler-without-cause-chain"></span>`fn without_cause_chain(self) -> Self`
 
   Do not include the cause chain of the top-level error in the graphical
-
   output.
 
 - <span id="graphicalreporthandler-with-primary-span-start"></span>`fn with_primary_span_start(self) -> Self`
 
   Include the line and column for the the start of the primary span when the
-
   snippet extends multiple lines
 
 - <span id="graphicalreporthandler-without-primary-span-start"></span>`fn without_primary_span_start(self) -> Self`
 
   Do not include the line and column for the the start of the primary span
-
   when the snippet extends multiple lines
 
 - <span id="graphicalreporthandler-with-urls"></span>`fn with_urls(self, urls: bool) -> Self`
 
   Whether to include `Diagnostic::url()` in the output.
-
   
-
   Disabling this is not recommended, but can be useful for more easily
-
   reproducible tests, as `url(docsrs)` links are version-dependent.
 
 - <span id="graphicalreporthandler-with-theme"></span>`fn with_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](#graphicaltheme)
@@ -297,21 +285,17 @@ printer.
 - <span id="graphicalreporthandler-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md#highlighter)
 
   Enable syntax highlighting for source code snippets, using the given
-
   [`Highlighter`](../highlighters/index.md). See the [highlighters](crate::highlighters) crate
-
   for more details.
 
 - <span id="graphicalreporthandler-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
   Disable syntax highlighting. This uses the
-
   [`crate::highlighters::BlankHighlighter`](../highlighters/index.md) as a no-op highlighter.
 
 - <span id="graphicalreporthandler-with-link-display-text"></span>`fn with_link_display_text(self, text: impl Into<String>) -> Self`
 
   Sets the display text for links.
-
   Miette displays `(link)` if this option is not set.
 
 #### Trait Implementations
@@ -355,11 +339,8 @@ printer.
 - <span id="graphicalreporthandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GraphicalReportHandler`
@@ -399,7 +380,7 @@ struct Line {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
 
 #### Implementations
 
@@ -408,13 +389,11 @@ struct Line {
 - <span id="line-span-applies"></span>`fn span_applies(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md#fancyspan)
 
   Returns whether `span` should be visible on this line, either in the gutter or under the
-
   text on this line
 
 - <span id="line-span-applies-gutter"></span>`fn span_applies_gutter(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md#fancyspan)
 
   Returns whether `span` should be visible on this line in the gutter (so this excludes spans
-
   that are only visible on this line and do not span multiple lines)
 
 - <span id="line-span-flyby"></span>`fn span_flyby(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md#fancyspan)
@@ -452,11 +431,8 @@ struct Line {
 - <span id="line-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Line`
@@ -483,7 +459,7 @@ struct FancySpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
 
 #### Fields
 
@@ -544,11 +520,8 @@ struct FancySpan {
 - <span id="fancyspan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for FancySpan`
@@ -583,7 +556,7 @@ struct FancySpan {
 struct JSONReportHandler;
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../.source_1765633015/miette-7.6.0/src/handlers/json.rs#L11)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../.source_1765894658/miette-7.6.0/src/handlers/json.rs#L11)*
 
 [`ReportHandler`](../index.md) that renders JSON output. It's a machine-readable output.
 
@@ -592,7 +565,6 @@ struct JSONReportHandler;
 - <span id="jsonreporthandler-new"></span>`const fn new() -> Self`
 
   Create a new [`JSONReportHandler`](#jsonreporthandler). There are no customization
-
   options.
 
 #### Trait Implementations
@@ -636,11 +608,8 @@ struct JSONReportHandler;
 - <span id="jsonreporthandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for JSONReportHandler`
@@ -675,7 +644,7 @@ struct JSONReportHandler;
 struct Escape<'a>(&'a str);
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../.source_1765633015/miette-7.6.0/src/handlers/json.rs#L27)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../.source_1765894658/miette-7.6.0/src/handlers/json.rs#L27)*
 
 #### Trait Implementations
 
@@ -706,11 +675,8 @@ struct Escape<'a>(&'a str);
 - <span id="escape-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Escape<'a>`
@@ -741,7 +707,7 @@ struct NarratableReportHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../.source_1765894658/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
 
 [`ReportHandler`](../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -752,13 +718,11 @@ non-graphical environments, such as non-TTY output.
 - <span id="narratablereporthandler-new"></span>`const fn new() -> Self`
 
   Create a new [`NarratableReportHandler`](#narratablereporthandler). There are no customization
-
   options.
 
 - <span id="narratablereporthandler-with-cause-chain"></span>`const fn with_cause_chain(self) -> Self`
 
   Include the cause chain of the top-level error in the report, if
-
   available.
 
 - <span id="narratablereporthandler-without-cause-chain"></span>`const fn without_cause_chain(self) -> Self`
@@ -814,11 +778,8 @@ non-graphical environments, such as non-TTY output.
 - <span id="narratablereporthandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for NarratableReportHandler`
@@ -858,7 +819,7 @@ struct Line {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../.source_1765894658/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
 
 #### Implementations
 
@@ -889,11 +850,8 @@ struct Line {
 - <span id="line-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Line`
@@ -919,7 +877,7 @@ struct GraphicalTheme {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../.source_1765633015/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../.source_1765894658/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
 
 Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to
 render fancy [`Diagnostic`](crate::Diagnostic) reports.
@@ -950,37 +908,25 @@ one of the predefined ones using the methods below.
 - <span id="graphicaltheme-unicode"></span>`fn unicode() -> Self`
 
   Graphical theme that draws using both ansi colors and unicode
-
   characters.
-
   
-
   Note that full rgb colors aren't enabled by default because they're
-
   an accessibility hazard, especially in the context of terminal themes
-
   that can change the background color and make hardcoded colors illegible.
-
   Such themes typically remap ansi codes properly, treating them more
-
   like CSS classes than specific colors.
 
 - <span id="graphicaltheme-unicode-nocolor"></span>`fn unicode_nocolor() -> Self`
 
   Graphical theme that draws in monochrome, while still using unicode
-
   characters.
 
 - <span id="graphicaltheme-none"></span>`fn none() -> Self`
 
   A "basic" graphical theme that skips colors and unicode characters and
-
   just does monochrome ascii art. If you want a completely non-graphical
-
   rendering of your [`Diagnostic`](crate::Diagnostic)s, check out
-
   [`NarratableReportHandler`](crate::NarratableReportHandler), or write
-
   your own [`ReportHandler`](crate::ReportHandler)
 
 #### Trait Implementations
@@ -1024,11 +970,8 @@ one of the predefined ones using the methods below.
 - <span id="graphicaltheme-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GraphicalTheme`
@@ -1067,7 +1010,7 @@ struct ThemeStyles {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../.source_1765633015/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../.source_1765894658/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
 
 Styles for various parts of graphical rendering for the
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -1108,7 +1051,6 @@ Styles for various parts of graphical rendering for the
 - <span id="themestyles-rgb"></span>`fn rgb() -> Self`
 
   Nice RGB colors.
-
   [Credit](http://terminal.sexy/#FRUV0NDQFRUVrEFCkKlZ9L91ap-1qnWfdbWq0NDQUFBQrEFCkKlZ9L91ap-1qnWfdbWq9fX1).
 
 - <span id="themestyles-ansi"></span>`fn ansi() -> Self`
@@ -1156,11 +1098,8 @@ Styles for various parts of graphical rendering for the
 - <span id="themestyles-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ThemeStyles`
@@ -1213,7 +1152,7 @@ struct ThemeCharacters {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../.source_1765633015/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../.source_1765894658/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
 
 Characters to be used when drawing when using
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -1271,11 +1210,8 @@ Characters to be used when drawing when using
 - <span id="themecharacters-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ThemeCharacters`
@@ -1318,7 +1254,7 @@ enum LinkStyle {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
 
 #### Trait Implementations
 
@@ -1361,11 +1297,8 @@ enum LinkStyle {
 - <span id="linkstyle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LinkStyle`
@@ -1406,7 +1339,7 @@ enum LabelRenderMode {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
 
 #### Variants
 
@@ -1451,11 +1384,8 @@ enum LabelRenderMode {
 - <span id="labelrendermode-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LabelRenderMode`
@@ -1495,7 +1425,7 @@ enum SpanAttach {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../.source_1765894658/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
 
 #### Trait Implementations
 
@@ -1522,11 +1452,8 @@ enum SpanAttach {
 - <span id="spanattach-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for SpanAttach`
@@ -1551,7 +1478,7 @@ enum SpanAttach {
 fn split_label(v: String) -> Vec<String>
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
 
 ### `escape`
 
@@ -1559,7 +1486,7 @@ fn split_label(v: String) -> Vec<String>
 const fn escape(input: &str) -> Escape<'_>
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../.source_1765633015/miette-7.6.0/src/handlers/json.rs#L52-L54)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../.source_1765894658/miette-7.6.0/src/handlers/json.rs#L52-L54)*
 
 ### `safe_get_column`
 
@@ -1567,7 +1494,7 @@ const fn escape(input: &str) -> Escape<'_>
 fn safe_get_column(text: &str, offset: usize, start: bool) -> usize
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../.source_1765894658/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
 
 Returns column at offset, and nearest boundary if offset is in the middle of
 the character
@@ -1578,5 +1505,5 @@ the character
 fn style() -> owo_colors::Style
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../.source_1765633015/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../.source_1765894658/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
 

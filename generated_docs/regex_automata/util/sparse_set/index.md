@@ -38,7 +38,7 @@ struct SparseSets {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:36-39`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/sparse_set.rs#L36-L39)*
+*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:36-39`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/sparse_set.rs#L36-L39)*
 
 A pair of sparse sets.
 
@@ -59,21 +59,15 @@ time.
 - <span id="sparsesets-new"></span>`fn new(capacity: usize) -> SparseSets` — [`SparseSets`](#sparsesets)
 
   Create a new pair of sparse sets where each set has the given capacity.
-
   
-
   This panics if the capacity given is bigger than `StateID::LIMIT`.
 
 - <span id="sparsesets-resize"></span>`fn resize(&mut self, new_capacity: usize)`
 
   Resizes these sparse sets to have the new capacity given.
-
   
-
   The sets are automatically cleared.
-
   
-
   This panics if the capacity given is bigger than `StateID::LIMIT`.
 
 - <span id="sparsesets-clear"></span>`fn clear(&mut self)`
@@ -125,11 +119,8 @@ time.
 - <span id="sparsesets-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SparseSets`
@@ -162,7 +153,7 @@ struct SparseSet {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:91-106`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/sparse_set.rs#L91-L106)*
+*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:91-106`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/sparse_set.rs#L91-L106)*
 
 A sparse set used for representing ordered NFA states.
 
@@ -202,39 +193,26 @@ other properties listed above are extremely useful.
 - <span id="sparseset-new"></span>`fn new(capacity: usize) -> SparseSet` — [`SparseSet`](#sparseset)
 
   Create a new sparse set with the given capacity.
-
   
-
   Sparse sets have a fixed size and they cannot grow. Attempting to
-
   insert more distinct elements than the total capacity of the set will
-
   result in a panic.
-
   
-
   This panics if the capacity given is bigger than `StateID::LIMIT`.
 
 - <span id="sparseset-resize"></span>`fn resize(&mut self, new_capacity: usize)`
 
   Resizes this sparse set to have the new capacity given.
-
   
-
   This set is automatically cleared.
-
   
-
   This panics if the capacity given is bigger than `StateID::LIMIT`.
 
 - <span id="sparseset-capacity"></span>`fn capacity(&self) -> usize`
 
   Returns the capacity of this set.
-
   
-
   The capacity represents a fixed limit on the number of distinct
-
   elements that are allowed in this set. The capacity cannot be changed.
 
 - <span id="sparseset-len"></span>`fn len(&self) -> usize`
@@ -248,23 +226,14 @@ other properties listed above are extremely useful.
 - <span id="sparseset-insert"></span>`fn insert(&mut self, id: StateID) -> bool` — [`StateID`](../primitives/index.md#stateid)
 
   Insert the state ID value into this set and return true if the given
-
   state ID was not previously in this set.
-
   
-
   This operation is idempotent. If the given value is already in this
-
   set, then this is a no-op.
-
   
-
   If more than `capacity` ids are inserted, then this panics.
-
   
-
   This is marked as inline(always) since the compiler won't inline it
-
   otherwise, and it's a fairly hot piece of code in DFA determinization.
 
 - <span id="sparseset-contains"></span>`fn contains(&self, id: StateID) -> bool` — [`StateID`](../primitives/index.md#stateid)
@@ -318,11 +287,8 @@ other properties listed above are extremely useful.
 - <span id="sparseset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SparseSet`
@@ -351,7 +317,7 @@ other properties listed above are extremely useful.
 struct SparseSetIter<'a>(core::slice::Iter<'a, crate::util::primitives::StateID>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:230`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/sparse_set.rs#L230)*
+*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:230`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/sparse_set.rs#L230)*
 
 An iterator over all elements in a sparse set.
 
@@ -386,11 +352,8 @@ The lifetime `'a` refers to the lifetime of the set being iterated over.
 - <span id="sparsesetiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SparseSetIter<'a>`

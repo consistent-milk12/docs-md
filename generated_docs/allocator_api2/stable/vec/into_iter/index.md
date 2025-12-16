@@ -25,7 +25,7 @@ struct IntoIter<T, A: Allocator> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
 
 An iterator that moves out of a vector.
 
@@ -44,53 +44,31 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 - <span id="intoiter-as-slice"></span>`fn as_slice(&self) -> &[T]`
 
   Returns the remaining items of this iterator as a slice.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let vec = vec!['a', 'b', 'c'];
-
   let mut into_iter = vec.into_iter();
-
   assert_eq!(into_iter.as_slice(), &['a', 'b', 'c']);
-
   let _ = into_iter.next().unwrap();
-
   assert_eq!(into_iter.as_slice(), &['b', 'c']);
-
   ```
 
 - <span id="intoiter-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [T]`
 
   Returns the remaining items of this iterator as a mutable slice.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let vec = vec!['a', 'b', 'c'];
-
   let mut into_iter = vec.into_iter();
-
   assert_eq!(into_iter.as_slice(), &['a', 'b', 'c']);
-
   into_iter.as_mut_slice()[2] = 'z';
-
   assert_eq!(into_iter.next().unwrap(), 'a');
-
   assert_eq!(into_iter.next().unwrap(), 'b');
-
   assert_eq!(into_iter.next().unwrap(), 'z');
-
   ```
 
 - <span id="intoiter-allocator"></span>`fn allocator(&self) -> &A`
@@ -152,11 +130,8 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter<T, A>`

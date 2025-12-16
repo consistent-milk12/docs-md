@@ -55,7 +55,7 @@ struct StrippedStr<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:28-31`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L28-L31)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:28-31`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L28-L31)*
 
 See [`strip_str`](#strip-str)
 
@@ -65,7 +65,7 @@ See [`strip_str`](#strip-str)
 
 - <span id="strippedstr-to-string"></span>`fn to_string(&self) -> String`
 
-  Create a [`String`](../../../cargo_platform/index.md) of the printable content
+  Create a `String` of the printable content
 
 #### Trait Implementations
 
@@ -101,7 +101,7 @@ See [`strip_str`](#strip-str)
 
 - <span id="strippedstr-display-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-  **Note:** this does *not* exhaust the [`Iterator`](../../../cargo_docs_md/index.md)
+  **Note:** this does *not* exhaust the `Iterator`
 
 ##### `impl Eq for StrippedStr<'s>`
 
@@ -116,11 +116,8 @@ See [`strip_str`](#strip-str)
 - <span id="strippedstr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StrippedStr<'s>`
@@ -175,7 +172,7 @@ struct StripStr {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:79-81`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L79-L81)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:79-81`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L79-L81)*
 
 Incrementally strip non-contiguous data
 
@@ -232,11 +229,8 @@ Incrementally strip non-contiguous data
 - <span id="stripstr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for StripStr`
@@ -274,7 +268,7 @@ struct StripStrIter<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:100-103`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L100-L103)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:100-103`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L100-L103)*
 
 See [`StripStr`](#stripstr)
 
@@ -309,11 +303,8 @@ See [`StripStr`](#stripstr)
 - <span id="stripstriter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StripStrIter<'s>`
@@ -358,7 +349,7 @@ struct StrippedBytes<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:184-188`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L184-L188)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:184-188`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L184-L188)*
 
 See [`strip_bytes`](#strip-bytes)
 
@@ -371,17 +362,11 @@ See [`strip_bytes`](#strip-bytes)
 - <span id="strippedbytes-extend"></span>`fn extend(&mut self, bytes: &'s [u8])`
 
   Strip the next slice of bytes
-
   
-
   Used when the content is in several non-contiguous slices
-
   
-
   # Panic
-
   
-
   May panic if it is not exhausted / empty
 
 - <span id="strippedbytes-is-empty"></span>`fn is_empty(&self) -> bool`
@@ -390,7 +375,7 @@ See [`strip_bytes`](#strip-bytes)
 
 - <span id="strippedbytes-into-vec"></span>`fn into_vec(self) -> Vec<u8>`
 
-  Create a [`Vec`](../../../addr2line/maybe_small/index.md) of the printable content
+  Create a [`Vec`](#vec) of the printable content
 
 #### Trait Implementations
 
@@ -435,11 +420,8 @@ See [`strip_bytes`](#strip-bytes)
 - <span id="strippedbytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StrippedBytes<'s>`
@@ -491,7 +473,7 @@ struct StripBytes {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:245-248`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L245-L248)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:245-248`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L245-L248)*
 
 Incrementally strip non-contiguous data
 
@@ -548,11 +530,8 @@ Incrementally strip non-contiguous data
 - <span id="stripbytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for StripBytes`
@@ -591,7 +570,7 @@ struct StripBytesIter<'s> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:268-272`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L268-L272)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:268-272`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L268-L272)*
 
 See [`StripBytes`](#stripbytes)
 
@@ -626,11 +605,8 @@ See [`StripBytes`](#stripbytes)
 - <span id="stripbytesiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StripBytesIter<'s>`
@@ -673,7 +649,7 @@ struct Utf8Parser {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:332-334`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L332-L334)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:332-334`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L332-L334)*
 
 #### Implementations
 
@@ -722,11 +698,8 @@ struct Utf8Parser {
 - <span id="utf8parser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Utf8Parser`
@@ -761,7 +734,7 @@ struct Utf8Parser {
 struct VtUtf8Receiver<'a>(&'a mut bool);
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:345`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L345)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:345`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L345)*
 
 #### Trait Implementations
 
@@ -788,11 +761,8 @@ struct VtUtf8Receiver<'a>(&'a mut bool);
 - <span id="vtutf8receiver-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for VtUtf8Receiver<'_>`
@@ -821,7 +791,7 @@ struct VtUtf8Receiver<'a>(&'a mut bool);
 fn strip_str(data: &str) -> StrippedStr<'_>
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:22-24`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L22-L24)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:22-24`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L22-L24)*
 
 Strip ANSI escapes from a `&str`, returning the printable content
 
@@ -846,7 +816,7 @@ assert_eq!(plain_str, "foo bar");
 fn next_str<'s>(bytes: &mut &'s [u8], state: &mut anstyle_parse::state::State) -> Option<&'s str>
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:115-144`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L115-L144)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:115-144`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L115-L144)*
 
 ### `from_utf8_unchecked`
 
@@ -854,7 +824,7 @@ fn next_str<'s>(bytes: &mut &'s [u8], state: &mut anstyle_parse::state::State) -
 unsafe fn from_utf8_unchecked<'b>(bytes: &'b [u8], safety_justification: &'static str) -> &'b str
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:147-156`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L147-L156)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:147-156`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L147-L156)*
 
 ### `is_utf8_continuation`
 
@@ -862,7 +832,7 @@ unsafe fn from_utf8_unchecked<'b>(bytes: &'b [u8], safety_justification: &'stati
 fn is_utf8_continuation(b: u8) -> bool
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:159-161`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L159-L161)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:159-161`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L159-L161)*
 
 ### `strip_bytes`
 
@@ -870,7 +840,7 @@ fn is_utf8_continuation(b: u8) -> bool
 fn strip_bytes(data: &[u8]) -> StrippedBytes<'_>
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:178-180`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L178-L180)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:178-180`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L178-L180)*
 
 Strip ANSI escapes from bytes, returning the printable content
 
@@ -893,7 +863,7 @@ assert_eq!(plain_str.as_slice(), &b"foo bar"[..]);
 fn next_bytes<'s>(bytes: &mut &'s [u8], state: &mut anstyle_parse::state::State, utf8parser: &mut Utf8Parser) -> Option<&'s [u8]>
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:284-329`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L284-L329)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:284-329`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L284-L329)*
 
 ### `is_printable_bytes`
 
@@ -901,5 +871,5 @@ fn next_bytes<'s>(bytes: &mut &'s [u8], state: &mut anstyle_parse::state::State,
 fn is_printable_bytes(action: anstyle_parse::state::Action, byte: u8) -> bool
 ```
 
-*Defined in [`anstream-0.6.21/src/adapter/strip.rs:358-367`](../../../../.source_1765633015/anstream-0.6.21/src/adapter/strip.rs#L358-L367)*
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:358-367`](../../../../.source_1765894658/anstream-0.6.21/src/adapter/strip.rs#L358-L367)*
 

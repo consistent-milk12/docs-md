@@ -65,7 +65,7 @@ struct ThreadBuilder {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L22-L29)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L22-L29)*
 
 Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
@@ -86,7 +86,6 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 - <span id="threadbuilder-run"></span>`fn run(self)`
 
   Executes the main loop for this thread. This will not return until the
-
   thread pool is dropped.
 
 #### Trait Implementations
@@ -118,11 +117,8 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 - <span id="threadbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadBuilder`
@@ -157,7 +153,7 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 struct DefaultSpawn;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:82`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L82)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:82`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L82)*
 
 Spawns a thread in the "normal" way with `std::thread::Builder`.
 
@@ -197,11 +193,8 @@ but we don't actually want to expose these details in the API.
 - <span id="defaultspawn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for DefaultSpawn`
@@ -240,7 +233,7 @@ but we don't actually want to expose these details in the API.
 struct CustomSpawn<F>(F);
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:105`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L105)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:105`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L105)*
 
 Spawns a thread with a user's custom callback.
 
@@ -280,11 +273,8 @@ but we don't actually want to expose these details in the API.
 - <span id="customspawn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for CustomSpawn<F>`
@@ -332,7 +322,7 @@ struct Registry {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:128-151`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L128-L151)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:128-151`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L128-L151)*
 
 #### Implementations
 
@@ -343,9 +333,7 @@ struct Registry {
 - <span id="registry-current-num-threads"></span>`fn current_num_threads() -> usize`
 
   Returns the number of threads in the current registry.  This
-
   is better than `Registry::current().num_threads()` because it
-
   avoids incrementing the `Arc`.
 
 - <span id="registry-current-thread"></span>`fn current_thread(&self) -> Option<&WorkerThread>` — [`WorkerThread`](#workerthread)
@@ -363,27 +351,20 @@ struct Registry {
 - <span id="registry-wait-until-primed"></span>`fn wait_until_primed(&self)`
 
   Waits for the worker threads to get up and running.  This is
-
   meant to be used for benchmarking purposes, primarily, so that
-
   you can get more consistent numbers by having everything
-
   "ready to go".
 
 - <span id="registry-inject-or-push"></span>`fn inject_or_push(&self, job_ref: JobRef)` — [`JobRef`](../job/index.md#jobref)
 
   Push a job into the given `registry`. If we are running on a
-
   worker thread for the registry, this will push onto the
-
   deque. Else, it will inject from the outside (which is slower).
 
 - <span id="registry-inject"></span>`fn inject(&self, injected_job: JobRef)` — [`JobRef`](../job/index.md#jobref)
 
   Push a job into the "external jobs" queue; it will be taken by
-
   whatever worker has nothing to do. Use this if you know that
-
   you are not on a worker of this registry.
 
 - <span id="registry-has-injected-job"></span>`fn has_injected_job(&self) -> bool`
@@ -393,25 +374,17 @@ struct Registry {
 - <span id="registry-inject-broadcast"></span>`fn inject_broadcast(&self, injected_jobs: impl ExactSizeIterator<Item = JobRef>)` — [`JobRef`](../job/index.md#jobref)
 
   Push a job into each thread's own "external jobs" queue; it will be
-
   executed only on that thread, when it has nothing else to do locally,
-
   before it tries to steal other work.
-
   
-
   **Panics** if not given exactly as many jobs as there are threads.
 
 - <span id="registry-in-worker"></span>`fn in_worker<OP, R>(&self, op: OP) -> R`
 
   If already in a worker-thread of this registry, just execute `op`.
-
   Otherwise, inject `op` in this thread pool. Either way, block until `op`
-
   completes and return its return value. If `op` panics, that panic will
-
   be propagated as well.  The second argument indicates `true` if injection
-
   was performed, `false` if executed directly.
 
 - <span id="registry-in-worker-cold"></span>`unsafe fn in_worker_cold<OP, R>(&self, op: OP) -> R`
@@ -421,51 +394,30 @@ struct Registry {
 - <span id="registry-increment-terminate-count"></span>`fn increment_terminate_count(&self)`
 
   Increments the terminate counter. This increment should be
-
   balanced by a call to `terminate`, which will decrement. This
-
   is used when spawning asynchronous work, which needs to
-
   prevent the registry from terminating so long as it is active.
-
   
-
   Note that blocking functions such as `join` and `scope` do not
-
   need to concern themselves with this fn; their context is
-
   responsible for ensuring the current thread pool will not
-
   terminate until they return.
-
   
-
   The global thread pool always has an outstanding reference
-
   (the initial one). Custom thread pools have one outstanding
-
   reference that is dropped when the `ThreadPool` is dropped:
-
   since installing the thread pool blocks until any joins/scopes
-
   complete, this ensures that joins/scopes are covered.
-
   
-
   The exception is `::spawn()`, which can create a job outside
-
   of any blocking scope. In that case, the job itself holds a
-
   terminate count and is responsible for invoking `terminate()`
-
   when finished.
 
 - <span id="registry-terminate"></span>`fn terminate(&self)`
 
   Signals that the thread pool which owns this registry has been
-
   dropped. The worker threads will gradually terminate, once any
-
   extant work is completed.
 
 - <span id="registry-notify-worker-latch-is-set"></span>`fn notify_worker_latch_is_set(&self, target_worker_index: usize)`
@@ -497,11 +449,8 @@ struct Registry {
 - <span id="registry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Registry`
@@ -536,7 +485,7 @@ struct Registry {
 struct Terminator<'a>(&'a std::sync::Arc<Registry>);
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:230`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L230)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:230`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L230)*
 
 #### Trait Implementations
 
@@ -567,11 +516,8 @@ struct Terminator<'a>(&'a std::sync::Arc<Registry>);
 - <span id="terminator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Terminator<'a>`
@@ -608,7 +554,7 @@ struct RegistryId {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:609-611`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L609-L611)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:609-611`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L609-L611)*
 
 #### Trait Implementations
 
@@ -651,11 +597,8 @@ struct RegistryId {
 - <span id="registryid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for RegistryId`
@@ -717,7 +660,7 @@ struct ThreadInfo {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:613-631`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L613-L631)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:613-631`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L613-L631)*
 
 #### Fields
 
@@ -772,11 +715,8 @@ struct ThreadInfo {
 - <span id="threadinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadInfo`
@@ -818,7 +758,7 @@ struct WorkerThread {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:647-663`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L647-L663)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:647-663`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L647-L663)*
 
 #### Fields
 
@@ -843,15 +783,12 @@ struct WorkerThread {
 - <span id="workerthread-current"></span>`fn current() -> *const WorkerThread` — [`WorkerThread`](#workerthread)
 
   Gets the `WorkerThread` index for the current thread; returns
-
   NULL if this is not a worker thread. This pointer is valid
-
   anywhere on the current thread.
 
 - <span id="workerthread-set-current"></span>`unsafe fn set_current(thread: *const WorkerThread)` — [`WorkerThread`](#workerthread)
 
   Sets `self` as the worker-thread index for the current thread.
-
   This is done during worker-thread startup.
 
 - <span id="workerthread-registry"></span>`fn registry(&self) -> &Arc<Registry>` — [`Registry`](#registry)
@@ -871,11 +808,8 @@ struct WorkerThread {
 - <span id="workerthread-take-local-job"></span>`fn take_local_job(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md#jobref)
 
   Attempts to obtain a "local" job -- typically this means
-
   popping from the top of the stack, though if we are configured
-
   for breadth-first execution, it would mean dequeuing from the
-
   bottom.
 
 - <span id="workerthread-has-injected-job"></span>`fn has_injected_job(&self) -> bool`
@@ -883,7 +817,6 @@ struct WorkerThread {
 - <span id="workerthread-wait-until"></span>`unsafe fn wait_until<L: AsCoreLatch + ?Sized>(&self, latch: &L)`
 
   Wait until the latch is set. Try to keep busy by popping and
-
   stealing tasks as necessary.
 
 - <span id="workerthread-wait-until-cold"></span>`unsafe fn wait_until_cold(&self, latch: &CoreLatch)` — [`CoreLatch`](../latch/index.md#corelatch)
@@ -901,11 +834,8 @@ struct WorkerThread {
 - <span id="workerthread-steal"></span>`fn steal(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md#jobref)
 
   Try to steal a single job and return it.
-
   
-
   This should only be done as a last resort, when there is no
-
   local work to do.
 
 #### Trait Implementations
@@ -937,11 +867,8 @@ struct WorkerThread {
 - <span id="workerthread-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for WorkerThread`
@@ -978,7 +905,7 @@ struct XorShift64Star {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:968-970`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L968-L970)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:968-970`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L968-L970)*
 
 [xorshift*] is a fast pseudorandom number generator which will
 even tolerate weak seeding, as long as it's not zero.
@@ -1019,11 +946,8 @@ even tolerate weak seeding, as long as it's not zero.
 - <span id="xorshift64star-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for XorShift64Star`
@@ -1060,7 +984,7 @@ even tolerate weak seeding, as long as it's not zero.
 trait ThreadSpawn { ... }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:69-75`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L69-L75)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:69-75`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L69-L75)*
 
 Generalized trait for spawning a thread in the `Registry`.
 
@@ -1072,6 +996,7 @@ but we don't actually want to expose these details in the API.
 - `fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>`
 
   Spawn a thread with the `ThreadBuilder` parameters, and then
+  call `ThreadBuilder::run()`.
 
 #### Implementors
 
@@ -1086,7 +1011,7 @@ but we don't actually want to expose these details in the API.
 fn global_registry() -> &'static std::sync::Arc<Registry>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:162-172`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L162-L172)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:162-172`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L162-L172)*
 
 Starts the worker threads (if that has not already happened). If
 initialization has not already occurred, use the default
@@ -1100,7 +1025,7 @@ where
     S: ThreadSpawn
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:176-183`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L176-L183)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:176-183`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L176-L183)*
 
 Starts the worker threads (if that has not already happened) with
 the given builder.
@@ -1113,7 +1038,7 @@ where
     F: FnOnce() -> Result<std::sync::Arc<Registry>, crate::ThreadPoolBuildError>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:187-207`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L187-L207)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:187-207`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L187-L207)*
 
 Starts the worker threads (if that has not already happened)
 by creating a registry with the given callback.
@@ -1124,7 +1049,7 @@ by creating a registry with the given callback.
 fn default_global_registry() -> Result<std::sync::Arc<Registry>, crate::ThreadPoolBuildError>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:209-228`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L209-L228)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:209-228`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L209-L228)*
 
 ### `main_loop`
 
@@ -1132,7 +1057,7 @@ fn default_global_registry() -> Result<std::sync::Arc<Registry>, crate::ThreadPo
 unsafe fn main_loop(thread: ThreadBuilder)
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:910-939`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L910-L939)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:910-939`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L910-L939)*
 
 ### `in_worker`
 
@@ -1143,7 +1068,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:946-962`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L946-L962)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:946-962`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L946-L962)*
 
 If already in a worker-thread, just execute `op`.  Otherwise,
 execute `op` in the default thread pool. Either way, block until
@@ -1158,5 +1083,5 @@ panic will be propagated as well.  The second argument indicates
 const WORKER_THREAD_STATE: thread::LocalKey<std::cell::Cell<*const WorkerThread>>;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:670-672`](../../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L670-L672)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:670-672`](../../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L670-L672)*
 

@@ -27,7 +27,7 @@ struct Parser<'cmd> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:23-31`](../../../../.source_1765633015/clap_builder-4.5.53/src/parser/parser.rs#L23-L31)*
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:23-31`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/parser.rs#L23-L31)*
 
 #### Fields
 
@@ -69,11 +69,8 @@ struct Parser<'cmd> {
 - <span id="parser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Parser<'cmd>`
@@ -99,7 +96,7 @@ struct PendingArg {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1666-1671`](../../../../.source_1765633015/clap_builder-4.5.53/src/parser/parser.rs#L1666-L1671)*
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1666-1671`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/parser.rs#L1666-L1671)*
 
 #### Trait Implementations
 
@@ -140,11 +137,8 @@ struct PendingArg {
 - <span id="pendingarg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for PendingArg`
@@ -185,7 +179,7 @@ enum ParseState {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1629-1633`](../../../../.source_1765633015/clap_builder-4.5.53/src/parser/parser.rs#L1629-L1633)*
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1629-1633`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/parser.rs#L1629-L1633)*
 
 #### Trait Implementations
 
@@ -218,11 +212,8 @@ enum ParseState {
 - <span id="parsestate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ParseState`
@@ -267,7 +258,7 @@ enum ParseResult {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1638-1663`](../../../../.source_1765633015/clap_builder-4.5.53/src/parser/parser.rs#L1638-L1663)*
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1638-1663`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/parser.rs#L1638-L1663)*
 
 Recoverable Parsing results.
 
@@ -335,11 +326,8 @@ Recoverable Parsing results.
 - <span id="parseresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ParseResult`
@@ -378,7 +366,7 @@ enum Identifier {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1674-1678`](../../../../.source_1765633015/clap_builder-4.5.53/src/parser/parser.rs#L1674-L1678)*
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1674-1678`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/parser.rs#L1674-L1678)*
 
 #### Trait Implementations
 
@@ -421,11 +409,8 @@ enum Identifier {
 - <span id="identifier-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Identifier`

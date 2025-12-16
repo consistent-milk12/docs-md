@@ -25,7 +25,7 @@ enum Qualifiers {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/constfn.rs:6-12`](../../../.source_1765633015/rustversion-1.0.22/src/constfn.rs#L6-L12)*
+*Defined in [`rustversion-1.0.22/src/constfn.rs:6-12`](../../../.source_1765894658/rustversion-1.0.22/src/constfn.rs#L6-L12)*
 
 #### Implementations
 
@@ -56,11 +56,8 @@ enum Qualifiers {
 - <span id="qualifiers-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Qualifiers`
@@ -93,5 +90,5 @@ enum Qualifiers {
 fn insert_const(input: proc_macro::TokenStream, const_span: proc_macro::Span) -> std::result::Result<proc_macro::TokenStream, Error>
 ```
 
-*Defined in [`rustversion-1.0.22/src/constfn.rs:25-58`](../../../.source_1765633015/rustversion-1.0.22/src/constfn.rs#L25-L58)*
+*Defined in [`rustversion-1.0.22/src/constfn.rs:25-58`](../../../.source_1765894658/rustversion-1.0.22/src/constfn.rs#L25-L58)*
 

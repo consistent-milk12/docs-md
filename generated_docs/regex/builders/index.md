@@ -29,7 +29,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/builders.rs:44-48`](../../../.source_1765633015/regex-1.12.2/src/builders.rs#L44-L48)*
+*Defined in [`regex-1.12.2/src/builders.rs:44-48`](../../../.source_1765894658/regex-1.12.2/src/builders.rs#L44-L48)*
 
 A builder for constructing a `Regex`, `bytes::Regex`, `RegexSet` or a
 `bytes::RegexSet`.
@@ -115,11 +115,8 @@ and `bytes::RegexSetBuilder`.
 - <span id="builder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Builder`

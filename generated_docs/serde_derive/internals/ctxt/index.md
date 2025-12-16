@@ -20,7 +20,7 @@ struct Ctxt {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/ctxt.rs:12-16`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/ctxt.rs#L12-L16)*
+*Defined in [`serde_derive-1.0.228/src/internals/ctxt.rs:12-16`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/ctxt.rs#L12-L16)*
 
 A type to collect errors together and format them.
 
@@ -33,17 +33,13 @@ References can be shared since this type uses run-time exclusive mut checking.
 - <span id="ctxt-new"></span>`fn new() -> Self`
 
   Create a new context object.
-
   
-
   This object contains no errors, but will still trigger a panic if it is not `check`ed.
 
 - <span id="ctxt-error-spanned-by"></span>`fn error_spanned_by<A: ToTokens, T: Display>(&self, obj: A, msg: T)`
 
   Add an error to the context object with a tokenenizable object.
-
   
-
   The object is used for spanning in error messages.
 
 - <span id="ctxt-syn-error"></span>`fn syn_error(&self, err: syn::Error)`
@@ -87,11 +83,8 @@ References can be shared since this type uses run-time exclusive mut checking.
 - <span id="ctxt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Ctxt`

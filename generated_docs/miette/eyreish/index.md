@@ -80,7 +80,7 @@ struct Error {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
 
 Core Diagnostic wrapper type.
 
@@ -93,109 +93,61 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-new"></span>`fn new<E>(error: E) -> Self`
 
   Create a new error object from any error type.
-
   
-
   The error type must be thread safe and `'static`, so that the `Report`
-
   will be as well.
-
   
-
   If the error type does not provide a backtrace, a backtrace will be
-
   created here to ensure that a backtrace exists.
 
 - <span id="superreport-msg"></span>`fn msg<M>(message: M) -> Self`
 
   Create a new error object from a printable error message.
-
   
-
-  If the argument implements [`std::error::Error`](../../addr2line/index.md), prefer `Report::new`
-
+  If the argument implements `std::error::Error`, prefer `Report::new`
   instead which preserves the underlying error's cause chain and
-
-  backtrace. If the argument may or may not implement [`std::error::Error`](../../addr2line/index.md)
-
+  backtrace. If the argument may or may not implement `std::error::Error`
   now or in the future, use `miette!(err)` which handles either way
-
   correctly.
-
   
-
   `Report::msg("...")` is equivalent to `miette!("...")` but occasionally
-
   convenient in places where a function is preferable over a macro, such
-
   as iterator or stream combinators:
-
   
-
   ```rust
-
   mod ffi {
-
       pub struct Input;
-
       pub struct Output;
-
       pub async fn do_some_work(_: Input) -> Result<Output, &'static str> {
-
           unimplemented!()
-
       }
-
   }
-
   
-
   use ffi::{Input, Output};
-
   
-
   use futures::stream::{Stream, StreamExt, TryStreamExt};
-
   use miette::{Report, Result};
-
   
-
   async fn demo<S>(stream: S) -> Result<Vec<Output>>
-
   where
-
       S: Stream<Item = Input>,
-
   {
-
       stream
-
           .then(ffi::do_some_work) // returns Result<Output, &str>
-
           .map_err(Report::msg)
-
           .try_collect()
-
           .await
-
   }
-
   ```
 
 - <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md#diagnostic)
 
   Create a new error object from a boxed [`Diagnostic`](../index.md).
-
   
-
   The boxed type must be thread safe and 'static, so that the `Report`
-
   will be as well.
-
   
-
   Boxed `Diagnostic`s don't implement `Diagnostic` themselves due to trait coherence issues.
-
   This method allows you to create a `Report` from a boxed `Diagnostic`.
 
 - <span id="superreport-from-std"></span>`fn from_std<E>(error: E) -> Self`
@@ -211,21 +163,13 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
   Create a new error from an error message to wrap the existing error.
-
   
-
   For attaching a higher level error message to a `Result` as it is
-
   propagated, the [`WrapErr`](crate::WrapErr) extension trait may be more
-
   convenient than this function.
-
   
-
   The primary reason to use `error.wrap_err(...)` instead of
-
   `result.wrap_err(...)` via the `WrapErr` trait would be if the
-
   message needs to depend on some data held by the underlying error:
 
 - <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
@@ -235,71 +179,42 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](../chain/index.md#chain)
 
   An iterator of the chain of source errors contained by this Report.
-
   
-
   This iterator will visit every error in the cause chain of this error
-
   object, beginning with the error that this error object was created
-
   from.
-
   
-
   # Example
-
   
-
   ```rust
-
   use miette::Report;
-
   use std::io;
-
   
-
   pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
-
       for cause in error.chain() {
-
           if let Some(io_error) = cause.downcast_ref::<io::Error>() {
-
               return Some(io_error.kind());
-
           }
-
       }
-
       None
-
   }
-
   ```
 
 - <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
 
   The lowest level cause of this error &mdash; this error's cause's
-
   cause's cause etc.
-
   
-
   The root cause is the last error in the iterator produced by
-
   [`chain()`](Report::chain).
 
 - <span id="superreport-is"></span>`fn is<E>(&self) -> bool`
 
   Returns true if `E` is the type held by this error object.
-
   
-
   For errors constructed from messages, this method returns true if `E`
-
   matches the type of the message `D` **or** the type of the error on
-
   which the message has been attached. For details about the
-
   interaction between message and downcasting, [see here].
 
 - <span id="superreport-downcast"></span>`fn downcast<E>(self) -> Result<E, Self>`
@@ -309,75 +224,40 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-downcast-ref"></span>`fn downcast_ref<E>(&self) -> Option<&E>`
 
   Downcast this error object by reference.
-
   
-
   # Example
-
   
-
   ```rust
-
   use miette::{Report, miette};
-
   use std::fmt::{self, Display};
-
   use std::task::Poll;
-
   
-
   #[derive(Debug)]
-
   enum DataStoreError {
-
       Censored(()),
-
   }
-
   
-
   impl Display for DataStoreError {
-
       fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-
           unimplemented!()
-
       }
-
   }
-
   
-
   impl std::error::Error for DataStoreError {}
-
   
-
   const REDACTED_CONTENT: () = ();
-
   
-
   let error: Report = miette!("...");
-
   let root_cause = &error;
-
   
-
   let ret =
-
   // If the error was caused by redaction, then return a tombstone instead
-
   // of the content.
-
   match root_cause.downcast_ref::<DataStoreError>() {
-
       Some(DataStoreError::Censored(_)) => Ok(Poll::Ready(REDACTED_CONTENT)),
-
       None => Err(error),
-
   }
-
   ;
-
   ```
 
 - <span id="superreport-downcast-mut"></span>`fn downcast_mut<E>(&mut self) -> Option<&mut E>`
@@ -455,11 +335,8 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="report-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Report`
@@ -498,7 +375,7 @@ struct Report {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
 
 Core Diagnostic wrapper type.
 
@@ -511,109 +388,61 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-new"></span>`fn new<E>(error: E) -> Self`
 
   Create a new error object from any error type.
-
   
-
   The error type must be thread safe and `'static`, so that the `Report`
-
   will be as well.
-
   
-
   If the error type does not provide a backtrace, a backtrace will be
-
   created here to ensure that a backtrace exists.
 
 - <span id="superreport-msg"></span>`fn msg<M>(message: M) -> Self`
 
   Create a new error object from a printable error message.
-
   
-
-  If the argument implements [`std::error::Error`](../../addr2line/index.md), prefer `Report::new`
-
+  If the argument implements `std::error::Error`, prefer `Report::new`
   instead which preserves the underlying error's cause chain and
-
-  backtrace. If the argument may or may not implement [`std::error::Error`](../../addr2line/index.md)
-
+  backtrace. If the argument may or may not implement `std::error::Error`
   now or in the future, use `miette!(err)` which handles either way
-
   correctly.
-
   
-
   `Report::msg("...")` is equivalent to `miette!("...")` but occasionally
-
   convenient in places where a function is preferable over a macro, such
-
   as iterator or stream combinators:
-
   
-
   ```rust
-
   mod ffi {
-
       pub struct Input;
-
       pub struct Output;
-
       pub async fn do_some_work(_: Input) -> Result<Output, &'static str> {
-
           unimplemented!()
-
       }
-
   }
-
   
-
   use ffi::{Input, Output};
-
   
-
   use futures::stream::{Stream, StreamExt, TryStreamExt};
-
   use miette::{Report, Result};
-
   
-
   async fn demo<S>(stream: S) -> Result<Vec<Output>>
-
   where
-
       S: Stream<Item = Input>,
-
   {
-
       stream
-
           .then(ffi::do_some_work) // returns Result<Output, &str>
-
           .map_err(Report::msg)
-
           .try_collect()
-
           .await
-
   }
-
   ```
 
 - <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](../index.md#diagnostic)
 
   Create a new error object from a boxed [`Diagnostic`](../index.md).
-
   
-
   The boxed type must be thread safe and 'static, so that the `Report`
-
   will be as well.
-
   
-
   Boxed `Diagnostic`s don't implement `Diagnostic` themselves due to trait coherence issues.
-
   This method allows you to create a `Report` from a boxed `Diagnostic`.
 
 - <span id="superreport-from-std"></span>`fn from_std<E>(error: E) -> Self`
@@ -629,21 +458,13 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
   Create a new error from an error message to wrap the existing error.
-
   
-
   For attaching a higher level error message to a `Result` as it is
-
   propagated, the [`WrapErr`](crate::WrapErr) extension trait may be more
-
   convenient than this function.
-
   
-
   The primary reason to use `error.wrap_err(...)` instead of
-
   `result.wrap_err(...)` via the `WrapErr` trait would be if the
-
   message needs to depend on some data held by the underlying error:
 
 - <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
@@ -653,71 +474,42 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](../chain/index.md#chain)
 
   An iterator of the chain of source errors contained by this Report.
-
   
-
   This iterator will visit every error in the cause chain of this error
-
   object, beginning with the error that this error object was created
-
   from.
-
   
-
   # Example
-
   
-
   ```rust
-
   use miette::Report;
-
   use std::io;
-
   
-
   pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
-
       for cause in error.chain() {
-
           if let Some(io_error) = cause.downcast_ref::<io::Error>() {
-
               return Some(io_error.kind());
-
           }
-
       }
-
       None
-
   }
-
   ```
 
 - <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
 
   The lowest level cause of this error &mdash; this error's cause's
-
   cause's cause etc.
-
   
-
   The root cause is the last error in the iterator produced by
-
   [`chain()`](Report::chain).
 
 - <span id="superreport-is"></span>`fn is<E>(&self) -> bool`
 
   Returns true if `E` is the type held by this error object.
-
   
-
   For errors constructed from messages, this method returns true if `E`
-
   matches the type of the message `D` **or** the type of the error on
-
   which the message has been attached. For details about the
-
   interaction between message and downcasting, [see here].
 
 - <span id="superreport-downcast"></span>`fn downcast<E>(self) -> Result<E, Self>`
@@ -727,75 +519,40 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="superreport-downcast-ref"></span>`fn downcast_ref<E>(&self) -> Option<&E>`
 
   Downcast this error object by reference.
-
   
-
   # Example
-
   
-
   ```rust
-
   use miette::{Report, miette};
-
   use std::fmt::{self, Display};
-
   use std::task::Poll;
-
   
-
   #[derive(Debug)]
-
   enum DataStoreError {
-
       Censored(()),
-
   }
-
   
-
   impl Display for DataStoreError {
-
       fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-
           unimplemented!()
-
       }
-
   }
-
   
-
   impl std::error::Error for DataStoreError {}
-
   
-
   const REDACTED_CONTENT: () = ();
-
   
-
   let error: Report = miette!("...");
-
   let root_cause = &error;
-
   
-
   let ret =
-
   // If the error was caused by redaction, then return a tombstone instead
-
   // of the content.
-
   match root_cause.downcast_ref::<DataStoreError>() {
-
       Some(DataStoreError::Censored(_)) => Ok(Poll::Ready(REDACTED_CONTENT)),
-
       None => Err(error),
-
   }
-
   ;
-
   ```
 
 - <span id="superreport-downcast-mut"></span>`fn downcast_mut<E>(&mut self) -> Option<&mut E>`
@@ -873,11 +630,8 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 - <span id="report-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Report`
@@ -914,7 +668,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 struct InstallError;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L69)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L69)*
 
 Error indicating that [`set_hook()`](../index.md) was unable to install the provided
 [`ErrorHook`](../index.md).
@@ -960,11 +714,8 @@ Error indicating that [`set_hook()`](../index.md) was unable to install the prov
 - <span id="installerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for InstallError`
@@ -993,7 +744,7 @@ Error indicating that [`set_hook()`](../index.md) was unable to install the prov
 struct DiagnosticError(Box<dyn std::error::Error + Send + Sync>);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:8`](../../../.source_1765633015/miette-7.6.0/src/eyreish/into_diagnostic.rs#L8)*
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:8`](../../../.source_1765894658/miette-7.6.0/src/eyreish/into_diagnostic.rs#L8)*
 
 Convenience [`Diagnostic`](../index.md) that can be used as an "anonymous" wrapper for
 Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
@@ -1041,11 +792,8 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
 - <span id="diagnosticerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DiagnosticError`
@@ -1076,7 +824,7 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
 trait Context<T, E>: context::private::Sealed { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
 
 Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](../index.md).
 
@@ -1262,6 +1010,7 @@ supports both of the following use cases:
 - `fn wrap_err_with<D, F>(self, f: F) -> Result<T, Report>`
 
   Wrap the error value with a new adhoc error that is evaluated lazily
+  only once an error does occur.
 
 - `fn context<D>(self, msg: D) -> Result<T, Report>`
 
@@ -1282,7 +1031,7 @@ supports both of the following use cases:
 trait ReportHandler: core::any::Any + Send + Sync { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
 
 Error Report Handler trait for customizing `miette::Report`
 
@@ -1291,6 +1040,35 @@ Error Report Handler trait for customizing `miette::Report`
 - `fn debug(&self, error: &dyn Diagnostic, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
   Define the report format
+  
+  Used to override the report format of `miette::Report`
+  
+  # Example
+  
+  ```rust
+  use indenter::indented;
+  use miette::{Diagnostic, ReportHandler};
+  
+  pub struct Handler;
+  
+  impl ReportHandler for Handler {
+      fn debug(
+          &self,
+          error: &dyn Diagnostic,
+          f: &mut core::fmt::Formatter<'_>,
+      ) -> core::fmt::Result {
+          use core::fmt::Write as _;
+  
+          if f.alternate() {
+              return core::fmt::Debug::fmt(error, f);
+          }
+  
+          write!(f, "{}", error)?;
+  
+          Ok(())
+      }
+  }
+  ```
 
 #### Provided Methods
 
@@ -1316,7 +1094,7 @@ Error Report Handler trait for customizing `miette::Report`
 trait WrapErr<T, E>: context::private::Sealed { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
 
 Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](../index.md).
 
@@ -1502,6 +1280,7 @@ supports both of the following use cases:
 - `fn wrap_err_with<D, F>(self, f: F) -> Result<T, Report>`
 
   Wrap the error value with a new adhoc error that is evaluated lazily
+  only once an error does occur.
 
 - `fn context<D>(self, msg: D) -> Result<T, Report>`
 
@@ -1522,15 +1301,15 @@ supports both of the following use cases:
 trait IntoDiagnostic<T, E> { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../.source_1765633015/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../.source_1765894658/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
 
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../addr2line/index.md) to a [`Result<T, Report>`](../../cargo_metadata/errors/index.md).
+`std::error::Error` to a `Result<T, Report>`.
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
+`std::error::Error`. Meaning all extra information provided by [`Diagnostic`](../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
@@ -1538,7 +1317,8 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 
 - `fn into_diagnostic(self) -> Result<T, Report>`
 
-  Converts [`Result`](../../cargo_metadata/errors/index.md) types that return regular [`std::error::Error`](../../addr2line/index.md)s
+  Converts [`Result`](../index.md) types that return regular `std::error::Error`s
+  into a [`Result`](../index.md) that returns a [`Diagnostic`](../index.md).
 
 #### Implementors
 
@@ -1552,7 +1332,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 fn set_hook(hook: ErrorHook) -> Result<(), InstallError>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
 
 Set the error hook.
 
@@ -1562,7 +1342,7 @@ Set the error hook.
 fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
 
 ### `get_default_printer`
 
@@ -1570,7 +1350,7 @@ fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
 
 ## Type Aliases
 
@@ -1580,7 +1360,7 @@ fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + Send>;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
 
 ### `Result<T, E>`
 
@@ -1588,7 +1368,7 @@ type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + 
 type Result<T, E> = core::result::Result<T, E>;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../../.source_1765633015/miette-7.6.0/src/eyreish/mod.rs#L257)*
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../../.source_1765894658/miette-7.6.0/src/eyreish/mod.rs#L257)*
 
 type alias for `Result<T, Report>`
 

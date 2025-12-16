@@ -26,7 +26,7 @@ struct IntoIter<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/binary_heap.rs:15-17`](../../../../.source_1765633015/rayon-1.11.0/src/collections/binary_heap.rs#L15-L17)*
+*Defined in [`rayon-1.11.0/src/collections/binary_heap.rs:15-17`](../../../../.source_1765894658/rayon-1.11.0/src/collections/binary_heap.rs#L15-L17)*
 
 Parallel iterator over a binary heap
 
@@ -75,11 +75,8 @@ Parallel iterator over a binary heap
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IntoIter<T>`
@@ -142,7 +139,7 @@ struct Iter<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/binary_heap.rs:37-39`](../../../../.source_1765633015/rayon-1.11.0/src/collections/binary_heap.rs#L37-L39)*
+*Defined in [`rayon-1.11.0/src/collections/binary_heap.rs:37-39`](../../../../.source_1765894658/rayon-1.11.0/src/collections/binary_heap.rs#L37-L39)*
 
 Parallel iterator over an immutable reference to a binary heap
 
@@ -191,11 +188,8 @@ Parallel iterator over an immutable reference to a binary heap
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Iter<'a, T>`
@@ -258,7 +252,7 @@ struct Drain<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/binary_heap.rs:70-72`](../../../../.source_1765633015/rayon-1.11.0/src/collections/binary_heap.rs#L70-L72)*
+*Defined in [`rayon-1.11.0/src/collections/binary_heap.rs:70-72`](../../../../.source_1765894658/rayon-1.11.0/src/collections/binary_heap.rs#L70-L72)*
 
 Draining parallel iterator that moves out of a binary heap,
 but keeps the total capacity.
@@ -304,11 +298,8 @@ but keeps the total capacity.
 - <span id="drain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Drain<'a, T>`

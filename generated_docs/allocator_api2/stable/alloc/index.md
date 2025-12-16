@@ -36,7 +36,7 @@ struct GlobalAlloc<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/function.rs:83-89`](../../../../.source_1765633015/addr2line-0.25.1/src/function.rs#L83-L89)*
+*Defined in [`addr2line-0.25.1/src/function.rs:83-89`](../../../../.source_1765894658/addr2line-0.25.1/src/function.rs#L83-L89)*
 
 *Re-exported from `addr2line`*
 
@@ -69,11 +69,8 @@ struct GlobalAlloc<R: gimli::Reader> {
 - <span id="inlinedfunction-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for InlinedFunction<R>`
@@ -94,7 +91,7 @@ struct GlobalAlloc<R: gimli::Reader> {
 struct Global;
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
 
 The global memory allocator.
 
@@ -168,11 +165,8 @@ accessed through the [free functions in `alloc`](crate#functions).
 - <span id="global-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Global`
@@ -201,7 +195,7 @@ accessed through the [free functions in `alloc`](crate#functions).
 struct AllocError;
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:33`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L33)*
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:33`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L33)*
 
 The `AllocError` error indicates an allocation failure
 that may be due to resource exhaustion or to
@@ -253,11 +247,8 @@ allocator.
 - <span id="allocerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AllocError`
@@ -298,7 +289,7 @@ allocator.
 trait Allocator { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:101-362`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L101-L362)*
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:101-362`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L101-L362)*
 
 An implementation of `Allocator` can allocate, grow, shrink, and deallocate arbitrary blocks of
 data described via [`Layout`][].
@@ -357,32 +348,167 @@ following conditions must hold:
 - `fn allocate(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Attempts to allocate a block of memory.
+  
+  On success, returns a [`NonNull<[u8]>`][NonNull] meeting the size and alignment guarantees of `layout`.
+  
+  The returned block may have a larger size than specified by `layout.size()`, and may or may
+  not have its contents initialized.
+  
+  # Errors
+  
+  Returning `Err` indicates that either memory is exhausted or `layout` does not meet
+  allocator's size or alignment constraints.
+  
+  Implementations are encouraged to return `Err` on memory exhaustion rather than panicking or
+  aborting, but this is not a strict requirement. (Specifically: it is *legal* to implement
+  this trait atop an underlying native allocation library that aborts on memory exhaustion.)
+  
+  Clients wishing to abort computation in response to an allocation error are encouraged to
+  call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
 - `fn deallocate(&self, ptr: NonNull<u8>, layout: Layout)`
 
   Deallocates the memory referenced by `ptr`.
+  
+  # Safety
+  
+  * `ptr` must denote a block of memory [*currently allocated*] via this allocator, and
+  * `layout` must [*fit*] that block of memory.
+  
 
 #### Provided Methods
 
 - `fn allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Behaves like `allocate`, but also ensures that the returned memory is zero-initialized.
+  
+  # Errors
+  
+  Returning `Err` indicates that either memory is exhausted or `layout` does not meet
+  allocator's size or alignment constraints.
+  
+  Implementations are encouraged to return `Err` on memory exhaustion rather than panicking or
+  aborting, but this is not a strict requirement. (Specifically: it is *legal* to implement
+  this trait atop an underlying native allocation library that aborts on memory exhaustion.)
+  
+  Clients wishing to abort computation in response to an allocation error are encouraged to
+  call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
 - `fn grow(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Attempts to extend the memory block.
+  
+  Returns a new [`NonNull<[u8]>`][NonNull] containing a pointer and the actual size of the allocated
+  memory. The pointer is suitable for holding data described by `new_layout`. To accomplish
+  this, the allocator may extend the allocation referenced by `ptr` to fit the new layout.
+  
+  If this returns `Ok`, then ownership of the memory block referenced by `ptr` has been
+  transferred to this allocator. Any access to the old `ptr` is Undefined Behavior, even if the
+  allocation was grown in-place. The newly returned pointer is the only valid pointer
+  for accessing this memory now.
+  
+  If this method returns `Err`, then ownership of the memory block has not been transferred to
+  this allocator, and the contents of the memory block are unaltered.
+  
+  # Safety
+  
+  * `ptr` must denote a block of memory [*currently allocated*] via this allocator.
+  * `old_layout` must [*fit*] that block of memory (The `new_layout` argument need not fit it.).
+  * `new_layout.size()` must be greater than or equal to `old_layout.size()`.
+  
+  Note that `new_layout.align()` need not be the same as `old_layout.align()`.
+  
+  
+  # Errors
+  
+  Returns `Err` if the new layout does not meet the allocator's size and alignment
+  constraints of the allocator, or if growing otherwise fails.
+  
+  Implementations are encouraged to return `Err` on memory exhaustion rather than panicking or
+  aborting, but this is not a strict requirement. (Specifically: it is *legal* to implement
+  this trait atop an underlying native allocation library that aborts on memory exhaustion.)
+  
+  Clients wishing to abort computation in response to an allocation error are encouraged to
+  call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
 - `fn grow_zeroed(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Behaves like `grow`, but also ensures that the new contents are set to zero before being
+  returned.
+  
+  The memory block will contain the following contents after a successful call to
+  `grow_zeroed`:
+    * Bytes `0..old_layout.size()` are preserved from the original allocation.
+    * Bytes `old_layout.size()..old_size` will either be preserved or zeroed, depending on
+      the allocator implementation. `old_size` refers to the size of the memory block prior
+      to the `grow_zeroed` call, which may be larger than the size that was originally
+      requested when it was allocated.
+    * Bytes `old_size..new_size` are zeroed. `new_size` refers to the size of the memory
+      block returned by the `grow_zeroed` call.
+  
+  # Safety
+  
+  * `ptr` must denote a block of memory [*currently allocated*] via this allocator.
+  * `old_layout` must [*fit*] that block of memory (The `new_layout` argument need not fit it.).
+  * `new_layout.size()` must be greater than or equal to `old_layout.size()`.
+  
+  Note that `new_layout.align()` need not be the same as `old_layout.align()`.
+  
+  
+  # Errors
+  
+  Returns `Err` if the new layout does not meet the allocator's size and alignment
+  constraints of the allocator, or if growing otherwise fails.
+  
+  Implementations are encouraged to return `Err` on memory exhaustion rather than panicking or
+  aborting, but this is not a strict requirement. (Specifically: it is *legal* to implement
+  this trait atop an underlying native allocation library that aborts on memory exhaustion.)
+  
+  Clients wishing to abort computation in response to an allocation error are encouraged to
+  call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
 - `fn shrink(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Attempts to shrink the memory block.
+  
+  Returns a new [`NonNull<[u8]>`][NonNull] containing a pointer and the actual size of the allocated
+  memory. The pointer is suitable for holding data described by `new_layout`. To accomplish
+  this, the allocator may shrink the allocation referenced by `ptr` to fit the new layout.
+  
+  If this returns `Ok`, then ownership of the memory block referenced by `ptr` has been
+  transferred to this allocator. Any access to the old `ptr` is Undefined Behavior, even if the
+  allocation was shrunk in-place. The newly returned pointer is the only valid pointer
+  for accessing this memory now.
+  
+  If this method returns `Err`, then ownership of the memory block has not been transferred to
+  this allocator, and the contents of the memory block are unaltered.
+  
+  # Safety
+  
+  * `ptr` must denote a block of memory [*currently allocated*] via this allocator.
+  * `old_layout` must [*fit*] that block of memory (The `new_layout` argument need not fit it.).
+  * `new_layout.size()` must be smaller than or equal to `old_layout.size()`.
+  
+  Note that `new_layout.align()` need not be the same as `old_layout.align()`.
+  
+  
+  # Errors
+  
+  Returns `Err` if the new layout does not meet the allocator's size and alignment
+  constraints of the allocator, or if shrinking otherwise fails.
+  
+  Implementations are encouraged to return `Err` on memory exhaustion rather than panicking or
+  aborting, but this is not a strict requirement. (Specifically: it is *legal* to implement
+  this trait atop an underlying native allocation library that aborts on memory exhaustion.)
+  
+  Clients wishing to abort computation in response to an allocation error are encouraged to
+  call the [`handle_alloc_error`](#handle-alloc-error) function, rather than directly invoking `panic!` or similar.
 
 - `fn by_ref(&self) -> &Self`
 
   Creates a "by reference" adapter for this instance of `Allocator`.
+  
+  The returned adapter also implements `Allocator` and will simply borrow this.
 
 #### Implementors
 

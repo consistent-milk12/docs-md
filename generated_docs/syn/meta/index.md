@@ -26,7 +26,7 @@ struct ParseNestedMeta<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/meta.rs:164-167`](../../../.source_1765633015/syn-2.0.111/src/meta.rs#L164-L167)*
+*Defined in [`syn-2.0.111/src/meta.rs:164-167`](../../../.source_1765894658/syn-2.0.111/src/meta.rs#L164-L167)*
 
 Context for parsing a single property in the conventional syntax for
 structured attributes.
@@ -54,395 +54,204 @@ Refer to usage examples on the following two entry-points:
 - <span id="parsenestedmeta-value"></span>`fn value(&self) -> Result<ParseStream<'a>>` — [`Result`](../error/index.md#result), [`ParseStream`](../parse/index.md#parsestream)
 
   Used when parsing `key = "value"` syntax.
-
   
-
   All it does is advance `meta.input` past the `=` sign in the input. You
-
   could accomplish the same effect by writing
-
   `meta.parse::<Token![=]>()?`, so at most it is a minor convenience to
-
   use `meta.value()?`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{parse_quote, Attribute, LitStr};
-
   
-
   let attr: Attribute = parse_quote! {
-
       #[tea(kind = "EarlGrey")]
-
   };
-
                                            // conceptually:
-
   if attr.path().is_ident("tea") {         // this parses the `tea`
-
       attr.parse_nested_meta(|meta| {      // this parses the `(`
-
           if meta.path.is_ident("kind") {  // this parses the `kind`
-
               let value = meta.value()?;   // this parses the `=`
-
               let s: LitStr = value.parse()?;  // this parses `"EarlGrey"`
-
               if s.value() == "EarlGrey" {
-
                   // ...
-
               }
-
               Ok(())
-
           } else {
-
               Err(meta.error("unsupported attribute"))
-
           }
-
       })?;
-
   }
-
   anyhow::Ok(())
-
   ```
 
 - <span id="parsenestedmeta-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](#parsenestedmeta), [`Result`](../error/index.md#result)
 
   Used when parsing `list(...)` syntax **if** the content inside the
-
   nested parentheses is also expected to conform to Rust's structured
-
   attribute convention.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{parse_quote, Attribute};
-
   
-
   let attr: Attribute = parse_quote! {
-
       #[tea(with(sugar, milk))]
-
   };
-
   
-
   if attr.path().is_ident("tea") {
-
       attr.parse_nested_meta(|meta| {
-
           if meta.path.is_ident("with") {
-
               meta.parse_nested_meta(|meta| {  // <---
-
                   if meta.path.is_ident("sugar") {
-
                       // Here we can go even deeper if needed.
-
                       Ok(())
-
                   } else if meta.path.is_ident("milk") {
-
                       Ok(())
-
                   } else {
-
                       Err(meta.error("unsupported ingredient"))
-
                   }
-
               })
-
           } else {
-
               Err(meta.error("unsupported tea property"))
-
           }
-
       })?;
-
   }
-
   anyhow::Ok(())
-
   ```
-
   
-
   # Counterexample
-
   
-
   If you don't need `parse_nested_meta`'s help in parsing the content
-
   written within the nested parentheses, keep in mind that you can always
-
   just parse it yourself from the exposed ParseStream. Rust syntax permits
-
   arbitrary tokens within those parentheses so for the crazier stuff,
-
   `parse_nested_meta` is not what you want.
-
   
-
   ```rust
-
   use syn::{parenthesized, parse_quote, Attribute, LitInt};
-
   
-
   let attr: Attribute = parse_quote! {
-
       #[repr(align(32))]
-
   };
-
   
-
   let mut align: Option<LitInt> = None;
-
   if attr.path().is_ident("repr") {
-
       attr.parse_nested_meta(|meta| {
-
           if meta.path.is_ident("align") {
-
               let content;
-
               parenthesized!(content in meta.input);
-
               align = Some(content.parse()?);
-
               Ok(())
-
           } else {
-
               Err(meta.error("unsupported repr"))
-
           }
-
       })?;
-
   }
-
   anyhow::Ok(())
-
   ```
 
 - <span id="parsenestedmeta-error"></span>`fn error(&self, msg: impl Display) -> Error` — [`Error`](../error/index.md#error)
 
   Report that the attribute's content did not conform to expectations.
-
   
-
   The span of the resulting error will cover `meta.path` *and* everything
-
   that has been parsed so far since it.
-
   
-
   There are 2 ways you might call this. First, if `meta.path` is not
-
   something you recognize:
-
   
-
   ```rust
-
   use syn::Attribute;
-
   
-
   fn example(attr: &Attribute) -> syn::Result<()> {
-
   attr.parse_nested_meta(|meta| {
-
       if meta.path.is_ident("kind") {
-
           // ...
-
           Ok(())
-
       } else {
-
           Err(meta.error("unsupported tea property"))
-
       }
-
   })?;
-
   Ok(())
-
   }
-
   ```
-
   
-
   In this case, it behaves exactly like
-
   `syn::Error::new_spanned(&meta.path, "message...")`.
-
   
-
   ```console
-
   error: unsupported tea property
-
    --> src/main.rs:3:26
-
     |
-
   3 | #[tea(kind = "EarlGrey", wat = "foo")]
-
     |                          ^^^
-
   ```
-
   
-
   More usefully, the second place is if you've already parsed a value but
-
   have decided not to accept the value:
-
   
-
   ```rust
-
   use syn::Attribute;
-
   
-
   fn example(attr: &Attribute) -> syn::Result<()> {
-
   use syn::Expr;
-
   
-
   attr.parse_nested_meta(|meta| {
-
       if meta.path.is_ident("kind") {
-
           let expr: Expr = meta.value()?.parse()?;
-
           match expr {
-
               Expr::Lit(expr) => /* ... */
-
                 unimplemented!(),
-
               Expr::Path(expr) => /* ... */
-
                 unimplemented!(),
-
               Expr::Macro(expr) => /* ... */
-
                 unimplemented!(),
-
               _ => Err(meta.error("tea kind must be a string literal, path, or macro")),
-
           }
-
       } else /* as above */
-
         { unimplemented!() }
-
   
-
   })?;
-
   Ok(())
-
   }
-
   ```
-
   
-
   ```console
-
   error: tea kind must be a string literal, path, or macro
-
    --> src/main.rs:3:7
-
     |
-
   3 | #[tea(kind = async { replicator.await })]
-
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
   ```
-
   
-
   Often you may want to use `syn::Error::new_spanned` even in this
-
   situation. In the above code, that would be:
-
   
-
   ```rust
-
   use syn::{Error, Expr};
-
   
-
   fn example(expr: Expr) -> syn::Result<()> {
-
       match expr {
-
           Expr::Lit(expr) => /* ... */
-
             unimplemented!(),
-
           Expr::Path(expr) => /* ... */
-
             unimplemented!(),
-
           Expr::Macro(expr) => /* ... */
-
             unimplemented!(),
-
           _ => Err(Error::new_spanned(expr, "unsupported expression type for `kind`")),
-
       }
-
   }
-
   ```
-
   
-
   ```console
-
   error: unsupported expression type for `kind`
-
    --> src/main.rs:3:14
-
     |
-
   3 | #[tea(kind = async { replicator.await })]
-
     |              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
   ```
 
 #### Trait Implementations
@@ -470,11 +279,8 @@ Refer to usage examples on the following two entry-points:
 - <span id="parsenestedmeta-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ParseNestedMeta<'a>`
@@ -497,7 +303,7 @@ Refer to usage examples on the following two entry-points:
 fn parser(logic: impl FnMut(ParseNestedMeta<'_>) -> crate::error::Result<()>) -> impl Parser<Output = ()>
 ```
 
-*Defined in [`syn-2.0.111/src/meta.rs:132-140`](../../../.source_1765633015/syn-2.0.111/src/meta.rs#L132-L140)*
+*Defined in [`syn-2.0.111/src/meta.rs:132-140`](../../../.source_1765894658/syn-2.0.111/src/meta.rs#L132-L140)*
 
 Make a parser that is usable with `parse_macro_input!` in a
 `#[proc_macro_attribute]` macro.
@@ -624,7 +430,7 @@ impl TeaAttributes {
 fn parse_nested_meta(input: crate::parse::ParseStream<'_>, logic: impl FnMut(ParseNestedMeta<'_>) -> crate::error::Result<()>) -> crate::error::Result<()>
 ```
 
-*Defined in [`syn-2.0.111/src/meta.rs:385-400`](../../../.source_1765633015/syn-2.0.111/src/meta.rs#L385-L400)*
+*Defined in [`syn-2.0.111/src/meta.rs:385-400`](../../../.source_1765894658/syn-2.0.111/src/meta.rs#L385-L400)*
 
 ### `parse_meta_path`
 
@@ -632,5 +438,5 @@ fn parse_nested_meta(input: crate::parse::ParseStream<'_>, logic: impl FnMut(Par
 fn parse_meta_path(input: crate::parse::ParseStream<'_>) -> crate::error::Result<crate::path::Path>
 ```
 
-*Defined in [`syn-2.0.111/src/meta.rs:403-427`](../../../.source_1765633015/syn-2.0.111/src/meta.rs#L403-L427)*
+*Defined in [`syn-2.0.111/src/meta.rs:403-427`](../../../.source_1765894658/syn-2.0.111/src/meta.rs#L403-L427)*
 

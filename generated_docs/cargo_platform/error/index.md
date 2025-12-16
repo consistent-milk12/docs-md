@@ -22,7 +22,7 @@ struct ParseError {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/error.rs:4-7`](../../../.source_1765633015/cargo-platform-0.3.1/src/error.rs#L4-L7)*
+*Defined in [`cargo-platform-0.3.2/src/error.rs:4-7`](../../../.source_1765894658/cargo-platform-0.3.2/src/error.rs#L4-L7)*
 
 #### Implementations
 
@@ -63,11 +63,8 @@ struct ParseError {
 - <span id="parseerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ParseError`
@@ -104,7 +101,7 @@ enum ParseErrorKind {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/error.rs:11-21`](../../../.source_1765633015/cargo-platform-0.3.1/src/error.rs#L11-L21)*
+*Defined in [`cargo-platform-0.3.2/src/error.rs:11-21`](../../../.source_1765894658/cargo-platform-0.3.2/src/error.rs#L11-L21)*
 
 #### Trait Implementations
 
@@ -139,11 +136,8 @@ enum ParseErrorKind {
 - <span id="parseerrorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ParseErrorKind`

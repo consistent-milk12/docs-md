@@ -23,9 +23,9 @@ where
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/fmt.rs:4-10`](../../../.source_1765633015/anstream-0.6.21/src/fmt.rs#L4-L10)*
+*Defined in [`anstream-0.6.21/src/fmt.rs:4-10`](../../../.source_1765894658/anstream-0.6.21/src/fmt.rs#L4-L10)*
 
-A shim which allows a [`std::io::Write`](../../fs_err/index.md) to be implemented in terms of a [`std::fmt::Write`](../../fs_err/index.md)
+A shim which allows a `std::io::Write` to be implemented in terms of a `std::fmt::Write`
 
 This saves off I/O errors. instead of discarding them
 
@@ -60,11 +60,8 @@ This saves off I/O errors. instead of discarding them
 - <span id="adapter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Adapter<W>`

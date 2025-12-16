@@ -55,7 +55,7 @@ struct ptr<'a> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../../.source_1765633015/addr2line-0.25.1/src/frame.rs#L8-L17)*
+*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../../.source_1765894658/addr2line-0.25.1/src/frame.rs#L8-L17)*
 
 *Re-exported from `addr2line`*
 
@@ -102,11 +102,8 @@ A source location.
 - <span id="location-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Location<'a>`
@@ -141,7 +138,7 @@ struct default {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765633015/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765894658/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
 
 *Re-exported from `aho_corasick`*
 
@@ -152,8 +149,8 @@ this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the `Automaton` trait implementation.
 
 This DFA can only be built by first constructing a [`noncontiguous::NFA`](#noncontiguousnfa).
-Both [`DFA::new`](../../addr2line/index.md) and `Builder::build` do this for you automatically, but
-[`Builder::build_from_noncontiguous`](../../clap_builder/index.md) permits doing it explicitly.
+Both `DFA::new` and `Builder::build` do this for you automatically, but
+`Builder::build_from_noncontiguous` permits doing it explicitly.
 
 A DFA provides the best possible search performance (in this crate) via two
 mechanisms:
@@ -181,7 +178,7 @@ making the memory usage of such a DFA ever bigger. (The NFAs in this crate
 unconditionally support both anchored and unanchored searches because there
 is essentially no added cost for doing so.) It is for this reason that
 a DFA's support for anchored and unanchored searches can be configured
-via [`Builder::start_kind`](../../aho_corasick/util/error/index.md). By default, a DFA only supports unanchored
+via `Builder::start_kind`. By default, a DFA only supports unanchored
 searches.
 
 # Example
@@ -281,17 +278,13 @@ It is also possible to implement your own version of `try_find`. See the
 - <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
 
   Create a new Aho-Corasick DFA using the default configuration.
-
   
-
-  Use a `Builder` if you want to change the configuration.
+  Use a [`Builder`](#builder) if you want to change the configuration.
 
 - <span id="dfa-builder"></span>`fn builder() -> Builder`
 
   A convenience method for returning a new Aho-Corasick DFA builder.
-
   
-
   This usually permits one to just import the `DFA` type.
 
 - <span id="dfa-const-dead"></span>`const DEAD: StateID`
@@ -299,7 +292,6 @@ It is also possible to implement your own version of `try_find`. See the
 - <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
 
   Adds the given pattern IDs as matches to the given state and also
-
   records the added memory usage.
 
 #### Trait Implementations
@@ -371,11 +363,8 @@ It is also possible to implement your own version of `try_find`. See the
 - <span id="dfa-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Sealed for crate::dfa::DFA`

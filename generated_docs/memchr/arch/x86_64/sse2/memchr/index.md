@@ -43,7 +43,7 @@ expected match frequency.
 struct One(generic::One<core::arch::x86_64::__m128i>);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:29`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L29)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:29`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L29)*
 
 Finds all occurrences of a single byte in a haystack.
 
@@ -52,87 +52,54 @@ Finds all occurrences of a single byte in a haystack.
 - <span id="one-new"></span>`fn new(needle: u8) -> Option<One>` — [`One`](#one)
 
   Create a new searcher that finds occurrences of the needle byte given.
-
   
-
   This particular searcher is specialized to use SSE2 vector instructions
-
   that typically make it quite fast.
-
   
-
   If SSE2 is unavailable in the current environment, then `None` is
-
   returned.
 
 - <span id="one-new-unchecked"></span>`unsafe fn new_unchecked(needle: u8) -> One` — [`One`](#one)
 
   Create a new finder specific to SSE2 vectors and routines without
-
   checking that SSE2 is available.
-
   
-
   # Safety
-
   
-
   Callers must guarantee that it is safe to execute `sse2` instructions
-
   in the current environment.
-
   
-
   Note that it is a common misconception that if one compiles for an
-
   `x86_64` target, then they therefore automatically have access to SSE2
-
   instructions. While this is almost always the case, it isn't true in
-
   100% of cases.
 
 - <span id="one-is-available"></span>`fn is_available() -> bool`
 
   Returns true when this implementation is available in the current
-
   environment.
-
   
-
   When this is true, it is guaranteed that `One::new` will return
-
   a `Some` value. Similarly, when it is false, it is guaranteed that
-
   `One::new` will return a `None` value.
-
   
-
   Note also that for the lifetime of a single program, if this returns
-
   true then it will always return true.
 
 - <span id="one-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the first occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value is `haystack.len() - 1`.
 
 - <span id="one-rfind"></span>`fn rfind(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the last occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value is `haystack.len() - 1`.
 
 - <span id="one-count"></span>`fn count(&self, haystack: &[u8]) -> usize`
@@ -142,219 +109,124 @@ Finds all occurrences of a single byte in a haystack.
 - <span id="one-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `find`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="one-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `rfind`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="one-count-raw"></span>`unsafe fn count_raw(&self, start: *const u8, end: *const u8) -> usize`
 
   Counts all occurrences of this byte in the given haystack represented
-
   by raw pointers.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `0` will always be returned.
 
 - <span id="one-find-raw-impl"></span>`unsafe fn find_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Execute a search using SSE2 vectors and routines.
-
   
-
   # Safety
-
   
-
   Same as `One::find_raw`, except the distance between `start` and
-
   `end` must be at least the size of an SSE2 vector (in bytes).
-
   
-
   (The target feature safety obligation is automatically fulfilled by
-
   virtue of being a method on `One`, which can only be constructed
-
   when it is safe to call `sse2` routines.)
 
 - <span id="one-rfind-raw-impl"></span>`unsafe fn rfind_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Execute a search using SSE2 vectors and routines.
-
   
-
   # Safety
-
   
-
   Same as `One::rfind_raw`, except the distance between `start` and
-
   `end` must be at least the size of an SSE2 vector (in bytes).
-
   
-
   (The target feature safety obligation is automatically fulfilled by
-
   virtue of being a method on `One`, which can only be constructed
-
   when it is safe to call `sse2` routines.)
 
 - <span id="one-count-raw-impl"></span>`unsafe fn count_raw_impl(&self, start: *const u8, end: *const u8) -> usize`
 
   Execute a count using SSE2 vectors and routines.
-
   
-
   # Safety
-
   
-
   Same as `One::count_raw`, except the distance between `start` and
-
   `end` must be at least the size of an SSE2 vector (in bytes).
-
   
-
   (The target feature safety obligation is automatically fulfilled by
-
   virtue of being a method on `One`, which can only be constructed
-
   when it is safe to call `sse2` routines.)
 
 - <span id="one-iter"></span>`fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
 
   Returns an iterator over all occurrences of the needle byte in the
-
   given haystack.
-
   
-
   The iterator returned implements `DoubleEndedIterator`. This means it
-
   can also be used to find occurrences in reverse order.
 
 #### Trait Implementations
@@ -396,11 +268,8 @@ Finds all occurrences of a single byte in a haystack.
 - <span id="one-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for One`
@@ -432,7 +301,7 @@ struct OneIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:356-359`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L356-L359)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:356-359`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L356-L359)*
 
 An iterator over all occurrences of a single byte in a haystack.
 
@@ -489,11 +358,8 @@ The lifetime parameters are as follows:
 - <span id="oneiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for OneIter<'a, 'h>`
@@ -540,7 +406,7 @@ The lifetime parameters are as follows:
 struct Two(generic::Two<core::arch::x86_64::__m128i>);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:405`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L405)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:405`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L405)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -553,239 +419,140 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 - <span id="two-new"></span>`fn new(needle1: u8, needle2: u8) -> Option<Two>` — [`Two`](#two)
 
   Create a new searcher that finds occurrences of the needle bytes given.
-
   
-
   This particular searcher is specialized to use SSE2 vector instructions
-
   that typically make it quite fast.
-
   
-
   If SSE2 is unavailable in the current environment, then `None` is
-
   returned.
 
 - <span id="two-new-unchecked"></span>`unsafe fn new_unchecked(needle1: u8, needle2: u8) -> Two` — [`Two`](#two)
 
   Create a new finder specific to SSE2 vectors and routines without
-
   checking that SSE2 is available.
-
   
-
   # Safety
-
   
-
   Callers must guarantee that it is safe to execute `sse2` instructions
-
   in the current environment.
-
   
-
   Note that it is a common misconception that if one compiles for an
-
   `x86_64` target, then they therefore automatically have access to SSE2
-
   instructions. While this is almost always the case, it isn't true in
-
   100% of cases.
 
 - <span id="two-is-available"></span>`fn is_available() -> bool`
 
   Returns true when this implementation is available in the current
-
   environment.
-
   
-
   When this is true, it is guaranteed that `Two::new` will return
-
   a `Some` value. Similarly, when it is false, it is guaranteed that
-
   `Two::new` will return a `None` value.
-
   
-
   Note also that for the lifetime of a single program, if this returns
-
   true then it will always return true.
 
 - <span id="two-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the first occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value is `haystack.len() - 1`.
 
 - <span id="two-rfind"></span>`fn rfind(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the last occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value is `haystack.len() - 1`.
 
 - <span id="two-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `find`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="two-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `rfind`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="two-find-raw-impl"></span>`unsafe fn find_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Execute a search using SSE2 vectors and routines.
-
   
-
   # Safety
-
   
-
   Same as `Two::find_raw`, except the distance between `start` and
-
   `end` must be at least the size of an SSE2 vector (in bytes).
-
   
-
   (The target feature safety obligation is automatically fulfilled by
-
   virtue of being a method on `Two`, which can only be constructed
-
   when it is safe to call `sse2` routines.)
 
 - <span id="two-rfind-raw-impl"></span>`unsafe fn rfind_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Execute a search using SSE2 vectors and routines.
-
   
-
   # Safety
-
   
-
   Same as `Two::rfind_raw`, except the distance between `start` and
-
   `end` must be at least the size of an SSE2 vector (in bytes).
-
   
-
   (The target feature safety obligation is automatically fulfilled by
-
   virtue of being a method on `Two`, which can only be constructed
-
   when it is safe to call `sse2` routines.)
 
 - <span id="two-iter"></span>`fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
 
   Returns an iterator over all occurrences of the needle bytes in the
-
   given haystack.
-
   
-
   The iterator returned implements `DoubleEndedIterator`. This means it
-
   can also be used to find occurrences in reverse order.
 
 #### Trait Implementations
@@ -827,11 +594,8 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 - <span id="two-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Two`
@@ -863,7 +627,7 @@ struct TwoIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:662-665`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L662-L665)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:662-665`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L662-L665)*
 
 An iterator over all occurrences of two possible bytes in a haystack.
 
@@ -920,11 +684,8 @@ The lifetime parameters are as follows:
 - <span id="twoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TwoIter<'a, 'h>`
@@ -969,7 +730,7 @@ The lifetime parameters are as follows:
 struct Three(generic::Three<core::arch::x86_64::__m128i>);
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:702`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L702)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:702`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L702)*
 
 Finds all occurrences of three bytes in a haystack.
 
@@ -982,239 +743,140 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 - <span id="three-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8) -> Option<Three>` — [`Three`](#three)
 
   Create a new searcher that finds occurrences of the needle bytes given.
-
   
-
   This particular searcher is specialized to use SSE2 vector instructions
-
   that typically make it quite fast.
-
   
-
   If SSE2 is unavailable in the current environment, then `None` is
-
   returned.
 
 - <span id="three-new-unchecked"></span>`unsafe fn new_unchecked(needle1: u8, needle2: u8, needle3: u8) -> Three` — [`Three`](#three)
 
   Create a new finder specific to SSE2 vectors and routines without
-
   checking that SSE2 is available.
-
   
-
   # Safety
-
   
-
   Callers must guarantee that it is safe to execute `sse2` instructions
-
   in the current environment.
-
   
-
   Note that it is a common misconception that if one compiles for an
-
   `x86_64` target, then they therefore automatically have access to SSE2
-
   instructions. While this is almost always the case, it isn't true in
-
   100% of cases.
 
 - <span id="three-is-available"></span>`fn is_available() -> bool`
 
   Returns true when this implementation is available in the current
-
   environment.
-
   
-
   When this is true, it is guaranteed that `Three::new` will return
-
   a `Some` value. Similarly, when it is false, it is guaranteed that
-
   `Three::new` will return a `None` value.
-
   
-
   Note also that for the lifetime of a single program, if this returns
-
   true then it will always return true.
 
 - <span id="three-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the first occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value is `haystack.len() - 1`.
 
 - <span id="three-rfind"></span>`fn rfind(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the last occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value is `haystack.len() - 1`.
 
 - <span id="three-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `find`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="three-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `rfind`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="three-find-raw-impl"></span>`unsafe fn find_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Execute a search using SSE2 vectors and routines.
-
   
-
   # Safety
-
   
-
   Same as `Three::find_raw`, except the distance between `start` and
-
   `end` must be at least the size of an SSE2 vector (in bytes).
-
   
-
   (The target feature safety obligation is automatically fulfilled by
-
   virtue of being a method on `Three`, which can only be constructed
-
   when it is safe to call `sse2` routines.)
 
 - <span id="three-rfind-raw-impl"></span>`unsafe fn rfind_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Execute a search using SSE2 vectors and routines.
-
   
-
   # Safety
-
   
-
   Same as `Three::rfind_raw`, except the distance between `start` and
-
   `end` must be at least the size of an SSE2 vector (in bytes).
-
   
-
   (The target feature safety obligation is automatically fulfilled by
-
   virtue of being a method on `Three`, which can only be constructed
-
   when it is safe to call `sse2` routines.)
 
 - <span id="three-iter"></span>`fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
 
   Returns an iterator over all occurrences of the needle byte in the
-
   given haystack.
-
   
-
   The iterator returned implements `DoubleEndedIterator`. This means it
-
   can also be used to find occurrences in reverse order.
 
 #### Trait Implementations
@@ -1256,11 +918,8 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 - <span id="three-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Three`
@@ -1292,7 +951,7 @@ struct ThreeIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:967-970`](../../../../../../.source_1765633015/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L967-L970)*
+*Defined in [`memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs:967-970`](../../../../../../.source_1765894658/memchr-2.7.6/src/arch/x86_64/sse2/memchr.rs#L967-L970)*
 
 An iterator over all occurrences of three possible bytes in a haystack.
 
@@ -1349,11 +1008,8 @@ The lifetime parameters are as follows:
 - <span id="threeiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ThreeIter<'a, 'h>`

@@ -19,7 +19,7 @@
 struct ReplaceReceiver<'a>(&'a syn::TypePath);
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:21`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/receiver.rs#L21)*
+*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:21`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/receiver.rs#L21)*
 
 #### Implementations
 
@@ -54,11 +54,8 @@ struct ReplaceReceiver<'a>(&'a syn::TypePath);
 - <span id="replacereceiver-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ReplaceReceiver<'a>`
@@ -81,5 +78,5 @@ struct ReplaceReceiver<'a>(&'a syn::TypePath);
 fn replace_receiver(input: &mut syn::DeriveInput)
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:10-19`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/receiver.rs#L10-L19)*
+*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:10-19`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/receiver.rs#L10-L19)*
 

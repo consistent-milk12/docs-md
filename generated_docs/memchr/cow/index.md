@@ -19,7 +19,7 @@
 struct CowBytes<'a>(Imp<'a>);
 ```
 
-*Defined in [`memchr-2.7.6/src/cow.rs:11`](../../../.source_1765633015/memchr-2.7.6/src/cow.rs#L11)*
+*Defined in [`memchr-2.7.6/src/cow.rs:11`](../../../.source_1765894658/memchr-2.7.6/src/cow.rs#L11)*
 
 A specialized copy-on-write byte string.
 
@@ -42,17 +42,13 @@ core.
 - <span id="cowbytes-as-slice"></span>`fn as_slice(&self) -> &[u8]`
 
   Return a borrowed byte string, regardless of whether this is an owned
-
   or borrowed byte string internally.
 
 - <span id="cowbytes-into-owned"></span>`fn into_owned(self) -> CowBytes<'static>` — [`CowBytes`](#cowbytes)
 
   Return an owned version of this copy-on-write byte string.
-
   
-
   If this is already an owned byte string internally, then this is a
-
   no-op. Otherwise, the internal byte string is copied.
 
 #### Trait Implementations
@@ -98,11 +94,8 @@ core.
 - <span id="cowbytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for CowBytes<'a>`
@@ -140,7 +133,7 @@ enum Imp<'a> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/cow.rs:18-21`](../../../.source_1765633015/memchr-2.7.6/src/cow.rs#L18-L21)*
+*Defined in [`memchr-2.7.6/src/cow.rs:18-21`](../../../.source_1765894658/memchr-2.7.6/src/cow.rs#L18-L21)*
 
 #### Implementations
 
@@ -185,11 +178,8 @@ enum Imp<'a> {
 - <span id="imp-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Imp<'a>`

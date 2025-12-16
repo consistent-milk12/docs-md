@@ -44,7 +44,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L25-L31)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L25-L31)*
 
 The table of section headers in an ELF file.
 
@@ -61,17 +61,13 @@ Returned by `FileHeader::sections`.
 - <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Elf as >::SectionHeader>` — [`FileHeader`](../index.md#fileheader)
 
   Iterate over the section headers.
-
   
-
   This includes the null section at index 0, which you will usually need to skip.
 
 - <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data <Elf as >::SectionHeader)>` — [`SectionIndex`](../../../index.md#sectionindex), [`FileHeader`](../index.md#fileheader)
 
   Iterate over the section headers and their indices.
-
   
-
   This includes the null section at index 0, which you will usually need to skip.
 
 - <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
@@ -85,17 +81,13 @@ Returned by `FileHeader::sections`.
 - <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data <Elf as >::SectionHeader>` — [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
   Get the section header at the given index.
-
   
-
   Returns an error for the null section at index 0.
 
 - <span id="sectiontable-section-by-name"></span>`fn section_by_name(&self, endian: <Elf as >::Endian, name: &[u8]) -> Option<(SectionIndex, &'data <Elf as >::SectionHeader)>` — [`FileHeader`](../index.md#fileheader), [`SectionIndex`](../../../index.md#sectionindex)
 
   Return the section header with the given name.
-
   
-
   Ignores sections with invalid names.
 
 - <span id="sectiontable-section-name"></span>`fn section_name(&self, endian: <Elf as >::Endian, section: &<Elf as >::SectionHeader) -> read::Result<&'data [u8]>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
@@ -105,27 +97,20 @@ Returned by `FileHeader::sections`.
 - <span id="sectiontable-strings"></span>`fn strings(&self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<StringTable<'data, R>>` — [`FileHeader`](../index.md#fileheader), [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`StringTable`](../../index.md#stringtable)
 
   Return the string table at the given section index.
-
   
-
   Returns an empty string table if the index is 0.
-
   Returns an error if the section is not a string table.
 
 - <span id="sectiontable-symbols"></span>`fn symbols(&self, endian: <Elf as >::Endian, data: R, sh_type: u32) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`SymbolTable`](../index.md#symboltable)
 
   Return the symbol table of the given section type.
-
   
-
   Returns an empty symbol table if the symbol table does not exist.
 
 - <span id="sectiontable-symbol-table-by-index"></span>`fn symbol_table_by_index(&self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md#fileheader), [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`SymbolTable`](../index.md#symboltable)
 
   Return the symbol table at the given section index.
-
   
-
   Returns an error if the section is not a symbol table.
 
 - <span id="sectiontable-relocation-sections"></span>`fn relocation_sections(&self, endian: <Elf as >::Endian, symbol_section: SectionIndex) -> read::Result<RelocationSections>` — [`FileHeader`](../index.md#fileheader), [`SectionIndex`](../../../index.md#sectionindex), [`Result`](../../../index.md#result), [`RelocationSections`](../index.md#relocationsections)
@@ -135,115 +120,76 @@ Returned by `FileHeader::sections`.
 - <span id="sectiontable-dynamic"></span>`fn dynamic(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [<Elf as >::Dyn], SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`SectionIndex`](../../../index.md#sectionindex)
 
   Return the contents of a dynamic section.
-
   
-
   Also returns the linked string table index.
-
   
-
   Returns `Ok(None)` if there is no `SHT_DYNAMIC` section.
-
   Returns `Err` for invalid values.
 
 - <span id="sectiontable-hash-header"></span>`fn hash_header(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Elf as >::Endian>>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`HashHeader`](../../../elf/index.md#hashheader)
 
   Return the header of a SysV hash section.
-
   
-
   Returns `Ok(None)` if there is no SysV GNU hash section.
-
   Returns `Err` for invalid values.
 
 - <span id="sectiontable-hash"></span>`fn hash(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`HashTable`](../index.md#hashtable), [`SectionIndex`](../../../index.md#sectionindex)
 
   Return the contents of a SysV hash section.
-
   
-
   Also returns the linked symbol table index.
-
   
-
   Returns `Ok(None)` if there is no SysV hash section.
-
   Returns `Err` for invalid values.
 
 - <span id="sectiontable-gnu-hash-header"></span>`fn gnu_hash_header(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Elf as >::Endian>>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`GnuHashHeader`](../../../elf/index.md#gnuhashheader)
 
   Return the header of a GNU hash section.
-
   
-
   Returns `Ok(None)` if there is no GNU hash section.
-
   Returns `Err` for invalid values.
 
 - <span id="sectiontable-gnu-hash"></span>`fn gnu_hash(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`GnuHashTable`](../index.md#gnuhashtable), [`SectionIndex`](../../../index.md#sectionindex)
 
   Return the contents of a GNU hash section.
-
   
-
   Also returns the linked symbol table index.
-
   
-
   Returns `Ok(None)` if there is no GNU hash section.
-
   Returns `Err` for invalid values.
 
 - <span id="sectiontable-gnu-versym"></span>`fn gnu_versym(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Elf as >::Endian>], SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`Versym`](../../../elf/index.md#versym), [`SectionIndex`](../../../index.md#sectionindex)
 
   Return the contents of a `SHT_GNU_VERSYM` section.
-
   
-
   Also returns the linked symbol table index.
-
   
-
   Returns `Ok(None)` if there is no `SHT_GNU_VERSYM` section.
-
   Returns `Err` for invalid values.
 
 - <span id="sectiontable-gnu-verdef"></span>`fn gnu_verdef(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`VerdefIterator`](../index.md#verdefiterator), [`SectionIndex`](../../../index.md#sectionindex)
 
   Return the contents of a `SHT_GNU_VERDEF` section.
-
   
-
   Also returns the linked string table index.
-
   
-
   Returns `Ok(None)` if there is no `SHT_GNU_VERDEF` section.
-
   Returns `Err` for invalid values.
 
 - <span id="sectiontable-gnu-verneed"></span>`fn gnu_verneed(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`VerneedIterator`](../index.md#verneediterator), [`SectionIndex`](../../../index.md#sectionindex)
 
   Return the contents of a `SHT_GNU_VERNEED` section.
-
   
-
   Also returns the linked string table index.
-
   
-
   Returns `Ok(None)` if there is no `SHT_GNU_VERNEED` section.
-
   Returns `Err` for invalid values.
 
 - <span id="sectiontable-versions"></span>`fn versions(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<VersionTable<'data, Elf>>>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result), [`VersionTable`](../index.md#versiontable)
 
   Returns the symbol version table.
-
   
-
   Returns `Ok(None)` if there is no `SHT_GNU_VERSYM` section.
-
   Returns `Err` for invalid values.
 
 #### Trait Implementations
@@ -289,11 +235,8 @@ Returned by `FileHeader::sections`.
 - <span id="sectiontable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SectionTable<'data, Elf, R>`
@@ -328,7 +271,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L358-L365)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L358-L365)*
 
 An iterator for the sections in an [`ElfFile`](../index.md).
 
@@ -365,11 +308,8 @@ An iterator for the sections in an [`ElfFile`](../index.md).
 - <span id="elfsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ElfSectionIterator<'data, 'file, Elf, R>`
@@ -411,7 +351,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L406-L414)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L406-L414)*
 
 A section in an [`ElfFile`](../index.md).
 
@@ -430,41 +370,29 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 - <span id="elfsection-elf-relocation-section-index"></span>`fn elf_relocation_section_index(&self) -> read::Result<Option<SectionIndex>>` — [`Result`](../../../index.md#result), [`SectionIndex`](../../../index.md#sectionindex)
 
   Get the index of the relocation section that references this section.
-
   
-
   Returns `None` if there are no relocations.
-
   Returns an error if there are multiple relocation sections that reference this section.
 
 - <span id="elfsection-elf-relocation-section"></span>`fn elf_relocation_section(&self) -> read::Result<Option<&'data <Elf as >::SectionHeader>>` — [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
   Get the relocation section that references this section.
-
   
-
   Returns `None` if there are no relocations.
-
   Returns an error if there are multiple relocation sections that reference this section.
 
 - <span id="elfsection-elf-linked-rel"></span>`fn elf_linked_rel(&self) -> read::Result<&'data [<Elf as >::Rel]>` — [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
   Get the `Elf::Rel` entries that apply to this section.
-
   
-
   Returns an empty slice if there are no relocations.
-
   Returns an error if there are multiple relocation sections that reference this section.
 
 - <span id="elfsection-elf-linked-rela"></span>`fn elf_linked_rela(&self) -> read::Result<&'data [<Elf as >::Rela]>` — [`Result`](../../../index.md#result), [`FileHeader`](../index.md#fileheader)
 
   Get the `Elf::Rela` entries that apply to this section.
-
   
-
   Returns an empty slice if there are no relocations.
-
   Returns an error if there are multiple relocation sections that reference this section.
 
 - <span id="elfsection-bytes"></span>`fn bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md#result)
@@ -502,11 +430,8 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 - <span id="elfsection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Elf, R> ObjectSection for ElfSection<'data, 'file, Elf, R>`
@@ -569,7 +494,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 trait SectionHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
 
 A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) and [`elf::SectionHeader64`](../../../elf/index.md).
 
@@ -612,6 +537,8 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
 - `fn link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_link` field as a section index.
+  
+  This may return a null section index, and does not check for validity.
 
 - `fn has_info_link(&self, endian: <Self as >::Endian) -> bool`
 
@@ -620,94 +547,192 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
 - `fn info_link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_info` field as a section index.
+  
+  This does not check the `SHF_INFO_LINK` flag.
+  This may return a null section index, and does not check for validity.
 
 - `fn file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
+  
+  Returns `None` for sections that have no data in the file.
 
 - `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [u8]>`
 
   Return the section data.
+  
+  Returns `Ok(&[])` if the section has no data.
+  Returns `Err` for invalid values.
 
 - `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [T]>`
 
   Return the section data as a slice of the given type.
+  
+  Allows padding at the end of the data.
+  Returns `Ok(&[])` if the section has no data.
+  Returns `Err` for invalid values, including bad alignment.
 
 - `fn strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<StringTable<'data, R>>>`
 
   Return the strings in the section.
+  
+  Returns `Ok(None)` if the section does not contain strings.
+  Returns `Err` for invalid values.
 
 - `fn symbols<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &SectionTable<'data, <Self as >::Elf, R>, section_index: SectionIndex) -> read::Result<Option<SymbolTable<'data, <Self as >::Elf, R>>>`
 
   Return the symbols in the section.
+  
+  Also finds the linked string table in `sections`.
+  
+  `section_index` must be the 0-based index of this section, and is used
+  to find the corresponding extended section index table in `sections`.
+  
+  Returns `Ok(None)` if the section does not contain symbols.
+  Returns `Err` for invalid values.
 
 - `fn rel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rel], SectionIndex)>>`
 
   Return the `Elf::Rel` entries in the section.
+  
+  Also returns the linked symbol table index.
+  
+  Returns `Ok(None)` if the section does not contain relocations.
+  Returns `Err` for invalid values.
 
 - `fn rela<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rela], SectionIndex)>>`
 
   Return the `Elf::Rela` entries in the section.
+  
+  Also returns the linked symbol table index.
+  
+  Returns `Ok(None)` if the section does not contain relocations.
+  Returns `Err` for invalid values.
 
 - `fn relr<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<RelrIterator<'data, <Self as >::Elf>>>`
 
   Return the `Elf::Relr` entries in the section.
+  
+  Returns `Ok(None)` if the section does not contain relative relocations.
+  Returns `Err` for invalid values.
 
 - `fn crel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(CrelIterator<'data>, SectionIndex)>>`
 
   Return the `Crel` entries in the section.
+  
+  Returns `Ok(None)` if the section does not contain compact relocations.
+  Returns `Err` for invalid values.
 
 - `fn dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Dyn], SectionIndex)>>`
 
   Return entries in a dynamic section.
+  
+  Also returns the linked string table index.
+  
+  Returns `Ok(None)` if the section type is not `SHT_DYNAMIC`.
+  Returns `Err` for invalid values.
 
 - `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the section data.
+  
+  Returns `Ok(None)` if the section does not contain notes.
+  Returns `Err` for invalid values.
 
 - `fn group<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(u32, &'data [U32Bytes<<Self as >::Endian>])>>`
 
   Return the contents of a group section.
+  
+  The first value is a `GRP_*` value, and the remaining values
+  are section indices.
+  
+  Returns `Ok(None)` if the section does not define a group.
+  Returns `Err` for invalid values.
 
 - `fn hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Self as >::Endian>>>`
 
   Return the header of a SysV hash section.
+  
+  Returns `Ok(None)` if the section does not contain a SysV hash.
+  Returns `Err` for invalid values.
 
 - `fn hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a SysV hash section.
+  
+  Also returns the linked symbol table index.
+  
+  Returns `Ok(None)` if the section does not contain a SysV hash.
+  Returns `Err` for invalid values.
 
 - `fn gnu_hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Self as >::Endian>>>`
 
   Return the header of a GNU hash section.
+  
+  Returns `Ok(None)` if the section does not contain a GNU hash.
+  Returns `Err` for invalid values.
 
 - `fn gnu_hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a GNU hash section.
+  
+  Also returns the linked symbol table index.
+  
+  Returns `Ok(None)` if the section does not contain a GNU hash.
+  Returns `Err` for invalid values.
 
 - `fn gnu_versym<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Self as >::Endian>], SectionIndex)>>`
 
   Return the contents of a `SHT_GNU_VERSYM` section.
+  
+  Also returns the linked symbol table index.
+  
+  Returns `Ok(None)` if the section type is not `SHT_GNU_VERSYM`.
+  Returns `Err` for invalid values.
 
 - `fn gnu_verdef<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERDEF` section.
+  
+  Also returns the linked string table index.
+  
+  Returns `Ok(None)` if the section type is not `SHT_GNU_VERDEF`.
+  Returns `Err` for invalid values.
 
 - `fn gnu_verneed<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERNEED` section.
+  
+  Also returns the linked string table index.
+  
+  Returns `Ok(None)` if the section type is not `SHT_GNU_VERNEED`.
+  Returns `Err` for invalid values.
 
 - `fn gnu_attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<AttributesSection<'data, <Self as >::Elf>>>`
 
   Return the contents of a `SHT_GNU_ATTRIBUTES` section.
+  
+  Returns `Ok(None)` if the section type is not `SHT_GNU_ATTRIBUTES`.
+  Returns `Err` for invalid values.
 
 - `fn attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<AttributesSection<'data, <Self as >::Elf>>`
 
   Parse the contents of the section as attributes.
+  
+  This function does not check whether section type corresponds
+  to a section that contains attributes.
+  
+  Returns `Err` for invalid values.
 
 - `fn compression<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
 
   Parse the compression header if present.
+  
+  Returns the header, and the offset and size of the compressed section data
+  in the file.
+  
+  Returns `Ok(None)` if the section flags do not have `SHF_COMPRESSED`.
+  Returns `Err` for invalid values.
 
 #### Implementors
 
@@ -722,7 +747,7 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
 type ElfSectionIterator32<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L350-L351)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L350-L351)*
 
 An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 
@@ -732,7 +757,7 @@ An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 type ElfSectionIterator64<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L353-L354)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L353-L354)*
 
 An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 
@@ -742,7 +767,7 @@ An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 type ElfSection32<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L396-L397)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L396-L397)*
 
 A section in an [`ElfFile32`](super::ElfFile32).
 
@@ -752,7 +777,7 @@ A section in an [`ElfFile32`](super::ElfFile32).
 type ElfSection64<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/section.rs#L399-L400)*
+*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/section.rs#L399-L400)*
 
 A section in an [`ElfFile64`](super::ElfFile64).
 

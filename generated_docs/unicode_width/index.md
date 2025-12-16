@@ -166,7 +166,7 @@ Canonically equivalent strings are assigned the same width (CJK and non-CJK).
 trait UnicodeWidthChar: private::Sealed { ... }
 ```
 
-*Defined in [`unicode-width-0.2.2/src/lib.rs:194-213`](../../.source_1765633015/unicode-width-0.2.2/src/lib.rs#L194-L213)*
+*Defined in [`unicode-width-0.2.2/src/lib.rs:194-213`](../../.source_1765894658/unicode-width-0.2.2/src/lib.rs#L194-L213)*
 
 Methods for determining displayed width of Unicode characters.
 
@@ -175,10 +175,22 @@ Methods for determining displayed width of Unicode characters.
 - `fn width(self) -> Option<usize>`
 
   Returns the character's displayed width in columns, or `None` if the
+  character is a control character.
+  
+  This function treats characters in the Ambiguous category according
+  to [Unicode Standard Annex #11](http://www.unicode.org/reports/tr11/)
+  as 1 column wide. This is consistent with the recommendations for non-CJK
+  contexts, or when the context cannot be reliably determined.
 
 - `fn width_cjk(self) -> Option<usize>`
 
   Returns the character's displayed width in columns, or `None` if the
+  character is a control character.
+  
+  This function treats characters in the Ambiguous category according
+  to [Unicode Standard Annex #11](http://www.unicode.org/reports/tr11/)
+  as 2 columns wide. This is consistent with the recommendations for
+  CJK contexts.
 
 #### Implementors
 
@@ -190,7 +202,7 @@ Methods for determining displayed width of Unicode characters.
 trait UnicodeWidthStr: private::Sealed { ... }
 ```
 
-*Defined in [`unicode-width-0.2.2/src/lib.rs:229-246`](../../.source_1765633015/unicode-width-0.2.2/src/lib.rs#L229-L246)*
+*Defined in [`unicode-width-0.2.2/src/lib.rs:229-246`](../../.source_1765894658/unicode-width-0.2.2/src/lib.rs#L229-L246)*
 
 Methods for determining displayed width of Unicode strings.
 
@@ -199,10 +211,20 @@ Methods for determining displayed width of Unicode strings.
 - `fn width(&self) -> usize`
 
   Returns the string's displayed width in columns.
+  
+  This function treats characters in the Ambiguous category according
+  to [Unicode Standard Annex #11](http://www.unicode.org/reports/tr11/)
+  as 1 column wide. This is consistent with the recommendations for
+  non-CJK contexts, or when the context cannot be reliably determined.
 
 - `fn width_cjk(&self) -> usize`
 
   Returns the string's displayed width in columns.
+  
+  This function treats characters in the Ambiguous category according
+  to [Unicode Standard Annex #11](http://www.unicode.org/reports/tr11/)
+  as 2 column wide. This is consistent with the recommendations for
+  CJK contexts.
 
 #### Implementors
 
@@ -215,7 +237,7 @@ Methods for determining displayed width of Unicode strings.
 const UNICODE_VERSION: (u8, u8, u8);
 ```
 
-*Defined in [`unicode-width-0.2.2/src/tables.rs:165`](../../.source_1765633015/unicode-width-0.2.2/src/tables.rs#L165)*
+*Defined in [`unicode-width-0.2.2/src/tables.rs:165`](../../.source_1765894658/unicode-width-0.2.2/src/tables.rs#L165)*
 
 The version of [Unicode](http://www.unicode.org/)
 that this version of unicode-width is based on.

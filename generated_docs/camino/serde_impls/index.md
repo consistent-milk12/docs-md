@@ -25,7 +25,7 @@ Serde implementations for the types in this crate.
 struct Utf8PathBufVisitor;
 ```
 
-*Defined in [`camino-1.2.1/src/serde_impls.rs:14`](../../../.source_1765633015/camino-1.2.1/src/serde_impls.rs#L14)*
+*Defined in [`camino-1.2.2/src/serde_impls.rs:14`](../../../.source_1765894658/camino-1.2.2/src/serde_impls.rs#L14)*
 
 #### Trait Implementations
 
@@ -56,11 +56,8 @@ struct Utf8PathBufVisitor;
 - <span id="utf8pathbufvisitor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Utf8PathBufVisitor`
@@ -95,7 +92,7 @@ struct Utf8PathBufVisitor;
 struct Utf8PathVisitor;
 ```
 
-*Defined in [`camino-1.2.1/src/serde_impls.rs:74`](../../../.source_1765633015/camino-1.2.1/src/serde_impls.rs#L74)*
+*Defined in [`camino-1.2.2/src/serde_impls.rs:74`](../../../.source_1765894658/camino-1.2.2/src/serde_impls.rs#L74)*
 
 #### Trait Implementations
 
@@ -126,11 +123,8 @@ struct Utf8PathVisitor;
 - <span id="utf8pathvisitor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Utf8PathVisitor`

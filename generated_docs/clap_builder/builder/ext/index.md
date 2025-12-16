@@ -21,7 +21,7 @@ struct Extensions {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/ext.rs:6-8`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/ext.rs#L6-L8)*
+*Defined in [`clap_builder-4.5.53/src/builder/ext.rs:6-8`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/ext.rs#L6-L8)*
 
 #### Implementations
 
@@ -74,11 +74,8 @@ struct Extensions {
 - <span id="extensions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Extensions`
@@ -109,7 +106,7 @@ struct Extensions {
 trait Extension: std::fmt::Debug + Clone + std::any::Any + Send + Sync + 'static { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/ext.rs:44`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/ext.rs#L44)*
+*Defined in [`clap_builder-4.5.53/src/builder/ext.rs:44`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/ext.rs#L44)*
 
 #### Implementors
 

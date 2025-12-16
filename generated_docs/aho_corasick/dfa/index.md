@@ -41,7 +41,7 @@ struct DFA {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765633015/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765894658/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
 
 A DFA implementation of Aho-Corasick.
 
@@ -179,17 +179,13 @@ It is also possible to implement your own version of `try_find`. See the
 - <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md#builderror)
 
   Create a new Aho-Corasick DFA using the default configuration.
-
   
-
   Use a [`Builder`](#builder) if you want to change the configuration.
 
 - <span id="dfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
   A convenience method for returning a new Aho-Corasick DFA builder.
-
   
-
   This usually permits one to just import the `DFA` type.
 
 #### Trait Implementations
@@ -261,11 +257,8 @@ It is also possible to implement your own version of `try_find`. See the
 - <span id="dfa-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Sealed for crate::dfa::DFA`
@@ -300,7 +293,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/dfa.rs:389-393`](../../../.source_1765633015/aho-corasick-1.1.4/src/dfa.rs#L389-L393)*
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:389-393`](../../../.source_1765894658/aho-corasick-1.1.4/src/dfa.rs#L389-L393)*
 
 A builder for configuring an Aho-Corasick DFA.
 
@@ -317,141 +310,89 @@ their behavior is identical.
 - <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md#builderror)
 
   Build an Aho-Corasick DFA from the given iterator of patterns.
-
   
-
   A builder may be reused to create more DFAs.
 
 - <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>` — [`NFA`](../nfa/noncontiguous/index.md#nfa), [`DFA`](#dfa), [`BuildError`](../util/error/index.md#builderror)
 
   Build an Aho-Corasick DFA from the given noncontiguous NFA.
-
   
-
   Note that when this method is used, only the `start_kind` and
-
   `byte_classes` settings on this builder are respected. The other
-
   settings only apply to the initial construction of the Aho-Corasick
-
   automaton. Since using this method requires that initial construction
-
   has already completed, all settings impacting only initial construction
-
   are no longer relevant.
 
 - <span id="builder-finish-build-one-start"></span>`fn finish_build_one_start(&self, anchored: Anchored, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`Anchored`](../util/search/index.md#anchored), [`NFA`](../nfa/noncontiguous/index.md#nfa), [`DFA`](#dfa)
 
   Finishes building a DFA for either unanchored or anchored searches,
-
   but NOT both.
 
 - <span id="builder-finish-build-both-starts"></span>`fn finish_build_both_starts(&self, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`NFA`](../nfa/noncontiguous/index.md#nfa), [`DFA`](#dfa)
 
   Finishes building a DFA that supports BOTH unanchored and anchored
-
   searches. It works by inter-leaving unanchored states with anchored
-
   states in the same transition table. This way, we avoid needing to
-
   re-shuffle states afterward to ensure that our states still look like
-
   DEAD, MATCH, ..., START-UNANCHORED, START-ANCHORED, NON-MATCH, ...
-
   
-
   Honestly this is pretty inscrutable... Simplifications are most
-
   welcome.
 
 - <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../util/search/index.md#matchkind), [`Builder`](#builder)
 
   Set the desired match semantics.
-
   
-
   This only applies when using `Builder::build` and not
-
   `Builder::build_from_noncontiguous`.
-
   
-
   See
-
   [`AhoCorasickBuilder::match_kind`](crate::AhoCorasickBuilder::match_kind)
-
   for more documentation and examples.
 
 - <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
   Enable ASCII-aware case insensitive matching.
-
   
-
   This only applies when using `Builder::build` and not
-
   `Builder::build_from_noncontiguous`.
-
   
-
   See
-
   [`AhoCorasickBuilder::ascii_case_insensitive`](crate::AhoCorasickBuilder::ascii_case_insensitive)
-
   for more documentation and examples.
 
 - <span id="builder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
   Enable heuristic prefilter optimizations.
-
   
-
   This only applies when using `Builder::build` and not
-
   `Builder::build_from_noncontiguous`.
-
   
-
   See
-
   [`AhoCorasickBuilder::prefilter`](crate::AhoCorasickBuilder::prefilter)
-
   for more documentation and examples.
 
 - <span id="builder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut Builder` — [`StartKind`](../util/search/index.md#startkind), [`Builder`](#builder)
 
   Sets the starting state configuration for the automaton.
-
   
-
   See
-
   [`AhoCorasickBuilder::start_kind`](crate::AhoCorasickBuilder::start_kind)
-
   for more documentation and examples.
 
 - <span id="builder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
   A debug setting for whether to attempt to shrink the size of the
-
   automaton's alphabet or not.
-
   
-
   This should never be enabled unless you're debugging an automaton.
-
   Namely, disabling byte classes makes transitions easier to reason
-
   about, since they use the actual bytes instead of equivalence classes.
-
   Disabling this confers no performance benefit at search time.
-
   
-
   See
-
   [`AhoCorasickBuilder::byte_classes`](crate::AhoCorasickBuilder::byte_classes)
-
   for more documentation and examples.
 
 #### Trait Implementations
@@ -495,11 +436,8 @@ their behavior is identical.
 - <span id="builder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Builder`
@@ -530,7 +468,7 @@ their behavior is identical.
 fn sparse_iter<F: FnMut(u8, u8, crate::util::primitives::StateID)>(nnfa: &noncontiguous::NFA, oldsid: crate::util::primitives::StateID, classes: &crate::util::alphabet::ByteClasses, f: F)
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/dfa.rs:801-835`](../../../.source_1765633015/aho-corasick-1.1.4/src/dfa.rs#L801-L835)*
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:801-835`](../../../.source_1765894658/aho-corasick-1.1.4/src/dfa.rs#L801-L835)*
 
 Iterate over all possible equivalence class transitions in this state.
 The closure is called for all transitions with a distinct equivalence

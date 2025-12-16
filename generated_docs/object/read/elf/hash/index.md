@@ -22,7 +22,7 @@ struct HashTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/hash.rs:13-16`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/hash.rs#L13-L16)*
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:13-16`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/hash.rs#L13-L16)*
 
 A SysV symbol hash table in an ELF file.
 
@@ -33,15 +33,10 @@ Returned by [`SectionHeader::hash`](super::SectionHeader::hash).
 - <span id="hashtable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
 
   Parse a SysV hash table.
-
   
-
   `data` should be from an [`elf::SHT_HASH`](../../../elf/index.md) section, or from a
-
   segment pointed to via the [`elf::DT_HASH`](../../../elf/index.md) entry.
-
   
-
   The header is read at offset 0 in the given `data`.
 
 - <span id="hashtable-symbol-table-length"></span>`fn symbol_table_length(&self) -> u32`
@@ -85,11 +80,8 @@ Returned by [`SectionHeader::hash`](super::SectionHeader::hash).
 - <span id="hashtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for HashTable<'data, Elf>`
@@ -116,7 +108,7 @@ struct GnuHashTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/hash.rs:86-92`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/hash.rs#L86-L92)*
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:86-92`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/hash.rs#L86-L92)*
 
 A GNU symbol hash table in an ELF file.
 
@@ -127,25 +119,15 @@ Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 - <span id="gnuhashtable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
 
   Parse a GNU hash table.
-
   
-
   `data` should be from an [`elf::SHT_GNU_HASH`](../../../elf/index.md) section, or from a
-
   segment pointed to via the [`elf::DT_GNU_HASH`](../../../elf/index.md) entry.
-
   
-
   The header is read at offset 0 in the given `data`.
-
   
-
   The header does not contain a length field, and so all of `data`
-
   will be used as the hash table values. It does not matter if this
-
   is longer than needed, and this will often the case when accessing
-
   the hash table via the [`elf::DT_GNU_HASH`](../../../elf/index.md) entry.
 
 - <span id="gnuhashtable-symbol-base"></span>`fn symbol_base(&self) -> u32`
@@ -155,9 +137,7 @@ Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 - <span id="gnuhashtable-symbol-table-length"></span>`fn symbol_table_length(&self, endian: <Elf as >::Endian) -> Option<u32>` — [`FileHeader`](../index.md#fileheader)
 
   Determine the symbol table length by finding the last entry in the hash table.
-
   
-
   Returns `None` if the hash table is empty or invalid.
 
 - <span id="gnuhashtable-bucket"></span>`fn bucket(&self, endian: <Elf as >::Endian, hash: u32) -> SymbolIndex` — [`FileHeader`](../index.md#fileheader), [`SymbolIndex`](../../../index.md#symbolindex)
@@ -195,11 +175,8 @@ Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 - <span id="gnuhashtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for GnuHashTable<'data, Elf>`

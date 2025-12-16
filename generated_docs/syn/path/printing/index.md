@@ -42,7 +42,7 @@ enum PathStyle {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:715-719`](../../../../.source_1765633015/syn-2.0.111/src/path.rs#L715-L719)*
+*Defined in [`syn-2.0.111/src/path.rs:715-719`](../../../../.source_1765894658/syn-2.0.111/src/path.rs#L715-L719)*
 
 #### Trait Implementations
 
@@ -79,11 +79,8 @@ enum PathStyle {
 - <span id="pathstyle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PathStyle`
@@ -114,7 +111,7 @@ enum PathStyle {
 fn print_path(tokens: &mut proc_macro2::TokenStream, path: &crate::path::Path, style: PathStyle)
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:736-742`](../../../../.source_1765633015/syn-2.0.111/src/path.rs#L736-L742)*
+*Defined in [`syn-2.0.111/src/path.rs:736-742`](../../../../.source_1765894658/syn-2.0.111/src/path.rs#L736-L742)*
 
 ### `print_path_segment`
 
@@ -122,7 +119,7 @@ fn print_path(tokens: &mut proc_macro2::TokenStream, path: &crate::path::Path, s
 fn print_path_segment(tokens: &mut proc_macro2::TokenStream, segment: &crate::path::PathSegment, style: PathStyle)
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:751-754`](../../../../.source_1765633015/syn-2.0.111/src/path.rs#L751-L754)*
+*Defined in [`syn-2.0.111/src/path.rs:751-754`](../../../../.source_1765894658/syn-2.0.111/src/path.rs#L751-L754)*
 
 ### `print_path_arguments`
 
@@ -130,7 +127,7 @@ fn print_path_segment(tokens: &mut proc_macro2::TokenStream, segment: &crate::pa
 fn print_path_arguments(tokens: &mut proc_macro2::TokenStream, arguments: &crate::path::PathArguments, style: PathStyle)
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:763-773`](../../../../.source_1765633015/syn-2.0.111/src/path.rs#L763-L773)*
+*Defined in [`syn-2.0.111/src/path.rs:763-773`](../../../../.source_1765894658/syn-2.0.111/src/path.rs#L763-L773)*
 
 ### `print_angle_bracketed_generic_arguments`
 
@@ -138,7 +135,7 @@ fn print_path_arguments(tokens: &mut proc_macro2::TokenStream, arguments: &crate
 fn print_angle_bracketed_generic_arguments(tokens: &mut proc_macro2::TokenStream, arguments: &crate::path::AngleBracketedGenericArguments, style: PathStyle)
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:799-845`](../../../../.source_1765633015/syn-2.0.111/src/path.rs#L799-L845)*
+*Defined in [`syn-2.0.111/src/path.rs:799-845`](../../../../.source_1765894658/syn-2.0.111/src/path.rs#L799-L845)*
 
 ### `print_parenthesized_generic_arguments`
 
@@ -146,7 +143,7 @@ fn print_angle_bracketed_generic_arguments(tokens: &mut proc_macro2::TokenStream
 fn print_parenthesized_generic_arguments(tokens: &mut proc_macro2::TokenStream, arguments: &crate::path::ParenthesizedGenericArguments, style: PathStyle)
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:884-898`](../../../../.source_1765633015/syn-2.0.111/src/path.rs#L884-L898)*
+*Defined in [`syn-2.0.111/src/path.rs:884-898`](../../../../.source_1765894658/syn-2.0.111/src/path.rs#L884-L898)*
 
 ### `print_qpath`
 
@@ -154,7 +151,7 @@ fn print_parenthesized_generic_arguments(tokens: &mut proc_macro2::TokenStream, 
 fn print_qpath(tokens: &mut proc_macro2::TokenStream, qself: &Option<crate::path::QSelf>, path: &crate::path::Path, style: PathStyle)
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:900-936`](../../../../.source_1765633015/syn-2.0.111/src/path.rs#L900-L936)*
+*Defined in [`syn-2.0.111/src/path.rs:900-936`](../../../../.source_1765894658/syn-2.0.111/src/path.rs#L900-L936)*
 
 ### `conditionally_print_turbofish`
 
@@ -162,5 +159,5 @@ fn print_qpath(tokens: &mut proc_macro2::TokenStream, qself: &Option<crate::path
 fn conditionally_print_turbofish(tokens: &mut proc_macro2::TokenStream, colon2_token: &Option<token::PathSep>, style: PathStyle)
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:938-948`](../../../../.source_1765633015/syn-2.0.111/src/path.rs#L938-L948)*
+*Defined in [`syn-2.0.111/src/path.rs:938-948`](../../../../.source_1765894658/syn-2.0.111/src/path.rs#L938-L948)*
 

@@ -22,7 +22,7 @@ struct DebugStr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/str.rs:12-14`](../../../../.source_1765633015/gimli-0.32.3/src/read/str.rs#L12-L14)*
+*Defined in [`gimli-0.32.3/src/read/str.rs:12-14`](../../../../.source_1765894658/gimli-0.32.3/src/read/str.rs#L12-L14)*
 
 The `DebugStr` struct represents the DWARF strings
 found in the `.debug_str` section.
@@ -32,31 +32,18 @@ found in the `.debug_str` section.
 - <span id="debugstr-new"></span>`fn new(debug_str_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugStr` instance from the data in the `.debug_str`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_str` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugStr, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_str_section_somehow = || &buf;
-
   let debug_str = DebugStr::new(read_debug_str_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -102,11 +89,8 @@ found in the `.debug_str` section.
 - <span id="debugstr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugStr<R>`
@@ -143,7 +127,7 @@ struct DebugStrOffsets<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/str.rs:91-93`](../../../../.source_1765633015/gimli-0.32.3/src/read/str.rs#L91-L93)*
+*Defined in [`gimli-0.32.3/src/read/str.rs:91-93`](../../../../.source_1765894658/gimli-0.32.3/src/read/str.rs#L91-L93)*
 
 The raw contents of the `.debug_str_offsets` section.
 
@@ -152,29 +136,17 @@ The raw contents of the `.debug_str_offsets` section.
 - <span id="debugstroffsets-get-str-offset"></span>`fn get_str_offset(&self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../../index.md#format), [`DebugStrOffsetsBase`](../../index.md#debugstroffsetsbase), [`Reader`](../index.md#reader), [`DebugStrOffsetsIndex`](../../index.md#debugstroffsetsindex), [`Result`](../../index.md#result), [`DebugStrOffset`](../../index.md#debugstroffset)
 
   Returns the `.debug_str` offset at the given `base` and `index`.
-
   
-
   A set of entries in the `.debug_str_offsets` section consists of a header
-
   followed by a series of string table offsets.
-
   
-
   The `base` must be the `DW_AT_str_offsets_base` value from the compilation unit DIE.
-
   This is an offset that points to the first entry following the header.
-
   
-
   The `index` is the value of a `DW_FORM_strx` attribute.
-
   
-
   The `format` must be the DWARF format of the compilation unit. This format must
-
   match the header. However, note that we do not parse the header to validate this,
-
   since locating the header is unreliable, and the GNU extensions do not emit it.
 
 #### Trait Implementations
@@ -220,11 +192,8 @@ The raw contents of the `.debug_str_offsets` section.
 - <span id="debugstroffsets-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugStrOffsets<R>`
@@ -261,7 +230,7 @@ struct DebugLineStr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/str.rs:184-186`](../../../../.source_1765633015/gimli-0.32.3/src/read/str.rs#L184-L186)*
+*Defined in [`gimli-0.32.3/src/read/str.rs:184-186`](../../../../.source_1765894658/gimli-0.32.3/src/read/str.rs#L184-L186)*
 
 The `DebugLineStr` struct represents the DWARF strings
 found in the `.debug_line_str` section.
@@ -271,31 +240,18 @@ found in the `.debug_line_str` section.
 - <span id="debuglinestr-new"></span>`fn new(debug_line_str_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugLineStr` instance from the data in the `.debug_line_str`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_line_str` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugLineStr, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_line_str_section_somehow = || &buf;
-
   let debug_str = DebugLineStr::new(read_debug_line_str_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -341,11 +297,8 @@ found in the `.debug_line_str` section.
 - <span id="debuglinestr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugLineStr<R>`

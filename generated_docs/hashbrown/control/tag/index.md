@@ -19,7 +19,7 @@
 struct Tag(u8);
 ```
 
-*Defined in [`hashbrown-0.16.1/src/control/tag.rs:6`](../../../../.source_1765633015/hashbrown-0.16.1/src/control/tag.rs#L6)*
+*Defined in [`hashbrown-0.16.1/src/control/tag.rs:6`](../../../../.source_1765894658/hashbrown-0.16.1/src/control/tag.rs#L6)*
 
 Single tag in a control group.
 
@@ -90,11 +90,8 @@ Single tag in a control group.
 - <span id="tag-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Tag`
@@ -131,7 +128,7 @@ Single tag in a control group.
 trait TagSliceExt { ... }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/control/tag.rs:67-76`](../../../../.source_1765633015/hashbrown-0.16.1/src/control/tag.rs#L67-L76)*
+*Defined in [`hashbrown-0.16.1/src/control/tag.rs:67-76`](../../../../.source_1765894658/hashbrown-0.16.1/src/control/tag.rs#L67-L76)*
 
 Extension trait for slices of tags.
 

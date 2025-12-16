@@ -19,7 +19,7 @@
 struct NoopConsumer;
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/noop.rs:3`](../../../../.source_1765633015/rayon-1.11.0/src/iter/noop.rs#L3)*
+*Defined in [`rayon-1.11.0/src/iter/noop.rs:3`](../../../../.source_1765894658/rayon-1.11.0/src/iter/noop.rs#L3)*
 
 #### Trait Implementations
 
@@ -72,11 +72,8 @@ struct NoopConsumer;
 - <span id="noopconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for NoopConsumer`
@@ -119,7 +116,7 @@ struct NoopConsumer;
 struct NoopReducer;
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/noop.rs:55`](../../../../.source_1765633015/rayon-1.11.0/src/iter/noop.rs#L55)*
+*Defined in [`rayon-1.11.0/src/iter/noop.rs:55`](../../../../.source_1765894658/rayon-1.11.0/src/iter/noop.rs#L55)*
 
 #### Trait Implementations
 
@@ -146,11 +143,8 @@ struct NoopReducer;
 - <span id="noopreducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for NoopReducer`

@@ -21,7 +21,7 @@ The `Pid` type.
 struct Pid(core::num::NonZeroI32);
 ```
 
-*Defined in [`rustix-1.1.2/src/pid.rs:19`](../../../.source_1765633015/rustix-1.1.2/src/pid.rs#L19)*
+*Defined in [`rustix-1.1.2/src/pid.rs:19`](../../../.source_1765894658/rustix-1.1.2/src/pid.rs#L19)*
 
 `pid_t`—A non-zero Unix process ID.
 
@@ -38,45 +38,27 @@ On Linux, `Pid` values are also used to identify threads.
 - <span id="pid-from-raw"></span>`const fn from_raw(raw: i32) -> Option<Self>`
 
   Converts a `RawPid` into a `Pid`.
-
   
-
   Returns `Some` for positive values, and `None` for zero values.
-
   
-
   This is safe because a `Pid` is a number without any guarantees for the
-
   kernel. Non-child `Pid`s are always racy for any syscalls, but can only
-
   cause logic errors. If you want race-free access to or control of
-
   non-child processes, please consider other mechanisms like [pidfd] on
-
   Linux.
-
   
-
   Passing a negative number doesn't invoke undefined behavior, but it
-
   may cause unexpected behavior.
 
 - <span id="pid-from-raw-unchecked"></span>`const unsafe fn from_raw_unchecked(raw: i32) -> Self`
 
   Converts a known positive `RawPid` into a `Pid`.
-
   
-
   Passing a negative number doesn't invoke undefined behavior, but it
-
   may cause unexpected behavior.
-
   
-
   # Safety
-
   
-
   The caller must guarantee `raw` is non-zero.
 
 - <span id="pid-from-child"></span>`fn from_child(child: &std::process::Child) -> Self`
@@ -90,9 +72,7 @@ On Linux, `Pid` values are also used to identify threads.
 - <span id="pid-as-raw-pid"></span>`const fn as_raw_pid(self) -> i32`
 
   Converts a `Pid` into a `RawPid`.
-
   
-
   This is the same as `self.as_raw_nonzero().get()`.
 
 - <span id="pid-as-raw"></span>`const fn as_raw(pid: Option<Self>) -> i32`
@@ -156,11 +136,8 @@ On Linux, `Pid` values are also used to identify threads.
 - <span id="pid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl LowerExp for Pid`
@@ -221,7 +198,7 @@ On Linux, `Pid` values are also used to identify threads.
 type RawPid = i32;
 ```
 
-*Defined in [`rustix-1.1.2/src/pid.rs:8`](../../../.source_1765633015/rustix-1.1.2/src/pid.rs#L8)*
+*Defined in [`rustix-1.1.2/src/pid.rs:8`](../../../.source_1765894658/rustix-1.1.2/src/pid.rs#L8)*
 
 A process identifier as a raw integer.
 

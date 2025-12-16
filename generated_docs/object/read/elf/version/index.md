@@ -24,7 +24,7 @@
 struct VersionIndex(u16);
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L10)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L10)*
 
 A version index.
 
@@ -89,11 +89,8 @@ A version index.
 - <span id="versionindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for VersionIndex`
@@ -127,7 +124,7 @@ struct Version<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L38-L44)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L38-L44)*
 
 A version definition or requirement.
 
@@ -146,11 +143,8 @@ This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../../elf/index.m
 - <span id="version-file"></span>`fn file(&self) -> Option<&'data [u8]>`
 
   Return the filename of the library containing this version.
-
   
-
   This is the `vn_file` field of the associated entry in [`elf::SHT_GNU_VERNEED`](../../../elf/index.md).
-
   or `None` if the version info was parsed from a [`elf::SHT_GNU_VERDEF`](../../../elf/index.md) section.
 
 #### Trait Implementations
@@ -196,11 +190,8 @@ This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../../elf/index.m
 - <span id="version-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Version<'data>`
@@ -232,7 +223,7 @@ struct VersionTable<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L75-L78)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L75-L78)*
 
 A table of version definitions and requirements.
 
@@ -260,23 +251,16 @@ Returned by [`SectionTable::versions`](super::SectionTable::versions).
 - <span id="versiontable-version"></span>`fn version(&self, index: VersionIndex) -> Result<Option<&Version<'data>>>` — [`VersionIndex`](../index.md#versionindex), [`Result`](../../../index.md#result), [`Version`](../index.md#version)
 
   Return version information for a given symbol version index.
-
   
-
   Returns `Ok(None)` for local and global versions.
-
   Returns `Err(_)` if index is invalid.
 
 - <span id="versiontable-matches"></span>`fn matches(&self, endian: <Elf as >::Endian, index: SymbolIndex, need: Option<&Version<'_>>) -> bool` — [`FileHeader`](../index.md#fileheader), [`SymbolIndex`](../../../index.md#symbolindex), [`Version`](../index.md#version)
 
   Return true if the given symbol index satisfies the requirements of `need`.
-
   
-
   Returns false for any error.
-
   
-
   Note: this function hasn't been fully tested and is likely to be incomplete.
 
 #### Trait Implementations
@@ -320,11 +304,8 @@ Returned by [`SectionTable::versions`](super::SectionTable::versions).
 - <span id="versiontable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for VersionTable<'data, Elf>`
@@ -356,7 +337,7 @@ struct VerdefIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L234-L237)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L234-L237)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index.md) section.
 
@@ -407,11 +388,8 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index
 - <span id="verdefiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for VerdefIterator<'data, Elf>`
@@ -458,7 +436,7 @@ struct VerdauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L297-L301)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L297-L301)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index.md) section.
 
@@ -509,11 +487,8 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERD
 - <span id="verdauxiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for VerdauxIterator<'data, Elf>`
@@ -559,7 +534,7 @@ struct VerneedIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L350-L353)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L350-L353)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/index.md) section.
 
@@ -610,11 +585,8 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/inde
 - <span id="verneediterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for VerneedIterator<'data, Elf>`
@@ -661,7 +633,7 @@ struct VernauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/version.rs#L426-L430)*
+*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/version.rs#L426-L430)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/index.md) section.
 
@@ -712,11 +684,8 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERN
 - <span id="vernauxiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for VernauxIterator<'data, Elf>`

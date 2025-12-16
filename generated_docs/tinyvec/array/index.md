@@ -23,13 +23,13 @@
 trait Array { ... }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/array.rs:18-41`](../../../.source_1765633015/tinyvec-1.10.0/src/array.rs#L18-L41)*
+*Defined in [`tinyvec-1.10.0/src/array.rs:18-41`](../../../.source_1765894658/tinyvec-1.10.0/src/array.rs#L18-L41)*
 
 A trait for types that are an array.
 
 An "array", for our purposes, has the following properties:
 * Owns some number of elements.
-* The element type can be generic, but must implement [`Default`](../../gimli/index.md).
+* The element type can be generic, but must implement [`Default`](#default).
 * The capacity is fixed at compile time, based on the implementing type.
 * You can get a shared or mutable slice to the elements.
 
@@ -56,14 +56,22 @@ Just a reminder: this trait is 100% safe, which means that `unsafe` code
 - `fn as_slice(&self) -> &[<Self as >::Item]`
 
   Gives a shared slice over the whole thing.
+  
+  A correct implementation will return a slice with a length equal to the
+  `CAPACITY` value.
 
 - `fn as_slice_mut(&mut self) -> &mut [<Self as >::Item]`
 
   Gives a unique slice over the whole thing.
+  
+  A correct implementation will return a slice with a length equal to the
+  `CAPACITY` value.
 
 - `fn default() -> Self`
 
   Create a default-initialized instance of ourself, similar to the
+  [`Default`](#default) trait, but implemented for the same range of sizes as
+  [`Array`](../index.md).
 
 #### Implementors
 

@@ -163,7 +163,7 @@ is not allowed. For more guidance on working with box from unsafe code, see
 struct Box<T: ?Sized, A: Allocator>(super::unique::Unique<T>, A);
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:177`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/boxed.rs#L177)*
+*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:177`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/boxed.rs#L177)*
 
 A pointer type for heap allocation.
 
@@ -174,215 +174,122 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 - <span id="box-new"></span>`fn new(x: T) -> Self`
 
   Allocates memory on the heap and then places `x` into it.
-
   
-
   This doesn't actually allocate if `T` is zero-sized.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let five = Box::new(5);
-
   ```
 
 - <span id="box-new-uninit"></span>`fn new_uninit() -> Box<mem::MaybeUninit<T>>` — [`Box`](#box)
 
   Constructs a new box with uninitialized contents.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #![feature(new_uninit)]
-
   
-
   let mut five = Box::<u32>::new_uninit();
-
   
-
   let five = unsafe {
-
       // Deferred initialization:
-
       five.as_mut_ptr().write(5);
-
   
-
       five.assume_init()
-
   };
-
   
-
   assert_eq!(*five, 5)
-
   ```
 
 - <span id="box-new-zeroed"></span>`fn new_zeroed() -> Box<mem::MaybeUninit<T>>` — [`Box`](#box)
 
   Constructs a new `Box` with uninitialized contents, with the memory
-
   being filled with `0` bytes.
-
   
-
   See [`MaybeUninit::zeroed`][zeroed] for examples of correct and incorrect usage
-
   of this method.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #![feature(new_uninit)]
-
   
-
   let zero = Box::<u32>::new_zeroed();
-
   let zero = unsafe { zero.assume_init() };
-
   
-
   assert_eq!(*zero, 0)
-
   ```
 
 - <span id="box-pin"></span>`fn pin(x: T) -> Pin<Box<T>>` — [`Box`](#box)
 
   Constructs a new `Pin<Box<T>>`. If `T` does not implement `Unpin`, then
-
   `x` will be pinned in memory and unable to be moved.
-
   
-
   Constructing and pinning of the `Box` can also be done in two steps: `Box::pin(x)`
-
   does the same as <code>[Box::into_pin]\([Box::new]\(x))</code>. Consider using
-
   [`into_pin`](Box::into_pin) if you already have a `Box<T>`, or if you want to
-
   construct a (pinned) `Box` in a different way than with `Box::new`.
 
 - <span id="box-try-new"></span>`fn try_new(x: T) -> Result<Self, AllocError>` — [`AllocError`](../alloc/index.md#allocerror)
 
   Allocates memory on the heap then places `x` into it,
-
   returning an error if the allocation fails
-
   
-
   This doesn't actually allocate if `T` is zero-sized.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #![feature(allocator_api)]
-
   
-
   let five = Box::try_new(5)?;
-
   Ok::<(), std::alloc::AllocError>(())
-
   ```
 
 - <span id="box-try-new-uninit"></span>`fn try_new_uninit() -> Result<Box<mem::MaybeUninit<T>>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md#allocerror)
 
   Constructs a new box with uninitialized contents on the heap,
-
   returning an error if the allocation fails
-
   
-
   # Examples
-
   
-
   ```rust
-
   #![feature(allocator_api, new_uninit)]
-
   
-
   let mut five = Box::<u32>::try_new_uninit()?;
-
   
-
   let five = unsafe {
-
       // Deferred initialization:
-
       five.as_mut_ptr().write(5);
-
   
-
       five.assume_init()
-
   };
-
   
-
   assert_eq!(*five, 5);
-
   Ok::<(), std::alloc::AllocError>(())
-
   ```
 
 - <span id="box-try-new-zeroed"></span>`fn try_new_zeroed() -> Result<Box<mem::MaybeUninit<T>>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md#allocerror)
 
   Constructs a new `Box` with uninitialized contents, with the memory
-
   being filled with `0` bytes on the heap
-
   
-
   See [`MaybeUninit::zeroed`][zeroed] for examples of correct and incorrect usage
-
   of this method.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #![feature(allocator_api, new_uninit)]
-
   
-
   let zero = Box::<u32>::try_new_zeroed()?;
-
   let zero = unsafe { zero.assume_init() };
-
   
-
   assert_eq!(*zero, 0);
-
   Ok::<(), std::alloc::AllocError>(())
-
   ```
 
 #### Trait Implementations
@@ -418,67 +325,38 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 - <span id="box-clone"></span>`fn clone(&self) -> Self`
 
   Returns a new box with a `clone()` of this box's contents.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let x = Box::new(5);
-
   let y = x.clone();
-
   
-
   // The value is the same
-
   assert_eq!(x, y);
-
   
-
   // But they are unique objects
-
   assert_ne!(&*x as *const i32, &*y as *const i32);
-
   ```
 
 - <span id="box-clone-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
   Copies `source`'s contents into `self` without creating a new allocation.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let x = Box::new(5);
-
   let mut y = Box::new(10);
-
   let yp: *const i32 = &*y;
-
   
-
   y.clone_from(&x);
-
   
-
   // The value is the same
-
   assert_eq!(x, y);
-
   
-
   // And no allocation occurred
-
   assert_eq!(yp, &*y);
-
   ```
 
 ##### `impl<T> CloneToUninit for Box<T, A>`
@@ -586,11 +464,8 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 - <span id="box-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoFuture for Box<T, A>`
@@ -689,7 +564,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 trait BoxIter { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:1903-1906`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/boxed.rs#L1903-L1906)*
+*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:1903-1906`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/boxed.rs#L1903-L1906)*
 
 #### Associated Types
 

@@ -22,7 +22,7 @@
 struct CacheLine<T>(T);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/pool.rs:365`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/pool.rs#L365)*
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:365`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/pool.rs#L365)*
 
 This puts each stack in the pool below into its own cache line. This is
 an absolutely critical optimization that tends to have the most impact
@@ -61,11 +61,8 @@ contention are greatly reduced.
 - <span id="cacheline-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for CacheLine<T>`
@@ -91,7 +88,7 @@ struct Pool<T, F> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/pool.rs:374-400`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/pool.rs#L374-L400)*
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:374-400`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/pool.rs#L374-L400)*
 
 A thread safe pool utilizing std-only features.
 
@@ -141,7 +138,6 @@ faster by avoiding mutex unlocking.
 - <span id="pool-new"></span>`fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
 
   Create a new pool. The given closure is used to create values in
-
   the pool when necessary.
 
 #### Trait Implementations
@@ -173,11 +169,8 @@ faster by avoiding mutex unlocking.
 - <span id="pool-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: UnwindSafe, F: UnwindSafe + RefUnwindSafe> RefUnwindSafe for Pool<T, F>`
@@ -208,7 +201,7 @@ struct PoolGuard<'a, T: Send, F: Fn() -> T> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/pool.rs:660-674`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/pool.rs#L660-L674)*
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:660-674`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/pool.rs#L660-L674)*
 
 A guard that is returned when a caller requests a value from the pool.
 
@@ -250,7 +243,6 @@ A guard that is returned when a caller requests a value from the pool.
 - <span id="poolguard-put-imp"></span>`fn put_imp(&mut self)`
 
   Puts this guard back into the pool by only borrowing the guard as
-
   mutable. This should be called at most once.
 
 #### Trait Implementations
@@ -286,11 +278,8 @@ A guard that is returned when a caller requests a value from the pool.
 - <span id="poolguard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for PoolGuard<'a, T, F>`
@@ -312,7 +301,7 @@ A guard that is returned when a caller requests a value from the pool.
 const MAX_POOL_STACKS: usize = 8usize;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/pool.rs:331`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/pool.rs#L331)*
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:331`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/pool.rs#L331)*
 
 The number of stacks we use inside of the pool. These are only used for
 non-owners. That is, these represent the "slow" path.
@@ -376,7 +365,7 @@ https://github.com/rust-lang/regex/issues/934
 const THREAD_ID: thread::LocalKey<usize>;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/pool.rs:333-354`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/pool.rs#L333-L354)*
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:333-354`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/pool.rs#L333-L354)*
 
 A thread local used to assign an ID to a thread.
 

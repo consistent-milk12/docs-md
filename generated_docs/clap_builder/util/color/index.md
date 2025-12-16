@@ -22,7 +22,7 @@ enum ColorChoice {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../../../.source_1765633015/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
+*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../../../.source_1765894658/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
 
 Represents the color preferences for program output
 
@@ -143,11 +143,8 @@ Represents the color preferences for program output
 - <span id="colorchoice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ColorChoice`

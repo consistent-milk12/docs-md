@@ -26,7 +26,7 @@ struct ChunkByProducer<'p, T, Slice, Pred> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:45-50`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunk_by.rs#L45-L50)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:45-50`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L45-L50)*
 
 #### Trait Implementations
 
@@ -53,11 +53,8 @@ struct ChunkByProducer<'p, T, Slice, Pred> {
 - <span id="chunkbyproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunkByProducer<'p, T, Slice, Pred>`
@@ -105,7 +102,7 @@ struct ChunkBy<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:142-145`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunk_by.rs#L142-L145)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:142-145`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L142-L145)*
 
 Parallel iterator over slice in (non-overlapping) chunks separated by a predicate.
 
@@ -153,11 +150,8 @@ This struct is created by the `par_chunk_by` method on `&[T]`.
 - <span id="chunkby-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunkBy<'data, T, P>`
@@ -219,7 +213,7 @@ struct ChunkByMut<'data, T, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:199-202`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunk_by.rs#L199-L202)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:199-202`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L199-L202)*
 
 Parallel iterator over slice in (non-overlapping) mutable chunks
 separated by a predicate.
@@ -260,11 +254,8 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 - <span id="chunkbymut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunkByMut<'data, T, P>`
@@ -317,7 +308,7 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 trait ChunkBySlice<T>: AsRef<[T]> + Default + Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:6-23`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunk_by.rs#L6-L23)*
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:6-23`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunk_by.rs#L6-L23)*
 
 #### Required Methods
 

@@ -116,7 +116,7 @@ to its simplified structure.
 struct CaseFoldError(());
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/unicode.rs:31`](../../../.source_1765633015/regex-syntax-0.8.8/src/unicode.rs#L31)*
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:31`](../../../.source_1765894658/regex-syntax-0.8.8/src/unicode.rs#L31)*
 
 An error that occurs when Unicode-aware simple case folding fails.
 
@@ -159,11 +159,8 @@ aware case folding are unavailable. This only occurs when the
 - <span id="casefolderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for CaseFoldError`
@@ -192,7 +189,7 @@ struct Error {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:49-57`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L49-L57)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:49-57`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L49-L57)*
 
 An error that can occur while translating an `Ast` to a `Hir`.
 
@@ -220,9 +217,7 @@ An error that can occur while translating an `Ast` to a `Hir`.
 - <span id="error-pattern"></span>`fn pattern(&self) -> &str`
 
   The original pattern string in which this error occurred.
-
   
-
   Every span reported by this error is reported in terms of this string.
 
 - <span id="error-span"></span>`fn span(&self) -> &Span` — [`Span`](../ast/index.md#span)
@@ -274,11 +269,8 @@ An error that can occur while translating an `Ast` to a `Hir`.
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Error`
@@ -320,7 +312,7 @@ struct Hir {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:205-210`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L205-L210)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:205-210`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L205-L210)*
 
 A high-level intermediate representation (HIR) for a regular expression.
 
@@ -404,7 +396,6 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 - <span id="hir-into-kind"></span>`fn into_kind(self) -> HirKind` — [`HirKind`](#hirkind)
 
   Consumes ownership of this HIR expression and returns its underlying
-
   `HirKind`.
 
 - <span id="hir-properties"></span>`fn properties(&self) -> &Properties` — [`Properties`](#properties)
@@ -414,11 +405,8 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 - <span id="hir-into-parts"></span>`fn into_parts(self) -> (HirKind, Properties)` — [`HirKind`](#hirkind), [`Properties`](#properties)
 
   Splits this HIR into its constituent parts.
-
   
-
   This is useful because `let Hir { kind, props } = hir;` does not work
-
   because of `Hir`'s custom `Drop` implementation.
 
 #### Trait Implementations
@@ -468,11 +456,8 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 - <span id="hir-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Hir`
@@ -511,7 +496,7 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 struct Literal(alloc::boxed::Box<[u8]>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:801`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L801)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:801`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L801)*
 
 The high-level intermediate representation of a literal.
 
@@ -563,11 +548,8 @@ is, not a sequence of decimal numbers.)
 - <span id="literal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Literal`
@@ -604,7 +586,7 @@ struct ClassUnicode {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1051-1053`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1051-L1053)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1051-1053`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1051-L1053)*
 
 A set of characters represented by Unicode scalar values.
 
@@ -613,23 +595,16 @@ A set of characters represented by Unicode scalar values.
 - <span id="classunicode-new"></span>`fn new<I>(ranges: I) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
   Create a new class from a sequence of ranges.
-
   
-
   The given ranges do not need to be in any specific order, and ranges
-
   may overlap. Ranges will automatically be sorted into a canonical
-
   non-overlapping order.
 
 - <span id="classunicode-empty"></span>`fn empty() -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
   Create a new class with no ranges.
-
   
-
   An empty class matches nothing. That is, it is equivalent to
-
   `Hir::fail`.
 
 - <span id="classunicode-push"></span>`fn push(&mut self, range: ClassUnicodeRange)` — [`ClassUnicodeRange`](#classunicoderange)
@@ -639,9 +614,7 @@ A set of characters represented by Unicode scalar values.
 - <span id="classunicode-iter"></span>`fn iter(&self) -> ClassUnicodeIter<'_>` — [`ClassUnicodeIter`](#classunicodeiter)
 
   Return an iterator over all ranges in this class.
-
   
-
   The iterator yields ranges in ascending order.
 
 - <span id="classunicode-ranges"></span>`fn ranges(&self) -> &[ClassUnicodeRange]` — [`ClassUnicodeRange`](#classunicoderange)
@@ -651,61 +624,37 @@ A set of characters represented by Unicode scalar values.
 - <span id="classunicode-case-fold-simple"></span>`fn case_fold_simple(&mut self)`
 
   Expand this character class such that it contains all case folded
-
   characters, according to Unicode's "simple" mapping. For example, if
-
   this class consists of the range `a-z`, then applying case folding will
-
   result in the class containing both the ranges `a-z` and `A-Z`.
-
   
-
   # Panics
-
   
-
   This routine panics when the case mapping data necessary for this
-
   routine to complete is unavailable. This occurs when the `unicode-case`
-
   feature is not enabled.
-
   
-
   Callers should prefer using `try_case_fold_simple` instead, which will
-
   return an error instead of panicking.
 
 - <span id="classunicode-try-case-fold-simple"></span>`fn try_case_fold_simple(&mut self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md#casefolderror)
 
   Expand this character class such that it contains all case folded
-
   characters, according to Unicode's "simple" mapping. For example, if
-
   this class consists of the range `a-z`, then applying case folding will
-
   result in the class containing both the ranges `a-z` and `A-Z`.
-
   
-
   # Error
-
   
-
   This routine returns an error when the case mapping data necessary
-
   for this routine to complete is unavailable. This occurs when the
-
   `unicode-case` feature is not enabled.
 
 - <span id="classunicode-negate"></span>`fn negate(&mut self)`
 
   Negate this character class.
-
   
-
   For all `c` where `c` is a Unicode scalar value, if `c` was in this
-
   set, then it will not be in this set after negation.
 
 - <span id="classunicode-union"></span>`fn union(&mut self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
@@ -715,7 +664,6 @@ A set of characters represented by Unicode scalar values.
 - <span id="classunicode-intersect"></span>`fn intersect(&mut self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
   Intersect this character class with the given character class, in
-
   place.
 
 - <span id="classunicode-difference"></span>`fn difference(&mut self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
@@ -725,65 +673,45 @@ A set of characters represented by Unicode scalar values.
 - <span id="classunicode-symmetric-difference"></span>`fn symmetric_difference(&mut self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
   Compute the symmetric difference of the given character classes, in
-
   place.
-
   
-
   This computes the symmetric difference of two character classes. This
-
   removes all elements in this class that are also in the given class,
-
   but all adds all elements from the given class that aren't in this
-
   class. That is, the class will contain all elements in either class,
-
   but will not contain any elements that are in both classes.
 
 - <span id="classunicode-is-ascii"></span>`fn is_ascii(&self) -> bool`
 
   Returns true if and only if this character class will either match
-
   nothing or only ASCII bytes. Stated differently, this returns false
-
   if and only if this class contains a non-ASCII codepoint.
 
 - <span id="classunicode-minimum-len"></span>`fn minimum_len(&self) -> Option<usize>`
 
   Returns the length, in bytes, of the smallest string matched by this
-
   character class.
-
   
-
   Returns `None` when the class is empty.
 
 - <span id="classunicode-maximum-len"></span>`fn maximum_len(&self) -> Option<usize>`
 
   Returns the length, in bytes, of the longest string matched by this
-
   character class.
-
   
-
   Returns `None` when the class is empty.
 
 - <span id="classunicode-literal"></span>`fn literal(&self) -> Option<Vec<u8>>`
 
   If this class consists of exactly one codepoint, then return it as
-
   a literal byte string.
-
   
-
   If this class is empty or contains more than one codepoint, then `None`
-
   is returned.
 
 - <span id="classunicode-to-byte-class"></span>`fn to_byte_class(&self) -> Option<ClassBytes>` — [`ClassBytes`](#classbytes)
 
   If this class consists of only ASCII ranges, then return its
-
   corresponding and equivalent byte class.
 
 #### Trait Implementations
@@ -825,11 +753,8 @@ A set of characters represented by Unicode scalar values.
 - <span id="classunicode-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassUnicode`
@@ -864,7 +789,7 @@ A set of characters represented by Unicode scalar values.
 struct ClassUnicodeIter<'a>(crate::hir::interval::IntervalSetIter<'a, ClassUnicodeRange>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1226`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1226)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1226`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1226)*
 
 An iterator over all ranges in a Unicode character class.
 
@@ -899,11 +824,8 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 - <span id="classunicodeiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ClassUnicodeIter<'a>`
@@ -941,7 +863,7 @@ struct ClassUnicodeRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1241-1244`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1241-L1244)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1241-1244`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1241-L1244)*
 
 A single range of characters represented by Unicode scalar values.
 
@@ -953,31 +875,22 @@ in the range.
 - <span id="classunicoderange-new"></span>`fn new(start: char, end: char) -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
 
   Create a new Unicode scalar value range for a character class.
-
   
-
   The returned range is always in a canonical form. That is, the range
-
   returned always satisfies the invariant that `start <= end`.
 
 - <span id="classunicoderange-start"></span>`fn start(&self) -> char`
 
   Return the start of this range.
-
   
-
   The start of a range is always less than or equal to the end of the
-
   range.
 
 - <span id="classunicoderange-end"></span>`fn end(&self) -> char`
 
   Return the end of this range.
-
   
-
   The end of a range is always greater than or equal to the start of the
-
   range.
 
 - <span id="classunicoderange-len"></span>`fn len(&self) -> usize`
@@ -1039,11 +952,8 @@ in the range.
 - <span id="classunicoderange-interval-case-fold-simple"></span>`fn case_fold_simple(&self, ranges: &mut Vec<ClassUnicodeRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassUnicodeRange`](#classunicoderange), [`CaseFoldError`](../unicode/index.md#casefolderror)
 
   Apply simple case folding to this Unicode scalar value range.
-
   
-
   Additional ranges are appended to the given vector. Canonical ordering
-
   is *not* maintained in the given vector.
 
 ##### `impl<U> Into for ClassUnicodeRange`
@@ -1051,11 +961,8 @@ in the range.
 - <span id="classunicoderange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for ClassUnicodeRange`
@@ -1100,7 +1007,7 @@ struct ClassBytes {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1350-1352`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1350-L1352)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1350-1352`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1350-L1352)*
 
 A set of characters represented by arbitrary bytes.
 
@@ -1111,23 +1018,16 @@ Each byte corresponds to one character.
 - <span id="classbytes-new"></span>`fn new<I>(ranges: I) -> ClassBytes` — [`ClassBytes`](#classbytes)
 
   Create a new class from a sequence of ranges.
-
   
-
   The given ranges do not need to be in any specific order, and ranges
-
   may overlap. Ranges will automatically be sorted into a canonical
-
   non-overlapping order.
 
 - <span id="classbytes-empty"></span>`fn empty() -> ClassBytes` — [`ClassBytes`](#classbytes)
 
   Create a new class with no ranges.
-
   
-
   An empty class matches nothing. That is, it is equivalent to
-
   `Hir::fail`.
 
 - <span id="classbytes-push"></span>`fn push(&mut self, range: ClassBytesRange)` — [`ClassBytesRange`](#classbytesrange)
@@ -1137,9 +1037,7 @@ Each byte corresponds to one character.
 - <span id="classbytes-iter"></span>`fn iter(&self) -> ClassBytesIter<'_>` — [`ClassBytesIter`](#classbytesiter)
 
   Return an iterator over all ranges in this class.
-
   
-
   The iterator yields ranges in ascending order.
 
 - <span id="classbytes-ranges"></span>`fn ranges(&self) -> &[ClassBytesRange]` — [`ClassBytesRange`](#classbytesrange)
@@ -1149,27 +1047,18 @@ Each byte corresponds to one character.
 - <span id="classbytes-case-fold-simple"></span>`fn case_fold_simple(&mut self)`
 
   Expand this character class such that it contains all case folded
-
   characters. For example, if this class consists of the range `a-z`,
-
   then applying case folding will result in the class containing both the
-
   ranges `a-z` and `A-Z`.
-
   
-
   Note that this only applies ASCII case folding, which is limited to the
-
   characters `a-z` and `A-Z`.
 
 - <span id="classbytes-negate"></span>`fn negate(&mut self)`
 
   Negate this byte class.
-
   
-
   For all `b` where `b` is a any byte, if `b` was in this set, then it
-
   will not be in this set after negation.
 
 - <span id="classbytes-union"></span>`fn union(&mut self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
@@ -1187,63 +1076,44 @@ Each byte corresponds to one character.
 - <span id="classbytes-symmetric-difference"></span>`fn symmetric_difference(&mut self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
 
   Compute the symmetric difference of the given byte classes, in place.
-
   
-
   This computes the symmetric difference of two byte classes. This
-
   removes all elements in this class that are also in the given class,
-
   but all adds all elements from the given class that aren't in this
-
   class. That is, the class will contain all elements in either class,
-
   but will not contain any elements that are in both classes.
 
 - <span id="classbytes-is-ascii"></span>`fn is_ascii(&self) -> bool`
 
   Returns true if and only if this character class will either match
-
   nothing or only ASCII bytes. Stated differently, this returns false
-
   if and only if this class contains a non-ASCII byte.
 
 - <span id="classbytes-minimum-len"></span>`fn minimum_len(&self) -> Option<usize>`
 
   Returns the length, in bytes, of the smallest string matched by this
-
   character class.
-
   
-
   Returns `None` when the class is empty.
 
 - <span id="classbytes-maximum-len"></span>`fn maximum_len(&self) -> Option<usize>`
 
   Returns the length, in bytes, of the longest string matched by this
-
   character class.
-
   
-
   Returns `None` when the class is empty.
 
 - <span id="classbytes-literal"></span>`fn literal(&self) -> Option<Vec<u8>>`
 
   If this class consists of exactly one byte, then return it as
-
   a literal byte string.
-
   
-
   If this class is empty or contains more than one byte, then `None`
-
   is returned.
 
 - <span id="classbytes-to-unicode-class"></span>`fn to_unicode_class(&self) -> Option<ClassUnicode>` — [`ClassUnicode`](#classunicode)
 
   If this class consists of only ASCII ranges, then return its
-
   corresponding and equivalent Unicode class.
 
 #### Trait Implementations
@@ -1285,11 +1155,8 @@ Each byte corresponds to one character.
 - <span id="classbytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassBytes`
@@ -1324,7 +1191,7 @@ Each byte corresponds to one character.
 struct ClassBytesIter<'a>(crate::hir::interval::IntervalSetIter<'a, ClassBytesRange>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1504`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1504)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1504`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1504)*
 
 An iterator over all ranges in a byte character class.
 
@@ -1359,11 +1226,8 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 - <span id="classbytesiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ClassBytesIter<'a>`
@@ -1401,7 +1265,7 @@ struct ClassBytesRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1519-1522`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1519-L1522)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1519-1522`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1519-L1522)*
 
 A single range of characters represented by arbitrary bytes.
 
@@ -1413,31 +1277,22 @@ in the range.
 - <span id="classbytesrange-new"></span>`fn new(start: u8, end: u8) -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
 
   Create a new byte range for a character class.
-
   
-
   The returned range is always in a canonical form. That is, the range
-
   returned always satisfies the invariant that `start <= end`.
 
 - <span id="classbytesrange-start"></span>`fn start(&self) -> u8`
 
   Return the start of this range.
-
   
-
   The start of a range is always less than or equal to the end of the
-
   range.
 
 - <span id="classbytesrange-end"></span>`fn end(&self) -> u8`
 
   Return the end of this range.
-
   
-
   The end of a range is always greater than or equal to the start of the
-
   range.
 
 - <span id="classbytesrange-len"></span>`fn len(&self) -> usize`
@@ -1499,13 +1354,9 @@ in the range.
 - <span id="classbytesrange-interval-case-fold-simple"></span>`fn case_fold_simple(&self, ranges: &mut Vec<ClassBytesRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassBytesRange`](#classbytesrange), [`CaseFoldError`](../unicode/index.md#casefolderror)
 
   Apply simple case folding to this byte range. Only ASCII case mappings
-
   (for a-z) are applied.
-
   
-
   Additional ranges are appended to the given vector. Canonical ordering
-
   is *not* maintained in the given vector.
 
 ##### `impl<U> Into for ClassBytesRange`
@@ -1513,11 +1364,8 @@ in the range.
 - <span id="classbytesrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for ClassBytesRange`
@@ -1564,7 +1412,7 @@ struct Capture {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1799-1806`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1799-L1806)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1799-1806`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1799-L1806)*
 
 The high-level intermediate representation for a capturing group.
 
@@ -1629,11 +1477,8 @@ the recursive structure of the `Hir` itself.
 - <span id="capture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Capture`
@@ -1673,7 +1518,7 @@ struct Repetition {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1813-1839`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1813-L1839)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1813-1839`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1813-L1839)*
 
 The high-level intermediate representation of a repetition operator.
 
@@ -1720,7 +1565,6 @@ sub-expression.
 - <span id="repetition-with"></span>`fn with(&self, sub: Hir) -> Repetition` — [`Hir`](#hir), [`Repetition`](#repetition)
 
   Returns a new repetition with the same `min`, `max` and `greedy`
-
   values, but with its sub-expression replaced with the one given.
 
 #### Trait Implementations
@@ -1762,11 +1606,8 @@ sub-expression.
 - <span id="repetition-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Repetition`
@@ -1801,7 +1642,7 @@ sub-expression.
 struct Properties(alloc::boxed::Box<PropertiesI>);
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1964`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1964)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1964`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1964)*
 
 A type that collects various properties of an HIR value.
 
@@ -1817,539 +1658,298 @@ be cheap to call.
 - <span id="properties-minimum-len"></span>`fn minimum_len(&self) -> Option<usize>`
 
   Returns the length (in bytes) of the smallest string matched by this
-
   HIR.
-
   
-
   A return value of `0` is possible and occurs when the HIR can match an
-
   empty string.
-
   
-
   `None` is returned when there is no minimum length. This occurs in
-
   precisely the cases where the HIR matches nothing. i.e., The language
-
   the regex matches is empty. An example of such a regex is `\P{any}`.
 
 - <span id="properties-maximum-len"></span>`fn maximum_len(&self) -> Option<usize>`
 
   Returns the length (in bytes) of the longest string matched by this
-
   HIR.
-
   
-
   A return value of `0` is possible and occurs when nothing longer than
-
   the empty string is in the language described by this HIR.
-
   
-
   `None` is returned when there is no longest matching string. This
-
   occurs when the HIR matches nothing or when there is no upper bound on
-
   the length of matching strings. Example of such regexes are `\P{any}`
-
   (matches nothing) and `a+` (has no upper bound).
 
 - <span id="properties-look-set"></span>`fn look_set(&self) -> LookSet` — [`LookSet`](#lookset)
 
   Returns a set of all look-around assertions that appear at least once
-
   in this HIR value.
 
 - <span id="properties-look-set-prefix"></span>`fn look_set_prefix(&self) -> LookSet` — [`LookSet`](#lookset)
 
   Returns a set of all look-around assertions that appear as a prefix for
-
   this HIR value. That is, the set returned corresponds to the set of
-
   assertions that must be passed before matching any bytes in a haystack.
-
   
-
   For example, `hir.look_set_prefix().contains(Look::Start)` returns true
-
   if and only if the HIR is fully anchored at the start.
 
 - <span id="properties-look-set-prefix-any"></span>`fn look_set_prefix_any(&self) -> LookSet` — [`LookSet`](#lookset)
 
   Returns a set of all look-around assertions that appear as a _possible_
-
   prefix for this HIR value. That is, the set returned corresponds to the
-
   set of assertions that _may_ be passed before matching any bytes in a
-
   haystack.
-
   
-
   For example, `hir.look_set_prefix_any().contains(Look::Start)` returns
-
   true if and only if it's possible for the regex to match through a
-
   anchored assertion before consuming any input.
 
 - <span id="properties-look-set-suffix"></span>`fn look_set_suffix(&self) -> LookSet` — [`LookSet`](#lookset)
 
   Returns a set of all look-around assertions that appear as a suffix for
-
   this HIR value. That is, the set returned corresponds to the set of
-
   assertions that must be passed in order to be considered a match after
-
   all other consuming HIR expressions.
-
   
-
   For example, `hir.look_set_suffix().contains(Look::End)` returns true
-
   if and only if the HIR is fully anchored at the end.
 
 - <span id="properties-look-set-suffix-any"></span>`fn look_set_suffix_any(&self) -> LookSet` — [`LookSet`](#lookset)
 
   Returns a set of all look-around assertions that appear as a _possible_
-
   suffix for this HIR value. That is, the set returned corresponds to the
-
   set of assertions that _may_ be passed before matching any bytes in a
-
   haystack.
-
   
-
   For example, `hir.look_set_suffix_any().contains(Look::End)` returns
-
   true if and only if it's possible for the regex to match through a
-
   anchored assertion at the end of a match without consuming any input.
 
 - <span id="properties-is-utf8"></span>`fn is_utf8(&self) -> bool`
 
   Return true if and only if the corresponding HIR will always match
-
   valid UTF-8.
-
   
-
   When this returns false, then it is possible for this HIR expression to
-
   match invalid UTF-8, including by matching between the code units of
-
   a single UTF-8 encoded codepoint.
-
   
-
   Note that this returns true even when the corresponding HIR can match
-
   the empty string. Since an empty string can technically appear between
-
   UTF-8 code units, it is possible for a match to be reported that splits
-
   a codepoint which could in turn be considered matching invalid UTF-8.
-
   However, it is generally assumed that such empty matches are handled
-
   specially by the search routine if it is absolutely required that
-
   matches not split a codepoint.
-
   
-
   # Example
-
   
-
   This code example shows the UTF-8 property of a variety of patterns.
-
   
-
   ```rust
-
   use regex_syntax::{ParserBuilder, parse};
-
   
-
   // Examples of 'is_utf8() == true'.
-
   assert!(parse(r"a")?.properties().is_utf8());
-
   assert!(parse(r"[^a]")?.properties().is_utf8());
-
   assert!(parse(r".")?.properties().is_utf8());
-
   assert!(parse(r"\W")?.properties().is_utf8());
-
   assert!(parse(r"\b")?.properties().is_utf8());
-
   assert!(parse(r"\B")?.properties().is_utf8());
-
   assert!(parse(r"(?-u)\b")?.properties().is_utf8());
-
   assert!(parse(r"(?-u)\B")?.properties().is_utf8());
-
   // Unicode mode is enabled by default, and in
-
   // that mode, all \x hex escapes are treated as
-
   // codepoints. So this actually matches the UTF-8
-
   // encoding of U+00FF.
-
   assert!(parse(r"\xFF")?.properties().is_utf8());
-
   
-
   // Now we show examples of 'is_utf8() == false'.
-
   // The only way to do this is to force the parser
-
   // to permit invalid UTF-8, otherwise all of these
-
   // would fail to parse!
-
   let parse = |pattern| {
-
       ParserBuilder::new().utf8(false).build().parse(pattern)
-
   };
-
   assert!(!parse(r"(?-u)[^a]")?.properties().is_utf8());
-
   assert!(!parse(r"(?-u).")?.properties().is_utf8());
-
   assert!(!parse(r"(?-u)\W")?.properties().is_utf8());
-
   // Conversely to the equivalent example above,
-
   // when Unicode mode is disabled, \x hex escapes
-
   // are treated as their raw byte values.
-
   assert!(!parse(r"(?-u)\xFF")?.properties().is_utf8());
-
   // Note that just because we disabled UTF-8 in the
-
   // parser doesn't mean we still can't use Unicode.
-
   // It is enabled by default, so \xFF is still
-
   // equivalent to matching the UTF-8 encoding of
-
   // U+00FF by default.
-
   assert!(parse(r"\xFF")?.properties().is_utf8());
-
   // Even though we use raw bytes that individually
-
   // are not valid UTF-8, when combined together, the
-
   // overall expression *does* match valid UTF-8!
-
   assert!(parse(r"(?-u)\xE2\x98\x83")?.properties().is_utf8());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="properties-explicit-captures-len"></span>`fn explicit_captures_len(&self) -> usize`
 
   Returns the total number of explicit capturing groups in the
-
   corresponding HIR.
-
   
-
   Note that this does not include the implicit capturing group
-
   corresponding to the entire match that is typically included by regex
-
   engines.
-
   
-
   # Example
-
   
-
   This method will return `0` for `a` and `1` for `(a)`:
-
   
-
   ```rust
-
   use regex_syntax::parse;
-
   
-
   assert_eq!(0, parse("a")?.properties().explicit_captures_len());
-
   assert_eq!(1, parse("(a)")?.properties().explicit_captures_len());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="properties-static-explicit-captures-len"></span>`fn static_explicit_captures_len(&self) -> Option<usize>`
 
   Returns the total number of explicit capturing groups that appear in
-
   every possible match.
-
   
-
   If the number of capture groups can vary depending on the match, then
-
   this returns `None`. That is, a value is only returned when the number
-
   of matching groups is invariant or "static."
-
   
-
   Note that this does not include the implicit capturing group
-
   corresponding to the entire match.
-
   
-
   # Example
-
   
-
   This shows a few cases where a static number of capture groups is
-
   available and a few cases where it is not.
-
   
-
   ```rust
-
   use regex_syntax::parse;
-
   
-
   let len = |pattern| {
-
       parse(pattern).map(|h| {
-
           h.properties().static_explicit_captures_len()
-
       })
-
   };
-
   
-
   assert_eq!(Some(0), len("a")?);
-
   assert_eq!(Some(1), len("(a)")?);
-
   assert_eq!(Some(1), len("(a)|(b)")?);
-
   assert_eq!(Some(2), len("(a)(b)|(c)(d)")?);
-
   assert_eq!(None, len("(a)|b")?);
-
   assert_eq!(None, len("a|(b)")?);
-
   assert_eq!(None, len("(b)*")?);
-
   assert_eq!(Some(1), len("(b)+")?);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="properties-is-literal"></span>`fn is_literal(&self) -> bool`
 
   Return true if and only if this HIR is a simple literal. This is
-
   only true when this HIR expression is either itself a `Literal` or a
-
   concatenation of only `Literal`s.
-
   
-
   For example, `f` and `foo` are literals, but `f+`, `(foo)`, `foo()` and
-
   the empty string are not (even though they contain sub-expressions that
-
   are literals).
 
 - <span id="properties-is-alternation-literal"></span>`fn is_alternation_literal(&self) -> bool`
 
   Return true if and only if this HIR is either a simple literal or an
-
   alternation of simple literals. This is only
-
   true when this HIR expression is either itself a `Literal` or a
-
   concatenation of only `Literal`s or an alternation of only `Literal`s.
-
   
-
   For example, `f`, `foo`, `a|b|c`, and `foo|bar|baz` are alternation
-
   literals, but `f+`, `(foo)`, `foo()`, and the empty pattern are not
-
   (even though that contain sub-expressions that are literals).
 
 - <span id="properties-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
   Returns the total amount of heap memory usage, in bytes, used by this
-
   `Properties` value.
 
 - <span id="properties-union"></span>`fn union<I, P>(props: I) -> Properties` — [`Properties`](#properties)
 
   Returns a new set of properties that corresponds to the union of the
-
   iterator of properties given.
-
   
-
   This is useful when one has multiple `Hir` expressions and wants
-
   to combine them into a single alternation without constructing the
-
   corresponding `Hir`. This routine provides a way of combining the
-
   properties of each `Hir` expression into one set of properties
-
   representing the union of those expressions.
-
   
-
   # Example: union with HIRs that never match
-
   
-
   This example shows that unioning properties together with one that
-
   represents a regex that never matches will "poison" certain attributes,
-
   like the minimum and maximum lengths.
-
   
-
   ```rust
-
   use regex_syntax::{hir::Properties, parse};
-
   
-
   let hir1 = parse("ab?c?")?;
-
   assert_eq!(Some(1), hir1.properties().minimum_len());
-
   assert_eq!(Some(3), hir1.properties().maximum_len());
-
   
-
   let hir2 = parse(r"[a&&b]")?;
-
   assert_eq!(None, hir2.properties().minimum_len());
-
   assert_eq!(None, hir2.properties().maximum_len());
-
   
-
   let hir3 = parse(r"wxy?z?")?;
-
   assert_eq!(Some(2), hir3.properties().minimum_len());
-
   assert_eq!(Some(4), hir3.properties().maximum_len());
-
   
-
   let unioned = Properties::union([
-
   	hir1.properties(),
-
   	hir2.properties(),
-
   	hir3.properties(),
-
   ]);
-
   assert_eq!(None, unioned.minimum_len());
-
   assert_eq!(None, unioned.maximum_len());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
-
   
-
   The maximum length can also be "poisoned" by a pattern that has no
-
   upper bound on the length of a match. The minimum length remains
-
   unaffected:
-
   
-
   ```rust
-
   use regex_syntax::{hir::Properties, parse};
-
   
-
   let hir1 = parse("ab?c?")?;
-
   assert_eq!(Some(1), hir1.properties().minimum_len());
-
   assert_eq!(Some(3), hir1.properties().maximum_len());
-
   
-
   let hir2 = parse(r"a+")?;
-
   assert_eq!(Some(1), hir2.properties().minimum_len());
-
   assert_eq!(None, hir2.properties().maximum_len());
-
   
-
   let hir3 = parse(r"wxy?z?")?;
-
   assert_eq!(Some(2), hir3.properties().minimum_len());
-
   assert_eq!(Some(4), hir3.properties().maximum_len());
-
   
-
   let unioned = Properties::union([
-
   	hir1.properties(),
-
   	hir2.properties(),
-
   	hir3.properties(),
-
   ]);
-
   assert_eq!(Some(1), unioned.minimum_len());
-
   assert_eq!(None, unioned.maximum_len());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 #### Trait Implementations
@@ -2391,11 +1991,8 @@ be cheap to call.
 - <span id="properties-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Properties`
@@ -2443,7 +2040,7 @@ struct PropertiesI {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1974-1987`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1974-L1987)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1974-1987`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1974-L1987)*
 
 The property definition. It is split out so that we can box it, and
 there by make `Properties` use less stack size. This is kind-of important
@@ -2492,11 +2089,8 @@ true anyway (for pretty much all HirKinds except for look-arounds).
 - <span id="propertiesi-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for PropertiesI`
@@ -2533,7 +2127,7 @@ struct LookSet {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2665-2676`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L2665-L2676)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2665-2676`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2665-L2676)*
 
 A set of look-around assertions.
 
@@ -2563,19 +2157,14 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 - <span id="lookset-full"></span>`fn full() -> LookSet` — [`LookSet`](#lookset)
 
   Create a full set of look-around assertions.
-
   
-
   This set contains all possible look-around assertions.
 
 - <span id="lookset-singleton"></span>`fn singleton(look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
   Create a look-around set containing the look-around assertion given.
-
   
-
   This is a convenience routine for creating an empty set and inserting
-
   one look-around assertions.
 
 - <span id="lookset-len"></span>`fn len(self) -> usize`
@@ -2589,63 +2178,50 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 - <span id="lookset-contains"></span>`fn contains(self, look: Look) -> bool` — [`Look`](#look)
 
   Returns true if and only if the given look-around assertion is in this
-
   set.
 
 - <span id="lookset-contains-anchor"></span>`fn contains_anchor(&self) -> bool`
 
   Returns true if and only if this set contains any anchor assertions.
-
   This includes both "start/end of haystack" and "start/end of line."
 
 - <span id="lookset-contains-anchor-haystack"></span>`fn contains_anchor_haystack(&self) -> bool`
 
   Returns true if and only if this set contains any "start/end of
-
   haystack" anchors. This doesn't include "start/end of line" anchors.
 
 - <span id="lookset-contains-anchor-line"></span>`fn contains_anchor_line(&self) -> bool`
 
   Returns true if and only if this set contains any "start/end of line"
-
   anchors. This doesn't include "start/end of haystack" anchors. This
-
   includes both `\n` line anchors and CRLF (`\r\n`) aware line anchors.
 
 - <span id="lookset-contains-anchor-lf"></span>`fn contains_anchor_lf(&self) -> bool`
 
   Returns true if and only if this set contains any "start/end of line"
-
   anchors that only treat `\n` as line terminators. This does not include
-
   haystack anchors or CRLF aware line anchors.
 
 - <span id="lookset-contains-anchor-crlf"></span>`fn contains_anchor_crlf(&self) -> bool`
 
   Returns true if and only if this set contains any "start/end of line"
-
   anchors that are CRLF-aware. This doesn't include "start/end of
-
   haystack" or "start/end of line-feed" anchors.
 
 - <span id="lookset-contains-word"></span>`fn contains_word(self) -> bool`
 
   Returns true if and only if this set contains any word boundary or
-
   negated word boundary assertions. This include both Unicode and ASCII
-
   word boundaries.
 
 - <span id="lookset-contains-word-unicode"></span>`fn contains_word_unicode(self) -> bool`
 
   Returns true if and only if this set contains any Unicode word boundary
-
   or negated Unicode word boundary assertions.
 
 - <span id="lookset-contains-word-ascii"></span>`fn contains_word_ascii(self) -> bool`
 
   Returns true if and only if this set contains any ASCII word boundary
-
   or negated ASCII word boundary assertions.
 
 - <span id="lookset-iter"></span>`fn iter(self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
@@ -2655,41 +2231,33 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 - <span id="lookset-insert"></span>`fn insert(self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
   Return a new set that is equivalent to the original, but with the given
-
   assertion added to it. If the assertion is already in the set, then the
-
   returned set is equivalent to the original.
 
 - <span id="lookset-set-insert"></span>`fn set_insert(&mut self, look: Look)` — [`Look`](#look)
 
   Updates this set in place with the result of inserting the given
-
   assertion into this set.
 
 - <span id="lookset-remove"></span>`fn remove(self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
   Return a new set that is equivalent to the original, but with the given
-
   assertion removed from it. If the assertion is not in the set, then the
-
   returned set is equivalent to the original.
 
 - <span id="lookset-set-remove"></span>`fn set_remove(&mut self, look: Look)` — [`Look`](#look)
 
   Updates this set in place with the result of removing the given
-
   assertion from this set.
 
 - <span id="lookset-subtract"></span>`fn subtract(self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
   Returns a new set that is the result of subtracting the given set from
-
   this set.
 
 - <span id="lookset-set-subtract"></span>`fn set_subtract(&mut self, other: LookSet)` — [`LookSet`](#lookset)
 
   Updates this set in place with the result of subtracting the given set
-
   from this set.
 
 - <span id="lookset-union"></span>`fn union(self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
@@ -2699,7 +2267,6 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 - <span id="lookset-set-union"></span>`fn set_union(&mut self, other: LookSet)` — [`LookSet`](#lookset)
 
   Updates this set in place with the result of unioning it with the one
-
   given.
 
 - <span id="lookset-intersect"></span>`fn intersect(self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
@@ -2709,35 +2276,24 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 - <span id="lookset-set-intersect"></span>`fn set_intersect(&mut self, other: LookSet)` — [`LookSet`](#lookset)
 
   Updates this set in place with the result of intersecting it with the
-
   one given.
 
 - <span id="lookset-read-repr"></span>`fn read_repr(slice: &[u8]) -> LookSet` — [`LookSet`](#lookset)
 
   Return a `LookSet` from the slice given as a native endian 32-bit
-
   integer.
-
   
-
   # Panics
-
   
-
   This panics if `slice.len() < 4`.
 
 - <span id="lookset-write-repr"></span>`fn write_repr(self, slice: &mut [u8])`
 
   Write a `LookSet` as a native endian 32-bit integer to the beginning
-
   of the slice given.
-
   
-
   # Panics
-
   
-
   This panics if `slice.len() < 4`.
 
 #### Trait Implementations
@@ -2785,11 +2341,8 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 - <span id="lookset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LookSet`
@@ -2826,7 +2379,7 @@ struct LookSetIter {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2916-2918`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L2916-L2918)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2916-2918`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2916-L2918)*
 
 An iterator over all look-around assertions in a [`LookSet`](#lookset).
 
@@ -2869,11 +2422,8 @@ This iterator is created by `LookSet::iter`.
 - <span id="looksetiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LookSetIter`
@@ -2926,7 +2476,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:84-108`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L84-L108)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:84-108`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L84-L108)*
 
 The type of an error that occurred while building an `Hir`.
 
@@ -3015,11 +2565,8 @@ new variant is not considered a breaking change.
 - <span id="errorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ErrorKind`
@@ -3067,7 +2614,7 @@ enum HirKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:717-752`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L717-L752)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:717-752`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L717-L752)*
 
 The underlying kind of an arbitrary [`Hir`](#hir) expression.
 
@@ -3174,11 +2721,8 @@ not expose any way of building an `Hir` directly from an `HirKind`.
 - <span id="hirkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for HirKind`
@@ -3216,7 +2760,7 @@ enum Class {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:830-836`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L830-L836)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:830-836`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L830-L836)*
 
 The high-level intermediate representation of a character class.
 
@@ -3255,275 +2799,154 @@ and `(?i-u)k` will not match the same set of strings.
 - <span id="class-case-fold-simple"></span>`fn case_fold_simple(&mut self)`
 
   Apply Unicode simple case folding to this character class, in place.
-
   The character class will be expanded to include all simple case folded
-
   character variants.
-
   
-
   If this is a byte oriented character class, then this will be limited
-
   to the ASCII ranges `A-Z` and `a-z`.
-
   
-
   # Panics
-
   
-
   This routine panics when the case mapping data necessary for this
-
   routine to complete is unavailable. This occurs when the `unicode-case`
-
   feature is not enabled and the underlying class is Unicode oriented.
-
   
-
   Callers should prefer using `try_case_fold_simple` instead, which will
-
   return an error instead of panicking.
 
 - <span id="class-try-case-fold-simple"></span>`fn try_case_fold_simple(&mut self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md#casefolderror)
 
   Apply Unicode simple case folding to this character class, in place.
-
   The character class will be expanded to include all simple case folded
-
   character variants.
-
   
-
   If this is a byte oriented character class, then this will be limited
-
   to the ASCII ranges `A-Z` and `a-z`.
-
   
-
   # Error
-
   
-
   This routine returns an error when the case mapping data necessary
-
   for this routine to complete is unavailable. This occurs when the
-
   `unicode-case` feature is not enabled and the underlying class is
-
   Unicode oriented.
 
 - <span id="class-negate"></span>`fn negate(&mut self)`
 
   Negate this character class in place.
-
   
-
   After completion, this character class will contain precisely the
-
   characters that weren't previously in the class.
 
 - <span id="class-is-utf8"></span>`fn is_utf8(&self) -> bool`
 
   Returns true if and only if this character class will only ever match
-
   valid UTF-8.
-
   
-
   A character class can match invalid UTF-8 only when the following
-
   conditions are met:
-
   
-
   1. The translator was configured to permit generating an expression
-
      that can match invalid UTF-8. (By default, this is disabled.)
-
   2. Unicode mode (via the `u` flag) was disabled either in the concrete
-
      syntax or in the parser builder. By default, Unicode mode is
-
      enabled.
 
 - <span id="class-minimum-len"></span>`fn minimum_len(&self) -> Option<usize>`
 
   Returns the length, in bytes, of the smallest string matched by this
-
   character class.
-
   
-
   For non-empty byte oriented classes, this always returns `1`. For
-
   non-empty Unicode oriented classes, this can return `1`, `2`, `3` or
-
   `4`. For empty classes, `None` is returned. It is impossible for `0` to
-
   be returned.
-
   
-
   # Example
-
   
-
   This example shows some examples of regexes and their corresponding
-
   minimum length, if any.
-
   
-
   ```rust
-
   use regex_syntax::{hir::Properties, parse};
-
   
-
   // The empty string has a min length of 0.
-
   let hir = parse(r"")?;
-
   assert_eq!(Some(0), hir.properties().minimum_len());
-
   // As do other types of regexes that only match the empty string.
-
   let hir = parse(r"^$\b\B")?;
-
   assert_eq!(Some(0), hir.properties().minimum_len());
-
   // A regex that can match the empty string but match more is still 0.
-
   let hir = parse(r"a*")?;
-
   assert_eq!(Some(0), hir.properties().minimum_len());
-
   // A regex that matches nothing has no minimum defined.
-
   let hir = parse(r"[a&&b]")?;
-
   assert_eq!(None, hir.properties().minimum_len());
-
   // Character classes usually have a minimum length of 1.
-
   let hir = parse(r"\w")?;
-
   assert_eq!(Some(1), hir.properties().minimum_len());
-
   // But sometimes Unicode classes might be bigger!
-
   let hir = parse(r"\p{Cyrillic}")?;
-
   assert_eq!(Some(2), hir.properties().minimum_len());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="class-maximum-len"></span>`fn maximum_len(&self) -> Option<usize>`
 
   Returns the length, in bytes, of the longest string matched by this
-
   character class.
-
   
-
   For non-empty byte oriented classes, this always returns `1`. For
-
   non-empty Unicode oriented classes, this can return `1`, `2`, `3` or
-
   `4`. For empty classes, `None` is returned. It is impossible for `0` to
-
   be returned.
-
   
-
   # Example
-
   
-
   This example shows some examples of regexes and their corresponding
-
   maximum length, if any.
-
   
-
   ```rust
-
   use regex_syntax::{hir::Properties, parse};
-
   
-
   // The empty string has a max length of 0.
-
   let hir = parse(r"")?;
-
   assert_eq!(Some(0), hir.properties().maximum_len());
-
   // As do other types of regexes that only match the empty string.
-
   let hir = parse(r"^$\b\B")?;
-
   assert_eq!(Some(0), hir.properties().maximum_len());
-
   // A regex that matches nothing has no maximum defined.
-
   let hir = parse(r"[a&&b]")?;
-
   assert_eq!(None, hir.properties().maximum_len());
-
   // Bounded repeats work as you expect.
-
   let hir = parse(r"x{2,10}")?;
-
   assert_eq!(Some(10), hir.properties().maximum_len());
-
   // An unbounded repeat means there is no maximum.
-
   let hir = parse(r"x{2,}")?;
-
   assert_eq!(None, hir.properties().maximum_len());
-
   // With Unicode enabled, \w can match up to 4 bytes!
-
   let hir = parse(r"\w")?;
-
   assert_eq!(Some(4), hir.properties().maximum_len());
-
   // Without Unicode enabled, \w matches at most 1 byte.
-
   let hir = parse(r"(?-u)\w")?;
-
   assert_eq!(Some(1), hir.properties().maximum_len());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="class-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns true if and only if this character class is empty. That is,
-
   it has no elements.
-
   
-
   An empty character can never match anything, including an empty string.
 
 - <span id="class-literal"></span>`fn literal(&self) -> Option<Vec<u8>>`
 
   If this class consists of exactly one element (whether a codepoint or a
-
   byte), then return it as a literal byte string.
-
   
-
   If this class is empty or contains more than one element, then `None`
-
   is returned.
 
 #### Trait Implementations
@@ -3565,11 +2988,8 @@ and `(?i-u)k` will not match the same set of strings.
 - <span id="class-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Class`
@@ -3623,7 +3043,7 @@ enum Look {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1613-1686`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1613-L1686)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1613-1686`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1613-L1686)*
 
 The high-level intermediate representation for a look-around assertion.
 
@@ -3744,47 +3164,32 @@ An assertion match is always zero-length. Also called an "empty match."
 - <span id="look-reversed"></span>`const fn reversed(self) -> Look` — [`Look`](#look)
 
   Flip the look-around assertion to its equivalent for reverse searches.
-
   For example, `StartLF` gets translated to `EndLF`.
-
   
-
   Some assertions, such as `WordUnicode`, remain the same since they
-
   match the same positions regardless of the direction of the search.
 
 - <span id="look-as-repr"></span>`const fn as_repr(self) -> u32`
 
   Return the underlying representation of this look-around enumeration
-
   as an integer. Giving the return value to the `Look::from_repr`
-
   constructor is guaranteed to return the same look-around variant that
-
   one started with within a semver compatible release of this crate.
 
 - <span id="look-from-repr"></span>`const fn from_repr(repr: u32) -> Option<Look>` — [`Look`](#look)
 
   Given the underlying representation of a `Look` value, return the
-
   corresponding `Look` value if the representation is valid. Otherwise
-
   `None` is returned.
 
 - <span id="look-as-char"></span>`const fn as_char(self) -> char`
 
   Returns a convenient single codepoint representation of this
-
   look-around assertion. Each assertion is guaranteed to be represented
-
   by a distinct character.
-
   
-
   This is useful for succinctly representing a look-around assertion in
-
   human friendly but succinct output intended for a programmer working on
-
   regex internals.
 
 #### Trait Implementations
@@ -3828,11 +3233,8 @@ An assertion match is always zero-length. Also called an "empty match."
 - <span id="look-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Look`
@@ -3876,7 +3278,7 @@ enum Dot {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1860-1909`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L1860-L1909)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1860-1909`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L1860-L1909)*
 
 A type describing the different flavors of `.`.
 
@@ -3990,11 +3392,8 @@ routine for building HIR values derived from the `.` regex.
 - <span id="dot-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Dot`
@@ -4031,7 +3430,7 @@ routine for building HIR values derived from the `.` regex.
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
 
 A trait for visiting the high-level IR (HIR) in depth first order.
 
@@ -4055,6 +3454,7 @@ running it using the [`visit`](visitor/index.md) function.
 - `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
+  yields the result of visiting the HIR or an error.
 
 #### Provided Methods
 
@@ -4065,10 +3465,12 @@ running it using the [`visit`](visitor/index.md) function.
 - `fn visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` before descending into child `Hir`
+  nodes.
 
 - `fn visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` after descending all of its child
+  `Hir` nodes.
 
 - `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
@@ -4090,7 +3492,7 @@ running it using the [`visit`](visitor/index.md) function.
 fn visit<V: Visitor>(hir: &crate::hir::Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
 
 Executes an implementation of `Visitor` in constant stack space.
 
@@ -4113,7 +3515,7 @@ the error is returned.
 fn class_chars(hirs: &[Hir]) -> Option<Class>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2940-2954`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L2940-L2954)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2940-2954`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2940-L2954)*
 
 Given a sequence of HIR values where each value corresponds to a Unicode
 class (or an all-ASCII byte class), return a single Unicode class
@@ -4125,7 +3527,7 @@ corresponding to the union of the classes found.
 fn class_bytes(hirs: &[Hir]) -> Option<Class>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2959-2973`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L2959-L2973)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2959-2973`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2959-L2973)*
 
 Given a sequence of HIR values where each value corresponds to a byte class
 (or an all-ASCII Unicode class), return a single byte class corresponding
@@ -4137,7 +3539,7 @@ to the union of the classes found.
 fn singleton_chars(hirs: &[Hir]) -> Option<alloc::vec::Vec<char>>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2978-2996`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L2978-L2996)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2978-2996`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L2978-L2996)*
 
 Given a sequence of HIR values where each value corresponds to a literal
 that is a single `char`, return that sequence of `char`s. Otherwise return
@@ -4149,7 +3551,7 @@ None. No deduplication is done.
 fn singleton_bytes(hirs: &[Hir]) -> Option<alloc::vec::Vec<u8>>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3001-3014`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L3001-L3014)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3001-3014`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L3001-L3014)*
 
 Given a sequence of HIR values where each value corresponds to a literal
 that is a single byte, return that sequence of bytes. Otherwise return
@@ -4161,7 +3563,7 @@ None. No deduplication is done.
 fn lift_common_prefix(hirs: alloc::vec::Vec<Hir>) -> Result<Hir, alloc::vec::Vec<Hir>>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3027-3073`](../../../.source_1765633015/regex-syntax-0.8.8/src/hir/mod.rs#L3027-L3073)*
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3027-3073`](../../../.source_1765894658/regex-syntax-0.8.8/src/hir/mod.rs#L3027-L3073)*
 
 Looks for a common prefix in the list of alternation branches given. If one
 is found, then an equivalent but (hopefully) simplified Hir is returned.

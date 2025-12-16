@@ -30,7 +30,7 @@ struct Epoch {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:17-20`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/epoch.rs#L17-L20)*
+*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:17-20`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/epoch.rs#L17-L20)*
 
 An epoch that can be marked as pinned or unpinned.
 
@@ -52,11 +52,8 @@ and a flag that represents whether it is pinned or unpinned.
 - <span id="epoch-wrapping-sub"></span>`fn wrapping_sub(self, rhs: Self) -> isize`
 
   Returns the number of epochs `self` is ahead of `rhs`.
-
   
-
   Internally, epochs are represented as numbers in the range `(isize::MIN / 2) .. (isize::MAX
-
   / 2)`, so the returned distance will be in the same interval.
 
 - <span id="epoch-is-pinned"></span>`fn is_pinned(self) -> bool`
@@ -74,9 +71,7 @@ and a flag that represents whether it is pinned or unpinned.
 - <span id="epoch-successor"></span>`fn successor(self) -> Epoch` — [`Epoch`](#epoch)
 
   Returns the successor epoch.
-
   
-
   The returned epoch will be marked as pinned only if the previous one was as well.
 
 #### Trait Implementations
@@ -124,11 +119,8 @@ and a flag that represents whether it is pinned or unpinned.
 - <span id="epoch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Epoch`
@@ -179,7 +171,7 @@ struct AtomicEpoch {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:75-79`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/epoch.rs#L75-L79)*
+*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:75-79`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/epoch.rs#L75-L79)*
 
 An atomic value that holds an `Epoch`.
 
@@ -207,29 +199,17 @@ An atomic value that holds an `Epoch`.
 - <span id="atomicepoch-compare-exchange"></span>`fn compare_exchange(&self, current: Epoch, new: Epoch, success: Ordering, failure: Ordering) -> Result<Epoch, Epoch>` — [`Epoch`](#epoch)
 
   Stores a value into the atomic epoch if the current value is the same as `current`.
-
   
-
   The return value is a result indicating whether the new value was written and containing
-
   the previous value. On success this value is guaranteed to be equal to `current`.
-
   
-
   This method takes two `Ordering` arguments to describe the memory
-
   ordering of this operation. `success` describes the required ordering for the
-
   read-modify-write operation that takes place if the comparison with `current` succeeds.
-
   `failure` describes the required ordering for the load operation that takes place when
-
   the comparison fails. Using `Acquire` as success ordering makes the store part
-
   of this operation `Relaxed`, and using `Release` makes the successful load
-
   `Relaxed`. The failure ordering can only be `SeqCst`, `Acquire` or `Relaxed`
-
   and must be equivalent to or weaker than the success ordering.
 
 #### Trait Implementations
@@ -265,11 +245,8 @@ An atomic value that holds an `Epoch`.
 - <span id="atomicepoch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for AtomicEpoch`

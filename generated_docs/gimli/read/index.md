@@ -670,7 +670,7 @@ fn main() {}
 struct UnitOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:264`](../../../.source_1765633015/gimli-0.32.3/src/read/mod.rs#L264)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:264`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L264)*
 
 An offset into the current compilation or type unit.
 
@@ -679,11 +679,8 @@ An offset into the current compilation or type unit.
 - <span id="cratereadunitoffset-to-unit-section-offset"></span>`fn to_unit_section_offset<R>(&self, unit: &Unit<R>) -> UnitSectionOffset<T>` — [`Unit`](#unit), [`UnitSectionOffset`](../index.md#unitsectionoffset)
 
   Convert an offset to be relative to the start of the .debug_info section,
-
   instead of relative to the start of the given compilation unit.
-
   
-
   Does not check that the offset is valid.
 
 #### Trait Implementations
@@ -731,11 +728,8 @@ An offset into the current compilation or type unit.
 - <span id="unitoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::Ord> Ord for UnitOffset<T>`
@@ -778,7 +772,7 @@ An offset into the current compilation or type unit.
 struct StoreOnHeap;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:276`](../../../.source_1765633015/gimli-0.32.3/src/read/mod.rs#L276)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:276`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L276)*
 
 Indicates that storage should be allocated on heap.
 
@@ -831,11 +825,8 @@ Indicates that storage should be allocated on heap.
 - <span id="storeonheap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for StoreOnHeap`
@@ -879,7 +870,7 @@ struct ArrayVec<A: ArrayLike> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/util.rs:121-124`](../../../.source_1765633015/gimli-0.32.3/src/read/util.rs#L121-L124)*
+*Defined in [`gimli-0.32.3/src/read/util.rs:121-124`](../../../.source_1765894658/gimli-0.32.3/src/read/util.rs#L121-L124)*
 
 #### Implementations
 
@@ -952,11 +943,8 @@ struct ArrayVec<A: ArrayLike> {
 - <span id="arrayvec-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A: ArrayLike> PartialEq for ArrayVec<A>`
@@ -995,7 +983,7 @@ struct DebugAddr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L6-L8)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L6-L8)*
 
 The raw contents of the `.debug_addr` section.
 
@@ -1004,39 +992,24 @@ The raw contents of the `.debug_addr` section.
 - <span id="debugaddr-get-address"></span>`fn get_address(&self, address_size: u8, base: DebugAddrBase<<R as >::Offset>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrBase`](../index.md#debugaddrbase), [`Reader`](#reader), [`DebugAddrIndex`](../index.md#debugaddrindex), [`Result`](../index.md#result)
 
   Returns the address at the given `base` and `index`.
-
   
-
   A set of addresses in the `.debug_addr` section consists of a header
-
   followed by a series of addresses.
-
   
-
   The `base` must be the `DW_AT_addr_base` value from the compilation unit DIE.
-
   This is an offset that points to the first address following the header.
-
   
-
   The `index` is the value of a `DW_FORM_addrx` attribute.
-
   
-
   The `address_size` must be the size of the address for the compilation unit.
-
   This value must also match the header. However, note that we do not parse the
-
   header to validate this, since locating the header is unreliable, and the GNU
-
   extensions do not emit it.
 
 - <span id="debugaddr-headers"></span>`fn headers(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](#addrheaderiter)
 
   Iterate the sets of entries in the `.debug_addr` section.
-
   
-
   Each set of entries belongs to a single unit.
 
 #### Trait Implementations
@@ -1082,11 +1055,8 @@ The raw contents of the `.debug_addr` section.
 - <span id="debugaddr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugAddr<R>`
@@ -1124,7 +1094,7 @@ struct AddrHeaderIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L82-L85)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L82-L85)*
 
 An iterator over the headers of a `.debug_addr` section.
 
@@ -1171,11 +1141,8 @@ An iterator over the headers of a `.debug_addr` section.
 - <span id="addrheaderiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AddrHeaderIter<R>`
@@ -1212,7 +1179,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L122-L131)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L122-L131)*
 
 A header for a set of entries in the `.debug_addr` section.
 
@@ -1277,11 +1244,8 @@ These entries all belong to a single unit.
 - <span id="addrheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for AddrHeader<R, Offset>`
@@ -1319,7 +1283,7 @@ struct AddrEntryIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L217-L220)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L217-L220)*
 
 An iterator over the addresses from a `.debug_addr` section.
 
@@ -1331,15 +1295,10 @@ Can be [used with
 - <span id="addrentryiter-next"></span>`fn next(&mut self) -> Result<Option<u64>>` — [`Result`](../index.md#result)
 
   Advance the iterator and return the next address.
-
   
-
   Returns the newly parsed address as `Ok(Some(addr))`. Returns `Ok(None)`
-
   when iteration is complete and all addresses have already been parsed and
-
   yielded. If an error occurs while parsing the next address, then this error
-
   is returned as `Err(e)`, and all subsequent calls return `Ok(None)`.
 
 #### Trait Implementations
@@ -1379,11 +1338,8 @@ Can be [used with
 - <span id="addrentryiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AddrEntryIter<R>`
@@ -1416,7 +1372,7 @@ struct DebugFrame<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
 
 `DebugFrame` contains the `.debug_frame` section's frame unwinding
 information required to unwind to and recover registers from older frames on
@@ -1438,19 +1394,14 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 - <span id="debugframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
 
   Set the size of a target address in bytes.
-
   
-
   This defaults to the native word size.
-
   This is only used if the CIE version is less than 4.
 
 - <span id="debugframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../index.md#vendor)
 
   Set the vendor extensions to use.
-
   
-
   This defaults to `Vendor::Default`.
 
 #### Trait Implementations
@@ -1494,11 +1445,8 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 - <span id="debugframe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for DebugFrame<R>`
@@ -1543,7 +1491,7 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 struct EhFrameHdr<R: Reader>(R);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L109)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L109)*
 
 `EhFrameHdr` contains the information about the `.eh_frame_hdr` section.
 
@@ -1597,11 +1545,8 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 - <span id="ehframehdr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrameHdr<R>`
@@ -1649,7 +1594,7 @@ struct ParsedEhFrameHdr<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
 
 `ParsedEhFrameHdr` contains the parsed information from the `.eh_frame_hdr` section.
 
@@ -1700,11 +1645,8 @@ struct ParsedEhFrameHdr<R: Reader> {
 - <span id="parsedehframehdr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ParsedEhFrameHdr<R>`
@@ -1738,7 +1680,7 @@ struct EhHdrTableIter<'a, 'bases, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
 
 An iterator for `.eh_frame_hdr` section's binary search table.
 
@@ -1786,11 +1728,8 @@ The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame
 - <span id="ehhdrtableiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for EhHdrTableIter<'a, 'bases, R>`
@@ -1813,7 +1752,7 @@ struct EhHdrTable<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
 
 The CFI binary search table that is an optional part of the `.eh_frame_hdr` section.
 
@@ -1822,91 +1761,56 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
 - <span id="ehhdrtable-iter"></span>`fn iter<'bases>(&self, bases: &'bases BaseAddresses) -> EhHdrTableIter<'_, 'bases, R>` — [`BaseAddresses`](#baseaddresses), [`EhHdrTableIter`](#ehhdrtableiter)
 
   Return an iterator that can walk the `.eh_frame_hdr` table.
-
   
-
   Each table entry consists of a tuple containing an `initial_location` and `address`.
-
   The `initial location` represents the first address that the targeted FDE
-
   is able to decode. The `address` is the address of the FDE in the `.eh_frame` section.
-
   The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame::fde_from_offset` to an FDE.
 
 - <span id="ehhdrtable-lookup"></span>`fn lookup(&self, address: u64, bases: &BaseAddresses) -> Result<Pointer>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md#result), [`Pointer`](#pointer)
 
   *Probably* returns a pointer to the FDE for the given address.
-
   
-
   This performs a binary search, so if there is no FDE for the given address,
-
   this function **will** return a pointer to any other FDE that's close by.
-
   
-
   To be sure, you **must** call `contains` on the FDE.
 
 - <span id="ehhdrtable-pointer-to-offset"></span>`fn pointer_to_offset(&self, ptr: Pointer) -> Result<EhFrameOffset<<R as >::Offset>>` — [`Pointer`](#pointer), [`Result`](../index.md#result), [`EhFrameOffset`](../index.md#ehframeoffset), [`Reader`](#reader)
 
   Convert a `Pointer` to a section offset.
-
   
-
   This does not support indirect pointers.
 
 - <span id="ehhdrtable-fde-for-address"></span>`fn fde_for_address<F>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`EhFrame`](#ehframe), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md#result), [`FrameDescriptionEntry`](#framedescriptionentry)
 
   Returns a parsed FDE for the given address, or `NoUnwindInfoForAddress`
-
   if there are none.
-
   
-
   You must provide a function to get its associated CIE. See
-
   `PartialFrameDescriptionEntry::parse` for more information.
-
   
-
   # Example
-
   
-
   ```rust
-
   use gimli::{BaseAddresses, EhFrame, ParsedEhFrameHdr, EndianSlice, NativeEndian, Error, UnwindSection};
-
   fn foo() -> Result<(), Error> {
-
   let eh_frame: EhFrame<EndianSlice<NativeEndian>> = unreachable!();
-
   let eh_frame_hdr: ParsedEhFrameHdr<EndianSlice<NativeEndian>> = unimplemented!();
-
   let addr = 0;
-
   let bases = unimplemented!();
-
   let table = eh_frame_hdr.table().unwrap();
-
   let fde = table.fde_for_address(&eh_frame, &bases, addr, EhFrame::cie_from_offset)?;
-
   Ok(())
-
   }
-
   ```
 
 - <span id="ehhdrtable-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, F, S>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`EhFrame`](#ehframe), [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md#result), [`UnwindTableRow`](#unwindtablerow)
 
   Returns the frame unwind information for the given address,
-
   or `NoUnwindInfoForAddress` if there are none.
-
   
-
   You must provide a function to get the associated CIE. See
-
   `PartialFrameDescriptionEntry::parse` for more information.
 
 #### Trait Implementations
@@ -1946,11 +1850,8 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
 - <span id="ehhdrtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EhHdrTable<'a, R>`
@@ -1983,7 +1884,7 @@ struct EhFrame<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
 
 `EhFrame` contains the frame unwinding information needed during exception
 handling found in the `.eh_frame` section.
@@ -2001,17 +1902,13 @@ for some discussion on the differences between `.debug_frame` and
 - <span id="ehframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
 
   Set the size of a target address in bytes.
-
   
-
   This defaults to the native word size.
 
 - <span id="ehframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../index.md#vendor)
 
   Set the vendor extensions to use.
-
   
-
   This defaults to `Vendor::Default`.
 
 #### Trait Implementations
@@ -2055,11 +1952,8 @@ for some discussion on the differences between `.debug_frame` and
 - <span id="ehframe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrame<R>`
@@ -2107,7 +2001,7 @@ struct BaseAddresses {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers.
 
@@ -2203,11 +2097,8 @@ let _ = bases;
 - <span id="baseaddresses-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for BaseAddresses`
@@ -2246,7 +2137,7 @@ struct SectionBaseAddresses {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers
 in a particular section.
@@ -2317,11 +2208,8 @@ See `BaseAddresses` for methods that are helpful in setting these addresses.
 - <span id="sectionbaseaddresses-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SectionBaseAddresses`
@@ -2363,7 +2251,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
 
 An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame`
 section.
@@ -2448,11 +2336,8 @@ unreachable!()
 - <span id="cfientriesiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for CfiEntriesIter<'bases, Section, R>`
@@ -2486,7 +2371,7 @@ struct Augmentation {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
 
 We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
@@ -2576,11 +2461,8 @@ We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 - <span id="augmentation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Augmentation`
@@ -2617,7 +2499,7 @@ struct AugmentationData {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
 
 Parsed augmentation data for a `FrameDescriptEntry`.
 
@@ -2668,11 +2550,8 @@ Parsed augmentation data for a `FrameDescriptEntry`.
 - <span id="augmentationdata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AugmentationData`
@@ -2721,7 +2600,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
 
 > A Common Information Entry holds information that is shared among many
 > Frame Description Entries. There is at least one CIE in every non-empty
@@ -2829,11 +2708,8 @@ where
 - <span id="commoninformationentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for CommonInformationEntry<R, Offset>`
@@ -2879,7 +2755,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
 
 A partially parsed `FrameDescriptionEntry`.
 
@@ -2892,13 +2768,9 @@ Fully parsing this FDE requires first parsing its CIE.
 - <span id="partialframedescriptionentry-parse"></span>`fn parse<F>(&self, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Result`](../index.md#result), [`FrameDescriptionEntry`](#framedescriptionentry)
 
   Fully parse this FDE.
-
   
-
   You must provide a function get its associated CIE (either by parsing it
-
   on demand, or looking it up in some table mapping offsets to CIEs that
-
   you've already parsed, etc.)
 
 - <span id="partialframedescriptionentry-offset"></span>`fn offset(&self) -> <R as >::Offset` — [`Reader`](#reader)
@@ -2912,11 +2784,8 @@ Fully parsing this FDE requires first parsing its CIE.
 - <span id="partialframedescriptionentry-entry-len"></span>`fn entry_len(&self) -> <R as >::Offset` — [`Reader`](#reader)
 
   > A constant that gives the number of bytes of the header and
-
   > instruction stream for this function, not including the length field
-
   > itself (see Section 7.2.2). The size of the length field plus the value
-
   > of length must be an integral multiple of the address size.
 
 #### Trait Implementations
@@ -2958,11 +2827,8 @@ Fully parsing this FDE requires first parsing its CIE.
 - <span id="partialframedescriptionentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
@@ -3009,7 +2875,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
 
 A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
@@ -3067,15 +2933,10 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 - <span id="framedescriptionentry-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, Section, S>(&self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md#result), [`UnwindTableRow`](#unwindtablerow)
 
   Find the frame unwind information for the given address.
-
   
-
   If found, the unwind information is returned along with the reset
-
   context in the form `Ok((unwind_info, context))`. If not found,
-
   `Err(gimli::Error::NoUnwindInfoForAddress)` is returned. If parsing or
-
   CFI evaluation fails, the error is returned.
 
 #### Trait Implementations
@@ -3117,11 +2978,8 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 - <span id="framedescriptionentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for FrameDescriptionEntry<R, Offset>`
@@ -3163,12 +3021,12 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
 
 Common context needed when evaluating the call frame unwinding information.
 
 By default, this structure is small and allocates its internal storage
-on the heap using [`Box`](../../allocator_api2/stable/boxed/index.md) during `UnwindContext::new`.
+on the heap using `Box` during `UnwindContext::new`.
 
 This can be overridden by providing a custom [`UnwindContextStorage`](#unwindcontextstorage) type parameter.
 When using a custom storage with in-line arrays, the [`UnwindContext`](#unwindcontext) type itself
@@ -3248,11 +3106,8 @@ unreachable!()
 - <span id="unwindcontext-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S> PartialEq for UnwindContext<T, S>`
@@ -3300,7 +3155,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
 
 The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 `CallFrameInstruction` program, yielding the each row one at a time.
@@ -3364,7 +3219,6 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 - <span id="unwindtable-new"></span>`fn new<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Result<Self>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`FrameDescriptionEntry`](#framedescriptionentry), [`Result`](../index.md#result)
 
   Construct a new `UnwindTable` for the given
-
   `FrameDescriptionEntry`'s CFI unwinding program.
 
 - <span id="unwindtable-new-for-fde"></span>`fn new_for_fde<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Self` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`FrameDescriptionEntry`](#framedescriptionentry)
@@ -3374,13 +3228,9 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 - <span id="unwindtable-next-row"></span>`fn next_row(&mut self) -> Result<Option<&UnwindTableRow<<R as >::Offset, S>>>` — [`Result`](../index.md#result), [`UnwindTableRow`](#unwindtablerow), [`Reader`](#reader)
 
   Evaluate call frame instructions until the next row of the table is
-
   completed, and return it.
-
   
-
   Unfortunately, this cannot be used with `FallibleIterator` because of
-
   the restricted lifetime of the yielded item.
 
 - <span id="unwindtable-into-current-row"></span>`fn into_current_row(self) -> Option<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`UnwindTableRow`](#unwindtablerow), [`Reader`](#reader)
@@ -3390,7 +3240,6 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 - <span id="unwindtable-evaluate"></span>`fn evaluate(&mut self, instruction: CallFrameInstruction<<R as >::Offset>) -> Result<bool>` — [`CallFrameInstruction`](#callframeinstruction), [`Reader`](#reader), [`Result`](../index.md#result)
 
   Evaluate one call frame instruction. Return `Ok(true)` if the row is
-
   complete, `Ok(false)` otherwise.
 
 #### Trait Implementations
@@ -3422,11 +3271,8 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 - <span id="unwindtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for UnwindTable<'a, 'ctx, R, S>`
@@ -3452,7 +3298,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
 
 #### Implementations
 
@@ -3511,11 +3357,8 @@ where
 - <span id="registerrulemap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S> PartialEq for RegisterRuleMap<T, S>`
@@ -3550,7 +3393,7 @@ where
     T: ReaderOffset;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
 
 An unordered iterator for register rules.
 
@@ -3591,11 +3434,8 @@ An unordered iterator for register rules.
 - <span id="registerruleiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RegisterRuleIter<'iter, T>`
@@ -3647,7 +3487,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
 
 A row in the virtual unwind table that describes how to find the values of
 the registers in the *previous* frame for a range of PC addresses.
@@ -3663,33 +3503,23 @@ the registers in the *previous* frame for a range of PC addresses.
 - <span id="unwindtablerow-end-address"></span>`fn end_address(&self) -> u64`
 
   Get the end PC address where this row's register rules become
-
   unapplicable.
-
   
-
   In other words, this row describes how to recover the last frame's
-
   registers for all PCs where `row.start_address() <= PC <
-
   row.end_address()`. This row does NOT describe how to recover registers
-
   when `PC == row.end_address()`.
 
 - <span id="unwindtablerow-contains"></span>`fn contains(&self, address: u64) -> bool`
 
   Return `true` if the given `address` is within this row's address range,
-
   `false` otherwise.
 
 - <span id="unwindtablerow-saved-args-size"></span>`fn saved_args_size(&self) -> u64`
 
   Returns the amount of args currently on the stack.
-
   
-
   When unwinding, if the personality function requested a change in IP,
-
   the SP needs to be adjusted by saved_args_size.
 
 - <span id="unwindtablerow-cfa"></span>`fn cfa(&self) -> &CfaRule<T>` — [`CfaRule`](#cfarule)
@@ -3699,123 +3529,66 @@ the registers in the *previous* frame for a range of PC addresses.
 - <span id="unwindtablerow-register"></span>`fn register(&self, register: Register) -> RegisterRule<T>` — [`Register`](../index.md#register), [`RegisterRule`](#registerrule)
 
   Get the register recovery rule for the given register number.
-
   
-
   The register number mapping is architecture dependent. For example, in
-
   the x86-64 ABI the register number mapping is defined in Figure 3.36:
-
   
-
   > Figure 3.36: DWARF Register Number Mapping
-
   >
-
   > <table>
-
   >   <tr><th>Register Name</th>                    <th>Number</th>  <th>Abbreviation</th></tr>
-
   >   <tr><td>General Purpose Register RAX</td>     <td>0</td>       <td>%rax</td></tr>
-
   >   <tr><td>General Purpose Register RDX</td>     <td>1</td>       <td>%rdx</td></tr>
-
   >   <tr><td>General Purpose Register RCX</td>     <td>2</td>       <td>%rcx</td></tr>
-
   >   <tr><td>General Purpose Register RBX</td>     <td>3</td>       <td>%rbx</td></tr>
-
   >   <tr><td>General Purpose Register RSI</td>     <td>4</td>       <td>%rsi</td></tr>
-
   >   <tr><td>General Purpose Register RDI</td>     <td>5</td>       <td>%rdi</td></tr>
-
   >   <tr><td>General Purpose Register RBP</td>     <td>6</td>       <td>%rbp</td></tr>
-
   >   <tr><td>Stack Pointer Register RSP</td>       <td>7</td>       <td>%rsp</td></tr>
-
   >   <tr><td>Extended Integer Registers 8-15</td>  <td>8-15</td>    <td>%r8-%r15</td></tr>
-
   >   <tr><td>Return Address RA</td>                <td>16</td>      <td></td></tr>
-
   >   <tr><td>Vector Registers 0–7</td>             <td>17-24</td>   <td>%xmm0–%xmm7</td></tr>
-
   >   <tr><td>Extended Vector Registers 8–15</td>   <td>25-32</td>   <td>%xmm8–%xmm15</td></tr>
-
   >   <tr><td>Floating Point Registers 0–7</td>     <td>33-40</td>   <td>%st0–%st7</td></tr>
-
   >   <tr><td>MMX Registers 0–7</td>                <td>41-48</td>   <td>%mm0–%mm7</td></tr>
-
   >   <tr><td>Flag Register</td>                    <td>49</td>      <td>%rFLAGS</td></tr>
-
   >   <tr><td>Segment Register ES</td>              <td>50</td>      <td>%es</td></tr>
-
   >   <tr><td>Segment Register CS</td>              <td>51</td>      <td>%cs</td></tr>
-
   >   <tr><td>Segment Register SS</td>              <td>52</td>      <td>%ss</td></tr>
-
   >   <tr><td>Segment Register DS</td>              <td>53</td>      <td>%ds</td></tr>
-
   >   <tr><td>Segment Register FS</td>              <td>54</td>      <td>%fs</td></tr>
-
   >   <tr><td>Segment Register GS</td>              <td>55</td>      <td>%gs</td></tr>
-
   >   <tr><td>Reserved</td>                         <td>56-57</td>   <td></td></tr>
-
   >   <tr><td>FS Base address</td>                  <td>58</td>      <td>%fs.base</td></tr>
-
   >   <tr><td>GS Base address</td>                  <td>59</td>      <td>%gs.base</td></tr>
-
   >   <tr><td>Reserved</td>                         <td>60-61</td>   <td></td></tr>
-
   >   <tr><td>Task Register</td>                    <td>62</td>      <td>%tr</td></tr>
-
   >   <tr><td>LDT Register</td>                     <td>63</td>      <td>%ldtr</td></tr>
-
   >   <tr><td>128-bit Media Control and Status</td> <td>64</td>      <td>%mxcsr</td></tr>
-
   >   <tr><td>x87 Control Word</td>                 <td>65</td>      <td>%fcw</td></tr>
-
   >   <tr><td>x87 Status Word</td>                  <td>66</td>      <td>%fsw</td></tr>
-
   >   <tr><td>Upper Vector Registers 16–31</td>     <td>67-82</td>   <td>%xmm16–%xmm31</td></tr>
-
   >   <tr><td>Reserved</td>                         <td>83-117</td>  <td></td></tr>
-
   >   <tr><td>Vector Mask Registers 0–7</td>        <td>118-125</td> <td>%k0–%k7</td></tr>
-
   >   <tr><td>Reserved</td>                         <td>126-129</td> <td></td></tr>
-
   > </table>
 
 - <span id="unwindtablerow-registers"></span>`fn registers(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](#registerruleiter)
 
   Iterate over all defined register `(number, rule)` pairs.
-
   
-
   The rules are not iterated in any guaranteed order. Any register that
-
   does not make an appearance in the iterator implicitly has the rule
-
   `RegisterRule::Undefined`.
-
   
-
   ```rust
-
   use gimli::{EndianSlice, LittleEndian, UnwindTableRow};
-
   fn foo<'input>(unwind_table_row: UnwindTableRow<usize>) {
-
   for &(register, ref rule) in unwind_table_row.registers() {
-
       // ...
-
       drop(register); drop(rule);
-
   }
-
   }
-
   ```
 
 #### Trait Implementations
@@ -3861,11 +3634,8 @@ the registers in the *previous* frame for a range of PC addresses.
 - <span id="unwindtablerow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S> PartialEq for UnwindTableRow<T, S>`
@@ -3905,7 +3675,7 @@ struct CallFrameInstructionIter<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
 
 A lazy iterator parsing call frame instructions.
 
@@ -3955,11 +3725,8 @@ Can be [used with
 - <span id="callframeinstructioniter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for CallFrameInstructionIter<'a, R>`
@@ -3991,7 +3758,7 @@ struct UnwindExpression<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
 
 The location of a DWARF expression within an unwind section.
 
@@ -4035,11 +3802,8 @@ Ok(())
 - <span id="unwindexpression-get"></span>`fn get<R, S>(&self, section: &S) -> Result<Expression<R>>` — [`Result`](../index.md#result), [`Expression`](#expression)
 
   Get the expression from the section.
-
   
-
   The offset and length were previously validated when the
-
   `UnwindExpression` was created, so this should not fail.
 
 #### Trait Implementations
@@ -4083,11 +3847,8 @@ Ok(())
 - <span id="unwindexpression-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for UnwindExpression<T>`
@@ -4127,7 +3888,7 @@ struct PointerEncodingParameters<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
 
 #### Trait Implementations
 
@@ -4166,11 +3927,8 @@ struct PointerEncodingParameters<'a, R: Reader> {
 - <span id="pointerencodingparameters-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PointerEncodingParameters<'a, R>`
@@ -4215,7 +3973,7 @@ struct DwarfSections<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:51-82`](../../../.source_1765633015/gimli-0.32.3/src/read/dwarf.rs#L51-L82)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:51-82`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L51-L82)*
 
 All of the commonly used DWARF sections.
 
@@ -4312,11 +4070,8 @@ unreachable!()
 - <span id="dwarfsections-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
   Try to load the DWARF sections using the given loader function.
-
   
-
   `section` loads a DWARF section from the object file.
-
   It should return an empty section if the section does not exist.
 
 - <span id="dwarfsections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](#dwarf)
@@ -4326,45 +4081,25 @@ unreachable!()
 - <span id="dwarfsections-borrow-with-sup"></span>`fn borrow_with_sup<'a, F, R>(self: &'a Self, sup: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](#dwarf)
 
   Create a `Dwarf` structure that references the data in `self` and `sup`.
-
   
-
   This is like `borrow`, but also includes the supplementary object file.
-
   This is useful when `R` implements `Reader` but `T` does not.
-
   
-
   ## Example Usage
-
   
-
   ```rust,no_run
-
   fn example() -> Result<(), gimli::Error> {
-
   let loader = |name| -> Result<_, gimli::Error> { unimplemented!() };
-
   let sup_loader = |name| -> Result<_, gimli::Error> { unimplemented!() };
-
   // Read the DWARF sections into `Vec`s with whatever object loader you're using.
-
   let dwarf_sections: gimli::DwarfSections<Vec<u8>> = gimli::DwarfSections::load(loader)?;
-
   let dwarf_sup_sections: gimli::DwarfSections<Vec<u8>> = gimli::DwarfSections::load(sup_loader)?;
-
   // Create references to the DWARF sections.
-
   let dwarf = dwarf_sections.borrow_with_sup(&dwarf_sup_sections, |section| {
-
       gimli::EndianSlice::new(&section, gimli::LittleEndian)
-
   });
-
   unreachable!()
-
   }
-
   ```
 
 #### Trait Implementations
@@ -4400,11 +4135,8 @@ unreachable!()
 - <span id="dwarfsections-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for DwarfSections<T>`
@@ -4442,7 +4174,7 @@ struct Dwarf<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:170-218`](../../../.source_1765633015/gimli-0.32.3/src/read/dwarf.rs#L170-L218)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:170-218`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L170-L218)*
 
 All of the commonly used DWARF sections, and other common information.
 
@@ -4517,93 +4249,55 @@ All of the commonly used DWARF sections, and other common information.
 - <span id="dwarf-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
   Try to load the DWARF sections using the given loader function.
-
   
-
   `section` loads a DWARF section from the object file.
-
   It should return an empty section if the section does not exist.
-
   
-
   After loading, the user should set the `file_type` field and
-
   call `load_sup` if required.
 
 - <span id="dwarf-load-sup"></span>`fn load_sup<F, E>(&mut self, section: F) -> core::result::Result<(), E>`
 
   Load the DWARF sections from the supplementary object file.
-
   
-
   `section` operates the same as for `load`.
-
   
-
   Sets `self.sup`, replacing any previous value.
 
 - <span id="dwarf-from-sections"></span>`fn from_sections(sections: DwarfSections<T>) -> Self` — [`DwarfSections`](#dwarfsections)
 
   Create a `Dwarf` structure from the given sections.
-
   
-
   The caller should set the `file_type` and `sup` fields if required.
 
 - <span id="dwarf-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](#dwarf)
 
   Create a `Dwarf` structure that references the data in `self`.
-
   
-
   This is useful when `R` implements `Reader` but `T` does not.
-
   
-
   ## Example Usage
-
   
-
   It can be useful to load DWARF sections into owned data structures,
-
   such as `Vec`. However, we do not implement the `Reader` trait
-
   for `Vec`, because it would be very inefficient, but this trait
-
   is required for all of the methods that parse the DWARF data.
-
   So we first load the DWARF sections into `Vec`s, and then use
-
   `borrow` to create `Reader`s that reference the data.
-
   
-
   ```rust,no_run
-
   fn example() -> Result<(), gimli::Error> {
-
   let loader = |name| -> Result<_, gimli::Error> { unimplemented!() };
-
   let sup_loader = |name| -> Result<_, gimli::Error> { unimplemented!() };
-
   // Read the DWARF sections into `Vec`s with whatever object loader you're using.
-
   let mut owned_dwarf: gimli::Dwarf<Vec<u8>> = gimli::Dwarf::load(loader)?;
-
   owned_dwarf.load_sup(sup_loader)?;
-
   // Create references to the DWARF sections.
-
   let dwarf = owned_dwarf.borrow(|section| {
-
       gimli::EndianSlice::new(&section, gimli::LittleEndian)
-
   });
-
   unreachable!()
-
   }
-
   ```
 
 - <span id="dwarf-set-sup"></span>`fn set_sup(&mut self, sup: Dwarf<T>)` — [`Dwarf`](#dwarf)
@@ -4647,11 +4341,8 @@ All of the commonly used DWARF sections, and other common information.
 - <span id="dwarf-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Dwarf<R>`
@@ -4684,7 +4375,7 @@ struct DwarfPackageSections<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:804-831`](../../../.source_1765633015/gimli-0.32.3/src/read/dwarf.rs#L804-L831)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:804-831`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L804-L831)*
 
 The sections from a `.dwp` file.
 
@@ -4770,11 +4461,8 @@ unreachable!()
 - <span id="dwarfpackagesections-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
   Try to load the `.dwp` sections using the given loader function.
-
   
-
   `section` loads a DWARF section from the object file.
-
   It should return an empty section if the section does not exist.
 
 - <span id="dwarfpackagesections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F, empty: R) -> Result<DwarfPackage<R>>` — [`Result`](../index.md#result), [`DwarfPackage`](#dwarfpackage)
@@ -4814,11 +4502,8 @@ unreachable!()
 - <span id="dwarfpackagesections-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for DwarfPackageSections<T>`
@@ -4852,7 +4537,7 @@ struct DwarfPackage<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:886-928`](../../../.source_1765633015/gimli-0.32.3/src/read/dwarf.rs#L886-L928)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:886-928`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L886-L928)*
 
 The sections from a `.dwp` file, with parsed indices.
 
@@ -4917,11 +4602,8 @@ The sections from a `.dwp` file, with parsed indices.
 - <span id="dwarfpackage-load"></span>`fn load<F, E>(section: F, empty: R) -> core::result::Result<Self, E>`
 
   Try to load the `.dwp` sections using the given loader function.
-
   
-
   `section` loads a DWARF section from the object file.
-
   It should return an empty section if the section does not exist.
 
 - <span id="dwarfpackage-from-sections"></span>`fn from_sections(sections: DwarfPackageSections<R>, empty: R) -> Result<Self>` — [`DwarfPackageSections`](#dwarfpackagesections), [`Result`](../index.md#result)
@@ -4931,77 +4613,49 @@ The sections from a `.dwp` file, with parsed indices.
 - <span id="dwarfpackage-find-cu"></span>`fn find_cu(&self, id: DwoId, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DwoId`](../index.md#dwoid), [`Dwarf`](#dwarf), [`Result`](../index.md#result)
 
   Find the compilation unit with the given DWO identifier and return its section
-
   contributions.
-
   
-
   ## Example Usage
-
   
-
   ```rust,no_run
-
   fn example<R: gimli::Reader>(
-
          dwarf: &gimli::Dwarf<R>,
-
          dwp: &gimli::DwarfPackage<R>,
-
          dwo_id: gimli::DwoId,
-
   ) -> Result<(), gimli::Error> {
-
   if let Some(dwo) = dwp.find_cu(dwo_id, dwarf)? {
-
      let dwo_header = dwo.units().next()?.expect("DWO should have one unit");
-
      let dwo_unit = dwo.unit(dwo_header)?;
-
      // Do something with `dwo_unit`.
-
   }
-
   unreachable!()
-
   }
 
 - <span id="dwarfpackage-find-tu"></span>`fn find_tu(&self, signature: DebugTypeSignature, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DebugTypeSignature`](../index.md#debugtypesignature), [`Dwarf`](#dwarf), [`Result`](../index.md#result)
 
   Find the type unit with the given type signature and return its section
-
   contributions.
 
 - <span id="dwarfpackage-cu-sections"></span>`fn cu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](#dwarf), [`Result`](../index.md#result)
 
   Return the section contributions of the compilation unit at the given index.
-
   
-
   The index must be in the range `1..cu_index.unit_count`.
-
   
-
   This function should only be needed by low level parsers.
 
 - <span id="dwarfpackage-tu-sections"></span>`fn tu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](#dwarf), [`Result`](../index.md#result)
 
   Return the section contributions of the compilation unit at the given index.
-
   
-
   The index must be in the range `1..tu_index.unit_count`.
-
   
-
   This function should only be needed by low level parsers.
 
 - <span id="dwarfpackage-sections"></span>`fn sections(&self, sections: UnitIndexSectionIterator<'_, R>, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`UnitIndexSectionIterator`](#unitindexsectioniterator), [`Dwarf`](#dwarf), [`Result`](../index.md#result)
 
   Return the section contributions of a unit.
-
   
-
   This function should only be needed by low level parsers.
 
 #### Trait Implementations
@@ -5033,11 +4687,8 @@ The sections from a `.dwp` file, with parsed indices.
 - <span id="dwarfpackage-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DwarfPackage<R>`
@@ -5073,7 +4724,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1133-1170`](../../../.source_1765633015/gimli-0.32.3/src/read/dwarf.rs#L1133-L1170)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1133-1170`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L1133-L1170)*
 
 All of the commonly used information for a unit in the `.debug_info` or `.debug_types`
 sections.
@@ -5133,13 +4784,9 @@ sections.
 - <span id="unit-new-with-abbreviations"></span>`fn new_with_abbreviations(dwarf: &Dwarf<R>, header: UnitHeader<R>, abbreviations: Arc<Abbreviations>) -> Result<Self>` — [`Dwarf`](#dwarf), [`UnitHeader`](#unitheader), [`Abbreviations`](#abbreviations), [`Result`](../index.md#result)
 
   Construct a new `Unit` from the given unit header and abbreviations.
-
   
-
   The abbreviations for this call can be obtained using `dwarf.abbreviations(&header)`.
-
   The caller may implement caching to reuse the `Abbreviations` across units with the
-
   same `header.debug_abbrev_offset()` value.
 
 - <span id="unit-unit-ref"></span>`fn unit_ref<'a>(self: &'a Self, dwarf: &'a Dwarf<R>) -> UnitRef<'a, R>` — [`Dwarf`](#dwarf), [`UnitRef`](#unitref)
@@ -5161,13 +4808,11 @@ sections.
 - <span id="unit-entries-at-offset"></span>`fn entries_at_offset(&self, offset: UnitOffset<<R as >::Offset>) -> Result<EntriesCursor<'_, '_, R>>` — [`UnitOffset`](../index.md#unitoffset), [`Reader`](#reader), [`Result`](../index.md#result), [`EntriesCursor`](#entriescursor)
 
   Navigate this unit's `DebuggingInformationEntry`s
-
   starting at the given offset.
 
 - <span id="unit-entries-tree"></span>`fn entries_tree(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesTree<'_, '_, R>>` — [`UnitOffset`](../index.md#unitoffset), [`Reader`](#reader), [`Result`](../index.md#result), [`EntriesTree`](#entriestree)
 
   Navigate this unit's `DebuggingInformationEntry`s as a tree
-
   starting at the given offset.
 
 - <span id="unit-entries-raw"></span>`fn entries_raw(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesRaw<'_, '_, R>>` — [`UnitOffset`](../index.md#unitoffset), [`Reader`](#reader), [`Result`](../index.md#result), [`EntriesRaw`](#entriesraw)
@@ -5177,21 +4822,15 @@ sections.
 - <span id="unit-copy-relocated-attributes"></span>`fn copy_relocated_attributes(&mut self, other: &Unit<R>)` — [`Unit`](#unit)
 
   Copy attributes that are subject to relocation from another unit. This is intended
-
   to be used to copy attributes from a skeleton compilation unit to the corresponding
-
   split compilation unit.
 
 - <span id="unit-dwo-name"></span>`fn dwo_name(&self) -> Result<Option<AttributeValue<R>>>` — [`Result`](../index.md#result), [`AttributeValue`](#attributevalue)
 
   Find the dwo name (if any) for this unit, automatically handling the differences
-
   between the standardized DWARF 5 split DWARF format and the pre-DWARF 5 GNU
-
   extension.
-
   
-
   The returned value is relative to this unit's `comp_dir`.
 
 #### Trait Implementations
@@ -5223,11 +4862,8 @@ sections.
 - <span id="unit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Unit<R, Offset>`
@@ -5251,7 +4887,7 @@ struct UnitRef<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1389-1395`](../../../.source_1765633015/gimli-0.32.3/src/read/dwarf.rs#L1389-L1395)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1389-1395`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L1389-L1395)*
 
 A reference to a `Unit` and its associated `Dwarf`.
 
@@ -5291,15 +4927,12 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 - <span id="unitref-sup-string"></span>`fn sup_string(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md#debugstroffset), [`Reader`](#reader), [`Result`](../index.md#result)
 
   Return the string at the given offset in the `.debug_str`
-
   in the supplementary object file.
 
 - <span id="unitref-attr-string"></span>`fn attr_string(&self, attr: AttributeValue<R>) -> Result<R>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md#result)
 
   Return an attribute value as a string slice.
-
   
-
   See `Dwarf::attr_string` for more information.
 
 - <span id="unitref-address"></span>`fn address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../index.md#debugaddrindex), [`Reader`](#reader), [`Result`](../index.md#result)
@@ -5309,17 +4942,13 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 - <span id="unitref-attr-address"></span>`fn attr_address(&self, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md#result)
 
   Try to return an attribute value as an address.
-
   
-
   See `Dwarf::attr_address` for more information.
 
 - <span id="unitref-ranges-offset-from-raw"></span>`fn ranges_offset_from_raw(&self, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`RawRangeListsOffset`](../index.md#rawrangelistsoffset), [`Reader`](#reader), [`RangeListsOffset`](../index.md#rangelistsoffset)
 
   Return the range list offset for the given raw offset.
-
   
-
   This handles adding `DW_AT_GNU_ranges_base` if required.
 
 - <span id="unitref-ranges-offset"></span>`fn ranges_offset(&self, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`DebugRngListsIndex`](../index.md#debugrnglistsindex), [`Reader`](#reader), [`Result`](../index.md#result), [`RangeListsOffset`](../index.md#rangelistsoffset)
@@ -5337,35 +4966,26 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 - <span id="unitref-attr-ranges-offset"></span>`fn attr_ranges_offset(&self, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md#result), [`RangeListsOffset`](../index.md#rangelistsoffset), [`Reader`](#reader)
 
   Try to return an attribute value as a range list offset.
-
   
-
   See `Dwarf::attr_ranges_offset` for more information.
 
 - <span id="unitref-attr-ranges"></span>`fn attr_ranges(&self, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md#result), [`RngListIter`](#rnglistiter)
 
   Try to return an attribute value as a range list entry iterator.
-
   
-
   See `Dwarf::attr_ranges` for more information.
 
 - <span id="unitref-die-ranges"></span>`fn die_ranges(&self, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`DebuggingInformationEntry`](#debugginginformationentry), [`Result`](../index.md#result), [`RangeIter`](#rangeiter)
 
   Return an iterator for the address ranges of a `DebuggingInformationEntry`.
-
   
-
   This uses `DW_AT_low_pc`, `DW_AT_high_pc` and `DW_AT_ranges`.
 
 - <span id="unitref-unit-ranges"></span>`fn unit_ranges(&self) -> Result<RangeIter<R>>` — [`Result`](../index.md#result), [`RangeIter`](#rangeiter)
 
   Return an iterator for the address ranges of the `Unit`.
-
   
-
   This uses `DW_AT_low_pc`, `DW_AT_high_pc` and `DW_AT_ranges` of the
-
   root `DebuggingInformationEntry`.
 
 - <span id="unitref-locations-offset"></span>`fn locations_offset(&self, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`DebugLocListsIndex`](../index.md#debugloclistsindex), [`Reader`](#reader), [`Result`](../index.md#result), [`LocationListsOffset`](../index.md#locationlistsoffset)
@@ -5383,17 +5003,13 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 - <span id="unitref-attr-locations-offset"></span>`fn attr_locations_offset(&self, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md#result), [`LocationListsOffset`](../index.md#locationlistsoffset), [`Reader`](#reader)
 
   Try to return an attribute value as a location list offset.
-
   
-
   See `Dwarf::attr_locations_offset` for more information.
 
 - <span id="unitref-attr-locations"></span>`fn attr_locations(&self, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md#result), [`LocListIter`](#loclistiter)
 
   Try to return an attribute value as a location list entry iterator.
-
   
-
   See `Dwarf::attr_locations` for more information.
 
 - <span id="unitref-macinfo"></span>`fn macinfo(&self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../index.md#debugmacinfooffset), [`Reader`](#reader), [`Result`](../index.md#result), [`MacroIter`](#macroiter)
@@ -5449,11 +5065,8 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 - <span id="unitref-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for UnitRef<'a, R>`
@@ -5486,7 +5099,7 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 struct RangeIter<R: Reader>(RangeIterInner<R>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1630`](../../../.source_1765633015/gimli-0.32.3/src/read/dwarf.rs#L1630)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1630`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L1630)*
 
 An iterator for the address ranges of a `DebuggingInformationEntry`.
 
@@ -5531,11 +5144,8 @@ Returned by `Dwarf::die_ranges` and `Dwarf::unit_ranges`.
 - <span id="rangeiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RangeIter<R>`
@@ -5561,7 +5171,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
 
 A `&[u8]` slice with endianity metadata.
 
@@ -5580,9 +5190,7 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 - <span id="endianslice-split-at"></span>`fn split_at(&self, idx: usize) -> (EndianSlice<'input, Endian>, EndianSlice<'input, Endian>)` — [`EndianSlice`](#endianslice)
 
   Split the slice in two at the given index, resulting in the tuple where
-
   the first item has range [0, idx), and the second has range [idx,
-
   len). Panics if the index is out of bounds.
 
 - <span id="endianslice-find"></span>`fn find(&self, byte: u8) -> Option<usize>`
@@ -5592,21 +5200,17 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 - <span id="endianslice-offset-from"></span>`fn offset_from(&self, base: EndianSlice<'input, Endian>) -> usize` — [`EndianSlice`](#endianslice)
 
   Return the offset of the start of the slice relative to the start
-
   of the given slice.
 
 - <span id="endianslice-to-string"></span>`fn to_string(&self) -> Result<&'input str>` — [`Result`](../index.md#result)
 
   Converts the slice to a string using `str::from_utf8`.
-
   
-
   Returns an error if the slice contains invalid characters.
 
 - <span id="endianslice-to-string-lossy"></span>`fn to_string_lossy(&self) -> Cow<'input, str>`
 
   Converts the slice to a string, including invalid characters,
-
   using `String::from_utf8_lossy`.
 
 - <span id="endianslice-read-slice"></span>`fn read_slice(&mut self, len: usize) -> Result<&'input [u8]>` — [`Result`](../index.md#result)
@@ -5666,11 +5270,8 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 - <span id="endianslice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Endian> PartialEq for EndianSlice<'input, Endian>`
@@ -5745,7 +5346,7 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 struct DebugBytes<'input>(&'input [u8]);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L190)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L190)*
 
 #### Trait Implementations
 
@@ -5776,11 +5377,8 @@ struct DebugBytes<'input>(&'input [u8]);
 - <span id="debugbytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugBytes<'input>`
@@ -5801,7 +5399,7 @@ struct DebugBytes<'input>(&'input [u8]);
 struct DebugByte(u8);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L203)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L203)*
 
 #### Trait Implementations
 
@@ -5832,11 +5430,8 @@ struct DebugByte(u8);
 - <span id="debugbyte-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugByte`
@@ -5857,7 +5452,7 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L211)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L211)*
 
 #### Trait Implementations
 
@@ -5888,11 +5483,8 @@ struct DebugLen(usize);
 - <span id="debuglen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugLen`
@@ -5913,7 +5505,7 @@ struct DebugLen(usize);
 struct ReaderOffsetId(u64);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:19`](../../../.source_1765633015/gimli-0.32.3/src/read/reader.rs#L19)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:19`](../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L19)*
 
 An identifier for an offset within a section reader.
 
@@ -5962,11 +5554,8 @@ all readers. If values are not unique then errors may point to the wrong reader.
 - <span id="readeroffsetid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ReaderOffsetId`
@@ -6005,7 +5594,7 @@ struct RelocateReader<R: Reader<Offset = usize>, T: Relocate<<R as >::Offset>> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/relocate.rs:23-27`](../../../.source_1765633015/gimli-0.32.3/src/read/relocate.rs#L23-L27)*
+*Defined in [`gimli-0.32.3/src/read/relocate.rs:23-27`](../../../.source_1765894658/gimli-0.32.3/src/read/relocate.rs#L23-L27)*
 
 A `Reader` which applies relocations to addresses and offsets.
 
@@ -6056,11 +5645,8 @@ It is generally not used for reading sections in an executable file.
 - <span id="relocatereader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, T> Reader for RelocateReader<R, T>`
@@ -6131,7 +5717,7 @@ struct DebugAbbrev<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:22-24`](../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L22-L24)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:22-24`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L22-L24)*
 
 The `DebugAbbrev` struct represents the abbreviations describing
 `DebuggingInformationEntry`s' attribute names and forms found in the
@@ -6142,31 +5728,18 @@ The `DebugAbbrev` struct represents the abbreviations describing
 - <span id="debugabbrev-new"></span>`fn new(debug_abbrev_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugAbbrev` instance from the data in the `.debug_abbrev`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_abbrev` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_abbrev_section_somehow = || &buf;
-
   let debug_abbrev = DebugAbbrev::new(read_debug_abbrev_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -6212,11 +5785,8 @@ The `DebugAbbrev` struct represents the abbreviations describing
 - <span id="debugabbrev-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugAbbrev<R>`
@@ -6253,7 +5823,7 @@ struct AbbreviationsCache {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:112-114`](../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L112-L114)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:112-114`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L112-L114)*
 
 A cache of previously parsed `Abbreviations`.
 
@@ -6266,33 +5836,23 @@ A cache of previously parsed `Abbreviations`.
 - <span id="abbreviationscache-populate"></span>`fn populate<R: Reader>(&mut self, strategy: AbbreviationsCacheStrategy, debug_abbrev: &DebugAbbrev<R>, units: DebugInfoUnitHeadersIter<R>)` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy), [`DebugAbbrev`](#debugabbrev), [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
 
   Parse abbreviations and store them in the cache.
-
   
-
   This will iterate over the given units to determine the abbreviations
-
   offsets. Any existing cache entries are discarded.
-
   
-
   Errors during parsing abbreviations are also stored in the cache.
-
   Errors during iterating over the units are ignored.
 
 - <span id="abbreviationscache-set"></span>`fn set<R: Reader>(&mut self, offset: DebugAbbrevOffset<<R as >::Offset>, abbreviations: Arc<Abbreviations>)` — [`DebugAbbrevOffset`](../index.md#debugabbrevoffset), [`Reader`](#reader), [`Abbreviations`](#abbreviations)
 
   Set an entry in the abbreviations cache.
-
   
-
   This is only required if you want to manually populate the cache.
 
 - <span id="abbreviationscache-get"></span>`fn get<R: Reader>(&self, debug_abbrev: &DebugAbbrev<R>, offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Arc<Abbreviations>>` — [`DebugAbbrev`](#debugabbrev), [`DebugAbbrevOffset`](../index.md#debugabbrevoffset), [`Reader`](#reader), [`Result`](../index.md#result), [`Abbreviations`](#abbreviations)
 
   Parse the abbreviations at the given offset.
-
   
-
   This uses the cache if possible, but does not update it.
 
 #### Trait Implementations
@@ -6328,11 +5888,8 @@ A cache of previously parsed `Abbreviations`.
 - <span id="abbreviationscache-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for AbbreviationsCache`
@@ -6356,7 +5913,7 @@ struct Abbreviations {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:206-209`](../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L206-L209)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:206-209`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L206-L209)*
 
 A set of type abbreviations.
 
@@ -6373,13 +5930,9 @@ method.
 - <span id="abbreviations-insert"></span>`fn insert(&mut self, abbrev: Abbreviation) -> ::core::result::Result<(), ()>` — [`Abbreviation`](#abbreviation)
 
   Insert an abbreviation into the set.
-
   
-
   Returns `Ok` if it is the first abbreviation in the set with its code,
-
   `Err` if the code is a duplicate and there already exists an
-
   abbreviation in the set with the given abbreviation's code.
 
 - <span id="abbreviations-get"></span>`fn get(&self, code: u64) -> Option<&Abbreviation>` — [`Abbreviation`](#abbreviation)
@@ -6431,11 +5984,8 @@ method.
 - <span id="abbreviations-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Abbreviations`
@@ -6469,7 +6019,7 @@ struct Abbreviation {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:282-287`](../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L282-L287)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:282-287`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L282-L287)*
 
 An abbreviation describes the shape of a `DebuggingInformationEntry`'s type:
 its code, tag type, whether it has children, and its set of attributes.
@@ -6479,13 +6029,9 @@ its code, tag type, whether it has children, and its set of attributes.
 - <span id="abbreviation-new"></span>`fn new(code: u64, tag: constants::DwTag, has_children: constants::DwChildren, attributes: Attributes) -> Abbreviation` — [`DwTag`](../index.md#dwtag), [`DwChildren`](../index.md#dwchildren), [`Attributes`](abbrev/index.md#attributes), [`Abbreviation`](#abbreviation)
 
   Construct a new `Abbreviation`.
-
   
-
   ### Panics
-
   
-
   Panics if `code` is `0`.
 
 - <span id="abbreviation-code"></span>`fn code(&self) -> u64`
@@ -6515,13 +6061,11 @@ its code, tag type, whether it has children, and its set of attributes.
 - <span id="abbreviation-parse-attributes"></span>`fn parse_attributes<R: Reader>(input: &mut R) -> Result<Attributes>` — [`Result`](../index.md#result), [`Attributes`](abbrev/index.md#attributes)
 
   Parse a series of attribute specifications, terminated by a null attribute
-
   specification.
 
 - <span id="abbreviation-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<Abbreviation>>` — [`Result`](../index.md#result), [`Abbreviation`](#abbreviation)
 
   Parse an abbreviation. Return `None` for the null abbreviation, `Some`
-
   for an actual abbreviation.
 
 #### Trait Implementations
@@ -6563,11 +6107,8 @@ its code, tag type, whether it has children, and its set of attributes.
 - <span id="abbreviation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Abbreviation`
@@ -6606,7 +6147,7 @@ struct AttributeSpecification {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:479-483`](../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L479-L483)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:479-483`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L479-L483)*
 
 The description of an attribute in an abbreviated type. It is a pair of name
 and form.
@@ -6616,7 +6157,6 @@ and form.
 - <span id="attributespecification-new"></span>`fn new(name: constants::DwAt, form: constants::DwForm, implicit_const_value: Option<i64>) -> AttributeSpecification` — [`DwAt`](../index.md#dwat), [`DwForm`](../index.md#dwform), [`AttributeSpecification`](#attributespecification)
 
   Construct a new `AttributeSpecification` from the given name and form
-
   and implicit const value.
 
 - <span id="attributespecification-name"></span>`fn name(&self) -> constants::DwAt` — [`DwAt`](../index.md#dwat)
@@ -6634,11 +6174,8 @@ and form.
 - <span id="attributespecification-size"></span>`fn size<R: Reader>(&self, header: &UnitHeader<R>) -> Option<usize>` — [`UnitHeader`](#unitheader)
 
   Return the size of the attribute, in bytes.
-
   
-
   Note that because some attributes are variably sized, the size cannot
-
   always be known without parsing, in which case we return `None`.
 
 - <span id="attributespecification-parse-form"></span>`fn parse_form<R: Reader>(input: &mut R) -> Result<constants::DwForm>` — [`Result`](../index.md#result), [`DwForm`](../index.md#dwform)
@@ -6648,7 +6185,6 @@ and form.
 - <span id="attributespecification-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<AttributeSpecification>>` — [`Result`](../index.md#result), [`AttributeSpecification`](#attributespecification)
 
   Parse an attribute specification. Returns `None` for the null attribute
-
   specification, `Some` for an actual attribute specification.
 
 #### Trait Implementations
@@ -6696,11 +6232,8 @@ and form.
 - <span id="attributespecification-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AttributeSpecification`
@@ -6737,7 +6270,7 @@ struct DebugAranges<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:10-12`](../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L10-L12)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:10-12`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L10-L12)*
 
 The `DebugAranges` struct represents the DWARF address range information
 found in the `.debug_aranges` section.
@@ -6747,33 +6280,19 @@ found in the `.debug_aranges` section.
 - <span id="debugaranges-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugAranges` instance from the data in the `.debug_aranges`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_aranges` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugAranges, LittleEndian};
-
   
-
   let buf = [];
-
   let read_debug_aranges_section = || &buf;
-
   let debug_aranges =
-
       DebugAranges::new(read_debug_aranges_section(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -6819,11 +6338,8 @@ found in the `.debug_aranges` section.
 - <span id="debugaranges-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugAranges<R>`
@@ -6861,7 +6377,7 @@ struct ArangeHeaderIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:91-94`](../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L91-L94)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:91-94`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L91-L94)*
 
 An iterator over the headers of a `.debug_aranges` section.
 
@@ -6908,11 +6424,8 @@ An iterator over the headers of a `.debug_aranges` section.
 - <span id="arangeheaderiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ArangeHeaderIter<R>`
@@ -6950,7 +6463,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:131-141`](../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L131-L141)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:131-141`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L131-L141)*
 
 A header for a set of entries in the `.debug_arange` section.
 
@@ -7019,11 +6532,8 @@ These entries all belong to a single unit.
 - <span id="arangeheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for ArangeHeader<R, Offset>`
@@ -7061,7 +6571,7 @@ struct ArangeEntryIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:239-242`](../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L239-L242)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:239-242`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L239-L242)*
 
 An iterator over the aranges from a `.debug_aranges` section.
 
@@ -7073,25 +6583,17 @@ Can be [used with
 - <span id="arangeentryiter-next"></span>`fn next(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../index.md#result), [`ArangeEntry`](#arangeentry)
 
   Advance the iterator and return the next arange.
-
   
-
   Returns the newly parsed arange as `Ok(Some(arange))`. Returns `Ok(None)`
-
   when iteration is complete and all aranges have already been parsed and
-
   yielded. If an error occurs while parsing the next arange, then this error
-
   is returned as `Err(e)`, and all subsequent calls return `Ok(None)`.
 
 - <span id="arangeentryiter-next-raw"></span>`fn next_raw(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../index.md#result), [`ArangeEntry`](#arangeentry)
 
   Advance the iterator and return the next arange without validating it.
-
   
-
   The returned entry will have `range.end` set to 0.
-
   This will return tombstone entries as well.
 
 #### Trait Implementations
@@ -7131,11 +6633,8 @@ Can be [used with
 - <span id="arangeentryiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ArangeEntryIter<R>`
@@ -7167,7 +6666,7 @@ struct ArangeEntry {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:318-321`](../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L318-L321)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:318-321`](../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L318-L321)*
 
 A single parsed arange.
 
@@ -7228,11 +6727,8 @@ A single parsed arange.
 - <span id="arangeentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for ArangeEntry`
@@ -7277,7 +6773,7 @@ struct DebugCuIndex<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L12-L14)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L12-L14)*
 
 The data in the `.debug_cu_index` section of a `.dwp` file.
 
@@ -7288,7 +6784,6 @@ This section contains the compilation unit index.
 - <span id="debugcuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugCuIndex` instance from the data in the `.debug_cu_index`
-
   section.
 
 #### Trait Implementations
@@ -7334,11 +6829,8 @@ This section contains the compilation unit index.
 - <span id="debugcuindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugCuIndex<R>`
@@ -7375,7 +6867,7 @@ struct DebugTuIndex<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L68-L70)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L68-L70)*
 
 The data in the `.debug_tu_index` section of a `.dwp` file.
 
@@ -7386,7 +6878,6 @@ This section contains the type unit index.
 - <span id="debugtuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugTuIndex` instance from the data in the `.debug_tu_index`
-
   section.
 
 #### Trait Implementations
@@ -7432,11 +6923,8 @@ This section contains the type unit index.
 - <span id="debugtuindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugTuIndex<R>`
@@ -7481,7 +6969,7 @@ struct UnitIndex<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L124-L135)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L124-L135)*
 
 The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
@@ -7492,11 +6980,8 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 - <span id="unitindex-find"></span>`fn find(&self, id: u64) -> Option<u32>`
 
   Find `id` in the index hash table, and return the row index.
-
   
-
   `id` may be a compilation unit ID if this index is from `.debug_cu_index`,
-
   or a type signature if this index is from `.debug_tu_index`.
 
 - <span id="unitindex-sections"></span>`fn sections(&self, row: u32) -> Result<UnitIndexSectionIterator<'_, R>>` — [`Result`](../index.md#result), [`UnitIndexSectionIterator`](#unitindexsectioniterator)
@@ -7506,9 +6991,7 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 - <span id="unitindex-version"></span>`fn version(&self) -> u16`
 
   Return the version.
-
   
-
   Defaults to 0 for empty sections.
 
 - <span id="unitindex-section-count"></span>`fn section_count(&self) -> u32`
@@ -7560,11 +7043,8 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 - <span id="unitindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for UnitIndex<R>`
@@ -7597,7 +7077,7 @@ struct UnitIndexSectionIterator<'index, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L307-L311)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L307-L311)*
 
 An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
@@ -7638,11 +7118,8 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 - <span id="unitindexsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for UnitIndexSectionIterator<'index, R>`
@@ -7689,7 +7166,7 @@ struct UnitIndexSection {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L331-L338)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L331-L338)*
 
 Information about a unit's contribution to a section in a `.dwp` file.
 
@@ -7748,11 +7225,8 @@ Information about a unit's contribution to a section in a `.dwp` file.
 - <span id="unitindexsection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for UnitIndexSection`
@@ -7789,7 +7263,7 @@ struct DebugLine<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:17-19`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L17-L19)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:17-19`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L17-L19)*
 
 The `DebugLine` struct contains the source location to instruction mapping
 found in the `.debug_line` section.
@@ -7799,31 +7273,18 @@ found in the `.debug_line` section.
 - <span id="debugline-new"></span>`fn new(debug_line_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugLine` instance from the data in the `.debug_line`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_line` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugLine, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_line_section_somehow = || &buf;
-
   let debug_line = DebugLine::new(read_debug_line_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -7869,11 +7330,8 @@ found in the `.debug_line` section.
 - <span id="debugline-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugLine<R>`
@@ -7916,7 +7374,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:168-177`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L168-L177)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:168-177`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L168-L177)*
 
 Executes a `LineProgram` to iterate over the rows in the matrix of line number information.
 
@@ -7933,29 +7391,19 @@ information." -- Section 6.2.1
 - <span id="linerows-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
 
   Get a reference to the header for this state machine's line number
-
   program.
 
 - <span id="linerows-next-row"></span>`fn next_row(&mut self) -> Result<Option<(&LineProgramHeader<R, Offset>, &LineRow)>>` — [`Result`](../index.md#result), [`LineProgramHeader`](#lineprogramheader), [`LineRow`](#linerow)
 
   Parse and execute the next instructions in the line number program until
-
   another row in the line number matrix is computed.
-
   
-
   The freshly computed row is returned as `Ok(Some((header, row)))`.
-
   If the matrix is complete, and there are no more new rows in the line
-
   number matrix, then `Ok(None)` is returned. If there was an error parsing
-
   an instruction, then `Err(e)` is returned.
-
   
-
   Unfortunately, the references mean that this cannot be a
-
   `FallibleIterator`.
 
 #### Trait Implementations
@@ -7995,11 +7443,8 @@ information." -- Section 6.2.1
 - <span id="linerows-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LineRows<R, Program, Offset>`
@@ -8030,7 +7475,7 @@ struct LineInstructions<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:529-531`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L529-L531)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:529-531`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L529-L531)*
 
 An iterator yielding parsed instructions.
 
@@ -8079,11 +7524,8 @@ for more details.
 - <span id="lineinstructions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LineInstructions<R>`
@@ -8126,7 +7568,7 @@ struct LineRow {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:580-594`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L580-L594)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:580-594`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L580-L594)*
 
 A row in the line number program's resulting matrix.
 
@@ -8141,29 +7583,21 @@ Each row is a copy of the registers of the state machine, as defined in section 
 - <span id="linerow-address"></span>`fn address(&self) -> u64`
 
   "The program-counter value corresponding to a machine instruction
-
   generated by the compiler."
 
 - <span id="linerow-op-index"></span>`fn op_index(&self) -> u64`
 
   > An unsigned integer representing the index of an operation within a VLIW
-
   > instruction. The index of the first operation is 0. For non-VLIW
-
   > architectures, this register will always be 0.
-
   >
-
   > The address and op_index registers, taken together, form an operation
-
   > pointer that can reference any individual operation with the
-
   > instruction stream.
 
 - <span id="linerow-file-index"></span>`fn file_index(&self) -> u64`
 
   "An unsigned integer indicating the identity of the source file
-
   corresponding to a machine instruction."
 
 - <span id="linerow-file"></span>`fn file<'header, R: Reader>(&self, header: &'header LineProgramHeader<R>) -> Option<&'header FileEntry<R>>` — [`LineProgramHeader`](#lineprogramheader), [`FileEntry`](#fileentry)
@@ -8173,103 +7607,72 @@ Each row is a copy of the registers of the state machine, as defined in section 
 - <span id="linerow-line"></span>`fn line(&self) -> Option<NonZeroU64>`
 
   "An unsigned integer indicating a source line number. Lines are numbered
-
   beginning at 1. The compiler may emit the value 0 in cases where an
-
   instruction cannot be attributed to any source line."
-
   Line number values of 0 are represented as `None`.
 
 - <span id="linerow-column"></span>`fn column(&self) -> ColumnType` — [`ColumnType`](#columntype)
 
   "An unsigned integer indicating a column number within a source
-
   line. Columns are numbered beginning at 1. The value 0 is reserved to
-
   indicate that a statement begins at the “left edge” of the line."
 
 - <span id="linerow-is-stmt"></span>`fn is_stmt(&self) -> bool`
 
   "A boolean indicating that the current instruction is a recommended
-
   breakpoint location. A recommended breakpoint location is intended to
-
   “represent” a line, a statement and/or a semantically distinct subpart
-
   of a statement."
 
 - <span id="linerow-basic-block"></span>`fn basic_block(&self) -> bool`
 
   "A boolean indicating that the current instruction is the beginning of a
-
   basic block."
 
 - <span id="linerow-end-sequence"></span>`fn end_sequence(&self) -> bool`
 
   "A boolean indicating that the current address is that of the first byte
-
   after the end of a sequence of target machine instructions. end_sequence
-
   terminates a sequence of lines; therefore other information in the same
-
   row is not meaningful."
 
 - <span id="linerow-prologue-end"></span>`fn prologue_end(&self) -> bool`
 
   "A boolean indicating that the current address is one (of possibly many)
-
   where execution should be suspended for an entry breakpoint of a
-
   function."
 
 - <span id="linerow-epilogue-begin"></span>`fn epilogue_begin(&self) -> bool`
 
   "A boolean indicating that the current address is one (of possibly many)
-
   where execution should be suspended for an exit breakpoint of a
-
   function."
 
 - <span id="linerow-isa"></span>`fn isa(&self) -> u64`
 
   Tag for the current instruction set architecture.
-
   
-
   > An unsigned integer whose value encodes the applicable instruction set
-
   > architecture for the current instruction.
-
   >
-
   > The encoding of instruction sets should be shared by all users of a
-
   > given architecture. It is recommended that this encoding be defined by
-
   > the ABI authoring committee for each architecture.
 
 - <span id="linerow-discriminator"></span>`fn discriminator(&self) -> u64`
 
   "An unsigned integer identifying the block to which the current
-
   instruction belongs. Discriminator values are assigned arbitrarily by
-
   the DWARF producer and serve to distinguish among multiple blocks that
-
   may all be associated with the same source file, line, and column. Where
-
   only one block exists for a given source position, the discriminator
-
   value should be zero."
 
 - <span id="linerow-execute"></span>`fn execute<R, Program>(&mut self, instruction: LineInstruction<R>, program: &mut Program) -> Result<bool>` — [`LineInstruction`](#lineinstruction), [`Result`](../index.md#result)
 
   Execute the given instruction, and return true if a new row in the
-
   line number matrix needs to be generated.
-
   
-
   Unknown opcodes are treated as no-ops.
 
 - <span id="linerow-reset"></span>`fn reset<R: Reader>(&mut self, header: &LineProgramHeader<R>)` — [`LineProgramHeader`](#lineprogramheader)
@@ -8331,11 +7734,8 @@ Each row is a copy of the registers of the state machine, as defined in section 
 - <span id="linerow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LineRow`
@@ -8374,7 +7774,7 @@ struct LineSequence<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:977-985`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L977-L985)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:977-985`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L977-L985)*
 
 A sequence within a line number program.  A sequence, as defined in section
 6.2.5 of the standard, is a linear subset of a line number program within
@@ -8429,11 +7829,8 @@ which addresses are monotonically increasing.
 - <span id="linesequence-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LineSequence<R>`
@@ -8480,7 +7877,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:996-1047`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L996-L1047)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:996-1047`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L996-L1047)*
 
 A header for a line number program in the `.debug_line` section, as defined
 in section 6.2.4 of the standard.
@@ -8544,7 +7941,6 @@ in section 6.2.4 of the standard.
 - <span id="lineprogramheader-unit-length"></span>`fn unit_length(&self) -> <R as >::Offset` — [`Reader`](#reader)
 
   Return the length of the line number program and header, not including
-
   the length of the encoded length itself.
 
 - <span id="lineprogramheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../index.md#encoding)
@@ -8558,7 +7954,6 @@ in section 6.2.4 of the standard.
 - <span id="lineprogramheader-header-length"></span>`fn header_length(&self) -> <R as >::Offset` — [`Reader`](#reader)
 
   Get the length of the encoded line number program header, not including
-
   the length of the encoded length itself.
 
 - <span id="lineprogramheader-address-size"></span>`fn address_size(&self) -> u8`
@@ -8576,19 +7971,16 @@ in section 6.2.4 of the standard.
 - <span id="lineprogramheader-minimum-instruction-length"></span>`fn minimum_instruction_length(&self) -> u8`
 
   Get the minimum instruction length any instruction in this header's line
-
   program may have.
 
 - <span id="lineprogramheader-maximum-operations-per-instruction"></span>`fn maximum_operations_per_instruction(&self) -> u8`
 
   Get the maximum number of operations each instruction in this header's
-
   line program may have.
 
 - <span id="lineprogramheader-default-is-stmt"></span>`fn default_is_stmt(&self) -> bool`
 
   Get the default value of the `is_stmt` register for this header's line
-
   program.
 
 - <span id="lineprogramheader-line-base"></span>`fn line_base(&self) -> i8`
@@ -8606,7 +7998,6 @@ in section 6.2.4 of the standard.
 - <span id="lineprogramheader-standard-opcode-lengths"></span>`fn standard_opcode_lengths(&self) -> &R`
 
   An array of `u8` that specifies the number of LEB128 operands for
-
   each of the standard opcodes.
 
 - <span id="lineprogramheader-directory-entry-format"></span>`fn directory_entry_format(&self) -> &[FileEntryFormat]` — [`FileEntryFormat`](#fileentryformat)
@@ -8616,19 +8007,14 @@ in section 6.2.4 of the standard.
 - <span id="lineprogramheader-include-directories"></span>`fn include_directories(&self) -> &[AttributeValue<R, Offset>]` — [`AttributeValue`](#attributevalue)
 
   Get the set of include directories for this header's line program.
-
   
-
   For DWARF version <= 4, the compilation's current directory is not included
-
   in the return value, but is implicitly considered to be in the set per spec.
 
 - <span id="lineprogramheader-directory"></span>`fn directory(&self, directory: u64) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](#attributevalue)
 
   The include directory with the given directory index.
-
   
-
   A directory index of 0 corresponds to the compilation unit directory.
 
 - <span id="lineprogramheader-file-name-entry-format"></span>`fn file_name_entry_format(&self) -> &[FileEntryFormat]` — [`FileEntryFormat`](#fileentryformat)
@@ -8638,21 +8024,15 @@ in section 6.2.4 of the standard.
 - <span id="lineprogramheader-file-has-timestamp"></span>`fn file_has_timestamp(&self) -> bool`
 
   Return true if the file entries may have valid timestamps.
-
   
-
   Only returns false if we definitely know that all timestamp fields
-
   are invalid.
 
 - <span id="lineprogramheader-file-has-size"></span>`fn file_has_size(&self) -> bool`
 
   Return true if the file entries may have valid sizes.
-
   
-
   Only returns false if we definitely know that all size fields
-
   are invalid.
 
 - <span id="lineprogramheader-file-has-md5"></span>`fn file_has_md5(&self) -> bool`
@@ -8670,57 +8050,35 @@ in section 6.2.4 of the standard.
 - <span id="lineprogramheader-file"></span>`fn file(&self, file: u64) -> Option<&FileEntry<R, Offset>>` — [`FileEntry`](#fileentry)
 
   The source file with the given file index.
-
   
-
   A file index of 0 corresponds to the compilation unit file.
-
   Note that a file index of 0 is invalid for DWARF version <= 4,
-
   but we support it anyway.
 
 - <span id="lineprogramheader-raw-program-buf"></span>`fn raw_program_buf(&self) -> R`
 
   Get the raw, un-parsed `EndianSlice` containing this header's line number
-
   program.
-
   
-
   ```rust
-
   fn foo() {
-
   use gimli::{LineProgramHeader, EndianSlice, NativeEndian};
-
   
-
   fn get_line_number_program_header<'a>() -> LineProgramHeader<EndianSlice<'a, NativeEndian>> {
-
       // Get a line number program header from some offset in a
-
       // `.debug_line` section...
-
     unimplemented!()
-
   }
-
   
-
   let header = get_line_number_program_header();
-
   let raw_program = header.raw_program_buf();
-
   println!("The length of the raw program in bytes is {}", raw_program.len());
-
   }
-
   ```
 
 - <span id="lineprogramheader-instructions"></span>`fn instructions(&self) -> LineInstructions<R>` — [`LineInstructions`](#lineinstructions)
 
   Iterate over the instructions in this header's line number program, parsing
-
   them as we go.
 
 - <span id="lineprogramheader-parse"></span>`fn parse(input: &mut R, offset: DebugLineOffset<Offset>, address_size: u8, comp_dir: Option<R>, comp_name: Option<R>) -> Result<LineProgramHeader<R, Offset>>` — [`DebugLineOffset`](../index.md#debuglineoffset), [`Result`](../index.md#result), [`LineProgramHeader`](#lineprogramheader)
@@ -8764,11 +8122,8 @@ in section 6.2.4 of the standard.
 - <span id="lineprogramheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for LineProgramHeader<R, Offset>`
@@ -8808,7 +8163,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1411-1417`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L1411-L1417)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1411-1417`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1411-L1417)*
 
 A line number program that has not been run to completion.
 
@@ -8821,49 +8176,29 @@ A line number program that has not been run to completion.
 - <span id="incompletelineprogram-rows"></span>`fn rows(self) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`LineRows`](#linerows), [`IncompleteLineProgram`](#incompletelineprogram)
 
   Construct a new `LineRows` for executing this program to iterate
-
   over rows in the line information matrix.
 
 - <span id="incompletelineprogram-sequences"></span>`fn sequences(self) -> Result<(CompleteLineProgram<R, Offset>, Vec<LineSequence<R>>)>` — [`Result`](../index.md#result), [`CompleteLineProgram`](#completelineprogram), [`LineSequence`](#linesequence)
 
   Execute the line number program, completing the `IncompleteLineProgram`
-
   into a `CompleteLineProgram` and producing an array of sequences within
-
   the line number program that can later be used with
-
   `CompleteLineProgram::resume_from`.
-
   
-
   ```rust
-
   fn foo() {
-
   use gimli::{IncompleteLineProgram, EndianSlice, NativeEndian};
-
   
-
   fn get_line_number_program<'a>() -> IncompleteLineProgram<EndianSlice<'a, NativeEndian>> {
-
       // Get a line number program from some offset in a
-
       // `.debug_line` section...
-
     unimplemented!()
-
   }
-
   
-
   let program = get_line_number_program();
-
   let (program, sequences) = program.sequences().unwrap();
-
   println!("There are {} sequences in this line number program", sequences.len());
-
   }
-
   ```
 
 #### Trait Implementations
@@ -8905,11 +8240,8 @@ A line number program that has not been run to completion.
 - <span id="incompletelineprogram-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> LineProgram for IncompleteLineProgram<R, Offset>`
@@ -8955,7 +8287,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1504-1510`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L1504-L1510)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1504-1510`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1504-L1510)*
 
 A line number program that has previously been run to completion.
 
@@ -8968,45 +8300,25 @@ A line number program that has previously been run to completion.
 - <span id="completelineprogram-resume-from"></span>`fn resume_from<'program>(self: &'program Self, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`LineSequence`](#linesequence), [`LineRows`](#linerows), [`CompleteLineProgram`](#completelineprogram)
 
   Construct a new `LineRows` for executing the subset of the line
-
   number program identified by 'sequence' and  generating the line information
-
   matrix.
-
   
-
   ```rust
-
   fn foo() {
-
   use gimli::{IncompleteLineProgram, EndianSlice, NativeEndian};
-
   
-
   fn get_line_number_program<'a>() -> IncompleteLineProgram<EndianSlice<'a, NativeEndian>> {
-
       // Get a line number program from some offset in a
-
       // `.debug_line` section...
-
     unimplemented!()
-
   }
-
   
-
   let program = get_line_number_program();
-
   let (program, sequences) = program.sequences().unwrap();
-
   for sequence in &sequences {
-
       let mut sm = program.resume_from(sequence);
-
   }
-
   }
-
   ```
 
 #### Trait Implementations
@@ -9048,11 +8360,8 @@ A line number program that has previously been run to completion.
 - <span id="completelineprogram-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> LineProgram for &'program CompleteLineProgram<R, Offset>`
@@ -9103,7 +8412,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1553-1564`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L1553-L1564)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1553-1564`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1553-L1564)*
 
 An entry in the `LineProgramHeader`'s `file_names` set.
 
@@ -9114,51 +8423,34 @@ An entry in the `LineProgramHeader`'s `file_names` set.
 - <span id="fileentry-path-name"></span>`fn path_name(&self) -> AttributeValue<R, Offset>` — [`AttributeValue`](#attributevalue)
 
   > A slice containing the full or relative path name of
-
   > a source file. If the entry contains a file name or a relative path
-
   > name, the file is located relative to either the compilation directory
-
   > (as specified by the DW_AT_comp_dir attribute given in the compilation
-
   > unit) or one of the directories in the include_directories section.
 
 - <span id="fileentry-directory-index"></span>`fn directory_index(&self) -> u64`
 
   > An unsigned LEB128 number representing the directory index of the
-
   > directory in which the file was found.
-
   >
-
   > ...
-
   >
-
   > The directory index represents an entry in the include_directories
-
   > section of the line number program header. The index is 0 if the file
-
   > was found in the current directory of the compilation, 1 if it was found
-
   > in the first directory in the include_directories section, and so
-
   > on. The directory index is ignored for file names that represent full
-
   > path names.
 
 - <span id="fileentry-directory"></span>`fn directory(&self, header: &LineProgramHeader<R>) -> Option<AttributeValue<R, Offset>>` — [`LineProgramHeader`](#lineprogramheader), [`AttributeValue`](#attributevalue)
 
   Get this file's directory.
-
   
-
   A directory index of 0 corresponds to the compilation unit directory.
 
 - <span id="fileentry-timestamp"></span>`fn timestamp(&self) -> u64`
 
   The implementation-defined time of last modification of the file,
-
   or 0 if not available.
 
 - <span id="fileentry-size"></span>`fn size(&self) -> u64`
@@ -9168,23 +8460,16 @@ An entry in the `LineProgramHeader`'s `file_names` set.
 - <span id="fileentry-md5"></span>`fn md5(&self) -> &[u8; 16]`
 
   A 16-byte MD5 digest of the file contents.
-
   
-
   Only valid if `LineProgramHeader::file_has_md5` returns `true`.
 
 - <span id="fileentry-source"></span>`fn source(&self) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](#attributevalue)
 
   The source code of this file. (UTF-8 source text string with "\n" line
-
   endings).
-
   
-
   Note: For DWARF v5 files this may return an empty attribute that
-
   indicates that no source code is available, which this function
-
   represents as `Some(<zero-length attr>)`.
 
 #### Trait Implementations
@@ -9228,11 +8513,8 @@ An entry in the `LineProgramHeader`'s `file_names` set.
 - <span id="fileentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for FileEntry<R, Offset>`
@@ -9270,7 +8552,7 @@ struct FileEntryFormat {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1667-1673`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L1667-L1673)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1667-1673`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1667-L1673)*
 
 The format of a component of an include directory or file name entry.
 
@@ -9329,11 +8611,8 @@ The format of a component of an include directory or file name entry.
 - <span id="fileentryformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for FileEntryFormat`
@@ -9370,7 +8649,7 @@ struct DebugLoc<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:14-16`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L14-L16)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:14-16`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L14-L16)*
 
 The raw contents of the `.debug_loc` section.
 
@@ -9379,31 +8658,18 @@ The raw contents of the `.debug_loc` section.
 - <span id="debugloc-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugLoc` instance from the data in the `.debug_loc`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_loc` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugLoc, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_loc_section_somehow = || &buf;
-
   let debug_loc = DebugLoc::new(read_debug_loc_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -9449,11 +8715,8 @@ The raw contents of the `.debug_loc` section.
 - <span id="debugloc-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugLoc<R>`
@@ -9490,7 +8753,7 @@ struct DebugLocLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:74-76`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L74-L76)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:74-76`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L74-L76)*
 
 The `DebugLocLists` struct represents the DWARF data
 found in the `.debug_loclists` section.
@@ -9500,31 +8763,18 @@ found in the `.debug_loclists` section.
 - <span id="debugloclists-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugLocLists` instance from the data in the `.debug_loclists`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_loclists` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugLocLists, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_loclists_section_somehow = || &buf;
-
   let debug_loclists = DebugLocLists::new(read_debug_loclists_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -9570,11 +8820,8 @@ found in the `.debug_loclists` section.
 - <span id="debugloclists-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugLocLists<R>`
@@ -9612,7 +8859,7 @@ struct LocationLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:156-159`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L156-L159)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:156-159`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L156-L159)*
 
 The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
@@ -9621,7 +8868,6 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 - <span id="locationlists-new"></span>`fn new(debug_loc: DebugLoc<R>, debug_loclists: DebugLocLists<R>) -> LocationLists<R>` — [`DebugLoc`](#debugloc), [`DebugLocLists`](#debugloclists), [`LocationLists`](#locationlists)
 
   Construct a new `LocationLists` instance from the data in the `.debug_loc` and
-
   `.debug_loclists` sections.
 
 #### Trait Implementations
@@ -9667,11 +8913,8 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 - <span id="locationlists-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LocationLists<R>`
@@ -9704,7 +8947,7 @@ struct RawLocListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:329-333`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L329-L333)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:329-333`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L329-L333)*
 
 A raw iterator over a location list.
 
@@ -9750,11 +8993,8 @@ such as handling base addresses.
 - <span id="rawloclistiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RawLocListIter<R>`
@@ -9780,7 +9020,7 @@ struct LocListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:536-541`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L536-L541)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:536-541`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L536-L541)*
 
 An iterator over a location list.
 
@@ -9829,11 +9069,8 @@ and already adjusted for the base address.
 - <span id="loclistiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for LocListIter<R>`
@@ -9857,7 +9094,7 @@ struct LocationListEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:679-685`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L679-L685)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:679-685`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L679-L685)*
 
 A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 
@@ -9916,11 +9153,8 @@ A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 - <span id="locationlistentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for LocationListEntry<R>`
@@ -9957,7 +9191,7 @@ struct DebugMacinfo<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:11-13`](../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L11-L13)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:11-13`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L11-L13)*
 
 The raw contents of the `.debug_macinfo` section.
 
@@ -9966,31 +9200,18 @@ The raw contents of the `.debug_macinfo` section.
 - <span id="debugmacinfo-new"></span>`fn new(macinfo_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugMacinfo` instance from the data in the `.debug_macinfo`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_macinfo` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugMacinfo, LittleEndian};
-
   
-
   let buf = [1, 0, 95, 95, 83, 84, 68, 67, 95, 95, 32, 49, 0];
-
   let read_section_somehow = || &buf;
-
   let debug_str = DebugMacinfo::new(read_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -10036,11 +9257,8 @@ The raw contents of the `.debug_macinfo` section.
 - <span id="debugmacinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugMacinfo<R>`
@@ -10077,7 +9295,7 @@ struct DebugMacro<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:104-106`](../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L104-L106)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:104-106`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L104-L106)*
 
 The raw contents of the `.debug_macro` section.
 
@@ -10086,31 +9304,18 @@ The raw contents of the `.debug_macro` section.
 - <span id="debugmacro-new"></span>`fn new(macro_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugMacro` instance from the data in the `.debug_macro`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_macro` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugMacro, LittleEndian};
-
   
-
   let buf = [1, 0, 95, 95, 83, 84, 68, 67, 95, 95, 32, 49, 0];
-
   let read_section_somehow = || &buf;
-
   let debug_str = DebugMacro::new(read_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -10156,11 +9361,8 @@ The raw contents of the `.debug_macro` section.
 - <span id="debugmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugMacro<R>`
@@ -10199,7 +9401,7 @@ struct MacroUnitHeader<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:197-202`](../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L197-L202)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:197-202`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L197-L202)*
 
 #### Fields
 
@@ -10256,11 +9458,8 @@ struct MacroUnitHeader<R: Reader> {
 - <span id="macrounitheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MacroUnitHeader<R>`
@@ -10293,7 +9492,7 @@ struct MacroIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:327-331`](../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L327-L331)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:327-331`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L327-L331)*
 
 Iterator over the entries in the `.debug_macro` section.
 
@@ -10340,11 +9539,8 @@ Iterator over the entries in the `.debug_macro` section.
 - <span id="macroiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MacroIter<R>`
@@ -10380,7 +9576,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:356-378`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L356-L378)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:356-378`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L356-L378)*
 
 The description of a single piece of the result of a DWARF
 expression.
@@ -10449,11 +9645,8 @@ expression.
 - <span id="piece-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for Piece<R, Offset>`
@@ -10488,7 +9681,7 @@ expression.
 struct Expression<R: Reader>(R);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:924`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L924)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:924`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L924)*
 
 The bytecode for a DWARF expression or location description.
 
@@ -10497,39 +9690,22 @@ The bytecode for a DWARF expression or location description.
 - <span id="expression-evaluation"></span>`fn evaluation(self, encoding: Encoding) -> Evaluation<R>` — [`Encoding`](../index.md#encoding), [`Evaluation`](#evaluation)
 
   Create an evaluation for this expression.
-
   
-
   The `encoding` is determined by the
-
   [`CompilationUnitHeader`](#compilationunitheader) or
-
   [`TypeUnitHeader`](#typeunitheader) that this expression
-
   relates to.
-
   
-
   # Examples
-
   ```rust,no_run
-
   use gimli::Expression;
-
   let endian = gimli::LittleEndian;
-
   let debug_info = gimli::DebugInfo::from(gimli::EndianSlice::new(&[], endian));
-
   let unit = debug_info.units().next().unwrap().unwrap();
-
   let bytecode = gimli::EndianSlice::new(&[], endian);
-
   let expression = gimli::Expression(bytecode);
-
   let mut eval = expression.evaluation(unit.encoding());
-
   let mut result = eval.evaluate().unwrap();
-
   ```
 
 - <span id="expression-operations"></span>`fn operations(self, encoding: Encoding) -> OperationIter<R>` — [`Encoding`](../index.md#encoding), [`OperationIter`](#operationiter)
@@ -10581,11 +9757,8 @@ The bytecode for a DWARF expression or location description.
 - <span id="expression-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for Expression<R>`
@@ -10623,7 +9796,7 @@ struct OperationIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:962-965`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L962-L965)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:962-965`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L962-L965)*
 
 An iterator for the operations in an expression.
 
@@ -10676,11 +9849,8 @@ An iterator for the operations in an expression.
 - <span id="operationiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for OperationIter<R>`
@@ -10722,7 +9892,7 @@ struct Evaluation<R: Reader, S: EvaluationStorage<R>> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:1106-1131`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L1106-L1131)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:1106-1131`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L1106-L1131)*
 
 A DWARF expression evaluator.
 
@@ -10775,21 +9945,15 @@ println!("{:?}", result);
 - <span id="evaluation-new"></span>`fn new(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../index.md#encoding)
 
   Create a new DWARF expression evaluator.
-
   
-
   The new evaluator is created without an initial value, without
-
   an object address, and without a maximum number of iterations.
 
 - <span id="evaluation-result"></span>`fn result(self) -> Vec<Piece<R>>` — [`Piece`](#piece)
 
   Get the result of this `Evaluation`.
-
   
-
   # Panics
-
   Panics if this `Evaluation` has not been driven to completion.
 
 #### Trait Implementations
@@ -10821,11 +9985,8 @@ println!("{:?}", result);
 - <span id="evaluation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Evaluation<R, S>`
@@ -10850,7 +10011,7 @@ struct PubNamesEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:8-12`](../../../.source_1765633015/gimli-0.32.3/src/read/pubnames.rs#L8-L12)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:8-12`](../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L8-L12)*
 
 A single parsed pubname.
 
@@ -10863,13 +10024,11 @@ A single parsed pubname.
 - <span id="pubnamesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../index.md#debuginfooffset), [`Reader`](#reader)
 
   Returns the offset into the .debug_info section for the header of the compilation unit
-
   which contains this name.
 
 - <span id="pubnamesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../index.md#unitoffset), [`Reader`](#reader)
 
   Returns the offset into the compilation unit for the debugging information entry which
-
   has this name.
 
 #### Trait Implementations
@@ -10909,11 +10068,8 @@ A single parsed pubname.
 - <span id="pubnamesentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Reader> PubStuffEntry for PubNamesEntry<R>`
@@ -10946,7 +10102,7 @@ A single parsed pubname.
 struct DebugPubNames<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:50`](../../../.source_1765633015/gimli-0.32.3/src/read/pubnames.rs#L50)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:50`](../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L50)*
 
 The `DebugPubNames` struct represents the DWARF public names information
 found in the `.debug_pubnames` section.
@@ -10956,33 +10112,19 @@ found in the `.debug_pubnames` section.
 - <span id="debugpubnames-new"></span>`fn new(debug_pubnames_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugPubNames` instance from the data in the `.debug_pubnames`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_pubnames` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugPubNames, LittleEndian};
-
   
-
   let buf = [];
-
   let read_debug_pubnames_section_somehow = || &buf;
-
   let debug_pubnames =
-
       DebugPubNames::new(read_debug_pubnames_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -11022,11 +10164,8 @@ found in the `.debug_pubnames` section.
 - <span id="debugpubnames-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Reader> Section for DebugPubNames<R>`
@@ -11061,7 +10200,7 @@ found in the `.debug_pubnames` section.
 struct PubNamesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:118`](../../../.source_1765633015/gimli-0.32.3/src/read/pubnames.rs#L118)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:118`](../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L118)*
 
 An iterator over the pubnames from a `.debug_pubnames` section.
 
@@ -11073,17 +10212,11 @@ Can be [used with
 - <span id="pubnamesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubNamesEntry<R>>>` — [`Result`](../index.md#result), [`PubNamesEntry`](#pubnamesentry)
 
   Advance the iterator and return the next pubname.
-
   
-
   Returns the newly parsed pubname as `Ok(Some(pubname))`. Returns
-
   `Ok(None)` when iteration is complete and all pubnames have already been
-
   parsed and yielded. If an error occurs while parsing the next pubname,
-
   then this error is returned as `Err(e)`, and all subsequent calls return
-
   `Ok(None)`.
 
 #### Trait Implementations
@@ -11123,11 +10256,8 @@ Can be [used with
 - <span id="pubnamesentryiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PubNamesEntryIter<R>`
@@ -11160,7 +10290,7 @@ struct PubTypesEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../.source_1765633015/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../.source_1765894658/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
 
 A single parsed pubtype.
 
@@ -11173,13 +10303,11 @@ A single parsed pubtype.
 - <span id="pubtypesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../index.md#debuginfooffset), [`Reader`](#reader)
 
   Returns the offset into the .debug_info section for the header of the compilation unit
-
   which contains the type with this name.
 
 - <span id="pubtypesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../index.md#unitoffset), [`Reader`](#reader)
 
   Returns the offset into the compilation unit for the debugging information entry which
-
   the type with this name.
 
 #### Trait Implementations
@@ -11219,11 +10347,8 @@ A single parsed pubtype.
 - <span id="pubtypesentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Reader> PubStuffEntry for PubTypesEntry<R>`
@@ -11256,7 +10381,7 @@ A single parsed pubtype.
 struct DebugPubTypes<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../.source_1765633015/gimli-0.32.3/src/read/pubtypes.rs#L50)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../.source_1765894658/gimli-0.32.3/src/read/pubtypes.rs#L50)*
 
 The `DebugPubTypes` struct represents the DWARF public types information
 found in the `.debug_info` section.
@@ -11266,33 +10391,19 @@ found in the `.debug_info` section.
 - <span id="debugpubtypes-new"></span>`fn new(debug_pubtypes_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugPubTypes` instance from the data in the `.debug_pubtypes`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_pubtypes` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugPubTypes, LittleEndian};
-
   
-
   let buf = [];
-
   let read_debug_pubtypes_somehow = || &buf;
-
   let debug_pubtypes =
-
       DebugPubTypes::new(read_debug_pubtypes_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -11332,11 +10443,8 @@ found in the `.debug_info` section.
 - <span id="debugpubtypes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Reader> Section for DebugPubTypes<R>`
@@ -11371,7 +10479,7 @@ found in the `.debug_info` section.
 struct PubTypesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../.source_1765633015/gimli-0.32.3/src/read/pubtypes.rs#L118)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../.source_1765894658/gimli-0.32.3/src/read/pubtypes.rs#L118)*
 
 An iterator over the pubtypes from a `.debug_pubtypes` section.
 
@@ -11383,17 +10491,11 @@ Can be [used with
 - <span id="pubtypesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubTypesEntry<R>>>` — [`Result`](../index.md#result), [`PubTypesEntry`](#pubtypesentry)
 
   Advance the iterator and return the next pubtype.
-
   
-
   Returns the newly parsed pubtype as `Ok(Some(pubtype))`. Returns
-
   `Ok(None)` when iteration is complete and all pubtypes have already been
-
   parsed and yielded. If an error occurs while parsing the next pubtype,
-
   then this error is returned as `Err(e)`, and all subsequent calls return
-
   `Ok(None)`.
 
 #### Trait Implementations
@@ -11433,11 +10535,8 @@ Can be [used with
 - <span id="pubtypesentryiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PubTypesEntryIter<R>`
@@ -11468,7 +10567,7 @@ struct DebugRanges<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:14-16`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L14-L16)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:14-16`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L14-L16)*
 
 The raw contents of the `.debug_ranges` section.
 
@@ -11477,31 +10576,18 @@ The raw contents of the `.debug_ranges` section.
 - <span id="debugranges-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugRanges` instance from the data in the `.debug_ranges`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_ranges` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugRanges, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_ranges_section_somehow = || &buf;
-
   let debug_ranges = DebugRanges::new(read_debug_ranges_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -11547,11 +10633,8 @@ The raw contents of the `.debug_ranges` section.
 - <span id="debugranges-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugRanges<R>`
@@ -11588,7 +10671,7 @@ struct DebugRngLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:74-76`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L74-L76)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:74-76`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L74-L76)*
 
 The `DebugRngLists` struct represents the contents of the
 `.debug_rnglists` section.
@@ -11598,33 +10681,19 @@ The `DebugRngLists` struct represents the contents of the
 - <span id="debugrnglists-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugRngLists` instance from the data in the
-
   `.debug_rnglists` section.
-
   
-
   It is the caller's responsibility to read the `.debug_rnglists`
-
   section and present it as a `&[u8]` slice. That means using some ELF
-
   loader on Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugRngLists, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_rnglists_section_somehow = || &buf;
-
   let debug_rnglists =
-
       DebugRngLists::new(read_debug_rnglists_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -11670,11 +10739,8 @@ The `DebugRngLists` struct represents the contents of the
 - <span id="debugrnglists-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugRngLists<R>`
@@ -11712,7 +10778,7 @@ struct RangeLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:158-161`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L158-L161)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:158-161`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L158-L161)*
 
 The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
@@ -11721,7 +10787,6 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 - <span id="rangelists-new"></span>`fn new(debug_ranges: DebugRanges<R>, debug_rnglists: DebugRngLists<R>) -> RangeLists<R>` — [`DebugRanges`](#debugranges), [`DebugRngLists`](#debugrnglists), [`RangeLists`](#rangelists)
 
   Construct a new `RangeLists` instance from the data in the `.debug_ranges` and
-
   `.debug_rnglists` sections.
 
 - <span id="rangelists-debug-ranges"></span>`fn debug_ranges(&self) -> &DebugRanges<R>` — [`DebugRanges`](#debugranges)
@@ -11731,9 +10796,7 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 - <span id="rangelists-set-debug-ranges"></span>`fn set_debug_ranges(&mut self, debug_ranges: DebugRanges<R>)` — [`DebugRanges`](#debugranges)
 
   Replace the `.debug_ranges` section.
-
   
-
   This is useful for `.dwo` files when using the GNU split-dwarf extension to DWARF 4.
 
 - <span id="rangelists-debug-rnglists"></span>`fn debug_rnglists(&self) -> &DebugRngLists<R>` — [`DebugRngLists`](#debugrnglists)
@@ -11783,11 +10846,8 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 - <span id="rangelists-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RangeLists<R>`
@@ -11820,7 +10880,7 @@ struct RawRngListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:306-310`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L306-L310)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:306-310`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L306-L310)*
 
 A raw iterator over an address range list.
 
@@ -11866,11 +10926,8 @@ such as handling base addresses.
 - <span id="rawrnglistiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RawRngListIter<R>`
@@ -11896,7 +10953,7 @@ struct RngListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:473-478`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L473-L478)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:473-478`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L473-L478)*
 
 An iterator over an address range list.
 
@@ -11945,11 +11002,8 @@ and already adjusted for the base address.
 - <span id="rnglistiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RngListIter<R>`
@@ -11973,7 +11027,7 @@ struct RawRange {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:598-604`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L598-L604)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:598-604`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L598-L604)*
 
 A raw address range from the `.debug_ranges` section.
 
@@ -11996,11 +11050,8 @@ A raw address range from the `.debug_ranges` section.
 - <span id="rawrange-is-base-address"></span>`fn is_base_address(&self, address_size: u8) -> bool`
 
   Check if this is a base address selection entry.
-
   
-
   A base address selection entry changes the base address that subsequent
-
   range entries are relative to.
 
 - <span id="rawrange-parse"></span>`fn parse<R: Reader>(input: &mut R, address_size: u8) -> Result<RawRange>` — [`Result`](../index.md#result), [`RawRange`](rnglists/index.md#rawrange)
@@ -12052,11 +11103,8 @@ A raw address range from the `.debug_ranges` section.
 - <span id="rawrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RawRange`
@@ -12094,7 +11142,7 @@ struct Range {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:634-640`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L634-L640)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:634-640`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L634-L640)*
 
 An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges` sections.
 
@@ -12159,11 +11207,8 @@ An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges
 - <span id="range-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Range`
@@ -12208,7 +11253,7 @@ struct DebugStr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/str.rs:12-14`](../../../.source_1765633015/gimli-0.32.3/src/read/str.rs#L12-L14)*
+*Defined in [`gimli-0.32.3/src/read/str.rs:12-14`](../../../.source_1765894658/gimli-0.32.3/src/read/str.rs#L12-L14)*
 
 The `DebugStr` struct represents the DWARF strings
 found in the `.debug_str` section.
@@ -12218,31 +11263,18 @@ found in the `.debug_str` section.
 - <span id="debugstr-new"></span>`fn new(debug_str_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugStr` instance from the data in the `.debug_str`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_str` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugStr, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_str_section_somehow = || &buf;
-
   let debug_str = DebugStr::new(read_debug_str_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -12288,11 +11320,8 @@ found in the `.debug_str` section.
 - <span id="debugstr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugStr<R>`
@@ -12329,7 +11358,7 @@ struct DebugStrOffsets<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/str.rs:91-93`](../../../.source_1765633015/gimli-0.32.3/src/read/str.rs#L91-L93)*
+*Defined in [`gimli-0.32.3/src/read/str.rs:91-93`](../../../.source_1765894658/gimli-0.32.3/src/read/str.rs#L91-L93)*
 
 The raw contents of the `.debug_str_offsets` section.
 
@@ -12338,29 +11367,17 @@ The raw contents of the `.debug_str_offsets` section.
 - <span id="debugstroffsets-get-str-offset"></span>`fn get_str_offset(&self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../index.md#format), [`DebugStrOffsetsBase`](../index.md#debugstroffsetsbase), [`Reader`](#reader), [`DebugStrOffsetsIndex`](../index.md#debugstroffsetsindex), [`Result`](../index.md#result), [`DebugStrOffset`](../index.md#debugstroffset)
 
   Returns the `.debug_str` offset at the given `base` and `index`.
-
   
-
   A set of entries in the `.debug_str_offsets` section consists of a header
-
   followed by a series of string table offsets.
-
   
-
   The `base` must be the `DW_AT_str_offsets_base` value from the compilation unit DIE.
-
   This is an offset that points to the first entry following the header.
-
   
-
   The `index` is the value of a `DW_FORM_strx` attribute.
-
   
-
   The `format` must be the DWARF format of the compilation unit. This format must
-
   match the header. However, note that we do not parse the header to validate this,
-
   since locating the header is unreliable, and the GNU extensions do not emit it.
 
 #### Trait Implementations
@@ -12406,11 +11423,8 @@ The raw contents of the `.debug_str_offsets` section.
 - <span id="debugstroffsets-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugStrOffsets<R>`
@@ -12447,7 +11461,7 @@ struct DebugLineStr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/str.rs:184-186`](../../../.source_1765633015/gimli-0.32.3/src/read/str.rs#L184-L186)*
+*Defined in [`gimli-0.32.3/src/read/str.rs:184-186`](../../../.source_1765894658/gimli-0.32.3/src/read/str.rs#L184-L186)*
 
 The `DebugLineStr` struct represents the DWARF strings
 found in the `.debug_line_str` section.
@@ -12457,31 +11471,18 @@ found in the `.debug_line_str` section.
 - <span id="debuglinestr-new"></span>`fn new(debug_line_str_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugLineStr` instance from the data in the `.debug_line_str`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_line_str` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugLineStr, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_line_str_section_somehow = || &buf;
-
   let debug_str = DebugLineStr::new(read_debug_line_str_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -12527,11 +11528,8 @@ found in the `.debug_line_str` section.
 - <span id="debuglinestr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugLineStr<R>`
@@ -12568,7 +11566,7 @@ struct DebugInfo<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:82-84`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L82-L84)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:82-84`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L82-L84)*
 
 The `DebugInfo` struct represents the DWARF debugging information found in
 the `.debug_info` section.
@@ -12578,31 +11576,18 @@ the `.debug_info` section.
 - <span id="debuginfo-new"></span>`fn new(debug_info_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugInfo` instance from the data in the `.debug_info`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_info` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugInfo, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_info_section_somehow = || &buf;
-
   let debug_info = DebugInfo::new(read_debug_info_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -12648,11 +11633,8 @@ the `.debug_info` section.
 - <span id="debuginfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugInfo<R>`
@@ -12690,7 +11672,7 @@ struct DebugInfoUnitHeadersIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:179-182`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L179-L182)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:179-182`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L179-L182)*
 
 An iterator over the units of a .debug_info section.
 
@@ -12740,11 +11722,8 @@ See the [documentation on
 - <span id="debuginfounitheadersiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DebugInfoUnitHeadersIter<R>`
@@ -12783,7 +11762,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:303-314`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L303-L314)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:303-314`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L303-L314)*
 
 The common fields for the headers of compilation units and
 type units.
@@ -12835,11 +11814,8 @@ type units.
 - <span id="unitheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for UnitHeader<R, Offset>`
@@ -12883,7 +11859,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:647-657`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L647-L657)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:647-657`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L647-L657)*
 
 A Debugging Information Entry (DIE).
 
@@ -12906,129 +11882,67 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 - <span id="debugginginformationentry-tag"></span>`fn tag(&self) -> constants::DwTag` — [`DwTag`](../index.md#dwtag)
 
   Get this entry's `DW_TAG_whatever` tag.
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, DebugInfo, LittleEndian};
-
   let info_buf = [
-
       // Comilation unit header
-
   
-
       // 32-bit unit length = 12
-
       0x0c, 0x00, 0x00, 0x00,
-
       // Version 4
-
       0x04, 0x00,
-
       // debug_abbrev_offset
-
       0x00, 0x00, 0x00, 0x00,
-
       // Address size
-
       0x04,
-
   
-
       // DIEs
-
   
-
       // Abbreviation code
-
       0x01,
-
       // Attribute of form DW_FORM_string = "foo\0"
-
       0x66, 0x6f, 0x6f, 0x00,
-
   ];
-
   let debug_info = DebugInfo::new(&info_buf, LittleEndian);
-
   let abbrev_buf = [
-
       // Code
-
       0x01,
-
       // DW_TAG_subprogram
-
       0x2e,
-
       // DW_CHILDREN_no
-
       0x00,
-
       // Begin attributes
-
         // Attribute name = DW_AT_name
-
         0x03,
-
         // Attribute form = DW_FORM_string
-
         0x08,
-
       // End attributes
-
       0x00,
-
       0x00,
-
       // Null terminator
-
       0x00
-
   ];
-
   let debug_abbrev = DebugAbbrev::new(&abbrev_buf, LittleEndian);
-
   let unit = debug_info.units().next().unwrap().unwrap();
-
   let abbrevs = unit.abbreviations(&debug_abbrev).unwrap();
-
   let mut cursor = unit.entries(&abbrevs);
-
   let (_, entry) = cursor.next_dfs().unwrap().unwrap();
-
   let mut get_some_entry = || entry;
-
   let entry = get_some_entry();
-
   
-
   match entry.tag() {
-
       gimli::DW_TAG_subprogram =>
-
           println!("this entry contains debug info about a function"),
-
       gimli::DW_TAG_inlined_subroutine =>
-
           println!("this entry contains debug info about a particular instance of inlining"),
-
       gimli::DW_TAG_variable =>
-
           println!("this entry contains debug info about a local variable"),
-
       gimli::DW_TAG_formal_parameter =>
-
           println!("this entry contains debug info about a function parameter"),
-
       otherwise =>
-
           println!("this entry is some other kind of data: {:?}", otherwise),
-
   };
-
   ```
 
 - <span id="debugginginformationentry-has-children"></span>`fn has_children(&self) -> bool`
@@ -13038,179 +11952,98 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 - <span id="debugginginformationentry-attrs"></span>`fn attrs<'me>(self: &'me Self) -> AttrsIter<'abbrev, 'me, 'unit, R>` — [`AttrsIter`](#attrsiter)
 
   Iterate over this entry's set of attributes.
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, DebugInfo, LittleEndian};
-
   
-
   // Read the `.debug_info` section.
-
   
-
   let info_buf = [
-
       // Comilation unit header
-
   
-
       // 32-bit unit length = 12
-
       0x0c, 0x00, 0x00, 0x00,
-
       // Version 4
-
       0x04, 0x00,
-
       // debug_abbrev_offset
-
       0x00, 0x00, 0x00, 0x00,
-
       // Address size
-
       0x04,
-
   
-
       // DIEs
-
   
-
       // Abbreviation code
-
       0x01,
-
       // Attribute of form DW_FORM_string = "foo\0"
-
       0x66, 0x6f, 0x6f, 0x00,
-
   ];
-
   let read_debug_info_section_somehow = || &info_buf;
-
   let debug_info = DebugInfo::new(read_debug_info_section_somehow(), LittleEndian);
-
   
-
   // Get the data about the first compilation unit out of the `.debug_info`.
-
   
-
   let unit = debug_info.units().next()
-
       .expect("Should have at least one compilation unit")
-
       .expect("and it should parse ok");
-
   
-
   // Read the `.debug_abbrev` section and parse the
-
   // abbreviations for our compilation unit.
-
   
-
   let abbrev_buf = [
-
       // Code
-
       0x01,
-
       // DW_TAG_subprogram
-
       0x2e,
-
       // DW_CHILDREN_no
-
       0x00,
-
       // Begin attributes
-
         // Attribute name = DW_AT_name
-
         0x03,
-
         // Attribute form = DW_FORM_string
-
         0x08,
-
       // End attributes
-
       0x00,
-
       0x00,
-
       // Null terminator
-
       0x00
-
   ];
-
   let read_debug_abbrev_section_somehow = || &abbrev_buf;
-
   let debug_abbrev = DebugAbbrev::new(read_debug_abbrev_section_somehow(), LittleEndian);
-
   let abbrevs = unit.abbreviations(&debug_abbrev).unwrap();
-
   
-
   // Get the first entry from that compilation unit.
-
   
-
   let mut cursor = unit.entries(&abbrevs);
-
   let (_, entry) = cursor.next_dfs()
-
       .expect("Should parse next entry")
-
       .expect("Should have at least one entry");
-
   
-
   // Finally, print the first entry's attributes.
-
   
-
   let mut attrs = entry.attrs();
-
   while let Some(attr) = attrs.next().unwrap() {
-
       println!("Attribute name = {:?}", attr.name());
-
       println!("Attribute value = {:?}", attr.value());
-
   }
-
   ```
-
   
-
   Can be [used with
-
   `FallibleIterator`](./index.html#using-with-fallibleiterator).
 
 - <span id="debugginginformationentry-attr"></span>`fn attr(&self, name: constants::DwAt) -> Result<Option<Attribute<R>>>` — [`DwAt`](../index.md#dwat), [`Result`](../index.md#result), [`Attribute`](#attribute)
 
   Find the first attribute in this entry which has the given name,
-
   and return it. Returns `Ok(None)` if no attribute is found.
 
 - <span id="debugginginformationentry-attr-value-raw"></span>`fn attr_value_raw(&self, name: constants::DwAt) -> Result<Option<AttributeValue<R>>>` — [`DwAt`](../index.md#dwat), [`Result`](../index.md#result), [`AttributeValue`](#attributevalue)
 
   Find the first attribute in this entry which has the given name,
-
   and return its raw value. Returns `Ok(None)` if no attribute is found.
 
 - <span id="debugginginformationentry-attr-value"></span>`fn attr_value(&self, name: constants::DwAt) -> Result<Option<AttributeValue<R>>>` — [`DwAt`](../index.md#dwat), [`Result`](../index.md#result), [`AttributeValue`](#attributevalue)
 
   Find the first attribute in this entry which has the given name,
-
   and return its normalized value.  Returns `Ok(None)` if no
-
   attribute is found.
 
 - <span id="debugginginformationentry-after-attrs"></span>`fn after_attrs(&self) -> Result<R>` — [`Result`](../index.md#result)
@@ -13220,7 +12053,6 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 - <span id="debugginginformationentry-sibling"></span>`fn sibling(&self) -> Option<R>`
 
   Use the `DW_AT_sibling` attribute to find the input buffer for the
-
   next sibling. Returns `None` if the attribute is missing or invalid.
 
 - <span id="debugginginformationentry-parse"></span>`fn parse(input: &mut R, unit: &'unit UnitHeader<R>, abbreviations: &'abbrev Abbreviations) -> Result<Option<Self>>` — [`UnitHeader`](#unitheader), [`Abbreviations`](#abbreviations), [`Result`](../index.md#result)
@@ -13264,11 +12096,8 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 - <span id="debugginginformationentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
@@ -13300,7 +12129,7 @@ struct Attribute<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1111-1114`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1111-L1114)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1111-1114`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1111-L1114)*
 
 An attribute in a `DebuggingInformationEntry`, consisting of a name and
 associated value.
@@ -13318,19 +12147,12 @@ associated value.
 - <span id="attribute-value"></span>`fn value(&self) -> AttributeValue<R>` — [`AttributeValue`](#attributevalue)
 
   Get this attribute's normalized value.
-
   
-
   Attribute values can potentially be encoded in multiple equivalent forms,
-
   and may have special meaning depending on the attribute name.  This method
-
   converts the attribute value to a normalized form based on the attribute
-
   name.
-
   
-
   See "Table 7.5: Attribute encodings" and "Table 7.6: Attribute form encodings".
 
 - <span id="attribute-u8-value"></span>`fn u8_value(&self) -> Option<u8>`
@@ -13356,55 +12178,34 @@ associated value.
 - <span id="attribute-exprloc-value"></span>`fn exprloc_value(&self) -> Option<Expression<R>>` — [`Expression`](#expression)
 
   Try to convert this attribute's value to an expression or location buffer.
-
   
-
   Expressions and locations may be `DW_FORM_block*` or `DW_FORM_exprloc`.
-
   The standard doesn't mention `DW_FORM_block*` as a possible form, but
-
   it is encountered in practice.
 
 - <span id="attribute-string-value"></span>`fn string_value(&self, debug_str: &DebugStr<R>) -> Option<R>` — [`DebugStr`](#debugstr)
 
   Try to return this attribute's value as a string slice.
-
   
-
   If this attribute's value is either an inline `DW_FORM_string` string,
-
   or a `DW_FORM_strp` reference to an offset into the `.debug_str`
-
   section, return the attribute's string value as `Some`. Other attribute
-
   value forms are returned as `None`.
-
   
-
   Warning: this function does not handle all possible string forms.
-
   Use `Dwarf::attr_string` instead.
 
 - <span id="attribute-string-value-sup"></span>`fn string_value_sup(&self, debug_str: &DebugStr<R>, debug_str_sup: Option<&DebugStr<R>>) -> Option<R>` — [`DebugStr`](#debugstr)
 
   Try to return this attribute's value as a string slice.
-
   
-
   If this attribute's value is either an inline `DW_FORM_string` string,
-
   or a `DW_FORM_strp` reference to an offset into the `.debug_str`
-
   section, or a `DW_FORM_strp_sup` reference to an offset into a supplementary
-
   object file, return the attribute's string value as `Some`. Other attribute
-
   value forms are returned as `None`.
-
   
-
   Warning: this function does not handle all possible string forms.
-
   Use `Dwarf::attr_string` instead.
 
 #### Trait Implementations
@@ -13448,11 +12249,8 @@ associated value.
 - <span id="attribute-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for Attribute<R>`
@@ -13491,7 +12289,7 @@ struct AttrsIter<'abbrev, 'entry, 'unit, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2272-2276`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2272-L2276)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2272-2276`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2272-L2276)*
 
 An iterator over a particular entry's attributes.
 
@@ -13507,13 +12305,9 @@ Can be [used with
 - <span id="attrsiter-next"></span>`fn next(&mut self) -> Result<Option<Attribute<R>>>` — [`Result`](../index.md#result), [`Attribute`](#attribute)
 
   Advance the iterator and return the next attribute.
-
   
-
   Returns `None` when iteration is finished. If an error
-
   occurs while parsing the next attribute, then this error
-
   is returned, and all subsequent calls return `None`.
 
 #### Trait Implementations
@@ -13555,11 +12349,8 @@ Can be [used with
 - <span id="attrsiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AttrsIter<'abbrev, 'entry, 'unit, R>`
@@ -13595,7 +12386,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2382-2390`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2382-L2390)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2382-2390`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2382-L2390)*
 
 A raw reader of the data that defines the Debugging Information Entries.
 
@@ -13659,29 +12450,21 @@ unreachable!()
 - <span id="entriesraw-next-offset"></span>`fn next_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../index.md#unitoffset), [`Reader`](#reader)
 
   Return the unit offset at which the reader will read next.
-
   
-
   If you want the offset of the next entry, then this must be called prior to reading
-
   the next entry.
 
 - <span id="entriesraw-next-depth"></span>`fn next_depth(&self) -> isize`
 
   Return the depth of the next entry.
-
   
-
   This depth is updated when `read_abbreviation` is called, and is updated
-
   based on null entries and the `has_children` field in the abbreviation.
 
 - <span id="entriesraw-read-abbreviation"></span>`fn read_abbreviation(&mut self) -> Result<Option<&'abbrev Abbreviation>>` — [`Result`](../index.md#result), [`Abbreviation`](#abbreviation)
 
   Read an abbreviation code and lookup the corresponding `Abbreviation`.
-
   
-
   Returns `Ok(None)` for null entries.
 
 - <span id="entriesraw-read-attribute"></span>`fn read_attribute(&mut self, spec: AttributeSpecification) -> Result<Attribute<R>>` — [`AttributeSpecification`](#attributespecification), [`Result`](../index.md#result), [`Attribute`](#attribute)
@@ -13729,11 +12512,8 @@ unreachable!()
 - <span id="entriesraw-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EntriesRaw<'abbrev, 'unit, R>`
@@ -13770,7 +12550,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2463-2472`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2463-L2472)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2463-2472`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2463-L2472)*
 
 A cursor into the Debugging Information Entries tree for a compilation unit.
 
@@ -13791,471 +12571,244 @@ end of the current tree depth.
 - <span id="entriescursor-current"></span>`fn current(&self) -> Option<&DebuggingInformationEntry<'abbrev, 'unit, R>>` — [`DebuggingInformationEntry`](#debugginginformationentry)
 
   Get a reference to the entry that the cursor is currently pointing to.
-
   
-
   If the cursor is not pointing at an entry, or if the current entry is a
-
   null entry, then `None` is returned.
 
 - <span id="entriescursor-next-entry"></span>`fn next_entry(&mut self) -> Result<Option<()>>` — [`Result`](../index.md#result)
 
   Move the cursor to the next DIE in the tree.
-
   
-
   Returns `Some` if there is a next entry, even if this entry is null.
-
   If there is no next entry, then `None` is returned.
 
 - <span id="entriescursor-next-dfs"></span>`fn next_dfs(&mut self) -> Result<Option<(isize, &DebuggingInformationEntry<'abbrev, 'unit, R>)>>` — [`Result`](../index.md#result), [`DebuggingInformationEntry`](#debugginginformationentry)
 
   Move the cursor to the next DIE in the tree in DFS order.
-
   
-
   Upon successful movement of the cursor, return the delta traversal
-
   depth and the entry:
-
   
-
     * If we moved down into the previous current entry's children, we get
-
       `Some((1, entry))`.
-
   
-
     * If we moved to the previous current entry's sibling, we get
-
       `Some((0, entry))`.
-
   
-
     * If the previous entry does not have any siblings and we move up to
-
       its parent's next sibling, then we get `Some((-1, entry))`. Note that
-
       if the parent doesn't have a next sibling, then it could go up to the
-
       parent's parent's next sibling and return `Some((-2, entry))`, etc.
-
   
-
   If there is no next entry, then `None` is returned.
-
   
-
   Here is an example that finds the first entry in a compilation unit that
-
   does not have any children.
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, DebugInfo, LittleEndian};
-
   let info_buf = [
-
       // Comilation unit header
-
   
-
       // 32-bit unit length = 25
-
       0x19, 0x00, 0x00, 0x00,
-
       // Version 4
-
       0x04, 0x00,
-
       // debug_abbrev_offset
-
       0x00, 0x00, 0x00, 0x00,
-
       // Address size
-
       0x04,
-
   
-
       // DIEs
-
   
-
       // Abbreviation code
-
       0x01,
-
       // Attribute of form DW_FORM_string = "foo\0"
-
       0x66, 0x6f, 0x6f, 0x00,
-
   
-
         // Children
-
   
-
         // Abbreviation code
-
         0x01,
-
         // Attribute of form DW_FORM_string = "foo\0"
-
         0x66, 0x6f, 0x6f, 0x00,
-
   
-
           // Children
-
   
-
           // Abbreviation code
-
           0x01,
-
           // Attribute of form DW_FORM_string = "foo\0"
-
           0x66, 0x6f, 0x6f, 0x00,
-
   
-
             // Children
-
   
-
             // End of children
-
             0x00,
-
   
-
           // End of children
-
           0x00,
-
   
-
         // End of children
-
         0x00,
-
   ];
-
   let debug_info = DebugInfo::new(&info_buf, LittleEndian);
-
   
-
   let abbrev_buf = [
-
       // Code
-
       0x01,
-
       // DW_TAG_subprogram
-
       0x2e,
-
       // DW_CHILDREN_yes
-
       0x01,
-
       // Begin attributes
-
         // Attribute name = DW_AT_name
-
         0x03,
-
         // Attribute form = DW_FORM_string
-
         0x08,
-
       // End attributes
-
       0x00,
-
       0x00,
-
       // Null terminator
-
       0x00
-
   ];
-
   let debug_abbrev = DebugAbbrev::new(&abbrev_buf, LittleEndian);
-
   
-
   let get_some_unit = || debug_info.units().next().unwrap().unwrap();
-
   
-
   let unit = get_some_unit();
-
   let get_abbrevs_for_unit = |_| unit.abbreviations(&debug_abbrev).unwrap();
-
   let abbrevs = get_abbrevs_for_unit(&unit);
-
   
-
   let mut first_entry_with_no_children = None;
-
   let mut cursor = unit.entries(&abbrevs);
-
   
-
   // Move the cursor to the root.
-
   assert!(cursor.next_dfs().unwrap().is_some());
-
   
-
   // Traverse the DIE tree in depth-first search order.
-
   let mut depth = 0;
-
   while let Some((delta_depth, current)) = cursor.next_dfs().expect("Should parse next dfs") {
-
       // Update depth value, and break out of the loop when we
-
       // return to the original starting position.
-
       depth += delta_depth;
-
       if depth <= 0 {
-
           break;
-
       }
-
   
-
       first_entry_with_no_children = Some(current.clone());
-
   }
-
   
-
   println!("The first entry with no children is {:?}",
-
            first_entry_with_no_children.unwrap());
-
   ```
 
 - <span id="entriescursor-next-sibling"></span>`fn next_sibling(&mut self) -> Result<Option<&DebuggingInformationEntry<'abbrev, 'unit, R>>>` — [`Result`](../index.md#result), [`DebuggingInformationEntry`](#debugginginformationentry)
 
   Move the cursor to the next sibling DIE of the current one.
-
   
-
   Returns `Ok(Some(entry))` when the cursor has been moved to
-
   the next sibling, `Ok(None)` when there is no next sibling.
-
   
-
   The depth of the cursor is never changed if this method returns `Ok`.
-
   Once `Ok(None)` is returned, this method will continue to return
-
   `Ok(None)` until either `next_entry` or `next_dfs` is called.
-
   
-
   Here is an example that iterates over all of the direct children of the
-
   root entry:
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, DebugInfo, LittleEndian};
-
   let info_buf = [
-
       // Comilation unit header
-
   
-
       // 32-bit unit length = 25
-
       0x19, 0x00, 0x00, 0x00,
-
       // Version 4
-
       0x04, 0x00,
-
       // debug_abbrev_offset
-
       0x00, 0x00, 0x00, 0x00,
-
       // Address size
-
       0x04,
-
   
-
       // DIEs
-
   
-
       // Abbreviation code
-
       0x01,
-
       // Attribute of form DW_FORM_string = "foo\0"
-
       0x66, 0x6f, 0x6f, 0x00,
-
   
-
         // Children
-
   
-
         // Abbreviation code
-
         0x01,
-
         // Attribute of form DW_FORM_string = "foo\0"
-
         0x66, 0x6f, 0x6f, 0x00,
-
   
-
           // Children
-
   
-
           // Abbreviation code
-
           0x01,
-
           // Attribute of form DW_FORM_string = "foo\0"
-
           0x66, 0x6f, 0x6f, 0x00,
-
   
-
             // Children
-
   
-
             // End of children
-
             0x00,
-
   
-
           // End of children
-
           0x00,
-
   
-
         // End of children
-
         0x00,
-
   ];
-
   let debug_info = DebugInfo::new(&info_buf, LittleEndian);
-
   
-
   let get_some_unit = || debug_info.units().next().unwrap().unwrap();
-
   
-
   let abbrev_buf = [
-
       // Code
-
       0x01,
-
       // DW_TAG_subprogram
-
       0x2e,
-
       // DW_CHILDREN_yes
-
       0x01,
-
       // Begin attributes
-
         // Attribute name = DW_AT_name
-
         0x03,
-
         // Attribute form = DW_FORM_string
-
         0x08,
-
       // End attributes
-
       0x00,
-
       0x00,
-
       // Null terminator
-
       0x00
-
   ];
-
   let debug_abbrev = DebugAbbrev::new(&abbrev_buf, LittleEndian);
-
   
-
   let unit = get_some_unit();
-
   let get_abbrevs_for_unit = |_| unit.abbreviations(&debug_abbrev).unwrap();
-
   let abbrevs = get_abbrevs_for_unit(&unit);
-
   
-
   let mut cursor = unit.entries(&abbrevs);
-
   
-
   // Move the cursor to the root.
-
   assert!(cursor.next_dfs().unwrap().is_some());
-
   
-
   // Move the cursor to the root's first child.
-
   assert!(cursor.next_dfs().unwrap().is_some());
-
   
-
   // Iterate the root's children.
-
   loop {
-
       {
-
           let current = cursor.current().expect("Should be at an entry");
-
           println!("{:?} is a child of the root", current);
-
       }
-
   
-
       if cursor.next_sibling().expect("Should parse next sibling").is_none() {
-
           break;
-
       }
-
   }
-
   ```
 
 #### Trait Implementations
@@ -14295,11 +12848,8 @@ end of the current tree depth.
 - <span id="entriescursor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EntriesCursor<'abbrev, 'unit, R>`
@@ -14337,7 +12887,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2847-2857`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2847-L2857)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2847-2857`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2847-L2857)*
 
 The state information for a tree view of the Debugging Information Entries.
 
@@ -14391,13 +12941,9 @@ fn process_tree<R>(mut node: gimli::EntriesTreeNode<R>) -> gimli::Result<()>
 - <span id="entriestree-next"></span>`fn next(&mut self, depth: isize) -> Result<bool>` — [`Result`](../index.md#result)
 
   Move the cursor to the next entry at the specified depth.
-
   
-
   Requires `depth <= self.depth + 1`.
-
   
-
   Returns `true` if successful.
 
 #### Trait Implementations
@@ -14437,11 +12983,8 @@ fn process_tree<R>(mut node: gimli::EntriesTreeNode<R>) -> gimli::Result<()>
 - <span id="entriestree-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EntriesTree<'abbrev, 'unit, R>`
@@ -14473,7 +13016,7 @@ struct EntriesTreeNode<'abbrev, 'unit, 'tree, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2979-2982`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2979-L2982)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2979-2982`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2979-L2982)*
 
 A node in the Debugging Information Entry tree.
 
@@ -14491,11 +13034,8 @@ via [`EntriesTree::root`](./struct.EntriesTree.html#method.root).
 - <span id="entriestreenode-children"></span>`fn children(self) -> EntriesTreeIter<'abbrev, 'unit, 'tree, R>` — [`EntriesTreeIter`](#entriestreeiter)
 
   Create an iterator for the children of the current entry.
-
   
-
   The current entry can no longer be accessed after creating the
-
   iterator.
 
 #### Trait Implementations
@@ -14527,11 +13067,8 @@ via [`EntriesTree::root`](./struct.EntriesTree.html#method.root).
 - <span id="entriestreenode-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for EntriesTreeNode<'abbrev, 'unit, 'tree, R>`
@@ -14556,7 +13093,7 @@ struct EntriesTreeIter<'abbrev, 'unit, 'tree, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3014-3018`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3014-L3018)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3014-3018`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3014-L3018)*
 
 An iterator that allows traversal of the children of an
 `EntriesTreeNode`.
@@ -14571,9 +13108,7 @@ which allow recursive traversal of grandchildren, etc.
 - <span id="entriestreeiter-next"></span>`fn next<'me>(self: &'me mut Self) -> Result<Option<EntriesTreeNode<'abbrev, 'unit, 'me, R>>>` — [`Result`](../index.md#result), [`EntriesTreeNode`](#entriestreenode)
 
   Returns an `EntriesTreeNode` for the next child entry.
-
   
-
   Returns `None` if there are no more children.
 
 #### Trait Implementations
@@ -14605,11 +13140,8 @@ which allow recursive traversal of grandchildren, etc.
 - <span id="entriestreeiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for EntriesTreeIter<'abbrev, 'unit, 'tree, R>`
@@ -14632,7 +13164,7 @@ struct DebugTypes<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3061-3063`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3061-L3063)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3061-3063`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3061-L3063)*
 
 The `DebugTypes` struct represents the DWARF type information
 found in the `.debug_types` section.
@@ -14642,31 +13174,18 @@ found in the `.debug_types` section.
 - <span id="debugtypes-new"></span>`fn new(debug_types_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugTypes` instance from the data in the `.debug_types`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_types` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugTypes, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_types_section_somehow = || &buf;
-
   let debug_types = DebugTypes::new(read_debug_types_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -14712,11 +13231,8 @@ found in the `.debug_types` section.
 - <span id="debugtypes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugTypes<R>`
@@ -14754,7 +13270,7 @@ struct DebugTypesUnitHeadersIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3152-3155`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3152-L3155)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3152-3155`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3152-L3155)*
 
 An iterator over the type-units of this `.debug_types` section.
 
@@ -14805,11 +13321,8 @@ more detail.
 - <span id="debugtypesunitheadersiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DebugTypesUnitHeadersIter<R>`
@@ -14923,7 +13436,7 @@ enum Error {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:286-466`](../../../.source_1765633015/gimli-0.32.3/src/read/mod.rs#L286-L466)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:286-466`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L286-L466)*
 
 An error that occurred when parsing.
 
@@ -15323,11 +13836,8 @@ An error that occurred when parsing.
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Error`
@@ -15372,7 +13882,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
 
 Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
@@ -15427,11 +13937,8 @@ Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 - <span id="cieorfde-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Section, R> PartialEq for CieOrFde<'bases, Section, R>`
@@ -15472,7 +13979,7 @@ enum CfaRule<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
 
 The canonical frame address (CFA) recovery rules.
 
@@ -15533,11 +14040,8 @@ The canonical frame address (CFA) recovery rules.
 - <span id="cfarule-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CfaRule<T>`
@@ -15582,7 +14086,7 @@ enum RegisterRule<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
 
 An entry in the abstract CFI table that describes how to find the value of a
 register.
@@ -15680,11 +14184,8 @@ previous frame."
 - <span id="registerrule-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for RegisterRule<T>`
@@ -15790,7 +14291,7 @@ enum CallFrameInstruction<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
 
 A parsed call frame instruction.
 
@@ -16075,11 +14576,8 @@ A parsed call frame instruction.
 - <span id="callframeinstruction-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CallFrameInstruction<T>`
@@ -16117,7 +14615,7 @@ enum Pointer {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
 
 A decoded pointer.
 
@@ -16193,11 +14691,8 @@ A decoded pointer.
 - <span id="pointer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Pointer`
@@ -16235,7 +14730,7 @@ enum RangeIterInner<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1633-1636`](../../../.source_1765633015/gimli-0.32.3/src/read/dwarf.rs#L1633-L1636)*
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1633-1636`](../../../.source_1765894658/gimli-0.32.3/src/read/dwarf.rs#L1633-L1636)*
 
 #### Trait Implementations
 
@@ -16266,11 +14761,8 @@ enum RangeIterInner<R: Reader> {
 - <span id="rangeiterinner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RangeIterInner<R>`
@@ -16294,7 +14786,7 @@ enum AbbreviationsCacheStrategy {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:99-108`](../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L99-L108)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:99-108`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L99-L108)*
 
 The strategy to use for caching abbreviations.
 
@@ -16353,11 +14845,8 @@ The strategy to use for caching abbreviations.
 - <span id="abbreviationscachestrategy-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AbbreviationsCacheStrategy`
@@ -16398,7 +14887,7 @@ enum Attributes {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:391-397`](../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L391-L397)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:391-397`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L391-L397)*
 
 A list of attributes found in an `Abbreviation`
 
@@ -16461,11 +14950,8 @@ A list of attributes found in an `Abbreviation`
 - <span id="attributes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Attributes`
@@ -16513,7 +14999,7 @@ enum IndexSectionId {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L342-L363)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L342-L363)*
 
 Section kinds which are permitted in a `.dwp` index.
 
@@ -16610,11 +15096,8 @@ Section kinds which are permitted in a `.dwp` index.
 - <span id="indexsectionid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for IndexSectionId`
@@ -16674,7 +15157,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:267-399`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L267-L399)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:267-399`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L267-L399)*
 
 A parsed line number program instruction.
 
@@ -16874,11 +15357,8 @@ A parsed line number program instruction.
 - <span id="lineinstruction-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for LineInstruction<R, Offset>`
@@ -16916,7 +15396,7 @@ enum ColumnType {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:961-967`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L961-L967)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:961-967`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L961-L967)*
 
 The type of column that a row is referring to.
 
@@ -16972,11 +15452,8 @@ The type of column that a row is referring to.
 - <span id="columntype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for ColumnType`
@@ -17022,7 +15499,7 @@ enum LocListsFormat {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:316-322`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L316-L322)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:316-322`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L316-L322)*
 
 #### Variants
 
@@ -17076,11 +15553,8 @@ enum LocListsFormat {
 - <span id="loclistsformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LocListsFormat`
@@ -17155,7 +15629,7 @@ enum RawLocListEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:337-407`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L337-L407)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:337-407`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L337-L407)*
 
 A raw entry in .debug_loclists.
 
@@ -17240,11 +15714,8 @@ A raw entry in .debug_loclists.
 - <span id="rawloclistentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RawLocListEntry<R>`
@@ -17281,7 +15752,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:244-258`](../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L244-L258)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:244-258`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L244-L258)*
 
 A string in a macro entry.
 
@@ -17349,11 +15820,8 @@ A string in a macro entry.
 - <span id="macrostring-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for MacroString<R, Offset>`
@@ -17415,7 +15883,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:277-323`](../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L277-L323)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:277-323`](../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L277-L323)*
 
 an Entry in the `.debug_macro` section.
 
@@ -17488,11 +15956,8 @@ an Entry in the `.debug_macro` section.
 - <span id="macroentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for MacroEntry<R, Offset>`
@@ -17530,7 +15995,7 @@ enum DieReference<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:15-20`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L15-L20)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:15-20`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L15-L20)*
 
 A reference to a DIE, either relative to the current CU or
 relative to the section.
@@ -17586,11 +16051,8 @@ relative to the section.
 - <span id="diereference-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DieReference<T>`
@@ -17739,7 +16201,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:34-293`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L34-L293)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:34-293`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L34-L293)*
 
 A single decoded DWARF expression operation.
 
@@ -18028,19 +16490,12 @@ using `Operation::Deref`.
 - <span id="operation-parse"></span>`fn parse(bytes: &mut R, encoding: Encoding) -> Result<Operation<R, Offset>>` — [`Encoding`](../index.md#encoding), [`Result`](../index.md#result), [`Operation`](#operation)
 
   Parse a single DWARF expression operation.
-
   
-
   This is useful when examining a DWARF expression for reasons other
-
   than direct evaluation.
-
   
-
   `bytes` points to a the operation to decode.  It should point into
-
   the same array as `bytecode`, which should be the entire
-
   expression.
 
 #### Trait Implementations
@@ -18084,11 +16539,8 @@ using `Operation::Deref`.
 - <span id="operation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for Operation<R, Offset>`
@@ -18130,7 +16582,7 @@ enum OperationEvaluationResult<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:296-301`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L296-L301)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:296-301`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L296-L301)*
 
 #### Trait Implementations
 
@@ -18161,11 +16613,8 @@ enum OperationEvaluationResult<R: Reader> {
 - <span id="operationevaluationresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for OperationEvaluationResult<R>`
@@ -18207,7 +16656,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:305-340`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L305-L340)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:305-340`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L305-L340)*
 
 A single location of a piece of the result of a DWARF expression.
 
@@ -18283,11 +16732,8 @@ A single location of a piece of the result of a DWARF expression.
 - <span id="location-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for Location<R, Offset>`
@@ -18328,7 +16774,7 @@ enum EvaluationState<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:816-822`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L816-L822)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:816-822`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L816-L822)*
 
 #### Trait Implementations
 
@@ -18359,11 +16805,8 @@ enum EvaluationState<R: Reader> {
 - <span id="evaluationstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for EvaluationState<R>`
@@ -18404,7 +16847,7 @@ enum EvaluationWaiting<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:825-839`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L825-L839)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:825-839`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L825-L839)*
 
 #### Trait Implementations
 
@@ -18435,11 +16878,8 @@ enum EvaluationWaiting<R: Reader> {
 - <span id="evaluationwaiting-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for EvaluationWaiting<R>`
@@ -18484,7 +16924,7 @@ enum EvaluationResult<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:845-920`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L845-L920)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:845-920`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L845-L920)*
 
 The state of an `Evaluation` after evaluating a DWARF expression.
 The evaluation is either `Complete`, or it requires more data
@@ -18598,11 +17038,8 @@ to continue, as described by the variant.
 - <span id="evaluationresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EvaluationResult<R>`
@@ -18632,7 +17069,7 @@ enum RangeListsFormat {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:294-299`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L294-L299)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:294-299`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L294-L299)*
 
 #### Variants
 
@@ -18685,11 +17122,8 @@ enum RangeListsFormat {
 - <span id="rangelistsformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RangeListsFormat`
@@ -18755,7 +17189,7 @@ enum RawRngListEntry<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:314-367`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L314-L367)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:314-367`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L314-L367)*
 
 A raw entry in .debug_rnglists
 
@@ -18836,11 +17270,8 @@ A raw entry in .debug_rnglists
 - <span id="rawrnglistentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToOwned for RawRngListEntry<T>`
@@ -18884,7 +17315,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:241-279`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L241-L279)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:241-279`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L241-L279)*
 
 This enum specifies the type of the unit and any type
 specific data carried in the header (e.g. the type
@@ -18973,11 +17404,8 @@ signature/type offset of a type unit).
 - <span id="unittype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Offset> PartialEq for UnitType<Offset>`
@@ -19062,7 +17490,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:933-1106`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L933-L1106)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:933-1106`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L933-L1106)*
 
 The value of an attribute in a `DebuggingInformationEntry`.
 
@@ -19308,55 +17736,34 @@ The value of an attribute in a `DebuggingInformationEntry`.
 - <span id="attributevalue-exprloc-value"></span>`fn exprloc_value(&self) -> Option<Expression<R>>` — [`Expression`](#expression)
 
   Try to convert this attribute's value to an expression or location buffer.
-
   
-
   Expressions and locations may be `DW_FORM_block*` or `DW_FORM_exprloc`.
-
   The standard doesn't mention `DW_FORM_block*` as a possible form, but
-
   it is encountered in practice.
 
 - <span id="attributevalue-string-value"></span>`fn string_value(&self, debug_str: &DebugStr<R>) -> Option<R>` — [`DebugStr`](#debugstr)
 
   Try to return this attribute's value as a string slice.
-
   
-
   If this attribute's value is either an inline `DW_FORM_string` string,
-
   or a `DW_FORM_strp` reference to an offset into the `.debug_str`
-
   section, return the attribute's string value as `Some`. Other attribute
-
   value forms are returned as `None`.
-
   
-
   Warning: this function does not handle all possible string forms.
-
   Use `Dwarf::attr_string` instead.
 
 - <span id="attributevalue-string-value-sup"></span>`fn string_value_sup(&self, debug_str: &DebugStr<R>, debug_str_sup: Option<&DebugStr<R>>) -> Option<R>` — [`DebugStr`](#debugstr)
 
   Try to return this attribute's value as a string slice.
-
   
-
   If this attribute's value is either an inline `DW_FORM_string` string,
-
   or a `DW_FORM_strp` reference to an offset into the `.debug_str`
-
   section, or a `DW_FORM_strp_sup` reference to an offset into a supplementary
-
   object file, return the attribute's string value as `Some`. Other attribute
-
   value forms are returned as `None`.
-
   
-
   Warning: this function does not handle all possible string forms.
-
   Use `Dwarf::attr_string` instead.
 
 #### Trait Implementations
@@ -19400,11 +17807,8 @@ The value of an attribute in a `DebuggingInformationEntry`.
 - <span id="attributevalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for AttributeValue<R, Offset>`
@@ -19451,7 +17855,7 @@ enum ValueType {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:26-51`](../../../.source_1765633015/gimli-0.32.3/src/read/value.rs#L26-L51)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:26-51`](../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L26-L51)*
 
 The type of an entry on the DWARF stack.
 
@@ -19558,11 +17962,8 @@ The type of an entry on the DWARF stack.
 - <span id="valuetype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ValueType`
@@ -19609,7 +18010,7 @@ enum Value {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:55-78`](../../../.source_1765633015/gimli-0.32.3/src/read/value.rs#L55-L78)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:55-78`](../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L55-L78)*
 
 The value of an entry on the DWARF stack.
 
@@ -19672,367 +18073,238 @@ The value of an entry on the DWARF stack.
 - <span id="value-to-u64"></span>`fn to_u64(self, addr_mask: u64) -> Result<u64>` — [`Result`](../index.md#result)
 
   Convert a `Value` to a `u64`.
-
   
-
   The `ValueType` of `self` must be integral.
-
   Values are sign extended if the source value is signed.
 
 - <span id="value-from-u64"></span>`fn from_u64(value_type: ValueType, value: u64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md#result), [`Value`](#value)
 
   Create a `Value` with the given `value_type` from a `u64` value.
-
   
-
   The `value_type` may be integral or floating point.
-
   The result is truncated if the `u64` value does
-
   not fit the bounds of the `value_type`.
 
 - <span id="value-from-f32"></span>`fn from_f32(value_type: ValueType, value: f32) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md#result), [`Value`](#value)
 
   Create a `Value` with the given `value_type` from a `f32` value.
-
   
-
   The `value_type` may be integral or floating point.
-
   The result is not defined if the `f32` value does
-
   not fit the bounds of the `value_type`.
 
 - <span id="value-from-f64"></span>`fn from_f64(value_type: ValueType, value: f64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md#result), [`Value`](#value)
 
   Create a `Value` with the given `value_type` from a `f64` value.
-
   
-
   The `value_type` may be integral or floating point.
-
   The result is not defined if the `f64` value does
-
   not fit the bounds of the `value_type`.
 
 - <span id="value-convert"></span>`fn convert(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md#result), [`Value`](#value)
 
   Convert a `Value` to the given `value_type`.
-
   
-
   When converting between integral types, the result is truncated
-
   if the source value does not fit the bounds of the `value_type`.
-
   When converting from floating point types, the result is not defined
-
   if the source value does not fit the bounds of the `value_type`.
-
   
-
   This corresponds to the DWARF `DW_OP_convert` operation.
 
 - <span id="value-reinterpret"></span>`fn reinterpret(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md#result), [`Value`](#value)
 
   Reinterpret the bits in a `Value` as the given `value_type`.
-
   
-
   The source and result value types must have equal sizes.
-
   
-
   This corresponds to the DWARF `DW_OP_reinterpret` operation.
 
 - <span id="value-abs"></span>`fn abs(self, addr_mask: u64) -> Result<Value>` — [`Result`](../index.md#result), [`Value`](#value)
 
   Perform an absolute value operation.
-
   
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_abs` operation.
 
 - <span id="value-neg"></span>`fn neg(self, addr_mask: u64) -> Result<Value>` — [`Result`](../index.md#result), [`Value`](#value)
 
   Perform a negation operation.
-
   
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_neg` operation.
 
 - <span id="value-add"></span>`fn add(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform an addition operation.
-
   
-
   This operation requires matching types.
-
   
-
   This corresponds to the DWARF `DW_OP_plus` operation.
 
 - <span id="value-sub"></span>`fn sub(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform a subtraction operation.
-
   
-
   This operation requires matching types.
-
   
-
   This corresponds to the DWARF `DW_OP_minus` operation.
 
 - <span id="value-mul"></span>`fn mul(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform a multiplication operation.
-
   
-
   This operation requires matching types.
-
   
-
   This corresponds to the DWARF `DW_OP_mul` operation.
 
 - <span id="value-div"></span>`fn div(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform a division operation.
-
   
-
   This operation requires matching types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_div` operation.
 
 - <span id="value-rem"></span>`fn rem(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform a remainder operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as an unsigned value.
-
   
-
   This corresponds to the DWARF `DW_OP_mod` operation.
 
 - <span id="value-not"></span>`fn not(self, addr_mask: u64) -> Result<Value>` — [`Result`](../index.md#result), [`Value`](#value)
 
   Perform a bitwise not operation.
-
   
-
   This operation requires matching integral types.
-
   
-
   This corresponds to the DWARF `DW_OP_not` operation.
 
 - <span id="value-and"></span>`fn and(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform a bitwise and operation.
-
   
-
   This operation requires matching integral types.
-
   
-
   This corresponds to the DWARF `DW_OP_and` operation.
 
 - <span id="value-or"></span>`fn or(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform a bitwise or operation.
-
   
-
   This operation requires matching integral types.
-
   
-
   This corresponds to the DWARF `DW_OP_or` operation.
 
 - <span id="value-xor"></span>`fn xor(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform a bitwise exclusive-or operation.
-
   
-
   This operation requires matching integral types.
-
   
-
   This corresponds to the DWARF `DW_OP_xor` operation.
 
 - <span id="value-shift-length"></span>`fn shift_length(self) -> Result<u64>` — [`Result`](../index.md#result)
 
   Convert value to bit length suitable for a shift operation.
-
   
-
   If the value is negative then an error is returned.
 
 - <span id="value-shl"></span>`fn shl(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform a shift left operation.
-
   
-
   This operation requires integral types.
-
   If the shift length exceeds the type size, then 0 is returned.
-
   If the shift length is negative then an error is returned.
-
   
-
   This corresponds to the DWARF `DW_OP_shl` operation.
 
 - <span id="value-shr"></span>`fn shr(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform a logical shift right operation.
-
   
-
   This operation requires an unsigned integral type for the value.
-
   If the value type is `Generic`, then it is interpreted as an unsigned value.
-
   
-
   This operation requires an integral type for the shift length.
-
   If the shift length exceeds the type size, then 0 is returned.
-
   If the shift length is negative then an error is returned.
-
   
-
   This corresponds to the DWARF `DW_OP_shr` operation.
 
 - <span id="value-shra"></span>`fn shra(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform an arithmetic shift right operation.
-
   
-
   This operation requires a signed integral type for the value.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This operation requires an integral type for the shift length.
-
   If the shift length exceeds the type size, then 0 is returned for positive values,
-
   and -1 is returned for negative values.
-
   If the shift length is negative then an error is returned.
-
   
-
   This corresponds to the DWARF `DW_OP_shra` operation.
 
 - <span id="value-eq"></span>`fn eq(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform the `==` relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_eq` operation.
 
 - <span id="value-ge"></span>`fn ge(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform the `>=` relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_ge` operation.
 
 - <span id="value-gt"></span>`fn gt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform the `>` relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_gt` operation.
 
 - <span id="value-le"></span>`fn le(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform the `<= relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_le` operation.
 
 - <span id="value-lt"></span>`fn lt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform the `< relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_lt` operation.
 
 - <span id="value-ne"></span>`fn ne(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md#result)
 
   Perform the `!= relational operation.
-
   
-
   This operation requires matching integral types.
-
   If the value type is `Generic`, then it is interpreted as a signed value.
-
   
-
   This corresponds to the DWARF `DW_OP_ne` operation.
 
 #### Trait Implementations
@@ -20074,11 +18346,8 @@ The value of an entry on the DWARF stack.
 - <span id="value-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Value`
@@ -20115,7 +18384,7 @@ The value of an entry on the DWARF stack.
 trait Section<R>: From<R> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:653-708`](../../../.source_1765633015/gimli-0.32.3/src/read/mod.rs#L653-L708)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:653-708`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L653-L708)*
 
 A convenience trait for loading DWARF sections from object files.  To be
 used like:
@@ -20149,10 +18418,12 @@ let debug_info: DebugInfo<_> = Section::load(loader).unwrap();
 - `fn dwo_section_name() -> Option<&'static str>`
 
   Returns the ELF section name (if any) for this type when used in a dwo
+  file.
 
 - `fn xcoff_section_name() -> Option<&'static str>`
 
   Returns the XCOFF section name (if any) for this type when used in a XCOFF
+  file.
 
 - `fn load<F, E>(f: F) -> core::result::Result<Self, E>`
 
@@ -20161,6 +18432,7 @@ let debug_info: DebugInfo<_> = Section::load(loader).unwrap();
 - `fn dwp_range(&self, offset: u32, size: u32) -> Result<Self>`
 
   Returns the subrange of the section that is the contribution of
+  a unit in a `.dwp` file.
 
 - `fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>`
 
@@ -20197,7 +18469,7 @@ let debug_info: DebugInfo<_> = Section::load(loader).unwrap();
 trait ArrayLike: Sealed { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/util.rs:33-42`](../../../.source_1765633015/gimli-0.32.3/src/read/util.rs#L33-L42)*
+*Defined in [`gimli-0.32.3/src/read/util.rs:33-42`](../../../.source_1765894658/gimli-0.32.3/src/read/util.rs#L33-L42)*
 
 Marker trait for types that can be used as backing storage when a growable array type is needed.
 
@@ -20221,7 +18493,7 @@ where
     T: ReaderOffset { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
 
 An offset into an `UnwindSection`.
 
@@ -20242,7 +18514,7 @@ An offset into an `UnwindSection`.
 trait UnwindSection<R: Reader>: Clone + Debug + _UnwindSectionPrivate<R> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
 
 A section holding unwind information: either `.debug_frame` or
 `.eh_frame`. See [`DebugFrame`](./struct.DebugFrame.html) and
@@ -20257,6 +18529,10 @@ A section holding unwind information: either `.debug_frame` or
 - `fn entries<'bases>(&self, bases: &'bases BaseAddresses) -> CfiEntriesIter<'bases, Self, R>`
 
   Iterate over the `CommonInformationEntry`s and `FrameDescriptionEntry`s
+  in this `.debug_frame` section.
+  
+  Can be [used with
+  `FallibleIterator`](./index.html#using-with-fallibleiterator).
 
 - `fn cie_from_offset(&self, bases: &BaseAddresses, offset: <Self as >::Offset) -> Result<CommonInformationEntry<R>>`
 
@@ -20273,10 +18549,64 @@ A section holding unwind information: either `.debug_frame` or
 - `fn fde_for_address<F>(&self, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
 
   Find the `FrameDescriptionEntry` for the given address.
+  
+  If found, the FDE is returned.  If not found,
+  `Err(gimli::Error::NoUnwindInfoForAddress)` is returned.
+  If parsing fails, the error is returned.
+  
+  You must provide a function to get its associated CIE. See
+  `PartialFrameDescriptionEntry::parse` for more information.
+  
+  Note: this iterates over all FDEs. If available, it is possible
+  to do a binary search with `EhFrameHdr::fde_for_address` instead.
 
 - `fn unwind_info_for_address<'ctx, F, S>(&self, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>`
 
   Find the frame unwind information for the given address.
+  
+  If found, the unwind information is returned.  If not found,
+  `Err(gimli::Error::NoUnwindInfoForAddress)` is returned. If parsing or
+  CFI evaluation fails, the error is returned.
+  
+  ```rust
+  use gimli::{BaseAddresses, EhFrame, EndianSlice, NativeEndian, UnwindContext,
+              UnwindSection};
+  
+  fn foo() -> gimli::Result<()> {
+  let read_eh_frame_section = || unimplemented!();
+  // Get the `.eh_frame` section from the object file. Alternatively,
+  // use `EhFrame` with the `.eh_frame` section of the object file.
+  let eh_frame = EhFrame::new(read_eh_frame_section(), NativeEndian);
+  
+  let get_frame_pc = || unimplemented!();
+  // Get the address of the PC for a frame you'd like to unwind.
+  let address = get_frame_pc();
+  
+  // This context is reusable, which cuts down on heap allocations.
+  let ctx = UnwindContext::new();
+  
+  // Optionally provide base addresses for any relative pointers. If a
+  // base address isn't provided and a pointer is found that is relative to
+  // it, we will return an `Err`.
+  let address_of_text_section_in_memory = unimplemented!();
+  let address_of_got_section_in_memory = unimplemented!();
+  let bases = BaseAddresses::default()
+      .set_text(address_of_text_section_in_memory)
+      .set_got(address_of_got_section_in_memory);
+  
+  let unwind_info = eh_frame.unwind_info_for_address(
+      &bases,
+      &mut ctx,
+      address,
+      EhFrame::cie_from_offset,
+  )?;
+  
+  let do_stuff_with = |_| unimplemented!();
+  do_stuff_with(unwind_info);
+  let _ = ctx;
+  unreachable!()
+  }
+  ```
 
 #### Implementors
 
@@ -20289,12 +18619,12 @@ A section holding unwind information: either `.debug_frame` or
 trait UnwindContextStorage<T: ReaderOffset>: Sized { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
 
 Specification of what storage should be used for [`UnwindContext`](#unwindcontext).
 
 Normally you would only need to use [`StoreOnHeap`](../index.md), which places the stack
-on the heap using [`Box`](../../allocator_api2/stable/boxed/index.md). This is the default storage type parameter for [`UnwindContext`](#unwindcontext).
+on the heap using `Box`. This is the default storage type parameter for [`UnwindContext`](#unwindcontext).
 
 You may want to supply your own storage type for one of the following reasons:
 
@@ -20353,7 +18683,7 @@ unreachable!()
 trait ReaderOffset: Debug + Copy + Eq + Ord + Hash + Add<Output = Self> + AddAssign + Sub<Output = Self> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:24-52`](../../../.source_1765633015/gimli-0.32.3/src/read/reader.rs#L24-L52)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:24-52`](../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L24-L52)*
 
 A trait for offsets with a DWARF section.
 
@@ -20380,6 +18710,8 @@ This allows consumers to choose a size that is appropriate for their address spa
 - `fn from_u64(offset: u64) -> Result<Self>`
 
   Convert a u64 to an offset.
+  
+  Returns `Error::UnsupportedOffset` if the value is too large.
 
 - `fn into_u64(self) -> u64`
 
@@ -20405,7 +18737,7 @@ This allows consumers to choose a size that is appropriate for their address spa
 trait ReaderAddress: Sized { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:194-230`](../../../.source_1765633015/gimli-0.32.3/src/read/reader.rs#L194-L230)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:194-230`](../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L194-L230)*
 
 A trait for addresses within a DWARF section.
 
@@ -20417,10 +18749,15 @@ in the future to support user-defined address types.
 - `fn add_sized(self, length: u64, size: u8) -> Result<Self>`
 
   Add a length to an address of the given size.
+  
+  Returns an error for overflow.
 
 - `fn wrapping_add_sized(self, length: u64, size: u8) -> Self`
 
   Add a length to an address of the given size.
+  
+  Wraps the result to the size of the address to allow for the possibility
+  that the length is a negative value.
 
 - `fn zeros() -> Self`
 
@@ -20435,6 +18772,20 @@ in the future to support user-defined address types.
 - `fn min_tombstone(size: u8) -> Self`
 
   Return the minimum value for a tombstone address.
+  
+  A variety of values may be used as tombstones in DWARF data.  DWARF 6 specifies a
+  tombstone value of -1, and this is compatible with most sections in earlier DWARF
+  versions. However, for .debug_loc and .debug_ranges in DWARF 4 and earlier, the
+  tombstone value is -2, because -1 already has a special meaning. -2 has also been
+  seen in .debug_line, possibly from a proprietary fork of lld.
+  
+  So this function returns -2 (cast to an unsigned value), and callers can consider
+  addresses greater than or equal to this value to be tombstones.
+  
+  Prior to the use of -1 or -2 for tombstones, it was common to use 0 or 1.
+  Additionally, gold may leave the relocation addend in place. These values are not
+  handled by this function, so callers will need to handle them separately if they
+  want to.
 
 #### Implementors
 
@@ -20446,7 +18797,7 @@ in the future to support user-defined address types.
 trait Reader: Debug + Clone { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:285-581`](../../../.source_1765633015/gimli-0.32.3/src/read/reader.rs#L285-L581)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:285-581`](../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L285-L581)*
 
 A trait for reading the data from a DWARF section.
 
@@ -20495,6 +18846,10 @@ thread safe or not.
 - `fn offset_from(&self, base: &Self) -> <Self as >::Offset`
 
   Return the offset of this reader's data relative to the start of
+  the given base reader's data.
+  
+  May panic if this reader's data is not contained within the given
+  base reader's data.
 
 - `fn offset_id(&self) -> ReaderOffsetId`
 
@@ -20503,10 +18858,12 @@ thread safe or not.
 - `fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>`
 
   Return the offset corresponding to the given `id` if
+  it is associated with this reader.
 
 - `fn find(&self, byte: u8) -> Result<<Self as >::Offset>`
 
   Find the index of the first occurrence of the given byte.
+  The offset of the reader is not changed.
 
 - `fn skip(&mut self, len: <Self as >::Offset) -> Result<()>`
 
@@ -20515,18 +18872,38 @@ thread safe or not.
 - `fn split(&mut self, len: <Self as >::Offset) -> Result<Self>`
 
   Split a reader in two.
+  
+  A new reader is returned that can be used to read the next
+  `len` bytes, and `self` is advanced so that it reads the remainder.
 
 - `fn to_slice(&self) -> Result<Cow<'_, [u8]>>`
 
   Return all remaining data as a clone-on-write slice.
+  
+  The slice will be borrowed where possible, but some readers may
+  always return an owned vector.
+  
+  Does not advance the reader.
 
 - `fn to_string(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string.
+  
+  The string will be borrowed where possible, but some readers may
+  always return an owned string.
+  
+  Does not advance the reader.
+  
+  Returns an error if the data contains invalid characters.
 
 - `fn to_string_lossy(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string, including invalid characters.
+  
+  The string will be borrowed where possible, but some readers may
+  always return an owned string.
+  
+  Does not advance the reader.
 
 - `fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>`
 
@@ -20585,6 +18962,10 @@ thread safe or not.
 - `fn read_uint(&mut self, n: usize) -> Result<u64>`
 
   Read an unsigned n-bytes integer u64.
+  
+  # Panics
+  
+  Panics when nbytes < 1 or nbytes > 8
 
 - `fn read_null_terminated_slice(&mut self) -> Result<Self>`
 
@@ -20613,6 +18994,9 @@ thread safe or not.
 - `fn read_initial_length(&mut self) -> Result<(<Self as >::Offset, Format)>`
 
   Read an initial length field.
+  
+  This field is encoded as either a 32-bit length or
+  a 64-bit length, and the returned `Format` indicates which.
 
 - `fn read_address_size(&mut self) -> Result<u8>`
 
@@ -20625,6 +19009,9 @@ thread safe or not.
 - `fn read_word(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized integer according to the DWARF format.
+  
+  These are always used to encode section offsets or lengths,
+  and so have a type of `Self::Offset`.
 
 - `fn read_length(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
@@ -20637,6 +19024,8 @@ thread safe or not.
 - `fn read_sized_offset(&mut self, size: u8) -> Result<<Self as >::Offset>`
 
   Parse a section offset of the given size.
+  
+  This is used for `DW_FORM_ref_addr` values in DWARF version 2.
 
 #### Implementors
 
@@ -20649,7 +19038,7 @@ thread safe or not.
 trait Relocate<T: ReaderOffset> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/relocate.rs:9-15`](../../../.source_1765633015/gimli-0.32.3/src/read/relocate.rs#L9-L15)*
+*Defined in [`gimli-0.32.3/src/read/relocate.rs:9-15`](../../../.source_1765894658/gimli-0.32.3/src/read/relocate.rs#L9-L15)*
 
 Trait for relocating addresses and offsets while reading a section.
 
@@ -20672,7 +19061,7 @@ where
     Offset: ReaderOffset { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:121-130`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L121-L130)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:121-130`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L121-L130)*
 
 A `LineProgram` provides access to a `LineProgramHeader` and
 a way to add files to the files table if necessary. Gimli consumers should
@@ -20699,12 +19088,12 @@ never need to use or see this trait.
 trait EvaluationStorage<R: Reader> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:1044-1051`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L1044-L1051)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:1044-1051`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L1044-L1051)*
 
 Specification of what storage should be used for [`Evaluation`](#evaluation).
 
 Normally you would only need to use [`StoreOnHeap`](../index.md), which places the stacks and the results
-on the heap using [`Vec`](../../addr2line/maybe_small/index.md). This is the default storage type parameter for [`Evaluation`](#evaluation).
+on the heap using [`Vec`](). This is the default storage type parameter for [`Evaluation`](#evaluation).
 
 If you need to avoid [`Evaluation`](#evaluation) from allocating memory, e.g. for signal safety,
 you can provide you own storage specification:
@@ -20766,7 +19155,7 @@ where
     Section: UnwindSection<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
 
 ### `parse_encoded_pointer`
 
@@ -20774,7 +19163,7 @@ where
 fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<Pointer>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
 
 ### `parse_encoded_value`
 
@@ -20782,7 +19171,7 @@ fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &Po
 fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<u64>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
 
 ### `get_attribute_size`
 
@@ -20790,7 +19179,7 @@ fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &Poin
 fn get_attribute_size(form: constants::DwForm, encoding: crate::common::Encoding) -> Option<u8>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:572-637`](../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L572-L637)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:572-637`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L572-L637)*
 
 ### `parse_directory_v5`
 
@@ -20798,7 +19187,7 @@ fn get_attribute_size(form: constants::DwForm, encoding: crate::common::Encoding
 fn parse_directory_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<crate::read::AttributeValue<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1702-1717`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L1702-L1717)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1702-1717`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1702-L1717)*
 
 ### `parse_file_v5`
 
@@ -20806,7 +19195,7 @@ fn parse_directory_v5<R: Reader>(input: &mut R, encoding: crate::common::Encodin
 fn parse_file_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<FileEntry<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1719-1773`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L1719-L1773)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1719-1773`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1719-L1773)*
 
 ### `parse_attribute`
 
@@ -20814,7 +19203,7 @@ fn parse_file_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, fo
 fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, form: constants::DwForm) -> crate::read::Result<crate::read::AttributeValue<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1776-1878`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L1776-L1878)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1776-1878`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1776-L1878)*
 
 ### `parse_data`
 
@@ -20822,7 +19211,7 @@ fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 fn parse_data<R: Reader>(input: &mut R, encoding: crate::common::Encoding) -> crate::read::Result<crate::read::Expression<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:409-418`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L409-L418)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:409-418`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L409-L418)*
 
 ### `compute_pc`
 
@@ -20830,7 +19219,7 @@ fn parse_data<R: Reader>(input: &mut R, encoding: crate::common::Encoding) -> cr
 fn compute_pc<R: Reader>(pc: &R, bytecode: &R, offset: i16) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:381-391`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L381-L391)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:381-391`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L381-L391)*
 
 ### `generic_type`
 
@@ -20838,7 +19227,7 @@ fn compute_pc<R: Reader>(pc: &R, bytecode: &R, offset: i16) -> crate::read::Resu
 fn generic_type<O: ReaderOffset>() -> crate::read::UnitOffset<O>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/op.rs:393-395`](../../../.source_1765633015/gimli-0.32.3/src/read/op.rs#L393-L395)*
+*Defined in [`gimli-0.32.3/src/read/op.rs:393-395`](../../../.source_1765894658/gimli-0.32.3/src/read/op.rs#L393-L395)*
 
 ### `parse_unit_type`
 
@@ -20846,7 +19235,7 @@ fn generic_type<O: ReaderOffset>() -> crate::read::UnitOffset<O>
 fn parse_unit_type<R: Reader>(input: &mut R) -> crate::read::Result<constants::DwUt>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:216-219`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L216-L219)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:216-219`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L216-L219)*
 
 Parse the unit type from the unit header.
 
@@ -20856,7 +19245,7 @@ Parse the unit type from the unit header.
 fn parse_debug_abbrev_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugAbbrevOffset<<R as >::Offset>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:222-227`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L222-L227)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:222-227`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L222-L227)*
 
 Parse the `debug_abbrev_offset` in the compilation unit header.
 
@@ -20866,7 +19255,7 @@ Parse the `debug_abbrev_offset` in the compilation unit header.
 fn parse_debug_info_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugInfoOffset<<R as >::Offset>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:230-235`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L230-L235)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:230-235`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L230-L235)*
 
 Parse the `debug_info_offset` in the arange header.
 
@@ -20879,7 +19268,7 @@ where
     Offset: ReaderOffset
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L558-L636)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L558-L636)*
 
 Parse a unit header.
 
@@ -20889,7 +19278,7 @@ Parse a unit header.
 fn parse_dwo_id<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DwoId>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:639-641`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L639-L641)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:639-641`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L639-L641)*
 
 Parse a dwo_id from a header
 
@@ -20899,7 +19288,7 @@ Parse a dwo_id from a header
 fn length_u8_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1928-1931`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1928-L1931)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1928-1931`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1928-L1931)*
 
 ### `length_u16_value`
 
@@ -20907,7 +19296,7 @@ fn length_u8_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_u16_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1933-1936`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1933-L1936)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1933-1936`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1933-L1936)*
 
 ### `length_u32_value`
 
@@ -20915,7 +19304,7 @@ fn length_u16_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_u32_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1938-1941`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1938-L1941)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1938-1941`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1938-L1941)*
 
 ### `length_uleb128_value`
 
@@ -20923,7 +19312,7 @@ fn length_u32_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_uleb128_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1943-1946`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1943-L1946)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1943-1946`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1943-L1946)*
 
 ### `allow_section_offset`
 
@@ -20931,7 +19320,7 @@ fn length_uleb128_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn allow_section_offset(name: constants::DwAt, version: u16) -> bool
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1950-1968`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1950-L1968)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1950-1968`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1950-L1968)*
 
 ### `parse_attribute`
 
@@ -20939,7 +19328,7 @@ fn allow_section_offset(name: constants::DwAt, version: u16) -> bool
 fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, spec: crate::read::AttributeSpecification) -> crate::read::Result<Attribute<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1970-2193`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1970-L2193)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1970-2193`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1970-L2193)*
 
 ### `skip_attributes`
 
@@ -20947,7 +19336,7 @@ fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 fn skip_attributes<R: Reader>(input: &mut R, encoding: crate::common::Encoding, specs: &[crate::read::AttributeSpecification]) -> crate::read::Result<()>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2195-2261`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2195-L2261)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2195-2261`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2195-L2261)*
 
 ### `parse_type_signature`
 
@@ -20955,7 +19344,7 @@ fn skip_attributes<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 fn parse_type_signature<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DebugTypeSignature>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3049-3051`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3049-L3051)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3049-3051`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3049-L3051)*
 
 Parse a type unit header's unique type signature. Callers should handle
 unique-ness checking.
@@ -20966,7 +19355,7 @@ unique-ness checking.
 fn parse_type_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::read::UnitOffset<<R as >::Offset>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3054-3056`](../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3054-L3056)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3054-3056`](../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3054-L3056)*
 
 Parse a type unit header's type offset.
 
@@ -20976,7 +19365,7 @@ Parse a type unit header's type offset.
 fn sign_extend(value: u64, mask: u64) -> i64
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:13-17`](../../../.source_1765633015/gimli-0.32.3/src/read/value.rs#L13-L17)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:13-17`](../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L13-L17)*
 
 Convert a u64 to an i64, with sign extension if required.
 
@@ -20989,7 +19378,7 @@ as a signed value.
 fn mask_bit_size(addr_mask: u64) -> u32
 ```
 
-*Defined in [`gimli-0.32.3/src/read/value.rs:20-22`](../../../.source_1765633015/gimli-0.32.3/src/read/value.rs#L20-L22)*
+*Defined in [`gimli-0.32.3/src/read/value.rs:20-22`](../../../.source_1765894658/gimli-0.32.3/src/read/value.rs#L20-L22)*
 
 ## Type Aliases
 
@@ -20999,7 +19388,7 @@ fn mask_bit_size(addr_mask: u64) -> u32
 type EndianBuf<'input, Endian> = EndianSlice<'input, Endian>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:281`](../../../.source_1765633015/gimli-0.32.3/src/read/mod.rs#L281)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:281`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L281)*
 
 `EndianBuf` has been renamed to `EndianSlice`. For ease of upgrading across
 `gimli` versions, we export this type alias.
@@ -21010,7 +19399,7 @@ type EndianBuf<'input, Endian> = EndianSlice<'input, Endian>;
 type Result<T> = result::Result<T, Error>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/mod.rs:639`](../../../.source_1765633015/gimli-0.32.3/src/read/mod.rs#L639)*
+*Defined in [`gimli-0.32.3/src/read/mod.rs:639`](../../../.source_1765894658/gimli-0.32.3/src/read/mod.rs#L639)*
 
 The result of a parse.
 
@@ -21020,7 +19409,7 @@ The result of a parse.
 type LineNumberProgram<R, Offset> = dyn LineProgram<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:116`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L116)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:116`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L116)*
 
 Deprecated. `LineNumberProgram` has been renamed to `LineProgram`.
 
@@ -21030,7 +19419,7 @@ Deprecated. `LineNumberProgram` has been renamed to `LineProgram`.
 type StateMachine<R, Program, Offset> = LineRows<R, Program, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:160`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L160)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:160`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L160)*
 
 Deprecated. `StateMachine` has been renamed to `LineRows`.
 
@@ -21040,7 +19429,7 @@ Deprecated. `StateMachine` has been renamed to `LineRows`.
 type OneShotLineRows<R, Offset> = LineRows<R, IncompleteLineProgram<R, Offset>, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:179-180`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L179-L180)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:179-180`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L179-L180)*
 
 ### `ResumedLineRows<'program, R, Offset>`
 
@@ -21048,7 +19437,7 @@ type OneShotLineRows<R, Offset> = LineRows<R, IncompleteLineProgram<R, Offset>, 
 type ResumedLineRows<'program, R, Offset> = LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:182-183`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L182-L183)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:182-183`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L182-L183)*
 
 ### `Opcode<R>`
 
@@ -21056,7 +19445,7 @@ type ResumedLineRows<'program, R, Offset> = LineRows<R, &'program CompleteLinePr
 type Opcode<R> = LineInstruction<R, <R as Reader>::Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:263`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L263)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:263`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L263)*
 
 Deprecated. `Opcode` has been renamed to `LineInstruction`.
 
@@ -21066,7 +19455,7 @@ Deprecated. `Opcode` has been renamed to `LineInstruction`.
 type OpcodesIter<R> = LineInstructions<R>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:521`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L521)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:521`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L521)*
 
 Deprecated. `OpcodesIter` has been renamed to `LineInstructions`.
 
@@ -21076,7 +19465,7 @@ Deprecated. `OpcodesIter` has been renamed to `LineInstructions`.
 type LineNumberRow = LineRow;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:574`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L574)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:574`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L574)*
 
 Deprecated. `LineNumberRow` has been renamed to `LineRow`.
 
@@ -21086,7 +19475,7 @@ Deprecated. `LineNumberRow` has been renamed to `LineRow`.
 type LineNumberSequence<R> = LineSequence<R>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:971`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L971)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:971`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L971)*
 
 Deprecated. `LineNumberSequence` has been renamed to `LineSequence`.
 
@@ -21096,7 +19485,7 @@ Deprecated. `LineNumberSequence` has been renamed to `LineSequence`.
 type LineNumberProgramHeader<R, Offset> = LineProgramHeader<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:991`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L991)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:991`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L991)*
 
 Deprecated. `LineNumberProgramHeader` has been renamed to `LineProgramHeader`.
 
@@ -21106,7 +19495,7 @@ Deprecated. `LineNumberProgramHeader` has been renamed to `LineProgramHeader`.
 type IncompleteLineNumberProgram<R, Offset> = IncompleteLineProgram<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1407`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L1407)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1407`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1407)*
 
 Deprecated. `IncompleteLineNumberProgram` has been renamed to `IncompleteLineProgram`.
 
@@ -21116,7 +19505,7 @@ Deprecated. `IncompleteLineNumberProgram` has been renamed to `IncompleteLinePro
 type CompleteLineNumberProgram<R, Offset> = CompleteLineProgram<R, Offset>;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/line.rs:1500`](../../../.source_1765633015/gimli-0.32.3/src/read/line.rs#L1500)*
+*Defined in [`gimli-0.32.3/src/read/line.rs:1500`](../../../.source_1765894658/gimli-0.32.3/src/read/line.rs#L1500)*
 
 Deprecated. `CompleteLineNumberProgram` has been renamed to `CompleteLineProgram`.
 
@@ -21126,7 +19515,7 @@ Deprecated. `CompleteLineNumberProgram` has been renamed to `CompleteLineProgram
 type LocListsHeader = crate::read::lists::ListsHeader;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:131`](../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L131)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:131`](../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L131)*
 
 ### `RngListsHeader`
 
@@ -21134,7 +19523,7 @@ type LocListsHeader = crate::read::lists::ListsHeader;
 type RngListsHeader = crate::read::lists::ListsHeader;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:133`](../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L133)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:133`](../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L133)*
 
 ## Constants
 
@@ -21143,40 +19532,40 @@ type RngListsHeader = crate::read::lists::ListsHeader;
 const MAX_RULES: usize = 192usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1907)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1907)*
 
 ### `MAX_UNWIND_STACK_DEPTH`
 ```rust
 const MAX_UNWIND_STACK_DEPTH: usize = 4usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1909)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1909)*
 
 ### `CFI_INSTRUCTION_HIGH_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_HIGH_BITS_MASK: u8 = 192u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3257)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3257)*
 
 ### `CFI_INSTRUCTION_LOW_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_LOW_BITS_MASK: u8 = 63u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3258)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3258)*
 
 ### `MAX_ATTRIBUTES_INLINE`
 ```rust
 const MAX_ATTRIBUTES_INLINE: usize = 5usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:400`](../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L400)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:400`](../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L400)*
 
 ### `SECTION_COUNT_MAX`
 ```rust
 const SECTION_COUNT_MAX: u8 = 8u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L120)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L120)*
 

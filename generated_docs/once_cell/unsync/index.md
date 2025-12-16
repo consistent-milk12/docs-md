@@ -23,7 +23,7 @@ struct OnceCell<T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:411-414`](../../../.source_1765633015/once_cell-1.21.3/src/lib.rs#L411-L414)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:411-414`](../../../.source_1765894658/once_cell-1.21.3/src/lib.rs#L411-L414)*
 
 A cell which can be written to only once. It is not thread safe.
 
@@ -57,299 +57,166 @@ assert!(cell.get().is_some());
 - <span id="oncecell-get"></span>`fn get(&self) -> Option<&T>`
 
   Gets a reference to the underlying value.
-
   
-
   Returns `None` if the cell is empty.
 
 - <span id="oncecell-get-mut"></span>`fn get_mut(&mut self) -> Option<&mut T>`
 
   Gets a mutable reference to the underlying value.
-
   
-
   Returns `None` if the cell is empty.
-
   
-
   This method is allowed to violate the invariant of writing to a `OnceCell`
-
   at most once because it requires `&mut` access to `self`. As with all
-
   interior mutability, `&mut` access permits arbitrary modification:
-
   
-
   ```rust
-
   use once_cell::unsync::OnceCell;
-
   
-
   let mut cell: OnceCell<u32> = OnceCell::new();
-
   cell.set(92).unwrap();
-
   *cell.get_mut().unwrap() = 93;
-
   assert_eq!(cell.get(), Some(&93));
-
   ```
 
 - <span id="oncecell-set"></span>`fn set(&self, value: T) -> Result<(), T>`
 
   Sets the contents of this cell to `value`.
-
   
-
   Returns `Ok(())` if the cell was empty and `Err(value)` if it was
-
   full.
-
   
-
   # Example
-
   ```rust
-
   use once_cell::unsync::OnceCell;
-
   
-
   let cell = OnceCell::new();
-
   assert!(cell.get().is_none());
-
   
-
   assert_eq!(cell.set(92), Ok(()));
-
   assert_eq!(cell.set(62), Err(62));
-
   
-
   assert!(cell.get().is_some());
-
   ```
 
 - <span id="oncecell-try-insert"></span>`fn try_insert(&self, value: T) -> Result<&T, (&T, T)>`
 
   Like [`set`](Self::set), but also returns a reference to the final cell value.
-
   
-
   # Example
-
   ```rust
-
   use once_cell::unsync::OnceCell;
-
   
-
   let cell = OnceCell::new();
-
   assert!(cell.get().is_none());
-
   
-
   assert_eq!(cell.try_insert(92), Ok(&92));
-
   assert_eq!(cell.try_insert(62), Err((&92, 62)));
-
   
-
   assert!(cell.get().is_some());
-
   ```
 
 - <span id="oncecell-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> &T`
 
   Gets the contents of the cell, initializing it with `f`
-
   if the cell was empty.
-
   
-
   # Panics
-
   
-
   If `f` panics, the panic is propagated to the caller, and the cell
-
   remains uninitialized.
-
   
-
   It is an error to reentrantly initialize the cell from `f`. Doing
-
   so results in a panic.
-
   
-
   # Example
-
   ```rust
-
   use once_cell::unsync::OnceCell;
-
   
-
   let cell = OnceCell::new();
-
   let value = cell.get_or_init(|| 92);
-
   assert_eq!(value, &92);
-
   let value = cell.get_or_init(|| unreachable!());
-
   assert_eq!(value, &92);
-
   ```
 
 - <span id="oncecell-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<&T, E>`
 
   Gets the contents of the cell, initializing it with `f` if
-
   the cell was empty. If the cell was empty and `f` failed, an
-
   error is returned.
-
   
-
   # Panics
-
   
-
   If `f` panics, the panic is propagated to the caller, and the cell
-
   remains uninitialized.
-
   
-
   It is an error to reentrantly initialize the cell from `f`. Doing
-
   so results in a panic.
-
   
-
   # Example
-
   ```rust
-
   use once_cell::unsync::OnceCell;
-
   
-
   let cell = OnceCell::new();
-
   assert_eq!(cell.get_or_try_init(|| Err(())), Err(()));
-
   assert!(cell.get().is_none());
-
   let value = cell.get_or_try_init(|| -> Result<i32, ()> {
-
       Ok(92)
-
   });
-
   assert_eq!(value, Ok(&92));
-
   assert_eq!(cell.get(), Some(&92))
-
   ```
 
 - <span id="oncecell-take"></span>`fn take(&mut self) -> Option<T>`
 
   Takes the value out of this `OnceCell`, moving it back to an uninitialized state.
-
   
-
   Has no effect and returns `None` if the `OnceCell` hasn't been initialized.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use once_cell::unsync::OnceCell;
-
   
-
   let mut cell: OnceCell<String> = OnceCell::new();
-
   assert_eq!(cell.take(), None);
-
   
-
   let mut cell = OnceCell::new();
-
   cell.set("hello".to_string()).unwrap();
-
   assert_eq!(cell.take(), Some("hello".to_string()));
-
   assert_eq!(cell.get(), None);
-
   ```
-
   
-
   This method is allowed to violate the invariant of writing to a `OnceCell`
-
   at most once because it requires `&mut` access to `self`. As with all
-
   interior mutability, `&mut` access permits arbitrary modification:
-
   
-
   ```rust
-
   use once_cell::unsync::OnceCell;
-
   
-
   let mut cell: OnceCell<u32> = OnceCell::new();
-
   cell.set(92).unwrap();
-
   cell = OnceCell::new();
-
   ```
 
 - <span id="oncecell-into-inner"></span>`fn into_inner(self) -> Option<T>`
 
   Consumes the `OnceCell`, returning the wrapped value.
-
   
-
   Returns `None` if the cell was empty.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use once_cell::unsync::OnceCell;
-
   
-
   let cell: OnceCell<String> = OnceCell::new();
-
   assert_eq!(cell.into_inner(), None);
-
   
-
   let cell = OnceCell::new();
-
   cell.set("hello".to_string()).unwrap();
-
   assert_eq!(cell.into_inner(), Some("hello".to_string()));
-
   ```
 
 #### Trait Implementations
@@ -397,11 +264,8 @@ assert!(cell.get().is_some());
 - <span id="oncecell-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: PartialEq> PartialEq for OnceCell<T>`
@@ -441,7 +305,7 @@ struct Lazy<T, F> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/lib.rs:714-717`](../../../.source_1765633015/once_cell-1.21.3/src/lib.rs#L714-L717)*
+*Defined in [`once_cell-1.21.3/src/lib.rs:714-717`](../../../.source_1765894658/once_cell-1.21.3/src/lib.rs#L714-L717)*
 
 A value which is initialized on the first access.
 
@@ -469,39 +333,24 @@ println!("{}", *lazy);
 - <span id="lazy-new"></span>`const fn new(init: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
   Creates a new lazy value with the given initializing function.
-
   
-
   # Example
-
   ```rust
-
   fn main() {
-
   use once_cell::unsync::Lazy;
-
   
-
   let hello = "Hello, World!".to_string();
-
   
-
   let lazy = Lazy::new(|| hello.to_uppercase());
-
   
-
   assert_eq!(&*lazy, "HELLO, WORLD!");
-
   }
-
   ```
 
 - <span id="lazy-into-value"></span>`fn into_value(this: Lazy<T, F>) -> Result<T, F>` — [`Lazy`](#lazy)
 
   Consumes this `Lazy` returning the stored value.
-
   
-
   Returns `Ok(value)` if `Lazy` is initialized and `Err(f)` otherwise.
 
 #### Trait Implementations
@@ -549,11 +398,8 @@ println!("{}", *lazy);
 - <span id="lazy-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for Lazy<T, F>`

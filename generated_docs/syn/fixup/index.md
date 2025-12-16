@@ -34,7 +34,7 @@ struct FixupContext {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/fixup.rs:11-149`](../../../.source_1765633015/syn-2.0.111/src/fixup.rs#L11-L149)*
+*Defined in [`syn-2.0.111/src/fixup.rs:11-149`](../../../.source_1765894658/syn-2.0.111/src/fixup.rs#L11-L149)*
 
 #### Implementations
 
@@ -43,57 +43,39 @@ struct FixupContext {
 - <span id="fixupcontext-new-stmt"></span>`fn new_stmt() -> Self`
 
   Create the initial fixup for printing an expression in statement
-
   position.
 
 - <span id="fixupcontext-new-match-arm"></span>`fn new_match_arm() -> Self`
 
   Create the initial fixup for printing an expression as the right-hand
-
   side of a match arm.
 
 - <span id="fixupcontext-new-condition"></span>`fn new_condition() -> Self`
 
   Create the initial fixup for printing an expression as the "condition"
-
   of an `if` or `while`. There are a few other positions which are
-
   grammatically equivalent and also use this, such as the iterator
-
   expression in `for` and the scrutinee in `match`.
 
 - <span id="fixupcontext-leftmost-subexpression-with-operator"></span>`fn leftmost_subexpression_with_operator(self, expr: &Expr, next_operator_can_begin_expr: bool, next_operator_can_begin_generics: bool, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
   Transform this fixup into the one that should apply when printing the
-
   leftmost subexpression of the current expression.
-
   
-
   The leftmost subexpression is any subexpression that has the same first
-
   token as the current expression, but has a different last token.
-
   
-
   For example in `$a + $b` and `$a.method()`, the subexpression `$a` is a
-
   leftmost subexpression.
-
   
-
   Not every expression has a leftmost subexpression. For example neither
-
   `-$a` nor `[$a]` have one.
 
 - <span id="fixupcontext-leftmost-subexpression-with-dot"></span>`fn leftmost_subexpression_with_dot(self, expr: &Expr) -> (Precedence, Self)` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
   Transform this fixup into the one that should apply when printing a
-
   leftmost subexpression followed by a `.` or `?` token, which confer
-
   different statement boundary rules compared to other leftmost
-
   subexpressions.
 
 - <span id="fixupcontext-leftmost-subexpression-precedence"></span>`fn leftmost_subexpression_precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
@@ -101,25 +83,15 @@ struct FixupContext {
 - <span id="fixupcontext-rightmost-subexpression"></span>`fn rightmost_subexpression(self, expr: &Expr, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
   Transform this fixup into the one that should apply when printing the
-
   rightmost subexpression of the current expression.
-
   
-
   The rightmost subexpression is any subexpression that has a different
-
   first token than the current expression, but has the same last token.
-
   
-
   For example in `$a + $b` and `-$b`, the subexpression `$b` is a
-
   rightmost subexpression.
-
   
-
   Not every expression has a rightmost subexpression. For example neither
-
   `[$b]` nor `$a.f($b)` have one.
 
 - <span id="fixupcontext-rightmost-subexpression-fixup"></span>`fn rightmost_subexpression_fixup(self, reset_allow_struct: bool, optional_operand: bool, precedence: Precedence) -> Self` — [`Precedence`](../precedence/index.md#precedence)
@@ -129,13 +101,11 @@ struct FixupContext {
 - <span id="fixupcontext-parenthesize"></span>`fn parenthesize(self, expr: &Expr) -> bool` — [`Expr`](../expr/index.md#expr)
 
   Determine whether parentheses are needed around the given expression to
-
   head off the early termination of a statement or condition.
 
 - <span id="fixupcontext-precedence"></span>`fn precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md#expr), [`Precedence`](../precedence/index.md#precedence)
 
   Determines the effective precedence of a subexpression. Some expressions
-
   have higher or lower precedence when adjacent to particular operators.
 
 #### Trait Implementations
@@ -173,11 +143,8 @@ struct FixupContext {
 - <span id="fixupcontext-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for FixupContext`
@@ -212,7 +179,7 @@ enum Scan {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/fixup.rs:455-459`](../../../.source_1765633015/syn-2.0.111/src/fixup.rs#L455-L459)*
+*Defined in [`syn-2.0.111/src/fixup.rs:455-459`](../../../.source_1765894658/syn-2.0.111/src/fixup.rs#L455-L459)*
 
 #### Trait Implementations
 
@@ -249,11 +216,8 @@ enum Scan {
 - <span id="scan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Scan`
@@ -288,7 +252,7 @@ enum Scan {
 fn scan_left(expr: &crate::expr::Expr, fixup: FixupContext) -> bool
 ```
 
-*Defined in [`syn-2.0.111/src/fixup.rs:479-490`](../../../.source_1765633015/syn-2.0.111/src/fixup.rs#L479-L490)*
+*Defined in [`syn-2.0.111/src/fixup.rs:479-490`](../../../.source_1765894658/syn-2.0.111/src/fixup.rs#L479-L490)*
 
 ### `scan_right`
 
@@ -296,5 +260,5 @@ fn scan_left(expr: &crate::expr::Expr, fixup: FixupContext) -> bool
 fn scan_right(expr: &crate::expr::Expr, fixup: FixupContext, precedence: crate::precedence::Precedence, fail_offset: u8, bailout_offset: u8) -> Scan
 ```
 
-*Defined in [`syn-2.0.111/src/fixup.rs:493-773`](../../../.source_1765633015/syn-2.0.111/src/fixup.rs#L493-L773)*
+*Defined in [`syn-2.0.111/src/fixup.rs:493-773`](../../../.source_1765894658/syn-2.0.111/src/fixup.rs#L493-L773)*
 

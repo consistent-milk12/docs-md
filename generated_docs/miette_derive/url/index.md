@@ -21,7 +21,7 @@ enum Url {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/url.rs:18-21`](../../../.source_1765633015/miette-derive-7.6.0/src/url.rs#L18-L21)*
+*Defined in [`miette-derive-7.6.0/src/url.rs:18-21`](../../../.source_1765894658/miette-derive-7.6.0/src/url.rs#L18-L21)*
 
 #### Implementations
 
@@ -54,11 +54,8 @@ enum Url {
 - <span id="url-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Url`

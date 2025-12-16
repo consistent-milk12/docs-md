@@ -23,7 +23,7 @@ struct Drain<'a, T: 'a, A: Allocator + 'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
 
 A draining iterator for `Vec<T>`.
 
@@ -56,11 +56,8 @@ let iter: std::vec::Drain<_> = v.drain(..);
 - <span id="superdrain-fill"></span>`unsafe fn fill<I: Iterator<Item = T>>(&mut self, replace_with: &mut I) -> bool`
 
   The range from `self.vec.len` to `self.tail_start` contains elements
-
   that have been moved out.
-
   Fill that range as much as possible with new elements from the `replace_with` iterator.
-
   Returns `true` if we filled the entire range. (`replace_with.next()` didn’t return `None`.)
 
 - <span id="superdrain-move-tail"></span>`unsafe fn move_tail(&mut self, additional: usize)`
@@ -112,11 +109,8 @@ let iter: std::vec::Drain<_> = v.drain(..);
 - <span id="drain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Drain<'a, T, A>`

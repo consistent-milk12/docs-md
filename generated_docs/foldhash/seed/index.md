@@ -27,7 +27,7 @@ struct SharedSeed {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:78-80`](../../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L78-L80)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:78-80`](../../../.source_1765894658/foldhash-0.2.0/src/seed.rs#L78-L80)*
 
 A random seed intended to be shared by many different foldhash instances.
 
@@ -39,25 +39,19 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 - <span id="sharedseed-global-random"></span>`fn global_random() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
 
   Returns the globally shared randomly initialized [`SharedSeed`](#sharedseed) as used
-
   by [`RandomState`](crate::fast::RandomState).
 
 - <span id="sharedseed-global-fixed"></span>`const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
 
   Returns the globally shared fixed [`SharedSeed`](#sharedseed) as used
-
   by [`FixedState`](crate::fast::FixedState).
 
 - <span id="sharedseed-from-u64"></span>`const fn from_u64(seed: u64) -> Self`
 
   Generates a new [`SharedSeed`](#sharedseed) from a single 64-bit seed.
-
   
-
   Note that this is somewhat expensive so it is suggested to re-use the
-
   [`SharedSeed`](#sharedseed) as much as possible, using the per-hasher seed to
-
   differentiate between hash instances.
 
 #### Trait Implementations
@@ -97,11 +91,8 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 - <span id="sharedseed-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SharedSeed`
@@ -124,7 +115,7 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 fn gen_per_hasher_seed() -> u64
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:22-71`](../../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L22-L71)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:22-71`](../../../.source_1765894658/foldhash-0.2.0/src/seed.rs#L22-L71)*
 
 ## Constants
 
@@ -133,7 +124,7 @@ fn gen_per_hasher_seed() -> u64
 const FIXED_GLOBAL_SEED: SharedSeed;
 ```
 
-*Defined in [`foldhash-0.2.0/src/seed.rs:11-20`](../../../.source_1765633015/foldhash-0.2.0/src/seed.rs#L11-L20)*
+*Defined in [`foldhash-0.2.0/src/seed.rs:11-20`](../../../.source_1765894658/foldhash-0.2.0/src/seed.rs#L11-L20)*
 
 Used for FixedState, and RandomState if atomics for dynamic init are unavailable.
 

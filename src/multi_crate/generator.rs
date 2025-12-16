@@ -1640,15 +1640,20 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
             // Categorize trait items
             let items = CategorizedTraitItems::categorize_trait_items(&t.items, current_krate);
+            let full_method_docs = self.view.render_config().full_method_docs;
 
             // Associated Types
             if !items.associated_types.is_empty() {
                 _ = writeln!(md, "#### Associated Types\n");
 
                 for type_item in &items.associated_types {
-                    TraitRenderer::render_trait_item(md, type_item, &self.type_renderer, |m| {
-                        self.view.process_docs(m, self.file_path)
-                    });
+                    TraitRenderer::render_trait_item(
+                        md,
+                        type_item,
+                        &self.type_renderer,
+                        |m| self.view.process_docs(m, self.file_path),
+                        full_method_docs,
+                    );
                 }
             }
 
@@ -1657,9 +1662,13 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 _ = writeln!(md, "#### Associated Constants\n");
 
                 for const_item in &items.associated_consts {
-                    TraitRenderer::render_trait_item(md, const_item, &self.type_renderer, |m| {
-                        self.view.process_docs(m, self.file_path)
-                    });
+                    TraitRenderer::render_trait_item(
+                        md,
+                        const_item,
+                        &self.type_renderer,
+                        |m| self.view.process_docs(m, self.file_path),
+                        full_method_docs,
+                    );
                 }
             }
 
@@ -1668,9 +1677,13 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 _ = writeln!(md, "#### Required Methods\n");
 
                 for method in &items.required_methods {
-                    TraitRenderer::render_trait_item(md, method, &self.type_renderer, |m| {
-                        self.view.process_docs(m, self.file_path)
-                    });
+                    TraitRenderer::render_trait_item(
+                        md,
+                        method,
+                        &self.type_renderer,
+                        |m| self.view.process_docs(m, self.file_path),
+                        full_method_docs,
+                    );
                 }
             }
 
@@ -1679,9 +1692,13 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 _ = writeln!(md, "#### Provided Methods\n");
 
                 for method in &items.provided_methods {
-                    TraitRenderer::render_trait_item(md, method, &self.type_renderer, |m| {
-                        self.view.process_docs(m, self.file_path)
-                    });
+                    TraitRenderer::render_trait_item(
+                        md,
+                        method,
+                        &self.type_renderer,
+                        |m| self.view.process_docs(m, self.file_path),
+                        full_method_docs,
+                    );
                 }
             }
 

@@ -65,7 +65,7 @@
 struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:44-57`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L44-L57)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:44-57`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L44-L57)*
 
 #### Implementations
 
@@ -84,37 +84,27 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 - <span id="repr-from-utf8-unchecked"></span>`unsafe fn from_utf8_unchecked<B: AsRef<[u8]>>(buf: B) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md#reserveerror)
 
   Create a [`Repr`](#repr) from a slice of bytes that is UTF-8, without validating that it is indeed
-
   UTF-8
-
   
-
   # Safety
-
   
-
   * The caller must guarantee that `buf` is valid UTF-8.
 
 - <span id="repr-from-string"></span>`fn from_string(s: String, should_inline: bool) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md#reserveerror)
 
-  Create a [`Repr`](#repr) from a [`String`](../../cargo_platform/index.md), in `O(1)` time. We'll attempt to inline the string
-
+  Create a [`Repr`](#repr) from a `String`, in `O(1)` time. We'll attempt to inline the string
   if `should_inline` is `true`
-
   
-
-  Note: If the provided [`String`](../../cargo_platform/index.md) is >16 MB and we're on a 32-bit arch, we'll copy the
-
+  Note: If the provided `String` is >16 MB and we're on a 32-bit arch, we'll copy the
   `String`.
 
 - <span id="repr-into-string"></span>`fn into_string(self) -> String`
 
-  Converts a [`Repr`](#repr) into a [`String`](../../cargo_platform/index.md), in `O(1)` time, if possible
+  Converts a [`Repr`](#repr) into a `String`, in `O(1)` time, if possible
 
 - <span id="repr-reserve"></span>`fn reserve(&mut self, additional: usize) -> Result<(), ReserveError>` — [`ReserveError`](../index.md#reserveerror)
 
   Reserves at least `additional` bytes. If there is already enough capacity to store
-
   `additional` bytes this is a no-op
 
 - <span id="repr-shrink-to"></span>`fn shrink_to(&mut self, min_capacity: usize)`
@@ -152,155 +142,98 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 - <span id="repr-as-mut-buf"></span>`unsafe fn as_mut_buf(&mut self) -> &mut [u8]`
 
   Return a mutable reference to the entirely underlying buffer
-
   
-
   # Safety
-
   * Callers must guarantee that any modifications made to the buffer are valid UTF-8
 
 - <span id="repr-set-len"></span>`unsafe fn set_len(&mut self, len: usize)`
 
   Sets the length of the string that our underlying buffer contains
-
   
-
   # Safety
-
   * `len` bytes in the buffer must be valid UTF-8
-
   * If the underlying buffer is stored inline, `len` must be <= MAX_SIZE
 
 - <span id="repr-last-byte"></span>`const fn last_byte(&self) -> u8`
 
   Returns the last byte that's on the stack.
-
   
-
   The last byte stores the discriminant that indicates whether the string is on the stack or
-
   on the heap. When the string is on the stack the last byte also stores the length
 
 - <span id="repr-from-inline"></span>`const fn from_inline(inline: InlineBuffer) -> Self` — [`InlineBuffer`](inline/index.md#inlinebuffer)
 
   Reinterprets an [`InlineBuffer`](inline/index.md) into a [`Repr`](#repr)
-
   
-
   Note: This is safe because [`InlineBuffer`](inline/index.md) and [`Repr`](#repr) are the same size. We used to
-
   define [`Repr`](#repr) as a `union` which implicitly transmuted between the two types, but that
-
   prevented us from defining a "niche" value to make `Option<CompactString>` the same size as
-
   just `CompactString`
 
 - <span id="repr-from-heap"></span>`const fn from_heap(heap: HeapBuffer) -> Self` — [`HeapBuffer`](heap/index.md#heapbuffer)
 
   Reinterprets a [`HeapBuffer`](heap/index.md) into a [`Repr`](#repr)
-
   
-
   Note: This is safe because [`HeapBuffer`](heap/index.md) and [`Repr`](#repr) are the same size. We used to define
-
   [`Repr`](#repr) as a `union` which implicitly transmuted between the two types, but that prevented
-
   us from defining a "niche" value to make `Option<CompactString>` the same size as just
-
   `CompactString`
 
 - <span id="repr-from-static"></span>`const fn from_static(heap: StaticStr) -> Self` — [`StaticStr`](static_str/index.md#staticstr)
 
   Reinterprets a [`StaticStr`](static_str/index.md) into a [`Repr`](#repr)
-
   
-
   Note: This is safe because [`StaticStr`](static_str/index.md) and [`Repr`](#repr) are the same size. We used to define
-
   [`Repr`](#repr) as a `union` which implicitly transmuted between the two types, but that prevented
-
   us from defining a "niche" value to make `Option<CompactString>` the same size as just
-
   `CompactString`
 
 - <span id="repr-into-heap"></span>`const unsafe fn into_heap(self) -> HeapBuffer` — [`HeapBuffer`](heap/index.md#heapbuffer)
 
   Reinterprets a [`Repr`](#repr) as a [`HeapBuffer`](heap/index.md)
-
   
-
   # SAFETY
-
   * The caller must guarantee that the provided [`Repr`](#repr) is actually a [`HeapBuffer`](heap/index.md) by
-
     checking the discriminant.
-
   
-
   Note: We used to define [`Repr`](#repr) as a `union` which implicitly transmuted between the two
-
   types, but that prevented us from defining a "niche" value to make `Option<CompactString>`
-
   the same size as just `CompactString`
 
 - <span id="repr-as-mut-heap"></span>`unsafe fn as_mut_heap(&mut self) -> &mut HeapBuffer` — [`HeapBuffer`](heap/index.md#heapbuffer)
 
   Reinterprets a `&mut Repr` as a `&mut HeapBuffer`
-
   
-
   # SAFETY
-
   * The caller must guarantee that the provided [`Repr`](#repr) is actually a [`HeapBuffer`](heap/index.md) by
-
     checking the discriminant.
-
   
-
   Note: We used to define [`Repr`](#repr) as a `union` which implicitly transmuted between the two
-
   types, but that prevented us from defining a "niche" value to make `Option<CompactString>`
-
   the same size as just `CompactString`
 
 - <span id="repr-as-heap"></span>`unsafe fn as_heap(&self) -> &HeapBuffer` — [`HeapBuffer`](heap/index.md#heapbuffer)
 
   Reinterprets a `&Repr` as a `&HeapBuffer`
-
   
-
   # SAFETY
-
   * The caller must guarantee that the provided [`Repr`](#repr) is actually a [`HeapBuffer`](heap/index.md) by
-
     checking the discriminant.
-
   
-
   Note: We used to define [`Repr`](#repr) as a `union` which implicitly transmuted between the two
-
   types, but that prevented us from defining a "niche" value to make `Option<CompactString>`
-
   the same size as just `CompactString`
 
 - <span id="repr-as-mut-inline"></span>`unsafe fn as_mut_inline(&mut self) -> &mut InlineBuffer` — [`InlineBuffer`](inline/index.md#inlinebuffer)
 
   Reinterprets a `&mut Repr` as an `&mut InlineBuffer`
-
   
-
   # SAFETY
-
   * The caller must guarantee that the provided [`Repr`](#repr) is actually an [`InlineBuffer`](inline/index.md) by
-
     checking the discriminant.
-
   
-
   Note: We used to define [`Repr`](#repr) as a `union` which implicitly transmuted between the two
-
   types, but that prevented us from defining a "niche" value to make `Option<CompactString>`
-
   the same size as just `CompactString`
 
 #### Trait Implementations
@@ -350,11 +283,8 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 - <span id="repr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl LifetimeFree for super::repr::Repr`
@@ -391,7 +321,7 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 fn ensure_read(value: usize) -> usize
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:841-863`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L841-L863)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:841-863`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L841-L863)*
 
 Returns the supplied value, and ensures that the value is eagerly loaded into a register.
 
@@ -402,7 +332,7 @@ Returns the supplied value, and ensures that the value is eagerly loaded into a 
 const MAX_SIZE: usize = 24usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:32`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L32)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:32`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L32)*
 
 The max size of a string we can fit inline
 
@@ -411,7 +341,7 @@ The max size of a string we can fit inline
 const HEAP_MASK: u8 = 216u8;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:34`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L34)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:34`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L34)*
 
 Used as a discriminant to identify different variants
 
@@ -420,7 +350,7 @@ Used as a discriminant to identify different variants
 const STATIC_STR_MASK: u8 = 217u8;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:36`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L36)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:36`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L36)*
 
 Used for `StaticStr` variant
 
@@ -429,7 +359,7 @@ Used for `StaticStr` variant
 const LENGTH_MASK: u8 = 192u8;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:39`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L39)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:39`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L39)*
 
 When our string is stored inline, we represent the length of the string in the last byte, offset
 by `LENGTH_MASK`
@@ -439,5 +369,5 @@ by `LENGTH_MASK`
 const EMPTY: Repr;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/mod.rs:41`](../../../.source_1765633015/compact_str-0.9.0/src/repr/mod.rs#L41)*
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:41`](../../../.source_1765894658/compact_str-0.9.0/src/repr/mod.rs#L41)*
 

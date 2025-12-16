@@ -45,7 +45,7 @@ struct Block {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:8-16`](../../../.source_1765633015/syn-2.0.111/src/stmt.rs#L8-L16)*
+*Defined in [`syn-2.0.111/src/stmt.rs:8-16`](../../../.source_1765894658/syn-2.0.111/src/stmt.rs#L8-L16)*
 
 A braced block containing Rust statements.
 
@@ -60,101 +60,53 @@ A braced block containing Rust statements.
 - <span id="cratestmtblock-parse-within"></span>`fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result), [`Stmt`](#stmt)
 
   Parse the body of a block as zero or more statements, possibly
-
   including one trailing expression.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{braced, token, Attribute, Block, Ident, Result, Stmt, Token};
-
   use syn::parse::{Parse, ParseStream};
-
   
-
   // Parse a function with no generics or parameter list.
-
   //
-
   //     fn playground {
-
   //         let mut x = 1;
-
   //         x += 1;
-
   //         println!("{}", x);
-
   //     }
-
   struct MiniFunction {
-
       attrs: Vec<Attribute>,
-
       fn_token: Token![fn],
-
       name: Ident,
-
       brace_token: token::Brace,
-
       stmts: Vec<Stmt>,
-
   }
-
   
-
   impl Parse for MiniFunction {
-
       fn parse(input: ParseStream) -> Result<Self> {
-
           let outer_attrs = input.call(Attribute::parse_outer)?;
-
           let fn_token: Token![fn] = input.parse()?;
-
           let name: Ident = input.parse()?;
-
   
-
           let content;
-
           let brace_token = braced!(content in input);
-
           let inner_attrs = content.call(Attribute::parse_inner)?;
-
           let stmts = content.call(Block::parse_within)?;
-
   
-
           Ok(MiniFunction {
-
               attrs: {
-
                   let mut attrs = outer_attrs;
-
                   attrs.extend(inner_attrs);
-
                   attrs
-
               },
-
               fn_token,
-
               name,
-
               brace_token,
-
               stmts,
-
           })
-
       }
-
   }
-
   ```
 
 #### Trait Implementations
@@ -200,11 +152,8 @@ A braced block containing Rust statements.
 - <span id="block-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::stmt::Block`
@@ -257,7 +206,7 @@ struct Local {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:40-50`](../../../.source_1765633015/syn-2.0.111/src/stmt.rs#L40-L50)*
+*Defined in [`syn-2.0.111/src/stmt.rs:40-50`](../../../.source_1765894658/syn-2.0.111/src/stmt.rs#L40-L50)*
 
 A local `let` binding: `let x: u64 = s.parse()?;`.
 
@@ -308,11 +257,8 @@ A local `let` binding: `let x: u64 = s.parse()?;`.
 - <span id="local-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Local`
@@ -359,7 +305,7 @@ struct LocalInit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:52-64`](../../../.source_1765633015/syn-2.0.111/src/stmt.rs#L52-L64)*
+*Defined in [`syn-2.0.111/src/stmt.rs:52-64`](../../../.source_1765894658/syn-2.0.111/src/stmt.rs#L52-L64)*
 
 The expression assigned in a local `let` binding, including optional
 diverging `else` block.
@@ -410,11 +356,8 @@ diverging `else` block.
 - <span id="localinit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::LocalInit`
@@ -451,7 +394,7 @@ struct StmtMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:66-78`](../../../.source_1765633015/syn-2.0.111/src/stmt.rs#L66-L78)*
+*Defined in [`syn-2.0.111/src/stmt.rs:66-78`](../../../.source_1765894658/syn-2.0.111/src/stmt.rs#L66-L78)*
 
 A macro invocation in statement position.
 
@@ -506,11 +449,8 @@ expression.
 - <span id="stmtmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::StmtMacro`
@@ -560,7 +500,7 @@ enum Stmt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/stmt.rs:18-38`](../../../.source_1765633015/syn-2.0.111/src/stmt.rs#L18-L38)*
+*Defined in [`syn-2.0.111/src/stmt.rs:18-38`](../../../.source_1765894658/syn-2.0.111/src/stmt.rs#L18-L38)*
 
 A statement, usually ending in a semicolon.
 
@@ -629,11 +569,8 @@ A statement, usually ending in a semicolon.
 - <span id="stmt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::stmt::Stmt`

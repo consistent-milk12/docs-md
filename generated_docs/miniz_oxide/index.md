@@ -51,7 +51,7 @@ struct StreamResult {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:189-196`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L189-L196)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:189-196`](../../.source_1765894658/miniz_oxide-0.8.9/src/lib.rs#L189-L196)*
 
 A structure containing the result of a call to the inflate or deflate streaming functions.
 
@@ -118,11 +118,8 @@ A structure containing the result of a call to the inflate or deflate streaming 
 - <span id="streamresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for StreamResult`
@@ -158,7 +155,7 @@ enum MZFlush {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:47-66`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L47-L66)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:47-66`](../../.source_1765894658/miniz_oxide-0.8.9/src/lib.rs#L47-L66)*
 
 A list of flush types.
 
@@ -201,9 +198,7 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 - <span id="mzflush-new"></span>`fn new(flush: i32) -> Result<Self, MZError>` — [`MZError`](#mzerror)
 
   Create an MZFlush value from an integer value.
-
   
-
   Returns `MZError::Param` on invalid values.
 
 #### Trait Implementations
@@ -251,11 +246,8 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 - <span id="mzflush-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MZFlush`
@@ -286,7 +278,7 @@ enum MZStatus {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:90-106`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L90-L106)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:90-106`](../../.source_1765894658/miniz_oxide-0.8.9/src/lib.rs#L90-L106)*
 
 A list of miniz successful status codes.
 
@@ -359,11 +351,8 @@ These are emitted as the [`Ok`](#ok) side of a [`MZResult`](#mzresult) in the [`
 - <span id="mzstatus-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MZStatus`
@@ -398,7 +387,7 @@ enum MZError {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:115-149`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L115-L149)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:115-149`](../../.source_1765894658/miniz_oxide-0.8.9/src/lib.rs#L115-L149)*
 
 A list of miniz failed status codes.
 
@@ -493,11 +482,8 @@ These are emitted as the `Err` side of a [`MZResult`](#mzresult) in the [`Stream
 - <span id="mzerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MZError`
@@ -528,7 +514,7 @@ enum DataFormat {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:155-163`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L155-L163)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:155-163`](../../.source_1765894658/miniz_oxide-0.8.9/src/lib.rs#L155-L163)*
 
 How compressed data is wrapped.
 
@@ -598,11 +584,8 @@ How compressed data is wrapped.
 - <span id="dataformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for DataFormat`
@@ -631,7 +614,7 @@ How compressed data is wrapped.
 type MZResult = Result<MZStatus, MZError>;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/lib.rs:184`](../../.source_1765633015/miniz_oxide-0.8.9/src/lib.rs#L184)*
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:184`](../../.source_1765894658/miniz_oxide-0.8.9/src/lib.rs#L184)*
 
 `Result` alias for all miniz status codes both successful and failed.
 

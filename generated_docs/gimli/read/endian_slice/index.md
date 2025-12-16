@@ -28,7 +28,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
 
 A `&[u8]` slice with endianity metadata.
 
@@ -47,9 +47,7 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 - <span id="endianslice-split-at"></span>`fn split_at(&self, idx: usize) -> (EndianSlice<'input, Endian>, EndianSlice<'input, Endian>)` — [`EndianSlice`](../index.md#endianslice)
 
   Split the slice in two at the given index, resulting in the tuple where
-
   the first item has range [0, idx), and the second has range [idx,
-
   len). Panics if the index is out of bounds.
 
 - <span id="endianslice-find"></span>`fn find(&self, byte: u8) -> Option<usize>`
@@ -59,21 +57,17 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 - <span id="endianslice-offset-from"></span>`fn offset_from(&self, base: EndianSlice<'input, Endian>) -> usize` — [`EndianSlice`](../index.md#endianslice)
 
   Return the offset of the start of the slice relative to the start
-
   of the given slice.
 
 - <span id="endianslice-to-string"></span>`fn to_string(&self) -> Result<&'input str>` — [`Result`](../../index.md#result)
 
   Converts the slice to a string using `str::from_utf8`.
-
   
-
   Returns an error if the slice contains invalid characters.
 
 - <span id="endianslice-to-string-lossy"></span>`fn to_string_lossy(&self) -> Cow<'input, str>`
 
   Converts the slice to a string, including invalid characters,
-
   using `String::from_utf8_lossy`.
 
 - <span id="endianslice-read-slice"></span>`fn read_slice(&mut self, len: usize) -> Result<&'input [u8]>` — [`Result`](../../index.md#result)
@@ -133,11 +127,8 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 - <span id="endianslice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Endian> PartialEq for EndianSlice<'input, Endian>`
@@ -212,7 +203,7 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 struct DebugBytes<'input>(&'input [u8]);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L190)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L190)*
 
 #### Trait Implementations
 
@@ -243,11 +234,8 @@ struct DebugBytes<'input>(&'input [u8]);
 - <span id="debugbytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugBytes<'input>`
@@ -268,7 +256,7 @@ struct DebugBytes<'input>(&'input [u8]);
 struct DebugByte(u8);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L203)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L203)*
 
 #### Trait Implementations
 
@@ -299,11 +287,8 @@ struct DebugByte(u8);
 - <span id="debugbyte-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugByte`
@@ -324,7 +309,7 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../../.source_1765633015/gimli-0.32.3/src/read/endian_slice.rs#L211)*
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../../.source_1765894658/gimli-0.32.3/src/read/endian_slice.rs#L211)*
 
 #### Trait Implementations
 
@@ -355,11 +340,8 @@ struct DebugLen(usize);
 - <span id="debuglen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugLen`

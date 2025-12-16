@@ -69,7 +69,7 @@ struct One {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:35-38`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L35-L38)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:35-38`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L35-L38)*
 
 Finds all occurrences of a single byte in a haystack.
 
@@ -84,25 +84,17 @@ Finds all occurrences of a single byte in a haystack.
 - <span id="one-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the first occurrence of the needle in the given haystack. If no
-
   such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value for a non-empty haystack is `haystack.len() - 1`.
 
 - <span id="one-rfind"></span>`fn rfind(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the last occurrence of the needle in the given haystack. If no
-
   such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value for a non-empty haystack is `haystack.len() - 1`.
 
 - <span id="one-count"></span>`fn count(&self, haystack: &[u8]) -> usize`
@@ -112,153 +104,85 @@ Finds all occurrences of a single byte in a haystack.
 - <span id="one-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `find`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="one-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `rfind`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="one-count-raw"></span>`unsafe fn count_raw(&self, start: *const u8, end: *const u8) -> usize`
 
   Counts all occurrences of this byte in the given haystack represented
-
   by raw pointers.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `0` will always be returned.
 
 - <span id="one-iter"></span>`fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
 
   Returns an iterator over all occurrences of the needle byte in the
-
   given haystack.
-
   
-
   The iterator returned implements `DoubleEndedIterator`. This means it
-
   can also be used to find occurrences in reverse order.
 
 - <span id="one-has-needle"></span>`fn has_needle(&self, chunk: usize) -> bool`
@@ -304,11 +228,8 @@ Finds all occurrences of a single byte in a haystack.
 - <span id="one-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for One`
@@ -340,7 +261,7 @@ struct OneIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:303-308`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L303-L308)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:303-308`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L303-L308)*
 
 An iterator over all occurrences of a single byte in a haystack.
 
@@ -405,11 +326,8 @@ The lifetime parameters are as follows:
 - <span id="oneiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for OneIter<'a, 'h>`
@@ -461,7 +379,7 @@ struct Two {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:352-357`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L352-L357)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:352-357`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L352-L357)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -474,139 +392,82 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 - <span id="two-new"></span>`fn new(needle1: u8, needle2: u8) -> Two` — [`Two`](#two)
 
   Create a new searcher that finds occurrences of the two needle bytes
-
   given.
 
 - <span id="two-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the first occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value for a non-empty haystack is `haystack.len() - 1`.
 
 - <span id="two-rfind"></span>`fn rfind(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the last occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value for a non-empty haystack is `haystack.len() - 1`.
 
 - <span id="two-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `find`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="two-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `rfind`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="two-iter"></span>`fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
 
   Returns an iterator over all occurrences of one of the needle bytes in
-
   the given haystack.
-
   
-
   The iterator returned implements `DoubleEndedIterator`. This means it
-
   can also be used to find occurrences in reverse order.
 
 - <span id="two-has-needle"></span>`fn has_needle(&self, chunk: usize) -> bool`
@@ -652,11 +513,8 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 - <span id="two-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Two`
@@ -688,7 +546,7 @@ struct TwoIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:568-573`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L568-L573)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:568-573`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L568-L573)*
 
 An iterator over all occurrences of two possible bytes in a haystack.
 
@@ -753,11 +611,8 @@ The lifetime parameters are as follows:
 - <span id="twoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TwoIter<'a, 'h>`
@@ -809,7 +664,7 @@ struct Three {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:608-615`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L608-L615)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:608-615`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L608-L615)*
 
 Finds all occurrences of three bytes in a haystack.
 
@@ -822,139 +677,82 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 - <span id="three-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8) -> Three` — [`Three`](#three)
 
   Create a new searcher that finds occurrences of the three needle bytes
-
   given.
 
 - <span id="three-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the first occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value for a non-empty haystack is `haystack.len() - 1`.
 
 - <span id="three-rfind"></span>`fn rfind(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the last occurrence of one of the needle bytes in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   The occurrence is reported as an offset into `haystack`. Its maximum
-
   value for a non-empty haystack is `haystack.len() - 1`.
 
 - <span id="three-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `find`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="three-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Like `rfind`, but accepts and returns raw pointers.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   This routine is useful if you're already using raw pointers and would
-
   like to avoid converting back to a slice before executing a search.
-
   
-
   # Safety
-
   
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
-
   
-
   Note that callers may pass a pair of pointers such that `start >= end`.
-
   In that case, `None` will always be returned.
 
 - <span id="three-iter"></span>`fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
 
   Returns an iterator over all occurrences of one of the needle bytes in
-
   the given haystack.
-
   
-
   The iterator returned implements `DoubleEndedIterator`. This means it
-
   can also be used to find occurrences in reverse order.
 
 - <span id="three-has-needle"></span>`fn has_needle(&self, chunk: usize) -> bool`
@@ -1000,11 +798,8 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 - <span id="three-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Three`
@@ -1036,7 +831,7 @@ struct ThreeIter<'a, 'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:836-841`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L836-L841)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:836-841`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L836-L841)*
 
 An iterator over all occurrences of three possible bytes in a haystack.
 
@@ -1101,11 +896,8 @@ The lifetime parameters are as follows:
 - <span id="threeiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ThreeIter<'a, 'h>`
@@ -1152,7 +944,7 @@ The lifetime parameters are as follows:
 fn has_zero_byte(x: usize) -> bool
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:877-885`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L877-L885)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:877-885`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L877-L885)*
 
 Return `true` if `x` contains any zero byte.
 
@@ -1167,7 +959,7 @@ From "Matters Computational" by J. Arndt.
 const fn splat(b: u8) -> usize
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:892-895`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L892-L895)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:892-895`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L892-L895)*
 
 Repeat the given byte into a word size number. That is, every 8 bits
 is equivalent to the given byte. For example, if `b` is `\x4E` or
@@ -1181,7 +973,7 @@ is equivalent to the given byte. For example, if `b` is `\x4E` or
 const USIZE_BYTES: usize = 8usize;
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:29`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L29)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:29`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L29)*
 
 The number of bytes in a single `usize` value.
 
@@ -1190,7 +982,7 @@ The number of bytes in a single `usize` value.
 const USIZE_ALIGN: usize = 7usize;
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:31`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/memchr.rs#L31)*
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:31`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/memchr.rs#L31)*
 
 The bits that must be zero for a `*const usize` to be properly aligned.
 

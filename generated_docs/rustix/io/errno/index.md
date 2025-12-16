@@ -26,11 +26,11 @@ want unrecognized values to create undefined behavior.
 struct Errno(u16);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../../.source_1765894658/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../addr2line/index.md),
+The error type for `rustix` APIs. This is similar to `std::io::Error`,
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -58,11 +58,8 @@ but only holds an OS error code, and no extra error value.
 - <span id="errno-from-io-error"></span>`fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
 
   Extract an `Errno` value from a `std::io::Error`.
-
   
-
   This isn't a `From` conversion because it's expected to be relatively
-
   uncommon.
 
 - <span id="errno-raw-os-error"></span>`const fn raw_os_error(self) -> i32`
@@ -128,11 +125,8 @@ but only holds an OS error code, and no extra error value.
 - <span id="errno-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Errno`
@@ -173,7 +167,7 @@ but only holds an OS error code, and no extra error value.
 fn retry_on_intr<T, F: FnMut() -> Result<T>>(f: F) -> Result<T>
 ```
 
-*Defined in [`rustix-1.1.2/src/io/errno.rs:67-74`](../../../../.source_1765633015/rustix-1.1.2/src/io/errno.rs#L67-L74)*
+*Defined in [`rustix-1.1.2/src/io/errno.rs:67-74`](../../../../.source_1765894658/rustix-1.1.2/src/io/errno.rs#L67-L74)*
 
 Call `f` until it either succeeds or fails other than `Errno::INTR`.
 
@@ -185,7 +179,7 @@ Call `f` until it either succeeds or fails other than `Errno::INTR`.
 type Result<T> = result::Result<T, Errno>;
 ```
 
-*Defined in [`rustix-1.1.2/src/io/errno.rs:15`](../../../../.source_1765633015/rustix-1.1.2/src/io/errno.rs#L15)*
+*Defined in [`rustix-1.1.2/src/io/errno.rs:15`](../../../../.source_1765894658/rustix-1.1.2/src/io/errno.rs#L15)*
 
 A specialized [`Result`](#result) type for `rustix` APIs.
 

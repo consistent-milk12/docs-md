@@ -89,11 +89,8 @@ Must hash identically to `RegistryKey` tuple of `(CompactString, Id)`.
 - <span id="borrowedkey-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for BorrowedKey<'a>`
@@ -209,23 +206,14 @@ This avoids allocating a `String` for the crate name on every lookup.
 - <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../collection/index.md#cratecollection)
 
   Build a unified registry from a collection of crates.
-
   
-
   # Arguments
-
   
-
   * `crates` - Collection of parsed crates
-
   * `primary_crate` - Optional primary crate for disambiguation
-
   
-
   # Returns
-
   
-
   A populated registry ready for link resolution.
 
 - <span id="unifiedlinkregistry-register-crate"></span>`fn register_crate(&mut self, crate_name: &str, krate: &Crate)`
@@ -235,15 +223,10 @@ This avoids allocating a `String` for the crate name on every lookup.
 - <span id="unifiedlinkregistry-register-from-paths"></span>`fn register_from_paths(&mut self, crate_name: &str, krate: &Crate)`
 
   Register items using the `paths` field from rustdoc JSON.
-
   
-
   The `paths` field contains canonical paths for all items, including
-
   those in private modules that are re-exported publicly. Since we only
-
   generate docs for public modules, items in private modules are
-
   documented at their public re-export location (typically root).
 
 - <span id="unifiedlinkregistry-item-enum-to-kind"></span>`const fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
@@ -261,175 +244,108 @@ This avoids allocating a `String` for the crate name on every lookup.
 - <span id="unifiedlinkregistry-get-path"></span>`fn get_path(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
   Get the file path for an item in a specific crate.
-
   
-
   Uses raw entry API for zero-allocation lookup.
 
 - <span id="unifiedlinkregistry-get-name"></span>`fn get_name(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
   Get the display name for an item.
-
   
-
   Uses raw entry API for zero-allocation lookup.
 
 - <span id="unifiedlinkregistry-get-re-export-source"></span>`fn get_re_export_source(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
   Get the original source path for an external re-export.
-
   
-
   Returns `Some("crate::path::Item")` if this item is a re-export
-
   from another crate, `None` otherwise.
 
 - <span id="unifiedlinkregistry-resolve-reexport"></span>`fn resolve_reexport(&self, crate_name: &str, id: Id) -> Option<(compact_str::CompactString, Id)>`
 
   Resolve through re-export chain to find the canonical item.
-
   
-
   If the item is an external re-export, follows the source path
-
   to find the original crate and ID. Returns the original if found,
-
   otherwise returns `None`.
-
   
-
   # Arguments
-
   
-
   * `crate_name` - The crate where the re-export appears
-
   * `id` - The ID of the re-export Use item
-
   
-
   # Returns
-
   
-
   `Some((original_crate, original_id))` if the re-export chain can be resolved,
-
   `None` if there's no re-export source or the original can't be found.
 
 - <span id="unifiedlinkregistry-resolve-name"></span>`fn resolve_name(&self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
 
   Resolve an item name to its crate and ID.
-
   
-
   Uses disambiguation priority:
-
   1. Current crate (modules preferred over macros)
-
   2. Primary crate (if set, modules preferred)
-
   3. First module match, then first non-module match
 
 - <span id="unifiedlinkregistry-resolve-path"></span>`fn resolve_path(&self, path: &str) -> Option<(compact_str::CompactString, Id)>`
 
   Resolve a full path like `regex_automata::Regex` to its crate and ID.
-
   
-
   This is used for resolving external re-exports where `use_item.id` is `None`
-
   but the source path is available.
-
   
-
   # Arguments
-
   
-
   * `path` - Full path like `regex_automata::Regex` or `tracing_core::span::Span`
-
   
-
   # Returns
-
   
-
   The (`crate_name`, `item_id`) if found in the registry.
 
 - <span id="unifiedlinkregistry-create-link"></span>`fn create_link(&self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
 
   Create a markdown link from one file to another across crates.
-
   
-
   # Arguments
-
   
-
   * `from_crate` - The crate where the link appears
-
   * `from_path` - The file path where the link appears
-
   * `to_crate` - The target crate
-
   * `to_id` - The target item's ID
-
   
-
   # Returns
-
   
-
   A formatted markdown link like `[`Name`](relative/path.md)`,
-
   or `None` if the target item isn't registered.
 
 - <span id="unifiedlinkregistry-compute-cross-crate-path"></span>`fn compute_cross_crate_path(from: &str, to: &str) -> String`
 
   Compute relative path between files potentially in different crates.
-
   
-
   # Examples
-
   
-
   - `tracing/span/index.md` to `tracing_core/subscriber/index.md`
-
     = `../../tracing_core/subscriber/index.md`
-
   - `tracing/index.md` to `tracing/span/index.md`
-
     = `span/index.md`
 
 - <span id="unifiedlinkregistry-get-anchor"></span>`fn get_anchor(&self, crate_name: &str, id: Id) -> Option<String>`
 
   Get an anchor string for an item within its page.
-
   
-
   # Arguments
-
   
-
   * `crate_name` - The crate containing the item
-
   * `id` - The item's ID
-
   
-
   # Returns
-
   
-
   An anchor like `#span` or `#enter` for linking to specific items.
 
 - <span id="unifiedlinkregistry-contains"></span>`fn contains(&self, crate_name: &str, id: Id) -> bool`
 
   Check if an item exists in the registry.
-
   
-
   Uses raw entry API for zero-allocation lookup.
 
 - <span id="unifiedlinkregistry-len"></span>`fn len(&self) -> usize`
@@ -475,11 +391,8 @@ This avoids allocating a `String` for the crate name on every lookup.
 - <span id="unifiedlinkregistry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UnifiedLinkRegistry`

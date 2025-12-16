@@ -29,7 +29,7 @@ struct IntoIter<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/vec.rs:38-40`](../../../.source_1765633015/rayon-1.11.0/src/vec.rs#L38-L40)*
+*Defined in [`rayon-1.11.0/src/vec.rs:38-40`](../../../.source_1765894658/rayon-1.11.0/src/vec.rs#L38-L40)*
 
 Parallel iterator that moves out of a vector.
 
@@ -78,11 +78,8 @@ Parallel iterator that moves out of a vector.
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IntoIter<T>`
@@ -147,7 +144,7 @@ struct Drain<'data, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/vec.rs:111-115`](../../../.source_1765633015/rayon-1.11.0/src/vec.rs#L111-L115)*
+*Defined in [`rayon-1.11.0/src/vec.rs:111-115`](../../../.source_1765894658/rayon-1.11.0/src/vec.rs#L111-L115)*
 
 Draining parallel iterator that moves a range out of a vector, but keeps the total capacity.
 
@@ -192,11 +189,8 @@ Draining parallel iterator that moves a range out of a vector, but keeps the tot
 - <span id="drain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Drain<'data, T>`
@@ -251,26 +245,21 @@ struct DrainProducer<'data, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/vec.rs:188-190`](../../../.source_1765633015/rayon-1.11.0/src/vec.rs#L188-L190)*
+*Defined in [`rayon-1.11.0/src/vec.rs:188-190`](../../../.source_1765894658/rayon-1.11.0/src/vec.rs#L188-L190)*
 
 #### Implementations
 
 - <span id="drainproducer-new"></span>`unsafe fn new(slice: &mut [T]) -> DrainProducer<'_, T>` — [`DrainProducer`](#drainproducer)
 
   Creates a draining producer, which *moves* items from the slice.
-
   
-
   Unsafe because `!Copy` data must not be read after the borrow is released.
 
 - <span id="drainproducer-from-vec"></span>`unsafe fn from_vec(vec: &mut Vec<T>, len: usize) -> DrainProducer<'_, T>` — [`DrainProducer`](#drainproducer)
 
   Creates a draining producer, which *moves* items from the tail of the vector.
-
   
-
   Unsafe because we're moving from beyond `vec.len()`, so the caller must ensure
-
   that data is initialized and not read after the borrow is released.
 
 #### Trait Implementations
@@ -302,11 +291,8 @@ struct DrainProducer<'data, T: Send> {
 - <span id="drainproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for DrainProducer<'data, T>`
@@ -355,7 +341,7 @@ struct SliceDrain<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/vec.rs:246-248`](../../../.source_1765633015/rayon-1.11.0/src/vec.rs#L246-L248)*
+*Defined in [`rayon-1.11.0/src/vec.rs:246-248`](../../../.source_1765894658/rayon-1.11.0/src/vec.rs#L246-L248)*
 
 #### Trait Implementations
 
@@ -396,11 +382,8 @@ struct SliceDrain<'data, T> {
 - <span id="slicedrain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for SliceDrain<'data, T>`

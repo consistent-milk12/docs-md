@@ -22,7 +22,7 @@ struct Flatten<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten.rs:10-12`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flatten.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/flatten.rs:10-12`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flatten.rs#L10-L12)*
 
 `Flatten` turns each element to a parallel iterator, then flattens these iterators
 together. This struct is created by the `flatten()` method on [`ParallelIterator`](../index.md).
@@ -71,11 +71,8 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 - <span id="flatten-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Flatten<I>`
@@ -136,7 +133,7 @@ struct FlattenConsumer<C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten.rs:39-41`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flatten.rs#L39-L41)*
+*Defined in [`rayon-1.11.0/src/iter/flatten.rs:39-41`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flatten.rs#L39-L41)*
 
 #### Implementations
 
@@ -181,11 +178,8 @@ struct FlattenConsumer<C> {
 - <span id="flattenconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlattenConsumer<C>`
@@ -231,7 +225,7 @@ struct FlattenFolder<C, R> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten.rs:93-96`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flatten.rs#L93-L96)*
+*Defined in [`rayon-1.11.0/src/iter/flatten.rs:93-96`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flatten.rs#L93-L96)*
 
 #### Trait Implementations
 
@@ -268,11 +262,8 @@ struct FlattenFolder<C, R> {
 - <span id="flattenfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlattenFolder<C, R>`

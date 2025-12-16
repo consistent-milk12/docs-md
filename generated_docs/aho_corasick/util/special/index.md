@@ -23,7 +23,7 @@ struct Special {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/special.rs:10-28`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/special.rs#L10-L28)*
+*Defined in [`aho-corasick-1.1.4/src/util/special.rs:10-28`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/special.rs#L10-L28)*
 
 A collection of sentinel state IDs for Aho-Corasick automata.
 
@@ -64,9 +64,7 @@ its ID.
 - <span id="special-zero"></span>`fn zero() -> Special` — [`Special`](#special)
 
   Create a new set of "special" state IDs with all IDs initialized to
-
   zero. The general idea here is that they will be updated and set to
-
   correct values later.
 
 #### Trait Implementations
@@ -106,11 +104,8 @@ its ID.
 - <span id="special-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Special`

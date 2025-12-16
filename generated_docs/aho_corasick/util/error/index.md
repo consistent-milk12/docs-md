@@ -23,7 +23,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
 
 An error that occurred during the construction of an Aho-Corasick
 automaton.
@@ -87,11 +87,8 @@ trait.
 - <span id="builderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BuildError`
@@ -124,7 +121,7 @@ trait.
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L130)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/error.rs#L130)*
 
 An error that occurred during an Aho-Corasick search.
 
@@ -149,11 +146,8 @@ trait.
 - <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](#matcherrorkind), [`MatchError`](#matcherror)
 
   Create a new error value with the given kind.
-
   
-
   This is a more verbose version of the kind-specific constructors, e.g.,
-
   `MatchError::unsupported_stream`.
 
 - <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
@@ -163,65 +157,43 @@ trait.
 - <span id="matcherror-invalid-input-anchored"></span>`fn invalid_input_anchored() -> MatchError` — [`MatchError`](#matcherror)
 
   Create a new "invalid anchored search" error. This occurs when the
-
   caller requests an anchored search but where anchored searches aren't
-
   supported.
-
   
-
   This is the same as calling `MatchError::new` with a
-
   [`MatchErrorKind::InvalidInputAnchored`](../../index.md) kind.
 
 - <span id="matcherror-invalid-input-unanchored"></span>`fn invalid_input_unanchored() -> MatchError` — [`MatchError`](#matcherror)
 
   Create a new "invalid unanchored search" error. This occurs when the
-
   caller requests an unanchored search but where unanchored searches
-
   aren't supported.
-
   
-
   This is the same as calling `MatchError::new` with a
-
   [`MatchErrorKind::InvalidInputUnanchored`](../../index.md) kind.
 
 - <span id="matcherror-unsupported-stream"></span>`fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](../search/index.md#matchkind), [`MatchError`](#matcherror)
 
   Create a new "unsupported stream search" error. This occurs when the
-
   caller requests a stream search while using an Aho-Corasick automaton
-
   with a match kind other than [`MatchKind::Standard`](../../index.md).
-
   
-
   The match kind given should be the match kind of the automaton. It
-
   should never be `MatchKind::Standard`.
 
 - <span id="matcherror-unsupported-overlapping"></span>`fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](../search/index.md#matchkind), [`MatchError`](#matcherror)
 
   Create a new "unsupported overlapping search" error. This occurs when
-
   the caller requests an overlapping search while using an Aho-Corasick
-
   automaton with a match kind other than [`MatchKind::Standard`](../../index.md).
-
   
-
   The match kind given should be the match kind of the automaton. It
-
   should never be `MatchKind::Standard`.
 
 - <span id="matcherror-unsupported-empty"></span>`fn unsupported_empty() -> MatchError` — [`MatchError`](#matcherror)
 
   Create a new "unsupported empty pattern" error. This occurs when the
-
   caller requests a search for which matching an automaton that contains
-
   an empty pattern string is not supported.
 
 #### Trait Implementations
@@ -269,11 +241,8 @@ trait.
 - <span id="matcherror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MatchError`
@@ -327,7 +296,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:23-49`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L23-L49)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:23-49`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/error.rs#L23-L49)*
 
 The kind of error that occurred.
 
@@ -386,11 +355,8 @@ The kind of error that occurred.
 - <span id="errorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ErrorKind`
@@ -429,7 +395,7 @@ enum MatchErrorKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
 
 The underlying kind of a [`MatchError`](#matcherror).
 
@@ -502,11 +468,8 @@ a semver-compatible release.
 - <span id="matcherrorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MatchErrorKind`

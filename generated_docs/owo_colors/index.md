@@ -196,7 +196,7 @@ println!("{}", text.style(my_style));
 struct FgColorDisplay<'a, C: Color, T: ?Sized>(&'a T, core::marker::PhantomData<C>);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:154`](../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L154)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:154`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L154)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the foreground color. Recommended to be constructed using
@@ -207,205 +207,115 @@ with the addition of changing the foreground color. Recommended to be constructe
 - <span id="fgcolordisplay-new"></span>`const fn new(thing: &'a T) -> Self`
 
   Create a new [`FgColorDisplay`](#fgcolordisplay), from a reference to a type which implements
-
   [`Color`](#color).
-
   
-
   This is a const function: in non-const contexts, `OwoColorize::fg` or one of the
-
   other methods on it may be more convenient.
-
   
-
   # Example
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{colors::Green, FgColorDisplay};
-
   
-
   const GREEN_TEXT: FgColorDisplay<Green, str> = FgColorDisplay::new("green");
-
   
-
   println!("{}", GREEN_TEXT);
-
   assert_eq!(format!("{}", GREEN_TEXT), "\x1b[32mgreen\x1b[39m");
-
   ```
 
 - <span id="fgcolordisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
   Convert self to a generic [`Styled`](#styled).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   Typical use:
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_blue() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_blue() {
-
       "hello".blue().into_styled()
-
   } else {
-
       "hello".green().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(format!("{}", styled_str), "\x1b[34mhello\x1b[0m");
-
   ```
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{colors::{Blue, Green}, FgColorDisplay, Styled};
-
   
-
   const fn is_blue() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   const STYLED_STR: Styled<&str> = if is_blue() {
-
       FgColorDisplay::<Blue, _>::new("Hello").into_styled()
-
   } else {
-
       FgColorDisplay::<Green, _>::new("Hello").into_styled()
-
   };
-
   
-
   println!("{}", STYLED_STR);
-
   assert_eq!(format!("{}", STYLED_STR), "\x1b[34mHello\x1b[0m");
-
   ```
 
 - <span id="fgcolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> FgDynColorDisplay<'a, NewFg, T>` — [`FgDynColorDisplay`](#fgdyncolordisplay)
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
-
   compile-time. If the color is constant, use either `OwoColorize::fg` or
-
   a color-specific method, such as `OwoColorize::green`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "green".color(AnsiColors::Green));
-
   ```
 
 - <span id="fgcolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
   Set the background color at runtime. Only use if you do not know what color to use at
-
   compile-time. If the color is constant, use either `OwoColorize::bg` or
-
   a color-specific method, such as `OwoColorize::on_yellow`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
-
   ```
 
 - <span id="fgcolordisplay-fg"></span>`const fn fg<C: Color>(self) -> FgColorDisplay<'a, C, T>` — [`FgColorDisplay`](#fgcolordisplay)
 
   Set the foreground color generically
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "red foreground".fg::<Red>());
-
   ```
 
 - <span id="fgcolordisplay-bg"></span>`const fn bg<C: Color>(self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
   Set the background color generically.
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "black background".bg::<Black>());
-
   ```
 
 - <span id="fgcolordisplay-black"></span>`const fn black(self) -> FgColorDisplay<'a, colors::Black, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Black`](colors/index.md#black)
@@ -589,11 +499,8 @@ with the addition of changing the foreground color. Recommended to be constructe
 - <span id="fgcolordisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::LowerExp> LowerExp for FgColorDisplay<'a, Color, T>`
@@ -640,7 +547,7 @@ with the addition of changing the foreground color. Recommended to be constructe
 struct BgColorDisplay<'a, C: Color, T: ?Sized>(&'a T, core::marker::PhantomData<C>);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:160`](../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L160)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:160`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L160)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the background color. Recommended to be constructed using
@@ -651,205 +558,115 @@ with the addition of changing the background color. Recommended to be constructe
 - <span id="bgcolordisplay-new"></span>`const fn new(thing: &'a T) -> Self`
 
   Create a new [`BgColorDisplay`](#bgcolordisplay), from a reference to a type which implements
-
   [`Color`](#color).
-
   
-
   This is a const function: in non-const contexts, `OwoColorize::bg` may be more
-
   convenient.
-
   
-
   # Example
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{colors::Red, BgColorDisplay};
-
   
-
   const RED_BG_TEXT: BgColorDisplay<Red, str> = BgColorDisplay::new("red background");
-
   
-
   println!("{}", RED_BG_TEXT);
-
   assert_eq!(format!("{}", RED_BG_TEXT), "\x1b[41mred background\x1b[49m");
-
   ```
 
 - <span id="bgcolordisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
   Convert self to a generic [`Styled`](#styled).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   Typical use:
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_red() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_red() {
-
       "hello".on_red().into_styled()
-
   } else {
-
       "hello".on_yellow().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(format!("{}", styled_str), "\x1b[41mhello\x1b[0m");
-
   ```
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{colors::{Red, Yellow}, BgColorDisplay, Styled};
-
   
-
   const fn is_red() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   const STYLED_STR: Styled<&str> = if is_red() {
-
       BgColorDisplay::<Red, _>::new("Hello").into_styled()
-
   } else {
-
       BgColorDisplay::<Yellow, _>::new("Hello").into_styled()
-
   };
-
   
-
   println!("{}", STYLED_STR);
-
   assert_eq!(format!("{}", STYLED_STR), "\x1b[41mHello\x1b[0m");
-
   ```
 
 - <span id="bgcolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
-
   compile-time. If the color is constant, use either `OwoColorize::fg` or
-
   a color-specific method, such as `OwoColorize::green`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "green".color(AnsiColors::Green));
-
   ```
 
 - <span id="bgcolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> BgDynColorDisplay<'a, NewBg, T>` — [`BgDynColorDisplay`](#bgdyncolordisplay)
 
   Set the background color at runtime. Only use if you do not know what color to use at
-
   compile-time. If the color is constant, use either `OwoColorize::bg` or
-
   a color-specific method, such as `OwoColorize::on_yellow`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
-
   ```
 
 - <span id="bgcolordisplay-fg"></span>`const fn fg<C: Color>(self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
   Set the foreground color generically
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "red foreground".fg::<Red>());
-
   ```
 
 - <span id="bgcolordisplay-bg"></span>`const fn bg<C: Color>(self) -> BgColorDisplay<'a, C, T>` — [`BgColorDisplay`](#bgcolordisplay)
 
   Set the background color generically.
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "black background".bg::<Black>());
-
   ```
 
 - <span id="bgcolordisplay-on-black"></span>`const fn on_black(self) -> BgColorDisplay<'a, colors::Black, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Black`](colors/index.md#black)
@@ -1033,11 +850,8 @@ with the addition of changing the background color. Recommended to be constructe
 - <span id="bgcolordisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Color: crate::Color, T: ?Sized + fmt::LowerExp> LowerExp for BgColorDisplay<'a, Color, T>`
@@ -1084,7 +898,7 @@ with the addition of changing the background color. Recommended to be constructe
 struct FgDynColorDisplay<'a, Color: DynColor, T: ?Sized>(&'a T, Color);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:165`](../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L165)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:165`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L165)*
 
 Wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the foreground color. Is not recommended unless compile-time
@@ -1095,131 +909,74 @@ coloring is not an option.
 - <span id="cratefgdyncolordisplay-new"></span>`const fn new(thing: &'a T, color: Fg) -> Self`
 
   Create a new [`FgDynColorDisplay`](#fgdyncolordisplay), from a reference to a type which implements
-
   [`DynColor`](#dyncolor).
-
   
-
   This is a const function: in non-const contexts, `OwoColorize::color` may be more
-
   convenient.
-
   
-
   # Example
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{AnsiColors, FgDynColorDisplay};
-
   
-
   const DYN_RED_TEXT: FgDynColorDisplay<AnsiColors, str> =
-
      FgDynColorDisplay::new("red text (dynamic)", AnsiColors::Red);
-
   
-
   println!("{}", DYN_RED_TEXT);
-
   assert_eq!(format!("{}", DYN_RED_TEXT), "\x1b[31mred text (dynamic)\x1b[39m");
-
   ```
 
 - <span id="cratefgdyncolordisplay-into-styled"></span>`fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
   Convert self to a generic [`Styled`](#styled).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::{AnsiColors, CssColors, OwoColorize};
-
   
-
   fn is_blue() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_blue() {
-
       "hello".color(AnsiColors::Blue).into_styled()
-
   } else {
-
       "hello".color(CssColors::DarkSeaGreen).into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(format!("{}", styled_str), "\x1b[34mhello\x1b[0m");
-
   ```
 
 - <span id="cratefgdyncolordisplay-on-color"></span>`const fn on_color<Bg: DynColor>(self, bg: Bg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
   Set the background color at runtime. Only use if you do not know what color to use at
-
   compile-time. If the color is constant, use either `OwoColorize::bg` or
-
   a color-specific method, such as `OwoColorize::on_yellow`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
-
   ```
 
 - <span id="cratefgdyncolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> FgDynColorDisplay<'a, NewFg, T>` — [`FgDynColorDisplay`](#fgdyncolordisplay)
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
-
   compile-time. If the color is constant, use either `OwoColorize::fg` or
-
   a color-specific method, such as `OwoColorize::green`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "green".color(AnsiColors::Green));
-
   ```
 
 #### Trait Implementations
@@ -1259,11 +1016,8 @@ coloring is not an option.
 - <span id="fgdyncolordisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::LowerExp> LowerExp for FgDynColorDisplay<'a, Color, T>`
@@ -1310,7 +1064,7 @@ coloring is not an option.
 struct BgDynColorDisplay<'a, Color: DynColor, T: ?Sized>(&'a T, Color);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:170`](../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L170)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:170`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L170)*
 
 Wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the background color. Is not recommended unless compile-time
@@ -1321,131 +1075,74 @@ coloring is not an option.
 - <span id="cratebgdyncolordisplay-new"></span>`const fn new(thing: &'a T, color: Bg) -> Self`
 
   Create a new [`BgDynColorDisplay`](#bgdyncolordisplay), from a reference to a type which implements
-
   [`DynColor`](#dyncolor).
-
   
-
   This is a const function: in non-const contexts, `OwoColorize::on_color` may be more
-
   convenient.
-
   
-
   # Example
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{AnsiColors, BgDynColorDisplay};
-
   
-
   const DYN_GREEN_BG_TEXT: BgDynColorDisplay<AnsiColors, str> =
-
      BgDynColorDisplay::new("green background (dynamic)", AnsiColors::Green);
-
   
-
   println!("{}", DYN_GREEN_BG_TEXT);
-
   assert_eq!(format!("{}", DYN_GREEN_BG_TEXT), "\x1b[42mgreen background (dynamic)\x1b[49m");
-
   ```
 
 - <span id="cratebgdyncolordisplay-into-styled"></span>`fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
   Convert self to a generic [`Styled`](#styled).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::{AnsiColors, CssColors, OwoColorize};
-
   
-
   fn is_red() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_red() {
-
       "hello".on_color(AnsiColors::Red).into_styled()
-
   } else {
-
       "hello".on_color(CssColors::LightGoldenRodYellow).into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(format!("{}", styled_str), "\x1b[41mhello\x1b[0m");
-
   ```
 
 - <span id="cratebgdyncolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> BgDynColorDisplay<'a, NewBg, T>` — [`BgDynColorDisplay`](#bgdyncolordisplay)
 
   Set the background color at runtime. Only use if you do not know what color to use at
-
   compile-time. If the color is constant, use either `OwoColorize::bg` or
-
   a color-specific method, such as `OwoColorize::on_yellow`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
-
   ```
 
 - <span id="cratebgdyncolordisplay-color"></span>`const fn color<Fg: DynColor>(self, fg: Fg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
-
   compile-time. If the color is constant, use either `OwoColorize::fg` or
-
   a color-specific method, such as `OwoColorize::green`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "green".color(AnsiColors::Green));
-
   ```
 
 #### Trait Implementations
@@ -1485,11 +1182,8 @@ coloring is not an option.
 - <span id="bgdyncolordisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Color: crate::DynColor, T: ?Sized + fmt::LowerExp> LowerExp for BgDynColorDisplay<'a, Color, T>`
@@ -1536,7 +1230,7 @@ coloring is not an option.
 struct Rgb(u8, u8, u8);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/dynamic.rs:10`](../../.source_1765633015/owo-colors-4.2.3/src/colors/dynamic.rs#L10)*
+*Defined in [`owo-colors-4.2.3/src/colors/dynamic.rs:10`](../../.source_1765894658/owo-colors-4.2.3/src/colors/dynamic.rs#L10)*
 
 Available RGB colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -1592,11 +1286,8 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 - <span id="rgb-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Rgb`
@@ -1625,7 +1316,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 struct ComboColorDisplay<'a, Fg: Color, Bg: Color, T: ?Sized>(&'a T, core::marker::PhantomData<(Fg, Bg)>);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:11`](../../.source_1765633015/owo-colors-4.2.3/src/combo.rs#L11)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:11`](../../.source_1765894658/owo-colors-4.2.3/src/combo.rs#L11)*
 
 A wrapper type which applies both a foreground and background color
 
@@ -1634,207 +1325,116 @@ A wrapper type which applies both a foreground and background color
 - <span id="combocolordisplay-new"></span>`const fn new(thing: &'a T) -> Self`
 
   Create a new [`ComboColorDisplay`](combo/index.md), from a pair of foreground and background types
-
   which implement [`Color`](#color).
-
   
-
   This is a const function: in non-const contexts, calling the [`OwoColorize`](#owocolorize)
-
   functions may be more convenient.
-
   
-
   # Example
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{colors::{Blue, White}, ComboColorDisplay};
-
   
-
   const COMBO_TEXT: ComboColorDisplay<Blue, White, str> =
-
      ComboColorDisplay::new("blue text on white background");
-
   
-
   println!("{}", COMBO_TEXT);
-
   assert_eq!(format!("{}", COMBO_TEXT), "\x1b[34;47mblue text on white background\x1b[0m");
-
   ```
 
 - <span id="combocolordisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
   Convert self to a generic [`Styled`](#styled).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   Typical use:
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_black_on_white() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_black_on_white() {
-
       "hello".black().on_white().into_styled()
-
   } else {
-
       "hello".white().on_black().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(format!("{}", styled_str), "\x1b[30;47mhello\x1b[0m");
-
   ```
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{colors::{Black, White}, ComboColorDisplay, Styled};
-
   
-
   const fn is_black_on_white() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   const STYLED_STR: Styled<&str> = if is_black_on_white() {
-
       ComboColorDisplay::<Black, White, _>::new("Hello").into_styled()
-
   } else {
-
       ComboColorDisplay::<White, Black, _>::new("Hello").into_styled()
-
   };
-
   
-
   println!("{}", STYLED_STR);
-
   assert_eq!(format!("{}", STYLED_STR), "\x1b[30;47mHello\x1b[0m");
-
   ```
 
 - <span id="combocolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
   Set the background color at runtime. Only use if you do not know what color to use at
-
   compile-time. If the color is constant, use either `OwoColorize::bg` or
-
   a color-specific method, such as `OwoColorize::on_yellow`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
-
   ```
 
 - <span id="combocolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay), [`Color`](#color)
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
-
   compile-time. If the color is constant, use either `OwoColorize::fg` or
-
   a color-specific method, such as `OwoColorize::green`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "green".color(AnsiColors::Green));
-
   ```
 
 - <span id="combocolordisplay-fg"></span>`const fn fg<C: Color>(self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
   Set the foreground color generically
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "red foreground".fg::<Red>());
-
   ```
 
 - <span id="combocolordisplay-bg"></span>`const fn bg<C: Color>(self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay)
 
   Set the background color generically.
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "black background".bg::<Black>());
-
   ```
 
 - <span id="combocolordisplay-on-black"></span>`const fn on_black(self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](combo/index.md#combocolordisplay), [`Black`](colors/index.md#black)
@@ -2018,11 +1618,8 @@ A wrapper type which applies both a foreground and background color
 - <span id="combocolordisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Fg: Color, Bg: Color, T: ?Sized + fmt::LowerExp> LowerExp for ComboColorDisplay<'a, Fg, Bg, T>`
@@ -2069,7 +1666,7 @@ A wrapper type which applies both a foreground and background color
 struct ComboDynColorDisplay<'a, Fg: DynColor, Bg: DynColor, T: ?Sized>(&'a T, Fg, Bg);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/combo.rs:17`](../../.source_1765633015/owo-colors-4.2.3/src/combo.rs#L17)*
+*Defined in [`owo-colors-4.2.3/src/combo.rs:17`](../../.source_1765894658/owo-colors-4.2.3/src/combo.rs#L17)*
 
 Wrapper around a type which implements all the formatters the wrapped type does, with the
 addition of changing the foreground and background color.
@@ -2081,141 +1678,79 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](comb
 - <span id="combodyncolordisplay-new"></span>`const fn new(thing: &'a T, fg: Fg, bg: Bg) -> Self`
 
   Create a new [`ComboDynColorDisplay`](combo/index.md), from a pair of types which implement
-
   [`DynColor`](#dyncolor).
-
   
-
   This is a const function: in non-const contexts, other functions may be more convenient.
-
   
-
   # Example
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{ComboDynColorDisplay, XtermColors};
-
   
-
   const COMBO_DYN_TEXT: ComboDynColorDisplay<XtermColors, XtermColors, str> =
-
       ComboDynColorDisplay::new(
-
           "blue text on lilac background (dynamic)",
-
           XtermColors::BlueRibbon,
-
           XtermColors::WistfulLilac,
-
       );
-
   
-
   println!("{}", COMBO_DYN_TEXT);
-
   assert_eq!(format!("{}", COMBO_DYN_TEXT), "\x1b[38;5;27;48;5;146mblue text on lilac background (dynamic)\x1b[0m");
-
   ```
 
 - <span id="combodyncolordisplay-into-styled"></span>`fn into_styled(self) -> Styled<&'a T>` — [`Styled`](#styled)
 
   Convert self to a generic [`Styled`](#styled).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   Typical use:
-
   
-
   ```rust
-
   use owo_colors::{AnsiColors, CssColors, OwoColorize};
-
   
-
   fn is_black_on_white() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_black_on_white() {
-
       "hello".color(AnsiColors::Black).on_color(AnsiColors::White).into_styled()
-
   } else {
-
       "hello".color(CssColors::White).on_color(CssColors::Black).into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(format!("{}", styled_str), "\x1b[30;47mhello\x1b[0m");
-
   ```
 
 - <span id="combodyncolordisplay-on-color"></span>`const fn on_color<NewBg: DynColor>(self, bg: NewBg) -> ComboDynColorDisplay<'a, Fg, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
   Set the background color at runtime. Only use if you do not know what color to use at
-
   compile-time. If the color is constant, use either `OwoColorize::bg` or
-
   a color-specific method, such as `OwoColorize::on_yellow`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
-
   ```
 
 - <span id="combodyncolordisplay-color"></span>`const fn color<NewFg: DynColor>(self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md#combodyncolordisplay)
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
-
   compile-time. If the color is constant, use either `OwoColorize::fg` or
-
   a color-specific method, such as `OwoColorize::green`,
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "green".color(AnsiColors::Green));
-
   ```
 
 #### Trait Implementations
@@ -2255,11 +1790,8 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](comb
 - <span id="combodyncolordisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Fg: DynColor, Bg: DynColor, T: ?Sized + fmt::LowerExp> LowerExp for ComboDynColorDisplay<'a, Fg, Bg, T>`
@@ -2309,7 +1841,7 @@ where
     U: IsStyled;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styled_list.rs:64-67`](../../.source_1765633015/owo-colors-4.2.3/src/styled_list.rs#L64-L67)*
+*Defined in [`owo-colors-4.2.3/src/styled_list.rs:64-67`](../../.source_1765894658/owo-colors-4.2.3/src/styled_list.rs#L64-L67)*
 
 A collection of [`Styled`](#styled) items that are displayed in such a way as to minimize the amount of characters
 that are written when displayed.
@@ -2359,11 +1891,8 @@ assert!(styled_length < normal_length);
 - <span id="styledlist-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StyledList<T, U>`
@@ -2386,7 +1915,7 @@ assert!(styled_length < normal_length);
 struct ParseColorError;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:72`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_colors.rs#L72)*
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:72`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_colors.rs#L72)*
 
 An error for when the color can not be parsed from a string at runtime
 
@@ -2419,11 +1948,8 @@ An error for when the color can not be parsed from a string at runtime
 - <span id="parsecolorerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ParseColorError`
@@ -2449,7 +1975,7 @@ struct Styled<T> {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:60-65`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L60-L65)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:60-65`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L60-L65)*
 
 A wrapper type which applies a [`Style`](#style) when displaying the inner type
 
@@ -2472,9 +1998,7 @@ A wrapper type which applies a [`Style`](#style) when displaying the inner type
 - <span id="styled-inner-mut"></span>`const fn inner_mut(&mut self) -> &mut T`
 
   Returns a mutable reference to the inner value to be styled.
-
   
-
   *This method is const on Rust 1.83+.*
 
 #### Trait Implementations
@@ -2514,11 +2038,8 @@ A wrapper type which applies a [`Style`](#style) when displaying the inner type
 - <span id="styled-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: Display> IsStyled for crate::Styled<T>`
@@ -2578,7 +2099,7 @@ struct Style {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:83-88`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L83-L88)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:83-88`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L83-L88)*
 
 A pre-computed style that can be applied to a struct using `OwoColorize::style`.
 
@@ -2605,87 +2126,54 @@ println!("{}", "red text, white background, struck through".style(my_style));
 - <span id="style-style"></span>`const fn style<T>(&self, target: T) -> Styled<T>` — [`Styled`](#styled)
 
   Apply the style to a given struct to output.
-
   
-
   # Example
-
   
-
   Usage in const contexts:
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, Style, Styled};
-
   
-
   const STYLED_TEXT: Styled<&'static str> = Style::new().bold().italic().style("bold and italic text");
-
   
-
   println!("{}", STYLED_TEXT);
-
   assert_eq!(format!("{}", STYLED_TEXT), "\u{1b}[1;3mbold and italic text\u{1b}[0m");
-
   ```
 
 - <span id="style-fg"></span>`const fn fg<C: Color>(self) -> Self`
 
   Set the foreground color generically
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "red foreground".fg::<Red>());
-
   ```
 
 - <span id="style-bg"></span>`const fn bg<C: Color>(self) -> Self`
 
   Set the background color generically.
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, colors::*};
-
   
-
   println!("{}", "black background".bg::<Black>());
-
   ```
 
 - <span id="style-remove-fg"></span>`const fn remove_fg(self) -> Self`
 
   Removes the foreground color from the style. Note that this does not apply
-
   the default color, but rather represents not changing the current terminal color.
-
   
-
   If you wish to actively change the terminal color back to the default, see
-
   `Style::default_color`.
 
 - <span id="style-remove-bg"></span>`const fn remove_bg(self) -> Self`
 
   Removes the background color from the style. Note that this does not apply
-
   the default color, but rather represents not changing the current terminal color.
-
   
-
   If you wish to actively change the terminal color back to the default, see
-
   `Style::on_default_color`.
 
 - <span id="style-black"></span>`const fn black(self) -> Self`
@@ -2903,41 +2391,25 @@ println!("{}", "red text, white background, struck through".style(my_style));
 - <span id="style-color"></span>`fn color<Color: DynColor>(self, color: Color) -> Self`
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
-
   compile-time. If the color is constant, use either [`OwoColorize::fg`](crate::OwoColorize::fg) or
-
   a color-specific method, such as [`OwoColorize::green`](crate::OwoColorize::green),
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "green".color(AnsiColors::Green));
-
   ```
 
 - <span id="style-on-color"></span>`fn on_color<Color: DynColor>(self, color: Color) -> Self`
 
   Set the background color at runtime. Only use if you do not know what color to use at
-
   compile-time. If the color is constant, use either [`OwoColorize::bg`](crate::OwoColorize::bg) or
-
   a color-specific method, such as [`OwoColorize::on_yellow`](crate::OwoColorize::on_yellow),
-
   
-
   ```rust
-
   use owo_colors::{OwoColorize, AnsiColors};
-
   
-
   println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
-
   ```
 
 - <span id="style-fg-rgb"></span>`const fn fg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
@@ -2963,63 +2435,36 @@ println!("{}", "red text, white background, struck through".style(my_style));
 - <span id="style-prefix-formatter"></span>`const fn prefix_formatter(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](#styleprefixformatter)
 
   Returns a formatter for the style's ANSI prefix.
-
   
-
   This can be used to separate out the prefix and suffix of a style.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::Style;
-
   use std::fmt::Write;
-
   
-
   let style = Style::new().red().on_blue();
-
   let prefix = style.prefix_formatter();
-
   let suffix = style.suffix_formatter();
-
   
-
   // Write the prefix and suffix separately.
-
   let mut output = String::new();
-
   write!(output, "{}", prefix);
-
   output.push_str("Hello");
-
   write!(output, "{}", suffix);
-
   
-
   assert_eq!(output, "\x1b[31;44mHello\x1b[0m");
-
   ```
 
 - <span id="style-suffix-formatter"></span>`const fn suffix_formatter(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](#stylesuffixformatter)
 
   Returns a formatter for the style's ANSI suffix.
-
   
-
   This can be used to separate out the prefix and suffix of a style.
-
   
-
   # Example
-
   
-
   See `Style::prefix_formatter`.
 
 - <span id="style-fmt-prefix"></span>`fn fmt_prefix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
@@ -3073,11 +2518,8 @@ println!("{}", "red text, white background, struck through".style(my_style));
 - <span id="style-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Style`
@@ -3106,7 +2548,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 struct StyleFlags(u8);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:92`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L92)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:92`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L92)*
 
 #### Implementations
 
@@ -3155,11 +2597,8 @@ struct StyleFlags(u8);
 - <span id="styleflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StyleFlags`
@@ -3188,7 +2627,7 @@ struct StyleFlags(u8);
 struct StylePrefixFormatter(Style);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:597`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L597)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:597`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L597)*
 
 Formatter for the prefix of a [`Style`](#style).
 
@@ -3238,11 +2677,8 @@ the suffix, which is useful for formatting the prefix separately.
 - <span id="styleprefixformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StylePrefixFormatter`
@@ -3271,7 +2707,7 @@ the suffix, which is useful for formatting the prefix separately.
 struct StyleSuffixFormatter(Style);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:611`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L611)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:611`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L611)*
 
 Formatter for the suffix of a [`Style`](#style).
 
@@ -3321,11 +2757,8 @@ the prefix, which is useful for formatting the suffix separately.
 - <span id="stylesuffixformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StyleSuffixFormatter`
@@ -3374,7 +2807,7 @@ enum AnsiColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../.source_1765633015/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -3430,11 +2863,8 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 - <span id="ansicolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for AnsiColors`
@@ -3611,7 +3041,7 @@ enum CssColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../.source_1765894658/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 Available CSS colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -3667,11 +3097,8 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 - <span id="csscolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CssColors`
@@ -3957,7 +3384,7 @@ enum XtermColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 Available Xterm colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -4013,11 +3440,8 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 - <span id="xtermcolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for XtermColors`
@@ -4051,7 +3475,7 @@ enum DynColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:13-18`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_colors.rs#L13-L18)*
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:13-18`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_colors.rs#L13-L18)*
 
 An enum describing runtime-configurable colors
 
@@ -4115,11 +3539,8 @@ allowing for multiple types of colors to be used at runtime.
 - <span id="dyncolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DynColors`
@@ -4158,7 +3579,7 @@ enum Effect {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:10-20`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L10-L20)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:10-20`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L10-L20)*
 
 A runtime-configurable text effect for use with [`Style`](#style)
 
@@ -4201,11 +3622,8 @@ A runtime-configurable text effect for use with [`Style`](#style)
 - <span id="effect-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Effect`
@@ -4230,7 +3648,7 @@ A runtime-configurable text effect for use with [`Style`](#style)
 trait Color: private::Sealed { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:102-125`](../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L102-L125)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:102-125`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L102-L125)*
 
 A trait for describing a type which can be used with [`FgColorDisplay`](#fgcolordisplay) or
 [`BgColorDisplay`](#bgcolordisplay)
@@ -4528,7 +3946,7 @@ A trait for describing a type which can be used with [`FgColorDisplay`](#fgcolor
 trait DynColor: private::Sealed { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:130-148`](../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L130-L148)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:130-148`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L130-L148)*
 
 A trait describing a runtime-configurable color which can displayed using [`FgDynColorDisplay`](#fgdyncolordisplay)
 or [`BgDynColorDisplay`](#bgdyncolordisplay). If your color will be known at compile time it
@@ -4547,10 +3965,12 @@ is recommended you avoid this.
 - `fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   A function to output a raw ANSI code to a formatter to set the foreground to this color,
+  but without including the ANSI delimiters.
 
 - `fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   A function to output a raw ANSI code to a formatter to set the background to this color,
+  but without including the ANSI delimiters.
 
 #### Implementors
 
@@ -4567,7 +3987,7 @@ is recommended you avoid this.
 trait OwoColorize: Sized { ... }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L263-L489)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:263-489`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L263-L489)*
 
 Extension trait for colorizing a type which implements any std formatter
 ([`Display`](core::fmt::Display), [`Debug`](core::fmt::Debug), [`UpperHex`](core::fmt::UpperHex),
@@ -4627,10 +4047,22 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
 - `fn fg<C: Color>(&self) -> FgColorDisplay<'_, C, Self>`
 
   Set the foreground color generically
+  
+  ```rust
+  use owo_colors::{OwoColorize, colors::*};
+  
+  println!("{}", "red foreground".fg::<Red>());
+  ```
 
 - `fn bg<C: Color>(&self) -> BgColorDisplay<'_, C, Self>`
 
   Set the background color generically.
+  
+  ```rust
+  use owo_colors::{OwoColorize, colors::*};
+  
+  println!("{}", "black background".bg::<Black>());
+  ```
 
 - `fn black(&self) -> FgColorDisplay<'_, colors::Black, Self>`
 
@@ -4823,10 +4255,26 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
 - `fn color<Color: DynColor>(&self, color: Color) -> FgDynColorDisplay<'_, Color, Self>`
 
   Set the foreground color at runtime. Only use if you do not know which color will be used at
+  compile-time. If the color is constant, use either `OwoColorize::fg` or
+  a color-specific method, such as `OwoColorize::green`,
+  
+  ```rust
+  use owo_colors::{OwoColorize, AnsiColors};
+  
+  println!("{}", "green".color(AnsiColors::Green));
+  ```
 
 - `fn on_color<Color: DynColor>(&self, color: Color) -> BgDynColorDisplay<'_, Color, Self>`
 
   Set the background color at runtime. Only use if you do not know what color to use at
+  compile-time. If the color is constant, use either `OwoColorize::bg` or
+  a color-specific method, such as `OwoColorize::on_yellow`,
+  
+  ```rust
+  use owo_colors::{OwoColorize, AnsiColors};
+  
+  println!("{}", "yellow background".on_color(AnsiColors::BrightYellow));
+  ```
 
 - `fn fg_rgb<const R: u8, const G: u8, const B: u8>(&self) -> FgColorDisplay<'_, colors::CustomColor<R, G, B>, Self>`
 
@@ -4860,7 +4308,7 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
 const fn style() -> Style
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:626-628`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L626-L628)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:626-628`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L626-L628)*
 
 Helper to create [`Style`](#style)s more ergonomically
 
@@ -4871,80 +4319,80 @@ Helper to create [`Style`](#style)s more ergonomically
 const DIMMED_SHIFT: u8 = 0u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:102`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L102)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:102`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L102)*
 
 ### `ITALIC_SHIFT`
 ```rust
 const ITALIC_SHIFT: u8 = 1u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:103`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L103)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:103`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L103)*
 
 ### `UNDERLINE_SHIFT`
 ```rust
 const UNDERLINE_SHIFT: u8 = 2u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:104`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L104)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:104`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L104)*
 
 ### `BLINK_SHIFT`
 ```rust
 const BLINK_SHIFT: u8 = 3u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:105`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L105)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:105`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L105)*
 
 ### `BLINK_FAST_SHIFT`
 ```rust
 const BLINK_FAST_SHIFT: u8 = 4u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:106`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L106)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:106`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L106)*
 
 ### `REVERSED_SHIFT`
 ```rust
 const REVERSED_SHIFT: u8 = 5u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:107`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L107)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:107`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L107)*
 
 ### `HIDDEN_SHIFT`
 ```rust
 const HIDDEN_SHIFT: u8 = 6u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:108`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L108)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:108`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L108)*
 
 ### `STRIKETHROUGH_SHIFT`
 ```rust
 const STRIKETHROUGH_SHIFT: u8 = 7u8;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:109`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L109)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:109`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L109)*
 
 ## Macros
 
 ### `style_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:172-183`](../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L172-L183)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:172-183`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L172-L183)*
 
 ### `color_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/lib.rs:187-207`](../../.source_1765633015/owo-colors-4.2.3/src/lib.rs#L187-L207)*
+*Defined in [`owo-colors-4.2.3/src/lib.rs:187-207`](../../.source_1765894658/owo-colors-4.2.3/src/lib.rs#L187-L207)*
 
 ### `color_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:22-42`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L22-L42)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:22-42`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L22-L42)*
 
 ### `style_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:44-55`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L44-L55)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:44-55`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L44-L55)*
 
 ### `style_flags_methods!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:111-126`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L111-L126)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:111-126`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L111-L126)*
 
 ### `impl_fmt!`
 
-*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:653-666`](../../.source_1765633015/owo-colors-4.2.3/src/dyn_styles.rs#L653-L666)*
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:653-666`](../../.source_1765894658/owo-colors-4.2.3/src/dyn_styles.rs#L653-L666)*
 

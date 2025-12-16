@@ -139,11 +139,8 @@ Information about a parsed function, including its body.
 - <span id="functioninfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FunctionInfo`
@@ -278,11 +275,8 @@ Information about a parsed struct.
 - <span id="structinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for StructInfo`
@@ -397,11 +391,8 @@ Information about a struct or enum field.
 - <span id="fieldinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FieldInfo`
@@ -536,11 +527,8 @@ Information about a parsed enum.
 - <span id="enuminfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for EnumInfo`
@@ -650,11 +638,8 @@ Information about an enum variant.
 - <span id="variantinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for VariantInfo`
@@ -784,11 +769,8 @@ Information about a parsed trait.
 - <span id="traitinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TraitInfo`
@@ -913,11 +895,8 @@ Information about an impl block.
 - <span id="implinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ImplInfo`
@@ -1052,11 +1031,8 @@ Information about a constant.
 - <span id="constinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ConstInfo`
@@ -1196,11 +1172,8 @@ Information about a static variable.
 - <span id="staticinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for StaticInfo`
@@ -1330,11 +1303,8 @@ Information about a type alias.
 - <span id="typealiasinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TypeAliasInfo`
@@ -1459,11 +1429,8 @@ Information about a macro definition.
 - <span id="macroinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MacroInfo`
@@ -1648,11 +1615,8 @@ Aggregated source information for an entire crate.
 - <span id="cratesource-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CrateSource`
@@ -1758,11 +1722,8 @@ A reference to a private item for rendering.
 - <span id="privateitem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for PrivateItem<'a>`

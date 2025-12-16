@@ -237,7 +237,7 @@ enum LastByte {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/last_utf8_char.rs:12-242`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/last_utf8_char.rs#L12-L242)*
+*Defined in [`compact_str-0.9.0/src/repr/last_utf8_char.rs:12-242`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/last_utf8_char.rs#L12-L242)*
 
 [`LastByte`](#lastbyte) is an unsigned 8-bit integer data type that has a valid range of `[0, 217]`.
 Excluding `[218, 255]` allows the Rust compiler to use these values as niches.
@@ -285,11 +285,8 @@ Specifically the compiler can use a value in this range to encode the `None` var
 - <span id="lastbyte-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LastByte`

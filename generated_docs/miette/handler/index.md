@@ -45,7 +45,7 @@ struct MietteHandlerOpts {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../../.source_1765633015/miette-7.6.0/src/handler.rs#L42-L61)*
+*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../../.source_1765894658/miette-7.6.0/src/handler.rs#L42-L61)*
 
 Create a custom [`MietteHandler`](../index.md) from options.
 
@@ -71,75 +71,46 @@ miette::set_hook(Box::new(|_| {
 - <span id="miettehandleropts-terminal-links"></span>`fn terminal_links(self, linkify: bool) -> Self`
 
   If true, specify whether the graphical handler will make codes be
-
   clickable links in supported terminals. Defaults to auto-detection
-
   based on known supported terminals.
 
 - <span id="miettehandleropts-graphical-theme"></span>`fn graphical_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../handlers/index.md#graphicaltheme)
 
   Set a graphical theme for the handler when rendering in graphical mode.
-
   Use [`force_graphical()`](`MietteHandlerOpts::force_graphical) to force
-
   graphical mode. This option overrides
-
   [`color()`](`MietteHandlerOpts::color).
 
 - <span id="miettehandleropts-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md#highlighter)
 
   Set a syntax highlighter when rendering in graphical mode.
-
   Use [`force_graphical()`](MietteHandlerOpts::force_graphical()) to
-
   force graphical mode.
-
   
-
   Syntax highlighting is disabled by default unless the
-
   `syntect-highlighter` feature is enabled. Call this method
-
   to override the default and use a custom highlighter
-
   implementation instead.
-
   
-
   Use
-
   [`without_syntax_highlighting()`](MietteHandlerOpts::without_syntax_highlighting())
-
   To disable highlighting completely.
-
   
-
   Setting this option will not force color output. In all cases, the
-
   current color configuration via
-
   [`color()`](MietteHandlerOpts::color()) takes precedence over
-
   highlighter configuration. However, this option does take precedence over
-
   [`rgb_colors()`](MietteHandlerOpts::rgb_colors()) (meaning syntax highlighting will be
-
   enabled regardless of the value of `MietteHandlerOpts::rgb_colors`).
 
 - <span id="miettehandleropts-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
   Disables syntax highlighting when rendering in graphical mode.
-
   Use [`force_graphical()`](MietteHandlerOpts::force_graphical()) to
-
   force graphical mode.
-
   
-
   Syntax highlighting is disabled by default unless the
-
   `syntect-highlighter` feature is enabled. Call this method if you want
-
   to disable highlighting when building with this feature.
 
 - <span id="miettehandleropts-width"></span>`fn width(self, width: usize) -> Self`
@@ -149,25 +120,17 @@ miette::set_hook(Box::new(|_| {
 - <span id="miettehandleropts-wrap-lines"></span>`fn wrap_lines(self, wrap_lines: bool) -> Self`
 
   If true, long lines can be wrapped.
-
   
-
   If false, long lines will not be broken when they exceed the width.
-
   
-
   Defaults to true.
 
 - <span id="miettehandleropts-break-words"></span>`fn break_words(self, break_words: bool) -> Self`
 
   If true, long words can be broken when wrapping.
-
   
-
   If false, long words will not be broken when they exceed the width.
-
   
-
   Defaults to true.
 
 - <span id="miettehandleropts-word-separator"></span>`fn word_separator(self, word_separator: textwrap::WordSeparator) -> Self`
@@ -197,57 +160,37 @@ miette::set_hook(Box::new(|_| {
 - <span id="miettehandleropts-color"></span>`fn color(self, color: bool) -> Self`
 
   If true, colors will be used during graphical rendering, regardless
-
   of whether or not the terminal supports them.
-
   
-
   If false, colors will never be used.
-
   
-
   If unspecified, colors will be used only if the terminal supports them.
-
   
-
   The actual format depends on the value of
-
   `MietteHandlerOpts::rgb_colors`.
 
 - <span id="miettehandleropts-rgb-colors"></span>`fn rgb_colors(self, color: RgbColors) -> Self` — [`RgbColors`](../index.md#rgbcolors)
 
   Controls which color format to use if colors are used in graphical
-
   rendering.
-
   
-
   The default is `Never`.
-
   
-
   This value does not control whether or not colors are being used in the
-
   first place. That is handled by the `MietteHandlerOpts::color`
-
   setting. If colors are not being used, the value of `rgb_colors` has
-
   no effect.
-
   
-
   It also does not control colors when a syntax highlighter is in use.
 
 - <span id="miettehandleropts-unicode"></span>`fn unicode(self, unicode: bool) -> Self`
 
   If true, forces unicode display for graphical output. If set to false,
-
   forces ASCII art display.
 
 - <span id="miettehandleropts-force-graphical"></span>`fn force_graphical(self, force: bool) -> Self`
 
   If true, graphical rendering will be used regardless of terminal
-
   detection.
 
 - <span id="miettehandleropts-force-narrated"></span>`fn force_narrated(self, force: bool) -> Self`
@@ -317,11 +260,8 @@ miette::set_hook(Box::new(|_| {
 - <span id="miettehandleropts-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteHandlerOpts`
@@ -354,7 +294,7 @@ struct MietteHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../../.source_1765633015/miette-7.6.0/src/handler.rs#L387-L389)*
+*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../../.source_1765894658/miette-7.6.0/src/handler.rs#L387-L389)*
 
 A [`ReportHandler`](../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -404,11 +344,8 @@ printer.
 - <span id="miettehandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteHandler`
@@ -441,7 +378,7 @@ enum RgbColors {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../../.source_1765633015/miette-7.6.0/src/handler.rs#L15-L23)*
+*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../../.source_1765894658/miette-7.6.0/src/handler.rs#L15-L23)*
 
 Settings to control the color format used for graphical rendering.
 
@@ -504,11 +441,8 @@ Settings to control the color format used for graphical rendering.
 - <span id="rgbcolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for RgbColors`
@@ -548,7 +482,7 @@ enum HighlighterOption {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../../.source_1765633015/miette-7.6.0/src/handler.rs#L414-L419)*
+*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../../.source_1765894658/miette-7.6.0/src/handler.rs#L414-L419)*
 
 #### Implementations
 
@@ -583,11 +517,8 @@ enum HighlighterOption {
 - <span id="highlighteroption-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for HighlighterOption`

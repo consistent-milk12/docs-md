@@ -26,7 +26,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/relocation.rs:20-27`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/relocation.rs#L20-L27)*
+*Defined in [`object-0.37.3/src/read/macho/relocation.rs:20-27`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/relocation.rs#L20-L27)*
 
 An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 
@@ -59,11 +59,8 @@ An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 - <span id="machorelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachORelocationIterator<'data, 'file, Mach, R>`
@@ -100,7 +97,7 @@ An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 type MachORelocationIterator32<'data, 'file, Endian, R> = MachORelocationIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/relocation.rs:13-14`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/relocation.rs#L13-L14)*
+*Defined in [`object-0.37.3/src/read/macho/relocation.rs:13-14`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/relocation.rs#L13-L14)*
 
 An iterator for the relocations in a [`MachOSection32`](super::MachOSection32).
 
@@ -110,7 +107,7 @@ An iterator for the relocations in a [`MachOSection32`](super::MachOSection32).
 type MachORelocationIterator64<'data, 'file, Endian, R> = MachORelocationIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/relocation.rs:16-17`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/relocation.rs#L16-L17)*
+*Defined in [`object-0.37.3/src/read/macho/relocation.rs:16-17`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/relocation.rs#L16-L17)*
 
 An iterator for the relocations in a [`MachOSection64`](super::MachOSection64).
 

@@ -21,7 +21,7 @@ struct ThreadBound<T> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/thread.rs:7-10`](../../../.source_1765633015/syn-2.0.111/src/thread.rs#L7-L10)*
+*Defined in [`syn-2.0.111/src/thread.rs:7-10`](../../../.source_1765894658/syn-2.0.111/src/thread.rs#L7-L10)*
 
 ThreadBound is a Sync-maker and Send-maker that allows accessing a value
 of type T only from the original thread on which the ThreadBound was
@@ -72,11 +72,8 @@ constructed.
 - <span id="threadbound-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: Copy> Send for ThreadBound<T>`

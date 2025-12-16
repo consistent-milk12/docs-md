@@ -21,7 +21,7 @@ struct DrainGuard<'a, T, C: From<Vec<T>>> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/mod.rs:46-49`](../../../../.source_1765633015/rayon-1.11.0/src/collections/mod.rs#L46-L49)*
+*Defined in [`rayon-1.11.0/src/collections/mod.rs:46-49`](../../../../.source_1765894658/rayon-1.11.0/src/collections/mod.rs#L46-L49)*
 
 A proxy for draining a collection by converting to a `Vec` and back.
 
@@ -63,11 +63,8 @@ zero-allocation conversions to/from `Vec`, though not zero-cost:
 - <span id="drainguard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for DrainGuard<'a, T, C>`

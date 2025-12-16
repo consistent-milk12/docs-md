@@ -28,7 +28,7 @@ struct File {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/file.rs:13-16`](../../../.source_1765633015/fs-err-3.2.0/src/file.rs#L13-L16)*
+*Defined in [`fs-err-3.2.1/src/file.rs:13-16`](../../../.source_1765894658/fs-err-3.2.1/src/file.rs#L13-L16)*
 
 Wrapper around `std::fs::File` which adds more helpful
 information to all errors.
@@ -39,85 +39,63 @@ information to all errors.
 - <span id="file-open"></span>`fn open<P>(path: P) -> Result<Self, io::Error>`
 
   Attempts to open a file in read-only mode.
-
   
-
   Wrapper for [`File::open`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.open).
 
 - <span id="file-create"></span>`fn create<P>(path: P) -> Result<Self, io::Error>`
 
   Opens a file in write-only mode.
-
   
-
   Wrapper for [`File::create`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.create).
 
 - <span id="file-create-new"></span>`fn create_new<P>(path: P) -> Result<Self, io::Error>`
 
   Opens a file in read-write mode.
-
   
-
   Wrapper for [`File::create_new`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.create_new).
 
 - <span id="file-options"></span>`fn options() -> OpenOptions` — [`OpenOptions`](../open_options/index.md#openoptions)
 
   Returns a new `OpenOptions` object.
-
   
-
   Wrapper for [`File::options`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.options).
 
 - <span id="file-sync-all"></span>`fn sync_all(&self) -> Result<(), io::Error>`
 
   Attempts to sync all OS-internal metadata to disk.
-
   
-
   Wrapper for [`File::sync_all`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.sync_all).
 
 - <span id="file-sync-data"></span>`fn sync_data(&self) -> Result<(), io::Error>`
 
   This function is similar to `sync_all`, except that it might not synchronize file metadata to the filesystem.
-
   
-
   Wrapper for [`File::sync_data`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.sync_data).
 
 - <span id="file-set-len"></span>`fn set_len(&self, size: u64) -> Result<(), io::Error>`
 
   Truncates or extends the underlying file, updating the size of this file to become `size`.
-
   
-
   Wrapper for [`File::set_len`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.set_len).
 
 - <span id="file-metadata"></span>`fn metadata(&self) -> Result<fs::Metadata, io::Error>`
 
   Queries metadata about the underlying file.
-
   
-
   Wrapper for [`File::metadata`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.metadata).
 
 - <span id="file-try-clone"></span>`fn try_clone(&self) -> Result<Self, io::Error>`
 
   Creates a new `File` instance that shares the same underlying file handle as the
-
   existing `File` instance. Reads, writes, and seeks will affect both `File`
-
   instances simultaneously.
-
   
-
   Wrapper for [`File::try_clone`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.try_clone).
 
 - <span id="file-set-permissions"></span>`fn set_permissions(&self, perm: fs::Permissions) -> Result<(), io::Error>`
 
   Changes the permissions on the underlying file.
-
   
-
   Wrapper for [`File::set_permissions`](https://doc.rust-lang.org/stable/std/fs/struct.File.html#method.set_permissions).
 
 #### Trait Implementations
@@ -163,11 +141,8 @@ information to all errors.
 - <span id="file-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoRawFd for crate::File`
@@ -214,7 +189,7 @@ information to all errors.
 fn open(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
 ```
 
-*Defined in [`fs-err-3.2.0/src/file.rs:20-22`](../../../.source_1765633015/fs-err-3.2.0/src/file.rs#L20-L22)*
+*Defined in [`fs-err-3.2.1/src/file.rs:20-22`](../../../.source_1765894658/fs-err-3.2.1/src/file.rs#L20-L22)*
 
 ### `create`
 
@@ -222,5 +197,5 @@ fn open(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::
 fn create(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
 ```
 
-*Defined in [`fs-err-3.2.0/src/file.rs:25-27`](../../../.source_1765633015/fs-err-3.2.0/src/file.rs#L25-L27)*
+*Defined in [`fs-err-3.2.1/src/file.rs:25-27`](../../../.source_1765894658/fs-err-3.2.1/src/file.rs#L25-L27)*
 

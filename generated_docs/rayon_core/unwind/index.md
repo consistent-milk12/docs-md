@@ -24,7 +24,7 @@ accidental panics in the rayon code itself.
 struct AbortIfPanic;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/unwind.rs:24`](../../../.source_1765633015/rayon-core-1.13.0/src/unwind.rs#L24)*
+*Defined in [`rayon-core-1.13.0/src/unwind.rs:24`](../../../.source_1765894658/rayon-core-1.13.0/src/unwind.rs#L24)*
 
 #### Trait Implementations
 
@@ -55,11 +55,8 @@ struct AbortIfPanic;
 - <span id="abortifpanic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for AbortIfPanic`
@@ -98,7 +95,7 @@ where
     F: FnOnce() -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/unwind.rs:13-18`](../../../.source_1765633015/rayon-core-1.13.0/src/unwind.rs#L13-L18)*
+*Defined in [`rayon-core-1.13.0/src/unwind.rs:13-18`](../../../.source_1765894658/rayon-core-1.13.0/src/unwind.rs#L13-L18)*
 
 Executes `f` and captures any panic, translating that panic into a
 `Err` result. The assumption is that any panic will be propagated
@@ -111,5 +108,5 @@ exception safe.
 fn resume_unwinding(payload: Box<dyn Any + Send>) -> never
 ```
 
-*Defined in [`rayon-core-1.13.0/src/unwind.rs:20-22`](../../../.source_1765633015/rayon-core-1.13.0/src/unwind.rs#L20-L22)*
+*Defined in [`rayon-core-1.13.0/src/unwind.rs:20-22`](../../../.source_1765894658/rayon-core-1.13.0/src/unwind.rs#L20-L22)*
 

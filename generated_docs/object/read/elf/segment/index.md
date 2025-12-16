@@ -43,7 +43,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:20-27`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L20-L27)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:20-27`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L20-L27)*
 
 An iterator for the segments in an [`ElfFile`](../index.md).
 
@@ -76,11 +76,8 @@ An iterator for the segments in an [`ElfFile`](../index.md).
 - <span id="elfsegmentiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ElfSegmentIterator<'data, 'file, Elf, R>`
@@ -121,7 +118,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:60-67`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L60-L67)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:60-67`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L60-L67)*
 
 A segment in an [`ElfFile`](../index.md).
 
@@ -168,11 +165,8 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 - <span id="elfsegment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Elf, R> ObjectSegment for ElfSegment<'data, 'file, Elf, R>`
@@ -217,7 +211,7 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 trait ProgramHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:152-273`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L152-L273)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:152-273`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L152-L273)*
 
 A trait for generic access to [`elf::ProgramHeader32`](../../../elf/index.md) and [`elf::ProgramHeader64`](../../../elf/index.md).
 
@@ -256,26 +250,44 @@ A trait for generic access to [`elf::ProgramHeader32`](../../../elf/index.md) an
 - `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [u8], ()>`
 
   Return the segment data.
+  
+  Returns `Err` for invalid values.
 
 - `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [T], ()>`
 
   Return the segment data as a slice of the given type.
+  
+  Allows padding at the end of the data.
+  Returns `Ok(&[])` if the segment has no data.
+  Returns `Err` for invalid values, including bad alignment.
 
 - `fn data_range<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, address: u64, size: u64) -> Result<Option<&'data [u8]>, ()>`
 
   Return the segment data in the given virtual address range
+  
+  Returns `Ok(None)` if the segment does not contain the address.
+  Returns `Err` for invalid values.
 
 - `fn dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [<<Self as >::Elf as FileHeader>::Dyn]>>`
 
   Return entries in a dynamic segment.
+  
+  Returns `Ok(None)` if the segment is not `PT_DYNAMIC`.
+  Returns `Err` for invalid values.
 
 - `fn interpreter<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [u8]>>`
 
   Return the data in an interpreter segment.
+  
+  Returns `Ok(None)` if the segment is not `PT_INTERP`.
+  Returns `Err` for invalid values.
 
 - `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the segment data.
+  
+  Returns `Ok(None)` if the segment does not contain notes.
+  Returns `Err` for invalid values.
 
 #### Implementors
 
@@ -290,7 +302,7 @@ A trait for generic access to [`elf::ProgramHeader32`](../../../elf/index.md) an
 type ElfSegmentIterator32<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:12-13`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L12-L13)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:12-13`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L12-L13)*
 
 An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 
@@ -300,7 +312,7 @@ An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 type ElfSegmentIterator64<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:15-16`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:15-16`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L15-L16)*
 
 An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 
@@ -310,7 +322,7 @@ An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 type ElfSegment32<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:50-51`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L50-L51)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:50-51`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L50-L51)*
 
 A segment in an [`ElfFile32`](super::ElfFile32).
 
@@ -320,7 +332,7 @@ A segment in an [`ElfFile32`](super::ElfFile32).
 type ElfSegment64<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/segment.rs:53-54`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/segment.rs#L53-L54)*
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:53-54`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/segment.rs#L53-L54)*
 
 A segment in an [`ElfFile64`](super::ElfFile64).
 

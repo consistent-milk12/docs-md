@@ -25,7 +25,7 @@ struct MultiName {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/name.rs:9-15`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/name.rs#L9-L15)*
+*Defined in [`serde_derive-1.0.228/src/internals/name.rs:9-15`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/name.rs#L9-L15)*
 
 #### Implementations
 
@@ -66,11 +66,8 @@ struct MultiName {
 - <span id="multiname-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for MultiName`
@@ -94,7 +91,7 @@ struct Name {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/name.rs:60-63`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/name.rs#L60-L63)*
+*Defined in [`serde_derive-1.0.228/src/internals/name.rs:60-63`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/name.rs#L60-L63)*
 
 #### Trait Implementations
 
@@ -135,11 +132,8 @@ struct Name {
 - <span id="name-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Name`

@@ -187,7 +187,7 @@ enum Prefix {
 }
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/lib.rs:171-235`](../../.source_1765633015/unit-prefix-0.5.2/src/lib.rs#L171-L235)*
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:171-235`](../../.source_1765894658/unit-prefix-0.5.2/src/lib.rs#L171-L235)*
 
 A numeric prefix, either binary or decimal.
 
@@ -278,89 +278,53 @@ A numeric prefix, either binary or decimal.
 - <span id="prefix-upper"></span>`fn upper(self) -> &'static str`
 
   Returns the name in uppercase, such as “KILO”.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use unit_prefix::Prefix;
-
   
-
   assert_eq!("GIGA", Prefix::Giga.upper());
-
   assert_eq!("GIBI", Prefix::Gibi.upper());
-
   ```
 
 - <span id="prefix-caps"></span>`fn caps(self) -> &'static str`
 
   Returns the name with the first letter capitalised, such as “Mega”.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use unit_prefix::Prefix;
-
   
-
   assert_eq!("Giga", Prefix::Giga.caps());
-
   assert_eq!("Gibi", Prefix::Gibi.caps());
-
   ```
 
 - <span id="prefix-lower"></span>`fn lower(self) -> &'static str`
 
   Returns the name in lowercase, such as “giga”.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use unit_prefix::Prefix;
-
   
-
   assert_eq!("giga", Prefix::Giga.lower());
-
   assert_eq!("gibi", Prefix::Gibi.lower());
-
   ```
 
 - <span id="prefix-symbol"></span>`fn symbol(self) -> &'static str`
 
   Returns the short-hand symbol, such as “T” (for “tera”).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use unit_prefix::Prefix;
-
   
-
   assert_eq!("G", Prefix::Giga.symbol());
-
   assert_eq!("Gi", Prefix::Gibi.symbol());
-
   ```
 
 #### Trait Implementations
@@ -408,11 +372,8 @@ A numeric prefix, either binary or decimal.
 - <span id="prefix-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Prefix`
@@ -454,7 +415,7 @@ enum NumberPrefix<F> {
 }
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/lib.rs:240-249`](../../.source_1765633015/unit-prefix-0.5.2/src/lib.rs#L240-L249)*
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:240-249`](../../.source_1765894658/unit-prefix-0.5.2/src/lib.rs#L240-L249)*
 
 The result of trying to apply a prefix to a floating-point value.
 
@@ -476,65 +437,37 @@ The result of trying to apply a prefix to a floating-point value.
 - <span id="numberprefix-decimal"></span>`fn decimal(amount: F) -> Self`
 
   Formats the given floating-point number using **decimal** prefixes.
-
   
-
   This function accepts both `f32` and `f64` values. If you’re trying to
-
   format an integer, you’ll have to cast it first.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use unit_prefix::{NumberPrefix, Prefix};
-
   
-
   assert_eq!(
-
       NumberPrefix::decimal(1_000_000_000_f32),
-
       NumberPrefix::Prefixed(Prefix::Giga, 1_f32)
-
   );
-
   ```
 
 - <span id="numberprefix-binary"></span>`fn binary(amount: F) -> Self`
 
   Formats the given floating-point number using **binary** prefixes.
-
   
-
   This function accepts both `f32` and `f64` values. If you’re trying to
-
   format an integer, you’ll have to cast it first.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use unit_prefix::{NumberPrefix, Prefix};
-
   
-
   assert_eq!(
-
       NumberPrefix::binary(1_073_741_824_f64),
-
       NumberPrefix::Prefixed(Prefix::Gibi, 1_f64)
-
   );
-
   ```
 
 - <span id="numberprefix-format-number"></span>`fn format_number(amount: F, kilo: F, prefixes: [Prefix; 8]) -> Self` — [`Prefix`](#prefix)
@@ -584,11 +517,8 @@ The result of trying to apply a prefix to a floating-point value.
 - <span id="numberprefix-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<F: cmp::PartialEq> PartialEq for NumberPrefix<F>`
@@ -625,7 +555,7 @@ The result of trying to apply a prefix to a floating-point value.
 trait Amounts: Copy + Sized + PartialOrd + Div<Output = Self> + Neg<Output = Self> { ... }
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/lib.rs:467-477`](../../.source_1765633015/unit-prefix-0.5.2/src/lib.rs#L467-L477)*
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:467-477`](../../.source_1765894658/unit-prefix-0.5.2/src/lib.rs#L467-L477)*
 
 Traits for floating-point values for both the possible multipliers. They
 need to be Copy, have defined 1000 and 1024s, and implement a bunch of
@@ -642,6 +572,7 @@ operators.
 - `fn is_negative(self) -> bool`
 
   Whether this number is negative.
+  This is used internally.
 
 #### Implementors
 

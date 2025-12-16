@@ -70,7 +70,7 @@ struct CachePadded<T> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/cache_padded.rs:148-150`](../../.source_1765633015/crossbeam-utils-0.8.21/src/cache_padded.rs#L148-L150)*
+*Defined in [`crossbeam-utils-0.8.21/src/cache_padded.rs:148-150`](../../.source_1765894658/crossbeam-utils-0.8.21/src/cache_padded.rs#L148-L150)*
 
 Pads and aligns a value to the length of a cache line.
 
@@ -136,45 +136,27 @@ struct Queue<T> {
 - <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md#cachepadded)
 
   Pads and aligns a value to the length of a cache line.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::CachePadded;
-
   
-
   let padded_value = CachePadded::new(1);
-
   ```
 
 - <span id="cachepadded-into-inner"></span>`fn into_inner(self) -> T`
 
   Returns the inner value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::CachePadded;
-
   
-
   let padded_value = CachePadded::new(7);
-
   let value = padded_value.into_inner();
-
   assert_eq!(value, 7);
-
   ```
 
 #### Trait Implementations
@@ -240,11 +222,8 @@ struct Queue<T> {
 - <span id="cachepadded-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for CachePadded<T>`
@@ -293,7 +272,7 @@ struct Backoff {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:80-82`](../../.source_1765633015/crossbeam-utils-0.8.21/src/backoff.rs#L80-L82)*
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:80-82`](../../.source_1765894658/crossbeam-utils-0.8.21/src/backoff.rs#L80-L82)*
 
 Performs exponential backoff in spin loops.
 
@@ -370,281 +349,151 @@ fn blocking_wait(ready: &AtomicBool) {
 - <span id="backoff-new"></span>`fn new() -> Self`
 
   Creates a new `Backoff`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::Backoff;
-
   
-
   let backoff = Backoff::new();
-
   ```
 
 - <span id="backoff-reset"></span>`fn reset(&self)`
 
   Resets the `Backoff`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::Backoff;
-
   
-
   let backoff = Backoff::new();
-
   backoff.reset();
-
   ```
 
 - <span id="backoff-spin"></span>`fn spin(&self)`
 
   Backs off in a lock-free loop.
-
   
-
   This method should be used when we need to retry an operation because another thread made
-
   progress.
-
   
-
   The processor may yield using the *YIELD* or *PAUSE* instruction.
-
   
-
   # Examples
-
   
-
   Backing off in a lock-free loop:
-
   
-
   ```rust
-
   use crossbeam_utils::Backoff;
-
   use std::sync::atomic::AtomicUsize;
-
   use std::sync::atomic::Ordering::SeqCst;
-
   
-
   fn fetch_mul(a: &AtomicUsize, b: usize) -> usize {
-
       let backoff = Backoff::new();
-
       loop {
-
           let val = a.load(SeqCst);
-
           if a.compare_exchange(val, val.wrapping_mul(b), SeqCst, SeqCst).is_ok() {
-
               return val;
-
           }
-
           backoff.spin();
-
       }
-
   }
-
   
-
   let a = AtomicUsize::new(7);
-
   assert_eq!(fetch_mul(&a, 8), 7);
-
   assert_eq!(a.load(SeqCst), 56);
-
   ```
 
 - <span id="backoff-snooze"></span>`fn snooze(&self)`
 
   Backs off in a blocking loop.
-
   
-
   This method should be used when we need to wait for another thread to make progress.
-
   
-
   The processor may yield using the *YIELD* or *PAUSE* instruction and the current thread
-
   may yield by giving up a timeslice to the OS scheduler.
-
   
-
   In `#[no_std]` environments, this method is equivalent to `spin`.
-
   
-
   If possible, use `is_completed` to check when it is advised to stop using backoff and
-
   block the current thread using a different synchronization mechanism instead.
-
   
-
   
-
   # Examples
-
   
-
   Waiting for an [`AtomicBool`](#atomicbool) to become `true`:
-
   
-
   ```rust
-
   use crossbeam_utils::Backoff;
-
   use std::sync::Arc;
-
   use std::sync::atomic::AtomicBool;
-
   use std::sync::atomic::Ordering::SeqCst;
-
   use std::thread;
-
   use std::time::Duration;
-
   
-
   fn spin_wait(ready: &AtomicBool) {
-
       let backoff = Backoff::new();
-
       while !ready.load(SeqCst) {
-
           backoff.snooze();
-
       }
-
   }
-
   
-
   let ready = Arc::new(AtomicBool::new(false));
-
   let ready2 = ready.clone();
-
   
-
   thread::spawn(move || {
-
       thread::sleep(Duration::from_millis(100));
-
       ready2.store(true, SeqCst);
-
   });
-
   
-
   assert_eq!(ready.load(SeqCst), false);
-
   spin_wait(&ready);
-
   assert_eq!(ready.load(SeqCst), true);
-
   std::thread::sleep(std::time::Duration::from_millis(500)); // wait for background threads closed: https://github.com/rust-lang/miri/issues/1371
-
   ```
 
 - <span id="backoff-is-completed"></span>`fn is_completed(&self) -> bool`
 
   Returns `true` if exponential backoff has completed and blocking the thread is advised.
-
   
-
   # Examples
-
   
-
   Waiting for an [`AtomicBool`](#atomicbool) to become `true` and parking the thread after a long wait:
-
   
-
   ```rust
-
   use crossbeam_utils::Backoff;
-
   use std::sync::Arc;
-
   use std::sync::atomic::AtomicBool;
-
   use std::sync::atomic::Ordering::SeqCst;
-
   use std::thread;
-
   use std::time::Duration;
-
   
-
   fn blocking_wait(ready: &AtomicBool) {
-
       let backoff = Backoff::new();
-
       while !ready.load(SeqCst) {
-
           if backoff.is_completed() {
-
               thread::park();
-
           } else {
-
               backoff.snooze();
-
           }
-
       }
-
   }
-
   
-
   let ready = Arc::new(AtomicBool::new(false));
-
   let ready2 = ready.clone();
-
   let waiter = thread::current();
-
   
-
   thread::spawn(move || {
-
       thread::sleep(Duration::from_millis(100));
-
       ready2.store(true, SeqCst);
-
       waiter.unpark();
-
   });
-
   
-
   assert_eq!(ready.load(SeqCst), false);
-
   blocking_wait(&ready);
-
   assert_eq!(ready.load(SeqCst), true);
-
   std::thread::sleep(std::time::Duration::from_millis(500)); // wait for background threads closed: https://github.com/rust-lang/miri/issues/1371
-
   ```
 
 #### Trait Implementations
@@ -680,11 +529,8 @@ fn blocking_wait(ready: &AtomicBool) {
 - <span id="backoff-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Backoff`

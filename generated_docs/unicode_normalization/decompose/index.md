@@ -24,7 +24,7 @@ struct Decompositions<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:23-37`](../../../.source_1765633015/unicode-normalization-0.1.25/src/decompose.rs#L23-L37)*
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:23-37`](../../../.source_1765894658/unicode-normalization-0.1.25/src/decompose.rs#L23-L37)*
 
 External iterator for a string decomposition's characters.
 
@@ -33,21 +33,15 @@ External iterator for a string decomposition's characters.
 - <span id="decompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
   Create a new decomposition iterator for canonical decompositions (NFD)
-
   
-
   Note that this iterator can also be obtained by directly calling [`.nfd()`](crate::UnicodeNormalization::nfd)
-
   on the iterator.
 
 - <span id="decompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
   Create a new decomposition iterator for compatability decompositions (NFkD)
-
   
-
   Note that this iterator can also be obtained by directly calling [`.nfkd()`](crate::UnicodeNormalization::nfkd)
-
   on the iterator.
 
 #### Trait Implementations
@@ -89,11 +83,8 @@ External iterator for a string decomposition's characters.
 - <span id="decompositions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for Decompositions<I>`
@@ -161,7 +152,7 @@ enum DecompositionType {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:16-19`](../../../.source_1765633015/unicode-normalization-0.1.25/src/decompose.rs#L16-L19)*
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:16-19`](../../../.source_1765894658/unicode-normalization-0.1.25/src/decompose.rs#L16-L19)*
 
 #### Trait Implementations
 
@@ -196,11 +187,8 @@ enum DecompositionType {
 - <span id="decompositiontype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DecompositionType`

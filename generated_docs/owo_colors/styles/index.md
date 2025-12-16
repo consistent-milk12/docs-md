@@ -44,7 +44,7 @@ Different display styles (strikethrough, bold, etc.)
 struct BoldDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:26`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L26)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:26`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L26)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of boldening it. Recommended to be constructed using
@@ -55,51 +55,28 @@ with the addition of boldening it. Recommended to be constructed using
 - <span id="bolddisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
   Convert self to a generic [`Styled`](../index.md).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_bold() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_bold() {
-
       "hello".bold().into_styled()
-
   } else {
-
       "hello".dimmed().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(styled_str.to_string(), "\x1b[1mhello\x1b[0m");
-
   ```
 
 #### Trait Implementations
@@ -139,11 +116,8 @@ with the addition of boldening it. Recommended to be constructed using
 - <span id="bolddisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for BoldDisplay<'a, T>`
@@ -190,7 +164,7 @@ with the addition of boldening it. Recommended to be constructed using
 struct DimDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:66`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L66)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:66`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L66)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of dimming it. Recommended to be constructed using
@@ -201,51 +175,28 @@ with the addition of dimming it. Recommended to be constructed using
 - <span id="dimdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
   Convert self to a generic [`Styled`](../index.md).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_dimmed() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_dimmed() {
-
       "hello".dimmed().into_styled()
-
   } else {
-
       "hello".bold().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(styled_str.to_string(), "\x1b[2mhello\x1b[0m");
-
   ```
 
 #### Trait Implementations
@@ -285,11 +236,8 @@ with the addition of dimming it. Recommended to be constructed using
 - <span id="dimdisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for DimDisplay<'a, T>`
@@ -336,7 +284,7 @@ with the addition of dimming it. Recommended to be constructed using
 struct ItalicDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:106`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L106)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:106`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L106)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of italics. Recommended to be constructed using
@@ -347,51 +295,28 @@ with the addition of italics. Recommended to be constructed using
 - <span id="italicdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
   Convert self to a generic [`Styled`](../index.md).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_italic() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_italic() {
-
       "hello".italic().into_styled()
-
   } else {
-
       "hello".underline().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(styled_str.to_string(), "\x1b[3mhello\x1b[0m");
-
   ```
 
 #### Trait Implementations
@@ -431,11 +356,8 @@ with the addition of italics. Recommended to be constructed using
 - <span id="italicdisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for ItalicDisplay<'a, T>`
@@ -482,7 +404,7 @@ with the addition of italics. Recommended to be constructed using
 struct UnderlineDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:146`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L146)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:146`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L146)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 while underlining it. Recommended to be constructed using
@@ -493,51 +415,28 @@ while underlining it. Recommended to be constructed using
 - <span id="underlinedisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
   Convert self to a generic [`Styled`](../index.md).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_underline() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_underline() {
-
       "hello".underline().into_styled()
-
   } else {
-
       "hello".italic().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(styled_str.to_string(), "\x1b[4mhello\x1b[0m");
-
   ```
 
 #### Trait Implementations
@@ -577,11 +476,8 @@ while underlining it. Recommended to be constructed using
 - <span id="underlinedisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for UnderlineDisplay<'a, T>`
@@ -628,7 +524,7 @@ while underlining it. Recommended to be constructed using
 struct BlinkDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:186`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L186)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:186`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L186)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 while blinking. Recommended to be constructed using
@@ -639,51 +535,28 @@ while blinking. Recommended to be constructed using
 - <span id="blinkdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
   Convert self to a generic [`Styled`](../index.md).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_blink() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_blink() {
-
       "hello".blink().into_styled()
-
   } else {
-
       "hello".hidden().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(styled_str.to_string(), "\x1b[5mhello\x1b[0m");
-
   ```
 
 #### Trait Implementations
@@ -723,11 +596,8 @@ while blinking. Recommended to be constructed using
 - <span id="blinkdisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for BlinkDisplay<'a, T>`
@@ -774,7 +644,7 @@ while blinking. Recommended to be constructed using
 struct BlinkFastDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:225`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L225)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:225`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L225)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blink_fast)
@@ -784,51 +654,28 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 - <span id="blinkfastdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
   Convert self to a generic [`Styled`](../index.md).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_blink_fast() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_blink_fast() {
-
       "hello".blink_fast().into_styled()
-
   } else {
-
       "hello".reversed().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(styled_str.to_string(), "\x1b[6mhello\x1b[0m");
-
   ```
 
 #### Trait Implementations
@@ -868,11 +715,8 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 - <span id="blinkfastdisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for BlinkFastDisplay<'a, T>`
@@ -919,7 +763,7 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 struct ReversedDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:264`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L264)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:264`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L264)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize::reversed)
@@ -929,51 +773,28 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 - <span id="reverseddisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
   Convert self to a generic [`Styled`](../index.md).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_reversed() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_reversed() {
-
       "hello".reversed().into_styled()
-
   } else {
-
       "hello".blink_fast().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(styled_str.to_string(), "\x1b[7mhello\x1b[0m");
-
   ```
 
 #### Trait Implementations
@@ -1013,11 +834,8 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 - <span id="reverseddisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for ReversedDisplay<'a, T>`
@@ -1064,7 +882,7 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 struct HiddenDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:303`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L303)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:303`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L303)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
@@ -1074,51 +892,28 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 - <span id="hiddendisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
   Convert self to a generic [`Styled`](../index.md).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_hidden() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_hidden() {
-
       "hello".hidden().into_styled()
-
   } else {
-
       "hello".blink().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(styled_str.to_string(), "\x1b[8mhello\x1b[0m");
-
   ```
 
 #### Trait Implementations
@@ -1158,11 +953,8 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 - <span id="hiddendisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for HiddenDisplay<'a, T>`
@@ -1209,7 +1001,7 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 struct StrikeThroughDisplay<'a, T: ?Sized>(&'a T);
 ```
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:343`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L343)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:343`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L343)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 crossed out. Recommended to be constructed using
@@ -1220,51 +1012,28 @@ crossed out. Recommended to be constructed using
 - <span id="strikethroughdisplay-into-styled"></span>`const fn into_styled(self) -> Styled<&'a T>` — [`Styled`](../index.md#styled)
 
   Convert self to a generic [`Styled`](../index.md).
-
   
-
   This method erases color-related type parameters, and can be
-
   used to unify types across branches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use owo_colors::OwoColorize;
-
   
-
   fn is_strike_through() -> bool {
-
       // ...
-
       true
-
   }
-
   
-
   let styled_str = if is_strike_through() {
-
       "hello".strikethrough().into_styled()
-
   } else {
-
       "hello".hidden().into_styled()
-
   };
-
   
-
   println!("{}", styled_str);
-
   assert_eq!(styled_str.to_string(), "\x1b[9mhello\x1b[0m");
-
   ```
 
 #### Trait Implementations
@@ -1304,11 +1073,8 @@ crossed out. Recommended to be constructed using
 - <span id="strikethroughdisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + fmt::LowerExp> LowerExp for StrikeThroughDisplay<'a, T>`
@@ -1353,5 +1119,5 @@ crossed out. Recommended to be constructed using
 
 ### `impl_fmt_for_style!`
 
-*Defined in [`owo-colors-4.2.3/src/styles.rs:8-20`](../../../.source_1765633015/owo-colors-4.2.3/src/styles.rs#L8-L20)*
+*Defined in [`owo-colors-4.2.3/src/styles.rs:8-20`](../../../.source_1765894658/owo-colors-4.2.3/src/styles.rs#L8-L20)*
 

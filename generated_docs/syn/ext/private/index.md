@@ -20,7 +20,7 @@
 struct PeekFn;
 ```
 
-*Defined in [`syn-2.0.111/src/ext.rs:165`](../../../../.source_1765633015/syn-2.0.111/src/ext.rs#L165)*
+*Defined in [`syn-2.0.111/src/ext.rs:165`](../../../../.source_1765894658/syn-2.0.111/src/ext.rs#L165)*
 
 #### Trait Implementations
 
@@ -57,11 +57,8 @@ struct PeekFn;
 - <span id="peekfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Peek for private::PeekFn`
@@ -94,7 +91,7 @@ struct PeekFn;
 struct IdentAny;
 ```
 
-*Defined in [`syn-2.0.111/src/ext.rs:168`](../../../../.source_1765633015/syn-2.0.111/src/ext.rs#L168)*
+*Defined in [`syn-2.0.111/src/ext.rs:168`](../../../../.source_1765894658/syn-2.0.111/src/ext.rs#L168)*
 
 #### Trait Implementations
 
@@ -121,11 +118,8 @@ struct IdentAny;
 - <span id="identany-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Sealed for IdentAny`
@@ -156,7 +150,7 @@ struct IdentAny;
 trait Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/ext.rs:160`](../../../../.source_1765633015/syn-2.0.111/src/ext.rs#L160)*
+*Defined in [`syn-2.0.111/src/ext.rs:160`](../../../../.source_1765894658/syn-2.0.111/src/ext.rs#L160)*
 
 #### Implementors
 

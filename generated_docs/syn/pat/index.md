@@ -72,7 +72,7 @@ struct PatConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L385-L393)*
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
@@ -123,11 +123,8 @@ A const block: `const { ... }`.
 - <span id="exprconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprConst`
@@ -177,7 +174,7 @@ struct PatLit {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L493-L500)*
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L493-L500)*
 
 A literal in place of an expression: `1`, `"foo"`.
 
@@ -228,11 +225,8 @@ A literal in place of an expression: `1`, `"foo"`.
 - <span id="exprlit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprLit`
@@ -282,7 +276,7 @@ struct PatMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L513-L520)*
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L513-L520)*
 
 A macro invocation expression: `format!("{}", q)`.
 
@@ -333,11 +327,8 @@ A macro invocation expression: `format!("{}", q)`.
 - <span id="exprmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprMacro`
@@ -388,7 +379,7 @@ struct PatPath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L558-L569)*
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L558-L569)*
 
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
@@ -442,11 +433,8 @@ A plain identifier like `x` is a path of length 1.
 - <span id="exprpath-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprPath`
@@ -498,7 +486,7 @@ struct PatRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../../.source_1765633015/syn-2.0.111/src/expr.rs#L571-L580)*
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../../.source_1765894658/syn-2.0.111/src/expr.rs#L571-L580)*
 
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
@@ -549,11 +537,8 @@ A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 - <span id="exprrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::expr::ExprRange`
@@ -606,7 +591,7 @@ struct PatIdent {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:104-117`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L104-L117)*
+*Defined in [`syn-2.0.111/src/pat.rs:104-117`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L104-L117)*
 
 A pattern that binds a new variable: `ref mut binding @ SUBPATTERN`.
 
@@ -660,11 +645,8 @@ constant; these cannot be distinguished syntactically.
 - <span id="patident-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatIdent`
@@ -711,7 +693,7 @@ struct PatOr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:119-127`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L119-L127)*
+*Defined in [`syn-2.0.111/src/pat.rs:119-127`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L119-L127)*
 
 A pattern that matches any one of a set of cases.
 
@@ -762,11 +744,8 @@ A pattern that matches any one of a set of cases.
 - <span id="pator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatOr`
@@ -813,7 +792,7 @@ struct PatParen {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:129-137`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L129-L137)*
+*Defined in [`syn-2.0.111/src/pat.rs:129-137`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L129-L137)*
 
 A parenthesized pattern: `(A | B)`.
 
@@ -864,11 +843,8 @@ A parenthesized pattern: `(A | B)`.
 - <span id="patparen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatParen`
@@ -916,7 +892,7 @@ struct PatReference {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:139-148`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L139-L148)*
+*Defined in [`syn-2.0.111/src/pat.rs:139-148`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L139-L148)*
 
 A reference pattern: `&mut var`.
 
@@ -967,11 +943,8 @@ A reference pattern: `&mut var`.
 - <span id="patreference-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatReference`
@@ -1017,7 +990,7 @@ struct PatRest {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:150-157`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L150-L157)*
+*Defined in [`syn-2.0.111/src/pat.rs:150-157`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L150-L157)*
 
 The dots in a tuple or slice pattern: `[0, 1, ..]`.
 
@@ -1068,11 +1041,8 @@ The dots in a tuple or slice pattern: `[0, 1, ..]`.
 - <span id="patrest-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatRest`
@@ -1119,7 +1089,7 @@ struct PatSlice {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:159-167`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L159-L167)*
+*Defined in [`syn-2.0.111/src/pat.rs:159-167`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L159-L167)*
 
 A dynamically sized slice pattern: `[a, b, ref i @ .., y, z]`.
 
@@ -1170,11 +1140,8 @@ A dynamically sized slice pattern: `[a, b, ref i @ .., y, z]`.
 - <span id="patslice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatSlice`
@@ -1224,7 +1191,7 @@ struct PatStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:169-180`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L169-L180)*
+*Defined in [`syn-2.0.111/src/pat.rs:169-180`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L169-L180)*
 
 A struct or struct variant pattern: `Variant { x, y, .. }`.
 
@@ -1275,11 +1242,8 @@ A struct or struct variant pattern: `Variant { x, y, .. }`.
 - <span id="patstruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatStruct`
@@ -1326,7 +1290,7 @@ struct PatTuple {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:182-190`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L182-L190)*
+*Defined in [`syn-2.0.111/src/pat.rs:182-190`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L182-L190)*
 
 A tuple pattern: `(a, b)`.
 
@@ -1377,11 +1341,8 @@ A tuple pattern: `(a, b)`.
 - <span id="pattuple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatTuple`
@@ -1430,7 +1391,7 @@ struct PatTupleStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:192-202`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L192-L202)*
+*Defined in [`syn-2.0.111/src/pat.rs:192-202`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L192-L202)*
 
 A tuple struct or tuple variant pattern: `Variant(x, y, .., z)`.
 
@@ -1481,11 +1442,8 @@ A tuple struct or tuple variant pattern: `Variant(x, y, .., z)`.
 - <span id="pattuplestruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatTupleStruct`
@@ -1533,7 +1491,7 @@ struct PatType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:204-213`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L204-L213)*
+*Defined in [`syn-2.0.111/src/pat.rs:204-213`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L204-L213)*
 
 A type ascription pattern: `foo: f64`.
 
@@ -1584,11 +1542,8 @@ A type ascription pattern: `foo: f64`.
 - <span id="pattype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::pat::PatType`
@@ -1638,7 +1593,7 @@ struct PatWild {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:215-222`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L215-L222)*
+*Defined in [`syn-2.0.111/src/pat.rs:215-222`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L215-L222)*
 
 A pattern that matches any value: `_`.
 
@@ -1689,11 +1644,8 @@ A pattern that matches any value: `_`.
 - <span id="patwild-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PatWild`
@@ -1741,7 +1693,7 @@ struct FieldPat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:224-236`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L224-L236)*
+*Defined in [`syn-2.0.111/src/pat.rs:224-236`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L224-L236)*
 
 A single field in a struct pattern.
 
@@ -1791,11 +1743,8 @@ the same as `x: x, y: ref y, z: ref mut z` but there is no colon token.
 - <span id="fieldpat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::FieldPat`
@@ -1858,7 +1807,7 @@ enum Pat {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/pat.rs:15-102`](../../../.source_1765633015/syn-2.0.111/src/pat.rs#L15-L102)*
+*Defined in [`syn-2.0.111/src/pat.rs:15-102`](../../../.source_1765894658/syn-2.0.111/src/pat.rs#L15-L102)*
 
 A pattern in a local binding, function signature, match expression, or
 various other places.
@@ -1949,51 +1898,28 @@ This type is a [syntax tree enum].
 - <span id="cratepatpat-parse-single"></span>`fn parse_single(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parse a pattern that does _not_ involve `|` at the top level.
-
   
-
   This parser matches the behavior of the `$:pat_param` macro_rules
-
   matcher, and on editions prior to Rust 2021, the behavior of
-
   `$:pat`.
-
   
-
   In Rust syntax, some examples of where this syntax would occur are
-
   in the argument pattern of functions and closures. Patterns using
-
   `|` are not allowed to occur in these positions.
-
   
-
   ```compile_fail
-
   fn f(Some(_) | None: Option<T>) {
-
       let _ = |Some(_) | None: Option<T>| {};
-
       //       ^^^^^^^^^^^^^^^^^^^^^^^^^??? :(
-
   }
-
   ```
-
   
-
   ```console
-
   error: top-level or-patterns are not allowed in function parameters
-
    --> src/main.rs:1:6
-
     |
-
   1 | fn f(Some(_) | None: Option<T>) {
-
     |      ^^^^^^^^^^^^^^ help: wrap the pattern in parentheses: `(Some(_) | None)`
-
   ```
 
 - <span id="cratepatpat-parse-multi"></span>`fn parse_multi(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
@@ -2003,87 +1929,46 @@ This type is a [syntax tree enum].
 - <span id="cratepatpat-parse-multi-with-leading-vert"></span>`fn parse_multi_with_leading_vert(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parse a pattern, possibly involving `|`, possibly including a
-
   leading `|`.
-
   
-
   This parser matches the behavior of the Rust 2021 edition's `$:pat`
-
   macro_rules matcher.
-
   
-
   In Rust syntax, an example of where this syntax would occur is in
-
   the pattern of a `match` arm, where the language permits an optional
-
   leading `|`, although it is not idiomatic to write one there in
-
   handwritten code.
-
   
-
   ```rust
-
   let wat = None;
-
   match wat {
-
       | None | Some(false) => {}
-
       | Some(true) => {}
-
   }
-
   ```
-
   
-
   The compiler accepts it only to facilitate some situations in
-
   macro-generated code where a macro author might need to write:
-
   
-
   ```rust
-
   macro_rules! doc {
-
       ($value:expr, ($($conditions1:pat),*), ($($conditions2:pat),*), $then:expr) => {
-
   match $value {
-
       $(| $conditions1)* $(| $conditions2)* => $then
-
   }
-
       };
-
   }
-
   
-
   doc!(true, (true), (false), {});
-
   doc!(true, (), (true, false), {});
-
   doc!(true, (true, false), (), {});
-
   ```
-
   
-
   Expressing the same thing correctly in the case that either one (but
-
   not both) of `$conditions1` and `$conditions2` might be empty,
-
   without leading `|`, is complex.
-
   
-
   Use `Pat::parse_multi` instead if you are not intending to support
-
   macro-generated macro input.
 
 #### Trait Implementations
@@ -2129,11 +2014,8 @@ This type is a [syntax tree enum].
 - <span id="pat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Pat`

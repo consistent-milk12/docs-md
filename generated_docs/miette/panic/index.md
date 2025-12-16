@@ -19,7 +19,7 @@
 struct Panic(String);
 ```
 
-*Defined in [`miette-7.6.0/src/panic.rs:30`](../../../.source_1765633015/miette-7.6.0/src/panic.rs#L30)*
+*Defined in [`miette-7.6.0/src/panic.rs:30`](../../../.source_1765894658/miette-7.6.0/src/panic.rs#L30)*
 
 #### Implementations
 
@@ -68,11 +68,8 @@ struct Panic(String);
 - <span id="panic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Panic`
@@ -103,7 +100,7 @@ struct Panic(String);
 fn set_panic_hook()
 ```
 
-*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../../.source_1765633015/miette-7.6.0/src/panic.rs#L8-L27)*
+*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../../.source_1765894658/miette-7.6.0/src/panic.rs#L8-L27)*
 
 Tells miette to render panics using its rendering engine.
 

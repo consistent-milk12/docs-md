@@ -87,7 +87,7 @@ but it could be potentially very wasteful.
 struct Unit(UnitKind);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:79`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L79)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:79`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L79)*
 
 Unit represents a single unit of haystack for DFA based regex engines.
 
@@ -125,73 +125,49 @@ singleton equivalence class.
 - <span id="unit-u8"></span>`fn u8(byte: u8) -> Unit` — [`Unit`](#unit)
 
   Create a new haystack unit from a byte value.
-
   
-
   All possible byte values are legal. However, when creating a haystack
-
   unit for a specific DFA, one should be careful to only construct units
-
   that are in that DFA's alphabet. Namely, one way to compact a DFA's
-
   in-memory representation is to collapse its transitions to a set of
-
   equivalence classes into a set of all possible byte values. If a DFA
-
   uses equivalence classes instead of byte values, then the byte given
-
   here should be the equivalence class.
 
 - <span id="unit-eoi"></span>`fn eoi(num_byte_equiv_classes: usize) -> Unit` — [`Unit`](#unit)
 
   Create a new "end of input" haystack unit.
-
   
-
   The value given is the sentinel value used by this unit to represent
-
   the "end of input." The value should be the total number of equivalence
-
   classes in the corresponding alphabet. Its maximum value is `256`,
-
   which occurs when every byte is its own equivalence class.
-
   
-
   # Panics
-
   
-
   This panics when `num_byte_equiv_classes` is greater than `256`.
 
 - <span id="unit-as-u8"></span>`fn as_u8(self) -> Option<u8>`
 
   If this unit is not an "end of input" sentinel, then returns its
-
   underlying byte value. Otherwise return `None`.
 
 - <span id="unit-as-eoi"></span>`fn as_eoi(self) -> Option<u16>`
 
   If this unit is an "end of input" sentinel, then return the underlying
-
   sentinel value that was given to `Unit::eoi`. Otherwise return
-
   `None`.
 
 - <span id="unit-as-usize"></span>`fn as_usize(self) -> usize`
 
   Return this unit as a `usize`, regardless of whether it is a byte value
-
   or an "end of input" sentinel. In the latter case, the underlying
-
   sentinel value given to `Unit::eoi` is returned.
 
 - <span id="unit-is-byte"></span>`fn is_byte(self, byte: u8) -> bool`
 
   Returns true if and only of this unit is a byte value equivalent to the
-
   byte given. This always returns false when this is an "end of input"
-
   sentinel.
 
 - <span id="unit-is-eoi"></span>`fn is_eoi(self) -> bool`
@@ -201,11 +177,8 @@ singleton equivalence class.
 - <span id="unit-is-word-byte"></span>`fn is_word_byte(self) -> bool`
 
   Returns true when this unit corresponds to an ASCII word byte.
-
   
-
   This always returns false when this unit represents an "end of input"
-
   sentinel.
 
 #### Trait Implementations
@@ -249,11 +222,8 @@ singleton equivalence class.
 - <span id="unit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Unit`
@@ -296,7 +266,7 @@ singleton equivalence class.
 struct ByteClasses([u8; 256]);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:215`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L215)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:215`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L215)*
 
 A representation of byte oriented equivalence classes.
 
@@ -333,35 +303,26 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="byteclasses-empty"></span>`fn empty() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
   Creates a new set of equivalence classes where all bytes are mapped to
-
   the same class.
 
 - <span id="byteclasses-singletons"></span>`fn singletons() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
   Creates a new set of equivalence classes where each byte belongs to
-
   its own equivalence class.
 
 - <span id="byteclasses-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(ByteClasses, usize), DeserializeError>` — [`ByteClasses`](#byteclasses), [`DeserializeError`](../wire/index.md#deserializeerror)
 
   Deserializes a byte class map from the given slice. If the slice is of
-
   insufficient length or otherwise contains an impossible mapping, then
-
   an error is returned. Upon success, the number of bytes read along with
-
   the map are returned. The number of bytes read is always a multiple of
-
   8.
 
 - <span id="byteclasses-write-to"></span>`fn write_to(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md#serializeerror)
 
   Writes this byte class map to the given byte buffer. if the given
-
   buffer is too small, then an error is returned. Upon success, the total
-
   number of bytes written is returned. The number of bytes written is
-
   guaranteed to be a multiple of 8.
 
 - <span id="byteclasses-write-to-len"></span>`fn write_to_len(&self) -> usize`
@@ -379,49 +340,35 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="byteclasses-get-by-unit"></span>`fn get_by_unit(&self, unit: Unit) -> usize` — [`Unit`](#unit)
 
   Get the equivalence class for the given haystack unit and return the
-
   class as a `usize`.
 
 - <span id="byteclasses-eoi"></span>`fn eoi(&self) -> Unit` — [`Unit`](#unit)
 
   Create a unit that represents the "end of input" sentinel based on the
-
   number of equivalence classes.
 
 - <span id="byteclasses-alphabet-len"></span>`fn alphabet_len(&self) -> usize`
 
   Return the total number of elements in the alphabet represented by
-
   these equivalence classes. Equivalently, this returns the total number
-
   of equivalence classes.
 
 - <span id="byteclasses-stride2"></span>`fn stride2(&self) -> usize`
 
   Returns the stride, as a base-2 exponent, required for these
-
   equivalence classes.
-
   
-
   The stride is always the smallest power of 2 that is greater than or
-
   equal to the alphabet length, and the `stride2` returned here is the
-
   exponent applied to `2` to get the smallest power. This is done so that
-
   converting between premultiplied state IDs and indices can be done with
-
   shifts alone, which is much faster than integer division.
 
 - <span id="byteclasses-is-singleton"></span>`fn is_singleton(&self) -> bool`
 
   Returns true if and only if every byte in this class maps to its own
-
   equivalence class. Equivalently, there are 257 equivalence classes
-
   and each class contains either exactly one byte or corresponds to the
-
   singleton class containing the "end of input" sentinel.
 
 - <span id="byteclasses-iter"></span>`fn iter(&self) -> ByteClassIter<'_>` — [`ByteClassIter`](#byteclassiter)
@@ -431,181 +378,97 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="byteclasses-representatives"></span>`fn representatives<R: core::ops::RangeBounds<u8>>(&self, range: R) -> ByteClassRepresentatives<'_>` — [`ByteClassRepresentatives`](#byteclassrepresentatives)
 
   Returns an iterator over a sequence of representative bytes from each
-
   equivalence class within the range of bytes given.
-
   
-
   When the given range is unbounded on both sides, the iterator yields
-
   exactly N items, where N is equivalent to the number of equivalence
-
   classes. Each item is an arbitrary byte drawn from each equivalence
-
   class.
-
   
-
   This is useful when one is determinizing an NFA and the NFA's alphabet
-
   hasn't been converted to equivalence classes. Picking an arbitrary byte
-
   from each equivalence class then permits a full exploration of the NFA
-
   instead of using every possible byte value and thus potentially saves
-
   quite a lot of redundant work.
-
   
-
   # Example
-
   
-
   This shows an example of what a complete sequence of representatives
-
   might look like from a real example.
-
   
-
   ```rust
-
   use regex_automata::{nfa::thompson::NFA, util::alphabet::Unit};
-
   
-
   let nfa = NFA::new("[a-z]+")?;
-
   let classes = nfa.byte_classes();
-
   let reps: Vec<Unit> = classes.representatives(..).collect();
-
   // Note that the specific byte values yielded are not guaranteed!
-
   let expected = vec![
-
       Unit::u8(b'\x00'),
-
       Unit::u8(b'a'),
-
       Unit::u8(b'{'),
-
       Unit::eoi(3),
-
   ];
-
   assert_eq!(expected, reps);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
-
   
-
   Note though, that you can ask for an arbitrary range of bytes, and only
-
   representatives for that range will be returned:
-
   
-
   ```rust
-
   use regex_automata::{nfa::thompson::NFA, util::alphabet::Unit};
-
   
-
   let nfa = NFA::new("[a-z]+")?;
-
   let classes = nfa.byte_classes();
-
   let reps: Vec<Unit> = classes.representatives(b'A'..=b'z').collect();
-
   // Note that the specific byte values yielded are not guaranteed!
-
   let expected = vec![
-
       Unit::u8(b'A'),
-
       Unit::u8(b'a'),
-
   ];
-
   assert_eq!(expected, reps);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="byteclasses-elements"></span>`fn elements(&self, class: Unit) -> ByteClassElements<'_>` — [`Unit`](#unit), [`ByteClassElements`](#byteclasselements)
 
   Returns an iterator of the bytes in the given equivalence class.
-
   
-
   This is useful when one needs to know the actual bytes that belong to
-
   an equivalence class. For example, conceptually speaking, accelerating
-
   a DFA state occurs when a state only has a few outgoing transitions.
-
   But in reality, what is required is that there are only a small
-
   number of distinct bytes that can lead to an outgoing transition. The
-
   difference is that any one transition can correspond to an equivalence
-
   class which may contains many bytes. Therefore, DFA state acceleration
-
   considers the actual elements in each equivalence class of each
-
   outgoing transition.
-
   
-
   # Example
-
   
-
   This shows an example of how to get all of the elements in an
-
   equivalence class.
-
   
-
   ```rust
-
   use regex_automata::{nfa::thompson::NFA, util::alphabet::Unit};
-
   
-
   let nfa = NFA::new("[a-z]+")?;
-
   let classes = nfa.byte_classes();
-
   let elements: Vec<Unit> = classes.elements(Unit::u8(1)).collect();
-
   let expected: Vec<Unit> = (b'a'..=b'z').map(Unit::u8).collect();
-
   assert_eq!(expected, elements);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="byteclasses-element-ranges"></span>`fn element_ranges(&self, class: Unit) -> ByteClassElementRanges<'_>` — [`Unit`](#unit), [`ByteClassElementRanges`](#byteclasselementranges)
 
   Returns an iterator of byte ranges in the given equivalence class.
-
   
-
   That is, a sequence of contiguous ranges are returned. Typically, every
-
   class maps to a single contiguous range.
 
 #### Trait Implementations
@@ -651,11 +514,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="byteclasses-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ByteClasses`
@@ -687,7 +547,7 @@ struct ByteClassIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:525-528`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L525-L528)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:525-528`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L525-L528)*
 
 An iterator over each equivalence class.
 
@@ -727,11 +587,8 @@ iterator was created from.
 - <span id="byteclassiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ByteClassIter<'a>`
@@ -771,7 +628,7 @@ struct ByteClassRepresentatives<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:554-559`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L554-L559)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:554-559`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L554-L559)*
 
 An iterator over representative bytes from each equivalence class.
 
@@ -809,11 +666,8 @@ iterator was created from.
 - <span id="byteclassrepresentatives-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ByteClassRepresentatives<'a>`
@@ -852,7 +706,7 @@ struct ByteClassElements<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:599-603`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L599-L603)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:599-603`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L599-L603)*
 
 An iterator over all elements in an equivalence class.
 
@@ -890,11 +744,8 @@ iterator was created from.
 - <span id="byteclasselements-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ByteClassElements<'a>`
@@ -932,7 +783,7 @@ struct ByteClassElementRanges<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:629-632`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L629-L632)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:629-632`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L629-L632)*
 
 An iterator over all elements in an equivalence class expressed as a
 sequence of contiguous ranges.
@@ -966,11 +817,8 @@ sequence of contiguous ranges.
 - <span id="byteclasselementranges-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ByteClassElementRanges<'a>`
@@ -1005,7 +853,7 @@ sequence of contiguous ranges.
 struct ByteClassSet(ByteSet);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:685`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L685)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:685`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L685)*
 
 A partitioning of bytes into equivalence classes.
 
@@ -1035,13 +883,11 @@ same equivalence class.)
 - <span id="byteclassset-empty"></span>`fn empty() -> Self`
 
   Create a new set of byte classes where all bytes are part of the same
-
   equivalence class.
 
 - <span id="byteclassset-set-range"></span>`fn set_range(&mut self, start: u8, end: u8)`
 
   Indicate the range of byte given (inclusive) can discriminate a
-
   match between it and all other bytes outside of the range.
 
 - <span id="byteclassset-add-set"></span>`fn add_set(&mut self, set: &ByteSet)` — [`ByteSet`](#byteset)
@@ -1051,9 +897,7 @@ same equivalence class.)
 - <span id="byteclassset-byte-classes"></span>`fn byte_classes(&self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
   Convert this boolean set to a map that maps all byte values to their
-
   corresponding equivalence class. The last mapping indicates the largest
-
   equivalence class identifier (which is never bigger than 255).
 
 #### Trait Implementations
@@ -1097,11 +941,8 @@ same equivalence class.)
 - <span id="byteclassset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ByteClassSet`
@@ -1132,7 +973,7 @@ struct ByteSet {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:742-744`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L742-L744)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:742-744`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L742-L744)*
 
 A simple set of bytes that is reasonably cheap to copy and allocation free.
 
@@ -1145,17 +986,13 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 - <span id="byteset-add"></span>`fn add(&mut self, byte: u8)`
 
   Add a byte to this set.
-
   
-
   If the given byte already belongs to this set, then this is a no-op.
 
 - <span id="byteset-remove"></span>`fn remove(&mut self, byte: u8)`
 
   Remove a byte from this set.
-
   
-
   If the given byte is not in this set, then this is a no-op.
 
 - <span id="byteset-contains"></span>`fn contains(&self, byte: u8) -> bool`
@@ -1165,7 +1002,6 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 - <span id="byteset-contains-range"></span>`fn contains_range(&self, start: u8, end: u8) -> bool`
 
   Return true if and only if the given inclusive range of bytes is in
-
   this set.
 
 - <span id="byteset-iter"></span>`fn iter(&self) -> ByteSetIter<'_>` — [`ByteSetIter`](#bytesetiter)
@@ -1183,21 +1019,15 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 - <span id="byteset-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(ByteSet, usize), DeserializeError>` — [`ByteSet`](#byteset), [`DeserializeError`](../wire/index.md#deserializeerror)
 
   Deserializes a byte set from the given slice. If the slice is of
-
   incorrect length or is otherwise malformed, then an error is returned.
-
   Upon success, the number of bytes read along with the set are returned.
-
   The number of bytes read is always a multiple of 8.
 
 - <span id="byteset-write-to"></span>`fn write_to<E: crate::util::wire::Endian>(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md#serializeerror)
 
   Writes this byte set to the given byte buffer. If the given buffer is
-
   too small, then an error is returned. Upon success, the total number of
-
   bytes written is returned. The number of bytes written is guaranteed to
-
   be a multiple of 8.
 
 - <span id="byteset-write-to-len"></span>`fn write_to_len(&self) -> usize`
@@ -1249,11 +1079,8 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 - <span id="byteset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ByteSet`
@@ -1288,7 +1115,7 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 struct BitSet([u128; 2]);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:749`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L749)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:749`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L749)*
 
 The representation of a byte set. Split out so that we can define a
 convenient Debug impl for it while keeping "ByteSet" in the output.
@@ -1338,11 +1165,8 @@ convenient Debug impl for it while keeping "ByteSet" in the output.
 - <span id="bitset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for BitSet`
@@ -1380,7 +1204,7 @@ struct ByteSetIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:869-872`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L869-L872)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:869-872`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L869-L872)*
 
 #### Trait Implementations
 
@@ -1411,11 +1235,8 @@ struct ByteSetIter<'a> {
 - <span id="bytesetiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ByteSetIter<'a>`
@@ -1453,7 +1274,7 @@ struct ByteSetRangeIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:890-893`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L890-L893)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:890-893`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L890-L893)*
 
 #### Trait Implementations
 
@@ -1484,11 +1305,8 @@ struct ByteSetRangeIter<'a> {
 - <span id="bytesetrangeiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ByteSetRangeIter<'a>`
@@ -1528,7 +1346,7 @@ enum UnitKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:82-91`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/alphabet.rs#L82-L91)*
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:82-91`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/alphabet.rs#L82-L91)*
 
 #### Variants
 
@@ -1581,11 +1399,8 @@ enum UnitKind {
 - <span id="unitkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for UnitKind`

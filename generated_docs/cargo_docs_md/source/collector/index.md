@@ -110,11 +110,8 @@ Metadata about a collected crate.
 - <span id="collectedcrate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectedCrate`
@@ -226,11 +223,8 @@ Manifest stored in `.source_*/manifest.json`.
 - <span id="sourcemanifest-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceManifest`
@@ -328,11 +322,8 @@ Result of a collection operation.
 - <span id="collectionresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectionResult`
@@ -444,11 +435,8 @@ Options for source collection.
 - <span id="collectoptions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectOptions`
@@ -511,37 +499,25 @@ Collector for gathering dependency sources.
 - <span id="sourcecollector-new"></span>`fn new() -> Result<Self, Error>` — [`Error`](../../error/index.md#error)
 
   Create a new collector for the current directory.
-
   
-
   # Errors
-
   
-
   Returns an error if cargo metadata cannot be loaded.
 
 - <span id="sourcecollector-from-manifest"></span>`fn from_manifest(manifest_path: Option<&Path>) -> Result<Self, Error>` — [`Error`](../../error/index.md#error)
 
   Create a new collector from a specific manifest path.
-
   
-
   # Errors
-
   
-
   Returns an error if cargo metadata cannot be loaded.
 
 - <span id="sourcecollector-collect"></span>`fn collect(&self, options: &CollectOptions) -> Result<CollectionResult, Error>` — [`CollectOptions`](#collectoptions), [`CollectionResult`](#collectionresult), [`Error`](../../error/index.md#error)
 
   Collect all dependency sources.
-
   
-
   # Errors
-
   
-
   Returns an error if collection fails.
 
 - <span id="sourcecollector-generate-output-dir"></span>`fn generate_output_dir(&self) -> Result<PathBuf, Error>` — [`Error`](../../error/index.md#error)
@@ -555,27 +531,18 @@ Collector for gathering dependency sources.
 - <span id="sourcecollector-copy-crate-source"></span>`fn copy_crate_source(source: &Path, dest: &Path, minimal: bool) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
   Copy crate source to destination.
-
   
-
   If `minimal` is false (default), copies the entire crate directory.
-
   If `minimal` is true, only copies `src/` and `Cargo.toml`.
-
   
-
   In both modes, `Cargo.toml` is renamed to `Crate.toml` to avoid
-
   confusing cargo when the collected sources are in the workspace.
 
 - <span id="sourcecollector-get-dev-only-packages"></span>`fn get_dev_only_packages(&self) -> HashSet<PackageId>`
 
   Get the set of package IDs that are dev-only dependencies.
-
   
-
   A package is considered dev-only if it is only reachable from workspace
-
   members via dev-dependencies (not normal or build dependencies).
 
 - <span id="sourcecollector-dry-run-collect"></span>`fn dry_run_collect(&self, output_dir: &Path, options: &CollectOptions) -> Result<CollectionResult, Error>` — [`CollectOptions`](#collectoptions), [`CollectionResult`](#collectionresult), [`Error`](../../error/index.md#error)
@@ -625,11 +592,8 @@ Collector for gathering dependency sources.
 - <span id="sourcecollector-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceCollector`
@@ -707,11 +671,8 @@ struct TimeUtils;
 - <span id="timeutils-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TimeUtils`

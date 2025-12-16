@@ -76,7 +76,7 @@ before the scope ends.
 # How scoped threads work
 
 If a variable is borrowed by a thread, the thread must complete before the variable is
-destroyed. Threads spawned using [`std::thread::spawn`](../../rayon_core/spawn/index.md) can only borrow variables with the
+destroyed. Threads spawned using `std::thread::spawn` can only borrow variables with the
 `'static` lifetime because the borrow checker cannot be sure when the thread will complete.
 
 A scope creates a clear boundary between variables outside the scope and threads inside the
@@ -159,7 +159,7 @@ struct Scope<'env> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:213-222`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/thread.rs#L213-L222)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:213-222`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L213-L222)*
 
 A scope for spawning threads.
 
@@ -182,103 +182,56 @@ A scope for spawning threads.
 - <span id="scope-spawn"></span>`fn spawn<'scope, F, T>(self: &'scope Self, f: F) -> ScopedJoinHandle<'scope, T>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
   Spawns a scoped thread.
-
   
-
   This method is similar to the [`spawn`](#spawn) function in Rust's standard library. The difference
-
   is that this thread is scoped, meaning it's guaranteed to terminate before the scope exits,
-
   allowing it to reference variables outside the scope.
-
   
-
   The scoped thread is passed a reference to this scope as an argument, which can be used for
-
   spawning nested threads.
-
   
-
   The returned [handle](ScopedJoinHandle) can be used to manually
-
   [join](ScopedJoinHandle::join) the thread before the scope exits.
-
   
-
   This will create a thread using default parameters of [`ScopedThreadBuilder`](#scopedthreadbuilder), if you want to specify the
-
   stack size or the name of the thread, use this API instead.
-
   
-
   # Panics
-
   
-
   Panics if the OS fails to create a thread; use `ScopedThreadBuilder::spawn`
-
   to recover from such errors.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::thread;
-
   
-
   thread::scope(|s| {
-
       let handle = s.spawn(|_| {
-
           println!("A child thread is running");
-
           42
-
       });
-
   
-
       // Join the thread and retrieve its result.
-
       let res = handle.join().unwrap();
-
       assert_eq!(res, 42);
-
   }).unwrap();
-
   ```
 
 - <span id="scope-builder"></span>`fn builder<'scope>(self: &'scope Self) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
   Creates a builder that can configure a thread before spawning.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::thread;
-
   
-
   thread::scope(|s| {
-
       s.builder()
-
           .spawn(|_| println!("A child thread is running"))
-
           .unwrap();
-
   }).unwrap();
-
   ```
 
 #### Trait Implementations
@@ -310,11 +263,8 @@ A scope for spawning threads.
 - <span id="scope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Sync for Scope<'_>`
@@ -340,7 +290,7 @@ struct ScopedThreadBuilder<'scope, 'env> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:336-339`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/thread.rs#L336-L339)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:336-339`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L336-L339)*
 
 Configures the properties of a new thread.
 
@@ -379,151 +329,82 @@ thread::scope(|s| {
 - <span id="scopedthreadbuilder-name"></span>`fn name(self, name: String) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
   Sets the name for the new thread.
-
   
-
   The name must not contain null bytes (`\0`).
-
   
-
   For more information about named threads, see [here][naming-threads].
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::thread;
-
   use std::thread::current;
-
   
-
   thread::scope(|s| {
-
       s.builder()
-
           .name("my thread".to_string())
-
           .spawn(|_| assert_eq!(current().name(), Some("my thread")))
-
           .unwrap();
-
   }).unwrap();
-
   ```
 
 - <span id="scopedthreadbuilder-stack-size"></span>`fn stack_size(self, size: usize) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
   Sets the size of the stack for the new thread.
-
   
-
   The stack size is measured in bytes.
-
   
-
   For more information about the stack size for threads, see [here][stack-size].
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::thread;
-
   
-
   thread::scope(|s| {
-
       s.builder()
-
           .stack_size(32 * 1024)
-
           .spawn(|_| println!("Running a child thread"))
-
           .unwrap();
-
   }).unwrap();
-
   ```
 
 - <span id="scopedthreadbuilder-spawn"></span>`fn spawn<F, T>(self, f: F) -> io::Result<ScopedJoinHandle<'scope, T>>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
   Spawns a scoped thread with this configuration.
-
   
-
   The scoped thread is passed a reference to this scope as an argument, which can be used for
-
   spawning nested threads.
-
   
-
   The returned handle can be used to manually join the thread before the scope exits.
-
   
-
   # Errors
-
   
-
   Unlike the `Scope::spawn` method, this method yields an
-
   `io::Result` to capture any failure to create the thread at
-
   the OS level.
-
   
-
   # Panics
-
   
-
   Panics if a thread name was set and it contained null bytes.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::thread;
-
   
-
   thread::scope(|s| {
-
       let handle = s.builder()
-
           .spawn(|_| {
-
               println!("A child thread is running");
-
               42
-
           })
-
           .unwrap();
-
   
-
       // Join the thread and retrieve its result.
-
       let res = handle.join().unwrap();
-
       assert_eq!(res, 42);
-
   }).unwrap();
-
   ```
 
 #### Trait Implementations
@@ -555,11 +436,8 @@ thread::scope(|s| {
 - <span id="scopedthreadbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ScopedThreadBuilder<'scope, 'env>`
@@ -585,7 +463,7 @@ struct ScopedJoinHandle<'scope, T> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:496-508`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/thread.rs#L496-L508)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:496-508`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L496-L508)*
 
 A handle that can be used to join its scoped thread.
 
@@ -615,85 +493,47 @@ This struct is created by the `Scope::spawn` method and the
 - <span id="scopedjoinhandle-join"></span>`fn join(self) -> thread::Result<T>`
 
   Waits for the thread to finish and returns its result.
-
   
-
   If the child thread panics, an error is returned. Note that if panics are implemented by
-
   aborting the process, no error is returned; see the notes of [std::panic::catch_unwind].
-
   
-
   # Panics
-
   
-
   This function may panic on some platforms if a thread attempts to join itself or otherwise
-
   may create a deadlock with joining threads.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::thread;
-
   
-
   thread::scope(|s| {
-
       let handle1 = s.spawn(|_| println!("I'm a happy thread :)"));
-
       let handle2 = s.spawn(|_| panic!("I'm a sad thread :("));
-
   
-
       // Join the first thread and verify that it succeeded.
-
       let res = handle1.join();
-
       assert!(res.is_ok());
-
   
-
       // Join the second thread and verify that it panicked.
-
       let res = handle2.join();
-
       assert!(res.is_err());
-
   }).unwrap();
-
   ```
 
 - <span id="scopedjoinhandle-thread"></span>`fn thread(&self) -> &thread::Thread`
 
   Returns a handle to the underlying thread.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::thread;
-
   
-
   thread::scope(|s| {
-
       let handle = s.spawn(|_| println!("A child thread is running"));
-
       println!("The child thread ID: {:?}", handle.thread().id());
-
   }).unwrap();
-
   ```
 
 #### Trait Implementations
@@ -725,11 +565,8 @@ This struct is created by the `Scope::spawn` method and the
 - <span id="scopedjoinhandle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> JoinHandleExt for super::ScopedJoinHandle<'_, T>`
@@ -764,7 +601,7 @@ where
     F: FnOnce(&Scope<'env>) -> R
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:153-210`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/thread.rs#L153-L210)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:153-210`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L153-L210)*
 
 Creates a new scope for spawning threads.
 
@@ -774,7 +611,7 @@ returned with the return value of `f`. If any of the joined threads has panicked
 returned containing errors from panicked threads. Note that if panics are implemented by
 aborting the process, no error is returned; see the notes of [std::panic::catch_unwind].
 
-**Note:** Since Rust 1.63, this function is soft-deprecated in favor of the more efficient [`std::thread::scope`](../../rayon_core/scope/index.md).
+**Note:** Since Rust 1.63, this function is soft-deprecated in favor of the more efficient `std::thread::scope`.
 
 # Examples
 
@@ -798,7 +635,7 @@ thread::scope(|s| {
 type SharedVec<T> = std::sync::Arc<std::sync::Mutex<std::vec::Vec<T>>>;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:127`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/thread.rs#L127)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:127`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L127)*
 
 ### `SharedOption<T>`
 
@@ -806,5 +643,5 @@ type SharedVec<T> = std::sync::Arc<std::sync::Mutex<std::vec::Vec<T>>>;
 type SharedOption<T> = std::sync::Arc<std::sync::Mutex<Option<T>>>;
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:128`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/thread.rs#L128)*
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:128`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/thread.rs#L128)*
 

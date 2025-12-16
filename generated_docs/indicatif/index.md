@@ -32,7 +32,7 @@ Best paired with other libraries in the family:
 
 indicatif comes with a [`ProgressBar`](progress_bar/index.md) type that supports both bounded
 progress bar uses as well as unbounded "spinner" type progress reports.
-Progress bars are [`Sync`](../miniz_oxide/index.md) and `Send` objects which means that they are
+Progress bars are `Sync` and `Send` objects which means that they are
 internally locked and can be passed from thread to thread.
 
 Additionally a [`MultiProgress`](multi/index.md) utility is provided that can manage
@@ -328,7 +328,7 @@ struct ProgressDrawTarget {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
 
 Target for draw operations
 
@@ -343,35 +343,26 @@ device.
 - <span id="progressdrawtarget-stdout"></span>`fn stdout() -> Self`
 
   Draw to a buffered stdout terminal at a max of 20 times a second.
-
   
-
   For more information see `ProgressDrawTarget::term`.
 
 - <span id="progressdrawtarget-stderr"></span>`fn stderr() -> Self`
 
   Draw to a buffered stderr terminal at a max of 20 times a second.
-
   
-
   This is the default draw target for progress bars.  For more
-
   information see `ProgressDrawTarget::term`.
 
 - <span id="progressdrawtarget-stdout-with-hz"></span>`fn stdout_with_hz(refresh_rate: u8) -> Self`
 
   Draw to a buffered stdout terminal at a max of `refresh_rate` times a second.
-
   
-
   For more information see `ProgressDrawTarget::term`.
 
 - <span id="progressdrawtarget-stderr-with-hz"></span>`fn stderr_with_hz(refresh_rate: u8) -> Self`
 
   Draw to a buffered stderr terminal at a max of `refresh_rate` times a second.
-
   
-
   For more information see `ProgressDrawTarget::term`.
 
 - <span id="progressdrawtarget-new-remote"></span>`fn new_remote(state: Arc<RwLock<MultiState>>, idx: usize) -> Self` — [`MultiState`](multi/index.md#multistate)
@@ -379,19 +370,12 @@ device.
 - <span id="progressdrawtarget-term"></span>`fn term(term: Term, refresh_rate: u8) -> Self`
 
   Draw to a terminal, with a specific refresh rate.
-
   
-
   Progress bars are by default drawn to terminals however if the
-
   terminal is not user attended the entire progress bar will be
-
   hidden.  This is done so that piping to a file will not produce
-
   useless escape codes in that file.
-
   
-
   Will panic if `refresh_rate` is `0`.
 
 - <span id="progressdrawtarget-term-like"></span>`fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](term_like/index.md#termlike)
@@ -401,31 +385,24 @@ device.
 - <span id="progressdrawtarget-term-like-with-hz"></span>`fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](term_like/index.md#termlike)
 
   Draw to a boxed object that implements the [`TermLike`](term_like/index.md) trait,
-
   with a specific refresh rate.
 
 - <span id="progressdrawtarget-hidden"></span>`fn hidden() -> Self`
 
   A hidden draw target.
-
   
-
   This forces a progress bar to be not rendered at all.
 
 - <span id="progressdrawtarget-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
   Returns true if the draw target is hidden.
-
   
-
   This is internally used in progress bars to figure out if overhead
-
   from drawing can be prevented.
 
 - <span id="progressdrawtarget-is-stderr"></span>`fn is_stderr(&self) -> bool`
 
   This is used in progress bars to determine whether to use stdout or stderr
-
   for detecting color support.
 
 - <span id="progressdrawtarget-width"></span>`fn width(&self) -> Option<u16>`
@@ -435,7 +412,6 @@ device.
 - <span id="progressdrawtarget-mark-zombie"></span>`fn mark_zombie(&self)`
 
   Notifies the backing `MultiProgress` (if applicable) that the associated progress bar should
-
   be marked a zombie.
 
 - <span id="progressdrawtarget-set-move-cursor"></span>`fn set_move_cursor(&mut self, move_cursor: bool)`
@@ -483,11 +459,8 @@ device.
 - <span id="progressdrawtarget-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ProgressDrawTarget`
@@ -508,7 +481,7 @@ device.
 struct BinaryBytes(u64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:64`](../../.source_1765633015/indicatif-0.18.3/src/format.rs#L64)*
+*Defined in [`indicatif-0.18.3/src/format.rs:64`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L64)*
 
 Formats bytes for human readability using ISO/IEC prefixes
 
@@ -556,11 +529,8 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 - <span id="binarybytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for BinaryBytes`
@@ -585,7 +555,7 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 struct DecimalBytes(u64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:49`](../../.source_1765633015/indicatif-0.18.3/src/format.rs#L49)*
+*Defined in [`indicatif-0.18.3/src/format.rs:49`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L49)*
 
 Formats bytes for human readability using SI prefixes
 
@@ -633,11 +603,8 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 - <span id="decimalbytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for DecimalBytes`
@@ -662,7 +629,7 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 struct FormattedDuration(std::time::Duration);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:15`](../../.source_1765633015/indicatif-0.18.3/src/format.rs#L15)*
+*Defined in [`indicatif-0.18.3/src/format.rs:15`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L15)*
 
 Wraps an std duration for human basic formatting.
 
@@ -699,11 +666,8 @@ Wraps an std duration for human basic formatting.
 - <span id="formattedduration-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for FormattedDuration`
@@ -728,7 +692,7 @@ Wraps an std duration for human basic formatting.
 struct HumanBytes(u64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:34`](../../.source_1765633015/indicatif-0.18.3/src/format.rs#L34)*
+*Defined in [`indicatif-0.18.3/src/format.rs:34`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L34)*
 
 Formats bytes for human readability
 
@@ -776,11 +740,8 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 - <span id="humanbytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for HumanBytes`
@@ -805,7 +766,7 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 struct HumanCount(u64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:68`](../../.source_1765633015/indicatif-0.18.3/src/format.rs#L68)*
+*Defined in [`indicatif-0.18.3/src/format.rs:68`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L68)*
 
 Formats counts for human readability using commas
 
@@ -842,11 +803,8 @@ Formats counts for human readability using commas
 - <span id="humancount-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for HumanCount`
@@ -871,7 +829,7 @@ Formats counts for human readability using commas
 struct HumanDuration(std::time::Duration);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:19`](../../.source_1765633015/indicatif-0.18.3/src/format.rs#L19)*
+*Defined in [`indicatif-0.18.3/src/format.rs:19`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L19)*
 
 Wraps an std duration for human readable formatting.
 
@@ -908,11 +866,8 @@ Wraps an std duration for human readable formatting.
 - <span id="humanduration-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for HumanDuration`
@@ -937,7 +892,7 @@ Wraps an std duration for human readable formatting.
 struct HumanFloatCount(f64);
 ```
 
-*Defined in [`indicatif-0.18.3/src/format.rs:72`](../../.source_1765633015/indicatif-0.18.3/src/format.rs#L72)*
+*Defined in [`indicatif-0.18.3/src/format.rs:72`](../../.source_1765894658/indicatif-0.18.3/src/format.rs#L72)*
 
 Formats counts for human readability using commas for floats
 
@@ -974,11 +929,8 @@ Formats counts for human readability using commas for floats
 - <span id="humanfloatcount-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for HumanFloatCount`
@@ -1006,7 +958,7 @@ struct ProgressBarIter<T> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../.source_1765633015/indicatif-0.18.3/src/iter.rs#L62-L65)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../.source_1765894658/indicatif-0.18.3/src/iter.rs#L62-L65)*
 
 Wraps an iterator to display its progress.
 
@@ -1015,49 +967,37 @@ Wraps an iterator to display its progress.
 - <span id="progressbariter-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](style/index.md#progressstyle)
 
   Builder-like function for setting underlying progress bar's style.
-
   
-
   See `ProgressBar::with_style()`.
 
 - <span id="progressbariter-with-prefix"></span>`fn with_prefix(self, prefix: impl Into<Cow<'static, str>>) -> Self`
 
   Builder-like function for setting underlying progress bar's prefix.
-
   
-
   See `ProgressBar::with_prefix()`.
 
 - <span id="progressbariter-with-message"></span>`fn with_message(self, message: impl Into<Cow<'static, str>>) -> Self`
 
   Builder-like function for setting underlying progress bar's message.
-
   
-
   See `ProgressBar::with_message()`.
 
 - <span id="progressbariter-with-position"></span>`fn with_position(self, position: u64) -> Self`
 
   Builder-like function for setting underlying progress bar's position.
-
   
-
   See `ProgressBar::with_position()`.
 
 - <span id="progressbariter-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
   Builder-like function for setting underlying progress bar's elapsed time.
-
   
-
   See `ProgressBar::with_elapsed()`.
 
 - <span id="progressbariter-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](state/index.md#progressfinish)
 
   Builder-like function for setting underlying progress bar's finish behavior.
-
   
-
   See `ProgressBar::with_finish()`.
 
 #### Trait Implementations
@@ -1105,11 +1045,8 @@ Wraps an iterator to display its progress.
 - <span id="progressbariter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ProgressBarIter<T>`
@@ -1174,7 +1111,7 @@ struct MultiProgress {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../.source_1765633015/indicatif-0.18.3/src/multi.rs#L18-L20)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L18-L20)*
 
 Manages multiple progress bars from different threads
 
@@ -1183,15 +1120,10 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-new"></span>`fn new() -> Self`
 
   Creates a new multi progress object.
-
   
-
   Progress bars added to this object by default draw directly to stderr, and refresh
-
   a maximum of 15 times a second. To change the refresh rate [`set`](../hashbrown/set/index.md) the [draw target] to
-
   one with a different refresh rate.
-
   
 
 - <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](draw_target/index.md#progressdrawtarget)
@@ -1201,19 +1133,14 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](draw_target/index.md#progressdrawtarget)
 
   Sets a different draw target for the multiprogress bar.
-
   
-
   Use `MultiProgress::with_draw_target` to set the draw target during creation.
 
 - <span id="multiprogress-set-move-cursor"></span>`fn set_move_cursor(&self, move_cursor: bool)`
 
   Set whether we should try to move the cursor when possible instead of clearing lines.
-
   
-
   This can reduce flickering, but do not enable it if you intend to change the number of
-
   progress bars.
 
 - <span id="multiprogress-set-alignment"></span>`fn set_alignment(&self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](multi/index.md#multiprogressalignment)
@@ -1223,125 +1150,75 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md#progressbar)
 
   Adds a progress bar.
-
   
-
   The progress bar added will have the draw target changed to a
-
   remote draw target that is intercepted by the multi progress
-
   object overriding custom [`ProgressDrawTarget`](draw_target/index.md) settings.
-
   
-
   The progress bar will be positioned below all other bars currently
-
   in the [`MultiProgress`](multi/index.md).
-
   
-
   Adding a progress bar that is already a member of the [`MultiProgress`](multi/index.md)
-
   will have no effect.
 
 - <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md#progressbar)
 
   Inserts a progress bar.
-
   
-
   The progress bar inserted at position `index` will have the draw
-
   target changed to a remote draw target that is intercepted by the
-
   multi progress object overriding custom [`ProgressDrawTarget`](draw_target/index.md) settings.
-
   
-
   If `index >= MultiProgressState::objects.len()`, the progress bar
-
   is added to the end of the list.
-
   
-
   Inserting a progress bar that is already a member of the [`MultiProgress`](multi/index.md)
-
   will have no effect.
 
 - <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md#progressbar)
 
   Inserts a progress bar from the back.
-
   
-
   The progress bar inserted at position `MultiProgressState::objects.len() - index`
-
   will have the draw target changed to a remote draw target that is
-
   intercepted by the multi progress object overriding custom
-
   [`ProgressDrawTarget`](draw_target/index.md) settings.
-
   
-
   If `index >= MultiProgressState::objects.len()`, the progress bar
-
   is added to the start of the list.
-
   
-
   Inserting a progress bar that is already a member of the [`MultiProgress`](multi/index.md)
-
   will have no effect.
 
 - <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md#progressbar)
 
   Inserts a progress bar before an existing one.
-
   
-
   The progress bar added will have the draw target changed to a
-
   remote draw target that is intercepted by the multi progress
-
   object overriding custom [`ProgressDrawTarget`](draw_target/index.md) settings.
-
   
-
   Inserting a progress bar that is already a member of the [`MultiProgress`](multi/index.md)
-
   will have no effect.
 
 - <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md#progressbar)
 
   Inserts a progress bar after an existing one.
-
   
-
   The progress bar added will have the draw target changed to a
-
   remote draw target that is intercepted by the multi progress
-
   object overriding custom [`ProgressDrawTarget`](draw_target/index.md) settings.
-
   
-
   Inserting a progress bar that is already a member of the [`MultiProgress`](multi/index.md)
-
   will have no effect.
 
 - <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](progress_bar/index.md#progressbar)
 
   Removes a progress bar.
-
   
-
   The progress bar is removed only if it was previously inserted or added
-
   by the methods `MultiProgress::insert` or `MultiProgress::add`.
-
   If the passed progress bar does not satisfy the condition above,
-
   the `remove` method does nothing.
 
 - <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](multi/index.md#insertlocation), [`ProgressBar`](progress_bar/index.md#progressbar)
@@ -1349,31 +1226,20 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-println"></span>`fn println<I: AsRef<str>>(&self, msg: I) -> io::Result<()>`
 
   Print a log line above all progress bars in the [`MultiProgress`](multi/index.md)
-
   
-
   If the draw target is hidden (e.g. when standard output is not a terminal), `println()`
-
   will not do anything.
 
 - <span id="multiprogress-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
   Hide all progress bars temporarily, execute `f`, then redraw the [`MultiProgress`](multi/index.md)
-
   
-
   Executes 'f' even if the draw target is hidden.
-
   
-
   Useful for external code that writes to the standard output.
-
   
-
   **Note:** The internal lock is held while `f` is executed. Other threads trying to print
-
   anything on the progress bar will be blocked until `f` finishes.
-
   Therefore, it is recommended to avoid long-running operations in `f`.
 
 - <span id="multiprogress-clear"></span>`fn clear(&self) -> io::Result<()>`
@@ -1421,11 +1287,8 @@ Manages multiple progress bars from different threads
 - <span id="multiprogress-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MultiProgress`
@@ -1458,7 +1321,7 @@ struct ProgressBar {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/progress_bar.rs:25-29`](../../.source_1765633015/indicatif-0.18.3/src/progress_bar.rs#L25-L29)*
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:25-29`](../../.source_1765894658/indicatif-0.18.3/src/progress_bar.rs#L25-L29)*
 
 A progress bar or spinner
 
@@ -1470,39 +1333,26 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-new"></span>`fn new(len: u64) -> Self`
 
   Creates a new progress bar with a given length
-
   
-
   This progress bar by default draws directly to stderr, and refreshes a maximum of 20 times
-
   a second. To change the refresh rate, [`set`](../hashbrown/set/index.md) the [draw target] to one with a different refresh
-
   rate.
-
   
 
 - <span id="progressbar-no-length"></span>`fn no_length() -> Self`
 
   Creates a new progress bar without a specified length
-
   
-
   This progress bar by default draws directly to stderr, and refreshes a maximum of 20 times
-
   a second. To change the refresh rate, [`set`](../hashbrown/set/index.md) the [draw target] to one with a different refresh
-
   rate.
-
   
 
 - <span id="progressbar-hidden"></span>`fn hidden() -> Self`
 
   Creates a completely hidden progress bar
-
   
-
   This progress bar still responds to API changes but it does not have a length or render in
-
   any way.
 
 - <span id="progressbar-with-draw-target"></span>`fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](draw_target/index.md#progressdrawtarget)
@@ -1524,21 +1374,15 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-with-prefix"></span>`fn with_prefix(self, prefix: impl Into<Cow<'static, str>>) -> Self`
 
   A convenience builder-like function for a progress bar with a given prefix
-
   
-
   For the prefix to be visible, the `{prefix}` placeholder must be present in the template
-
   (see [`ProgressStyle`](style/index.md)).
 
 - <span id="progressbar-with-message"></span>`fn with_message(self, message: impl Into<Cow<'static, str>>) -> Self`
 
   A convenience builder-like function for a progress bar with a given message
-
   
-
   For the message to be visible, the `{msg}` placeholder must be present in the template (see
-
   [`ProgressStyle`](style/index.md)).
 
 - <span id="progressbar-with-position"></span>`fn with_position(self, pos: u64) -> Self`
@@ -1552,37 +1396,25 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](state/index.md#progressfinish)
 
   Sets the finish behavior for the progress bar
-
   
-
   This behavior is invoked when [`ProgressBar`](progress_bar/index.md) or
-
   [`ProgressBarIter`](iter/index.md) completes and
-
   `ProgressBar::is_finished()` is false.
-
   If you don't want the progress bar to be automatically finished then
-
   call `with_finish(Abandon)`.
-
   
-
   
 
 - <span id="progressbar-new-spinner"></span>`fn new_spinner() -> Self`
 
   Creates a new spinner
-
   
-
   This spinner by default draws directly to stderr. This adds the default spinner style to it.
 
 - <span id="progressbar-set-style"></span>`fn set_style(&self, style: ProgressStyle)` — [`ProgressStyle`](style/index.md#progressstyle)
 
   Overrides the stored style
-
   
-
   This does not redraw the bar. Call `ProgressBar::tick()` to force it.
 
 - <span id="progressbar-set-tab-width"></span>`fn set_tab_width(&self, tab_width: usize)`
@@ -1592,17 +1424,11 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-enable-steady-tick"></span>`fn enable_steady_tick(&self, interval: Duration)`
 
   Spawns a background thread to tick the progress bar
-
   
-
   When this is enabled a background thread will regularly tick the progress bar in the given
-
   interval. This is useful to advance progress bars that are very slow by themselves.
-
   
-
   When steady ticks are enabled, calling `ProgressBar::tick()` on a progress bar does not
-
   have any effect.
 
 - <span id="progressbar-disable-steady-tick"></span>`fn disable_steady_tick(&self)`
@@ -1614,9 +1440,7 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-tick"></span>`fn tick(&self)`
 
   Manually ticks the spinner or progress bar
-
   
-
   This automatically happens on any other change to a progress bar.
 
 - <span id="progressbar-tick-inner"></span>`fn tick_inner(&self, now: Instant)`
@@ -1640,21 +1464,13 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-println"></span>`fn println<I: AsRef<str>>(&self, msg: I)`
 
   Print a log line above the progress bar
-
   
-
   If the progress bar is hidden (e.g. when standard output is not a terminal), `println()`
-
   will not do anything. If you want to write to the standard output in such cases as well, use
-
   `ProgressBar::suspend()` instead.
-
   
-
   If the progress bar was added to a [`MultiProgress`](multi/index.md), the log line will be
-
   printed above all other progress bars.
-
   
 
 - <span id="progressbar-update"></span>`fn update(&self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](state/index.md#progressstate)
@@ -1684,21 +1500,15 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-set-prefix"></span>`fn set_prefix(&self, prefix: impl Into<Cow<'static, str>>)`
 
   Sets the current prefix of the progress bar
-
   
-
   For the prefix to be visible, the `{prefix}` placeholder must be present in the template
-
   (see [`ProgressStyle`](style/index.md)).
 
 - <span id="progressbar-set-message"></span>`fn set_message(&self, msg: impl Into<Cow<'static, str>>)`
 
   Sets the current message of the progress bar
-
   
-
   For the message to be visible, the `{msg}` placeholder must be present in the template (see
-
   [`ProgressStyle`](style/index.md)).
 
 - <span id="progressbar-set-elapsed"></span>`fn set_elapsed(&self, elapsed: Duration)`
@@ -1712,11 +1522,8 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-reset-eta"></span>`fn reset_eta(&self)`
 
   Resets the ETA calculation
-
   
-
   This can be useful if the progress bars made a large jump or was paused for a prolonged
-
   time.
 
 - <span id="progressbar-reset-elapsed"></span>`fn reset_elapsed(&self)`
@@ -1734,11 +1541,8 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-finish-with-message"></span>`fn finish_with_message(&self, msg: impl Into<Cow<'static, str>>)`
 
   Finishes the progress bar and sets a message
-
   
-
   For the message to be visible, the `{msg}` placeholder must be present in the template (see
-
   [`ProgressStyle`](style/index.md)).
 
 - <span id="progressbar-finish-and-clear"></span>`fn finish_and_clear(&self)`
@@ -1752,189 +1556,111 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-abandon-with-message"></span>`fn abandon_with_message(&self, msg: impl Into<Cow<'static, str>>)`
 
   Finishes the progress bar and sets a message, and leaves the current progress
-
   
-
   For the message to be visible, the `{msg}` placeholder must be present in the template (see
-
   [`ProgressStyle`](style/index.md)).
 
 - <span id="progressbar-finish-using-style"></span>`fn finish_using_style(&self)`
 
   Finishes the progress bar using the behavior stored in the [`ProgressStyle`](style/index.md)
-
   
-
   See `ProgressBar::with_finish()`.
 
 - <span id="progressbar-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](draw_target/index.md#progressdrawtarget)
 
   Sets a different draw target for the progress bar
-
   
-
   This can be used to draw the progress bar to stderr (this is the default):
-
   
-
   ```rust,no_run
-
   use indicatif::{ProgressBar, ProgressDrawTarget};
-
   let pb = ProgressBar::new(100);
-
   pb.set_draw_target(ProgressDrawTarget::stderr());
-
   ```
-
   
-
   **Note:** Calling this method on a [`ProgressBar`](progress_bar/index.md) linked with a [`MultiProgress`](multi/index.md) (after
-
   running `MultiProgress::add()`) will unlink this progress bar. If you don't want this
-
   behavior, call `MultiProgress::set_draw_target()` instead.
-
   
-
   Use `ProgressBar::with_draw_target()` to set the draw target during creation.
-
   
-
   
 
 - <span id="progressbar-force-draw"></span>`fn force_draw(&self)`
 
   Force a redraw of the progress bar to be in sync with its state
-
   
-
   For performance reasons the progress bar is not redrawn on each state update.
-
   This is normally not an issue, since new updates will eventually trigger rendering.
-
   
-
   For slow running tasks it is recommended to rely on `ProgressBar::enable_steady_tick()`
-
   to ensure continued rendering of the progress bar.
 
 - <span id="progressbar-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
   Hide the progress bar temporarily, execute `f`, then redraw the progress bar
-
   
-
   Useful for external code that writes to the standard output.
-
   
-
   If the progress bar was added to a [`MultiProgress`](multi/index.md), it will suspend the entire [`MultiProgress`](multi/index.md).
-
   
-
   **Note:** The internal lock is held while `f` is executed. Other threads trying to print
-
   anything on the progress bar will be blocked until `f` finishes.
-
   Therefore, it is recommended to avoid long-running operations in `f`.
-
   
-
   ```rust,no_run
-
   use indicatif::ProgressBar;
-
   let mut pb = ProgressBar::new(3);
-
   pb.suspend(|| {
-
       println!("Log message");
-
   })
-
   ```
 
 - <span id="progressbar-wrap-iter"></span>`fn wrap_iter<It: Iterator>(&self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](iter/index.md#progressbariter)
 
-  Wraps an [`Iterator`](../cargo_docs_md/index.md) with the progress bar
-
+  Wraps an `Iterator` with the progress bar
   
-
   ```rust,no_run
-
   use indicatif::ProgressBar;
-
   let v = vec![1, 2, 3];
-
   let pb = ProgressBar::new(3);
-
   for item in pb.wrap_iter(v.iter()) {
-
       // ...
-
   }
-
   ```
 
 - <span id="progressbar-wrap-read"></span>`fn wrap_read<R: io::Read>(&self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](iter/index.md#progressbariter)
 
-  Wraps an [`io::Read`](../fs_err/index.md) with the progress bar
-
+  Wraps an `io::Read` with the progress bar
   
-
   ```rust,no_run
-
   use std::fs::File;
-
   use std::io;
-
   use indicatif::ProgressBar;
-
   fn test () -> io::Result<()> {
-
   let source = File::open("work.txt")?;
-
   let mut target = File::create("done.txt")?;
-
   let pb = ProgressBar::new(source.metadata()?.len());
-
   io::copy(&mut pb.wrap_read(source), &mut target);
-
   Ok(())
-
   }
-
   ```
 
 - <span id="progressbar-wrap-write"></span>`fn wrap_write<W: io::Write>(&self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](iter/index.md#progressbariter)
 
-  Wraps an [`io::Write`](../fs_err/index.md) with the progress bar
-
+  Wraps an `io::Write` with the progress bar
   
-
   ```rust,no_run
-
   use std::fs::File;
-
   use std::io;
-
   use indicatif::ProgressBar;
-
   fn test () -> io::Result<()> {
-
   let mut source = File::open("work.txt")?;
-
   let target = File::create("done.txt")?;
-
   let pb = ProgressBar::new(source.metadata()?.len());
-
   io::copy(&mut source, &mut pb.wrap_write(target));
-
   Ok(())
-
   }
-
   ```
 
 - <span id="progressbar-position"></span>`fn position(&self) -> u64`
@@ -2012,11 +1738,8 @@ just increments the refcount (so the original and its clone share the same state
 - <span id="progressbar-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ProgressBar`
@@ -2049,7 +1772,7 @@ struct WeakProgressBar {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/progress_bar.rs:651-655`](../../.source_1765633015/indicatif-0.18.3/src/progress_bar.rs#L651-L655)*
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:651-655`](../../.source_1765894658/indicatif-0.18.3/src/progress_bar.rs#L651-L655)*
 
 A weak reference to a [`ProgressBar`](progress_bar/index.md).
 
@@ -2064,7 +1787,6 @@ Useful for creating custom steady tick implementations
 - <span id="weakprogressbar-upgrade"></span>`fn upgrade(&self) -> Option<ProgressBar>` — [`ProgressBar`](progress_bar/index.md#progressbar)
 
   Attempts to upgrade the Weak pointer to a [`ProgressBar`](progress_bar/index.md), delaying dropping of the inner
-
   value if successful. Returns [`None`](#none) if the inner value has since been dropped.
 
 #### Trait Implementations
@@ -2104,11 +1826,8 @@ Useful for creating custom steady tick implementations
 - <span id="weakprogressbar-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for WeakProgressBar`
@@ -2146,7 +1865,7 @@ struct ProgressState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../.source_1765633015/indicatif-0.18.3/src/state.rs#L242-L251)*
+*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../.source_1765894658/indicatif-0.18.3/src/state.rs#L242-L251)*
 
 The state of a progress bar at a moment in time.
 
@@ -2209,11 +1928,8 @@ The state of a progress bar at a moment in time.
 - <span id="progressstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ProgressState`
@@ -2241,7 +1957,7 @@ struct ProgressStyle {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/style.rs:23-31`](../../.source_1765633015/indicatif-0.18.3/src/style.rs#L23-L31)*
+*Defined in [`indicatif-0.18.3/src/style.rs:23-31`](../../.source_1765894658/indicatif-0.18.3/src/style.rs#L23-L31)*
 
 #### Implementations
 
@@ -2256,9 +1972,7 @@ struct ProgressStyle {
 - <span id="progressstyle-with-template"></span>`fn with_template(template: &str) -> Result<Self, TemplateError>` — [`TemplateError`](style/index.md#templateerror)
 
   Sets the template string for the progress bar
-
   
-
   Review the [list of template keys](../index.html#templates) for more information.
 
 - <span id="progressstyle-set-tab-width"></span>`fn set_tab_width(&mut self, new_tab_width: usize)`
@@ -2266,11 +1980,8 @@ struct ProgressStyle {
 - <span id="progressstyle-set-for-stderr"></span>`fn set_for_stderr(&mut self)`
 
   Specifies that the progress bar is intended to be printed to stderr
-
   
-
   The progress bar will determine whether to enable/disable colors based on stderr
-
   instead of stdout. Under the hood, this uses [`console::colors_enabled_stderr`](../console/utils/index.md).
 
 - <span id="progressstyle-new"></span>`fn new(template: Template) -> Self` — [`Template`](style/index.md#template)
@@ -2278,31 +1989,22 @@ struct ProgressStyle {
 - <span id="progressstyle-tick-chars"></span>`fn tick_chars(self, s: &str) -> Self`
 
   Sets the tick character sequence for spinners
-
   
-
   Note that the last character is used as the [final tick string][Self::get_final_tick_str()].
-
   At least two characters are required to provide a non-final and final state.
 
 - <span id="progressstyle-tick-strings"></span>`fn tick_strings(self, s: &[&str]) -> Self`
 
   Sets the tick string sequence for spinners
-
   
-
   Note that the last string is used as the [final tick string][Self::get_final_tick_str()].
-
   At least two strings are required to provide a non-final and final state.
 
 - <span id="progressstyle-progress-chars"></span>`fn progress_chars(self, s: &str) -> Self`
 
   Sets the progress characters `(filled, current, to do)`
-
   
-
   You can pass more than three for a more detailed display.
-
   All passed grapheme clusters need to be of equal width.
 
 - <span id="progressstyle-with-key"></span>`fn with_key<S: ProgressTracker + 'static>(self, key: &'static str, f: S) -> Self`
@@ -2312,9 +2014,7 @@ struct ProgressStyle {
 - <span id="progressstyle-template"></span>`fn template(self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](style/index.md#templateerror)
 
   Sets the template string for the progress bar
-
   
-
   Review the [list of template keys](../index.html#templates) for more information.
 
 - <span id="progressstyle-current-tick-str"></span>`fn current_tick_str(&self, state: &ProgressState) -> &str` — [`ProgressState`](state/index.md#progressstate)
@@ -2368,11 +2068,8 @@ struct ProgressStyle {
 - <span id="progressstyle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ProgressStyle`
@@ -2406,7 +2103,7 @@ enum MultiProgressAlignment {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../.source_1765633015/indicatif-0.18.3/src/multi.rs#L505-L509)*
+*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../.source_1765894658/indicatif-0.18.3/src/multi.rs#L505-L509)*
 
 Vertical alignment of a multi progress.
 
@@ -2468,11 +2165,8 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 - <span id="multiprogressalignment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MultiProgressAlignment`
@@ -2507,7 +2201,7 @@ enum ProgressFinish {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../.source_1765633015/indicatif-0.18.3/src/state.rs#L615-L637)*
+*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../.source_1765894658/indicatif-0.18.3/src/state.rs#L615-L637)*
 
 Behavior of a progress bar when it is finished
 
@@ -2590,11 +2284,8 @@ This is invoked when a [`ProgressBar`](progress_bar/index.md) or [`ProgressBarIt
 - <span id="progressfinish-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ProgressFinish`
@@ -2627,7 +2318,7 @@ where
     Self: Sized + Iterator { ... }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../.source_1765633015/indicatif-0.18.3/src/iter.rs#L18-L58)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../.source_1765894658/indicatif-0.18.3/src/iter.rs#L18-L58)*
 
 Wraps an iterator to display its progress.
 
@@ -2642,6 +2333,9 @@ Wraps an iterator to display its progress.
 - `fn try_progress(self) -> Option<ProgressBarIter<Self>>`
 
   Wrap an iterator with default styling. Uses `Iterator::size_hint()` to get length.
+  Returns `Some(..)` only if `size_hint.1` is `Some`. If you want to create a progress bar
+  even if `size_hint.1` returns [`None`](#none) use [`progress_count()`](ProgressIterator::progress_count)
+  or [`progress_with()`](ProgressIterator::progress_with) instead.
 
 - `fn progress(self) -> ProgressBarIter<Self>`
 
@@ -2665,7 +2359,7 @@ Wraps an iterator to display its progress.
 trait TermLike: Debug + Send + Sync { ... }
 ```
 
-*Defined in [`indicatif-0.18.3/src/term_like.rs:11-37`](../../.source_1765633015/indicatif-0.18.3/src/term_like.rs#L11-L37)*
+*Defined in [`indicatif-0.18.3/src/term_like.rs:11-37`](../../.source_1765894658/indicatif-0.18.3/src/term_like.rs#L11-L37)*
 
 A trait for minimal terminal-like behavior.
 

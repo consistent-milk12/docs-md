@@ -92,7 +92,7 @@ struct Encoding {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:47-56`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L47-L56)*
+*Defined in [`gimli-0.32.3/src/common.rs:47-56`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L47-L56)*
 
 Encoding parameters that are commonly used for multiple DWARF sections.
 
@@ -157,11 +157,8 @@ This is intended to be small enough to pass by value.
 - <span id="encoding-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Encoding`
@@ -202,7 +199,7 @@ struct LineEncoding {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:60-76`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L60-L76)*
+*Defined in [`gimli-0.32.3/src/common.rs:60-76`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L60-L76)*
 
 Encoding parameters for a line number program.
 
@@ -278,11 +275,8 @@ Encoding parameters for a line number program.
 - <span id="lineencoding-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LineEncoding`
@@ -317,7 +311,7 @@ Encoding parameters for a line number program.
 struct Register(u16);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:96`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L96)*
+*Defined in [`gimli-0.32.3/src/common.rs:96`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L96)*
 
 A DWARF register number.
 
@@ -373,11 +367,8 @@ a ULEB128, but supported architectures need 16 bits at most.
 - <span id="register-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Register`
@@ -420,7 +411,7 @@ a ULEB128, but supported architectures need 16 bits at most.
 struct DebugAbbrevOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:100`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L100)*
+*Defined in [`gimli-0.32.3/src/common.rs:100`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L100)*
 
 An offset into the `.debug_abbrev` section.
 
@@ -469,11 +460,8 @@ An offset into the `.debug_abbrev` section.
 - <span id="debugabbrevoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAbbrevOffset<T>`
@@ -508,7 +496,7 @@ An offset into the `.debug_abbrev` section.
 struct DebugAddrOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:104`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L104)*
+*Defined in [`gimli-0.32.3/src/common.rs:104`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L104)*
 
 An offset into the `.debug_addr` section.
 
@@ -553,11 +541,8 @@ An offset into the `.debug_addr` section.
 - <span id="debugaddroffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrOffset<T>`
@@ -592,7 +577,7 @@ An offset into the `.debug_addr` section.
 struct DebugAddrBase<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:108`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L108)*
+*Defined in [`gimli-0.32.3/src/common.rs:108`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L108)*
 
 An offset to a set of entries in the `.debug_addr` section.
 
@@ -637,11 +622,8 @@ An offset to a set of entries in the `.debug_addr` section.
 - <span id="debugaddrbase-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrBase<T>`
@@ -676,7 +658,7 @@ An offset to a set of entries in the `.debug_addr` section.
 struct DebugAddrIndex<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:112`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L112)*
+*Defined in [`gimli-0.32.3/src/common.rs:112`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L112)*
 
 An index into a set of addresses in the `.debug_addr` section.
 
@@ -721,11 +703,8 @@ An index into a set of addresses in the `.debug_addr` section.
 - <span id="debugaddrindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrIndex<T>`
@@ -760,7 +739,7 @@ An index into a set of addresses in the `.debug_addr` section.
 struct DebugArangesOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:116`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L116)*
+*Defined in [`gimli-0.32.3/src/common.rs:116`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L116)*
 
 An offset into the `.debug_aranges` section.
 
@@ -805,11 +784,8 @@ An offset into the `.debug_aranges` section.
 - <span id="debugarangesoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugArangesOffset<T>`
@@ -844,7 +820,7 @@ An offset into the `.debug_aranges` section.
 struct DebugInfoOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:120`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L120)*
+*Defined in [`gimli-0.32.3/src/common.rs:120`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L120)*
 
 An offset into the `.debug_info` section.
 
@@ -853,9 +829,7 @@ An offset into the `.debug_info` section.
 - <span id="cratecommondebuginfooffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](../read/index.md#unitheader), [`UnitOffset`](../index.md#unitoffset)
 
   Convert an offset to be relative to the start of the given unit,
-
   instead of relative to the start of the .debug_info section.
-
   Returns `None` if the offset is not within this unit entries.
 
 #### Trait Implementations
@@ -903,11 +877,8 @@ An offset into the `.debug_info` section.
 - <span id="debuginfooffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::Ord> Ord for DebugInfoOffset<T>`
@@ -950,7 +921,7 @@ An offset into the `.debug_info` section.
 struct DebugLineOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:124`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L124)*
+*Defined in [`gimli-0.32.3/src/common.rs:124`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L124)*
 
 An offset into the `.debug_line` section.
 
@@ -995,11 +966,8 @@ An offset into the `.debug_line` section.
 - <span id="debuglineoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLineOffset<T>`
@@ -1034,7 +1002,7 @@ An offset into the `.debug_line` section.
 struct DebugLineStrOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:128`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L128)*
+*Defined in [`gimli-0.32.3/src/common.rs:128`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L128)*
 
 An offset into the `.debug_line_str` section.
 
@@ -1079,11 +1047,8 @@ An offset into the `.debug_line_str` section.
 - <span id="debuglinestroffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLineStrOffset<T>`
@@ -1118,7 +1083,7 @@ An offset into the `.debug_line_str` section.
 struct LocationListsOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:133`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L133)*
+*Defined in [`gimli-0.32.3/src/common.rs:133`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L133)*
 
 An offset into either the `.debug_loc` section or the `.debug_loclists` section,
 depending on the version of the unit the offset was contained in.
@@ -1168,11 +1133,8 @@ depending on the version of the unit the offset was contained in.
 - <span id="locationlistsoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for LocationListsOffset<T>`
@@ -1207,7 +1169,7 @@ depending on the version of the unit the offset was contained in.
 struct DebugLocListsBase<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:137`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L137)*
+*Defined in [`gimli-0.32.3/src/common.rs:137`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L137)*
 
 An offset to a set of location list offsets in the `.debug_loclists` section.
 
@@ -1216,7 +1178,6 @@ An offset to a set of location list offsets in the `.debug_loclists` section.
 - <span id="cratecommondebugloclistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugLocListsBase<Offset>` — [`Encoding`](../index.md#encoding), [`DwarfFileType`](../index.md#dwarffiletype), [`DebugLocListsBase`](../index.md#debugloclistsbase)
 
   Returns a `DebugLocListsBase` with the default value of DW_AT_loclists_base
-
   for the given `Encoding` and `DwarfFileType`.
 
 #### Trait Implementations
@@ -1260,11 +1221,8 @@ An offset to a set of location list offsets in the `.debug_loclists` section.
 - <span id="debugloclistsbase-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLocListsBase<T>`
@@ -1299,7 +1257,7 @@ An offset to a set of location list offsets in the `.debug_loclists` section.
 struct DebugLocListsIndex<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:141`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L141)*
+*Defined in [`gimli-0.32.3/src/common.rs:141`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L141)*
 
 An index into a set of location list offsets in the `.debug_loclists` section.
 
@@ -1344,11 +1302,8 @@ An index into a set of location list offsets in the `.debug_loclists` section.
 - <span id="debugloclistsindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugLocListsIndex<T>`
@@ -1383,7 +1338,7 @@ An index into a set of location list offsets in the `.debug_loclists` section.
 struct DebugMacinfoOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:145`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L145)*
+*Defined in [`gimli-0.32.3/src/common.rs:145`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L145)*
 
 An offset into the `.debug_macinfo` section.
 
@@ -1432,11 +1387,8 @@ An offset into the `.debug_macinfo` section.
 - <span id="debugmacinfooffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugMacinfoOffset<T>`
@@ -1471,7 +1423,7 @@ An offset into the `.debug_macinfo` section.
 struct DebugMacroOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:149`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L149)*
+*Defined in [`gimli-0.32.3/src/common.rs:149`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L149)*
 
 An offset into the `.debug_macro` section.
 
@@ -1520,11 +1472,8 @@ An offset into the `.debug_macro` section.
 - <span id="debugmacrooffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugMacroOffset<T>`
@@ -1559,7 +1508,7 @@ An offset into the `.debug_macro` section.
 struct RawRangeListsOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:157`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L157)*
+*Defined in [`gimli-0.32.3/src/common.rs:157`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L157)*
 
 An offset into either the `.debug_ranges` section or the `.debug_rnglists` section,
 depending on the version of the unit the offset was contained in.
@@ -1612,11 +1561,8 @@ value of `DW_AT_GNU_ranges_base`. You can use `Dwarf::ranges_offset_from_raw` to
 - <span id="rawrangelistsoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for RawRangeListsOffset<T>`
@@ -1651,7 +1597,7 @@ value of `DW_AT_GNU_ranges_base`. You can use `Dwarf::ranges_offset_from_raw` to
 struct RangeListsOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:162`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L162)*
+*Defined in [`gimli-0.32.3/src/common.rs:162`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L162)*
 
 An offset into either the `.debug_ranges` section or the `.debug_rnglists` section,
 depending on the version of the unit the offset was contained in.
@@ -1701,11 +1647,8 @@ depending on the version of the unit the offset was contained in.
 - <span id="rangelistsoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for RangeListsOffset<T>`
@@ -1740,7 +1683,7 @@ depending on the version of the unit the offset was contained in.
 struct DebugRngListsBase<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:166`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L166)*
+*Defined in [`gimli-0.32.3/src/common.rs:166`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L166)*
 
 An offset to a set of range list offsets in the `.debug_rnglists` section.
 
@@ -1749,7 +1692,6 @@ An offset to a set of range list offsets in the `.debug_rnglists` section.
 - <span id="cratecommondebugrnglistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugRngListsBase<Offset>` — [`Encoding`](../index.md#encoding), [`DwarfFileType`](../index.md#dwarffiletype), [`DebugRngListsBase`](../index.md#debugrnglistsbase)
 
   Returns a `DebugRngListsBase` with the default value of DW_AT_rnglists_base
-
   for the given `Encoding` and `DwarfFileType`.
 
 #### Trait Implementations
@@ -1793,11 +1735,8 @@ An offset to a set of range list offsets in the `.debug_rnglists` section.
 - <span id="debugrnglistsbase-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugRngListsBase<T>`
@@ -1832,7 +1771,7 @@ An offset to a set of range list offsets in the `.debug_rnglists` section.
 struct DebugRngListsIndex<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:170`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L170)*
+*Defined in [`gimli-0.32.3/src/common.rs:170`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L170)*
 
 An index into a set of range list offsets in the `.debug_rnglists` section.
 
@@ -1877,11 +1816,8 @@ An index into a set of range list offsets in the `.debug_rnglists` section.
 - <span id="debugrnglistsindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugRngListsIndex<T>`
@@ -1916,7 +1852,7 @@ An index into a set of range list offsets in the `.debug_rnglists` section.
 struct DebugStrOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:174`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L174)*
+*Defined in [`gimli-0.32.3/src/common.rs:174`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L174)*
 
 An offset into the `.debug_str` section.
 
@@ -1961,11 +1897,8 @@ An offset into the `.debug_str` section.
 - <span id="debugstroffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffset<T>`
@@ -2000,7 +1933,7 @@ An offset into the `.debug_str` section.
 struct DebugStrOffsetsBase<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:178`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L178)*
+*Defined in [`gimli-0.32.3/src/common.rs:178`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L178)*
 
 An offset to a set of entries in the `.debug_str_offsets` section.
 
@@ -2009,7 +1942,6 @@ An offset to a set of entries in the `.debug_str_offsets` section.
 - <span id="cratecommondebugstroffsetsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugStrOffsetsBase<Offset>` — [`Encoding`](../index.md#encoding), [`DwarfFileType`](../index.md#dwarffiletype), [`DebugStrOffsetsBase`](../index.md#debugstroffsetsbase)
 
   Returns a `DebugStrOffsetsBase` with the default value of DW_AT_str_offsets_base
-
   for the given `Encoding` and `DwarfFileType`.
 
 #### Trait Implementations
@@ -2053,11 +1985,8 @@ An offset to a set of entries in the `.debug_str_offsets` section.
 - <span id="debugstroffsetsbase-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffsetsBase<T>`
@@ -2092,7 +2021,7 @@ An offset to a set of entries in the `.debug_str_offsets` section.
 struct DebugStrOffsetsIndex<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:182`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L182)*
+*Defined in [`gimli-0.32.3/src/common.rs:182`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L182)*
 
 An index into a set of entries in the `.debug_str_offsets` section.
 
@@ -2137,11 +2066,8 @@ An index into a set of entries in the `.debug_str_offsets` section.
 - <span id="debugstroffsetsindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffsetsIndex<T>`
@@ -2176,7 +2102,7 @@ An index into a set of entries in the `.debug_str_offsets` section.
 struct DebugTypesOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:186`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L186)*
+*Defined in [`gimli-0.32.3/src/common.rs:186`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L186)*
 
 An offset into the `.debug_types` section.
 
@@ -2185,9 +2111,7 @@ An offset into the `.debug_types` section.
 - <span id="cratecommondebugtypesoffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](../read/index.md#unitheader), [`UnitOffset`](../index.md#unitoffset)
 
   Convert an offset to be relative to the start of the given unit,
-
   instead of relative to the start of the .debug_types section.
-
   Returns `None` if the offset is not within the unit entries.
 
 #### Trait Implementations
@@ -2235,11 +2159,8 @@ An offset into the `.debug_types` section.
 - <span id="debugtypesoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::Ord> Ord for DebugTypesOffset<T>`
@@ -2282,7 +2203,7 @@ An offset into the `.debug_types` section.
 struct DebugTypeSignature(u64);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:190`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L190)*
+*Defined in [`gimli-0.32.3/src/common.rs:190`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L190)*
 
 A type signature as used in the `.debug_types` section.
 
@@ -2331,11 +2252,8 @@ A type signature as used in the `.debug_types` section.
 - <span id="debugtypesignature-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for DebugTypeSignature`
@@ -2370,7 +2288,7 @@ A type signature as used in the `.debug_types` section.
 struct DebugFrameOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:194`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L194)*
+*Defined in [`gimli-0.32.3/src/common.rs:194`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L194)*
 
 An offset into the `.debug_frame` section.
 
@@ -2419,11 +2337,8 @@ An offset into the `.debug_frame` section.
 - <span id="debugframeoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for DebugFrameOffset<T>`
@@ -2462,7 +2377,7 @@ An offset into the `.debug_frame` section.
 struct EhFrameOffset<T>(T);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:205`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L205)*
+*Defined in [`gimli-0.32.3/src/common.rs:205`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L205)*
 
 An offset into the `.eh_frame` section.
 
@@ -2511,11 +2426,8 @@ An offset into the `.eh_frame` section.
 - <span id="ehframeoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for EhFrameOffset<T>`
@@ -2554,7 +2466,7 @@ An offset into the `.eh_frame` section.
 struct DwoId(u64);
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:384`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L384)*
+*Defined in [`gimli-0.32.3/src/common.rs:384`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L384)*
 
 An optionally-provided implementation-defined compilation unit ID to enable
 split DWARF and linking a split compilation unit back together.
@@ -2604,11 +2516,8 @@ split DWARF and linking a split compilation unit back together.
 - <span id="dwoid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for DwoId`
@@ -2648,7 +2557,7 @@ enum Format {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:3-8`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L3-L8)*
+*Defined in [`gimli-0.32.3/src/common.rs:3-8`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L3-L8)*
 
 Whether the format of a compilation unit is 32- or 64-bit.
 
@@ -2717,11 +2626,8 @@ Whether the format of a compilation unit is 32- or 64-bit.
 - <span id="format-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Format`
@@ -2759,7 +2665,7 @@ enum Vendor {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:33-38`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L33-L38)*
+*Defined in [`gimli-0.32.3/src/common.rs:33-38`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L33-L38)*
 
 Which vendor extensions to support.
 
@@ -2814,11 +2720,8 @@ Which vendor extensions to support.
 - <span id="vendor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Vendor`
@@ -2856,7 +2759,7 @@ enum UnitSectionOffset<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:216-221`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L216-L221)*
+*Defined in [`gimli-0.32.3/src/common.rs:216-221`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L216-L221)*
 
 An offset into the `.debug_info` or `.debug_types` sections.
 
@@ -2925,11 +2828,8 @@ An offset into the `.debug_info` or `.debug_types` sections.
 - <span id="unitsectionoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::Ord> Ord for UnitSectionOffset<T>`
@@ -2995,7 +2895,7 @@ enum SectionId {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:257-302`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L257-L302)*
+*Defined in [`gimli-0.32.3/src/common.rs:257-302`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L257-L302)*
 
 An identifier for a DWARF section.
 
@@ -3106,9 +3006,7 @@ An identifier for a DWARF section.
 - <span id="sectionid-is-string"></span>`fn is_string(self) -> bool`
 
   Returns true if this is a mergeable string section.
-
   
-
   This is useful for determining the correct section flags.
 
 #### Trait Implementations
@@ -3156,11 +3054,8 @@ An identifier for a DWARF section.
 - <span id="sectionid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for SectionId`
@@ -3206,7 +3101,7 @@ enum DwarfFileType {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/common.rs:389-395`](../../../.source_1765633015/gimli-0.32.3/src/common.rs#L389-L395)*
+*Defined in [`gimli-0.32.3/src/common.rs:389-395`](../../../.source_1765894658/gimli-0.32.3/src/common.rs#L389-L395)*
 
 The "type" of file with DWARF debugging information. This determines, among other things,
 which files DWARF sections should be loaded from.
@@ -3266,11 +3161,8 @@ which files DWARF sections should be loaded from.
 - <span id="dwarffiletype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for DwarfFileType`

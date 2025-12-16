@@ -53,7 +53,7 @@ struct ParserBuilder {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:123-128`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L123-L128)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:123-128`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L123-L128)*
 
 A builder for a regular expression parser.
 
@@ -72,119 +72,68 @@ This builder permits modifying configuration options for the parser.
 - <span id="parserbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
   Set the nesting limit for this parser.
-
   
-
   The nesting limit controls how deep the abstract syntax tree is allowed
-
   to be. If the AST exceeds the given limit (e.g., with too many nested
-
   groups), then an error is returned by the parser.
-
   
-
   The purpose of this limit is to act as a heuristic to prevent stack
-
   overflow for consumers that do structural induction on an `Ast` using
-
   explicit recursion. While this crate never does this (instead using
-
   constant stack space and moving the call stack to the heap), other
-
   crates may.
-
   
-
   This limit is not checked until the entire AST is parsed. Therefore,
-
   if callers want to put a limit on the amount of heap space used, then
-
   they should impose a limit on the length, in bytes, of the concrete
-
   pattern string. In particular, this is viable since this parser
-
   implementation will limit itself to heap space proportional to the
-
   length of the pattern string.
-
   
-
   Note that a nest limit of `0` will return a nest limit error for most
-
   patterns but not all. For example, a nest limit of `0` permits `a` but
-
   not `ab`, since `ab` requires a concatenation, which results in a nest
-
   depth of `1`. In general, a nest limit is not something that manifests
-
   in an obvious way in the concrete syntax, therefore, it should not be
-
   used in a granular way.
 
 - <span id="parserbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
   Whether to support octal syntax or not.
-
   
-
   Octal syntax is a little-known way of uttering Unicode codepoints in
-
   a regular expression. For example, `a`, `\x61`, `\u0061` and
-
   `\141` are all equivalent regular expressions, where the last example
-
   shows octal syntax.
-
   
-
   While supporting octal syntax isn't in and of itself a problem, it does
-
   make good error messages harder. That is, in PCRE based regex engines,
-
   syntax like `\0` invokes a backreference, which is explicitly
-
   unsupported in Rust's regex engine. However, many users expect it to
-
   be supported. Therefore, when octal support is disabled, the error
-
   message will explicitly mention that backreferences aren't supported.
-
   
-
   Octal syntax is disabled by default.
 
 - <span id="parserbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
   Enable verbose mode in the regular expression.
-
   
-
   When enabled, verbose mode permits insignificant whitespace in many
-
   places in the regular expression, as well as comments. Comments are
-
   started using `#` and continue until the end of the line.
-
   
-
   By default, this is disabled. It may be selectively enabled in the
-
   regular expression by using the `x` flag regardless of this setting.
 
 - <span id="parserbuilder-empty-min-range"></span>`fn empty_min_range(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
   Allow using `{,n}` as an equivalent to `{0,n}`.
-
   
-
   When enabled, the parser accepts `{,n}` as valid syntax for `{0,n}`.
-
   Most regular expression engines don't support the `{,n}` syntax, but
-
   some others do it, namely Python's `re` library.
-
   
-
   This is disabled by default.
 
 #### Trait Implementations
@@ -228,11 +177,8 @@ This builder permits modifying configuration options for the parser.
 - <span id="parserbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ParserBuilder`
@@ -274,7 +220,7 @@ struct Parser {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:249-283`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L249-L283)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:249-283`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L249-L283)*
 
 A regular expression parser.
 
@@ -348,15 +294,10 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 - <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
   Create a new parser with a default configuration.
-
   
-
   The parser can be run with either the `parse` or `parse_with_comments`
-
   methods. The parse methods return an abstract syntax tree.
-
   
-
   To set configuration options on the parser, use [`ParserBuilder`](#parserbuilder).
 
 - <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md#ast), [`Error`](../index.md#error)
@@ -366,19 +307,14 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 - <span id="parser-parse-with-comments"></span>`fn parse_with_comments(&mut self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md#withcomments), [`Error`](../index.md#error)
 
   Parse the regular expression and return an abstract syntax tree with
-
   all of the comments found in the pattern.
 
 - <span id="parser-reset"></span>`fn reset(&self)`
 
   Reset the internal state of a parser.
-
   
-
   This is called at the beginning of every parse. This prevents the
-
   parser from running with inconsistent state (say, if a previous
-
   invocation returned an error and the parser is reused).
 
 #### Trait Implementations
@@ -418,11 +354,8 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 - <span id="parser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Parser`
@@ -454,7 +387,7 @@ struct ParserI<'s, P> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:295-300`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L295-L300)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:295-300`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L295-L300)*
 
 ParserI is the internal parser implementation.
 
@@ -497,49 +430,35 @@ work against the internal interface of the parser.
 - <span id="parseri-offset"></span>`fn offset(&self) -> usize`
 
   Return the current offset of the parser.
-
   
-
   The offset starts at `0` from the beginning of the regular expression
-
   pattern string.
 
 - <span id="parseri-line"></span>`fn line(&self) -> usize`
 
   Return the current line number of the parser.
-
   
-
   The line number starts at `1`.
 
 - <span id="parseri-column"></span>`fn column(&self) -> usize`
 
   Return the current column of the parser.
-
   
-
   The column number starts at `1` and is reset whenever a `\n` is seen.
 
 - <span id="parseri-next-capture-index"></span>`fn next_capture_index(&self, span: Span) -> core::result::Result<u32, ast::Error>` — [`Span`](../index.md#span), [`Error`](../index.md#error)
 
   Return the next capturing index. Each subsequent call increments the
-
   internal index.
-
   
-
   The span given should correspond to the location of the opening
-
   parenthesis.
-
   
-
   If the capture limit is exceeded, then an error is returned.
 
 - <span id="parseri-add-capture-name"></span>`fn add_capture_name(&self, cap: &ast::CaptureName) -> core::result::Result<(), ast::Error>` — [`CaptureName`](../index.md#capturename), [`Error`](../index.md#error)
 
   Adds the given capture name to this parser. If this capture name has
-
   already been used, then an error is returned.
 
 - <span id="parseri-ignore-whitespace"></span>`fn ignore_whitespace(&self) -> bool`
@@ -549,93 +468,65 @@ work against the internal interface of the parser.
 - <span id="parseri-char"></span>`fn char(&self) -> char`
 
   Return the character at the current position of the parser.
-
   
-
   This panics if the current position does not point to a valid char.
 
 - <span id="parseri-char-at"></span>`fn char_at(&self, i: usize) -> char`
 
   Return the character at the given position.
-
   
-
   This panics if the given position does not point to a valid char.
 
 - <span id="parseri-bump"></span>`fn bump(&self) -> bool`
 
   Bump the parser to the next Unicode scalar value.
-
   
-
   If the end of the input has been reached, then `false` is returned.
 
 - <span id="parseri-bump-if"></span>`fn bump_if(&self, prefix: &str) -> bool`
 
   If the substring starting at the current position of the parser has
-
   the given prefix, then bump the parser to the character immediately
-
   following the prefix and return true. Otherwise, don't bump the parser
-
   and return false.
 
 - <span id="parseri-is-lookaround-prefix"></span>`fn is_lookaround_prefix(&self) -> bool`
 
   Returns true if and only if the parser is positioned at a look-around
-
   prefix. The conditions under which this returns true must always
-
   correspond to a regular expression that would otherwise be consider
-
   invalid.
-
   
-
   This should only be called immediately after parsing the opening of
-
   a group or a set of flags.
 
 - <span id="parseri-bump-and-bump-space"></span>`fn bump_and_bump_space(&self) -> bool`
 
   Bump the parser, and if the `x` flag is enabled, bump through any
-
   subsequent spaces. Return true if and only if the parser is not at
-
   EOF.
 
 - <span id="parseri-bump-space"></span>`fn bump_space(&self)`
 
   If the `x` flag is enabled (i.e., whitespace insensitivity with
-
   comments), then this will advance the parser through all whitespace
-
   and comments to the next non-whitespace non-comment byte.
-
   
-
   If the `x` flag is disabled, then this is a no-op.
-
   
-
   This should be used selectively throughout the parser where
-
   arbitrary whitespace is permitted when the `x` flag is enabled. For
-
   example, `{   5  , 6}` is equivalent to `{5,6}`.
 
 - <span id="parseri-peek"></span>`fn peek(&self) -> Option<char>`
 
   Peek at the next character in the input without advancing the parser.
-
   
-
   If the input has been exhausted, then this returns `None`.
 
 - <span id="parseri-peek-space"></span>`fn peek_space(&self) -> Option<char>`
 
   Like peek, but will ignore spaces when the parser is in whitespace
-
   insensitive mode.
 
 - <span id="parseri-is-eof"></span>`fn is_eof(&self) -> bool`
@@ -645,13 +536,11 @@ work against the internal interface of the parser.
 - <span id="parseri-pos"></span>`fn pos(&self) -> Position` — [`Position`](../index.md#position)
 
   Return the current position of the parser, which includes the offset,
-
   line and column.
 
 - <span id="parseri-span"></span>`fn span(&self) -> Span` — [`Span`](../index.md#span)
 
   Create a span at the current position of the parser. Both the start
-
   and end of the span are set.
 
 - <span id="parseri-span-char"></span>`fn span_char(&self) -> Span` — [`Span`](../index.md#span)
@@ -661,171 +550,106 @@ work against the internal interface of the parser.
 - <span id="parseri-push-alternate"></span>`fn push_alternate(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md#concat), [`Error`](../index.md#error)
 
   Parse and push a single alternation on to the parser's internal stack.
-
   If the top of the stack already has an alternation, then add to that
-
   instead of pushing a new one.
-
   
-
   The concatenation given corresponds to a single alternation branch.
-
   The concatenation returned starts the next branch and is empty.
-
   
-
   This assumes the parser is currently positioned at `|` and will advance
-
   the parser to the character following `|`.
 
 - <span id="parseri-push-or-add-alternation"></span>`fn push_or_add_alternation(&self, concat: ast::Concat)` — [`Concat`](../index.md#concat)
 
   Pushes or adds the given branch of an alternation to the parser's
-
   internal stack of state.
 
 - <span id="parseri-push-group"></span>`fn push_group(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md#concat), [`Error`](../index.md#error)
 
   Parse and push a group AST (and its parent concatenation) on to the
-
   parser's internal stack. Return a fresh concatenation corresponding
-
   to the group's sub-AST.
-
   
-
   If a set of flags was found (with no group), then the concatenation
-
   is returned with that set of flags added.
-
   
-
   This assumes that the parser is currently positioned on the opening
-
   parenthesis. It advances the parser to the character at the start
-
   of the sub-expression (or adjoining expression).
-
   
-
   If there was a problem parsing the start of the group, then an error
-
   is returned.
 
 - <span id="parseri-pop-group"></span>`fn pop_group(&self, group_concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md#concat), [`Error`](../index.md#error)
 
   Pop a group AST from the parser's internal stack and set the group's
-
   AST to the given concatenation. Return the concatenation containing
-
   the group.
-
   
-
   This assumes that the parser is currently positioned on the closing
-
   parenthesis and advances the parser to the character following the `)`.
-
   
-
   If no such group could be popped, then an unopened group error is
-
   returned.
 
 - <span id="parseri-pop-group-end"></span>`fn pop_group_end(&self, concat: ast::Concat) -> core::result::Result<Ast, ast::Error>` — [`Concat`](../index.md#concat), [`Ast`](../index.md#ast), [`Error`](../index.md#error)
 
   Pop the last state from the parser's internal stack, if it exists, and
-
   add the given concatenation to it. There either must be no state or a
-
   single alternation item on the stack. Any other scenario produces an
-
   error.
-
   
-
   This assumes that the parser has advanced to the end.
 
 - <span id="parseri-push-class-open"></span>`fn push_class_open(&self, parent_union: ast::ClassSetUnion) -> core::result::Result<ast::ClassSetUnion, ast::Error>` — [`ClassSetUnion`](../index.md#classsetunion), [`Error`](../index.md#error)
 
   Parse the opening of a character class and push the current class
-
   parsing context onto the parser's stack. This assumes that the parser
-
   is positioned at an opening `[`. The given union should correspond to
-
   the union of set items built up before seeing the ``.
-
   
-
   If there was a problem parsing the opening of the class, then an error
-
   is returned. Otherwise, a new union of set items for the class is
-
   returned (which may be populated with either a `` or a `-`).
 
 - <span id="parseri-pop-class"></span>`fn pop_class(&self, nested_union: ast::ClassSetUnion) -> core::result::Result<Either<ast::ClassSetUnion, ast::ClassBracketed>, ast::Error>` — [`ClassSetUnion`](../index.md#classsetunion), [`Either`](../../either/index.md#either), [`ClassBracketed`](../index.md#classbracketed), [`Error`](../index.md#error)
 
   Parse the end of a character class set and pop the character class
-
   parser stack. The union given corresponds to the last union built
-
   before seeing the closing `]`. The union returned corresponds to the
-
   parent character class set with the nested class added to it.
-
   
-
   This assumes that the parser is positioned at a `]` and will advance
-
   the parser to the byte immediately following the `]`.
-
   
-
   If the stack is empty after popping, then this returns the final
-
   "top-level" character class AST (where a "top-level" character class
-
   is one that is not nested inside any other character class).
-
   
-
   If there is no corresponding opening bracket on the parser's stack,
-
   then an error is returned.
 
 - <span id="parseri-unclosed-class-error"></span>`fn unclosed_class_error(&self) -> ast::Error` — [`Error`](../index.md#error)
 
   Return an "unclosed class" error whose span points to the most
-
   recently opened class.
-
   
-
   This should only be called while parsing a character class.
 
 - <span id="parseri-push-class-op"></span>`fn push_class_op(&self, next_kind: ast::ClassSetBinaryOpKind, next_union: ast::ClassSetUnion) -> ast::ClassSetUnion` — [`ClassSetBinaryOpKind`](../index.md#classsetbinaryopkind), [`ClassSetUnion`](../index.md#classsetunion)
 
   Push the current set of class items on to the class parser's stack as
-
   the left hand side of the given operator.
-
   
-
   A fresh set union is returned, which should be used to build the right
-
   hand side of this operator.
 
 - <span id="parseri-pop-class-op"></span>`fn pop_class_op(&self, rhs: ast::ClassSet) -> ast::ClassSet` — [`ClassSet`](../index.md#classset)
 
   Pop a character class set from the character class parser stack. If the
-
   top of the stack is just an item (not an operation), then return the
-
   given set unchanged. If the top of the stack is an operation, then the
-
   given set will be used as the rhs of the operation on the top of the
-
   stack. In that case, the binary operation is returned as a set.
 
 #### Trait Implementations
@@ -865,11 +689,8 @@ work against the internal interface of the parser.
 - <span id="parseri-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ParserI<'s, P>`
@@ -901,7 +722,7 @@ struct NestLimiter<'p, 's, P> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2266-2271`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L2266-L2271)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2266-2271`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L2266-L2271)*
 
 A type that traverses a fully parsed Ast and checks whether its depth
 exceeds the specified nesting limit. If it does, then an error is returned.
@@ -955,11 +776,8 @@ exceeds the specified nesting limit. If it does, then an error is returned.
 - <span id="nestlimiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for NestLimiter<'p, 's, P>`
@@ -1008,7 +826,7 @@ enum Primitive {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:33-39`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L33-L39)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:33-39`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L33-L39)*
 
 A primitive is an expression with no sub-expressions. This includes
 literals, assertions and non-set character classes. This representation
@@ -1030,25 +848,17 @@ within a set character class.
 - <span id="primitive-into-class-set-item"></span>`fn into_class_set_item<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ParserI`](#parseri), [`ClassSetItem`](../index.md#classsetitem), [`Error`](../index.md#error)
 
   Convert this primitive into an item in a character class.
-
   
-
   If this primitive is not a legal item (i.e., an assertion or a dot),
-
   then return an error.
 
 - <span id="primitive-into-class-literal"></span>`fn into_class_literal<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::Literal, ast::Error>` — [`ParserI`](#parseri), [`Literal`](../index.md#literal), [`Error`](../index.md#error)
 
   Convert this primitive into a literal in a character class. In
-
   particular, literals are the only valid items that can appear in
-
   ranges.
-
   
-
   If this primitive is not a legal item (i.e., a class, assertion or a
-
   dot), then return an error.
 
 #### Trait Implementations
@@ -1090,11 +900,8 @@ within a set character class.
 - <span id="primitive-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Primitive`
@@ -1136,7 +943,7 @@ enum GroupState {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:306-321`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L306-L321)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:306-321`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L306-L321)*
 
 GroupState represents a single stack frame while parsing nested groups
 and alternations. Each frame records the state up to an opening parenthesis
@@ -1192,11 +999,8 @@ or a alternating bracket `|`.
 - <span id="groupstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for GroupState`
@@ -1234,7 +1038,7 @@ enum ClassState {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:330-348`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L330-L348)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:330-348`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L330-L348)*
 
 ClassState represents a single stack frame while parsing character classes.
 Each frame records the state up to an intersection, difference, symmetric
@@ -1291,11 +1095,8 @@ a character class. In all other cases, it is empty.
 - <span id="classstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ClassState`
@@ -1326,7 +1127,7 @@ a character class. In all other cases, it is empty.
 fn is_hex(c: char) -> bool
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:103-105`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L103-L105)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:103-105`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L103-L105)*
 
 Returns true if the given character is a hexadecimal digit.
 
@@ -1336,7 +1137,7 @@ Returns true if the given character is a hexadecimal digit.
 fn is_capture_char(c: char, first: bool) -> bool
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:111-117`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L111-L117)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:111-117`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L111-L117)*
 
 Returns true if the given character is a valid in a capture group name.
 
@@ -1349,7 +1150,7 @@ group name (which must be alphabetic or underscore).
 fn specialize_err<T>(result: core::result::Result<T, ast::Error>, from: ast::ErrorKind, to: ast::ErrorKind) -> core::result::Result<T, ast::Error>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2420-2434`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L2420-L2434)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2420-2434`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L2420-L2434)*
 
 When the result is an error, transforms the ast::ErrorKind from the source
 Result into another one. This function is used to return clearer error
@@ -1363,5 +1164,5 @@ messages when possible.
 type Result<T> = core::result::Result<T, ast::Error>;
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:24`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/parse.rs#L24)*
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:24`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/parse.rs#L24)*
 

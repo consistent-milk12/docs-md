@@ -20,7 +20,7 @@ struct ArrayVecDrain<'a, T: 'a + Default> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec_drain.rs:11-13`](../../../.source_1765633015/tinyvec-1.10.0/src/arrayvec_drain.rs#L11-L13)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec_drain.rs:11-13`](../../../.source_1765894658/tinyvec-1.10.0/src/arrayvec_drain.rs#L11-L13)*
 
 Draining iterator for [`ArrayVec`](../index.md)
 
@@ -65,11 +65,8 @@ See [`ArrayVec::drain`](ArrayVec::drain)
 - <span id="arrayvecdrain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ArrayVecDrain<'a, T>`

@@ -41,7 +41,7 @@ enum WrapAlgorithm {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:36-90`](../../../.source_1765633015/textwrap-0.16.2/src/wrap_algorithms.rs#L36-L90)*
+*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:36-90`](../../../.source_1765894658/textwrap-0.16.2/src/wrap_algorithms.rs#L36-L90)*
 
 Describes how to wrap words into lines.
 
@@ -100,25 +100,17 @@ an entire paragraph at a time in order to find optimal line breaks
 - <span id="wrapalgorithm-new"></span>`const fn new() -> Self`
 
   Create new wrap algorithm.
-
   
-
   The best wrapping algorithm is used by default, i.e.,
-
   `WrapAlgorithm::OptimalFit` if available, otherwise
-
   [`WrapAlgorithm::FirstFit`](../index.md).
 
 - <span id="wrapalgorithm-wrap"></span>`fn wrap<'a, 'b>(&self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../core/index.md#word)
 
   Wrap words according to line widths.
-
   
-
   The `line_widths` slice gives the target line width for each
-
   line (the last slice element is repeated as necessary). This
-
   can be used to implement hanging indentation.
 
 #### Trait Implementations
@@ -164,11 +156,8 @@ an entire paragraph at a time in order to find optimal line breaks
 - <span id="wrapalgorithm-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for WrapAlgorithm`
@@ -176,41 +165,23 @@ an entire paragraph at a time in order to find optimal line breaks
 - <span id="wrapalgorithm-partialeq-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
   Compare two wrap algorithms.
-
   
-
   ```rust
-
   use textwrap::WrapAlgorithm;
-
   
-
   assert_eq!(WrapAlgorithm::FirstFit, WrapAlgorithm::FirstFit);
-
   #[cfg(feature = "smawk")] {
-
       assert_eq!(WrapAlgorithm::new_optimal_fit(), WrapAlgorithm::new_optimal_fit());
-
   }
-
   ```
-
   
-
   Note that `WrapAlgorithm::Custom` values never compare equal:
-
   
-
   ```rust
-
   use textwrap::WrapAlgorithm;
-
   
-
   assert_ne!(WrapAlgorithm::Custom(|words, line_widths| vec![words]),
-
              WrapAlgorithm::Custom(|words, line_widths| vec![words]));
-
   ```
 
 ##### `impl ToOwned for WrapAlgorithm`
@@ -241,7 +212,7 @@ an entire paragraph at a time in order to find optimal line breaks
 fn wrap_first_fit<'a, T: Fragment>(fragments: &'a [T], line_widths: &[f64]) -> Vec<&'a [T]>
 ```
 
-*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:336-357`](../../../.source_1765633015/textwrap-0.16.2/src/wrap_algorithms.rs#L336-L357)*
+*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:336-357`](../../../.source_1765894658/textwrap-0.16.2/src/wrap_algorithms.rs#L336-L357)*
 
 Wrap abstract fragments into lines with a first-fit algorithm.
 

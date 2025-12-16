@@ -39,7 +39,7 @@ struct Repeat<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:10-12`](../../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:10-12`](../../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L10-L12)*
 
 Iterator adaptor for [the `repeat()` function].
 
@@ -49,19 +49,14 @@ Iterator adaptor for [the `repeat()` function].
 - <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](#repeatn)
 
   Takes only `n` repeats of the element, similar to the general
-
   `take()`.
-
   
-
   The resulting `RepeatN` is an `IndexedParallelIterator`, allowing
-
   more functionality than `Repeat` alone.
 
 - <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](../zip/index.md#zip), [`RepeatN`](#repeatn), [`IntoParallelIterator`](../index.md#intoparalleliterator)
 
   Iterates tuples, repeating the element with items from another
-
   iterator, similar to the general `zip()`.
 
 #### Trait Implementations
@@ -101,11 +96,8 @@ Iterator adaptor for [the `repeat()` function].
 - <span id="repeat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Repeat<T>`
@@ -166,7 +158,7 @@ struct RepeatProducer<T: Clone + Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:81-83`](../../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L81-L83)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:81-83`](../../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L81-L83)*
 
 Unindexed producer for `Repeat`.
 
@@ -195,11 +187,8 @@ Unindexed producer for `Repeat`.
 - <span id="repeatproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RepeatProducer<T>`
@@ -246,7 +235,7 @@ struct RepeatN<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:111-113`](../../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L111-L113)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:111-113`](../../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L111-L113)*
 
 Iterator adaptor for [the `repeat_n()` function].
 
@@ -296,11 +285,8 @@ Iterator adaptor for [the `repeat_n()` function].
 - <span id="repeatn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RepeatN<T>`
@@ -366,7 +352,7 @@ enum RepeatNProducer<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:199-202`](../../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L199-L202)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:199-202`](../../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L199-L202)*
 
 Producer for `RepeatN`.
 
@@ -413,11 +399,8 @@ Producer for `RepeatN`.
 - <span id="repeatnproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RepeatNProducer<T>`
@@ -492,7 +475,7 @@ Producer for `RepeatN`.
 fn repeat<T: Clone + Send>(element: T) -> Repeat<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:30-32`](../../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L30-L32)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:30-32`](../../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L30-L32)*
 
 Creates a parallel iterator that endlessly repeats `element` (by
 cloning it). Note that this iterator has "infinite" length, so
@@ -515,7 +498,7 @@ assert_eq!(x, vec![(22, 0), (22, 1), (22, 2)]);
 fn repeat_n<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:126-132`](../../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L126-L132)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:126-132`](../../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L126-L132)*
 
 Creates a parallel iterator that produces `n` repeats of `element`
 (by cloning it).
@@ -535,7 +518,7 @@ assert_eq!(x, vec![(22, 0), (22, 1), (22, 2)]);
 fn repeatn<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:139-141`](../../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L139-L141)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:139-141`](../../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L139-L141)*
 
 Creates a parallel iterator that produces `n` repeats of `element`
 (by cloning it).

@@ -147,7 +147,7 @@ additional performance optimizations.
 struct Identifier();
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:178-188`](../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L178-L188)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:178-188`](../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L178-L188)*
 
 Uniquely identifies a [`Callsite`](#callsite)
 
@@ -197,11 +197,8 @@ Two `Identifier`s are equal if they both refer to the same callsite.
 - <span id="identifier-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Identifier`
@@ -239,7 +236,7 @@ struct DefaultCallsite {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:192-197`](../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L192-L197)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:192-197`](../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L192-L197)*
 
 A default [`Callsite`](#callsite) implementation.
 
@@ -264,35 +261,22 @@ A default [`Callsite`](#callsite) implementation.
 - <span id="defaultcallsite-register"></span>`fn register(self: &'static Self) -> Interest` — [`Interest`](../subscriber/index.md#interest)
 
   Registers this callsite with the global callsite registry.
-
   
-
   If the callsite is already registered, this does nothing. When using
-
   [`DefaultCallsite`](#defaultcallsite), this method should be preferred over
-
   `tracing_core::callsite::register`, as it ensures that the callsite is
-
   only registered a single time.
-
   
-
   Other callsite implementations will generally ensure that
-
   callsites are not re-registered through another mechanism.
-
   
-
   See the [documentation on callsite registration][reg-docs] for details
-
   on the global callsite registry.
-
   
 
 - <span id="defaultcallsite-interest"></span>`fn interest(self: &'static Self) -> Interest` — [`Interest`](../subscriber/index.md#interest)
 
   Returns the callsite's cached `Interest`, or registers it for the
-
   first time if it has not yet been registered.
 
 #### Trait Implementations
@@ -330,11 +314,8 @@ A default [`Callsite`](#callsite) implementation.
 - <span id="defaultcallsite-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DefaultCallsite`
@@ -358,34 +339,27 @@ struct Callsites {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:264-267`](../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L264-L267)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:264-267`](../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L264-L267)*
 
 #### Implementations
 
 - <span id="callsites-rebuild-interest"></span>`fn rebuild_interest(&self, dispatchers: dispatchers::Rebuilder<'_>)` — [`Rebuilder`](dispatchers/index.md#rebuilder)
 
   Rebuild `Interest`s for all callsites in the registry.
-
   
-
   This also re-computes the max level hint.
 
 - <span id="callsites-push-dyn"></span>`fn push_dyn(&self, callsite: &'static dyn Callsite)` — [`Callsite`](#callsite)
 
   Push a `dyn Callsite` trait object to the callsite registry.
-
   
-
   This will attempt to lock the callsites vector.
 
 - <span id="callsites-push-default"></span>`fn push_default(&self, callsite: &'static DefaultCallsite)` — [`DefaultCallsite`](#defaultcallsite)
 
   Push a `DefaultCallsite` to the callsite registry.
-
   
-
   If we know the callsite being pushed is a `DefaultCallsite`, we can push
-
   it to the linked list without having to acquire a lock.
 
 - <span id="callsites-for-each"></span>`fn for_each(&self, f: impl FnMut(&'static dyn Callsite))` — [`Callsite`](#callsite)
@@ -417,11 +391,8 @@ struct Callsites {
 - <span id="callsites-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Callsites`
@@ -444,7 +415,7 @@ struct Callsites {
 trait Callsite: Sync { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:125-170`](../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L125-L170)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:125-170`](../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L125-L170)*
 
 Trait implemented by callsites.
 
@@ -459,10 +430,23 @@ callsites.
 - `fn set_interest(&self, interest: Interest)`
 
   Sets the [`Interest`](../subscriber/index.md) for this callsite.
+  
+  See the [documentation on callsite interest caching][cache-docs] for
+  details.
+  
 
 - `fn metadata(&self) -> &Metadata<'_>`
 
   Returns the [`metadata`](../metadata/index.md) associated with the callsite.
+  
+  <div class="example-wrap" style="display:inline-block">
+  <pre class="ignore" style="white-space:normal;font:inherit;">
+  
+  **Note:** Implementations of this method should not produce [`Metadata`](../metadata/index.md)
+  that share the same callsite [`Identifier`](#identifier) but otherwise differ in any
+  way (e.g., have different `name`s).
+  
+  </pre></div>
 
 #### Implementors
 
@@ -476,7 +460,7 @@ callsites.
 fn rebuild_interest_cache()
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:222-224`](../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L222-L224)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:222-224`](../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L222-L224)*
 
 Clear and reregister interest on every [`Callsite`](#callsite)
 
@@ -507,7 +491,7 @@ additional information on this function's usage.
 fn register(callsite: &'static dyn Callsite)
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:236-253`](../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L236-L253)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:236-253`](../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L236-L253)*
 
 Register a new [`Callsite`](#callsite) with the global registry.
 
@@ -525,7 +509,7 @@ on the global callsite registry.
 fn register_dispatch(dispatch: &crate::dispatcher::Dispatch)
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:484-488`](../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L484-L488)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:484-488`](../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L484-L488)*
 
 ### `rebuild_callsite_interest`
 
@@ -533,5 +517,5 @@ fn register_dispatch(dispatch: &crate::dispatcher::Dispatch)
 fn rebuild_callsite_interest(callsite: &'static dyn Callsite, dispatchers: &dispatchers::Rebuilder<'_>)
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:490-507`](../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L490-L507)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:490-507`](../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L490-L507)*
 

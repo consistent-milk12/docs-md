@@ -21,7 +21,7 @@
 struct ReaderOffsetId(u64);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:19`](../../../../.source_1765633015/gimli-0.32.3/src/read/reader.rs#L19)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:19`](../../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L19)*
 
 An identifier for an offset within a section reader.
 
@@ -70,11 +70,8 @@ all readers. If values are not unique then errors may point to the wrong reader.
 - <span id="readeroffsetid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ReaderOffsetId`
@@ -111,7 +108,7 @@ all readers. If values are not unique then errors may point to the wrong reader.
 trait ReaderOffset: Debug + Copy + Eq + Ord + Hash + Add<Output = Self> + AddAssign + Sub<Output = Self> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:24-52`](../../../../.source_1765633015/gimli-0.32.3/src/read/reader.rs#L24-L52)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:24-52`](../../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L24-L52)*
 
 A trait for offsets with a DWARF section.
 
@@ -138,6 +135,8 @@ This allows consumers to choose a size that is appropriate for their address spa
 - `fn from_u64(offset: u64) -> Result<Self>`
 
   Convert a u64 to an offset.
+  
+  Returns `Error::UnsupportedOffset` if the value is too large.
 
 - `fn into_u64(self) -> u64`
 
@@ -163,7 +162,7 @@ This allows consumers to choose a size that is appropriate for their address spa
 trait ReaderAddress: Sized { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:194-230`](../../../../.source_1765633015/gimli-0.32.3/src/read/reader.rs#L194-L230)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:194-230`](../../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L194-L230)*
 
 A trait for addresses within a DWARF section.
 
@@ -175,10 +174,15 @@ in the future to support user-defined address types.
 - `fn add_sized(self, length: u64, size: u8) -> Result<Self>`
 
   Add a length to an address of the given size.
+  
+  Returns an error for overflow.
 
 - `fn wrapping_add_sized(self, length: u64, size: u8) -> Self`
 
   Add a length to an address of the given size.
+  
+  Wraps the result to the size of the address to allow for the possibility
+  that the length is a negative value.
 
 - `fn zeros() -> Self`
 
@@ -193,6 +197,20 @@ in the future to support user-defined address types.
 - `fn min_tombstone(size: u8) -> Self`
 
   Return the minimum value for a tombstone address.
+  
+  A variety of values may be used as tombstones in DWARF data.  DWARF 6 specifies a
+  tombstone value of -1, and this is compatible with most sections in earlier DWARF
+  versions. However, for .debug_loc and .debug_ranges in DWARF 4 and earlier, the
+  tombstone value is -2, because -1 already has a special meaning. -2 has also been
+  seen in .debug_line, possibly from a proprietary fork of lld.
+  
+  So this function returns -2 (cast to an unsigned value), and callers can consider
+  addresses greater than or equal to this value to be tombstones.
+  
+  Prior to the use of -1 or -2 for tombstones, it was common to use 0 or 1.
+  Additionally, gold may leave the relocation addend in place. These values are not
+  handled by this function, so callers will need to handle them separately if they
+  want to.
 
 #### Implementors
 
@@ -204,7 +222,7 @@ in the future to support user-defined address types.
 trait Reader: Debug + Clone { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/reader.rs:285-581`](../../../../.source_1765633015/gimli-0.32.3/src/read/reader.rs#L285-L581)*
+*Defined in [`gimli-0.32.3/src/read/reader.rs:285-581`](../../../../.source_1765894658/gimli-0.32.3/src/read/reader.rs#L285-L581)*
 
 A trait for reading the data from a DWARF section.
 
@@ -253,6 +271,10 @@ thread safe or not.
 - `fn offset_from(&self, base: &Self) -> <Self as >::Offset`
 
   Return the offset of this reader's data relative to the start of
+  the given base reader's data.
+  
+  May panic if this reader's data is not contained within the given
+  base reader's data.
 
 - `fn offset_id(&self) -> ReaderOffsetId`
 
@@ -261,10 +283,12 @@ thread safe or not.
 - `fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>`
 
   Return the offset corresponding to the given `id` if
+  it is associated with this reader.
 
 - `fn find(&self, byte: u8) -> Result<<Self as >::Offset>`
 
   Find the index of the first occurrence of the given byte.
+  The offset of the reader is not changed.
 
 - `fn skip(&mut self, len: <Self as >::Offset) -> Result<()>`
 
@@ -273,18 +297,38 @@ thread safe or not.
 - `fn split(&mut self, len: <Self as >::Offset) -> Result<Self>`
 
   Split a reader in two.
+  
+  A new reader is returned that can be used to read the next
+  `len` bytes, and `self` is advanced so that it reads the remainder.
 
 - `fn to_slice(&self) -> Result<Cow<'_, [u8]>>`
 
   Return all remaining data as a clone-on-write slice.
+  
+  The slice will be borrowed where possible, but some readers may
+  always return an owned vector.
+  
+  Does not advance the reader.
 
 - `fn to_string(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string.
+  
+  The string will be borrowed where possible, but some readers may
+  always return an owned string.
+  
+  Does not advance the reader.
+  
+  Returns an error if the data contains invalid characters.
 
 - `fn to_string_lossy(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string, including invalid characters.
+  
+  The string will be borrowed where possible, but some readers may
+  always return an owned string.
+  
+  Does not advance the reader.
 
 - `fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>`
 
@@ -343,6 +387,10 @@ thread safe or not.
 - `fn read_uint(&mut self, n: usize) -> Result<u64>`
 
   Read an unsigned n-bytes integer u64.
+  
+  # Panics
+  
+  Panics when nbytes < 1 or nbytes > 8
 
 - `fn read_null_terminated_slice(&mut self) -> Result<Self>`
 
@@ -371,6 +419,9 @@ thread safe or not.
 - `fn read_initial_length(&mut self) -> Result<(<Self as >::Offset, Format)>`
 
   Read an initial length field.
+  
+  This field is encoded as either a 32-bit length or
+  a 64-bit length, and the returned `Format` indicates which.
 
 - `fn read_address_size(&mut self) -> Result<u8>`
 
@@ -383,6 +434,9 @@ thread safe or not.
 - `fn read_word(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized integer according to the DWARF format.
+  
+  These are always used to encode section offsets or lengths,
+  and so have a type of `Self::Offset`.
 
 - `fn read_length(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
@@ -395,6 +449,8 @@ thread safe or not.
 - `fn read_sized_offset(&mut self, size: u8) -> Result<<Self as >::Offset>`
 
   Parse a section offset of the given size.
+  
+  This is used for `DW_FORM_ref_addr` values in DWARF version 2.
 
 #### Implementors
 

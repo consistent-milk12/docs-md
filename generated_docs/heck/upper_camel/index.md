@@ -20,9 +20,9 @@
 struct AsUpperCamelCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/upper_camel.rs:57`](../../../.source_1765633015/heck-0.5.0/src/upper_camel.rs#L57)*
+*Defined in [`heck-0.5.0/src/upper_camel.rs:57`](../../../.source_1765894658/heck-0.5.0/src/upper_camel.rs#L57)*
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../../miette_derive/index.md).
+This wrapper performs a upper camel case conversion in `fmt::Display`.
 
 ## Example:
 
@@ -62,11 +62,8 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 - <span id="asuppercamelcase-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsUpperCamelCase<T>`
@@ -93,7 +90,7 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 trait ToUpperCamelCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/upper_camel.rs:23-26`](../../../.source_1765633015/heck-0.5.0/src/upper_camel.rs#L23-L26)*
+*Defined in [`heck-0.5.0/src/upper_camel.rs:23-26`](../../../.source_1765894658/heck-0.5.0/src/upper_camel.rs#L23-L26)*
 
 This trait defines an upper camel case conversion.
 
@@ -125,7 +122,7 @@ assert_eq!(sentence.to_upper_camel_case(), "WeAreNotInTheLeastAfraidOfRuins");
 trait ToPascalCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/upper_camel.rs:36-39`](../../../.source_1765633015/heck-0.5.0/src/upper_camel.rs#L36-L39)*
+*Defined in [`heck-0.5.0/src/upper_camel.rs:36-39`](../../../.source_1765894658/heck-0.5.0/src/upper_camel.rs#L36-L39)*
 
 `ToPascalCase` is an alias for [`ToUpperCamelCase`](#touppercamelcase). See ToUpperCamelCase for more
 documentation.

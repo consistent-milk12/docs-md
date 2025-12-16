@@ -25,7 +25,7 @@ enum DiagnosticArg {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/diagnostic_arg.rs:9-16`](../../../.source_1765633015/miette-derive-7.6.0/src/diagnostic_arg.rs#L9-L16)*
+*Defined in [`miette-derive-7.6.0/src/diagnostic_arg.rs:9-16`](../../../.source_1765894658/miette-derive-7.6.0/src/diagnostic_arg.rs#L9-L16)*
 
 #### Trait Implementations
 
@@ -52,11 +52,8 @@ enum DiagnosticArg {
 - <span id="diagnosticarg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for DiagnosticArg`

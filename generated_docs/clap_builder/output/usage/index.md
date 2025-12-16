@@ -23,7 +23,7 @@ struct Usage<'cmd> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/usage.rs:19-23`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/usage.rs#L19-L23)*
+*Defined in [`clap_builder-4.5.53/src/output/usage.rs:19-23`](../../../../.source_1765894658/clap_builder-4.5.53/src/output/usage.rs#L19-L23)*
 
 #### Implementations
 
@@ -62,11 +62,8 @@ struct Usage<'cmd> {
 - <span id="usage-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Usage<'cmd>`
@@ -88,5 +85,5 @@ struct Usage<'cmd> {
 const USAGE_SEP: &str;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/output/usage.rs:17`](../../../../.source_1765633015/clap_builder-4.5.53/src/output/usage.rs#L17)*
+*Defined in [`clap_builder-4.5.53/src/output/usage.rs:17`](../../../../.source_1765894658/clap_builder-4.5.53/src/output/usage.rs#L17)*
 

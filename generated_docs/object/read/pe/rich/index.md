@@ -27,7 +27,7 @@ struct RichHeaderInfo<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/rich.rs:12-26`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/rich.rs#L12-L26)*
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:12-26`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/rich.rs#L12-L26)*
 
 Parsed information about a Rich Header.
 
@@ -100,11 +100,8 @@ Parsed information about a Rich Header.
 - <span id="richheaderinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RichHeaderInfo<'data>`
@@ -136,7 +133,7 @@ struct RichHeaderEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/rich.rs:33-38`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/rich.rs#L33-L38)*
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:33-38`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/rich.rs#L33-L38)*
 
 A PE rich header entry after it has been unmasked.
 
@@ -191,11 +188,8 @@ See [`pe::MaskedRichHeaderEntry`](../../../pe/index.md).
 - <span id="richheaderentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RichHeaderEntry`
@@ -226,7 +220,7 @@ See [`pe::MaskedRichHeaderEntry`](../../../pe/index.md).
 fn memmem(data: &[u8], needle: &[u8], align: usize) -> Option<usize>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/rich.rs:84-92`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/rich.rs#L84-L92)*
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:84-92`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/rich.rs#L84-L92)*
 
 Find the offset of the first occurrence of needle in the data.
 

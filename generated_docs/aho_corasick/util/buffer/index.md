@@ -23,7 +23,7 @@ struct Buffer {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/buffer.rs:35-44`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/buffer.rs#L35-L44)*
+*Defined in [`aho-corasick-1.1.4/src/util/buffer.rs:35-44`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/buffer.rs#L35-L44)*
 
 A fairly simple roll buffer for supporting stream searches.
 
@@ -75,7 +75,6 @@ second read call whether a match exists or not.
 - <span id="buffer-new"></span>`fn new(min_buffer_len: usize) -> Buffer` — [`Buffer`](#buffer)
 
   Create a new buffer for stream searching. The minimum buffer length
-
   given should be the size of the maximum possible match length.
 
 - <span id="buffer-buffer"></span>`fn buffer(&self) -> &[u8]`
@@ -85,9 +84,7 @@ second read call whether a match exists or not.
 - <span id="buffer-min-buffer-len"></span>`fn min_buffer_len(&self) -> usize`
 
   Return the minimum size of the buffer. The only way a buffer may be
-
   smaller than this is if the stream itself contains less than the
-
   minimum buffer amount.
 
 - <span id="buffer-free-buffer"></span>`fn free_buffer(&mut self) -> &mut [u8]`
@@ -97,25 +94,17 @@ second read call whether a match exists or not.
 - <span id="buffer-fill"></span>`fn fill<R: std::io::Read>(&mut self, rdr: R) -> std::io::Result<bool>`
 
   Refill the contents of this buffer by reading as much as possible into
-
   this buffer's free capacity. If no more bytes could be read, then this
-
   returns false. Otherwise, this reads until it has filled the buffer
-
   past the minimum amount.
 
 - <span id="buffer-roll"></span>`fn roll(&mut self)`
 
   Roll the contents of the buffer so that the suffix of this buffer is
-
   moved to the front and all other contents are dropped. The size of the
-
   suffix corresponds precisely to the minimum buffer length.
-
   
-
   This should only be called when the entire contents of this buffer have
-
   been searched.
 
 #### Trait Implementations
@@ -147,11 +136,8 @@ second read call whether a match exists or not.
 - <span id="buffer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Buffer`
@@ -173,7 +159,7 @@ second read call whether a match exists or not.
 const DEFAULT_BUFFER_CAPACITY: usize = 65_536usize;
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/buffer.rs:4`](../../../../.source_1765633015/aho-corasick-1.1.4/src/util/buffer.rs#L4)*
+*Defined in [`aho-corasick-1.1.4/src/util/buffer.rs:4`](../../../../.source_1765894658/aho-corasick-1.1.4/src/util/buffer.rs#L4)*
 
 The default buffer capacity that we use for the stream buffer.
 

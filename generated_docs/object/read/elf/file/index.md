@@ -33,7 +33,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/file.rs#L38-L51)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L38-L51)*
 
 A partially parsed ELF file.
 
@@ -68,33 +68,25 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 - <span id="elffile-elf-program-headers"></span>`fn elf_program_headers(&self) -> &'data [<Elf as >::ProgramHeader]` — [`FileHeader`](../index.md#fileheader)
 
   Get the raw ELF program headers.
-
   
-
   Returns an empty slice if the file has no program headers.
 
 - <span id="elffile-elf-section-table"></span>`fn elf_section_table(&self) -> &SectionTable<'data, Elf, R>` — [`SectionTable`](../index.md#sectiontable)
 
   Get the ELF section table.
-
   
-
   Returns an empty section table if the file has no section headers.
 
 - <span id="elffile-elf-symbol-table"></span>`fn elf_symbol_table(&self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md#symboltable)
 
   Get the ELF symbol table.
-
   
-
   Returns an empty symbol table if the file has no symbol table.
 
 - <span id="elffile-elf-dynamic-symbol-table"></span>`fn elf_dynamic_symbol_table(&self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md#symboltable)
 
   Get the ELF dynamic symbol table.
-
   
-
   Returns an empty symbol table if the file has no dynamic symbol table.
 
 - <span id="elffile-elf-relocation-sections"></span>`fn elf_relocation_sections(&self) -> &RelocationSections` — [`RelocationSections`](../index.md#relocationsections)
@@ -134,11 +126,8 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 - <span id="elffile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Elf, R> Object for ElfFile<'data, Elf, R>`
@@ -233,7 +222,7 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 trait FileHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/file.rs#L530-L819)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L530-L819)*
 
 A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [`elf::FileHeader64`](../../../elf/index.md).
 
@@ -268,10 +257,16 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 - `fn is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
+  
+  This is a property of the type, not a value in the header data.
 
 - `fn is_type_64_sized() -> bool`
 
   Return true if this type is a 64-bit header.
+  
+  This is a property of the type, not a value in the header data.
+  
+  This is the same as `Self::is_type_64`, but is non-dispatchable.
 
 - `fn e_ident(&self) -> &elf::Ident`
 
@@ -306,10 +301,14 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 - `fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>`
 
   Read the file header.
+  
+  Also checks that the ident field in the file header is a supported format.
 
 - `fn is_supported(&self) -> bool`
 
   Check that the ident field in the file header is a supported format.
+  
+  This checks the magic number, version, class, and endianness.
 
 - `fn is_class_32(&self) -> bool`
 
@@ -324,30 +323,47 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 - `fn section_0<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data <Self as >::SectionHeader>>`
 
   Return the first section header, if present.
+  
+  Section 0 is a special case because getting the section headers normally
+  requires `shnum`, but `shnum` may be in the first section header.
 
 - `fn phnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
 
   Return the `e_phnum` field of the header. Handles extended values.
+  
+  Returns `Err` for invalid values.
 
 - `fn shnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
 
   Return the `e_shnum` field of the header. Handles extended values.
+  
+  Returns `Err` for invalid values.
 
 - `fn shstrndx<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<u32>`
 
   Return the `e_shstrndx` field of the header. Handles extended values.
+  
+  Returns `Err` for invalid values (including if the index is 0).
 
 - `fn program_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::ProgramHeader]>`
 
   Return the slice of program headers.
+  
+  Returns `Ok(&[])` if there are no program headers.
+  Returns `Err` for invalid values.
 
 - `fn section_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::SectionHeader]>`
 
   Return the slice of section headers.
+  
+  Returns `Ok(&[])` if there are no section headers.
+  Returns `Err` for invalid values.
 
 - `fn section_strings_index<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionIndex>`
 
   Get the section index of the section header string table.
+  
+  Returns `Err` for invalid values (including if the index is 0).
 
 - `fn section_strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &[<Self as >::SectionHeader]) -> read::Result<StringTable<'data, R>>`
 
@@ -374,7 +390,7 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 type ElfFile32<'data, Endian, R> = ElfFile<'data, elf::FileHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/file.rs#L25-L26)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L25-L26)*
 
 A 32-bit ELF object file.
 
@@ -387,7 +403,7 @@ to [`crate::FileKind::Elf32`](../../../index.md).
 type ElfFile64<'data, Endian, R> = ElfFile<'data, elf::FileHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/file.rs#L31-L32)*
+*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/file.rs#L31-L32)*
 
 A 64-bit ELF object file.
 

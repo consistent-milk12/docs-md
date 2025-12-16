@@ -21,7 +21,7 @@ struct Buf<'a> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/format.rs:4-7`](../../../.source_1765633015/serde_core-1.0.228/src/format.rs#L4-L7)*
+*Defined in [`serde_core-1.0.228/src/format.rs:4-7`](../../../.source_1765894658/serde_core-1.0.228/src/format.rs#L4-L7)*
 
 #### Implementations
 
@@ -54,11 +54,8 @@ struct Buf<'a> {
 - <span id="buf-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Buf<'a>`

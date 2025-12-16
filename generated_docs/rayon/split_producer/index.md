@@ -28,7 +28,7 @@ struct SplitProducer<'p, P, V, const INCL: bool> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/split_producer.rs:8-14`](../../../.source_1765633015/rayon-1.11.0/src/split_producer.rs#L8-L14)*
+*Defined in [`rayon-1.11.0/src/split_producer.rs:8-14`](../../../.source_1765894658/rayon-1.11.0/src/split_producer.rs#L8-L14)*
 
 Common producer for splitting on a predicate.
 
@@ -67,11 +67,8 @@ Common producer for splitting on a predicate.
 - <span id="splitproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitProducer<'p, P, V, INCL>`
@@ -118,7 +115,7 @@ Common producer for splitting on a predicate.
 trait Fissile<P>: Sized { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/split_producer.rs:19-29`](../../../.source_1765633015/rayon-1.11.0/src/split_producer.rs#L19-L29)*
+*Defined in [`rayon-1.11.0/src/split_producer.rs:19-29`](../../../.source_1765894658/rayon-1.11.0/src/split_producer.rs#L19-L29)*
 
 Helper trait so `&str`, `&[T]`, and `&mut [T]` can share `SplitProducer`.
 
@@ -150,5 +147,5 @@ Helper trait so `&str`, `&[T]`, and `&mut [T]` can share `SplitProducer`.
 type SplitInclusiveProducer<'p, P, V> = SplitProducer<'p, P, V, true>;
 ```
 
-*Defined in [`rayon-1.11.0/src/split_producer.rs:16`](../../../.source_1765633015/rayon-1.11.0/src/split_producer.rs#L16)*
+*Defined in [`rayon-1.11.0/src/split_producer.rs:16`](../../../.source_1765894658/rayon-1.11.0/src/split_producer.rs#L16)*
 

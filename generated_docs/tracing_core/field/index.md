@@ -38,7 +38,7 @@ for their field names rather than printing them.
 
 `tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
-user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/index.md)
+user-defined types with their `fmt::Debug` or `fmt::Display`
 implementations. However, there are some cases where it may be useful to record
 nested values (such as arrays, `Vec`s, or `HashMap`s containing values), or
 user-defined `struct` and `enum` types without having to format them as
@@ -178,7 +178,7 @@ struct Field {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L134-L137)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L134-L137)*
 
 An opaque key allowing _O_(1) access to a field in a `Span`'s key-value
 data.
@@ -194,9 +194,7 @@ and use the key for that name for all other accesses.
 - <span id="field-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md#identifier)
 
   Returns an [`Identifier`](../callsite/index.md) that uniquely identifies the [`Callsite`](../callsite/index.md)
-
   which defines this field.
-
   
 
 - <span id="field-name"></span>`fn name(&self) -> &'static str`
@@ -258,11 +256,8 @@ and use the key for that name for all other accesses.
 - <span id="field-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Field`
@@ -299,7 +294,7 @@ and use the key for that name for all other accesses.
 struct Empty;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:146`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L146)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:146`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L146)*
 
 An empty field.
 
@@ -339,11 +334,8 @@ When a field's value is `Empty`. it will not be recorded.
 - <span id="empty-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Empty`
@@ -379,7 +371,7 @@ struct FieldSet {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:159-164`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L159-L164)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:159-164`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L159-L164)*
 
 Describes the fields present on a span.
 
@@ -411,9 +403,7 @@ callsites. However, the equality of field names is checked in debug builds.
 - <span id="fieldset-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md#identifier)
 
   Returns an [`Identifier`](../callsite/index.md) that uniquely identifies the [`Callsite`](../callsite/index.md)
-
   which defines this set of fields..
-
   
 
 - <span id="fieldset-field"></span>`fn field<Q: Borrow<str> + ?Sized>(&self, name: &Q) -> Option<Field>` — [`Field`](#field)
@@ -423,25 +413,15 @@ callsites. However, the equality of field names is checked in debug builds.
 - <span id="fieldset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](#field)
 
   Returns `true` if `self` contains the given `field`.
-
   
-
   <div class="example-wrap" style="display:inline-block">
-
   <pre class="ignore" style="white-space:normal;font:inherit;">
-
   <strong>Note</strong>: If <code>field</code> shares a name with a field
-
   in this <code>FieldSet</code>, but was created by a <code>FieldSet</code>
-
   with a different callsite, this <code>FieldSet</code> does <em>not</em>
-
   contain it. This is so that if two separate span callsites define a field
-
   named "foo", the <code>Field</code> corresponding to "foo" for each
-
   of those callsites are not equivalent.
-
   </pre></div>
 
 - <span id="fieldset-iter"></span>`fn iter(&self) -> Iter` — [`Iter`](#iter)
@@ -491,11 +471,8 @@ callsites. However, the equality of field names is checked in debug builds.
 - <span id="fieldset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for &FieldSet`
@@ -535,7 +512,7 @@ struct ValueSet<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:167-170`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L167-L170)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:167-170`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L167-L170)*
 
 A set of fields and values for a span.
 
@@ -544,9 +521,7 @@ A set of fields and values for a span.
 - <span id="valueset-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md#identifier)
 
   Returns an [`Identifier`](../callsite/index.md) that uniquely identifies the [`Callsite`](../callsite/index.md)
-
   defining the fields this `ValueSet` refers to.
-
   
 
 - <span id="valueset-record"></span>`fn record(&self, visitor: &mut dyn Visit)` — [`Visit`](#visit)
@@ -556,9 +531,7 @@ A set of fields and values for a span.
 - <span id="valueset-len"></span>`fn len(&self) -> usize`
 
   Returns the number of fields in this `ValueSet` that would be visited
-
   by a given [`visitor`](../../regex_syntax/ast/visitor/index.md) to the `ValueSet::record()` method.
-
   
 
 - <span id="valueset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](#field)
@@ -604,11 +577,8 @@ A set of fields and values for a span.
 - <span id="valueset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ValueSet<'a>`
@@ -636,7 +606,7 @@ struct Iter {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:182-185`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L182-L185)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:182-185`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L182-L185)*
 
 An iterator over a set of fields.
 
@@ -669,11 +639,8 @@ An iterator over a set of fields.
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter`
@@ -708,7 +675,7 @@ An iterator over a set of fields.
 struct DisplayValue<T: fmt::Display>(T);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:360`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L360)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:360`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L360)*
 
 A `Value` which serializes using `fmt::Display`.
 
@@ -756,11 +723,8 @@ avoid an unnecessary evaluation.
 - <span id="displayvalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: fmt::Display> Sealed for DisplayValue<T>`
@@ -799,7 +763,7 @@ avoid an unnecessary evaluation.
 struct DebugValue<T: fmt::Debug>(T);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:364`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L364)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:364`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L364)*
 
 A `Value` which serializes as a string using `fmt::Debug`.
 
@@ -840,11 +804,8 @@ A `Value` which serializes as a string using `fmt::Debug`.
 - <span id="debugvalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: fmt::Debug> Sealed for DebugValue<T>`
@@ -879,7 +840,7 @@ A `Value` which serializes as a string using `fmt::Debug`.
 struct HexBytes<'a>(&'a [u8]);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:397`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L397)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:397`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L397)*
 
 #### Trait Implementations
 
@@ -910,11 +871,8 @@ struct HexBytes<'a>(&'a [u8]);
 - <span id="hexbytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for HexBytes<'a>`
@@ -940,7 +898,7 @@ enum Values<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:172-178`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L172-L178)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:172-178`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L172-L178)*
 
 #### Variants
 
@@ -978,11 +936,8 @@ enum Values<'a> {
 - <span id="values-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Values<'a>`
@@ -1005,7 +960,7 @@ enum Values<'a> {
 trait Visit { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:275-341`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L275-L341)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:275-341`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L275-L341)*
 
 Visits typed values.
 
@@ -1138,6 +1093,13 @@ available when the Rust standard library is present, as it requires the
 - `fn record_error(&mut self, field: &Field, value: &dyn std::error::Error)`
 
   Records a type implementing `Error`.
+  
+  <div class="example-wrap" style="display:inline-block">
+  <pre class="ignore" style="white-space:normal;font:inherit;">
+  <strong>Note</strong>: This is only enabled when the Rust standard library is
+  present.
+  </pre>
+  </div>
 
 #### Implementors
 
@@ -1151,7 +1113,7 @@ available when the Rust standard library is present, as it requires the
 trait Value: crate::sealed::Sealed { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:350-353`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L350-L353)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:350-353`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L350-L353)*
 
 A field value of an erased type.
 
@@ -1222,7 +1184,7 @@ where
     T: fmt::Display
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:368-373`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L368-L373)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:368-373`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L368-L373)*
 
 Wraps a type implementing `fmt::Display` as a `Value` that can be
 recorded using its `Display` implementation.
@@ -1235,7 +1197,7 @@ where
     T: fmt::Debug
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:377-382`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L377-L382)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:377-382`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L377-L382)*
 
 Wraps a type implementing `fmt::Debug` as a `Value` that can be
 recorded using its `Debug` implementation.
@@ -1244,17 +1206,17 @@ recorded using its `Debug` implementation.
 
 ### `impl_values!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:442-448`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L442-L448)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:442-448`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L442-L448)*
 
 ### `ty_to_nonzero!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:450-487`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L450-L487)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:450-487`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L450-L487)*
 
 ### `impl_one_value!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:489-534`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L489-L534)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:489-534`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L489-L534)*
 
 ### `impl_value!`
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:536-547`](../../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L536-L547)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:536-547`](../../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L536-L547)*
 

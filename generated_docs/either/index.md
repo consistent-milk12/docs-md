@@ -25,6 +25,7 @@ sum type with two cases.
   - [`IntoEither`](#intoeither)
 - [Functions](#functions)
   - [`_unsized_ref_propagation`](#unsized-ref-propagation)
+  - [`_unsized_std_propagation`](#unsized-std-propagation)
 - [Macros](#macros)
   - [`map_either!`](#map-either)
   - [`impl_specific_ref_and_mut!`](#impl-specific-ref-and-mut)
@@ -43,6 +44,7 @@ sum type with two cases.
 | [`Either`](#either) | enum | The enum `Either` with variants `Left` and `Right` is a general purpose sum type with two cases. |
 | [`IntoEither`](#intoeither) | trait |  |
 | [`_unsized_ref_propagation`](#unsized-ref-propagation) | fn |  |
+| [`_unsized_std_propagation`](#unsized-std-propagation) | fn |  |
 | [`map_either!`](#map-either) | macro |  |
 | [`impl_specific_ref_and_mut!`](#impl-specific-ref-and-mut) | macro |  |
 | [`check_t!`](#check-t) | macro | A helper macro to check if AsRef and AsMut are implemented for a given type. |
@@ -65,7 +67,7 @@ struct IterEither<L, R> {
 }
 ```
 
-*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../.source_1765633015/either-1.15.0/src/iterator.rs#L19-L21)*
+*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../.source_1765894658/either-1.15.0/src/iterator.rs#L19-L21)*
 
 Iterator that maps left or right iterators to corresponding `Either`-wrapped items.
 
@@ -130,11 +132,8 @@ and `factor_iter_mut` methods.
 - <span id="itereither-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IterEither<L, R>`
@@ -179,6 +178,14 @@ and `factor_iter_mut` methods.
 
 - <span id="itereither-iterator-position"></span>`fn position<P>(&mut self, predicate: P) -> Option<usize>`
 
+##### `impl ToOwned for IterEither<L, R>`
+
+- <span id="itereither-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itereither-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itereither-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl<U> TryFrom for IterEither<L, R>`
 
 - <span id="itereither-tryfrom-type-error"></span>`type Error = Infallible`
@@ -202,7 +209,7 @@ enum Either<L, R> {
 }
 ```
 
-*Defined in [`either-1.15.0/src/lib.rs:49-54`](../../.source_1765633015/either-1.15.0/src/lib.rs#L49-L54)*
+*Defined in [`either-1.15.0/src/lib.rs:49-54`](../../.source_1765894658/either-1.15.0/src/lib.rs#L49-L54)*
 
 The enum `Either` with variants `Left` and `Right` is a general purpose
 sum type with two cases.
@@ -226,995 +233,566 @@ preference.
 - <span id="either-is-left"></span>`fn is_left(&self) -> bool`
 
   Return true if the value is the `Left` variant.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let values = [Left(1), Right("the right value")];
-
   assert_eq!(values[0].is_left(), true);
-
   assert_eq!(values[1].is_left(), false);
-
   ```
 
 - <span id="either-is-right"></span>`fn is_right(&self) -> bool`
 
   Return true if the value is the `Right` variant.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let values = [Left(1), Right("the right value")];
-
   assert_eq!(values[0].is_right(), false);
-
   assert_eq!(values[1].is_right(), true);
-
   ```
 
 - <span id="either-left"></span>`fn left(self) -> Option<L>`
 
   Convert the left side of `Either<L, R>` to an `Option<L>`.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, ()> = Left("some value");
-
   assert_eq!(left.left(),  Some("some value"));
-
   
-
   let right: Either<(), _> = Right(321);
-
   assert_eq!(right.left(), None);
-
   ```
 
 - <span id="either-right"></span>`fn right(self) -> Option<R>`
 
   Convert the right side of `Either<L, R>` to an `Option<R>`.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, ()> = Left("some value");
-
   assert_eq!(left.right(),  None);
-
   
-
   let right: Either<(), _> = Right(321);
-
   assert_eq!(right.right(), Some(321));
-
   ```
 
 - <span id="either-as-ref"></span>`fn as_ref(&self) -> Either<&L, &R>` — [`Either`](#either)
 
   Convert `&Either<L, R>` to `Either<&L, &R>`.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, ()> = Left("some value");
-
   assert_eq!(left.as_ref(), Left(&"some value"));
-
   
-
   let right: Either<(), _> = Right("some value");
-
   assert_eq!(right.as_ref(), Right(&"some value"));
-
   ```
 
 - <span id="either-as-mut"></span>`fn as_mut(&mut self) -> Either<&mut L, &mut R>` — [`Either`](#either)
 
   Convert `&mut Either<L, R>` to `Either<&mut L, &mut R>`.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   fn mutate_left(value: &mut Either<u32, u32>) {
-
       if let Some(l) = value.as_mut().left() {
-
           *l = 999;
-
       }
-
   }
-
   
-
   let mut left = Left(123);
-
   let mut right = Right(123);
-
   mutate_left(&mut left);
-
   mutate_left(&mut right);
-
   assert_eq!(left, Left(999));
-
   assert_eq!(right, Right(123));
-
   ```
 
 - <span id="either-as-pin-ref"></span>`fn as_pin_ref(self: Pin<&Self>) -> Either<Pin<&L>, Pin<&R>>` — [`Either`](#either)
 
   Convert `Pin<&Either<L, R>>` to `Either<Pin<&L>, Pin<&R>>`,
-
   pinned projections of the inner variants.
 
 - <span id="either-as-pin-mut"></span>`fn as_pin_mut(self: Pin<&mut Self>) -> Either<Pin<&mut L>, Pin<&mut R>>` — [`Either`](#either)
 
   Convert `Pin<&mut Either<L, R>>` to `Either<Pin<&mut L>, Pin<&mut R>>`,
-
   pinned projections of the inner variants.
 
 - <span id="either-flip"></span>`fn flip(self) -> Either<R, L>` — [`Either`](#either)
 
   Convert `Either<L, R>` to `Either<R, L>`.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, ()> = Left(123);
-
   assert_eq!(left.flip(), Right(123));
-
   
-
   let right: Either<(), _> = Right("some value");
-
   assert_eq!(right.flip(), Left("some value"));
-
   ```
 
 - <span id="either-map-left"></span>`fn map_left<F, M>(self, f: F) -> Either<M, R>` — [`Either`](#either)
 
   Apply the function `f` on the value in the `Left` variant if it is present rewrapping the
-
   result in `Left`.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, u32> = Left(123);
-
   assert_eq!(left.map_left(|x| x * 2), Left(246));
-
   
-
   let right: Either<u32, _> = Right(123);
-
   assert_eq!(right.map_left(|x| x * 2), Right(123));
-
   ```
 
 - <span id="either-map-right"></span>`fn map_right<F, S>(self, f: F) -> Either<L, S>` — [`Either`](#either)
 
   Apply the function `f` on the value in the `Right` variant if it is present rewrapping the
-
   result in `Right`.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, u32> = Left(123);
-
   assert_eq!(left.map_right(|x| x * 2), Left(123));
-
   
-
   let right: Either<u32, _> = Right(123);
-
   assert_eq!(right.map_right(|x| x * 2), Right(246));
-
   ```
 
 - <span id="either-map-either"></span>`fn map_either<F, G, M, S>(self, f: F, g: G) -> Either<M, S>` — [`Either`](#either)
 
   Apply the functions `f` and `g` to the `Left` and `Right` variants
-
   respectively. This is equivalent to
-
   [bimap](https://hackage.haskell.org/package/bifunctors-5/docs/Data-Bifunctor.html)
-
   in functional programming.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let f = |s: String| s.len();
-
   let g = |u: u8| u.to_string();
-
   
-
   let left: Either<String, u8> = Left("loopy".into());
-
   assert_eq!(left.map_either(f, g), Left(5));
-
   
-
   let right: Either<String, u8> = Right(42);
-
   assert_eq!(right.map_either(f, g), Right("42".into()));
-
   ```
 
 - <span id="either-map-either-with"></span>`fn map_either_with<Ctx, F, G, M, S>(self, ctx: Ctx, f: F, g: G) -> Either<M, S>` — [`Either`](#either)
 
   Similar to `map_either`, with an added context `ctx` accessible to
-
   both functions.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let mut sum = 0;
-
   
-
   // Both closures want to update the same value, so pass it as context.
-
   let mut f = |sum: &mut usize, s: String| { *sum += s.len(); s.to_uppercase() };
-
   let mut g = |sum: &mut usize, u: usize| { *sum += u; u.to_string() };
-
   
-
   let left: Either<String, usize> = Left("loopy".into());
-
   assert_eq!(left.map_either_with(&mut sum, &mut f, &mut g), Left("LOOPY".into()));
-
   
-
   let right: Either<String, usize> = Right(42);
-
   assert_eq!(right.map_either_with(&mut sum, &mut f, &mut g), Right("42".into()));
-
   
-
   assert_eq!(sum, 47);
-
   ```
 
 - <span id="either-either"></span>`fn either<F, G, T>(self, f: F, g: G) -> T`
 
   Apply one of two functions depending on contents, unifying their result. If the value is
-
   `Left(L)` then the first function `f` is applied; if it is `Right(R)` then the second
-
   function `g` is applied.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   fn square(n: u32) -> i32 { (n * n) as i32 }
-
   fn negate(n: i32) -> i32 { -n }
-
   
-
   let left: Either<u32, i32> = Left(4);
-
   assert_eq!(left.either(square, negate), 16);
-
   
-
   let right: Either<u32, i32> = Right(-4);
-
   assert_eq!(right.either(square, negate), 4);
-
   ```
 
 - <span id="either-either-with"></span>`fn either_with<Ctx, F, G, T>(self, ctx: Ctx, f: F, g: G) -> T`
 
   Like `either`, but provide some context to whichever of the
-
   functions ends up being called.
-
   
-
   ```rust
-
   // In this example, the context is a mutable reference
-
   use either::*;
-
   
-
   let mut result = Vec::new();
-
   
-
   let values = vec![Left(2), Right(2.7)];
-
   
-
   for value in values {
-
       value.either_with(&mut result,
-
                         |ctx, integer| ctx.push(integer),
-
                         |ctx, real| ctx.push(f64::round(real) as i32));
-
   }
-
   
-
   assert_eq!(result, vec![2, 3]);
-
   ```
 
 - <span id="either-left-and-then"></span>`fn left_and_then<F, S>(self, f: F) -> Either<S, R>` — [`Either`](#either)
 
   Apply the function `f` on the value in the `Left` variant if it is present.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, u32> = Left(123);
-
   assert_eq!(left.left_and_then::<_,()>(|x| Right(x * 2)), Right(246));
-
   
-
   let right: Either<u32, _> = Right(123);
-
   assert_eq!(right.left_and_then(|x| Right::<(), _>(x * 2)), Right(123));
-
   ```
 
 - <span id="either-right-and-then"></span>`fn right_and_then<F, S>(self, f: F) -> Either<L, S>` — [`Either`](#either)
 
   Apply the function `f` on the value in the `Right` variant if it is present.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, u32> = Left(123);
-
   assert_eq!(left.right_and_then(|x| Right(x * 2)), Left(123));
-
   
-
   let right: Either<u32, _> = Right(123);
-
   assert_eq!(right.right_and_then(|x| Right(x * 2)), Right(246));
-
   ```
 
 - <span id="either-into-iter"></span>`fn into_iter(self) -> Either<<L as >::IntoIter, <R as >::IntoIter>` — [`Either`](#either)
 
   Convert the inner value to an iterator.
-
   
-
   This requires the `Left` and `Right` iterators to have the same item type.
-
   See `factor_into_iter` to iterate different types.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, Vec<u32>> = Left(vec![1, 2, 3, 4, 5]);
-
   let mut right: Either<Vec<u32>, _> = Right(vec![]);
-
   right.extend(left.into_iter());
-
   assert_eq!(right, Right(vec![1, 2, 3, 4, 5]));
-
   ```
 
 - <span id="either-iter"></span>`fn iter(&self) -> Either<<&L as IntoIterator>::IntoIter, <&R as IntoIterator>::IntoIter>` — [`Either`](#either)
 
   Borrow the inner value as an iterator.
-
   
-
   This requires the `Left` and `Right` iterators to have the same item type.
-
   See `factor_iter` to iterate different types.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let left: Either<_, &[u32]> = Left(vec![2, 3]);
-
   let mut right: Either<Vec<u32>, _> = Right(&[4, 5][..]);
-
   let mut all = vec![1];
-
   all.extend(left.iter());
-
   all.extend(right.iter());
-
   assert_eq!(all, vec![1, 2, 3, 4, 5]);
-
   ```
 
 - <span id="either-iter-mut"></span>`fn iter_mut(&mut self) -> Either<<&mut L as IntoIterator>::IntoIter, <&mut R as IntoIterator>::IntoIter>` — [`Either`](#either)
 
   Mutably borrow the inner value as an iterator.
-
   
-
   This requires the `Left` and `Right` iterators to have the same item type.
-
   See `factor_iter_mut` to iterate different types.
-
   
-
   ```rust
-
   use either::*;
-
   
-
   let mut left: Either<_, &mut [u32]> = Left(vec![2, 3]);
-
   for l in left.iter_mut() {
-
       *l *= *l
-
   }
-
   assert_eq!(left, Left(vec![4, 9]));
-
   
-
   let mut inner = [4, 5];
-
   let mut right: Either<Vec<u32>, _> = Right(&mut inner[..]);
-
   for r in right.iter_mut() {
-
       *r *= *r
-
   }
-
   assert_eq!(inner, [16, 25]);
-
   ```
 
 - <span id="either-factor-into-iter"></span>`fn factor_into_iter(self) -> IterEither<<L as >::IntoIter, <R as >::IntoIter>` — [`IterEither`](iterator/index.md#itereither)
 
   Converts an `Either` of `Iterator`s to be an `Iterator` of `Either`s
-
   
-
   Unlike `into_iter`, this does not require the
-
   `Left` and `Right` iterators to have the same item type.
-
   
-
   ```rust
-
   use either::*;
-
   let left: Either<_, Vec<u8>> = Left(&["hello"]);
-
   assert_eq!(left.factor_into_iter().next(), Some(Left(&"hello")));
-
   
-
   let right: Either<&[&str], _> = Right(vec![0, 1]);
-
   assert_eq!(right.factor_into_iter().collect::<Vec<_>>(), vec![Right(0), Right(1)]);
-
   
-
   ```
 
 - <span id="either-factor-iter"></span>`fn factor_iter(&self) -> IterEither<<&L as IntoIterator>::IntoIter, <&R as IntoIterator>::IntoIter>` — [`IterEither`](iterator/index.md#itereither)
 
   Borrows an `Either` of `Iterator`s to be an `Iterator` of `Either`s
-
   
-
   Unlike `iter`, this does not require the
-
   `Left` and `Right` iterators to have the same item type.
-
   
-
   ```rust
-
   use either::*;
-
   let left: Either<_, Vec<u8>> = Left(["hello"]);
-
   assert_eq!(left.factor_iter().next(), Some(Left(&"hello")));
-
   
-
   let right: Either<[&str; 2], _> = Right(vec![0, 1]);
-
   assert_eq!(right.factor_iter().collect::<Vec<_>>(), vec![Right(&0), Right(&1)]);
-
   
-
   ```
 
 - <span id="either-factor-iter-mut"></span>`fn factor_iter_mut(&mut self) -> IterEither<<&mut L as IntoIterator>::IntoIter, <&mut R as IntoIterator>::IntoIter>` — [`IterEither`](iterator/index.md#itereither)
 
   Mutably borrows an `Either` of `Iterator`s to be an `Iterator` of `Either`s
-
   
-
   Unlike `iter_mut`, this does not require the
-
   `Left` and `Right` iterators to have the same item type.
-
   
-
   ```rust
-
   use either::*;
-
   let mut left: Either<_, Vec<u8>> = Left(["hello"]);
-
   left.factor_iter_mut().for_each(|x| *x.unwrap_left() = "goodbye");
-
   assert_eq!(left, Left(["goodbye"]));
-
   
-
   let mut right: Either<[&str; 2], _> = Right(vec![0, 1, 2]);
-
   right.factor_iter_mut().for_each(|x| if let Right(r) = x { *r = -*r; });
-
   assert_eq!(right, Right(vec![0, -1, -2]));
-
   
-
   ```
 
 - <span id="either-left-or"></span>`fn left_or(self, other: L) -> L`
 
   Return left value or given value
-
   
-
   Arguments passed to `left_or` are eagerly evaluated; if you are passing
-
   the result of a function call, it is recommended to use
-
   `left_or_else`, which is lazily evaluated.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let left: Either<&str, &str> = Left("left");
-
   assert_eq!(left.left_or("foo"), "left");
-
   
-
   let right: Either<&str, &str> = Right("right");
-
   assert_eq!(right.left_or("left"), "left");
-
   ```
 
 - <span id="either-left-or-default"></span>`fn left_or_default(self) -> L`
 
   Return left or a default
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let left: Either<String, u32> = Left("left".to_string());
-
   assert_eq!(left.left_or_default(), "left");
-
   
-
   let right: Either<String, u32> = Right(42);
-
   assert_eq!(right.left_or_default(), String::default());
-
   ```
 
 - <span id="either-left-or-else"></span>`fn left_or_else<F>(self, f: F) -> L`
 
   Returns left value or computes it from a closure
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let left: Either<String, u32> = Left("3".to_string());
-
   assert_eq!(left.left_or_else(|_| unreachable!()), "3");
-
   
-
   let right: Either<String, u32> = Right(3);
-
   assert_eq!(right.left_or_else(|x| x.to_string()), "3");
-
   ```
 
 - <span id="either-right-or"></span>`fn right_or(self, other: R) -> R`
 
   Return right value or given value
-
   
-
   Arguments passed to `right_or` are eagerly evaluated; if you are passing
-
   the result of a function call, it is recommended to use
-
   `right_or_else`, which is lazily evaluated.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let right: Either<&str, &str> = Right("right");
-
   assert_eq!(right.right_or("foo"), "right");
-
   
-
   let left: Either<&str, &str> = Left("left");
-
   assert_eq!(left.right_or("right"), "right");
-
   ```
 
 - <span id="either-right-or-default"></span>`fn right_or_default(self) -> R`
 
   Return right or a default
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let left: Either<String, u32> = Left("left".to_string());
-
   assert_eq!(left.right_or_default(), u32::default());
-
   
-
   let right: Either<String, u32> = Right(42);
-
   assert_eq!(right.right_or_default(), 42);
-
   ```
 
 - <span id="either-right-or-else"></span>`fn right_or_else<F>(self, f: F) -> R`
 
   Returns right value or computes it from a closure
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let left: Either<String, u32> = Left("3".to_string());
-
   assert_eq!(left.right_or_else(|x| x.parse().unwrap()), 3);
-
   
-
   let right: Either<String, u32> = Right(3);
-
   assert_eq!(right.right_or_else(|_| unreachable!()), 3);
-
   ```
 
 - <span id="either-unwrap-left"></span>`fn unwrap_left(self) -> L`
 
   Returns the left value
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let left: Either<_, ()> = Left(3);
-
   assert_eq!(left.unwrap_left(), 3);
-
   ```
-
   
-
   # Panics
-
   
-
   When `Either` is a `Right` value
-
   
-
   ```should_panic
-
   use either::*;
-
   let right: Either<(), _> = Right(3);
-
   right.unwrap_left();
-
   ```
 
 - <span id="either-unwrap-right"></span>`fn unwrap_right(self) -> R`
 
   Returns the right value
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let right: Either<(), _> = Right(3);
-
   assert_eq!(right.unwrap_right(), 3);
-
   ```
-
   
-
   # Panics
-
   
-
   When `Either` is a `Left` value
-
   
-
   ```should_panic
-
   use either::*;
-
   let left: Either<_, ()> = Left(3);
-
   left.unwrap_right();
-
   ```
 
 - <span id="either-expect-left"></span>`fn expect_left(self, msg: &str) -> L`
 
   Returns the left value
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let left: Either<_, ()> = Left(3);
-
   assert_eq!(left.expect_left("value was Right"), 3);
-
   ```
-
   
-
   # Panics
-
   
-
   When `Either` is a `Right` value
-
   
-
   ```should_panic
-
   use either::*;
-
   let right: Either<(), _> = Right(3);
-
   right.expect_left("value was Right");
-
   ```
 
 - <span id="either-expect-right"></span>`fn expect_right(self, msg: &str) -> R`
 
   Returns the right value
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   let right: Either<(), _> = Right(3);
-
   assert_eq!(right.expect_right("value was Left"), 3);
-
   ```
-
   
-
   # Panics
-
   
-
   When `Either` is a `Left` value
-
   
-
   ```should_panic
-
   use either::*;
-
   let left: Either<_, ()> = Left(3);
-
   left.expect_right("value was Right");
-
   ```
 
 - <span id="either-either-into"></span>`fn either_into<T>(self) -> T`
 
   Convert the contained value into `T`
-
   
-
   # Examples
-
   
-
   ```rust
-
   use either::*;
-
   // Both u16 and u32 can be converted to u64.
-
   let left: Either<u16, u32> = Left(3u16);
-
   assert_eq!(left.either_into::<u64>(), 3u64);
-
   let right: Either<u16, u32> = Right(7u32);
-
   assert_eq!(right.either_into::<u64>(), 7u64);
-
   ```
 
 #### Trait Implementations
@@ -1238,6 +816,16 @@ preference.
 ##### `impl<T> BorrowMut for Either<L, R>`
 
 - <span id="either-borrowmut-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
+
+##### `impl<L, R> BufRead for Either<L, R>`
+
+- <span id="either-bufread-fill-buf"></span>`fn fill_buf(&mut self) -> io::Result<&[u8]>`
+
+- <span id="either-bufread-consume"></span>`fn consume(&mut self, amt: usize)`
+
+- <span id="either-bufread-read-until"></span>`fn read_until(&mut self, byte: u8, buf: &mut std::vec::Vec<u8>) -> io::Result<usize>`
+
+- <span id="either-bufread-read-line"></span>`fn read_line(&mut self, buf: &mut std::string::String) -> io::Result<usize>`
 
 ##### `impl<L: Clone, R: Clone> Clone for Either<L, R>`
 
@@ -1281,6 +869,14 @@ preference.
 
 ##### `impl<L: cmp::Eq, R: cmp::Eq> Eq for Either<L, R>`
 
+##### `impl<L, R> Error for Either<L, R>`
+
+- <span id="either-error-source"></span>`fn source(&self) -> Option<&dyn Error>`
+
+- <span id="either-error-description"></span>`fn description(&self) -> &str`
+
+- <span id="either-error-cause"></span>`fn cause(&self) -> Option<&dyn Error>`
+
 ##### `impl<L, R> ExactSizeIterator for super::Either<L, R>`
 
 - <span id="supereither-exactsizeiterator-len"></span>`fn len(&self) -> usize`
@@ -1312,11 +908,8 @@ preference.
 - <span id="either-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Either<L, R>`
@@ -1381,11 +974,37 @@ preference.
 
 - <span id="either-partialord-partial-cmp"></span>`fn partial_cmp(&self, other: &Either<L, R>) -> option::Option<cmp::Ordering>` — [`Either`](#either)
 
+##### `impl<L, R> Read for Either<L, R>`
+
+- <span id="either-read"></span>`fn read(&mut self, buf: &mut [u8]) -> io::Result<usize>`
+
+- <span id="either-read-read-exact"></span>`fn read_exact(&mut self, buf: &mut [u8]) -> io::Result<()>`
+
+- <span id="either-read-read-to-end"></span>`fn read_to_end(&mut self, buf: &mut std::vec::Vec<u8>) -> io::Result<usize>`
+
+- <span id="either-read-read-to-string"></span>`fn read_to_string(&mut self, buf: &mut std::string::String) -> io::Result<usize>`
+
 ##### `impl Receiver for Either<L, R>`
 
 - <span id="either-receiver-type-target"></span>`type Target = T`
 
+##### `impl<L, R> Seek for Either<L, R>`
+
+- <span id="either-seek"></span>`fn seek(&mut self, pos: SeekFrom) -> io::Result<u64>`
+
 ##### `impl<L, R> StructuralPartialEq for Either<L, R>`
+
+##### `impl ToOwned for Either<L, R>`
+
+- <span id="either-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="either-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="either-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
+##### `impl ToString for Either<L, R>`
+
+- <span id="either-tostring-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<U> TryFrom for Either<L, R>`
 
@@ -1401,11 +1020,13 @@ preference.
 
 ##### `impl<L, R> Write for Either<L, R>`
 
-- <span id="either-write-write-str"></span>`fn write_str(&mut self, s: &str) -> fmt::Result`
+- <span id="either-write"></span>`fn write(&mut self, buf: &[u8]) -> io::Result<usize>`
 
-- <span id="either-write-write-char"></span>`fn write_char(&mut self, c: char) -> fmt::Result`
+- <span id="either-write-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> io::Result<()>`
 
-- <span id="either-write-write-fmt"></span>`fn write_fmt(&mut self, args: fmt::Arguments<'_>) -> fmt::Result`
+- <span id="either-write-write-fmt"></span>`fn write_fmt(&mut self, fmt: fmt::Arguments<'_>) -> io::Result<()>`
+
+- <span id="either-write-flush"></span>`fn flush(&mut self) -> io::Result<()>`
 
 ## Traits
 
@@ -1415,7 +1036,7 @@ preference.
 trait IntoEither: Sized { ... }
 ```
 
-*Defined in [`either-1.15.0/src/into_either.rs:14-62`](../../.source_1765633015/either-1.15.0/src/into_either.rs#L14-L62)*
+*Defined in [`either-1.15.0/src/into_either.rs:14-62`](../../.source_1765894658/either-1.15.0/src/into_either.rs#L14-L62)*
 
 Provides methods for converting a type `Self` into either a [`Left`](#left) or [`Right`](#right)
 variant of [`Either<Self, Self>`](Either).
@@ -1431,10 +1052,40 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 - `fn into_either(self, into_left: bool) -> Either<Self, Self>`
 
   Converts `self` into a [`Left`](#left) variant of [`Either<Self, Self>`](Either)
+  if `into_left` is `true`.
+  Converts `self` into a [`Right`](#right) variant of [`Either<Self, Self>`](Either)
+  otherwise.
+  
+  # Examples
+  
+  ```rust
+  use either::{IntoEither, Left, Right};
+  
+  let x = 0;
+  assert_eq!(x.into_either(true), Left(x));
+  assert_eq!(x.into_either(false), Right(x));
+  ```
 
 - `fn into_either_with<F>(self, into_left: F) -> Either<Self, Self>`
 
   Converts `self` into a [`Left`](#left) variant of [`Either<Self, Self>`](Either)
+  if `into_left(&self)` returns `true`.
+  Converts `self` into a [`Right`](#right) variant of [`Either<Self, Self>`](Either)
+  otherwise.
+  
+  # Examples
+  
+  ```rust
+  use either::{IntoEither, Left, Right};
+  
+  fn is_even(x: &u8) -> bool {
+      x % 2 == 0
+  }
+  
+  let x = 0;
+  assert_eq!(x.into_either_with(is_even), Left(x));
+  assert_eq!(x.into_either_with(|x| !is_even(x)), Right(x));
+  ```
 
 #### Implementors
 
@@ -1448,27 +1099,35 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 fn _unsized_ref_propagation()
 ```
 
-*Defined in [`either-1.15.0/src/lib.rs:1540-1553`](../../.source_1765633015/either-1.15.0/src/lib.rs#L1540-L1553)*
+*Defined in [`either-1.15.0/src/lib.rs:1540-1553`](../../.source_1765894658/either-1.15.0/src/lib.rs#L1540-L1553)*
+
+### `_unsized_std_propagation`
+
+```rust
+fn _unsized_std_propagation()
+```
+
+*Defined in [`either-1.15.0/src/lib.rs:1557-1561`](../../.source_1765894658/either-1.15.0/src/lib.rs#L1557-L1561)*
 
 ## Macros
 
 ### `map_either!`
 
-*Defined in [`either-1.15.0/src/lib.rs:133-140`](../../.source_1765633015/either-1.15.0/src/lib.rs#L133-L140)*
+*Defined in [`either-1.15.0/src/lib.rs:133-140`](../../.source_1765894658/either-1.15.0/src/lib.rs#L133-L140)*
 
 ### `impl_specific_ref_and_mut!`
 
-*Defined in [`either-1.15.0/src/lib.rs:1257-1277`](../../.source_1765633015/either-1.15.0/src/lib.rs#L1257-L1277)*
+*Defined in [`either-1.15.0/src/lib.rs:1257-1277`](../../.source_1765894658/either-1.15.0/src/lib.rs#L1257-L1277)*
 
 ### `check_t!`
 
-*Defined in [`either-1.15.0/src/lib.rs:1526-1537`](../../.source_1765633015/either-1.15.0/src/lib.rs#L1526-L1537)*
+*Defined in [`either-1.15.0/src/lib.rs:1526-1537`](../../.source_1765894658/either-1.15.0/src/lib.rs#L1526-L1537)*
 
 A helper macro to check if AsRef and AsMut are implemented for a given type.
 
 ### `for_both!`
 
-*Defined in [`either-1.15.0/src/lib.rs:81-88`](../../.source_1765633015/either-1.15.0/src/lib.rs#L81-L88)*
+*Defined in [`either-1.15.0/src/lib.rs:81-88`](../../.source_1765894658/either-1.15.0/src/lib.rs#L81-L88)*
 
 Evaluate the provided expression for both [`Either::Left`](#eitherleft) and [`Either::Right`](#eitherright).
 
@@ -1497,7 +1156,7 @@ fn main() {
 
 ### `try_left!`
 
-*Defined in [`either-1.15.0/src/lib.rs:113-120`](../../.source_1765633015/either-1.15.0/src/lib.rs#L113-L120)*
+*Defined in [`either-1.15.0/src/lib.rs:113-120`](../../.source_1765894658/either-1.15.0/src/lib.rs#L113-L120)*
 
 Macro for unwrapping the left side of an [`Either`](#either), which fails early
 with the opposite side. Can only be used in functions that return
@@ -1524,7 +1183,7 @@ fn main() {
 
 ### `try_right!`
 
-*Defined in [`either-1.15.0/src/lib.rs:124-131`](../../.source_1765633015/either-1.15.0/src/lib.rs#L124-L131)*
+*Defined in [`either-1.15.0/src/lib.rs:124-131`](../../.source_1765894658/either-1.15.0/src/lib.rs#L124-L131)*
 
 Dual to [`try_left!`](#try-left), see its documentation for more information.
 

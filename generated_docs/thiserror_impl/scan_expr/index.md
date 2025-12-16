@@ -37,7 +37,7 @@ enum Input {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/scan_expr.rs:6-23`](../../../.source_1765633015/thiserror-impl-2.0.17/src/scan_expr.rs#L6-L23)*
+*Defined in [`thiserror-impl-2.0.17/src/scan_expr.rs:6-23`](../../../.source_1765894658/thiserror-impl-2.0.17/src/scan_expr.rs#L6-L23)*
 
 #### Trait Implementations
 
@@ -64,11 +64,8 @@ enum Input {
 - <span id="input-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Input`
@@ -94,7 +91,7 @@ enum Action {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/scan_expr.rs:25-30`](../../../.source_1765633015/thiserror-impl-2.0.17/src/scan_expr.rs#L25-L30)*
+*Defined in [`thiserror-impl-2.0.17/src/scan_expr.rs:25-30`](../../../.source_1765894658/thiserror-impl-2.0.17/src/scan_expr.rs#L25-L30)*
 
 #### Trait Implementations
 
@@ -121,11 +118,8 @@ enum Action {
 - <span id="action-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Action`
@@ -148,5 +142,5 @@ enum Action {
 fn scan_expr(input: syn::parse::ParseStream<'_>) -> syn::parse::Result<()>
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/scan_expr.rs:192-264`](../../../.source_1765633015/thiserror-impl-2.0.17/src/scan_expr.rs#L192-L264)*
+*Defined in [`thiserror-impl-2.0.17/src/scan_expr.rs:192-264`](../../../.source_1765894658/thiserror-impl-2.0.17/src/scan_expr.rs#L192-L264)*
 

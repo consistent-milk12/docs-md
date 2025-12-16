@@ -55,7 +55,7 @@ enum BinOp {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../../.source_1765633015/syn-2.0.111/src/op.rs#L1-L63)*
+*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../../.source_1765894658/syn-2.0.111/src/op.rs#L1-L63)*
 
 A binary operator: `+`, `+=`, `&`.
 
@@ -218,11 +218,8 @@ A binary operator: `+`, `+=`, `&`.
 - <span id="binop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::op::BinOp`
@@ -273,7 +270,7 @@ enum UnOp {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../../.source_1765633015/syn-2.0.111/src/op.rs#L65-L77)*
+*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../../.source_1765894658/syn-2.0.111/src/op.rs#L65-L77)*
 
 A unary operator: `*`, `!`, `-`.
 
@@ -336,11 +333,8 @@ A unary operator: `*`, `!`, `-`.
 - <span id="unop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::op::UnOp`

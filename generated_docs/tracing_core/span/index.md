@@ -24,7 +24,7 @@ Spans represent periods of time in the execution of a program.
 struct Id(core::num::NonZeroU64);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:18`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L18)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:18`](../../../.source_1765894658/tracing-core-0.1.35/src/span.rs#L18)*
 
 Identifies a span within the context of a subscriber.
 
@@ -39,27 +39,18 @@ more information on span ID generation.
 - <span id="id-from-u64"></span>`fn from_u64(u: u64) -> Self`
 
   Constructs a new span ID from the given `u64`.
-
   
-
   <pre class="ignore" style="white-space:normal;font:inherit;">
-
       <strong>Note</strong>: Span IDs must be greater than zero.
-
   </pre>
-
   
-
   # Panics
-
   - If the provided `u64` is 0.
 
 - <span id="id-from-non-zero-u64"></span>`const fn from_non_zero_u64(id: NonZeroU64) -> Self`
 
   Constructs a new span ID from the given `NonZeroU64`.
-
   
-
   Unlike [`Id::from_u64`](Id::from_u64()), this will never panic.
 
 - <span id="id-into-u64"></span>`fn into_u64(&self) -> u64`
@@ -113,11 +104,8 @@ more information on span ID generation.
 - <span id="id-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Id`
@@ -156,7 +144,7 @@ struct Attributes<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:23-27`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L23-L27)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:23-27`](../../../.source_1765894658/tracing-core-0.1.35/src/span.rs#L23-L27)*
 
 Attributes provided to a `Subscriber` describing a new span when it is
 created.
@@ -166,19 +154,16 @@ created.
 - <span id="attributes-new"></span>`fn new(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
   Returns `Attributes` describing a new child span of the current span,
-
   with the provided metadata and values.
 
 - <span id="attributes-new-root"></span>`fn new_root(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
   Returns `Attributes` describing a new span at the root of its own trace
-
   tree, with the provided metadata and values.
 
 - <span id="attributes-child-of"></span>`fn child_of(parent: Id, metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Id`](#id), [`Metadata`](../metadata/index.md#metadata), [`ValueSet`](../field/index.md#valueset)
 
   Returns `Attributes` describing a new child span of the specified
-
   parent span, with the provided metadata and values.
 
 - <span id="attributes-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../metadata/index.md#metadata)
@@ -188,7 +173,6 @@ created.
 - <span id="attributes-values"></span>`fn values(&self) -> &field::ValueSet<'a>` — [`ValueSet`](../field/index.md#valueset)
 
   Returns a reference to a `ValueSet` containing any values the new span
-
   was created with.
 
 - <span id="attributes-is-root"></span>`fn is_root(&self) -> bool`
@@ -198,39 +182,28 @@ created.
 - <span id="attributes-is-contextual"></span>`fn is_contextual(&self) -> bool`
 
   Returns true if the new span's parent should be determined based on the
-
   current context.
-
   
-
   If this is true and the current thread is currently inside a span, then
-
   that span should be the new span's parent. Otherwise, if the current
-
   thread is _not_ inside a span, then the new span will be the root of its
-
   own trace tree.
 
 - <span id="attributes-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](#id)
 
   Returns the new span's explicitly-specified parent, if there is one.
-
   
-
   Otherwise (if the new span is a root or is a child of the current span),
-
   returns `None`.
 
 - <span id="attributes-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md#visit)
 
   Records all the fields in this set of `Attributes` with the provided
-
   [Visitor].
 
 - <span id="attributes-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../field/index.md#field)
 
   Returns `true` if this set of `Attributes` contains a value for the
-
   given `Field`.
 
 - <span id="attributes-is-empty"></span>`fn is_empty(&self) -> bool`
@@ -240,21 +213,13 @@ created.
 - <span id="attributes-fields"></span>`fn fields(&self) -> &FieldSet` — [`FieldSet`](../field/index.md#fieldset)
 
   Returns the set of all [`fields`](../../tracing_attributes/attr/kw/index.md) defined by this span's [`Metadata`](../metadata/index.md).
-
   
-
   Note that the [`FieldSet`](../field/index.md) returned by this method includes *all* the
-
   fields declared by this span, not just those with values that are recorded
-
   as part of this set of `Attributes`. Other fields with values not present in
-
   this `Attributes`' value set may [record] values later.
-
   
-
   
-
   
 
 #### Trait Implementations
@@ -286,11 +251,8 @@ created.
 - <span id="attributes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Attributes<'a>`
@@ -313,7 +275,7 @@ struct Record<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:31-33`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L31-L33)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:31-33`](../../../.source_1765894658/tracing-core-0.1.35/src/span.rs#L31-L33)*
 
 A set of fields recorded by a span.
 
@@ -330,7 +292,6 @@ A set of fields recorded by a span.
 - <span id="record-len"></span>`fn len(&self) -> usize`
 
   Returns the number of fields that would be visited from this `Record`
-
   when `Record::record()` is called
 
 - <span id="record-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../field/index.md#field)
@@ -370,11 +331,8 @@ A set of fields recorded by a span.
 - <span id="record-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Record<'a>`
@@ -397,7 +355,7 @@ struct Current {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:46-48`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L46-L48)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:46-48`](../../../.source_1765894658/tracing-core-0.1.35/src/span.rs#L46-L48)*
 
 Indicates what [the `Subscriber` considers] the "current" span.
 
@@ -414,47 +372,34 @@ possible states:
 - <span id="current-new"></span>`fn new(id: Id, metadata: &'static Metadata<'static>) -> Self` — [`Id`](#id), [`Metadata`](../metadata/index.md#metadata)
 
   Constructs a new `Current` that indicates the current context is a span
-
   with the given `metadata` and `metadata`.
 
 - <span id="current-none"></span>`fn none() -> Self`
 
   Constructs a new `Current` that indicates the current context is *not*
-
   in a span.
 
 - <span id="current-unknown"></span>`fn unknown() -> Self`
 
   Constructs a new `Current` that indicates the `Subscriber` does not
-
   track a current span.
 
 - <span id="current-is-known"></span>`fn is_known(&self) -> bool`
 
   Returns `true` if the `Subscriber` that constructed this `Current` tracks a
-
   current span.
-
   
-
   If this returns `true` and `id`, [`metadata`](../metadata/index.md), or `into_inner`
-
   return `None`, that indicates that we are currently known to *not* be
-
   inside a span. If this returns `false`, those methods will also return
-
   `None`, but in this case, that is because the subscriber does not keep
-
   track of the currently-entered span.
-
   
-
   
 
 - <span id="current-into-inner"></span>`fn into_inner(self) -> Option<(Id, &'static Metadata<'static>)>` — [`Id`](#id), [`Metadata`](../metadata/index.md#metadata)
 
   Consumes `self` and returns the span `Id` and `Metadata` of the current
-
   span, if one exists and is known.
 
 - <span id="current-id"></span>`fn id(&self) -> Option<&Id>` — [`Id`](#id)
@@ -494,11 +439,8 @@ possible states:
 - <span id="current-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Current`
@@ -528,7 +470,7 @@ enum CurrentInner {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/span.rs:51-58`](../../../.source_1765633015/tracing-core-0.1.35/src/span.rs#L51-L58)*
+*Defined in [`tracing-core-0.1.35/src/span.rs:51-58`](../../../.source_1765894658/tracing-core-0.1.35/src/span.rs#L51-L58)*
 
 #### Trait Implementations
 
@@ -559,11 +501,8 @@ enum CurrentInner {
 - <span id="currentinner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for CurrentInner`

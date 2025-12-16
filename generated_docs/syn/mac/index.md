@@ -32,7 +32,7 @@ struct Macro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../../.source_1765633015/syn-2.0.111/src/mac.rs#L14-L23)*
+*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../../.source_1765894658/syn-2.0.111/src/mac.rs#L14-L23)*
 
 A macro invocation: `println!("{}", mac)`.
 
@@ -41,173 +41,91 @@ A macro invocation: `println!("{}", mac)`.
 - <span id="macro-parse-body"></span>`fn parse_body<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md#result)
 
   Parse the tokens within the macro invocation's delimiters into a syntax
-
   tree.
-
   
-
   This is equivalent to `syn::parse2::<T>(mac.tokens)` except that it
-
   produces a more useful span when `tokens` is empty.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{parse_quote, Expr, ExprLit, Ident, Lit, LitStr, Macro, Token};
-
   use syn::ext::IdentExt;
-
   use syn::parse::{Error, Parse, ParseStream, Result};
-
   use syn::punctuated::Punctuated;
-
   
-
   // The arguments expected by libcore's format_args macro, and as a
-
   // result most other formatting and printing macros like println.
-
   //
-
   //     println!("{} is {number:.prec$}", "x", prec=5, number=0.01)
-
   struct FormatArgs {
-
       format_string: Expr,
-
       positional_args: Vec<Expr>,
-
       named_args: Vec<(Ident, Expr)>,
-
   }
-
   
-
   impl Parse for FormatArgs {
-
       fn parse(input: ParseStream) -> Result<Self> {
-
           let format_string: Expr;
-
           let mut positional_args = Vec::new();
-
           let mut named_args = Vec::new();
-
   
-
           format_string = input.parse()?;
-
           while !input.is_empty() {
-
               input.parse::<Token![,]>()?;
-
               if input.is_empty() {
-
                   break;
-
               }
-
               if input.peek(Ident::peek_any) && input.peek2(Token![=]) {
-
                   while !input.is_empty() {
-
                       let name: Ident = input.call(Ident::parse_any)?;
-
                       input.parse::<Token![=]>()?;
-
                       let value: Expr = input.parse()?;
-
                       named_args.push((name, value));
-
                       if input.is_empty() {
-
                           break;
-
                       }
-
                       input.parse::<Token![,]>()?;
-
                   }
-
                   break;
-
               }
-
               positional_args.push(input.parse()?);
-
           }
-
   
-
           Ok(FormatArgs {
-
               format_string,
-
               positional_args,
-
               named_args,
-
           })
-
       }
-
   }
-
   
-
   // Extract the first argument, the format string literal, from an
-
   // invocation of a formatting or printing macro.
-
   fn get_format_string(m: &Macro) -> Result<LitStr> {
-
       let args: FormatArgs = m.parse_body()?;
-
       match args.format_string {
-
           Expr::Lit(ExprLit { lit: Lit::Str(lit), .. }) => Ok(lit),
-
           other => {
-
               // First argument was not a string literal expression.
-
               // Maybe something like: println!(concat!(...), ...)
-
               Err(Error::new_spanned(other, "format string must be a string literal"))
-
           }
-
       }
-
   }
-
   
-
   fn main() {
-
       let invocation = parse_quote! {
-
           println!("{:?}", Instant::now())
-
       };
-
       let lit = get_format_string(&invocation).unwrap();
-
       assert_eq!(lit.value(), "{:?}");
-
   }
-
   ```
 
 - <span id="macro-parse-body-with"></span>`fn parse_body_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md#result), [`Parser`](../parse/index.md#parser)
 
   Parse the tokens within the macro invocation's delimiters using the
-
   given parser.
 
 #### Trait Implementations
@@ -253,11 +171,8 @@ A macro invocation: `println!("{}", mac)`.
 - <span id="macro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::mac::Macro`
@@ -310,7 +225,7 @@ enum MacroDelimiter {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../../.source_1765633015/syn-2.0.111/src/mac.rs#L25-L33)*
+*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../../.source_1765894658/syn-2.0.111/src/mac.rs#L25-L33)*
 
 A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]`.
 
@@ -361,11 +276,8 @@ A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]
 - <span id="macrodelimiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::MacroDelimiter`
@@ -400,5 +312,5 @@ A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]
 fn parse_delimiter(input: crate::parse::ParseStream<'_>) -> crate::error::Result<(MacroDelimiter, proc_macro2::TokenStream)>
 ```
 
-*Defined in [`syn-2.0.111/src/mac.rs:153-170`](../../../.source_1765633015/syn-2.0.111/src/mac.rs#L153-L170)*
+*Defined in [`syn-2.0.111/src/mac.rs:153-170`](../../../.source_1765894658/syn-2.0.111/src/mac.rs#L153-L170)*
 

@@ -24,7 +24,7 @@ struct PubTypesEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../../.source_1765633015/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../../.source_1765894658/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
 
 A single parsed pubtype.
 
@@ -37,13 +37,11 @@ A single parsed pubtype.
 - <span id="pubtypesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md#debuginfooffset), [`Reader`](../index.md#reader)
 
   Returns the offset into the .debug_info section for the header of the compilation unit
-
   which contains the type with this name.
 
 - <span id="pubtypesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader)
 
   Returns the offset into the compilation unit for the debugging information entry which
-
   the type with this name.
 
 #### Trait Implementations
@@ -83,11 +81,8 @@ A single parsed pubtype.
 - <span id="pubtypesentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Reader> PubStuffEntry for PubTypesEntry<R>`
@@ -120,7 +115,7 @@ A single parsed pubtype.
 struct DebugPubTypes<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../../.source_1765633015/gimli-0.32.3/src/read/pubtypes.rs#L50)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../../.source_1765894658/gimli-0.32.3/src/read/pubtypes.rs#L50)*
 
 The `DebugPubTypes` struct represents the DWARF public types information
 found in the `.debug_info` section.
@@ -130,33 +125,19 @@ found in the `.debug_info` section.
 - <span id="debugpubtypes-new"></span>`fn new(debug_pubtypes_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugPubTypes` instance from the data in the `.debug_pubtypes`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_pubtypes` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugPubTypes, LittleEndian};
-
   
-
   let buf = [];
-
   let read_debug_pubtypes_somehow = || &buf;
-
   let debug_pubtypes =
-
       DebugPubTypes::new(read_debug_pubtypes_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -196,11 +177,8 @@ found in the `.debug_info` section.
 - <span id="debugpubtypes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Reader> Section for DebugPubTypes<R>`
@@ -235,7 +213,7 @@ found in the `.debug_info` section.
 struct PubTypesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../../.source_1765633015/gimli-0.32.3/src/read/pubtypes.rs#L118)*
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../../.source_1765894658/gimli-0.32.3/src/read/pubtypes.rs#L118)*
 
 An iterator over the pubtypes from a `.debug_pubtypes` section.
 
@@ -247,17 +225,11 @@ Can be [used with
 - <span id="pubtypesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubTypesEntry<R>>>` — [`Result`](../../index.md#result), [`PubTypesEntry`](../index.md#pubtypesentry)
 
   Advance the iterator and return the next pubtype.
-
   
-
   Returns the newly parsed pubtype as `Ok(Some(pubtype))`. Returns
-
   `Ok(None)` when iteration is complete and all pubtypes have already been
-
   parsed and yielded. If an error occurs while parsing the next pubtype,
-
   then this error is returned as `Err(e)`, and all subsequent calls return
-
   `Ok(None)`.
 
 #### Trait Implementations
@@ -297,11 +269,8 @@ Can be [used with
 - <span id="pubtypesentryiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PubTypesEntryIter<R>`

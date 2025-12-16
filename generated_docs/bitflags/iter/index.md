@@ -25,7 +25,7 @@ struct Iter<B: 'static> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/iter.rs:13-16`](../../../.source_1765633015/bitflags-2.10.0/src/iter.rs#L13-L16)*
+*Defined in [`bitflags-2.10.0/src/iter.rs:13-16`](../../../.source_1765894658/bitflags-2.10.0/src/iter.rs#L13-L16)*
 
 An iterator over flags values.
 
@@ -61,11 +61,8 @@ as a final flags value.
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter<B>`
@@ -105,7 +102,7 @@ struct IterNames<B: 'static> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/iter.rs:67-72`](../../../.source_1765633015/bitflags-2.10.0/src/iter.rs#L67-L72)*
+*Defined in [`bitflags-2.10.0/src/iter.rs:67-72`](../../../.source_1765894658/bitflags-2.10.0/src/iter.rs#L67-L72)*
 
 An iterator over flags values.
 
@@ -141,11 +138,8 @@ won't be yielded, but can be found with the `IterNames::remaining` method.
 - <span id="iternames-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterNames<B>`
@@ -183,7 +177,7 @@ struct IterDefinedNames<B: 'static> {
 }
 ```
 
-*Defined in [`bitflags-2.10.0/src/iter.rs:153-156`](../../../.source_1765633015/bitflags-2.10.0/src/iter.rs#L153-L156)*
+*Defined in [`bitflags-2.10.0/src/iter.rs:153-156`](../../../.source_1765894658/bitflags-2.10.0/src/iter.rs#L153-L156)*
 
 An iterator over all defined named flags.
 
@@ -219,11 +213,8 @@ whether they are contained in a particular flags value.
 - <span id="iterdefinednames-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterDefinedNames<B>`

@@ -24,7 +24,7 @@ struct TokenStream {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
 
 An abstract stream of tokens, or more concretely a sequence of token trees.
 
@@ -107,11 +107,8 @@ Token stream is both the input and output of `#[proc_macro]`,
 - <span id="tokenstream-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TokenStream`
@@ -169,7 +166,7 @@ struct IntoIter {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1460-1463`](../../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L1460-L1463)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1460-1463`](../../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L1460-L1463)*
 
 An iterator over `TokenStream`'s `TokenTree`s.
 
@@ -213,11 +210,8 @@ delimited groups, and returns whole groups as token trees.
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter`

@@ -22,7 +22,7 @@ struct Teddy {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/teddy.rs:7-36`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/prefilter/teddy.rs#L7-L36)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/teddy.rs:7-36`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/teddy.rs#L7-L36)*
 
 #### Fields
 
@@ -96,11 +96,8 @@ struct Teddy {
 - <span id="teddy-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for Teddy`

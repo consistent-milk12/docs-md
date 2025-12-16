@@ -52,7 +52,7 @@ struct CoreLatch {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:75-77`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L75-L77)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:75-77`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L75-L77)*
 
 Spin latches are the simplest, most efficient kind, but they do
 not support a `wait()` operation. They just have a boolean flag
@@ -65,39 +65,28 @@ that becomes true when `set()` is called.
 - <span id="corelatch-get-sleepy"></span>`fn get_sleepy(&self) -> bool`
 
   Invoked by owning thread as it prepares to sleep. Returns true
-
   if the owning thread may proceed to fall asleep, false if the
-
   latch was set in the meantime.
 
 - <span id="corelatch-fall-asleep"></span>`fn fall_asleep(&self) -> bool`
 
   Invoked by owning thread as it falls asleep sleep. Returns
-
   true if the owning thread should block, or false if the latch
-
   was set in the meantime.
 
 - <span id="corelatch-wake-up"></span>`fn wake_up(&self)`
 
   Invoked by owning thread as it falls asleep sleep. Returns
-
   true if the owning thread should block, or false if the latch
-
   was set in the meantime.
 
 - <span id="corelatch-set"></span>`unsafe fn set(this: *const Self) -> bool`
 
   Set the latch. If this returns true, the owning thread was sleeping
-
   and must be awoken.
-
   
-
   This is private because, typically, setting a latch involves
-
   doing some wakeups; those are encapsulated in the surrounding
-
   latch code.
 
 - <span id="corelatch-probe"></span>`fn probe(&self) -> bool`
@@ -137,11 +126,8 @@ that becomes true when `set()` is called.
 - <span id="corelatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for CoreLatch`
@@ -181,7 +167,7 @@ struct SpinLatch<'r> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:148-153`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L148-L153)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:148-153`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L148-L153)*
 
 Spin latches are the simplest, most efficient kind, but they do
 not support a `wait()` operation. They just have a boolean flag
@@ -192,19 +178,14 @@ that becomes true when `set()` is called.
 - <span id="spinlatch-new"></span>`fn new(thread: &'r WorkerThread) -> SpinLatch<'r>` — [`WorkerThread`](../registry/index.md#workerthread), [`SpinLatch`](#spinlatch)
 
   Creates a new spin latch that is owned by `thread`. This means
-
   that `thread` is the only thread that should be blocking on
-
   this latch -- it also means that when the latch is set, we
-
   will wake `thread` if it is sleeping.
 
 - <span id="spinlatch-cross"></span>`fn cross(thread: &'r WorkerThread) -> SpinLatch<'r>` — [`WorkerThread`](../registry/index.md#workerthread), [`SpinLatch`](#spinlatch)
 
   Creates a new spin latch for cross-thread-pool blocking.  Notably, we
-
   need to make sure the registry is kept alive after setting, so we can
-
   safely call the notification.
 
 - <span id="spinlatch-probe"></span>`fn probe(&self) -> bool`
@@ -238,11 +219,8 @@ that becomes true when `set()` is called.
 - <span id="spinlatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Latch for SpinLatch<'_>`
@@ -284,7 +262,7 @@ struct LockLatch {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:228-231`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L228-L231)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:228-231`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L228-L231)*
 
 A Latch starts as false and eventually becomes true. You can block
 until it becomes true.
@@ -330,11 +308,8 @@ until it becomes true.
 - <span id="locklatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Latch for LockLatch`
@@ -375,7 +350,7 @@ struct OnceLatch {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:282-284`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L282-L284)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:282-284`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L282-L284)*
 
 Once latches are used to implement one-time blocking, primarily
 for the termination flag of the threads in the pool.
@@ -397,7 +372,6 @@ contexts).
 - <span id="oncelatch-set-and-tickle-one"></span>`unsafe fn set_and_tickle_one(this: *const Self, registry: &Registry, target_worker_index: usize)` — [`Registry`](../registry/index.md#registry)
 
   Set the latch, then tickle the specific worker thread,
-
   which should be the one that owns this latch.
 
 #### Trait Implementations
@@ -433,11 +407,8 @@ contexts).
 - <span id="oncelatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for OnceLatch`
@@ -475,7 +446,7 @@ struct CountLatch {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:321-324`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L321-L324)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:321-324`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L321-L324)*
 
 Counting latches are used to implement scopes. They track a
 counter. Unlike other latches, calling `set()` does not
@@ -522,11 +493,8 @@ decrements the counter. The latch is only "set" (in the sense that
 - <span id="countlatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Latch for CountLatch`
@@ -568,7 +536,7 @@ struct LatchRef<'a, L> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:427-430`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L427-L430)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:427-430`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L427-L430)*
 
 `&L` without any implication of `dereferenceable` for `Latch::set`
 
@@ -607,11 +575,8 @@ struct LatchRef<'a, L> {
 - <span id="latchref-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<L: Latch> Latch for LatchRef<'_, L>`
@@ -667,7 +632,7 @@ enum CountLatchKind {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:326-344`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L326-L344)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:326-344`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L326-L344)*
 
 #### Variants
 
@@ -710,11 +675,8 @@ enum CountLatchKind {
 - <span id="countlatchkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for CountLatchKind`
@@ -751,7 +713,7 @@ enum CountLatchKind {
 trait Latch { ... }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:35-51`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L35-L51)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:35-51`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L35-L51)*
 
 We define various kinds of latches, which are all a primitive signaling
 mechanism. A latch starts as false. Eventually someone calls `set()` and
@@ -785,6 +747,19 @@ Latches need to guarantee two things:
 - `fn set(this: *const Self)`
 
   Set the latch, signalling others.
+  
+  # WARNING
+  
+  Setting a latch triggers other threads to wake up and (in some
+  cases) complete. This may, in turn, cause memory to be
+  deallocated and so forth. One must be very careful about this,
+  and it's typically better to read all the fields you will need
+  to access *before* a latch is set!
+  
+  This function operates on `*const Self` instead of `&self` to allow it
+  to become dangling during this call. The caller must ensure that the
+  pointer is valid upon entry, and not invalidated during the call by any
+  actions other than `set` itself.
 
 #### Implementors
 
@@ -799,7 +774,7 @@ Latches need to guarantee two things:
 trait AsCoreLatch { ... }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:53-55`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L53-L55)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:53-55`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L53-L55)*
 
 #### Required Methods
 
@@ -818,7 +793,7 @@ trait AsCoreLatch { ... }
 const UNSET: usize = 0usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:58`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L58)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:58`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L58)*
 
 Latch is not set, owning thread is awake
 
@@ -827,7 +802,7 @@ Latch is not set, owning thread is awake
 const SLEEPY: usize = 1usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:62`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L62)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:62`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L62)*
 
 Latch is not set, owning thread is going to sleep on this latch
 (but has not yet fallen asleep).
@@ -837,7 +812,7 @@ Latch is not set, owning thread is going to sleep on this latch
 const SLEEPING: usize = 2usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:66`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L66)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:66`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L66)*
 
 Latch is not set, owning thread is asleep on this latch and
 must be awoken.
@@ -847,7 +822,7 @@ must be awoken.
 const SET: usize = 3usize;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/latch.rs:69`](../../../.source_1765633015/rayon-core-1.13.0/src/latch.rs#L69)*
+*Defined in [`rayon-core-1.13.0/src/latch.rs:69`](../../../.source_1765894658/rayon-core-1.13.0/src/latch.rs#L69)*
 
 Latch is set.
 

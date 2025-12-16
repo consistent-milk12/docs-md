@@ -22,7 +22,7 @@ struct AnyValue {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/any_value.rs:2-7`](../../../../.source_1765633015/clap_builder-4.5.53/src/util/any_value.rs#L2-L7)*
+*Defined in [`clap_builder-4.5.53/src/util/any_value.rs:2-7`](../../../../.source_1765894658/clap_builder-4.5.53/src/util/any_value.rs#L2-L7)*
 
 #### Implementations
 
@@ -71,11 +71,8 @@ struct AnyValue {
 - <span id="anyvalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AnyValue`
@@ -107,7 +104,7 @@ struct AnyValueId {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/any_value.rs:42-46`](../../../../.source_1765633015/clap_builder-4.5.53/src/util/any_value.rs#L42-L46)*
+*Defined in [`clap_builder-4.5.53/src/util/any_value.rs:42-46`](../../../../.source_1765894658/clap_builder-4.5.53/src/util/any_value.rs#L42-L46)*
 
 #### Implementations
 
@@ -158,11 +155,8 @@ struct AnyValueId {
 - <span id="anyvalueid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for AnyValueId`

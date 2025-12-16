@@ -25,7 +25,7 @@ struct LiteralTrie {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:81-90`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L81-L90)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:81-90`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L81-L90)*
 
 A trie that preserves leftmost-first match semantics.
 
@@ -125,31 +125,22 @@ more general composition of finite state machines.
 - <span id="literaltrie-add"></span>`fn add(&mut self, bytes: &[u8]) -> Result<(), BuildError>` — [`BuildError`](../error/index.md#builderror)
 
   Add the given literal to this trie.
-
   
-
   If the literal could not be added because the `StateID` space was
-
   exhausted, then an error is returned. If an error returns, the trie
-
   is in an unspecified state.
 
 - <span id="literaltrie-get-or-add-state"></span>`fn get_or_add_state(&mut self, from: StateID, byte: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md#stateid), [`BuildError`](../error/index.md#builderror)
 
   If the given transition is defined, then return the next state ID.
-
   Otherwise, add the transition to `from` and point it to a new state.
-
   
-
   If a new state ID could not be allocated, then an error is returned.
 
 - <span id="literaltrie-compile"></span>`fn compile(&self, builder: &mut Builder) -> Result<ThompsonRef, BuildError>` — [`Builder`](../builder/index.md#builder), [`ThompsonRef`](../compiler/index.md#thompsonref), [`BuildError`](../error/index.md#builderror)
 
   Compile this literal trie to the NFA builder given.
-
   
-
   This forwards any errors that may occur while using the given builder.
 
 #### Trait Implementations
@@ -189,11 +180,8 @@ more general composition of finite state machines.
 - <span id="literaltrie-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LiteralTrie`
@@ -227,7 +215,7 @@ struct Frame<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:303-320`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L303-L320)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:303-320`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L303-L320)*
 
 An explicit stack frame used for traversing the trie without using
 recursion.
@@ -274,9 +262,7 @@ subsequent chunks in the trie state, if any exist.
 - <span id="frame-new"></span>`fn new(state: &'a State) -> Frame<'a>` — [`State`](#state), [`Frame`](#frame)
 
   Create a new stack frame for trie traversal. This initializes the
-
   'transitions' iterator to the transitions for the first chunk, with the
-
   'chunks' iterator being every chunk after the first one.
 
 #### Trait Implementations
@@ -308,11 +294,8 @@ subsequent chunks in the trie state, if any exist.
 - <span id="frame-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Frame<'a>`
@@ -336,7 +319,7 @@ struct State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:363-366`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L363-L366)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:363-366`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L363-L366)*
 
 A state in a trie.
 
@@ -371,23 +354,18 @@ only broken within 'add'. Once 'add' returns, the invariant is upheld.)
 - <span id="state-add-match"></span>`fn add_match(&mut self)`
 
   Mark this state as a match state and freeze the active chunk such that
-
   it can not be further mutated.
 
 - <span id="state-is-leaf"></span>`fn is_leaf(&self) -> bool`
 
   Returns true if and only if this state is a leaf state. That is, a
-
   state that has no outgoing transitions.
 
 - <span id="state-chunks"></span>`fn chunks(&self) -> StateChunksIter<'_>` — [`StateChunksIter`](#statechunksiter)
 
   Returns an iterator over all of the chunks (including the currently
-
   active chunk) in this state. Since the active chunk is included, the
-
   iterator is guaranteed to always yield at least one chunk (although the
-
   chunk may be empty).
 
 - <span id="state-active-chunk"></span>`fn active_chunk(&self) -> &[Transition]` — [`Transition`](#transition)
@@ -439,11 +417,8 @@ only broken within 'add'. Once 'add' returns, the invariant is upheld.)
 - <span id="state-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for State`
@@ -476,7 +451,7 @@ struct StateChunksIter<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:444-448`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L444-L448)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:444-448`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L444-L448)*
 
 An iterator over all of the chunks in a state, including the active chunk.
 
@@ -512,11 +487,8 @@ we can include it in the `Frame` type for non-recursive trie traversal.
 - <span id="statechunksiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StateChunksIter<'a>`
@@ -554,7 +526,7 @@ struct Transition {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:466-469`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L466-L469)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:466-469`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L466-L469)*
 
 A single transition in a trie to another state.
 
@@ -597,11 +569,8 @@ A single transition in a trie to another state.
 - <span id="transition-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Transition`

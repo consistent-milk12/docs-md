@@ -24,7 +24,7 @@ struct PubNamesEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:8-12`](../../../../.source_1765633015/gimli-0.32.3/src/read/pubnames.rs#L8-L12)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:8-12`](../../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L8-L12)*
 
 A single parsed pubname.
 
@@ -37,13 +37,11 @@ A single parsed pubname.
 - <span id="pubnamesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md#debuginfooffset), [`Reader`](../index.md#reader)
 
   Returns the offset into the .debug_info section for the header of the compilation unit
-
   which contains this name.
 
 - <span id="pubnamesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader)
 
   Returns the offset into the compilation unit for the debugging information entry which
-
   has this name.
 
 #### Trait Implementations
@@ -83,11 +81,8 @@ A single parsed pubname.
 - <span id="pubnamesentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Reader> PubStuffEntry for PubNamesEntry<R>`
@@ -120,7 +115,7 @@ A single parsed pubname.
 struct DebugPubNames<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:50`](../../../../.source_1765633015/gimli-0.32.3/src/read/pubnames.rs#L50)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:50`](../../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L50)*
 
 The `DebugPubNames` struct represents the DWARF public names information
 found in the `.debug_pubnames` section.
@@ -130,33 +125,19 @@ found in the `.debug_pubnames` section.
 - <span id="debugpubnames-new"></span>`fn new(debug_pubnames_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugPubNames` instance from the data in the `.debug_pubnames`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_pubnames` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugPubNames, LittleEndian};
-
   
-
   let buf = [];
-
   let read_debug_pubnames_section_somehow = || &buf;
-
   let debug_pubnames =
-
       DebugPubNames::new(read_debug_pubnames_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -196,11 +177,8 @@ found in the `.debug_pubnames` section.
 - <span id="debugpubnames-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Reader> Section for DebugPubNames<R>`
@@ -235,7 +213,7 @@ found in the `.debug_pubnames` section.
 struct PubNamesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/pubnames.rs:118`](../../../../.source_1765633015/gimli-0.32.3/src/read/pubnames.rs#L118)*
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:118`](../../../../.source_1765894658/gimli-0.32.3/src/read/pubnames.rs#L118)*
 
 An iterator over the pubnames from a `.debug_pubnames` section.
 
@@ -247,17 +225,11 @@ Can be [used with
 - <span id="pubnamesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubNamesEntry<R>>>` — [`Result`](../../index.md#result), [`PubNamesEntry`](../index.md#pubnamesentry)
 
   Advance the iterator and return the next pubname.
-
   
-
   Returns the newly parsed pubname as `Ok(Some(pubname))`. Returns
-
   `Ok(None)` when iteration is complete and all pubnames have already been
-
   parsed and yielded. If an error occurs while parsing the next pubname,
-
   then this error is returned as `Err(e)`, and all subsequent calls return
-
   `Ok(None)`.
 
 #### Trait Implementations
@@ -297,11 +269,8 @@ Can be [used with
 - <span id="pubnamesentryiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PubNamesEntryIter<R>`

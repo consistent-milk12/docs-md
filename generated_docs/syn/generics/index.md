@@ -88,7 +88,7 @@ struct Generics {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L15-L32)*
+*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L15-L32)*
 
 Lifetimes and type parameters attached to a declaration of a function,
 enum, trait, etc.
@@ -132,39 +132,22 @@ grammar, there may be other tokens in between these two things.
 - <span id="generics-split-for-impl"></span>`fn split_for_impl(&self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](#implgenerics), [`TypeGenerics`](#typegenerics), [`WhereClause`](#whereclause)
 
   Split a type's generics into the pieces required for impl'ing a trait
-
   for that type.
-
   
-
   ```rust
-
   use proc_macro2::{Span, Ident};
-
   use quote::quote;
-
   
-
   let generics: syn::Generics = Default::default();
-
   let name = Ident::new("MyType", Span::call_site());
-
   
-
   let (impl_generics, ty_generics, where_clause) = generics.split_for_impl();
-
   quote! {
-
       impl #impl_generics MyTrait for #name #ty_generics #where_clause {
-
           // ...
-
       }
-
   }
-
   ;
-
   ```
 
 #### Trait Implementations
@@ -214,11 +197,8 @@ grammar, there may be other tokens in between these two things.
 - <span id="generics-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::Generics`
@@ -270,7 +250,7 @@ struct LifetimeParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L56-L65)*
+*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L56-L65)*
 
 A lifetime definition: `'a: 'b + 'c + 'd`.
 
@@ -321,11 +301,8 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 - <span id="lifetimeparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::LifetimeParam`
@@ -379,7 +356,7 @@ struct TypeParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L67-L78)*
+*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L67-L78)*
 
 A generic type parameter: `T: Into<String>`.
 
@@ -426,11 +403,8 @@ A generic type parameter: `T: Into<String>`.
 - <span id="typeparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::TypeParam`
@@ -485,7 +459,7 @@ struct ConstParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L80-L92)*
+*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L80-L92)*
 
 A const generic parameter: `const LENGTH: usize`.
 
@@ -532,11 +506,8 @@ A const generic parameter: `const LENGTH: usize`.
 - <span id="constparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::ConstParam`
@@ -583,7 +554,7 @@ A const generic parameter: `const LENGTH: usize`.
 struct Lifetimes<'a>(crate::punctuated::Iter<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:185`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L185)*
+*Defined in [`syn-2.0.111/src/generics.rs:185`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L185)*
 
 #### Trait Implementations
 
@@ -610,11 +581,8 @@ struct Lifetimes<'a>(crate::punctuated::Iter<'a, GenericParam>);
 - <span id="lifetimes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Lifetimes<'a>`
@@ -649,7 +617,7 @@ struct Lifetimes<'a>(crate::punctuated::Iter<'a, GenericParam>);
 struct LifetimesMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:199`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L199)*
+*Defined in [`syn-2.0.111/src/generics.rs:199`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L199)*
 
 #### Trait Implementations
 
@@ -676,11 +644,8 @@ struct LifetimesMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 - <span id="lifetimesmut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LifetimesMut<'a>`
@@ -715,7 +680,7 @@ struct LifetimesMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 struct TypeParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:213`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L213)*
+*Defined in [`syn-2.0.111/src/generics.rs:213`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L213)*
 
 #### Trait Implementations
 
@@ -742,11 +707,8 @@ struct TypeParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 - <span id="typeparams-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TypeParams<'a>`
@@ -781,7 +743,7 @@ struct TypeParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 struct TypeParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:227`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L227)*
+*Defined in [`syn-2.0.111/src/generics.rs:227`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L227)*
 
 #### Trait Implementations
 
@@ -808,11 +770,8 @@ struct TypeParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 - <span id="typeparamsmut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TypeParamsMut<'a>`
@@ -847,7 +806,7 @@ struct TypeParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 struct ConstParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:241`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L241)*
+*Defined in [`syn-2.0.111/src/generics.rs:241`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L241)*
 
 #### Trait Implementations
 
@@ -874,11 +833,8 @@ struct ConstParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 - <span id="constparams-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ConstParams<'a>`
@@ -913,7 +869,7 @@ struct ConstParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 struct ConstParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:255`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L255)*
+*Defined in [`syn-2.0.111/src/generics.rs:255`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L255)*
 
 #### Trait Implementations
 
@@ -940,11 +896,8 @@ struct ConstParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 - <span id="constparamsmut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ConstParamsMut<'a>`
@@ -979,7 +932,7 @@ struct ConstParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 struct ImplGenerics<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:275`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L275)*
+*Defined in [`syn-2.0.111/src/generics.rs:275`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L275)*
 
 Returned by `Generics::split_for_impl`.
 
@@ -1026,11 +979,8 @@ Returned by `Generics::split_for_impl`.
 - <span id="implgenerics-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ImplGenerics<'a>`
@@ -1073,7 +1023,7 @@ Returned by `Generics::split_for_impl`.
 struct TypeGenerics<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:283`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L283)*
+*Defined in [`syn-2.0.111/src/generics.rs:283`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L283)*
 
 Returned by `Generics::split_for_impl`.
 
@@ -1126,11 +1076,8 @@ Returned by `Generics::split_for_impl`.
 - <span id="typegenerics-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TypeGenerics<'a>`
@@ -1173,7 +1120,7 @@ Returned by `Generics::split_for_impl`.
 struct Turbofish<'a>(&'a Generics);
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:291`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L291)*
+*Defined in [`syn-2.0.111/src/generics.rs:291`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L291)*
 
 Returned by `TypeGenerics::as_turbofish`.
 
@@ -1220,11 +1167,8 @@ Returned by `TypeGenerics::as_turbofish`.
 - <span id="turbofish-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Turbofish<'a>`
@@ -1272,7 +1216,7 @@ struct BoundLifetimes {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L352-L361)*
+*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L352-L361)*
 
 A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
@@ -1323,11 +1267,8 @@ A set of bound lifetimes: `for<'a, 'b, 'c>`.
 - <span id="boundlifetimes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::BoundLifetimes`
@@ -1379,7 +1320,7 @@ struct TraitBound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L410-L421)*
+*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L410-L421)*
 
 A trait used as a bound on a type parameter.
 
@@ -1440,11 +1381,8 @@ A trait used as a bound on a type parameter.
 - <span id="traitbound-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::TraitBound`
@@ -1496,7 +1434,7 @@ struct PreciseCapture {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L433-L443)*
+*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L433-L443)*
 
 Precise capturing bound: the 'use&lt;&hellip;&gt;' in `impl Trait +
 use<'a, T>`.
@@ -1544,11 +1482,8 @@ use<'a, T>`.
 - <span id="precisecapture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::PreciseCapture`
@@ -1598,7 +1533,7 @@ struct WhereClause {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L461-L469)*
+*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L461-L469)*
 
 A `where` clause in a definition: `where T: Deserialize<'de>, D:
 'static`.
@@ -1646,11 +1581,8 @@ A `where` clause in a definition: `where T: Deserialize<'de>, D:
 - <span id="whereclause-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::WhereClause`
@@ -1701,7 +1633,7 @@ struct PredicateLifetime {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L490-L498)*
+*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L490-L498)*
 
 A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
@@ -1748,11 +1680,8 @@ A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 - <span id="predicatelifetime-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PredicateLifetime`
@@ -1800,7 +1729,7 @@ struct PredicateType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L500-L512)*
+*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L500-L512)*
 
 A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
@@ -1861,11 +1790,8 @@ A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 - <span id="predicatetype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PredicateType`
@@ -1914,7 +1840,7 @@ enum GenericParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L34-L54)*
+*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L34-L54)*
 
 A generic type parameter, lifetime, or const generic: `T: Into<String>`,
 `'a: 'b`, `const LEN: usize`.
@@ -1981,11 +1907,8 @@ This type is a [syntax tree enum].
 - <span id="genericparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::GenericParam`
@@ -2037,7 +1960,7 @@ enum TypeParamBound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L398-L408)*
+*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L398-L408)*
 
 A trait or lifetime used as a bound on a type parameter.
 
@@ -2090,11 +2013,8 @@ A trait or lifetime used as a bound on a type parameter.
 - <span id="typeparambound-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::TypeParamBound`
@@ -2144,7 +2064,7 @@ enum TraitBoundModifier {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L423-L431)*
+*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L423-L431)*
 
 A modifier on a trait bound, currently only used for the `?` in
 `?Sized`.
@@ -2194,11 +2114,8 @@ A modifier on a trait bound, currently only used for the `?` in
 - <span id="traitboundmodifier-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::TraitBoundModifier`
@@ -2248,7 +2165,7 @@ enum CapturedParam {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L446-L459)*
+*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L446-L459)*
 
 Single parameter in a precise capturing bound.
 
@@ -2308,11 +2225,8 @@ Single parameter in a precise capturing bound.
 - <span id="capturedparam-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::CapturedParam`
@@ -2362,7 +2276,7 @@ enum WherePredicate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L471-L488)*
+*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L471-L488)*
 
 A single predicate in a `where` clause: `T: Deserialize<'de>`.
 
@@ -2424,11 +2338,8 @@ This type is a [syntax tree enum].
 - <span id="wherepredicate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::generics::WherePredicate`
@@ -2473,5 +2384,5 @@ This type is a [syntax tree enum].
 
 ### `generics_wrapper_impls!`
 
-*Defined in [`syn-2.0.111/src/generics.rs:294-335`](../../../.source_1765633015/syn-2.0.111/src/generics.rs#L294-L335)*
+*Defined in [`syn-2.0.111/src/generics.rs:294-335`](../../../.source_1765894658/syn-2.0.111/src/generics.rs#L294-L335)*
 

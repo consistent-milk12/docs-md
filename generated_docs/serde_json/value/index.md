@@ -150,7 +150,7 @@ untyped_example().unwrap();
 struct Serializer;
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/ser.rs:58`](../../../.source_1765633015/serde_json-1.0.145/src/value/ser.rs#L58)*
+*Defined in [`serde_json-1.0.145/src/value/ser.rs:58`](../../../.source_1765894658/serde_json-1.0.145/src/value/ser.rs#L58)*
 
 Serializer whose output is a `Value`.
 
@@ -198,11 +198,8 @@ where
 - <span id="serializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Serializer for Serializer`
@@ -307,7 +304,7 @@ struct Map<K, V> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L29-L31)*
+*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L29-L31)*
 
 Represents a JSON key/value type.
 
@@ -328,103 +325,66 @@ Represents a JSON key/value type.
 - <span id="map-get"></span>`fn get<Q>(&self, key: &Q) -> Option<&Value>` — [`Value`](#value)
 
   Returns a reference to the value corresponding to the key.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
 
 - <span id="map-contains-key"></span>`fn contains_key<Q>(&self, key: &Q) -> bool`
 
   Returns true if the map contains a value for the specified key.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
 
 - <span id="map-get-mut"></span>`fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut Value>` — [`Value`](#value)
 
   Returns a mutable reference to the value corresponding to the key.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
 
 - <span id="map-get-key-value"></span>`fn get_key_value<Q>(&self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](#value)
 
   Returns the key-value pair matching the given key.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
 
 - <span id="map-insert"></span>`fn insert(&mut self, k: String, v: Value) -> Option<Value>` — [`Value`](#value)
 
   Inserts a key-value pair into the map.
-
   
-
   If the map did not have this key present, `None` is returned.
-
   
-
   If the map did have this key present, the value is updated, and the old
-
   value is returned.
 
 - <span id="map-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<Value>` — [`Value`](#value)
 
   Removes a key from the map, returning the value at the key if the key
-
   was previously in the map.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
-
   
-
   If serde_json's "preserve_order" is enabled, `.remove(key)` is
-
   equivalent to `.swap_remove(key)`, replacing this
-
   entry's position with the last element. If you need to preserve the
-
   relative order of the keys in the map, use
-
   `.shift_remove(key)` instead.
 
 - <span id="map-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(String, Value)>` — [`Value`](#value)
 
   Removes a key from the map, returning the stored key and value if the
-
   key was previously in the map.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
-
   
-
   If serde_json's "preserve_order" is enabled, `.remove_entry(key)` is
-
   equivalent to `.swap_remove_entry(key)`,
-
   replacing this entry's position with the last element. If you need to
-
   preserve the relative order of the keys in the map, use
-
   `.shift_remove_entry(key)` instead.
 
 - <span id="map-append"></span>`fn append(&mut self, other: &mut Self)`
@@ -434,7 +394,6 @@ Represents a JSON key/value type.
 - <span id="map-entry"></span>`fn entry<S>(&mut self, key: S) -> Entry<'_>` — [`Entry`](../map/index.md#entry)
 
   Gets the given key's corresponding entry in the map for in-place
-
   manipulation.
 
 - <span id="map-len"></span>`fn len(&self) -> usize`
@@ -472,43 +431,26 @@ Represents a JSON key/value type.
 - <span id="map-retain"></span>`fn retain<F>(&mut self, f: F)`
 
   Retains only the elements specified by the predicate.
-
   
-
   In other words, remove all pairs `(k, v)` such that `f(&k, &mut v)`
-
   returns `false`.
 
 - <span id="map-sort-keys"></span>`fn sort_keys(&mut self)`
 
   Sorts this map's entries in-place using `str`'s usual ordering.
-
   
-
   If serde_json's "preserve_order" feature is not enabled, this method
-
   does no work because all JSON maps are always kept in a sorted state.
-
   
-
   If serde_json's "preserve_order" feature is enabled, this method
-
   destroys the original source order or insertion order of this map in
-
   favor of an alphanumerical order that matches how a BTreeMap with the
-
   same contents would be ordered. This takes **O(n log n + c)** time where
-
   _n_ is the length of the map and _c_ is the capacity.
-
   
-
   Other maps nested within the values of this map are not sorted. If you
-
   need the entire data structure to be sorted at all levels, you must also
-
   call
-
   <code>map.[values_mut]\().for_each([Value::sort_all_objects])</code>.
 
 #### Trait Implementations
@@ -656,11 +598,8 @@ Represents a JSON key/value type.
 - <span id="map-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
@@ -713,7 +652,7 @@ struct Number {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../../.source_1765633015/serde_json-1.0.145/src/number.rs#L22-L24)*
+*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../../.source_1765894658/serde_json-1.0.145/src/number.rs#L22-L24)*
 
 Represents a JSON number, whether integer or floating point.
 
@@ -722,51 +661,36 @@ Represents a JSON number, whether integer or floating point.
 - <span id="number-is-i64"></span>`fn is_i64(&self) -> bool`
 
   Returns true if the `Number` is an integer between `i64::MIN` and
-
   `i64::MAX`.
-
   
-
   For any Number on which `is_i64` returns true, `as_i64` is guaranteed to
-
   return the integer value.
 
 - <span id="number-is-u64"></span>`fn is_u64(&self) -> bool`
 
   Returns true if the `Number` is an integer between zero and `u64::MAX`.
-
   
-
   For any Number on which `is_u64` returns true, `as_u64` is guaranteed to
-
   return the integer value.
 
 - <span id="number-is-f64"></span>`fn is_f64(&self) -> bool`
 
   Returns true if the `Number` can be represented by f64.
-
   
-
   For any Number on which `is_f64` returns true, `as_f64` is guaranteed to
-
   return the floating point value.
-
   
-
   Currently this function returns true if and only if both `is_i64` and
-
   `is_u64` return false but this is not a guarantee in the future.
 
 - <span id="number-as-i64"></span>`fn as_i64(&self) -> Option<i64>`
 
   If the `Number` is an integer, represent it as i64 if possible. Returns
-
   None otherwise.
 
 - <span id="number-as-u64"></span>`fn as_u64(&self) -> Option<u64>`
 
   If the `Number` is an integer, represent it as u64 if possible. Returns
-
   None otherwise.
 
 - <span id="number-as-f64"></span>`fn as_f64(&self) -> Option<f64>`
@@ -776,75 +700,48 @@ Represents a JSON number, whether integer or floating point.
 - <span id="number-from-f64"></span>`fn from_f64(f: f64) -> Option<Number>` — [`Number`](../number/index.md#number)
 
   Converts a finite `f64` to a `Number`. Infinite or NaN values are not JSON
-
   numbers.
-
   
-
   ```rust
-
   use serde_json::Number;
-
   
-
   assert!(Number::from_f64(256.0).is_some());
-
   
-
   assert!(Number::from_f64(f64::NAN).is_none());
-
   ```
 
 - <span id="number-as-i128"></span>`fn as_i128(&self) -> Option<i128>`
 
   If the `Number` is an integer, represent it as i128 if possible. Returns
-
   None otherwise.
 
 - <span id="number-as-u128"></span>`fn as_u128(&self) -> Option<u128>`
 
   If the `Number` is an integer, represent it as u128 if possible. Returns
-
   None otherwise.
 
 - <span id="number-from-i128"></span>`fn from_i128(i: i128) -> Option<Number>` — [`Number`](../number/index.md#number)
 
   Converts an `i128` to a `Number`. Numbers smaller than i64::MIN or
-
   larger than u64::MAX can only be represented in `Number` if serde_json's
-
   "arbitrary_precision" feature is enabled.
-
   
-
   ```rust
-
   use serde_json::Number;
-
   
-
   assert!(Number::from_i128(256).is_some());
-
   ```
 
 - <span id="number-from-u128"></span>`fn from_u128(i: u128) -> Option<Number>` — [`Number`](../number/index.md#number)
 
   Converts a `u128` to a `Number`. Numbers greater than u64::MAX can only
-
   be represented in `Number` if serde_json's "arbitrary_precision" feature
-
   is enabled.
-
   
-
   ```rust
-
   use serde_json::Number;
-
   
-
   assert!(Number::from_u128(256).is_some());
-
   ```
 
 - <span id="number-as-f32"></span>`fn as_f32(&self) -> Option<f32>`
@@ -976,11 +873,8 @@ Represents a JSON number, whether integer or floating point.
 - <span id="number-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Number`
@@ -1032,7 +926,7 @@ enum Value {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:116-176`](../../../.source_1765633015/serde_json-1.0.145/src/value/mod.rs#L116-L176)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:116-176`](../../../.source_1765894658/serde_json-1.0.145/src/value/mod.rs#L116-L176)*
 
 Represents any valid JSON value.
 
@@ -1219,51 +1113,28 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 - <span id="value-display-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   Display a JSON value as a string.
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   let json = json!({ "city": "London", "street": "10 Downing Street" });
-
   
-
   // Compact format:
-
   //
-
   // {"city":"London","street":"10 Downing Street"}
-
   let compact = format!("{}", json);
-
   assert_eq!(compact,
-
       "{\"city\":\"London\",\"street\":\"10 Downing Street\"}");
-
   
-
   // Pretty format:
-
   //
-
   // {
-
   //   "city": "London",
-
   //   "street": "10 Downing Street"
-
   // }
-
   let pretty = format!("{:#}", json);
-
   assert_eq!(pretty,
-
       "{\n  \"city\": \"London\",\n  \"street\": \"10 Downing Street\"\n}");
-
   ```
 
 ##### `impl Eq for Value`
@@ -1279,51 +1150,28 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 - <span id="supervalue-fromiterator-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
   Create a `Value::Array` by collecting an iterator of array elements.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::Value;
-
   
-
   let v = std::iter::repeat(42).take(5);
-
   let x: Value = v.collect();
-
   ```
-
   
-
   ```rust
-
   use serde_json::Value;
-
   
-
   let v: Vec<_> = vec!["lorem", "ipsum", "dolor"];
-
   let x: Value = v.into_iter().collect();
-
   ```
-
   
-
   ```rust
-
   use std::iter::FromIterator;
-
   use serde_json::Value;
-
   
-
   let x: Value = Value::from_iter(vec!["lorem", "ipsum", "dolor"]);
-
   ```
 
 ##### `impl FromStr for crate::value::Value`
@@ -1343,59 +1191,32 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 - <span id="supervalue-index"></span>`fn index(&self, index: I) -> &Value` — [`Value`](#value)
 
   Index into a `serde_json::Value` using the syntax `value[0]` or
-
   `value["k"]`.
-
   
-
   Returns `Value::Null` if the type of `self` does not match the type of
-
   the index, for example if the index is a string and `self` is an array
-
   or a number. Also returns `Value::Null` if the given key does not exist
-
   in the map or the given index is not within the bounds of the array.
-
   
-
   For retrieving deeply nested values, you should have a look at the
-
   `Value::pointer` method.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   let data = json!({
-
       "x": {
-
           "y": ["z", "zz"]
-
       }
-
   });
-
   
-
   assert_eq!(data["x"]["y"], json!(["z", "zz"]));
-
   assert_eq!(data["x"]["y"][0], json!("z"));
-
   
-
   assert_eq!(data["a"], json!(null)); // returns null for undefined values
-
   assert_eq!(data["a"]["b"], json!(null)); // does not panic
-
   ```
 
 ##### `impl<I> IndexMut for super::Value`
@@ -1403,69 +1224,37 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 - <span id="supervalue-indexmut-index-mut"></span>`fn index_mut(&mut self, index: I) -> &mut Value` — [`Value`](#value)
 
   Write into a `serde_json::Value` using the syntax `value[0] = ...` or
-
   `value["k"] = ...`.
-
   
-
   If the index is a number, the value must be an array of length bigger
-
   than the index. Indexing into a value that is not an array or an array
-
   that is too small will panic.
-
   
-
   If the index is a string, the value must be an object or null which is
-
   treated like an empty object. If the key is not already present in the
-
   object, it will be inserted with a value of null. Indexing into a value
-
   that is neither an object nor null will panic.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   let mut data = json!({ "x": 0 });
-
   
-
   // replace an existing key
-
   data["x"] = json!(1);
-
   
-
   // insert a new key
-
   data["y"] = json!([false, false, false]);
-
   
-
   // replace an array value
-
   data["y"][0] = json!(true);
-
   
-
   // inserted a deeply nested key
-
   data["a"]["b"]["c"]["d"] = json!(true);
-
   
-
   println!("{}", data);
-
   ```
 
 ##### `impl<U> Into for Value`
@@ -1473,11 +1262,8 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 - <span id="value-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoDeserializer for crate::value::Value`
@@ -1528,7 +1314,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 trait Index: private::Sealed { ... }
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/index.rs:37-52`](../../../.source_1765633015/serde_json-1.0.145/src/value/index.rs#L37-L52)*
+*Defined in [`serde_json-1.0.145/src/value/index.rs:37-52`](../../../.source_1765894658/serde_json-1.0.145/src/value/index.rs#L37-L52)*
 
 A type that can be used to index into a `serde_json::Value`.
 
@@ -1573,7 +1359,7 @@ assert_eq!(first, 1);
 fn parse_index(s: &str) -> Option<usize>
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:259-264`](../../../.source_1765633015/serde_json-1.0.145/src/value/mod.rs#L259-L264)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:259-264`](../../../.source_1765894658/serde_json-1.0.145/src/value/mod.rs#L259-L264)*
 
 ### `to_value`
 
@@ -1583,7 +1369,7 @@ where
     T: Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:995-1000`](../../../.source_1765633015/serde_json-1.0.145/src/value/mod.rs#L995-L1000)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:995-1000`](../../../.source_1765894658/serde_json-1.0.145/src/value/mod.rs#L995-L1000)*
 
 Convert a `T` into `serde_json::Value` which is an enum that can represent
 any valid JSON data.
@@ -1647,7 +1433,7 @@ where
     T: DeserializeOwned
 ```
 
-*Defined in [`serde_json-1.0.145/src/value/mod.rs:1037-1042`](../../../.source_1765633015/serde_json-1.0.145/src/value/mod.rs#L1037-L1042)*
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:1037-1042`](../../../.source_1765894658/serde_json-1.0.145/src/value/mod.rs#L1037-L1042)*
 
 Interpret a `serde_json::Value` as an instance of type `T`.
 

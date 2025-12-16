@@ -33,7 +33,7 @@ struct Adler32 {
 }
 ```
 
-*Defined in [`adler2-2.0.1/src/lib.rs:87-90`](../../.source_1765633015/adler2-2.0.1/src/lib.rs#L87-L90)*
+*Defined in [`adler2-2.0.1/src/lib.rs:87-90`](../../.source_1765894658/adler2-2.0.1/src/lib.rs#L87-L90)*
 
 Adler-32 checksum calculator.
 
@@ -145,11 +145,8 @@ if cfg!(target_endian = "big") {
 - <span id="adler32-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Adler32`
@@ -172,7 +169,7 @@ if cfg!(target_endian = "big") {
 fn adler32_slice(data: &[u8]) -> u32
 ```
 
-*Defined in [`adler2-2.0.1/src/lib.rs:170-174`](../../.source_1765633015/adler2-2.0.1/src/lib.rs#L170-L174)*
+*Defined in [`adler2-2.0.1/src/lib.rs:170-174`](../../.source_1765894658/adler2-2.0.1/src/lib.rs#L170-L174)*
 
 Calculates the Adler-32 checksum of a byte slice.
 

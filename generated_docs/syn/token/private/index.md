@@ -21,7 +21,7 @@ struct WithSpan {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:147-149`](../../../../.source_1765633015/syn-2.0.111/src/token.rs#L147-L149)*
+*Defined in [`syn-2.0.111/src/token.rs:147-149`](../../../../.source_1765894658/syn-2.0.111/src/token.rs#L147-L149)*
 
 Support writing `token.span` rather than `token.spans[0]` on tokens that
 hold a single span.
@@ -51,11 +51,8 @@ hold a single span.
 - <span id="withspan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for WithSpan`
@@ -78,7 +75,7 @@ hold a single span.
 trait Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:141`](../../../../.source_1765633015/syn-2.0.111/src/token.rs#L141)*
+*Defined in [`syn-2.0.111/src/token.rs:141`](../../../../.source_1765894658/syn-2.0.111/src/token.rs#L141)*
 
 #### Implementors
 

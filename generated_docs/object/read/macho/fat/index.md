@@ -43,7 +43,7 @@ struct FatArch32 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/macho.rs:717-728`](../../../../../.source_1765633015/object-0.37.3/src/macho.rs#L717-L728)*
+*Defined in [`object-0.37.3/src/macho.rs:717-728`](../../../../../.source_1765894658/object-0.37.3/src/macho.rs#L717-L728)*
 
 #### Fields
 
@@ -122,11 +122,8 @@ struct FatArch32 {
 - <span id="fatarch32-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FatArch32`
@@ -164,7 +161,7 @@ struct FatArch64 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/macho.rs:743-756`](../../../../../.source_1765633015/object-0.37.3/src/macho.rs#L743-L756)*
+*Defined in [`object-0.37.3/src/macho.rs:743-756`](../../../../../.source_1765894658/object-0.37.3/src/macho.rs#L743-L756)*
 
 #### Fields
 
@@ -247,11 +244,8 @@ struct FatArch64 {
 - <span id="fatarch64-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FatArch64`
@@ -285,7 +279,7 @@ struct FatHeader {
 }
 ```
 
-*Defined in [`object-0.37.3/src/macho.rs:708-713`](../../../../../.source_1765633015/object-0.37.3/src/macho.rs#L708-L713)*
+*Defined in [`object-0.37.3/src/macho.rs:708-713`](../../../../../.source_1765894658/object-0.37.3/src/macho.rs#L708-L713)*
 
 #### Fields
 
@@ -336,11 +330,8 @@ struct FatHeader {
 - <span id="fatheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pod for FatHeader`
@@ -374,7 +365,7 @@ struct MachOFatFile<'data, Fat: FatArch> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:25-28`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/fat.rs#L25-L28)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:25-28`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L25-L28)*
 
 A Mach-O universal binary.
 
@@ -432,11 +423,8 @@ to [`crate::FileKind::MachOFat32`](../../../index.md) or [`crate::FileKind::Mach
 - <span id="machofatfile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MachOFatFile<'data, Fat>`
@@ -467,7 +455,7 @@ to [`crate::FileKind::MachOFat32`](../../../index.md) or [`crate::FileKind::Mach
 trait FatArch: Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:59-90`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/fat.rs#L59-L90)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:59-90`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L59-L90)*
 
 A trait for generic access to [`macho::FatArch32`](../../../macho/index.md) and [`macho::FatArch64`](../../../macho/index.md).
 
@@ -512,7 +500,7 @@ A trait for generic access to [`macho::FatArch32`](../../../macho/index.md) and 
 type MachOFatFile32<'data> = MachOFatFile<'data, macho::FatArch32>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:12`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/fat.rs#L12)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:12`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L12)*
 
 A 32-bit Mach-O universal binary.
 
@@ -525,7 +513,7 @@ to [`crate::FileKind::MachOFat32`](../../../index.md).
 type MachOFatFile64<'data> = MachOFatFile<'data, macho::FatArch64>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:18`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/fat.rs#L18)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:18`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L18)*
 
 A 64-bit Mach-O universal binary.
 

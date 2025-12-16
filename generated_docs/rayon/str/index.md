@@ -102,7 +102,7 @@ struct Chars<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:467-469`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L467-L469)*
+*Defined in [`rayon-1.11.0/src/str.rs:467-469`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L467-L469)*
 
 Parallel iterator over the characters of a string
 
@@ -143,11 +143,8 @@ Parallel iterator over the characters of a string
 - <span id="chars-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Chars<'ch>`
@@ -208,7 +205,7 @@ struct CharsProducer<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:471-473`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L471-L473)*
+*Defined in [`rayon-1.11.0/src/str.rs:471-473`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L471-L473)*
 
 #### Trait Implementations
 
@@ -235,11 +232,8 @@ struct CharsProducer<'ch> {
 - <span id="charsproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CharsProducer<'ch>`
@@ -286,7 +280,7 @@ struct CharIndices<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:511-513`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L511-L513)*
+*Defined in [`rayon-1.11.0/src/str.rs:511-513`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L511-L513)*
 
 Parallel iterator over the characters of a string, with their positions
 
@@ -327,11 +321,8 @@ Parallel iterator over the characters of a string, with their positions
 - <span id="charindices-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CharIndices<'ch>`
@@ -393,7 +384,7 @@ struct CharIndicesProducer<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:515-518`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L515-L518)*
+*Defined in [`rayon-1.11.0/src/str.rs:515-518`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L515-L518)*
 
 #### Trait Implementations
 
@@ -420,11 +411,8 @@ struct CharIndicesProducer<'ch> {
 - <span id="charindicesproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CharIndicesProducer<'ch>`
@@ -471,7 +459,7 @@ struct Bytes<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:567-569`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L567-L569)*
+*Defined in [`rayon-1.11.0/src/str.rs:567-569`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L567-L569)*
 
 Parallel iterator over the bytes of a string
 
@@ -512,11 +500,8 @@ Parallel iterator over the bytes of a string
 - <span id="bytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Bytes<'ch>`
@@ -577,7 +562,7 @@ struct BytesProducer<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:571-573`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L571-L573)*
+*Defined in [`rayon-1.11.0/src/str.rs:571-573`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L571-L573)*
 
 #### Trait Implementations
 
@@ -604,11 +589,8 @@ struct BytesProducer<'ch> {
 - <span id="bytesproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for BytesProducer<'ch>`
@@ -655,7 +637,7 @@ struct EncodeUtf16<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:611-613`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L611-L613)*
+*Defined in [`rayon-1.11.0/src/str.rs:611-613`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L611-L613)*
 
 Parallel iterator over a string encoded as UTF-16
 
@@ -696,11 +678,8 @@ Parallel iterator over a string encoded as UTF-16
 - <span id="encodeutf16-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for EncodeUtf16<'ch>`
@@ -761,7 +740,7 @@ struct EncodeUtf16Producer<'ch> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:615-617`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L615-L617)*
+*Defined in [`rayon-1.11.0/src/str.rs:615-617`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L615-L617)*
 
 #### Trait Implementations
 
@@ -788,11 +767,8 @@ struct EncodeUtf16Producer<'ch> {
 - <span id="encodeutf16producer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for EncodeUtf16Producer<'ch>`
@@ -840,7 +816,7 @@ struct Split<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:655-658`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L655-L658)*
+*Defined in [`rayon-1.11.0/src/str.rs:655-658`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L655-L658)*
 
 Parallel iterator over substrings separated by a pattern
 
@@ -885,11 +861,8 @@ Parallel iterator over substrings separated by a pattern
 - <span id="split-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Split<'ch, P>`
@@ -951,7 +924,7 @@ struct SplitInclusive<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:727-730`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L727-L730)*
+*Defined in [`rayon-1.11.0/src/str.rs:727-730`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L727-L730)*
 
 Parallel iterator over substrings separated by a pattern
 
@@ -996,11 +969,8 @@ Parallel iterator over substrings separated by a pattern
 - <span id="splitinclusive-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitInclusive<'ch, P>`
@@ -1062,7 +1032,7 @@ struct SplitTerminator<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:754-757`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L754-L757)*
+*Defined in [`rayon-1.11.0/src/str.rs:754-757`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L754-L757)*
 
 Parallel iterator over substrings separated by a terminator pattern
 
@@ -1107,11 +1077,8 @@ Parallel iterator over substrings separated by a terminator pattern
 - <span id="splitterminator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitTerminator<'ch, P>`
@@ -1173,7 +1140,7 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:759-762`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L759-L762)*
+*Defined in [`rayon-1.11.0/src/str.rs:759-762`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L759-L762)*
 
 #### Implementations
 
@@ -1204,11 +1171,8 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 - <span id="splitterminatorproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitTerminatorProducer<'ch, 'sep, P>`
@@ -1253,7 +1217,7 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 struct Lines<'ch>(&'ch str);
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:820`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L820)*
+*Defined in [`rayon-1.11.0/src/str.rs:820`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L820)*
 
 Parallel iterator over lines in a string
 
@@ -1294,11 +1258,8 @@ Parallel iterator over lines in a string
 - <span id="lines-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Lines<'ch>`
@@ -1357,7 +1318,7 @@ Parallel iterator over lines in a string
 struct SplitWhitespace<'ch>(&'ch str);
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:845`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L845)*
+*Defined in [`rayon-1.11.0/src/str.rs:845`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L845)*
 
 Parallel iterator over substrings separated by whitespace
 
@@ -1398,11 +1359,8 @@ Parallel iterator over substrings separated by whitespace
 - <span id="splitwhitespace-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitWhitespace<'ch>`
@@ -1461,7 +1419,7 @@ Parallel iterator over substrings separated by whitespace
 struct SplitAsciiWhitespace<'ch>(&'ch str);
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:870`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L870)*
+*Defined in [`rayon-1.11.0/src/str.rs:870`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L870)*
 
 Parallel iterator over substrings separated by ASCII whitespace
 
@@ -1502,11 +1460,8 @@ Parallel iterator over substrings separated by ASCII whitespace
 - <span id="splitasciiwhitespace-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SplitAsciiWhitespace<'ch>`
@@ -1568,7 +1523,7 @@ struct Matches<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:895-898`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L895-L898)*
+*Defined in [`rayon-1.11.0/src/str.rs:895-898`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L895-L898)*
 
 Parallel iterator over substrings that match a pattern
 
@@ -1609,11 +1564,8 @@ Parallel iterator over substrings that match a pattern
 - <span id="matches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Matches<'ch, P>`
@@ -1675,7 +1627,7 @@ struct MatchesProducer<'ch, 'pat, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:900-903`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L900-L903)*
+*Defined in [`rayon-1.11.0/src/str.rs:900-903`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L900-L903)*
 
 #### Trait Implementations
 
@@ -1702,11 +1654,8 @@ struct MatchesProducer<'ch, 'pat, P: Pattern> {
 - <span id="matchesproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MatchesProducer<'ch, 'pat, P>`
@@ -1754,7 +1703,7 @@ struct MatchIndices<'ch, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:951-954`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L951-L954)*
+*Defined in [`rayon-1.11.0/src/str.rs:951-954`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L951-L954)*
 
 Parallel iterator over substrings that match a pattern, with their positions
 
@@ -1795,11 +1744,8 @@ Parallel iterator over substrings that match a pattern, with their positions
 - <span id="matchindices-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MatchIndices<'ch, P>`
@@ -1862,7 +1808,7 @@ struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:956-960`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L956-L960)*
+*Defined in [`rayon-1.11.0/src/str.rs:956-960`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L956-L960)*
 
 #### Trait Implementations
 
@@ -1889,11 +1835,8 @@ struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
 - <span id="matchindicesproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MatchIndicesProducer<'ch, 'pat, P>`
@@ -1940,7 +1883,7 @@ struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
 trait ParallelString { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:58-342`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L58-L342)*
+*Defined in [`rayon-1.11.0/src/str.rs:58-342`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L58-L342)*
 
 Parallel extensions for strings.
 
@@ -1949,56 +1892,263 @@ Parallel extensions for strings.
 - `fn as_parallel_string(&self) -> &str`
 
   Returns a plain string slice, which is used to implement the rest of
+  the parallel methods.
 
 #### Provided Methods
 
 - `fn par_chars(&self) -> Chars<'_>`
 
   Returns a parallel iterator over the characters of a string.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let max = "hello".par_chars().max_by_key(|c| *c as i32);
+  assert_eq!(Some('o'), max);
+  ```
 
 - `fn par_char_indices(&self) -> CharIndices<'_>`
 
   Returns a parallel iterator over the characters of a string, with their positions.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let min = "hello".par_char_indices().min_by_key(|&(_i, c)| c as i32);
+  assert_eq!(Some((1, 'e')), min);
+  ```
 
 - `fn par_bytes(&self) -> Bytes<'_>`
 
   Returns a parallel iterator over the bytes of a string.
+  
+  Note that multi-byte sequences (for code points greater than `U+007F`)
+  are produced as separate items, but will not be split across threads.
+  If you would prefer an indexed iterator without that guarantee, consider
+  `string.as_bytes().par_iter().copied()` instead.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let max = "hello".par_bytes().max();
+  assert_eq!(Some(b'o'), max);
+  ```
 
 - `fn par_encode_utf16(&self) -> EncodeUtf16<'_>`
 
   Returns a parallel iterator over a string encoded as UTF-16.
+  
+  Note that surrogate pairs (for code points greater than `U+FFFF`) are
+  produced as separate items, but will not be split across threads.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let max = "hello".par_encode_utf16().max();
+  assert_eq!(Some(b'o' as u16), max);
+  
+  let text = "Zażółć gęślą jaźń";
+  let utf8_len = text.len();
+  let utf16_len = text.par_encode_utf16().count();
+  assert!(utf16_len <= utf8_len);
+  ```
 
 - `fn par_split<P: Pattern>(&self, separator: P) -> Split<'_, P>`
 
   Returns a parallel iterator over substrings separated by a
+  given character or predicate, similar to `str::split`.
+  
+  Note: the `Pattern` trait is private, for use only by Rayon itself.
+  It is implemented for `char`, `&[char]`, `[char; N]`, `&[char; N]`,
+  and any function or closure `F: Fn(char) -> bool + Sync + Send`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let total = "1, 2, buckle, 3, 4, door"
+     .par_split(',')
+     .filter_map(|s| s.trim().parse::<i32>().ok())
+     .sum();
+  assert_eq!(10, total);
+  ```
 
 - `fn par_split_inclusive<P: Pattern>(&self, separator: P) -> SplitInclusive<'_, P>`
 
   Returns a parallel iterator over substrings separated by a
+  given character or predicate, keeping the matched part as a terminator
+  of the substring similar to `str::split_inclusive`.
+  
+  Note: the `Pattern` trait is private, for use only by Rayon itself.
+  It is implemented for `char`, `&[char]`, `[char; N]`, `&[char; N]`,
+  and any function or closure `F: Fn(char) -> bool + Sync + Send`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let lines: Vec<_> = "Mary had a little lamb\nlittle lamb\nlittle lamb."
+     .par_split_inclusive('\n')
+     .collect();
+  assert_eq!(lines, ["Mary had a little lamb\n", "little lamb\n", "little lamb."]);
+  ```
 
 - `fn par_split_terminator<P: Pattern>(&self, terminator: P) -> SplitTerminator<'_, P>`
 
   Returns a parallel iterator over substrings terminated by a
+  given character or predicate, similar to `str::split_terminator`.
+  It's equivalent to `par_split`, except it doesn't produce an empty
+  substring after a trailing terminator.
+  
+  Note: the `Pattern` trait is private, for use only by Rayon itself.
+  It is implemented for `char`, `&[char]`, `[char; N]`, `&[char; N]`,
+  and any function or closure `F: Fn(char) -> bool + Sync + Send`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let parts: Vec<_> = "((1 + 3) * 2)"
+      .par_split_terminator(|c| c == '(' || c == ')')
+      .collect();
+  assert_eq!(vec!["", "", "1 + 3", " * 2"], parts);
+  ```
 
 - `fn par_lines(&self) -> Lines<'_>`
 
   Returns a parallel iterator over the lines of a string, ending with an
+  optional carriage return and with a newline (`\r\n` or just `\n`).
+  The final line ending is optional, and line endings are not included in
+  the output strings.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let lengths: Vec<_> = "hello world\nfizbuzz"
+      .par_lines()
+      .map(|l| l.len())
+      .collect();
+  assert_eq!(vec![11, 7], lengths);
+  ```
 
 - `fn par_split_whitespace(&self) -> SplitWhitespace<'_>`
 
   Returns a parallel iterator over the sub-slices of a string that are
+  separated by any amount of whitespace.
+  
+  As with `str::split_whitespace`, 'whitespace' is defined according to
+  the terms of the Unicode Derived Core Property `White_Space`.
+  If you only want to split on ASCII whitespace instead, use
+  [`par_split_ascii_whitespace`]`ParallelString::par_split_ascii_whitespace`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let longest = "which is the longest word?"
+      .par_split_whitespace()
+      .max_by_key(|word| word.len());
+  assert_eq!(Some("longest"), longest);
+  ```
+  
+  All kinds of whitespace are considered:
+  
+  ```rust
+  use rayon::prelude::*;
+  let words: Vec<&str> = " Mary   had\ta\u{2009}little  \n\t lamb"
+      .par_split_whitespace()
+      .collect();
+  assert_eq!(words, ["Mary", "had", "a", "little", "lamb"]);
+  ```
+  
+  If the string is empty or all whitespace, the iterator yields no string slices:
+  
+  ```rust
+  use rayon::prelude::*;
+  assert_eq!("".par_split_whitespace().count(), 0);
+  assert_eq!("   ".par_split_whitespace().count(), 0);
+  ```
 
 - `fn par_split_ascii_whitespace(&self) -> SplitAsciiWhitespace<'_>`
 
   Returns a parallel iterator over the sub-slices of a string that are
+  separated by any amount of ASCII whitespace.
+  
+  To split by Unicode `White_Space` instead, use
+  [`par_split_whitespace`]`ParallelString::par_split_whitespace`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let longest = "which is the longest word?"
+      .par_split_ascii_whitespace()
+      .max_by_key(|word| word.len());
+  assert_eq!(Some("longest"), longest);
+  ```
+  
+  All kinds of ASCII whitespace are considered, but not Unicode `White_Space`:
+  
+  ```rust
+  use rayon::prelude::*;
+  let words: Vec<&str> = " Mary   had\ta\u{2009}little  \n\t lamb"
+      .par_split_ascii_whitespace()
+      .collect();
+  assert_eq!(words, ["Mary", "had", "a\u{2009}little", "lamb"]);
+  ```
+  
+  If the string is empty or all ASCII whitespace, the iterator yields no string slices:
+  
+  ```rust
+  use rayon::prelude::*;
+  assert_eq!("".par_split_whitespace().count(), 0);
+  assert_eq!("   ".par_split_whitespace().count(), 0);
+  ```
 
 - `fn par_matches<P: Pattern>(&self, pattern: P) -> Matches<'_, P>`
 
   Returns a parallel iterator over substrings that match a
+  given character or predicate, similar to `str::matches`.
+  
+  Note: the `Pattern` trait is private, for use only by Rayon itself.
+  It is implemented for `char`, `&[char]`, `[char; N]`, `&[char; N]`,
+  and any function or closure `F: Fn(char) -> bool + Sync + Send`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let total = "1, 2, buckle, 3, 4, door"
+     .par_matches(char::is_numeric)
+     .map(|s| s.parse::<i32>().expect("digit"))
+     .sum();
+  assert_eq!(10, total);
+  ```
 
 - `fn par_match_indices<P: Pattern>(&self, pattern: P) -> MatchIndices<'_, P>`
 
   Returns a parallel iterator over substrings that match a given character
+  or predicate, with their positions, similar to `str::match_indices`.
+  
+  Note: the `Pattern` trait is private, for use only by Rayon itself.
+  It is implemented for `char`, `&[char]`, `[char; N]`, `&[char; N]`,
+  and any function or closure `F: Fn(char) -> bool + Sync + Send`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let digits: Vec<_> = "1, 2, buckle, 3, 4, door"
+     .par_match_indices(char::is_numeric)
+     .collect();
+  assert_eq!(digits, vec![(0, "1"), (3, "2"), (14, "3"), (17, "4")]);
+  ```
 
 #### Implementors
 
@@ -2012,7 +2162,7 @@ Parallel extensions for strings.
 fn is_char_boundary(b: u8) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:22-25`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L22-L25)*
+*Defined in [`rayon-1.11.0/src/str.rs:22-25`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L22-L25)*
 
 Test if a byte is the start of a UTF-8 character.
 (extracted from `str::is_char_boundary`)
@@ -2023,7 +2173,7 @@ Test if a byte is the start of a UTF-8 character.
 fn find_char_midpoint(chars: &str) -> usize
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:29-44`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L29-L44)*
+*Defined in [`rayon-1.11.0/src/str.rs:29-44`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L29-L44)*
 
 Find the index of a character boundary near the midpoint.
 
@@ -2033,7 +2183,7 @@ Find the index of a character boundary near the midpoint.
 fn split(chars: &str) -> Option<(&str, &str)>
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:48-55`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L48-L55)*
+*Defined in [`rayon-1.11.0/src/str.rs:48-55`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L48-L55)*
 
 Try to split a string near the midpoint.
 
@@ -2043,7 +2193,7 @@ Try to split a string near the midpoint.
 fn offset<T>(base: usize) -> impl Fn((usize, T)) -> (usize, T)
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:386-388`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L386-L388)*
+*Defined in [`rayon-1.11.0/src/str.rs:386-388`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L386-L388)*
 
 ### `no_carriage_return`
 
@@ -2051,7 +2201,7 @@ fn offset<T>(base: usize) -> impl Fn((usize, T)) -> (usize, T)
 fn no_carriage_return(line: &str) -> &str
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:823-825`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L823-L825)*
+*Defined in [`rayon-1.11.0/src/str.rs:823-825`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L823-L825)*
 
 ### `not_empty`
 
@@ -2059,7 +2209,7 @@ fn no_carriage_return(line: &str) -> &str
 fn not_empty(s: &&str) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:848-850`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L848-L850)*
+*Defined in [`rayon-1.11.0/src/str.rs:848-850`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L848-L850)*
 
 ### `is_ascii_whitespace`
 
@@ -2067,11 +2217,11 @@ fn not_empty(s: &&str) -> bool
 fn is_ascii_whitespace(c: char) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/str.rs:873-875`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L873-L875)*
+*Defined in [`rayon-1.11.0/src/str.rs:873-875`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L873-L875)*
 
 ## Macros
 
 ### `impl_pattern!`
 
-*Defined in [`rayon-1.11.0/src/str.rs:390-441`](../../../.source_1765633015/rayon-1.11.0/src/str.rs#L390-L441)*
+*Defined in [`rayon-1.11.0/src/str.rs:390-441`](../../../.source_1765894658/rayon-1.11.0/src/str.rs#L390-L441)*
 

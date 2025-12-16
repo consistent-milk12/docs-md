@@ -63,65 +63,47 @@ rendering improvements.
 - <span id="categorizeditems-add-reexport"></span>`fn add_reexport(&mut self, id: &'a Id, use_item: &'a Item, target: &Item)`
 
   Add an item by category based on target item type (for re-exports).
-
   
-
   The `id` is the Use item's ID, and `target` is the resolved target item
-
   used to determine the category. The `use_item` is stored (not target)
-
   because `get_item_name` handles Use items specially.
 
 - <span id="categorizeditems-build-toc-entries"></span>`fn build_toc_entries(&self) -> Vec<TocEntry>` — [`TocEntry`](../../generator/toc/index.md#tocentry)
 
   Build TOC entries from categorized items.
-
   
-
   Preserves the standard rustdoc section order:
-
   Modules → Structs → Enums → Unions → Traits → Functions → Type Aliases → Constants → Statics → Macros
 
 - <span id="categorizeditems-build-section"></span>`fn build_section(items: &[&Item], section: &str, anchor: &str, is_macro: bool) -> Option<TocEntry>` — [`TocEntry`](../../generator/toc/index.md#tocentry)
 
   Build a TOC section for items without IDs.
-
   
-
   Uses `slugify_anchor()` for anchor generation to match heading anchors.
 
 - <span id="categorizeditems-build-section-with-ids"></span>`fn build_section_with_ids(items: &[(&Id, &Item)], section: &str, anchor: &str) -> Option<TocEntry>` — [`TocEntry`](../../generator/toc/index.md#tocentry)
 
   Build a TOC section for items with IDs.
-
   
-
   Uses `slugify_anchor()` for anchor generation to match heading anchors.
 
 - <span id="categorizeditems-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self) -> Vec<QuickRefEntry>` — [`QuickRefEntry`](../../generator/quick_ref/index.md#quickrefentry)
 
   Build Quick Reference entries from categorized items.
-
   
-
   Preserves the standard rustdoc section order:
-
   Modules → Structs → Enums → Unions → Traits → Functions → Type Aliases → Constants → Statics → Macros
 
 - <span id="categorizeditems-add-quick-ref-entries"></span>`fn add_quick_ref_entries(entries: &mut Vec<QuickRefEntry>, items: &[&Item], kind: &'static str, is_macro: bool)` — [`QuickRefEntry`](../../generator/quick_ref/index.md#quickrefentry)
 
   Add quick ref entries for items without IDs.
-
   
-
   Uses `slugify_anchor()` for anchor generation to match heading anchors.
 
 - <span id="categorizeditems-add-quick-ref-entries-with-ids"></span>`fn add_quick_ref_entries_with_ids(entries: &mut Vec<QuickRefEntry>, items: &[(&Id, &Item)], kind: &'static str)` — [`QuickRefEntry`](../../generator/quick_ref/index.md#quickrefentry)
 
   Add quick ref entries for items with IDs.
-
   
-
   Uses `slugify_anchor()` for anchor generation to match heading anchors.
 
 - <span id="categorizeditems-get-item-name"></span>`fn get_item_name(item: &Item) -> &str`
@@ -131,25 +113,15 @@ rendering improvements.
 - <span id="categorizeditems-expand-glob-reexport"></span>`fn expand_glob_reexport(&mut self, use_item: &rustdoc_types::Use, krate: &'a Crate, view: &SingleCrateView<'_>, seen_items: &mut HashSet<Id>)` — [`SingleCrateView`](../context/index.md#singlecrateview)
 
   Expand a glob re-export into this collection.
-
   
-
   Iterates through items in the target module and adds them to the
-
   appropriate category vectors. Uses `seen_items` to avoid duplicates.
-
   
-
   # Arguments
-
   
-
   * `use_item` - The glob Use item to expand
-
   * `krate` - The crate containing the target module
-
   * `view` - The single-crate view for visibility filtering
-
   * `seen_items` - Set of already-processed item IDs (mutated)
 
 #### Trait Implementations
@@ -179,11 +151,8 @@ rendering improvements.
 - <span id="categorizeditems-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CategorizedItems<'a>`
@@ -264,49 +233,31 @@ output/
 - <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](../collection/index.md#cratecollection), [`Args`](../../index.md#args), [`RenderConfig`](../../generator/config/index.md#renderconfig)
 
   Create a new multi-crate generator.
-
   
-
   # Arguments
-
   
-
   * `crates` - Collection of parsed crates
-
   * `args` - CLI arguments
-
   * `config` - Rendering configuration options
 
 - <span id="multicrategenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
   Generate documentation for all crates.
-
   
-
   Creates the output directory structure, generates docs for each crate
-
   in parallel using rayon, and optionally generates SUMMARY.md for
-
   mdBook compatibility.
-
   
-
   # Errors
-
   
-
   Returns an error if any file operation fails.
 
 - <span id="multicrategenerator-collect-rendered-items"></span>`fn collect_rendered_items(&self) -> HashMap<String, HashSet<Id>>`
 
   Collect the IDs of all items that would be rendered.
-
   
-
   This walks the module tree for each crate using the same visibility
-
   rules as rendering, collecting the IDs of items that will have
-
   documentation generated for them.
 
 - <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](../context/index.md#singlecrateview)
@@ -328,13 +279,9 @@ output/
 - <span id="multicrategenerator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../../error/index.md#error)
 
   Create a progress bar.
-
   
-
   # Errors
-
   
-
   Returns an error if the progress bar template is invalid.
 
 #### Trait Implementations
@@ -364,11 +311,8 @@ output/
 - <span id="multicrategenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MultiCrateGenerator<'a>`
@@ -451,27 +395,18 @@ resolve items across crate boundaries.
 - <span id="multicratemodulerenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
 
   Process documentation for an item.
-
   
-
   Delegates to the view's `process_docs` method which handles:
-
   - Stripping duplicate titles
-
   - Converting doc links to markdown links
-
   - Processing code blocks
 
 - <span id="multicratemodulerenderer-maybe-render-source-location"></span>`fn maybe_render_source_location(&self, item: &Item) -> String`
 
   Render source location if enabled in config.
-
   
-
   Returns the source location string if `source_locations` is enabled,
-
   otherwise returns an empty string. Uses the source path config to
-
   generate clickable links to the `.source_*` directory when available.
 
 - <span id="multicratemodulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
@@ -517,47 +452,34 @@ resolve items across crate boundaries.
 - <span id="multicratemodulerenderer-get-item-name-and-summary"></span>`fn get_item_name_and_summary(item: &Item) -> (String, String)`
 
   Get name and summary for an item, handling re-exports.
-
   
-
   For re-exports (Use items), if the Use item has no docs, falls back to
-
   the target item's docs when a crate reference is provided.
 
 - <span id="multicratemodulerenderer-get-item-name-and-summary-with-fallback"></span>`fn get_item_name_and_summary_with_fallback(item: &Item, krate: Option<&Crate>) -> (String, String)`
 
   Get name and summary for an item with optional fallback lookup.
-
   
-
   When `krate` is provided and the item is a re-export without docs,
-
   looks up the target item's docs as a fallback.
 
 - <span id="multicratemodulerenderer-get-item-name"></span>`fn get_item_name(item: &Item) -> &str`
 
   Get the display name for an item, handling re-exports.
-
   
-
   For `Use` items (re-exports), the name is stored in `use_item.name`.
-
   For all other items, the name is in `item.name`.
 
 - <span id="multicratemodulerenderer-build-toc-entries"></span>`fn build_toc_entries(modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[(&Id, &Item)], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<TocEntry>` — [`TocEntry`](../../generator/toc/index.md#tocentry)
 
   Build TOC entries from categorized module items.
-
   
-
   Uses `slugify_anchor()` for anchor generation to match heading anchors.
 
 - <span id="multicratemodulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[(&Id, &Item)], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<QuickRefEntry>` — [`QuickRefEntry`](../../generator/quick_ref/index.md#quickrefentry)
 
   Build Quick Reference entries from categorized module items.
-
   
-
   Uses `slugify_anchor()` for anchor generation to match heading anchors.
 
 - <span id="multicratemodulerenderer-render-struct"></span>`fn render_struct(&self, md: &mut String, item_id: Id, item: &Item)`
@@ -575,37 +497,29 @@ resolve items across crate boundaries.
 - <span id="multicratemodulerenderer-render-trait-implementors"></span>`fn render_trait_implementors(&self, md: &mut String, trait_id: Id)`
 
   Render the implementors section for a trait.
-
   
-
   Uses `Trait.implementations` field for direct lookup instead of scanning
-
   all items in the crate index, providing O(k) performance where k is the
-
   number of implementors.
 
 - <span id="multicratemodulerenderer-render-function"></span>`fn render_function(&self, md: &mut String, item: &Item)`
 
   Render a function definition to markdown.
-
   FIX: Handle re-exports: Resolve to actual function item.
 
 - <span id="multicratemodulerenderer-render-constant"></span>`fn render_constant(&self, md: &mut String, item: &Item)`
 
   Render a constant definition to markdown.
-
   Handles re-exports by resolving to the actual constant item.
 
 - <span id="multicratemodulerenderer-render-type-alias"></span>`fn render_type_alias(&self, md: &mut String, item: &Item)`
 
   Render a type alias to markdown.
-
   Handles re-exports by resolving to the actual type alias item.
 
 - <span id="multicratemodulerenderer-render-macro"></span>`fn render_macro(&self, md: &mut String, item: &Item)`
 
   Render a macro to markdown.
-
   Handles re-exports by resolving to the actual macro item.
 
 - <span id="multicratemodulerenderer-resolve-reexport"></span>`fn resolve_reexport<'b>(self: &'b Self, item: &'b Item) -> Option<(&'b str, &'b Item)>`
@@ -617,19 +531,12 @@ resolve items across crate boundaries.
 - <span id="multicratemodulerenderer-render-impl-blocks"></span>`fn render_impl_blocks(&self, md: &mut String, item_id: Id, source_crate_name: Option<&str>)`
 
   Render impl blocks for a type, including cross-crate impls.
-
   
-
   # Arguments
-
   
-
   * `md` - The markdown output buffer
-
   * `item_id` - The ID of the item to render impl blocks for
-
   * `source_crate_name` - Optional source crate name for cross-crate re-exports.
-
     When provided, impls are looked up from the source crate.
 
 #### Trait Implementations
@@ -659,11 +566,8 @@ resolve items across crate boundaries.
 - <span id="multicratemodulerenderer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MultiCrateModuleRenderer<'a>`

@@ -21,7 +21,7 @@ struct Mmap {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/symbolize/gimli/mmap_unix.rs:12-15`](../../../../../.source_1765633015/backtrace-0.3.76/src/symbolize/gimli/mmap_unix.rs#L12-L15)*
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/mmap_unix.rs:12-15`](../../../../../.source_1765894658/backtrace-0.3.76/src/symbolize/gimli/mmap_unix.rs#L12-L15)*
 
 #### Implementations
 
@@ -62,11 +62,8 @@ struct Mmap {
 - <span id="mmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for Mmap`

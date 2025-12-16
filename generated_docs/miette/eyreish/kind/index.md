@@ -23,7 +23,7 @@
 struct Adhoc;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/kind.rs:53`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/kind.rs#L53)*
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:53`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/kind.rs#L53)*
 
 #### Implementations
 
@@ -54,11 +54,8 @@ struct Adhoc;
 - <span id="adhoc-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Adhoc`
@@ -81,7 +78,7 @@ struct Adhoc;
 struct Trait;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/kind.rs:75`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/kind.rs#L75)*
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:75`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/kind.rs#L75)*
 
 #### Implementations
 
@@ -112,11 +109,8 @@ struct Trait;
 - <span id="trait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Trait`
@@ -139,7 +133,7 @@ struct Trait;
 struct Boxed;
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/kind.rs:97`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/kind.rs#L97)*
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:97`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/kind.rs#L97)*
 
 #### Implementations
 
@@ -170,11 +164,8 @@ struct Boxed;
 - <span id="boxed-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Boxed`
@@ -199,7 +190,7 @@ struct Boxed;
 trait AdhocKind: Sized { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/kind.rs:55-60`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/kind.rs#L55-L60)*
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:55-60`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/kind.rs#L55-L60)*
 
 #### Provided Methods
 
@@ -215,7 +206,7 @@ trait AdhocKind: Sized { ... }
 trait TraitKind: Sized { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/kind.rs:77-82`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/kind.rs#L77-L82)*
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:77-82`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/kind.rs#L77-L82)*
 
 #### Provided Methods
 
@@ -231,7 +222,7 @@ trait TraitKind: Sized { ... }
 trait BoxedKind: Sized { ... }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/kind.rs:99-104`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/kind.rs#L99-L104)*
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:99-104`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/kind.rs#L99-L104)*
 
 #### Provided Methods
 

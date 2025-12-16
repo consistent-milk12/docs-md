@@ -24,7 +24,7 @@ struct MinLen<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/len.rs:10-13`](../../../../.source_1765633015/rayon-1.11.0/src/iter/len.rs#L10-L13)*
+*Defined in [`rayon-1.11.0/src/iter/len.rs:10-13`](../../../../.source_1765894658/rayon-1.11.0/src/iter/len.rs#L10-L13)*
 
 `MinLen` is an iterator that imposes a minimum length on iterator splits.
 This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](../index.md)
@@ -81,11 +81,8 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 - <span id="minlen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MinLen<I>`
@@ -149,7 +146,7 @@ struct MinLenProducer<P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/len.rs:88-91`](../../../../.source_1765633015/rayon-1.11.0/src/iter/len.rs#L88-L91)*
+*Defined in [`rayon-1.11.0/src/iter/len.rs:88-91`](../../../../.source_1765894658/rayon-1.11.0/src/iter/len.rs#L88-L91)*
 
 #### Trait Implementations
 
@@ -176,11 +173,8 @@ struct MinLenProducer<P> {
 - <span id="minlenproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MinLenProducer<P>`
@@ -236,7 +230,7 @@ struct MaxLen<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/len.rs:140-143`](../../../../.source_1765633015/rayon-1.11.0/src/iter/len.rs#L140-L143)*
+*Defined in [`rayon-1.11.0/src/iter/len.rs:140-143`](../../../../.source_1765894658/rayon-1.11.0/src/iter/len.rs#L140-L143)*
 
 `MaxLen` is an iterator that imposes a maximum length on iterator splits.
 This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](../index.md)
@@ -293,11 +287,8 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 - <span id="maxlen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MaxLen<I>`
@@ -361,7 +352,7 @@ struct MaxLenProducer<P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/len.rs:218-221`](../../../../.source_1765633015/rayon-1.11.0/src/iter/len.rs#L218-L221)*
+*Defined in [`rayon-1.11.0/src/iter/len.rs:218-221`](../../../../.source_1765894658/rayon-1.11.0/src/iter/len.rs#L218-L221)*
 
 #### Trait Implementations
 
@@ -388,11 +379,8 @@ struct MaxLenProducer<P> {
 - <span id="maxlenproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MaxLenProducer<P>`

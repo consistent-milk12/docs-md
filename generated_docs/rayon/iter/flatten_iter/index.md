@@ -22,7 +22,7 @@ struct FlattenIter<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:10-12`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flatten_iter.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:10-12`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flatten_iter.rs#L10-L12)*
 
 `FlattenIter` turns each element to a serial iterator, then flattens these iterators
 together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](../index.md).
@@ -71,11 +71,8 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 - <span id="flatteniter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlattenIter<I>`
@@ -136,7 +133,7 @@ struct FlattenIterConsumer<C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:39-41`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flatten_iter.rs#L39-L41)*
+*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:39-41`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flatten_iter.rs#L39-L41)*
 
 #### Implementations
 
@@ -181,11 +178,8 @@ struct FlattenIterConsumer<C> {
 - <span id="flatteniterconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlattenIterConsumer<C>`
@@ -230,7 +224,7 @@ struct FlattenIterFolder<C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:92-94`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flatten_iter.rs#L92-L94)*
+*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:92-94`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flatten_iter.rs#L92-L94)*
 
 #### Trait Implementations
 
@@ -269,11 +263,8 @@ struct FlattenIterFolder<C> {
 - <span id="flatteniterfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlattenIterFolder<C>`

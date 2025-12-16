@@ -19,7 +19,7 @@
 struct BitMask(u16);
 ```
 
-*Defined in [`hashbrown-0.16.1/src/control/bitmask.rs:22`](../../../../.source_1765633015/hashbrown-0.16.1/src/control/bitmask.rs#L22)*
+*Defined in [`hashbrown-0.16.1/src/control/bitmask.rs:22`](../../../../.source_1765894658/hashbrown-0.16.1/src/control/bitmask.rs#L22)*
 
 A bit mask which contains the result of a `Match` operation on a `Group` and
 allows iterating through them.
@@ -103,11 +103,8 @@ mask bits.
 - <span id="bitmask-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for BitMask`
@@ -144,7 +141,7 @@ mask bits.
 struct BitMaskIter(BitMask);
 ```
 
-*Defined in [`hashbrown-0.16.1/src/control/bitmask.rs:106`](../../../../.source_1765633015/hashbrown-0.16.1/src/control/bitmask.rs#L106)*
+*Defined in [`hashbrown-0.16.1/src/control/bitmask.rs:106`](../../../../.source_1765894658/hashbrown-0.16.1/src/control/bitmask.rs#L106)*
 
 Iterator over the contents of a `BitMask`, returning the indices of set
 bits.
@@ -182,11 +179,8 @@ bits.
 - <span id="bitmaskiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for BitMaskIter`

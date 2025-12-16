@@ -23,7 +23,7 @@ struct LineColIterator<I> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/iter.rs:3-20`](../../../.source_1765633015/serde_json-1.0.145/src/iter.rs#L3-L20)*
+*Defined in [`serde_json-1.0.145/src/iter.rs:3-20`](../../../.source_1765894658/serde_json-1.0.145/src/iter.rs#L3-L20)*
 
 #### Fields
 
@@ -80,11 +80,8 @@ struct LineColIterator<I> {
 - <span id="linecoliterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for LineColIterator<I>`

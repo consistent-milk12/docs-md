@@ -21,7 +21,7 @@ struct ForEachConsumer<'f, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/for_each.rs:15-17`](../../../../.source_1765633015/rayon-1.11.0/src/iter/for_each.rs#L15-L17)*
+*Defined in [`rayon-1.11.0/src/iter/for_each.rs:15-17`](../../../../.source_1765894658/rayon-1.11.0/src/iter/for_each.rs#L15-L17)*
 
 #### Trait Implementations
 
@@ -74,11 +74,8 @@ struct ForEachConsumer<'f, F> {
 - <span id="foreachconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ForEachConsumer<'f, F>`
@@ -127,5 +124,5 @@ where
     T: Send
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/for_each.rs:5-13`](../../../../.source_1765633015/rayon-1.11.0/src/iter/for_each.rs#L5-L13)*
+*Defined in [`rayon-1.11.0/src/iter/for_each.rs:5-13`](../../../../.source_1765894658/rayon-1.11.0/src/iter/for_each.rs#L5-L13)*
 

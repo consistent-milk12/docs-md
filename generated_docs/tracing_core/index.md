@@ -192,7 +192,7 @@ struct Dispatch {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
 
 `Dispatch` trace data to a [`Subscriber`](subscriber/index.md).
 
@@ -211,27 +211,16 @@ struct Dispatch {
 - <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](dispatcher/index.md#weakdispatch)
 
   Creates a [`WeakDispatch`](dispatcher/index.md) from this `Dispatch`.
-
   
-
   A [`WeakDispatch`](dispatcher/index.md) is similar to a [`Dispatch`](dispatcher/index.md), but it does not prevent
-
   the underlying [`Subscriber`](subscriber/index.md) from being dropped. Instead, it only permits
-
   access while other references to the `Subscriber` exist. This is equivalent
-
   to the standard library's `Arc::downgrade` method, but for `Dispatch`
-
   rather than `Arc`.
-
   
-
   The primary use for creating a [`WeakDispatch`](dispatcher/index.md) is to allow a `Subscriber`
-
   to hold a cyclical reference to itself without creating a memory leak.
-
   See [here] for details.
-
   
 
 - <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](subscriber/index.md#subscriber)
@@ -239,247 +228,154 @@ struct Dispatch {
 - <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](metadata/index.md#metadata), [`Interest`](subscriber/index.md#interest)
 
   Registers a new callsite with this subscriber, returning whether or not
-
   the subscriber is interested in being notified about the callsite.
-
   
-
   This calls the `register_callsite` function on the [`Subscriber`](subscriber/index.md)
-
   that this `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](metadata/index.md#levelfilter)
 
   Returns the highest [verbosity level][`level`](../tracing_attributes/attr/kw/index.md) that this [`Subscriber`](subscriber/index.md) will
-
   enable, or `None`, if the subscriber does not implement level-based
-
   filtering or chooses not to implement this method.
-
   
-
   This calls the `max_level_hint` function on the [`Subscriber`](subscriber/index.md)
-
   that this `Dispatch` forwards to.
-
   
-
   
 
 - <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](span/index.md#attributes), [`Id`](span/index.md#id)
 
   Record the construction of a new span, returning a new [ID] for the
-
   span being constructed.
-
   
-
   This calls the `new_span` function on the [`Subscriber`](subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
-
   
 
 - <span id="dispatch-record"></span>`fn record(&self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](span/index.md#id), [`Record`](span/index.md#record)
 
   Record a set of values on a span.
-
   
-
   This calls the `record` function on the [`Subscriber`](subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](span/index.md#id)
 
   Adds an indication that `span` follows from the span with the id
-
   `follows`.
-
   
-
   This calls the `record_follows_from` function on the [`Subscriber`](subscriber/index.md)
-
   that this `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](metadata/index.md#metadata)
 
   Returns true if a span with the specified [`metadata`](metadata/index.md) would be
-
   recorded.
-
   
-
   This calls the `enabled` function on the [`Subscriber`](subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
-
   
 
 - <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](event/index.md#event)
 
   Records that an [`Event`](event/index.md) has occurred.
-
   
-
   This calls the [`event`](event/index.md) function on the [`Subscriber`](subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
-
   
 
 - <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](span/index.md#id)
 
   Records that a span has been can_enter.
-
   
-
   This calls the `enter` function on the [`Subscriber`](subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-exit"></span>`fn exit(&self, span: &span::Id)` — [`Id`](span/index.md#id)
 
   Records that a span has been exited.
-
   
-
   This calls the [`exit`](#exit) function on the [`Subscriber`](subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-clone-span"></span>`fn clone_span(&self, id: &span::Id) -> span::Id` — [`Id`](span/index.md#id)
 
   Notifies the subscriber that a [span ID] has been cloned.
-
   
-
   This function must only be called with span IDs that were returned by
-
   this `Dispatch`'s `new_span` function. The `tracing` crate upholds
-
   this guarantee and any other libraries implementing instrumentation APIs
-
   must as well.
-
   
-
   This calls the `clone_span` function on the `Subscriber` that this
-
   `Dispatch` forwards to.
-
   
-
   
-
   
 
 - <span id="dispatch-drop-span"></span>`fn drop_span(&self, id: span::Id)` — [`Id`](span/index.md#id)
 
   Notifies the subscriber that a [span ID] has been dropped.
-
   
-
   This function must only be called with span IDs that were returned by
-
   this `Dispatch`'s `new_span` function. The `tracing` crate upholds
-
   this guarantee and any other libraries implementing instrumentation APIs
-
   must as well.
-
   
-
   This calls the `drop_span` function on the [`Subscriber`](subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
-
   <pre class="compile_fail" style="white-space:normal;font:inherit;">
-
       <strong>Deprecated</strong>: The <a href="#method.try_close"><code>
-
       try_close</code></a> method is functionally identical, but returns
-
       <code>true</code> if the span is now closed. It should be used
-
       instead of this method.
-
   </pre>
-
   
-
   
-
   
-
   
 
 - <span id="dispatch-try-close"></span>`fn try_close(&self, id: span::Id) -> bool` — [`Id`](span/index.md#id)
 
   Notifies the subscriber that a [span ID] has been dropped, and returns
-
   `true` if there are now 0 IDs referring to that span.
-
   
-
   This function must only be called with span IDs that were returned by
-
   this `Dispatch`'s `new_span` function. The `tracing` crate upholds
-
   this guarantee and any other libraries implementing instrumentation APIs
-
   must as well.
-
   
-
   This calls the `try_close` function on the [`Subscriber`](subscriber/index.md) that this
-
    `Dispatch` forwards to.
-
   
-
   
-
   
 
 - <span id="dispatch-current-span"></span>`fn current_span(&self) -> span::Current` — [`Current`](span/index.md#current)
 
   Returns a type representing this subscriber's view of the current span.
-
   
-
   This calls the `current` function on the `Subscriber` that this
-
   `Dispatch` forwards to.
 
 - <span id="dispatch-is"></span>`fn is<T: Any>(&self) -> bool`
 
   Returns `true` if this `Dispatch` forwards to a `Subscriber` of type
-
   `T`.
 
 - <span id="dispatch-downcast-ref"></span>`fn downcast_ref<T: Any>(&self) -> Option<&T>`
 
   Returns some reference to the `Subscriber` this `Dispatch` forwards to
-
   if it is of type `T`, or `None` if it isn't.
 
 #### Trait Implementations
@@ -525,11 +421,8 @@ struct Dispatch {
 - <span id="dispatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Dispatch`
@@ -562,7 +455,7 @@ struct Event<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/event.rs:23-27`](../../.source_1765633015/tracing-core-0.1.35/src/event.rs#L23-L27)*
+*Defined in [`tracing-core-0.1.35/src/event.rs:23-27`](../../.source_1765894658/tracing-core-0.1.35/src/event.rs#L23-L27)*
 
 `Event`s represent single points in time where something occurred during the
 execution of a program.
@@ -585,25 +478,21 @@ two key differences:
 - <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
   Constructs a new `Event` with the specified metadata and set of values,
-
   and observes it with the current subscriber.
 
 - <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
   Returns a new `Event` in the current span, with the specified metadata
-
   and set of values.
 
 - <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md#id), [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
   Returns a new `Event` as a child of the specified span, with the
-
   provided metadata and set of values.
 
 - <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md#id), [`Metadata`](metadata/index.md#metadata), [`ValueSet`](field/index.md#valueset)
 
   Constructs a new `Event` with the specified metadata and set of values,
-
   and observes it with the current subscriber and an explicit parent.
 
 - <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](field/index.md#visit)
@@ -625,27 +514,18 @@ two key differences:
 - <span id="event-is-contextual"></span>`fn is_contextual(&self) -> bool`
 
   Returns true if the new event's parent should be determined based on the
-
   current context.
-
   
-
   If this is true and the current thread is currently inside a span, then
-
   that span should be the new event's parent. Otherwise, if the current
-
   thread is _not_ inside a span, then the new event will be the root of its
-
   own trace tree.
 
 - <span id="event-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](span/index.md#id)
 
   Returns the new event's explicitly-specified parent, if there is one.
-
   
-
   Otherwise (if the new event is a root or is a child of the current span),
-
   returns `None`.
 
 #### Trait Implementations
@@ -677,11 +557,8 @@ two key differences:
 - <span id="event-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Event<'a>`
@@ -705,7 +582,7 @@ struct Field {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../.source_1765633015/tracing-core-0.1.35/src/field.rs#L134-L137)*
+*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../.source_1765894658/tracing-core-0.1.35/src/field.rs#L134-L137)*
 
 An opaque key allowing _O_(1) access to a field in a `Span`'s key-value
 data.
@@ -721,9 +598,7 @@ and use the key for that name for all other accesses.
 - <span id="field-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md#identifier)
 
   Returns an [`Identifier`](callsite/index.md) that uniquely identifies the [`Callsite`](callsite/index.md)
-
   which defines this field.
-
   
 
 - <span id="field-name"></span>`fn name(&self) -> &'static str`
@@ -785,11 +660,8 @@ and use the key for that name for all other accesses.
 - <span id="field-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Field`
@@ -826,7 +698,7 @@ and use the key for that name for all other accesses.
 struct Level(LevelInner);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L221)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L221)*
 
 Describes the level of verbosity of a span or event.
 
@@ -971,9 +843,7 @@ recorded in.
 - <span id="level-as-str"></span>`fn as_str(&self) -> &'static str`
 
   Returns the string representation of the `Level`.
-
   
-
   This returns the same string as the `fmt::Display` implementation.
 
 #### Trait Implementations
@@ -1031,11 +901,8 @@ recorded in.
 - <span id="level-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Level`
@@ -1090,7 +957,7 @@ recorded in.
 struct LevelFilter(Option<Level>);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L239)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L239)*
 
 A filter comparable to a verbosity [`Level`](metadata/index.md).
 
@@ -1123,13 +990,11 @@ and `LevelFilter`s interact.
 - <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](metadata/index.md#level)
 
   Returns a `LevelFilter` that enables spans and events with verbosity up
-
   to and including `level`.
 
 - <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](metadata/index.md#level)
 
   Returns the most verbose [`Level`](metadata/index.md) that this filter accepts, or `None`
-
   if it is `OFF`.
 
 - <span id="levelfilter-const-error-usize"></span>`const ERROR_USIZE: usize`
@@ -1147,31 +1012,18 @@ and `LevelFilter`s interact.
 - <span id="levelfilter-current"></span>`fn current() -> Self`
 
   Returns a `LevelFilter` that matches the most verbose [`Level`](metadata/index.md) that any
-
   currently active [`Subscriber`](subscriber/index.md) will enable.
-
   
-
   User code should treat this as a *hint*. If a given span or event has a
-
   level *higher* than the returned `LevelFilter`, it will not be enabled.
-
   However, if the level is less than or equal to this value, the span or
-
   event is *not* guaranteed to be enabled; the subscriber will still
-
   filter each callsite individually.
-
   
-
   Therefore, comparing a given span or event's level to the returned
-
   `LevelFilter` **can** be used for determining if something is
-
   *disabled*, but **should not** be used for determining if something is
-
   *enabled*.
-
   
 
 - <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](metadata/index.md#levelfilter)
@@ -1231,11 +1083,8 @@ and `LevelFilter`s interact.
 - <span id="levelfilter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for LevelFilter`
@@ -1299,7 +1148,7 @@ struct Metadata<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
 
 Metadata describing a [`span`](span/index.md) or [`event`](event/index.md).
 
@@ -1393,7 +1242,6 @@ of `Metadata`'s other fields is checked in debug builds.
 - <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](metadata/index.md#level), [`FieldSet`](field/index.md#fieldset), [`Kind`](metadata/index.md#kind)
 
   Construct new metadata for a span or event, with a name, target, level, field
-
   names, and optional source code location.
 
 - <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](field/index.md#fieldset)
@@ -1411,37 +1259,29 @@ of `Metadata`'s other fields is checked in debug builds.
 - <span id="metadata-target"></span>`fn target(&self) -> &'a str`
 
   Returns a string describing the part of the system where the span or
-
   event that this metadata describes occurred.
-
   
-
   Typically, this is the module path, but alternate targets may be set
-
   when spans or events are constructed.
 
 - <span id="metadata-module-path"></span>`fn module_path(&self) -> Option<&'a str>`
 
   Returns the path to the Rust module where the span occurred, or
-
   `None` if the module path is unknown.
 
 - <span id="metadata-file"></span>`fn file(&self) -> Option<&'a str>`
 
   Returns the name of the source code file where the span
-
   occurred, or `None` if the file is unknown
 
 - <span id="metadata-line"></span>`fn line(&self) -> Option<u32>`
 
   Returns the line number in the source code file where the span
-
   occurred, or `None` if the line number is unknown.
 
 - <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md#identifier)
 
   Returns an opaque `Identifier` that uniquely identifies the callsite
-
   this `Metadata` originated from.
 
 - <span id="metadata-is-event"></span>`fn is_event(&self) -> bool`
@@ -1483,11 +1323,8 @@ of `Metadata`'s other fields is checked in debug builds.
 - <span id="metadata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Metadata<'_>`
@@ -1512,7 +1349,7 @@ of `Metadata`'s other fields is checked in debug builds.
 struct Kind(u8);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L90)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L90)*
 
 Indicates whether the callsite is a span or event.
 
@@ -1545,11 +1382,8 @@ Indicates whether the callsite is a span or event.
 - <span id="kind-hint"></span>`const fn hint(self) -> Self`
 
   Sets that this `Kind` is a [hint](Self::HINT).
-
   
-
   This can be called on [`SPAN`](Self::SPAN) and [`EVENT`](Self::EVENT)
-
   kinds to construct a hint callsite that also counts as a span or event.
 
 #### Trait Implementations
@@ -1591,11 +1425,8 @@ Indicates whether the callsite is a span or event.
 - <span id="kind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Kind`
@@ -1630,7 +1461,7 @@ Indicates whether the callsite is a span or event.
 struct Interest(InterestKind);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../.source_1765633015/tracing-core-0.1.35/src/subscriber.rs#L589)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../.source_1765894658/tracing-core-0.1.35/src/subscriber.rs#L589)*
 
 Indicates a [`Subscriber`](subscriber/index.md)'s interest in a particular callsite.
 
@@ -1644,73 +1475,51 @@ in order to determine whether that span should be enabled or disabled.
 - <span id="interest-never"></span>`fn never() -> Self`
 
   Returns an `Interest` indicating that the subscriber is never interested
-
   in being notified about a callsite.
-
   
-
   If all active subscribers are `never()` interested in a callsite, it will
-
   be completely disabled unless a new subscriber becomes active.
 
 - <span id="interest-sometimes"></span>`fn sometimes() -> Self`
 
   Returns an `Interest` indicating the subscriber is sometimes interested
-
   in being notified about a callsite.
-
   
-
   If all active subscribers are `sometimes` or `never` interested in a
-
   callsite, the currently active subscriber will be asked to filter that
-
   callsite every time it creates a span. This will be the case until a new
-
   subscriber expresses that it is `always` interested in the callsite.
 
 - <span id="interest-always"></span>`fn always() -> Self`
 
   Returns an `Interest` indicating the subscriber is always interested in
-
   being notified about a callsite.
-
   
-
   If any subscriber expresses that it is `always()` interested in a given
-
   callsite, then the callsite will always be enabled.
 
 - <span id="interest-is-never"></span>`fn is_never(&self) -> bool`
 
   Returns `true` if the subscriber is never interested in being notified
-
   about this callsite.
 
 - <span id="interest-is-sometimes"></span>`fn is_sometimes(&self) -> bool`
 
   Returns `true` if the subscriber is sometimes interested in being notified
-
   about this callsite.
 
 - <span id="interest-is-always"></span>`fn is_always(&self) -> bool`
 
   Returns `true` if the subscriber is always interested in being notified
-
   about this callsite.
 
 - <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](subscriber/index.md#interest)
 
   Returns the common interest between these two Interests.
-
   
-
   If both interests are the same, this propagates that interest.
-
   Otherwise, if they differ, the result must always be
-
   `Interest::sometimes` --- if the two subscribers differ in opinion, we
-
   will have to ask the current subscriber what it thinks, no matter what.
 
 #### Trait Implementations
@@ -1750,11 +1559,8 @@ in order to determine whether that span should be enabled or disabled.
 - <span id="interest-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Interest`
@@ -1785,7 +1591,7 @@ in order to determine whether that span should be enabled or disabled.
 trait Callsite: Sync { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:125-170`](../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L125-L170)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:125-170`](../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L125-L170)*
 
 Trait implemented by callsites.
 
@@ -1800,10 +1606,23 @@ callsites.
 - `fn set_interest(&self, interest: Interest)`
 
   Sets the [`Interest`](subscriber/index.md) for this callsite.
+  
+  See the [documentation on callsite interest caching][cache-docs] for
+  details.
+  
 
 - `fn metadata(&self) -> &Metadata<'_>`
 
   Returns the [`metadata`](metadata/index.md) associated with the callsite.
+  
+  <div class="example-wrap" style="display:inline-block">
+  <pre class="ignore" style="white-space:normal;font:inherit;">
+  
+  **Note:** Implementations of this method should not produce [`Metadata`](metadata/index.md)
+  that share the same callsite [`Identifier`](callsite/index.md) but otherwise differ in any
+  way (e.g., have different `name`s).
+  
+  </pre></div>
 
 #### Implementors
 
@@ -1815,7 +1634,7 @@ callsites.
 trait Subscriber: 'static { ... }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../.source_1765633015/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../.source_1765894658/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
 
 Trait representing the functions required to collect trace data.
 
@@ -1895,68 +1714,379 @@ The following methods are likely of interest:
 - `fn enabled(&self, metadata: &Metadata<'_>) -> bool`
 
   Returns true if a span or event with the specified [`metadata`](metadata/index.md) would be
+  recorded.
+  
+  By default, it is assumed that this filter needs only be evaluated once
+  for each callsite, so it is called by `register_callsite` when each
+  callsite is registered. The result is used to determine if the subscriber
+  is always [interested] or never interested in that callsite. This is intended
+  primarily as an optimization, so that expensive filters (such as those
+  involving string search, et cetera) need not be re-evaluated.
+  
+  However, if the subscriber's interest in a particular span or event may
+  change, or depends on contexts only determined dynamically at runtime,
+  then the `register_callsite` method should be overridden to return
+  `Interest::sometimes`. In that case, this function will be called every
+  time that span or event occurs.
+  
+  
+  
 
 - `fn new_span(&self, span: &span::Attributes<'_>) -> span::Id`
 
   Visit the construction of a new span, returning a new [span ID] for the
+  span being constructed.
+  
+  The provided [`Attributes`](span/index.md) contains any field values that were provided
+  when the span was created. The subscriber may pass a [`visitor`](../regex_syntax/ast/visitor/index.md) to the
+  `Attributes`' [`record` method] to record these values.
+  
+  IDs are used to uniquely identify spans and events within the context of a
+  subscriber, so span equality will be based on the returned ID. Thus, if
+  the subscriber wishes for all spans with the same metadata to be
+  considered equal, it should return the same ID every time it is given a
+  particular set of metadata. Similarly, if it wishes for two separate
+  instances of a span with the same metadata to *not* be equal, it should
+  return a distinct ID every time this function is called, regardless of
+  the metadata.
+  
+  Note that the subscriber is free to assign span IDs based on whatever
+  scheme it sees fit. Any guarantees about uniqueness, ordering, or ID
+  reuse are left up to the subscriber implementation to determine.
+  
+  
+  
 
 - `fn record(&self, span: &span::Id, values: &span::Record<'_>)`
 
   Record a set of values on a span.
+  
+  This method will be invoked when value is recorded on a span.
+  Recording multiple values for the same field is possible,
+  but the actual behaviour is defined by the subscriber implementation.
+  
+  Keep in mind that a span might not provide a value
+  for each field it declares.
+  
+  The subscriber is expected to provide a [`visitor`](../regex_syntax/ast/visitor/index.md) to the `Record`'s
+  [`record` method] in order to record the added values.
+  
+  # Example
+   "foo = 3" will be recorded when `record` is called on the
+  `Attributes` passed to `new_span`.
+  Since values are not provided for the `bar` and `baz` fields,
+  the span's `Metadata` will indicate that it _has_ those fields,
+  but values for them won't be recorded at this time.
+  
+  ```rust,ignore
+  use tracing::span;
+  
+  let mut span = span!("my_span", foo = 3, bar, baz);
+  
+  // `Subscriber::record` will be called with a `Record`
+  // containing "bar = false"
+  span.record("bar", &false);
+  
+  // `Subscriber::record` will be called with a `Record`
+  // containing "baz = "a string""
+  span.record("baz", &"a string");
+  ```
+  
+  
 
 - `fn record_follows_from(&self, span: &span::Id, follows: &span::Id)`
 
   Adds an indication that `span` follows from the span with the id
+  `follows`.
+  
+  This relationship differs somewhat from the parent-child relationship: a
+  span may have any number of prior spans, rather than a single one; and
+  spans are not considered to be executing _inside_ of the spans they
+  follow from. This means that a span may close even if subsequent spans
+  that follow from it are still open, and time spent inside of a
+  subsequent span should not be included in the time its precedents were
+  executing. This is used to model causal relationships such as when a
+  single future spawns several related background tasks, et cetera.
+  
+  If the subscriber has spans corresponding to the given IDs, it should
+  record this relationship in whatever way it deems necessary. Otherwise,
+  if one or both of the given span IDs do not correspond to spans that the
+  subscriber knows about, or if a cyclical relationship would be created
+  (i.e., some span _a_ which proceeds some other span _b_ may not also
+  follow from _b_), it may silently do nothing.
 
 - `fn event(&self, event: &Event<'_>)`
 
   Records that an [`Event`](event/index.md) has occurred.
+  
+  This method will be invoked when an Event is constructed by
+  the `Event`'s [`dispatch` method]. For example, this happens internally
+  when an event macro from `tracing` is called.
+  
+  The key difference between this method and `record` is that `record` is
+  called when a value is recorded for a field defined by a span,
+  while `event` is called when a new event occurs.
+  
+  The provided `Event` struct contains any field values attached to the
+  event. The subscriber may pass a [`visitor`](../regex_syntax/ast/visitor/index.md) to the `Event`'s
+  [`record` method] to record these values.
+  
+  
+  
 
 - `fn enter(&self, span: &span::Id)`
 
   Records that a span has been entered.
+  
+  When entering a span, this method is called to notify the subscriber
+  that the span has been entered. The subscriber is provided with the
+  [span ID] of the entered span, and should update any internal state
+  tracking the current span accordingly.
 
 - `fn exit(&self, span: &span::Id)`
 
   Records that a span has been exited.
+  
+  When exiting a span, this method is called to notify the subscriber
+  that the span has been exited. The subscriber is provided with the
+  [span ID] of the exited span, and should update any internal state
+  tracking the current span accordingly.
+  
+  Exiting a span does not imply that the span will not be re-entered.
 
 #### Provided Methods
 
 - `fn on_register_dispatch(&self, subscriber: &Dispatch)`
 
   Invoked when this subscriber becomes a [`Dispatch`](dispatcher/index.md).
+  
+  ## Avoiding Memory Leaks
+  
+  `Subscriber`s should not store their own [`Dispatch`](dispatcher/index.md). Because the
+  `Dispatch` owns the `Subscriber`, storing the `Dispatch` within the
+  `Subscriber` will create a reference count cycle, preventing the `Dispatch`
+  from ever being dropped.
+  
+  Instead, when it is necessary to store a cyclical reference to the
+  `Dispatch` within a `Subscriber`, use `Dispatch::downgrade` to convert a
+  `Dispatch` into a [`WeakDispatch`](dispatcher/index.md). This type is analogous to
+  `std::sync::Weak`, and does not create a reference count cycle. A
+  [`WeakDispatch`](dispatcher/index.md) can be stored within a `Subscriber` without causing a
+  memory leak, and can be [upgraded] into a `Dispatch` temporarily when
+  the `Dispatch` must be accessed by the `Subscriber`.
+  
 
 - `fn register_callsite(&self, metadata: &'static Metadata<'static>) -> Interest`
 
   Registers a new [`callsite`](callsite/index.md) with this subscriber, returning whether or not
+  the subscriber is interested in being notified about the callsite.
+  
+  By default, this function assumes that the subscriber's [`filter`](../rayon/iter/filter/index.md)
+  represents an unchanging view of its interest in the callsite. However,
+  if this is not the case, subscribers may override this function to
+  indicate different interests, or to implement behaviour that should run
+  once for every callsite.
+  
+  This function is guaranteed to be called at least once per callsite on
+  every active subscriber. The subscriber may store the keys to fields it
+  cares about in order to reduce the cost of accessing fields by name,
+  preallocate storage for that callsite, or perform any other actions it
+  wishes to perform once for each callsite.
+  
+  The subscriber should then return an [`Interest`](subscriber/index.md), indicating
+  whether it is interested in being notified about that callsite in the
+  future. This may be `Always` indicating that the subscriber always
+  wishes to be notified about the callsite, and its filter need not be
+  re-evaluated; `Sometimes`, indicating that the subscriber may sometimes
+  care about the callsite but not always (such as when sampling), or
+  `Never`, indicating that the subscriber never wishes to be notified about
+  that callsite. If all active subscribers return `Never`, a callsite will
+  never be enabled unless a new subscriber expresses interest in it.
+  
+  `Subscriber`s which require their filters to be run every time an event
+  occurs or a span is entered/exited should return `Interest::sometimes`.
+  If a subscriber returns `Interest::sometimes`, then its `enabled` method
+  will be called every time an event or span is created from that callsite.
+  
+  For example, suppose a sampling subscriber is implemented by
+  incrementing a counter every time `enabled` is called and only returning
+  `true` when the counter is divisible by a specified sampling rate. If
+  that subscriber returns `Interest::always` from `register_callsite`, then
+  the filter will not be re-evaluated once it has been applied to a given
+  set of metadata. Thus, the counter will not be incremented, and the span
+  or event that corresponds to the metadata will never be `enabled`.
+  
+  `Subscriber`s that need to change their filters occasionally should call
+  [`rebuild_interest_cache`](callsite/index.md) to re-evaluate `register_callsite` for all
+  callsites.
+  
+  Similarly, if a `Subscriber` has a filtering strategy that can be
+  changed dynamically at runtime, it would need to re-evaluate that filter
+  if the cached results have changed.
+  
+  A subscriber which manages fanout to multiple other subscribers
+  should proxy this decision to all of its child subscribers,
+  returning `Interest::never` only if _all_ such children return
+  `Interest::never`. If the set of subscribers to which spans are
+  broadcast may change dynamically, the subscriber should also never
+  return `Interest::Never`, as a new subscriber may be added that _is_
+  interested.
+  
+  See the [documentation on the callsite registry][cs-reg] for more
+  details on how and when the `register_callsite` method is called.
+  
+  # Notes
+  This function may be called again when a new subscriber is created or
+  when the registry is invalidated.
+  
+  If a subscriber returns `Interest::never` for a particular callsite, it
+  _may_ still see spans and events originating from that callsite, if
+  another subscriber expressed interest in it.
+  
+  
+  
+  
+  
 
 - `fn max_level_hint(&self) -> Option<LevelFilter>`
 
   Returns the highest [verbosity level][`level`](../tracing_attributes/attr/kw/index.md) that this `Subscriber` will
+  enable, or `None`, if the subscriber does not implement level-based
+  filtering or chooses not to implement this method.
+  
+  If this method returns a [`Level`][`level`](../tracing_attributes/attr/kw/index.md), it will be used as a hint to
+  determine the most verbose level that will be enabled. This will allow
+  spans and events which are more verbose than that level to be skipped
+  more efficiently. Subscribers which perform filtering are strongly
+  encouraged to provide an implementation of this method.
+  
+  If the maximum level the subscriber will enable can change over the
+  course of its lifetime, it is free to return a different value from
+  multiple invocations of this method. However, note that changes in the
+  maximum level will **only** be reflected after the callsite [`Interest`](subscriber/index.md)
+  cache is rebuilt, by calling the [`callsite::rebuild_interest_cache`][rebuild]
+  function. Therefore, if the subscriber will change the value returned by
+  this method, it is responsible for ensuring that
+  [`rebuild_interest_cache`][rebuild] is called after the value of the max
+  level changes.
+  
 
 - `fn event_enabled(&self, event: &Event<'_>) -> bool`
 
   Determine if an [`Event`](event/index.md) should be recorded.
+  
+  By default, this returns `true` and `Subscriber`s can filter events in
+  `event` without any penalty. However, when `event` is
+  more complicated, this can be used to determine if `event` should be
+  called at all, separating out the decision from the processing.
 
 - `fn clone_span(&self, id: &span::Id) -> span::Id`
 
   Notifies the subscriber that a [span ID] has been cloned.
+  
+  This function is guaranteed to only be called with span IDs that were
+  returned by this subscriber's `new_span` function.
+  
+  Note that the default implementation of this function this is just the
+  identity function, passing through the identifier. However, it can be
+  used in conjunction with `try_close` to track the number of handles
+  capable of `enter`ing a span. When all the handles have been dropped
+  (i.e., `try_close` has been called one more time than `clone_span` for a
+  given ID), the subscriber may assume that the span will not be entered
+  again. It is then free to deallocate storage for data associated with
+  that span, write data from that span to IO, and so on.
+  
+  For more unsafe situations, however, if `id` is itself a pointer of some
+  kind this can be used as a hook to "clone" the pointer, depending on
+  what that means for the specified pointer.
+  
 
 - `fn drop_span(&self, _id: span::Id)`
 
   **This method is deprecated.**
+  
+  Using `drop_span` may result in subscribers composed using
+  `tracing-subscriber` crate's `Layer` trait from observing close events.
+  Use `try_close` instead.
+  
+  The default implementation of this function does nothing.
 
 - `fn try_close(&self, id: span::Id) -> bool`
 
   Notifies the subscriber that a [span ID] has been dropped, and returns
+  `true` if there are now 0 IDs that refer to that span.
+  
+  Higher-level libraries providing functionality for composing multiple
+  subscriber implementations may use this return value to notify any
+  "layered" subscribers that this subscriber considers the span closed.
+  
+  The default implementation of this method calls the subscriber's
+  `drop_span` method and returns `false`. This means that, unless the
+  subscriber overrides the default implementation, close notifications
+  will never be sent to any layered subscribers. In general, if the
+  subscriber tracks reference counts, this method should be implemented,
+  rather than `drop_span`.
+  
+  This function is guaranteed to only be called with span IDs that were
+  returned by this subscriber's `new_span` function.
+  
+  It's guaranteed that if this function has been called once more than the
+  number of times `clone_span` was called with the same `id`, then no more
+  handles that can enter the span with that `id` exist. This means that it
+  can be used in conjunction with `clone_span` to track the number of
+  handles capable of `enter`ing a span. When all the handles have been
+  dropped (i.e., `try_close` has been called one more time than
+  `clone_span` for a given ID), the subscriber may assume that the span
+  will not be entered again, and should return `true`. It is then free to
+  deallocate storage for data associated with that span, write data from
+  that span to IO, and so on.
+  
+  **Note**: since this function is called when spans are dropped,
+  implementations should ensure that they are unwind-safe. Panicking from
+  inside of a `try_close` function may cause a double panic, if the span
+  was dropped due to a thread unwinding.
+  
+  
 
 - `fn current_span(&self) -> span::Current`
 
   Returns a type representing this subscriber's view of the current span.
+  
+  If subscribers track a current span, they should override this function
+  to return `Current::new` if the thread from which this method is
+  called is inside a span, or `Current::none` if the thread is not
+  inside a span.
+  
+  By default, this returns a value indicating that the subscriber
+  does **not** track what span is current. If the subscriber does not
+  implement a current span, it should not override this method.
+  
 
 - `fn downcast_raw(&self, id: TypeId) -> Option<*const ()>`
 
   If `self` is the same type as the provided `TypeId`, returns an untyped
+  `*const` pointer to that type. Otherwise, returns `None`.
+  
+  If you wish to downcast a `Subscriber`, it is strongly advised to use
+  the safe API provided by `downcast_ref` instead.
+  
+  This API is required for `downcast_raw` to be a trait method; a method
+  signature like `downcast_ref` (with a generic type parameter) is not
+  object-safe, and thus cannot be a trait method for `Subscriber`. This
+  means that if we only exposed `downcast_ref`, `Subscriber`
+  implementations could not override the downcasting behavior
+  
+  This method may be overridden by "fan out" or "chained" subscriber
+  implementations which consist of multiple composed types. Such
+  subscribers might allow `downcast_raw` by returning references to those
+  component if they contain components with the given `TypeId`.
+  
+  # Safety
+  
+  The `downcast_ref` method expects that the pointer returned by
+  `downcast_raw` is non-null and points to a valid instance of the type
+  with the provided `TypeId`. Failure to ensure this will result in
+  undefined behaviour, so implementing `downcast_raw` is unsafe.
 
 #### Implementors
 
@@ -1968,7 +2098,7 @@ The following methods are likely of interest:
 
 ### `identify_callsite!`
 
-*Defined in [`tracing-core-0.1.35/src/lib.rs:192-196`](../../.source_1765633015/tracing-core-0.1.35/src/lib.rs#L192-L196)*
+*Defined in [`tracing-core-0.1.35/src/lib.rs:192-196`](../../.source_1765894658/tracing-core-0.1.35/src/lib.rs#L192-L196)*
 
 Statically constructs an [`Identifier`](callsite/index.md) for the provided [`Callsite`](callsite/index.md).
 
@@ -2000,7 +2130,7 @@ static CALLSITE_ID: callsite::Identifier = identify_callsite!(&CALLSITE);
 
 ### `metadata!`
 
-*Defined in [`tracing-core-0.1.35/src/lib.rs:230-267`](../../.source_1765633015/tracing-core-0.1.35/src/lib.rs#L230-L267)*
+*Defined in [`tracing-core-0.1.35/src/lib.rs:230-267`](../../.source_1765894658/tracing-core-0.1.35/src/lib.rs#L230-L267)*
 
 Statically constructs new span [`metadata`](metadata/index.md).
 

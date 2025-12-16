@@ -54,7 +54,7 @@ struct HeapBuffer {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:26-30`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L26-L30)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:26-30`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/heap.rs#L26-L30)*
 
 #### Implementations
 
@@ -69,11 +69,8 @@ struct HeapBuffer {
 - <span id="heapbuffer-with-additional"></span>`fn with_additional(text: &str, additional: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md#reserveerror)
 
   Create a [`HeapBuffer`](#heapbuffer) with `text` that has _at least_ `additional` bytes of capacity
-
   
-
   To prevent frequent re-allocations, this method will create a [`HeapBuffer`](#heapbuffer) with a capacity
-
   of `text.len() + additional` or `text.len() * 1.5`, whichever is greater
 
 - <span id="heapbuffer-capacity"></span>`fn capacity(&self) -> usize`
@@ -87,11 +84,8 @@ struct HeapBuffer {
 - <span id="heapbuffer-set-len"></span>`unsafe fn set_len(&mut self, len: usize)`
 
   Set's the length of the content for this [`HeapBuffer`](#heapbuffer)
-
   
-
   # SAFETY:
-
   * The caller must guarantee that `len` bytes in the buffer are valid UTF-8
 
 - <span id="heapbuffer-dealloc"></span>`fn dealloc(&mut self)`
@@ -135,11 +129,8 @@ struct HeapBuffer {
 - <span id="heapbuffer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for HeapBuffer`
@@ -170,11 +161,11 @@ struct HeapBuffer {
 fn amortized_growth(cur_len: usize, additional: usize) -> usize
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:19-23`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L19-L23)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:19-23`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/heap.rs#L19-L23)*
 
 [`HeapBuffer`](#heapbuffer) grows at an amortized rates of 1.5x
 
-Note: this is different than [`std::string::String`](../../../cargo_platform/index.md), which grows at a rate of 2x. It's debated
+Note: this is different than `std::string::String`, which grows at a rate of 2x. It's debated
 which is better, for now we'll stick with a rate of 1.5x
 
 ### `allocate_ptr`
@@ -183,7 +174,7 @@ which is better, for now we'll stick with a rate of 1.5x
 fn allocate_ptr(capacity: usize) -> Result<(super::capacity::Capacity, ptr::NonNull<u8>), crate::ReserveError>
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:264-299`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L264-L299)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:264-299`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/heap.rs#L264-L299)*
 
 Allocates a buffer on the heap that we can use to store a string, optionally stores the capacity
 of said buffer on the heap.
@@ -197,7 +188,7 @@ in the `Capacity` itself.
 fn deallocate_ptr(ptr: ptr::NonNull<u8>, cap: super::capacity::Capacity)
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:303-328`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L303-L328)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:303-328`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/heap.rs#L303-L328)*
 
 Deallocates a buffer on the heap, handling when the capacity is also stored on the heap
 
@@ -207,7 +198,7 @@ Deallocates a buffer on the heap, handling when the capacity is also stored on t
 unsafe fn do_alloc(layout: core::alloc::Layout) -> Result<ptr::NonNull<u8>, crate::ReserveError>
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:332-343`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L332-L343)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:332-343`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/heap.rs#L332-L343)*
 
 SAFETY: `layout` must not be zero sized
 
@@ -219,7 +210,7 @@ SAFETY: `layout` must not be zero sized
 type StrBuffer = [u8; 0];
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:12`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L12)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:12`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/heap.rs#L12)*
 
 ## Constants
 
@@ -228,7 +219,7 @@ type StrBuffer = [u8; 0];
 const MIN_HEAP_SIZE: usize = 32usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:9`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L9)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:9`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/heap.rs#L9)*
 
 The minimum size we'll allocate on the heap is one usize larger than our max inline size
 
@@ -237,5 +228,5 @@ The minimum size we'll allocate on the heap is one usize larger than our max inl
 const UNKNOWN: usize = 0usize;
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/heap.rs:11`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/heap.rs#L11)*
+*Defined in [`compact_str-0.9.0/src/repr/heap.rs:11`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/heap.rs#L11)*
 

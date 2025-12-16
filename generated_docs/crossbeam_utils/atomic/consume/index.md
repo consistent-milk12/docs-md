@@ -20,7 +20,7 @@
 trait AtomicConsume { ... }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
 
 Trait which allows reading from primitive atomic types with "consume" ordering.
 
@@ -33,6 +33,20 @@ Trait which allows reading from primitive atomic types with "consume" ordering.
 - `fn load_consume(&self) -> <Self as >::Val`
 
   Loads a value from the atomic using a "consume" memory ordering.
+  
+  This is similar to the "acquire" ordering, except that an ordering is
+  only guaranteed with operations that "depend on" the result of the load.
+  However consume loads are usually much faster than acquire loads on
+  architectures with a weak memory model since they don't require memory
+  fence instructions.
+  
+  The exact definition of "depend on" is a bit vague, but it works as you
+  would expect in practice since a lot of software, especially the Linux
+  kernel, rely on this behavior.
+  
+  This is currently only implemented on ARM and AArch64, where a fence
+  can be avoided. On other architectures this will fall back to a simple
+  `load(Ordering::Acquire)`.
 
 #### Implementors
 
@@ -53,9 +67,9 @@ Trait which allows reading from primitive atomic types with "consume" ordering.
 
 ### `impl_consume!`
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:55-62`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/consume.rs#L55-L62)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:55-62`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/atomic/consume.rs#L55-L62)*
 
 ### `impl_atomic!`
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:64-77`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/consume.rs#L64-L77)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:64-77`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/atomic/consume.rs#L64-L77)*
 

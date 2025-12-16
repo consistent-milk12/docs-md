@@ -22,7 +22,7 @@ struct WhileSome<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/while_some.rs:13-15`](../../../../.source_1765633015/rayon-1.11.0/src/iter/while_some.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/while_some.rs:13-15`](../../../../.source_1765894658/rayon-1.11.0/src/iter/while_some.rs#L13-L15)*
 
 `WhileSome` is an iterator that yields the `Some` elements of an iterator,
 halting as soon as any `None` is produced.
@@ -73,11 +73,8 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](../i
 - <span id="whilesome-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WhileSome<I>`
@@ -139,7 +136,7 @@ struct WhileSomeConsumer<'f, C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/while_some.rs:47-50`](../../../../.source_1765633015/rayon-1.11.0/src/iter/while_some.rs#L47-L50)*
+*Defined in [`rayon-1.11.0/src/iter/while_some.rs:47-50`](../../../../.source_1765894658/rayon-1.11.0/src/iter/while_some.rs#L47-L50)*
 
 #### Trait Implementations
 
@@ -180,11 +177,8 @@ struct WhileSomeConsumer<'f, C> {
 - <span id="whilesomeconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WhileSomeConsumer<'f, C>`
@@ -230,7 +224,7 @@ struct WhileSomeFolder<'f, C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/while_some.rs:102-105`](../../../../.source_1765633015/rayon-1.11.0/src/iter/while_some.rs#L102-L105)*
+*Defined in [`rayon-1.11.0/src/iter/while_some.rs:102-105`](../../../../.source_1765894658/rayon-1.11.0/src/iter/while_some.rs#L102-L105)*
 
 #### Trait Implementations
 
@@ -269,11 +263,8 @@ struct WhileSomeFolder<'f, C> {
 - <span id="whilesomefolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WhileSomeFolder<'f, C>`

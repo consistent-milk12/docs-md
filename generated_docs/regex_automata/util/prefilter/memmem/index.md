@@ -20,7 +20,7 @@ struct Memmem {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/memmem.rs:7-12`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/prefilter/memmem.rs#L7-L12)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/memmem.rs:7-12`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/memmem.rs#L7-L12)*
 
 #### Implementations
 
@@ -63,11 +63,8 @@ struct Memmem {
 - <span id="memmem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for Memmem`

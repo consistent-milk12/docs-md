@@ -42,51 +42,30 @@ println!("Found {} crates", crates.len());
 - <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../collection/index.md#cratecollection), [`Error`](../../error/index.md#error)
 
   Parse all rustdoc JSON files in a directory.
-
   
-
   Scans the top level of the directory for `*.json` files and
-
   attempts to parse each one as rustdoc JSON. Files that aren't
-
   valid rustdoc JSON (e.g., search indices) are silently skipped.
-
   
-
   # Arguments
-
   
-
   * `dir` - Path to directory containing JSON files
-
   
-
   # Returns
-
   
-
   A `CrateCollection` containing all successfully parsed crates.
-
   
-
   # Errors
-
   
-
   - [`Error::InvalidDirectory`](../../index.md) if the path is invalid
-
   - [`Error::NoJsonFiles`](../../index.md) if no valid JSON files found
-
   - [`Error::DuplicateCrate`](../../index.md) if multiple files define the same crate
-
   - [`Error::NoCrateName`](../../index.md) if a JSON file has no root module
 
 - <span id="multicrateparser-extract-crate-name"></span>`fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](../../error/index.md#error)
 
   Extract the crate name from a parsed Crate.
-
   
-
   The crate name is stored in the root item's `name` field.
 
 #### Trait Implementations
@@ -116,11 +95,8 @@ println!("Found {} crates", crates.len());
 - <span id="multicrateparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MultiCrateParser`

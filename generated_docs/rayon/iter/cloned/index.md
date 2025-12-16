@@ -23,7 +23,7 @@ struct Cloned<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/cloned.rs:13-15`](../../../../.source_1765633015/rayon-1.11.0/src/iter/cloned.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:13-15`](../../../../.source_1765894658/rayon-1.11.0/src/iter/cloned.rs#L13-L15)*
 
 `Cloned` is an iterator that clones the elements of an underlying iterator.
 
@@ -81,11 +81,8 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../index
 - <span id="cloned-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Cloned<I>`
@@ -148,7 +145,7 @@ struct ClonedProducer<P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/cloned.rs:91-93`](../../../../.source_1765633015/rayon-1.11.0/src/iter/cloned.rs#L91-L93)*
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:91-93`](../../../../.source_1765894658/rayon-1.11.0/src/iter/cloned.rs#L91-L93)*
 
 #### Trait Implementations
 
@@ -175,11 +172,8 @@ struct ClonedProducer<P> {
 - <span id="clonedproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ClonedProducer<P>`
@@ -234,7 +228,7 @@ struct ClonedConsumer<C> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/cloned.rs:134-136`](../../../../.source_1765633015/rayon-1.11.0/src/iter/cloned.rs#L134-L136)*
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:134-136`](../../../../.source_1765894658/rayon-1.11.0/src/iter/cloned.rs#L134-L136)*
 
 #### Implementations
 
@@ -279,11 +273,8 @@ struct ClonedConsumer<C> {
 - <span id="clonedconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ClonedConsumer<C>`
@@ -328,7 +319,7 @@ struct ClonedFolder<F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/cloned.rs:187-189`](../../../../.source_1765633015/rayon-1.11.0/src/iter/cloned.rs#L187-L189)*
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:187-189`](../../../../.source_1765894658/rayon-1.11.0/src/iter/cloned.rs#L187-L189)*
 
 #### Trait Implementations
 
@@ -367,11 +358,8 @@ struct ClonedFolder<F> {
 - <span id="clonedfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ClonedFolder<F>`

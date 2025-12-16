@@ -197,11 +197,8 @@ Options for source collection.
 - <span id="collectoptions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectOptions`
@@ -324,11 +321,8 @@ Metadata about a collected crate.
 - <span id="collectedcrate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectedCrate`
@@ -434,11 +428,8 @@ Result of a collection operation.
 - <span id="collectionresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectionResult`
@@ -501,37 +492,25 @@ Collector for gathering dependency sources.
 - <span id="sourcecollector-new"></span>`fn new() -> Result<Self, Error>` — [`Error`](../error/index.md#error)
 
   Create a new collector for the current directory.
-
   
-
   # Errors
-
   
-
   Returns an error if cargo metadata cannot be loaded.
 
 - <span id="sourcecollector-from-manifest"></span>`fn from_manifest(manifest_path: Option<&Path>) -> Result<Self, Error>` — [`Error`](../error/index.md#error)
 
   Create a new collector from a specific manifest path.
-
   
-
   # Errors
-
   
-
   Returns an error if cargo metadata cannot be loaded.
 
 - <span id="sourcecollector-collect"></span>`fn collect(&self, options: &CollectOptions) -> Result<CollectionResult, Error>` — [`CollectOptions`](collector/index.md#collectoptions), [`CollectionResult`](collector/index.md#collectionresult), [`Error`](../error/index.md#error)
 
   Collect all dependency sources.
-
   
-
   # Errors
-
   
-
   Returns an error if collection fails.
 
 - <span id="sourcecollector-generate-output-dir"></span>`fn generate_output_dir(&self) -> Result<PathBuf, Error>` — [`Error`](../error/index.md#error)
@@ -545,27 +524,18 @@ Collector for gathering dependency sources.
 - <span id="sourcecollector-copy-crate-source"></span>`fn copy_crate_source(source: &Path, dest: &Path, minimal: bool) -> Result<(), Error>` — [`Error`](../error/index.md#error)
 
   Copy crate source to destination.
-
   
-
   If `minimal` is false (default), copies the entire crate directory.
-
   If `minimal` is true, only copies `src/` and `Cargo.toml`.
-
   
-
   In both modes, `Cargo.toml` is renamed to `Crate.toml` to avoid
-
   confusing cargo when the collected sources are in the workspace.
 
 - <span id="sourcecollector-get-dev-only-packages"></span>`fn get_dev_only_packages(&self) -> HashSet<PackageId>`
 
   Get the set of package IDs that are dev-only dependencies.
-
   
-
   A package is considered dev-only if it is only reachable from workspace
-
   members via dev-dependencies (not normal or build dependencies).
 
 - <span id="sourcecollector-dry-run-collect"></span>`fn dry_run_collect(&self, output_dir: &Path, options: &CollectOptions) -> Result<CollectionResult, Error>` — [`CollectOptions`](collector/index.md#collectoptions), [`CollectionResult`](collector/index.md#collectionresult), [`Error`](../error/index.md#error)
@@ -615,11 +585,8 @@ Collector for gathering dependency sources.
 - <span id="sourcecollector-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceCollector`
@@ -719,11 +686,8 @@ Manifest stored in `.source_*/manifest.json`.
 - <span id="sourcemanifest-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceManifest`
@@ -794,13 +758,9 @@ or by using `cargo metadata` to find exact paths for dependencies.
 - <span id="sourcelocator-new"></span>`fn new() -> Result<Self, Error>` — [`Error`](../error/index.md#error)
 
   Create a new `SourceLocator` with the default registry path.
-
   
-
   # Errors
-
   
-
   Returns an error if the home directory cannot be determined.
 
 - <span id="sourcelocator-with-registry-path"></span>`const fn with_registry_path(registry_path: PathBuf) -> Self`
@@ -810,49 +770,31 @@ or by using `cargo metadata` to find exact paths for dependencies.
 - <span id="sourcelocator-load-metadata"></span>`fn load_metadata(&mut self, manifest_path: &Path) -> Result<(), Error>` — [`Error`](../error/index.md#error)
 
   Load cargo metadata from a project directory.
-
   
-
   This enables more accurate source location by using the exact
-
   paths from cargo's dependency resolution.
-
   
-
   # Errors
-
   
-
   Returns an error if cargo metadata cannot be loaded.
 
 - <span id="sourcelocator-load-metadata-from-current-dir"></span>`fn load_metadata_from_current_dir(&mut self) -> Result<(), Error>` — [`Error`](../error/index.md#error)
 
   Load cargo metadata from the current directory.
-
   
-
   # Errors
-
   
-
   Returns an error if cargo metadata cannot be loaded.
 
 - <span id="sourcelocator-locate"></span>`fn locate(&self, name: &str, version: &str) -> Result<PathBuf, Error>` — [`Error`](../error/index.md#error)
 
   Locate the source directory for a crate by name and version.
-
   
-
   First tries to use cargo metadata if available, then falls back
-
   to scanning the registry directory.
-
   
-
   # Errors
-
   
-
   Returns an error if the source cannot be found.
 
 - <span id="sourcelocator-locate-from-metadata"></span>`fn locate_from_metadata(metadata: &Metadata, name: &str, version: &str) -> Option<PathBuf>`
@@ -866,51 +808,34 @@ or by using `cargo metadata` to find exact paths for dependencies.
 - <span id="sourcelocator-packages"></span>`fn packages(&self) -> Option<&[Package]>`
 
   Get all packages from the loaded metadata.
-
   
-
   Returns `None` if metadata hasn't been loaded.
 
 - <span id="sourcelocator-workspace-root"></span>`fn workspace_root(&self) -> Option<&Path>`
 
   Get the workspace root from loaded metadata.
-
   
-
   Returns `None` if metadata hasn't been loaded.
 
 - <span id="sourcelocator-all-dependency-sources"></span>`fn all_dependency_sources(&self) -> Result<Vec<(String, String, PathBuf)>, Error>` — [`Error`](../error/index.md#error)
 
   Find all dependency sources for a workspace.
-
   
-
   Returns a list of (name, version, path) tuples for all dependencies
-
   that have sources in the registry.
-
   
-
   # Errors
-
   
-
   Returns an error if metadata hasn't been loaded.
 
 - <span id="sourcelocator-list-registry-crates"></span>`fn list_registry_crates(&self) -> Result<Vec<(String, String)>, Error>` — [`Error`](../error/index.md#error)
 
   List all available crate versions in the registry.
-
   
-
   Returns a list of (name, version) tuples.
-
   
-
   # Errors
-
   
-
   Returns an error if the registry cannot be read.
 
 #### Trait Implementations
@@ -944,11 +869,8 @@ or by using `cargo metadata` to find exact paths for dependencies.
 - <span id="sourcelocator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceLocator`
@@ -1020,13 +942,9 @@ Parser for Rust source code using `syn`.
 - <span id="sourceparser-parse-crate"></span>`fn parse_crate(&self) -> Result<CrateSource, Error>` — [`CrateSource`](types/index.md#cratesource), [`Error`](../error/index.md#error)
 
   Parse an entire crate starting from its root.
-
   
-
   # Errors
-
   
-
   Returns an error if any source file cannot be parsed.
 
 - <span id="sourceparser-find-entry-point"></span>`fn find_entry_point(&self) -> Result<PathBuf, Error>` — [`Error`](../error/index.md#error)
@@ -1088,17 +1006,13 @@ Parser for Rust source code using `syn`.
 - <span id="sourceparser-line-of"></span>`fn line_of<T: Spanned>(item: &T) -> usize`
 
   Extract the starting line number from a spanned item.
-
   
-
   Uses `proc-macro2`'s span-locations feature to get accurate line numbers.
 
 - <span id="sourceparser-extract-doc-comments"></span>`fn extract_doc_comments(attrs: &[Attribute]) -> Vec<String>`
 
   Extract doc comments from attributes.
-
   
-
   Doc comments in Rust are represented as `#[doc = "..."]` attributes.
 
 - <span id="sourceparser-extract-fields"></span>`fn extract_fields(fields: &Fields) -> Vec<FieldInfo>` — [`FieldInfo`](types/index.md#fieldinfo)
@@ -1108,17 +1022,11 @@ Parser for Rust source code using `syn`.
 - <span id="sourceparser-parse-file"></span>`fn parse_file(path: &Path) -> Result<File, Error>` — [`Error`](../error/index.md#error)
 
   Parse a single file without traversing modules.
-
   
-
   Useful for quick parsing of individual files.
-
   
-
   # Errors
-
   
-
   Returns an error if the file cannot be read or parsed.
 
 #### Trait Implementations
@@ -1156,11 +1064,8 @@ Parser for Rust source code using `syn`.
 - <span id="sourceparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceParser`
@@ -1287,11 +1192,8 @@ Information about a constant.
 - <span id="constinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ConstInfo`
@@ -1476,11 +1378,8 @@ Aggregated source information for an entire crate.
 - <span id="cratesource-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CrateSource`
@@ -1607,11 +1506,8 @@ Information about a parsed enum.
 - <span id="enuminfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for EnumInfo`
@@ -1726,11 +1622,8 @@ Information about a struct or enum field.
 - <span id="fieldinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FieldInfo`
@@ -1865,11 +1758,8 @@ Information about a parsed function, including its body.
 - <span id="functioninfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FunctionInfo`
@@ -1994,11 +1884,8 @@ Information about an impl block.
 - <span id="implinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ImplInfo`
@@ -2123,11 +2010,8 @@ Information about a macro definition.
 - <span id="macroinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MacroInfo`
@@ -2267,11 +2151,8 @@ Information about a static variable.
 - <span id="staticinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for StaticInfo`
@@ -2406,11 +2287,8 @@ Information about a parsed struct.
 - <span id="structinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for StructInfo`
@@ -2540,11 +2418,8 @@ Information about a parsed trait.
 - <span id="traitinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TraitInfo`
@@ -2674,11 +2549,8 @@ Information about a type alias.
 - <span id="typealiasinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TypeAliasInfo`
@@ -2788,11 +2660,8 @@ Information about an enum variant.
 - <span id="variantinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for VariantInfo`
@@ -2906,11 +2775,8 @@ A reference to a private item for rendering.
 - <span id="privateitem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for PrivateItem<'a>`

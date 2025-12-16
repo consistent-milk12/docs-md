@@ -301,7 +301,7 @@ this crate can be used without the standard library.
 struct StreamFindIter<'a, R>(automaton::StreamFindIter<'a, alloc::sync::Arc<dyn AcAutomaton>, R>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2100-2102`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2100-L2102)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2100-2102`](../../.source_1765894658/aho-corasick-1.1.4/src/ahocorasick.rs#L2100-L2102)*
 
 An iterator that reports Aho-Corasick matches in a stream.
 
@@ -348,11 +348,8 @@ The lifetime `'a` refers to the lifetime of the corresponding
 - <span id="streamfinditer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StreamFindIter<'a, R>`
@@ -391,7 +388,7 @@ struct AhoCorasick {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:177-214`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L177-L214)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:177-214`](../../.source_1765894658/aho-corasick-1.1.4/src/ahocorasick.rs#L177-L214)*
 
 An automaton for searching multiple strings in linear time.
 
@@ -599,87 +596,48 @@ assert_eq!(result, "The slow grey sloth.");
 - <span id="ahocorasick-new"></span>`fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](ahocorasick/index.md#ahocorasick), [`BuildError`](util/error/index.md#builderror)
 
   Create a new Aho-Corasick automaton using the default configuration.
-
   
-
   The default configuration optimizes for less space usage, but at the
-
   expense of longer search times. To change the configuration, use
-
   [`AhoCorasickBuilder`](ahocorasick/index.md).
-
   
-
   This uses the default [`MatchKind::Standard`](#matchkindstandard) match semantics, which
-
   reports a match as soon as it is found. This corresponds to the
-
   standard match semantics supported by textbook descriptions of the
-
   Aho-Corasick algorithm.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use aho_corasick::{AhoCorasick, PatternID};
-
   
-
   let ac = AhoCorasick::new(&["foo", "bar", "baz"]).unwrap();
-
   assert_eq!(
-
       Some(PatternID::must(1)),
-
       ac.find("xxx bar xxx").map(|m| m.pattern()),
-
   );
-
   ```
 
 - <span id="ahocorasick-builder"></span>`fn builder() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
   A convenience method for returning a new Aho-Corasick builder.
-
   
-
   This usually permits one to just import the `AhoCorasick` type.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use aho_corasick::{AhoCorasick, Match, MatchKind};
-
   
-
   let ac = AhoCorasick::builder()
-
       .match_kind(MatchKind::LeftmostFirst)
-
       .build(&["samwise", "sam"])
-
       .unwrap();
-
   assert_eq!(Some(Match::must(0, 0..7)), ac.find("samwise"));
-
   ```
 
 #### Trait Implementations
@@ -719,11 +677,8 @@ assert_eq!(result, "The slow grey sloth.");
 - <span id="ahocorasick-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AhoCorasick`
@@ -758,7 +713,7 @@ struct AhoCorasickBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2135-2141`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2135-L2141)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2135-2141`](../../.source_1765894658/aho-corasick-1.1.4/src/ahocorasick.rs#L2135-L2141)*
 
 A builder for configuring an Aho-Corasick automaton.
 
@@ -787,685 +742,363 @@ usage.
 - <span id="ahocorasickbuilder-new"></span>`fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
   Create a new builder for configuring an Aho-Corasick automaton.
-
   
-
   The builder provides a way to configure a number of things, including
-
   ASCII case insensitivity and what kind of match semantics are used.
 
 - <span id="ahocorasickbuilder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](ahocorasick/index.md#ahocorasick), [`BuildError`](util/error/index.md#builderror)
 
   Build an Aho-Corasick automaton using the configuration set on this
-
   builder.
-
   
-
   A builder may be reused to create more automatons.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use aho_corasick::{AhoCorasickBuilder, PatternID};
-
   
-
   let patterns = &["foo", "bar", "baz"];
-
   let ac = AhoCorasickBuilder::new().build(patterns).unwrap();
-
   assert_eq!(
-
       Some(PatternID::must(1)),
-
       ac.find("xxx bar xxx").map(|m| m.pattern()),
-
   );
-
   ```
 
 - <span id="ahocorasickbuilder-build-auto"></span>`fn build_auto(&self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](nfa/noncontiguous/index.md#nfa), [`AcAutomaton`](ahocorasick/index.md#acautomaton), [`AhoCorasickKind`](ahocorasick/index.md#ahocorasickkind)
 
   Implements the automatic selection logic for the Aho-Corasick
-
   implementation to use. Since all Aho-Corasick automatons are built
-
   from a non-contiguous NFA, the caller is responsible for building
-
   that first.
 
 - <span id="ahocorasickbuilder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](util/search/index.md#matchkind), [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
   Set the desired match semantics.
-
   
-
   The default is [`MatchKind::Standard`](#matchkindstandard), which corresponds to the match
-
   semantics supported by the standard textbook description of the
-
   Aho-Corasick algorithm. Namely, matches are reported as soon as they
-
   are found. Moreover, this is the only way to get overlapping matches
-
   or do stream searching.
-
   
-
   The other kinds of match semantics that are supported are
-
   [`MatchKind::LeftmostFirst`](#matchkindleftmostfirst) and [`MatchKind::LeftmostLongest`](#matchkindleftmostlongest). The
-
   former corresponds to the match you would get if you were to try to
-
   match each pattern at each position in the haystack in the same order
-
   that you give to the automaton. That is, it returns the leftmost match
-
   corresponding to the earliest pattern given to the automaton. The
-
   latter corresponds to finding the longest possible match among all
-
   leftmost matches.
-
   
-
   For more details on match semantics, see the [documentation for
-
   `MatchKind`](MatchKind).
-
   
-
   Note that setting this to [`MatchKind::LeftmostFirst`](#matchkindleftmostfirst) or
-
   [`MatchKind::LeftmostLongest`](#matchkindleftmostlongest) will cause some search routines on
-
   [`AhoCorasick`](ahocorasick/index.md) to return an error (or panic if you're using the
-
   infallible API). Notably, this includes stream and overlapping
-
   searches.
-
   
-
   # Examples
-
   
-
   In these examples, we demonstrate the differences between match
-
   semantics for a particular set of patterns in a specific order:
-
   `b`, `abc`, `abcd`.
-
   
-
   Standard semantics:
-
   
-
   ```rust
-
   use aho_corasick::{AhoCorasick, MatchKind};
-
   
-
   let patterns = &["b", "abc", "abcd"];
-
   let haystack = "abcd";
-
   
-
   let ac = AhoCorasick::builder()
-
       .match_kind(MatchKind::Standard) // default, not necessary
-
       .build(patterns)
-
       .unwrap();
-
   let mat = ac.find(haystack).expect("should have a match");
-
   assert_eq!("b", &haystack[mat.start()..mat.end()]);
-
   ```
-
   
-
   Leftmost-first semantics:
-
   
-
   ```rust
-
   use aho_corasick::{AhoCorasick, MatchKind};
-
   
-
   let patterns = &["b", "abc", "abcd"];
-
   let haystack = "abcd";
-
   
-
   let ac = AhoCorasick::builder()
-
       .match_kind(MatchKind::LeftmostFirst)
-
       .build(patterns)
-
       .unwrap();
-
   let mat = ac.find(haystack).expect("should have a match");
-
   assert_eq!("abc", &haystack[mat.start()..mat.end()]);
-
   ```
-
   
-
   Leftmost-longest semantics:
-
   
-
   ```rust
-
   use aho_corasick::{AhoCorasick, MatchKind};
-
   
-
   let patterns = &["b", "abc", "abcd"];
-
   let haystack = "abcd";
-
   
-
   let ac = AhoCorasick::builder()
-
       .match_kind(MatchKind::LeftmostLongest)
-
       .build(patterns)
-
       .unwrap();
-
   let mat = ac.find(haystack).expect("should have a match");
-
   assert_eq!("abcd", &haystack[mat.start()..mat.end()]);
-
   ```
 
 - <span id="ahocorasickbuilder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](util/search/index.md#startkind), [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
   Sets the starting state configuration for the automaton.
-
   
-
   Every Aho-Corasick automaton is capable of having two start states: one
-
   that is used for unanchored searches and one that is used for anchored
-
   searches. Some automatons, like the NFAs, support this with almost zero
-
   additional cost. Other automatons, like the DFA, require two copies of
-
   the underlying transition table to support both simultaneously.
-
   
-
   Because there may be an added non-trivial cost to supporting both, it
-
   is possible to configure which starting state configuration is needed.
-
   
-
   Indeed, since anchored searches tend to be somewhat more rare,
-
   _only_ unanchored searches are supported by default. Thus,
-
   [`StartKind::Unanchored`](#startkindunanchored) is the default.
-
   
-
   Note that when this is set to [`StartKind::Unanchored`](#startkindunanchored), then
-
   running an anchored search will result in an error (or a panic
-
   if using the infallible APIs). Similarly, when this is set to
-
   [`StartKind::Anchored`](#startkindanchored), then running an unanchored search will
-
   result in an error (or a panic if using the infallible APIs). When
-
   [`StartKind::Both`](#startkindboth) is used, then both unanchored and anchored searches
-
   are always supported.
-
   
-
   Also note that even if an `AhoCorasick` searcher is using an NFA
-
   internally (which always supports both unanchored and anchored
-
   searches), an error will still be reported for a search that isn't
-
   supported by the configuration set via this method. This means,
-
   for example, that an error is never dependent on which internal
-
   implementation of Aho-Corasick is used.
-
   
-
   # Example: anchored search
-
   
-
   This shows how to build a searcher that only supports anchored
-
   searches:
-
   
-
   ```rust
-
   use aho_corasick::{
-
       AhoCorasick, Anchored, Input, Match, MatchKind, StartKind,
-
   };
-
   
-
   let ac = AhoCorasick::builder()
-
       .match_kind(MatchKind::LeftmostFirst)
-
       .start_kind(StartKind::Anchored)
-
       .build(&["b", "abc", "abcd"])
-
       .unwrap();
-
   
-
   // An unanchored search is not supported! An error here is guaranteed
-
   // given the configuration above regardless of which kind of
-
   // Aho-Corasick implementation ends up being used internally.
-
   let input = Input::new("foo abcd").anchored(Anchored::No);
-
   assert!(ac.try_find(input).is_err());
-
   
-
   let input = Input::new("foo abcd").anchored(Anchored::Yes);
-
   assert_eq!(None, ac.try_find(input)?);
-
   
-
   let input = Input::new("abcd").anchored(Anchored::Yes);
-
   assert_eq!(Some(Match::must(1, 0..3)), ac.try_find(input)?);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
-
   
-
   # Example: unanchored and anchored searches
-
   
-
   This shows how to build a searcher that supports both unanchored and
-
   anchored searches:
-
   
-
   ```rust
-
   use aho_corasick::{
-
       AhoCorasick, Anchored, Input, Match, MatchKind, StartKind,
-
   };
-
   
-
   let ac = AhoCorasick::builder()
-
       .match_kind(MatchKind::LeftmostFirst)
-
       .start_kind(StartKind::Both)
-
       .build(&["b", "abc", "abcd"])
-
       .unwrap();
-
   
-
   let input = Input::new("foo abcd").anchored(Anchored::No);
-
   assert_eq!(Some(Match::must(1, 4..7)), ac.try_find(input)?);
-
   
-
   let input = Input::new("foo abcd").anchored(Anchored::Yes);
-
   assert_eq!(None, ac.try_find(input)?);
-
   
-
   let input = Input::new("abcd").anchored(Anchored::Yes);
-
   assert_eq!(Some(Match::must(1, 0..3)), ac.try_find(input)?);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="ahocorasickbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
   Enable ASCII-aware case insensitive matching.
-
   
-
   When this option is enabled, searching will be performed without
-
   respect to case for ASCII letters (`a-z` and `A-Z`) only.
-
   
-
   Enabling this option does not change the search algorithm, but it may
-
   increase the size of the automaton.
-
   
-
   **NOTE:** It is unlikely that support for Unicode case folding will
-
   be added in the future. The ASCII case works via a simple hack to the
-
   underlying automaton, but full Unicode handling requires a fair bit of
-
   sophistication. If you do need Unicode handling, you might consider
-
   using the [`regex` crate](https://docs.rs/regex) or the lower level
-
   [`regex-automata` crate](https://docs.rs/regex-automata).
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use aho_corasick::AhoCorasick;
-
   
-
   let patterns = &["FOO", "bAr", "BaZ"];
-
   let haystack = "foo bar baz";
-
   
-
   let ac = AhoCorasick::builder()
-
       .ascii_case_insensitive(true)
-
       .build(patterns)
-
       .unwrap();
-
   assert_eq!(3, ac.find_iter(haystack).count());
-
   ```
 
 - <span id="ahocorasickbuilder-kind"></span>`fn kind(&mut self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](ahocorasick/index.md#ahocorasickkind), [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
   Choose the type of underlying automaton to use.
-
   
-
   Currently, there are four choices:
-
   
-
   * [`AhoCorasickKind::NoncontiguousNFA`](#ahocorasickkindnoncontiguousnfa) instructs the searcher to
-
   use a [`noncontiguous::NFA`](nfa/noncontiguous/index.md). A noncontiguous NFA is the fastest to
-
   be built, has moderate memory usage and is typically the slowest to
-
   execute a search.
-
   * [`AhoCorasickKind::ContiguousNFA`](#ahocorasickkindcontiguousnfa) instructs the searcher to use a
-
   [`contiguous::NFA`](nfa/contiguous/index.md). A contiguous NFA is a little slower to build than
-
   a noncontiguous NFA, has excellent memory usage and is typically a
-
   little slower than a DFA for a search.
-
   * [`AhoCorasickKind::DFA`](#ahocorasickkinddfa) instructs the searcher to use a
-
   [`dfa::DFA`](dfa/index.md). A DFA is very slow to build, uses exorbitant amounts of
-
   memory, but will typically execute searches the fastest.
-
   * `None` (the default) instructs the searcher to choose the "best"
-
   Aho-Corasick implementation. This choice is typically based primarily
-
   on the number of patterns.
-
   
-
   Setting this configuration does not change the time complexity for
-
   constructing the Aho-Corasick automaton (which is `O(p)` where `p`
-
   is the total number of patterns being compiled). Setting this to
-
   [`AhoCorasickKind::DFA`](#ahocorasickkinddfa) does however reduce the time complexity of
-
   non-overlapping searches from `O(n + p)` to `O(n)`, where `n` is the
-
   length of the haystack.
-
   
-
   In general, you should probably stick to the default unless you have
-
   some kind of reason to use a specific Aho-Corasick implementation. For
-
   example, you might choose `AhoCorasickKind::DFA` if you don't care
-
   about memory usage and want the fastest possible search times.
-
   
-
   Setting this guarantees that the searcher returned uses the chosen
-
   implementation. If that implementation could not be constructed, then
-
   an error will be returned. In contrast, when `None` is used, it is
-
   possible for it to attempt to construct, for example, a contiguous
-
   NFA and have it fail. In which case, it will fall back to using a
-
   noncontiguous NFA.
-
   
-
   If `None` is given, then one may use `AhoCorasick::kind` to determine
-
   which Aho-Corasick implementation was chosen.
-
   
-
   Note that the heuristics used for choosing which `AhoCorasickKind`
-
   may be changed in a semver compatible release.
 
 - <span id="ahocorasickbuilder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
   Enable heuristic prefilter optimizations.
-
   
-
   When enabled, searching will attempt to quickly skip to match
-
   candidates using specialized literal search routines. A prefilter
-
   cannot always be used, and is generally treated as a heuristic. It
-
   can be useful to disable this if the prefilter is observed to be
-
   sub-optimal for a particular workload.
-
   
-
   Currently, prefilters are typically only active when building searchers
-
   with a small (less than 100) number of patterns.
-
   
-
   This is enabled by default.
 
 - <span id="ahocorasickbuilder-dense-depth"></span>`fn dense_depth(&mut self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
   Set the limit on how many states use a dense representation for their
-
   transitions. Other states will generally use a sparse representation.
-
   
-
   A dense representation uses more memory but is generally faster, since
-
   the next transition in a dense representation can be computed in a
-
   constant number of instructions. A sparse representation uses less
-
   memory but is generally slower, since the next transition in a sparse
-
   representation requires executing a variable number of instructions.
-
   
-
   This setting is only used when an Aho-Corasick implementation is used
-
   that supports the dense versus sparse representation trade off. Not all
-
   do.
-
   
-
   This limit is expressed in terms of the depth of a state, i.e., the
-
   number of transitions from the starting state of the automaton. The
-
   idea is that most of the time searching will be spent near the starting
-
   state of the automaton, so states near the start state should use a
-
   dense representation. States further away from the start state would
-
   then use a sparse representation.
-
   
-
   By default, this is set to a low but non-zero number. Setting this to
-
   `0` is almost never what you want, since it is likely to make searches
-
   very slow due to the start state itself being forced to use a sparse
-
   representation. However, it is unlikely that increasing this number
-
   will help things much, since the most active states have a small depth.
-
   More to the point, the memory usage increases superlinearly as this
-
   number increases.
 
 - <span id="ahocorasickbuilder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md#ahocorasickbuilder)
 
   A debug settting for whether to attempt to shrink the size of the
-
   automaton's alphabet or not.
-
   
-
   This option is enabled by default and should never be disabled unless
-
   one is debugging the underlying automaton.
-
   
-
   When enabled, some (but not all) Aho-Corasick automatons will use a map
-
   from all possible bytes to their corresponding equivalence class. Each
-
   equivalence class represents a set of bytes that does not discriminate
-
   between a match and a non-match in the automaton.
-
   
-
   The advantage of this map is that the size of the transition table can
-
   be reduced drastically from `#states * 256 * sizeof(u32)` to
-
   `#states * k * sizeof(u32)` where `k` is the number of equivalence
-
   classes (rounded up to the nearest power of 2). As a result, total
-
   space usage can decrease substantially. Moreover, since a smaller
-
   alphabet is used, automaton compilation becomes faster as well.
-
   
-
   **WARNING:** This is only useful for debugging automatons. Disabling
-
   this does not yield any speed advantages. Namely, even when this is
-
   disabled, a byte class map is still used while searching. The only
-
   difference is that every byte will be forced into its own distinct
-
   equivalence class. This is useful for debugging the actual generated
-
   transitions because it lets one see the transitions defined on actual
-
   bytes instead of the equivalence classes.
 
 #### Trait Implementations
@@ -1509,11 +1142,8 @@ usage.
 - <span id="ahocorasickbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AhoCorasickBuilder`
@@ -1542,7 +1172,7 @@ usage.
 struct FindIter<'a, 'h>(automaton::FindIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2047`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2047)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2047`](../../.source_1765894658/aho-corasick-1.1.4/src/ahocorasick.rs#L2047)*
 
 An iterator of non-overlapping matches in a particular haystack.
 
@@ -1585,11 +1215,8 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 - <span id="finditer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindIter<'a, 'h>`
@@ -1624,7 +1251,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 struct FindOverlappingIter<'a, 'h>(automaton::FindOverlappingIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2070-2072`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2070-L2072)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2070-2072`](../../.source_1765894658/aho-corasick-1.1.4/src/ahocorasick.rs#L2070-L2072)*
 
 An iterator of overlapping matches in a particular haystack.
 
@@ -1667,11 +1294,8 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 - <span id="findoverlappingiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FindOverlappingIter<'a, 'h>`
@@ -1708,7 +1332,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../.source_1765894658/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
 
 An error that occurred during the construction of an Aho-Corasick
 automaton.
@@ -1772,11 +1396,8 @@ trait.
 - <span id="builderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BuildError`
@@ -1809,7 +1430,7 @@ trait.
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L130)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../.source_1765894658/aho-corasick-1.1.4/src/util/error.rs#L130)*
 
 An error that occurred during an Aho-Corasick search.
 
@@ -1834,11 +1455,8 @@ trait.
 - <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](util/error/index.md#matcherrorkind), [`MatchError`](util/error/index.md#matcherror)
 
   Create a new error value with the given kind.
-
   
-
   This is a more verbose version of the kind-specific constructors, e.g.,
-
   `MatchError::unsupported_stream`.
 
 - <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](util/error/index.md#matcherrorkind)
@@ -1848,65 +1466,43 @@ trait.
 - <span id="matcherror-invalid-input-anchored"></span>`fn invalid_input_anchored() -> MatchError` — [`MatchError`](util/error/index.md#matcherror)
 
   Create a new "invalid anchored search" error. This occurs when the
-
   caller requests an anchored search but where anchored searches aren't
-
   supported.
-
   
-
   This is the same as calling `MatchError::new` with a
-
   [`MatchErrorKind::InvalidInputAnchored`](#matcherrorkindinvalidinputanchored) kind.
 
 - <span id="matcherror-invalid-input-unanchored"></span>`fn invalid_input_unanchored() -> MatchError` — [`MatchError`](util/error/index.md#matcherror)
 
   Create a new "invalid unanchored search" error. This occurs when the
-
   caller requests an unanchored search but where unanchored searches
-
   aren't supported.
-
   
-
   This is the same as calling `MatchError::new` with a
-
   [`MatchErrorKind::InvalidInputUnanchored`](#matcherrorkindinvalidinputunanchored) kind.
 
 - <span id="matcherror-unsupported-stream"></span>`fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md#matchkind), [`MatchError`](util/error/index.md#matcherror)
 
   Create a new "unsupported stream search" error. This occurs when the
-
   caller requests a stream search while using an Aho-Corasick automaton
-
   with a match kind other than [`MatchKind::Standard`](#matchkindstandard).
-
   
-
   The match kind given should be the match kind of the automaton. It
-
   should never be `MatchKind::Standard`.
 
 - <span id="matcherror-unsupported-overlapping"></span>`fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md#matchkind), [`MatchError`](util/error/index.md#matcherror)
 
   Create a new "unsupported overlapping search" error. This occurs when
-
   the caller requests an overlapping search while using an Aho-Corasick
-
   automaton with a match kind other than [`MatchKind::Standard`](#matchkindstandard).
-
   
-
   The match kind given should be the match kind of the automaton. It
-
   should never be `MatchKind::Standard`.
 
 - <span id="matcherror-unsupported-empty"></span>`fn unsupported_empty() -> MatchError` — [`MatchError`](util/error/index.md#matcherror)
 
   Create a new "unsupported empty pattern" error. This occurs when the
-
   caller requests a search for which matching an automaton that contains
-
   an empty pattern string is not supported.
 
 #### Trait Implementations
@@ -1954,11 +1550,8 @@ trait.
 - <span id="matcherror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MatchError`
@@ -1997,7 +1590,7 @@ trait.
 struct PatternID(SmallIndex);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:713`](../../.source_1765633015/aho-corasick-1.1.4/src/util/primitives.rs#L713)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:713`](../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L713)*
 
 The identifier of a pattern in an Aho-Corasick automaton.
 
@@ -2030,55 +1623,34 @@ panics or silent logical errors.
 - <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternIDError`](util/primitives/index.md#patterniderror)
 
   Create a new value that is represented by a "small index."
-
   
-
   If the given index exceeds the maximum allowed value, then this
-
   returns an error.
 
 - <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
   Create a new value without checking whether the given argument
-
   exceeds the maximum.
-
   
-
   Using this routine with an invalid value will result in
-
   unspecified behavior, but *not* undefined behavior. In
-
   particular, an invalid ID value is likely to cause panics or
-
   possibly even silent logical errors.
-
   
-
   Callers must never rely on this type to be within a certain
-
   range for memory safety.
 
 - <span id="patternid-from-u32-unchecked"></span>`const fn from_u32_unchecked(index: u32) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
   Create a new value from a `u32` without checking whether the
-
   given value exceeds the maximum.
-
   
-
   Using this routine with an invalid value will result in
-
   unspecified behavior, but *not* undefined behavior. In
-
   particular, an invalid ID value is likely to cause panics or
-
   possibly even silent logical errors.
-
   
-
   Callers must never rely on this type to be within a certain
-
   range for memory safety.
 
 - <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
@@ -2088,79 +1660,58 @@ panics or silent logical errors.
 - <span id="patternid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
   Return the internal value as a `usize`. This is guaranteed to
-
   never overflow `usize`.
 
 - <span id="patternid-as-u64"></span>`const fn as_u64(&self) -> u64`
 
   Return the internal value as a `u64`. This is guaranteed to
-
   never overflow.
 
 - <span id="patternid-as-u32"></span>`const fn as_u32(&self) -> u32`
 
   Return the internal value as a `u32`. This is guaranteed to
-
   never overflow `u32`.
 
 - <span id="patternid-as-i32"></span>`const fn as_i32(&self) -> i32`
 
   Return the internal value as a `i32`. This is guaranteed to
-
   never overflow an `i32`.
 
 - <span id="patternid-one-more"></span>`fn one_more(&self) -> usize`
 
   Returns one more than this value as a usize.
-
   
-
   Since values represented by a "small index" have constraints
-
   on their maximum value, adding `1` to it will always fit in a
-
   `usize`, `u32` and a `i32`.
 
 - <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md#patternid), [`PatternIDError`](util/primitives/index.md#patterniderror)
 
   Decode this value from the bytes given using the native endian
-
   byte order for the current target.
-
   
-
   If the decoded integer is not representable as a small index
-
   for the current target, then this returns an error.
 
 - <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
   Decode this value from the bytes given using the native endian
-
   byte order for the current target.
-
   
-
   This is analogous to `new_unchecked` in that is does not check
-
   whether the decoded integer is representable as a small index.
 
 - <span id="patternid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
   Return the underlying integer as raw bytes in native endian
-
   format.
 
 - <span id="patternid-iter"></span>`fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](util/primitives/index.md#patterniditer)
 
   Returns an iterator over all values from 0 up to and not
-
   including the given length.
-
   
-
   If the given length exceeds this type's limit, then this
-
   panics.
 
 #### Trait Implementations
@@ -2222,11 +1773,8 @@ panics or silent logical errors.
 - <span id="patternid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for PatternID`
@@ -2269,7 +1817,7 @@ panics or silent logical errors.
 struct PatternIDError(SmallIndexError);
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../.source_1765633015/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../.source_1765894658/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
 
 This error occurs when an ID could not be constructed.
 
@@ -2330,11 +1878,8 @@ trait.
 - <span id="patterniderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for PatternIDError`
@@ -2378,7 +1923,7 @@ struct Input<'h> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
 
 The configuration and the haystack to use for an Aho-Corasick search.
 
@@ -2467,857 +2012,465 @@ assert_eq!(
 - <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](util/search/index.md#input)
 
   Set the span for this search.
-
   
-
   This routine is generic over how a span is provided. While
-
   a [`Span`](util/search/index.md) may be given directly, one may also provide a
-
   `std::ops::Range<usize>`. To provide anything supported by range
-
   syntax, use the `Input::range` method.
-
   
-
   The default span is the entire haystack.
-
   
-
   Note that `Input::range` overrides this method and vice versa.
-
   
-
   # Panics
-
   
-
   This panics if the given span does not correspond to valid bounds in
-
   the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   This example shows how the span of the search can impact whether a
-
   match is reported or not.
-
   
-
   ```rust
-
   use aho_corasick::{AhoCorasick, Input, MatchKind};
-
   
-
   let patterns = &["b", "abcd", "abc"];
-
   let haystack = "abcd";
-
   
-
   let ac = AhoCorasick::builder()
-
       .match_kind(MatchKind::LeftmostFirst)
-
       .build(patterns)
-
       .unwrap();
-
   let input = Input::new(haystack).span(0..3);
-
   let mat = ac.try_find(input)?.expect("should have a match");
-
   // Without the span stopping the search early, 'abcd' would be reported
-
   // because it is the correct leftmost-first match.
-
   assert_eq!("abc", &haystack[mat.span()]);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](util/search/index.md#input)
 
   Like `Input::span`, but accepts any range instead.
-
   
-
   The default range is the entire haystack.
-
   
-
   Note that `Input::span` overrides this method and vice versa.
-
   
-
   # Panics
-
   
-
   This routine will panic if the given range could not be converted
-
-  to a valid [`Range`](../gimli/read/index.md). For example, this would panic when given
-
+  to a valid [`Range`](). For example, this would panic when given
   `0..=usize::MAX` since it cannot be represented using a half-open
-
   interval in terms of `usize`.
-
   
-
   This routine also panics if the given range does not correspond to
-
   valid bounds in the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   
-
   let input = Input::new("foobar").range(2..=4);
-
   assert_eq!(2..5, input.get_range());
-
   ```
 
 - <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](util/search/index.md#anchored), [`Input`](util/search/index.md#input)
 
   Sets the anchor mode of a search.
-
   
-
   When a search is anchored (via [`Anchored::Yes`](#anchoredyes)), a match must begin
-
   at the start of a search. When a search is not anchored (that's
-
   [`Anchored::No`](#anchoredno)), searchers will look for a match anywhere in the
-
   haystack.
-
   
-
   By default, the anchored mode is [`Anchored::No`](#anchoredno).
-
   
-
   # Support for anchored searches
-
   
-
   Anchored or unanchored searches might not always be available,
-
   depending on the type of searcher used and its configuration:
-
   
-
   * [`noncontiguous::NFA`](crate::nfa::noncontiguous::NFA) always
-
   supports both unanchored and anchored searches.
-
   * [`contiguous::NFA`](crate::nfa::contiguous::NFA) always supports both
-
   unanchored and anchored searches.
-
   * [`dfa::DFA`](crate::dfa::DFA) supports only unanchored
-
   searches by default.
-
   [`dfa::Builder::start_kind`](crate::dfa::Builder::start_kind) can
-
   be used to change the default to supporting both kinds of searches
-
   or even just anchored searches.
-
   * [`AhoCorasick`](crate::AhoCorasick) inherits the same setup as a
-
   `DFA`. Namely, it only supports unanchored searches by default, but
-
   [`AhoCorasickBuilder::start_kind`](crate::AhoCorasickBuilder::start_kind)
-
   can change this.
-
   
-
   If you try to execute a search using a `try_` ("fallible") method with
-
   an unsupported anchor mode, then an error will be returned. For calls
-
   to infallible search methods, a panic will result.
-
   
-
   # Example
-
   
-
   This demonstrates the differences between an anchored search and
-
   an unanchored search. Notice that we build our `AhoCorasick` searcher
-
   with [`StartKind::Both`](#startkindboth) so that it supports both unanchored and
-
   anchored searches simultaneously.
-
   
-
   ```rust
-
   use aho_corasick::{
-
       AhoCorasick, Anchored, Input, MatchKind, StartKind,
-
   };
-
   
-
   let patterns = &["bcd"];
-
   let haystack = "abcd";
-
   
-
   let ac = AhoCorasick::builder()
-
       .start_kind(StartKind::Both)
-
       .build(patterns)
-
       .unwrap();
-
   
-
   // Note that 'Anchored::No' is the default, so it doesn't need to
-
   // be explicitly specified here.
-
   let input = Input::new(haystack);
-
   let mat = ac.try_find(input)?.expect("should have a match");
-
   assert_eq!("bcd", &haystack[mat.span()]);
-
   
-
   // While 'bcd' occurs in the haystack, it does not begin where our
-
   // search begins, so no match is found.
-
   let input = Input::new(haystack).anchored(Anchored::Yes);
-
   assert_eq!(None, ac.try_find(input)?);
-
   
-
   // However, if we start our search where 'bcd' starts, then we will
-
   // find a match.
-
   let input = Input::new(haystack).range(1..).anchored(Anchored::Yes);
-
   let mat = ac.try_find(input)?.expect("should have a match");
-
   assert_eq!("bcd", &haystack[mat.span()]);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](util/search/index.md#input)
 
   Whether to execute an "earliest" search or not.
-
   
-
   When running a non-overlapping search, an "earliest" search will
-
   return the match location as early as possible. For example, given
-
   the patterns `abc` and `b`, and a haystack of `abc`, a normal
-
   leftmost-first search will return `abc` as a match. But an "earliest"
-
   search will return as soon as it is known that a match occurs, which
-
   happens once `b` is seen.
-
   
-
   Note that when using [`MatchKind::Standard`](#matchkindstandard), the "earliest" option
-
   has no effect since standard semantics are already "earliest." Note
-
   also that this has no effect in overlapping searches, since overlapping
-
   searches also use standard semantics and report all possible matches.
-
   
-
   This is disabled by default.
-
   
-
   # Example
-
   
-
   This example shows the difference between "earliest" searching and
-
   normal leftmost searching.
-
   
-
   ```rust
-
   use aho_corasick::{AhoCorasick, Anchored, Input, MatchKind, StartKind};
-
   
-
   let patterns = &["abc", "b"];
-
   let haystack = "abc";
-
   
-
   let ac = AhoCorasick::builder()
-
       .match_kind(MatchKind::LeftmostFirst)
-
       .build(patterns)
-
       .unwrap();
-
   
-
   // The normal leftmost-first match.
-
   let input = Input::new(haystack);
-
   let mat = ac.try_find(input)?.expect("should have a match");
-
   assert_eq!("abc", &haystack[mat.span()]);
-
   
-
   // The "earliest" possible match, even if it isn't leftmost-first.
-
   let input = Input::new(haystack).earliest(true);
-
   let mat = ac.try_find(input)?.expect("should have a match");
-
   assert_eq!("b", &haystack[mat.span()]);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="input-set-span"></span>`fn set_span<S: Into<Span>>(&mut self, span: S)`
 
   Set the span for this search configuration.
-
   
-
   This is like the `Input::span` method, except this mutates the
-
   span in place.
-
   
-
   This routine is generic over how a span is provided. While
-
   a [`Span`](util/search/index.md) may be given directly, one may also provide a
-
   `std::ops::Range<usize>`.
-
   
-
   # Panics
-
   
-
   This panics if the given span does not correspond to valid bounds in
-
   the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   input.set_span(2..4);
-
   assert_eq!(2..4, input.get_range());
-
   ```
 
 - <span id="input-set-range"></span>`fn set_range<R: RangeBounds<usize>>(&mut self, range: R)`
 
   Set the span for this search configuration given any range.
-
   
-
   This is like the `Input::range` method, except this mutates the
-
   span in place.
-
   
-
   # Panics
-
   
-
   This routine will panic if the given range could not be converted
-
-  to a valid [`Range`](../gimli/read/index.md). For example, this would panic when given
-
+  to a valid [`Range`](). For example, this would panic when given
   `0..=usize::MAX` since it cannot be represented using a half-open
-
   interval in terms of `usize`.
-
   
-
   This routine also panics if the given range does not correspond to
-
   valid bounds in the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   input.set_range(2..=4);
-
   assert_eq!(2..5, input.get_range());
-
   ```
 
 - <span id="input-set-start"></span>`fn set_start(&mut self, start: usize)`
 
   Set the starting offset for the span for this search configuration.
-
   
-
   This is a convenience routine for only mutating the start of a span
-
   without having to set the entire span.
-
   
-
   # Panics
-
   
-
   This panics if the given span does not correspond to valid bounds in
-
   the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   input.set_start(5);
-
   assert_eq!(5..6, input.get_range());
-
   ```
 
 - <span id="input-set-end"></span>`fn set_end(&mut self, end: usize)`
 
   Set the ending offset for the span for this search configuration.
-
   
-
   This is a convenience routine for only mutating the end of a span
-
   without having to set the entire span.
-
   
-
   # Panics
-
   
-
   This panics if the given span does not correspond to valid bounds in
-
   the haystack or the termination of a search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   input.set_end(5);
-
   assert_eq!(0..5, input.get_range());
-
   ```
 
 - <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](util/search/index.md#anchored)
 
   Set the anchor mode of a search.
-
   
-
   This is like `Input::anchored`, except it mutates the search
-
   configuration in place.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::{Anchored, Input};
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(Anchored::No, input.get_anchored());
-
   
-
   input.set_anchored(Anchored::Yes);
-
   assert_eq!(Anchored::Yes, input.get_anchored());
-
   ```
 
 - <span id="input-set-earliest"></span>`fn set_earliest(&mut self, yes: bool)`
 
   Set whether the search should execute in "earliest" mode or not.
-
   
-
   This is like `Input::earliest`, except it mutates the search
-
   configuration in place.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert!(!input.get_earliest());
-
   input.set_earliest(true);
-
   assert!(input.get_earliest());
-
   ```
 
 - <span id="input-haystack"></span>`fn haystack(&self) -> &[u8]`
 
   Return a borrow of the underlying haystack as a slice of bytes.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(b"foobar", input.haystack());
-
   ```
 
 - <span id="input-start"></span>`fn start(&self) -> usize`
 
   Return the start position of this search.
-
   
-
   This is a convenience routine for `search.get_span().start()`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(0, input.start());
-
   
-
   let input = Input::new("foobar").span(2..4);
-
   assert_eq!(2, input.start());
-
   ```
 
 - <span id="input-end"></span>`fn end(&self) -> usize`
 
   Return the end position of this search.
-
   
-
   This is a convenience routine for `search.get_span().end()`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(6, input.end());
-
   
-
   let input = Input::new("foobar").span(2..4);
-
   assert_eq!(4, input.end());
-
   ```
 
 - <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](util/search/index.md#span)
 
   Return the span for this search configuration.
-
   
-
   If one was not explicitly set, then the span corresponds to the entire
-
   range of the haystack.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::{Input, Span};
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(Span { start: 0, end: 6 }, input.get_span());
-
   ```
 
 - <span id="input-get-range"></span>`fn get_range(&self) -> Range<usize>`
 
   Return the span as a range for this search configuration.
-
   
-
   If one was not explicitly set, then the span corresponds to the entire
-
   range of the haystack.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert_eq!(0..6, input.get_range());
-
   ```
 
 - <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](util/search/index.md#anchored)
 
   Return the anchored mode for this search configuration.
-
   
-
   If no anchored mode was set, then it defaults to [`Anchored::No`](#anchoredno).
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::{Anchored, Input};
-
   
-
   let mut input = Input::new("foobar");
-
   assert_eq!(Anchored::No, input.get_anchored());
-
   
-
   input.set_anchored(Anchored::Yes);
-
   assert_eq!(Anchored::Yes, input.get_anchored());
-
   ```
 
 - <span id="input-get-earliest"></span>`fn get_earliest(&self) -> bool`
 
   Return whether this search should execute in "earliest" mode.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let input = Input::new("foobar");
-
   assert!(!input.get_earliest());
-
   ```
 
 - <span id="input-is-done"></span>`fn is_done(&self) -> bool`
 
   Return true if this input has been exhausted, which in turn means all
-
   subsequent searches will return no matches.
-
   
-
   This occurs precisely when the start position of this search is greater
-
   than the end position of the search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Input;
-
   
-
   let mut input = Input::new("foobar");
-
   assert!(!input.is_done());
-
   input.set_start(6);
-
   assert!(!input.is_done());
-
   input.set_start(7);
-
   assert!(input.is_done());
-
   ```
 
 #### Trait Implementations
@@ -3357,11 +2510,8 @@ assert_eq!(
 - <span id="input-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Input<'h>`
@@ -3393,7 +2543,7 @@ struct Match {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
 
 A representation of a match reported by an Aho-Corasick searcher.
 
@@ -3423,141 +2573,83 @@ offset as less than or equal to its end offset.
 - <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md#patternid), [`Match`](util/search/index.md#match)
 
   Create a new match from a pattern ID and a span.
-
   
-
   This constructor is generic over how a span is provided. While
-
   a [`Span`](util/search/index.md) may be given directly, one may also provide a
-
   `std::ops::Range<usize>`.
-
   
-
   # Panics
-
   
-
   This panics if `end < start`.
-
   
-
   # Example
-
   
-
   This shows how to create a match for the first pattern in an
-
   Aho-Corasick searcher using convenient range syntax.
-
   
-
   ```rust
-
   use aho_corasick::{Match, PatternID};
-
   
-
   let m = Match::new(PatternID::ZERO, 5..10);
-
   assert_eq!(0, m.pattern().as_usize());
-
   assert_eq!(5, m.start());
-
   assert_eq!(10, m.end());
-
   ```
 
 - <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](util/search/index.md#match)
 
   Create a new match from a pattern ID and a byte offset span.
-
   
-
   This constructor is generic over how a span is provided. While
-
   a [`Span`](util/search/index.md) may be given directly, one may also provide a
-
   `std::ops::Range<usize>`.
-
   
-
   This is like `Match::new`, but accepts a `usize` instead of a
-
   [`PatternID`](util/primitives/index.md). This panics if the given `usize` is not representable
-
   as a `PatternID`.
-
   
-
   # Panics
-
   
-
   This panics if `end < start` or if `pattern > PatternID::MAX`.
-
   
-
   # Example
-
   
-
   This shows how to create a match for the third pattern in an
-
   Aho-Corasick searcher using convenient range syntax.
-
   
-
   ```rust
-
   use aho_corasick::Match;
-
   
-
   let m = Match::must(3, 5..10);
-
   assert_eq!(3, m.pattern().as_usize());
-
   assert_eq!(5, m.start());
-
   assert_eq!(10, m.end());
-
   ```
 
 - <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md#patternid)
 
   Returns the ID of the pattern that matched.
-
   
-
   The ID of a pattern is derived from the position in which it was
-
   originally inserted into the corresponding searcher. The first pattern
-
   has identifier `0`, and each subsequent pattern is `1`, `2` and so on.
 
 - <span id="match-start"></span>`fn start(&self) -> usize`
 
   The starting position of the match.
-
   
-
   This is a convenience routine for `Match::span().start`.
 
 - <span id="match-end"></span>`fn end(&self) -> usize`
 
   The ending position of the match.
-
   
-
   This is a convenience routine for `Match::span().end`.
 
 - <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
 
   Returns the match span as a range.
-
   
-
   This is a convenience routine for `Match::span().range()`.
 
 - <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](util/search/index.md#span)
@@ -3567,25 +2659,19 @@ offset as less than or equal to its end offset.
 - <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns true when the span in this match is empty.
-
   
-
   An empty match can only be returned when empty pattern is in the
-
   Aho-Corasick searcher.
 
 - <span id="match-len"></span>`fn len(&self) -> usize`
 
   Returns the length of this match.
-
   
-
   This returns `0` in precisely the cases that `is_empty` returns `true`.
 
 - <span id="match-offset"></span>`fn offset(&self, offset: usize) -> Match` — [`Match`](util/search/index.md#match)
 
   Returns a new match with `offset` added to its span's `start` and `end`
-
   values.
 
 #### Trait Implementations
@@ -3633,11 +2719,8 @@ offset as less than or equal to its end offset.
 - <span id="match-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Match`
@@ -3675,7 +2758,7 @@ struct Span {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
 
 A representation of a range in a haystack.
 
@@ -3720,25 +2803,19 @@ to create a span where `start > end`.
 - <span id="span-len"></span>`fn len(&self) -> usize`
 
   Returns the length of this span.
-
   
-
   This returns `0` in precisely the cases that `is_empty` returns `true`.
 
 - <span id="span-contains"></span>`fn contains(&self, offset: usize) -> bool`
 
   Returns true when the given offset is contained within this span.
-
   
-
   Note that an empty span contains no offsets and will always return
-
   false.
 
 - <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](util/search/index.md#span)
 
   Returns a new span with `offset` added to this span's `start` and `end`
-
   values.
 
 #### Trait Implementations
@@ -3796,11 +2873,8 @@ to create a span where `start > end`.
 - <span id="span-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Span`
@@ -3841,7 +2915,7 @@ enum AhoCorasickKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2627-2634`](../../.source_1765633015/aho-corasick-1.1.4/src/ahocorasick.rs#L2627-L2634)*
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2627-2634`](../../.source_1765894658/aho-corasick-1.1.4/src/ahocorasick.rs#L2627-L2634)*
 
 The type of Aho-Corasick implementation to use in an [`AhoCorasick`](ahocorasick/index.md)
 searcher.
@@ -3905,11 +2979,8 @@ detail about each choice.
 - <span id="ahocorasickkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AhoCorasickKind`
@@ -3954,7 +3025,7 @@ enum MatchErrorKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../.source_1765633015/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../.source_1765894658/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
 
 The underlying kind of a [`MatchError`](util/error/index.md).
 
@@ -4027,11 +3098,8 @@ a semver-compatible release.
 - <span id="matcherrorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MatchErrorKind`
@@ -4069,7 +3137,7 @@ enum Anchored {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
 
 The type of anchored search to perform.
 
@@ -4095,25 +3163,15 @@ fallible or an infallible routine was called.
 - <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
   Returns true if and only if this anchor mode corresponds to an anchored
-
   search.
-
   
-
   # Example
-
   
-
   ```rust
-
   use aho_corasick::Anchored;
-
   
-
   assert!(!Anchored::No.is_anchored());
-
   assert!(Anchored::Yes.is_anchored());
-
   ```
 
 #### Trait Implementations
@@ -4157,11 +3215,8 @@ fallible or an infallible routine was called.
 - <span id="anchored-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Anchored`
@@ -4200,7 +3255,7 @@ enum MatchKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
 
 A knob for controlling the match semantics of an Aho-Corasick automaton.
 
@@ -4327,9 +3382,7 @@ POSIX regex alternations.
 - <span id="matchkind-as-packed"></span>`fn as_packed(&self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](packed/api/index.md#matchkind)
 
   Convert this match kind into a packed match kind. If this match kind
-
   corresponds to standard semantics, then this returns None, since
-
   packed searching does not support standard semantics.
 
 #### Trait Implementations
@@ -4377,11 +3430,8 @@ POSIX regex alternations.
 - <span id="matchkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MatchKind`
@@ -4420,7 +3470,7 @@ enum StartKind {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../.source_1765633015/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../.source_1765894658/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
 
 The kind of anchored starting configurations to support in an Aho-Corasick
 searcher.
@@ -4500,11 +3550,8 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 - <span id="startkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for StartKind`

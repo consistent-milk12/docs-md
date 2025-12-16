@@ -1390,7 +1390,7 @@ struct RegexBuilder {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/builders.rs:212-214`](../../.source_1765633015/regex-1.12.2/src/builders.rs#L212-L214)*
+*Defined in [`regex-1.12.2/src/builders.rs:212-214`](../../.source_1765894658/regex-1.12.2/src/builders.rs#L212-L214)*
 
 A configurable builder for a [`Regex`](#regex).
 
@@ -1404,1011 +1404,534 @@ the compiled regular expression.
 - <span id="regexbuilder-new"></span>`fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   Create a new builder with a default configuration for the given
-
   pattern.
-
   
-
   If the pattern is invalid or exceeds the configured size limits,
-
   then an error will be returned when `RegexBuilder::build` is
-
   called.
 
 - <span id="regexbuilder-build"></span>`fn build(&self) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md#error)
 
   Compiles the pattern given to `RegexBuilder::new` with the
-
   configuration set on this builder.
-
   
-
   If the pattern isn't a valid regex or if a configured size limit
-
   was exceeded, then an error is returned.
 
 - <span id="regexbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   This configures Unicode mode for the entire pattern.
-
   
-
   Enabling Unicode mode does a number of things:
-
   
-
   * Most fundamentally, it causes the fundamental atom of matching
-
   to be a single codepoint. When Unicode mode is disabled, it's a
-
   single byte. For example, when Unicode mode is enabled, `.` will
-
   match `💩` once, where as it will match 4 times when Unicode mode
-
   is disabled. (Since the UTF-8 encoding of `💩` is 4 bytes long.)
-
   * Case insensitive matching uses Unicode simple case folding rules.
-
   * Unicode character classes like `\p{Letter}` and `\p{Greek}` are
-
   available.
-
   * Perl character classes are Unicode aware. That is, `\w`, `\s` and
-
   `\d`.
-
   * The word boundary assertions, `\b` and `\B`, use the Unicode
-
   definition of a word character.
-
   
-
   Note that if Unicode mode is disabled, then the regex will fail to
-
   compile if it could match invalid UTF-8. For example, when Unicode
-
   mode is disabled, then since `.` matches any byte (except for
-
   `\n`), then it can match invalid UTF-8 and thus building a regex
-
   from it will fail. Another example is `\w` and `\W`. Since `\w` can
-
   only match ASCII bytes when Unicode mode is disabled, it's allowed.
-
   But `\W` can match more than ASCII bytes, including invalid UTF-8,
-
   and so it is not allowed. This restriction can be lifted only by
-
   using a [`bytes::Regex`](crate::bytes::Regex).
-
   
-
   For more details on the Unicode support in this crate, see the
-
   [Unicode section](crate#unicode) in this crate's top-level
-
   documentation.
-
   
-
   The default for this is `true`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let re = RegexBuilder::new(r"\w")
-
       .unicode(false)
-
       .build()
-
       .unwrap();
-
   // Normally greek letters would be included in \w, but since
-
   // Unicode mode is disabled, it only matches ASCII letters.
-
   assert!(!re.is_match("δ"));
-
   
-
   let re = RegexBuilder::new(r"s")
-
       .case_insensitive(true)
-
       .unicode(false)
-
       .build()
-
       .unwrap();
-
   // Normally 'ſ' is included when searching for 's' case
-
   // insensitively due to Unicode's simple case folding rules. But
-
   // when Unicode mode is disabled, only ASCII case insensitive rules
-
   // are used.
-
   assert!(!re.is_match("ſ"));
-
   ```
 
 - <span id="regexbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   This configures whether to enable case insensitive matching for the
-
   entire pattern.
-
   
-
   This setting can also be configured using the inline flag `i`
-
   in the pattern. For example, `(?i:foo)` matches `foo` case
-
   insensitively while `(?-i:foo)` matches `foo` case sensitively.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let re = RegexBuilder::new(r"foo(?-i:bar)quux")
-
       .case_insensitive(true)
-
       .build()
-
       .unwrap();
-
   assert!(re.is_match("FoObarQuUx"));
-
   // Even though case insensitive matching is enabled in the builder,
-
   // it can be locally disabled within the pattern. In this case,
-
   // `bar` is matched case sensitively.
-
   assert!(!re.is_match("fooBARquux"));
-
   ```
 
 - <span id="regexbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   This configures multi-line mode for the entire pattern.
-
   
-
   Enabling multi-line mode changes the behavior of the `^` and `$`
-
   anchor assertions. Instead of only matching at the beginning and
-
   end of a haystack, respectively, multi-line mode causes them to
-
   match at the beginning and end of a line *in addition* to the
-
   beginning and end of a haystack. More precisely, `^` will match at
-
   the position immediately following a `\n` and `$` will match at the
-
   position immediately preceding a `\n`.
-
   
-
   The behavior of this option can be impacted by other settings too:
-
   
-
   * The `RegexBuilder::line_terminator` option changes `\n` above
-
   to any ASCII byte.
-
   * The `RegexBuilder::crlf` option changes the line terminator to
-
   be either `\r` or `\n`, but never at the position between a `\r`
-
   and `\n`.
-
   
-
   This setting can also be configured using the inline flag `m` in
-
   the pattern.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let re = RegexBuilder::new(r"^foo$")
-
       .multi_line(true)
-
       .build()
-
       .unwrap();
-
   assert_eq!(Some(1..4), re.find("\nfoo\n").map(|m| m.range()));
-
   ```
 
 - <span id="regexbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   This configures dot-matches-new-line mode for the entire pattern.
-
   
-
   Perhaps surprisingly, the default behavior for `.` is not to match
-
   any character, but rather, to match any character except for the
-
   line terminator (which is `\n` by default). When this mode is
-
   enabled, the behavior changes such that `.` truly matches any
-
   character.
-
   
-
   This setting can also be configured using the inline flag `s` in
-
   the pattern. For example, `(?s:.)` and `\p{any}` are equivalent
-
   regexes.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let re = RegexBuilder::new(r"foo.bar")
-
       .dot_matches_new_line(true)
-
       .build()
-
       .unwrap();
-
   let hay = "foo\nbar";
-
   assert_eq!(Some("foo\nbar"), re.find(hay).map(|m| m.as_str()));
-
   ```
 
 - <span id="regexbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   This configures CRLF mode for the entire pattern.
-
   
-
   When CRLF mode is enabled, both `\r` ("carriage return" or CR for
-
   short) and `\n` ("line feed" or LF for short) are treated as line
-
   terminators. This results in the following:
-
   
-
   * Unless dot-matches-new-line mode is enabled, `.` will now match
-
   any character except for `\n` and `\r`.
-
   * When multi-line mode is enabled, `^` will match immediately
-
   following a `\n` or a `\r`. Similarly, `$` will match immediately
-
   preceding a `\n` or a `\r`. Neither `^` nor `$` will ever match
-
   between `\r` and `\n`.
-
   
-
   This setting can also be configured using the inline flag `R` in
-
   the pattern.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let re = RegexBuilder::new(r"^foo$")
-
       .multi_line(true)
-
       .crlf(true)
-
       .build()
-
       .unwrap();
-
   let hay = "\r\nfoo\r\n";
-
   // If CRLF mode weren't enabled here, then '$' wouldn't match
-
   // immediately after 'foo', and thus no match would be found.
-
   assert_eq!(Some("foo"), re.find(hay).map(|m| m.as_str()));
-
   ```
-
   
-
   This example demonstrates that `^` will never match at a position
-
   between `\r` and `\n`. (`$` will similarly not match between a `\r`
-
   and a `\n`.)
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let re = RegexBuilder::new(r"^")
-
       .multi_line(true)
-
       .crlf(true)
-
       .build()
-
       .unwrap();
-
   let hay = "\r\n\r\n";
-
   let ranges: Vec<_> = re.find_iter(hay).map(|m| m.range()).collect();
-
   assert_eq!(ranges, vec![0..0, 2..2, 4..4]);
-
   ```
 
 - <span id="regexbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   Configures the line terminator to be used by the regex.
-
   
-
   The line terminator is relevant in two ways for a particular regex:
-
   
-
   * When dot-matches-new-line mode is *not* enabled (the default),
-
   then `.` will match any character except for the configured line
-
   terminator.
-
   * When multi-line mode is enabled (not the default), then `^` and
-
   `$` will match immediately after and before, respectively, a line
-
   terminator.
-
   
-
   In both cases, if CRLF mode is enabled in a particular context,
-
   then it takes precedence over any configured line terminator.
-
   
-
   This option cannot be configured from within the pattern.
-
   
-
   The default line terminator is `\n`.
-
   
-
   # Example
-
   
-
   This shows how to treat the NUL byte as a line terminator. This can
-
   be a useful heuristic when searching binary data.
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let re = RegexBuilder::new(r"^foo$")
-
       .multi_line(true)
-
       .line_terminator(b'\x00')
-
       .build()
-
       .unwrap();
-
   let hay = "\x00foo\x00";
-
   assert_eq!(Some(1..4), re.find(hay).map(|m| m.range()));
-
   ```
-
   
-
   This example shows that the behavior of `.` is impacted by this
-
   setting as well:
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let re = RegexBuilder::new(r".")
-
       .line_terminator(b'\x00')
-
       .build()
-
       .unwrap();
-
   assert!(re.is_match("\n"));
-
   assert!(!re.is_match("\x00"));
-
   ```
-
   
-
   This shows that building a regex will fail if the byte given
-
   is not ASCII and the pattern could result in matching invalid
-
   UTF-8. This is because any singular non-ASCII byte is not valid
-
   UTF-8, and it is not permitted for a [`Regex`](#regex) to match invalid
-
   UTF-8. (It is permissible to use a non-ASCII byte when building a
-
   [`bytes::Regex`](crate::bytes::Regex).)
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   assert!(RegexBuilder::new(r".").line_terminator(0x80).build().is_err());
-
   // Note that using a non-ASCII byte isn't enough on its own to
-
   // cause regex compilation to fail. You actually have to make use
-
   // of it in the regex in a way that leads to matching invalid
-
   // UTF-8. If you don't, then regex compilation will succeed!
-
   assert!(RegexBuilder::new(r"a").line_terminator(0x80).build().is_ok());
-
   ```
 
 - <span id="regexbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   This configures swap-greed mode for the entire pattern.
-
   
-
   When swap-greed mode is enabled, patterns like `a+` will become
-
   non-greedy and patterns like `a+?` will become greedy. In other
-
   words, the meanings of `a+` and `a+?` are switched.
-
   
-
   This setting can also be configured using the inline flag `U` in
-
   the pattern.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let re = RegexBuilder::new(r"a+")
-
       .swap_greed(true)
-
       .build()
-
       .unwrap();
-
   assert_eq!(Some("a"), re.find("aaa").map(|m| m.as_str()));
-
   ```
 
 - <span id="regexbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   This configures verbose mode for the entire pattern.
-
   
-
   When enabled, whitespace will treated as insignificant in the
-
   pattern and `#` can be used to start a comment until the next new
-
   line.
-
   
-
   Normally, in most places in a pattern, whitespace is treated
-
   literally. For example ` +` will match one or more ASCII whitespace
-
   characters.
-
   
-
   When verbose mode is enabled, `\#` can be used to match a literal
-
   `#` and `\ ` can be used to match a literal ASCII whitespace
-
   character.
-
   
-
   Verbose mode is useful for permitting regexes to be formatted and
-
   broken up more nicely. This may make them more easily readable.
-
   
-
   This setting can also be configured using the inline flag `x` in
-
   the pattern.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   let pat = r"
-
       \b
-
       (?<first>\p{Uppercase}\w*)  # always start with uppercase letter
-
       [\s--\n]+                   # whitespace should separate names
-
       (?: # middle name can be an initial!
-
           (?:(?<initial>\p{Uppercase})\.|(?<middle>\p{Uppercase}\w*))
-
           [\s--\n]+
-
       )?
-
       (?<last>\p{Uppercase}\w*)
-
       \b
-
   ";
-
   let re = RegexBuilder::new(pat)
-
       .ignore_whitespace(true)
-
       .build()
-
       .unwrap();
-
   
-
   let caps = re.captures("Harry Potter").unwrap();
-
   assert_eq!("Harry", &caps["first"]);
-
   assert_eq!("Potter", &caps["last"]);
-
   
-
   let caps = re.captures("Harry J. Potter").unwrap();
-
   assert_eq!("Harry", &caps["first"]);
-
   // Since a middle name/initial isn't required for an overall match,
-
   // we can't assume that 'initial' or 'middle' will be populated!
-
   assert_eq!(Some("J"), caps.name("initial").map(|m| m.as_str()));
-
   assert_eq!(None, caps.name("middle").map(|m| m.as_str()));
-
   assert_eq!("Potter", &caps["last"]);
-
   
-
   let caps = re.captures("Harry James Potter").unwrap();
-
   assert_eq!("Harry", &caps["first"]);
-
   // Since a middle name/initial isn't required for an overall match,
-
   // we can't assume that 'initial' or 'middle' will be populated!
-
   assert_eq!(None, caps.name("initial").map(|m| m.as_str()));
-
   assert_eq!(Some("James"), caps.name("middle").map(|m| m.as_str()));
-
   assert_eq!("Potter", &caps["last"]);
-
   ```
 
 - <span id="regexbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   This configures octal mode for the entire pattern.
-
   
-
   Octal syntax is a little-known way of uttering Unicode codepoints
-
   in a pattern. For example, `a`, `\x61`, `\u0061` and `\141` are all
-
   equivalent patterns, where the last example shows octal syntax.
-
   
-
   While supporting octal syntax isn't in and of itself a problem,
-
   it does make good error messages harder. That is, in PCRE based
-
   regex engines, syntax like `\1` invokes a backreference, which is
-
   explicitly unsupported this library. However, many users expect
-
   backreferences to be supported. Therefore, when octal support
-
   is disabled, the error message will explicitly mention that
-
   backreferences aren't supported.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   // Normally this pattern would not compile, with an error message
-
   // about backreferences not being supported. But with octal mode
-
   // enabled, octal escape sequences work.
-
   let re = RegexBuilder::new(r"\141")
-
       .octal(true)
-
       .build()
-
       .unwrap();
-
   assert!(re.is_match("a"));
-
   ```
 
 - <span id="regexbuilder-size-limit"></span>`fn size_limit(&mut self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   Sets the approximate size limit, in bytes, of the compiled regex.
-
   
-
   This roughly corresponds to the number of heap memory, in
-
   bytes, occupied by a single regex. If the regex would otherwise
-
   approximately exceed this limit, then compiling that regex will
-
   fail.
-
   
-
   The main utility of a method like this is to avoid compiling
-
   regexes that use an unexpected amount of resources, such as
-
   time and memory. Even if the memory usage of a large regex is
-
   acceptable, its search time may not be. Namely, worst case time
-
   complexity for search is `O(m * n)`, where `m ~ len(pattern)` and
-
   `n ~ len(haystack)`. That is, search time depends, in part, on the
-
   size of the compiled regex. This means that putting a limit on the
-
   size of the regex limits how much a regex can impact search time.
-
   
-
   For more information about regex size limits, see the section on
-
   [untrusted inputs](crate#untrusted-input) in the top-level crate
-
   documentation.
-
   
-
   The default for this is some reasonable number that permits most
-
   patterns to compile successfully.
-
   
-
   # Example
-
   
-
   ```rust
-
   if !cfg!(target_pointer_width = "64") { return; } // see #1041
-
   use regex::RegexBuilder;
-
   
-
   // It may surprise you how big some seemingly small patterns can
-
   // be! Since \w is Unicode aware, this generates a regex that can
-
   // match approximately 140,000 distinct codepoints.
-
   assert!(RegexBuilder::new(r"\w").size_limit(45_000).build().is_err());
-
   ```
 
 - <span id="regexbuilder-dfa-size-limit"></span>`fn dfa_size_limit(&mut self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   Set the approximate capacity, in bytes, of the cache of transitions
-
   used by the lazy DFA.
-
   
-
   While the lazy DFA isn't always used, in tends to be the most
-
   commonly use regex engine in default configurations. It tends to
-
   adopt the performance profile of a fully build DFA, but without the
-
   downside of taking worst case exponential time to build.
-
   
-
   The downside is that it needs to keep a cache of transitions and
-
   states that are built while running a search, and this cache
-
   can fill up. When it fills up, the cache will reset itself. Any
-
   previously generated states and transitions will then need to be
-
   re-generated. If this happens too many times, then this library
-
   will bail out of using the lazy DFA and switch to a different regex
-
   engine.
-
   
-
   If your regex provokes this particular downside of the lazy DFA,
-
   then it may be beneficial to increase its cache capacity. This will
-
   potentially reduce the frequency of cache resetting (ideally to
-
   `0`). While it won't fix all potential performance problems with
-
   the lazy DFA, increasing the cache capacity does fix some.
-
   
-
   There is no easy way to determine, a priori, whether increasing
-
   this cache capacity will help. In general, the larger your regex,
-
   the more cache it's likely to use. But that isn't an ironclad rule.
-
   For example, a regex like `[01]*1[01]{N}` would normally produce a
-
   fully build DFA that is exponential in size with respect to `N`.
-
   The lazy DFA will prevent exponential space blow-up, but it cache
-
   is likely to fill up, even when it's large and even for smallish
-
   values of `N`.
-
   
-
   If you aren't sure whether this helps or not, it is sensible to
-
   set this to some arbitrarily large number in testing, such as
-
   `usize::MAX`. Namely, this represents the amount of capacity that
-
   *may* be used. It's probably not a good idea to use `usize::MAX` in
-
   production though, since it implies there are no controls on heap
-
   memory used by this library during a search. In effect, set it to
-
   whatever you're willing to allocate for a single regex search.
 
 - <span id="regexbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
   Set the nesting limit for this parser.
-
   
-
   The nesting limit controls how deep the abstract syntax tree is
-
   allowed to be. If the AST exceeds the given limit (e.g., with too
-
   many nested groups), then an error is returned by the parser.
-
   
-
   The purpose of this limit is to act as a heuristic to prevent stack
-
   overflow for consumers that do structural induction on an AST using
-
   explicit recursion. While this crate never does this (instead using
-
   constant stack space and moving the call stack to the heap), other
-
   crates may.
-
   
-
   This limit is not checked until the entire AST is parsed.
-
   Therefore, if callers want to put a limit on the amount of heap
-
   space used, then they should impose a limit on the length, in
-
   bytes, of the concrete pattern string. In particular, this is
-
   viable since this parser implementation will limit itself to heap
-
   space proportional to the length of the pattern string. See also
-
   the [untrusted inputs](crate#untrusted-input) section in the
-
   top-level crate documentation for more information about this.
-
   
-
   Note that a nest limit of `0` will return a nest limit error for
-
   most patterns but not all. For example, a nest limit of `0` permits
-
   `a` but not `ab`, since `ab` requires an explicit concatenation,
-
   which results in a nest depth of `1`. In general, a nest limit is
-
   not something that manifests in an obvious way in the concrete
-
   syntax, therefore, it should not be used in a granular way.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexBuilder;
-
   
-
   assert!(RegexBuilder::new(r"a").nest_limit(0).build().is_ok());
-
   assert!(RegexBuilder::new(r"ab").nest_limit(0).build().is_err());
-
   ```
 
 #### Trait Implementations
@@ -2448,11 +1971,8 @@ the compiled regular expression.
 - <span id="regexbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RegexBuilder`
@@ -2483,7 +2003,7 @@ struct RegexSetBuilder {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/builders.rs:787-789`](../../.source_1765633015/regex-1.12.2/src/builders.rs#L787-L789)*
+*Defined in [`regex-1.12.2/src/builders.rs:787-789`](../../.source_1765894658/regex-1.12.2/src/builders.rs#L787-L789)*
 
 A configurable builder for a [`RegexSet`](#regexset).
 
@@ -2497,993 +2017,525 @@ and a size limit on the compiled regular expression.
 - <span id="regexsetbuilder-new"></span>`fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   Create a new builder with a default configuration for the given
-
   patterns.
-
   
-
   If the patterns are invalid or exceed the configured size limits,
-
   then an error will be returned when `RegexSetBuilder::build` is
-
   called.
 
 - <span id="regexsetbuilder-build"></span>`fn build(&self) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md#error)
 
   Compiles the patterns given to `RegexSetBuilder::new` with the
-
   configuration set on this builder.
-
   
-
   If the patterns aren't valid regexes or if a configured size limit
-
   was exceeded, then an error is returned.
 
 - <span id="regexsetbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   This configures Unicode mode for the all of the patterns.
-
   
-
   Enabling Unicode mode does a number of things:
-
   
-
   * Most fundamentally, it causes the fundamental atom of matching
-
   to be a single codepoint. When Unicode mode is disabled, it's a
-
   single byte. For example, when Unicode mode is enabled, `.` will
-
   match `💩` once, where as it will match 4 times when Unicode mode
-
   is disabled. (Since the UTF-8 encoding of `💩` is 4 bytes long.)
-
   * Case insensitive matching uses Unicode simple case folding rules.
-
   * Unicode character classes like `\p{Letter}` and `\p{Greek}` are
-
   available.
-
   * Perl character classes are Unicode aware. That is, `\w`, `\s` and
-
   `\d`.
-
   * The word boundary assertions, `\b` and `\B`, use the Unicode
-
   definition of a word character.
-
   
-
   Note that if Unicode mode is disabled, then the regex will fail to
-
   compile if it could match invalid UTF-8. For example, when Unicode
-
   mode is disabled, then since `.` matches any byte (except for
-
   `\n`), then it can match invalid UTF-8 and thus building a regex
-
   from it will fail. Another example is `\w` and `\W`. Since `\w` can
-
   only match ASCII bytes when Unicode mode is disabled, it's allowed.
-
   But `\W` can match more than ASCII bytes, including invalid UTF-8,
-
   and so it is not allowed. This restriction can be lifted only by
-
   using a [`bytes::RegexSet`](crate::bytes::RegexSet).
-
   
-
   For more details on the Unicode support in this crate, see the
-
   [Unicode section](crate#unicode) in this crate's top-level
-
   documentation.
-
   
-
   The default for this is `true`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   let re = RegexSetBuilder::new([r"\w"])
-
       .unicode(false)
-
       .build()
-
       .unwrap();
-
   // Normally greek letters would be included in \w, but since
-
   // Unicode mode is disabled, it only matches ASCII letters.
-
   assert!(!re.is_match("δ"));
-
   
-
   let re = RegexSetBuilder::new([r"s"])
-
       .case_insensitive(true)
-
       .unicode(false)
-
       .build()
-
       .unwrap();
-
   // Normally 'ſ' is included when searching for 's' case
-
   // insensitively due to Unicode's simple case folding rules. But
-
   // when Unicode mode is disabled, only ASCII case insensitive rules
-
   // are used.
-
   assert!(!re.is_match("ſ"));
-
   ```
 
 - <span id="regexsetbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   This configures whether to enable case insensitive matching for all
-
   of the patterns.
-
   
-
   This setting can also be configured using the inline flag `i`
-
   in the pattern. For example, `(?i:foo)` matches `foo` case
-
   insensitively while `(?-i:foo)` matches `foo` case sensitively.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   let re = RegexSetBuilder::new([r"foo(?-i:bar)quux"])
-
       .case_insensitive(true)
-
       .build()
-
       .unwrap();
-
   assert!(re.is_match("FoObarQuUx"));
-
   // Even though case insensitive matching is enabled in the builder,
-
   // it can be locally disabled within the pattern. In this case,
-
   // `bar` is matched case sensitively.
-
   assert!(!re.is_match("fooBARquux"));
-
   ```
 
 - <span id="regexsetbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   This configures multi-line mode for all of the patterns.
-
   
-
   Enabling multi-line mode changes the behavior of the `^` and `$`
-
   anchor assertions. Instead of only matching at the beginning and
-
   end of a haystack, respectively, multi-line mode causes them to
-
   match at the beginning and end of a line *in addition* to the
-
   beginning and end of a haystack. More precisely, `^` will match at
-
   the position immediately following a `\n` and `$` will match at the
-
   position immediately preceding a `\n`.
-
   
-
   The behavior of this option can be impacted by other settings too:
-
   
-
   * The `RegexSetBuilder::line_terminator` option changes `\n`
-
   above to any ASCII byte.
-
   * The `RegexSetBuilder::crlf` option changes the line terminator
-
   to be either `\r` or `\n`, but never at the position between a `\r`
-
   and `\n`.
-
   
-
   This setting can also be configured using the inline flag `m` in
-
   the pattern.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   let re = RegexSetBuilder::new([r"^foo$"])
-
       .multi_line(true)
-
       .build()
-
       .unwrap();
-
   assert!(re.is_match("\nfoo\n"));
-
   ```
 
 - <span id="regexsetbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   This configures dot-matches-new-line mode for the entire pattern.
-
   
-
   Perhaps surprisingly, the default behavior for `.` is not to match
-
   any character, but rather, to match any character except for the
-
   line terminator (which is `\n` by default). When this mode is
-
   enabled, the behavior changes such that `.` truly matches any
-
   character.
-
   
-
   This setting can also be configured using the inline flag `s` in
-
   the pattern. For example, `(?s:.)` and `\p{any}` are equivalent
-
   regexes.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   let re = RegexSetBuilder::new([r"foo.bar"])
-
       .dot_matches_new_line(true)
-
       .build()
-
       .unwrap();
-
   let hay = "foo\nbar";
-
   assert!(re.is_match(hay));
-
   ```
 
 - <span id="regexsetbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   This configures CRLF mode for all of the patterns.
-
   
-
   When CRLF mode is enabled, both `\r` ("carriage return" or CR for
-
   short) and `\n` ("line feed" or LF for short) are treated as line
-
   terminators. This results in the following:
-
   
-
   * Unless dot-matches-new-line mode is enabled, `.` will now match
-
   any character except for `\n` and `\r`.
-
   * When multi-line mode is enabled, `^` will match immediately
-
   following a `\n` or a `\r`. Similarly, `$` will match immediately
-
   preceding a `\n` or a `\r`. Neither `^` nor `$` will ever match
-
   between `\r` and `\n`.
-
   
-
   This setting can also be configured using the inline flag `R` in
-
   the pattern.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   let re = RegexSetBuilder::new([r"^foo$"])
-
       .multi_line(true)
-
       .crlf(true)
-
       .build()
-
       .unwrap();
-
   let hay = "\r\nfoo\r\n";
-
   // If CRLF mode weren't enabled here, then '$' wouldn't match
-
   // immediately after 'foo', and thus no match would be found.
-
   assert!(re.is_match(hay));
-
   ```
-
   
-
   This example demonstrates that `^` will never match at a position
-
   between `\r` and `\n`. (`$` will similarly not match between a `\r`
-
   and a `\n`.)
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   let re = RegexSetBuilder::new([r"^\n"])
-
       .multi_line(true)
-
       .crlf(true)
-
       .build()
-
       .unwrap();
-
   assert!(!re.is_match("\r\n"));
-
   ```
 
 - <span id="regexsetbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   Configures the line terminator to be used by the regex.
-
   
-
   The line terminator is relevant in two ways for a particular regex:
-
   
-
   * When dot-matches-new-line mode is *not* enabled (the default),
-
   then `.` will match any character except for the configured line
-
   terminator.
-
   * When multi-line mode is enabled (not the default), then `^` and
-
   `$` will match immediately after and before, respectively, a line
-
   terminator.
-
   
-
   In both cases, if CRLF mode is enabled in a particular context,
-
   then it takes precedence over any configured line terminator.
-
   
-
   This option cannot be configured from within the pattern.
-
   
-
   The default line terminator is `\n`.
-
   
-
   # Example
-
   
-
   This shows how to treat the NUL byte as a line terminator. This can
-
   be a useful heuristic when searching binary data.
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   let re = RegexSetBuilder::new([r"^foo$"])
-
       .multi_line(true)
-
       .line_terminator(b'\x00')
-
       .build()
-
       .unwrap();
-
   let hay = "\x00foo\x00";
-
   assert!(re.is_match(hay));
-
   ```
-
   
-
   This example shows that the behavior of `.` is impacted by this
-
   setting as well:
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   let re = RegexSetBuilder::new([r"."])
-
       .line_terminator(b'\x00')
-
       .build()
-
       .unwrap();
-
   assert!(re.is_match("\n"));
-
   assert!(!re.is_match("\x00"));
-
   ```
-
   
-
   This shows that building a regex will fail if the byte given
-
   is not ASCII and the pattern could result in matching invalid
-
   UTF-8. This is because any singular non-ASCII byte is not valid
-
   UTF-8, and it is not permitted for a [`RegexSet`](#regexset) to match invalid
-
   UTF-8. (It is permissible to use a non-ASCII byte when building a
-
   [`bytes::RegexSet`](crate::bytes::RegexSet).)
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   assert!(
-
       RegexSetBuilder::new([r"."])
-
           .line_terminator(0x80)
-
           .build()
-
           .is_err()
-
   );
-
   // Note that using a non-ASCII byte isn't enough on its own to
-
   // cause regex compilation to fail. You actually have to make use
-
   // of it in the regex in a way that leads to matching invalid
-
   // UTF-8. If you don't, then regex compilation will succeed!
-
   assert!(
-
       RegexSetBuilder::new([r"a"])
-
           .line_terminator(0x80)
-
           .build()
-
           .is_ok()
-
   );
-
   ```
 
 - <span id="regexsetbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   This configures swap-greed mode for all of the patterns.
-
   
-
   When swap-greed mode is enabled, patterns like `a+` will become
-
   non-greedy and patterns like `a+?` will become greedy. In other
-
   words, the meanings of `a+` and `a+?` are switched.
-
   
-
   This setting can also be configured using the inline flag `U` in
-
   the pattern.
-
   
-
   Note that this is generally not useful for a `RegexSet` since a
-
   `RegexSet` can only report whether a pattern matches or not. Since
-
   greediness never impacts whether a match is found or not (only the
-
   offsets of the match), it follows that whether parts of a pattern
-
   are greedy or not doesn't matter for a `RegexSet`.
-
   
-
   The default for this is `false`.
 
 - <span id="regexsetbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   This configures verbose mode for all of the patterns.
-
   
-
   When enabled, whitespace will treated as insignificant in the
-
   pattern and `#` can be used to start a comment until the next new
-
   line.
-
   
-
   Normally, in most places in a pattern, whitespace is treated
-
   literally. For example ` +` will match one or more ASCII whitespace
-
   characters.
-
   
-
   When verbose mode is enabled, `\#` can be used to match a literal
-
   `#` and `\ ` can be used to match a literal ASCII whitespace
-
   character.
-
   
-
   Verbose mode is useful for permitting regexes to be formatted and
-
   broken up more nicely. This may make them more easily readable.
-
   
-
   This setting can also be configured using the inline flag `x` in
-
   the pattern.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   let pat = r"
-
       \b
-
       (?<first>\p{Uppercase}\w*)  # always start with uppercase letter
-
       [\s--\n]+                   # whitespace should separate names
-
       (?: # middle name can be an initial!
-
           (?:(?<initial>\p{Uppercase})\.|(?<middle>\p{Uppercase}\w*))
-
           [\s--\n]+
-
       )?
-
       (?<last>\p{Uppercase}\w*)
-
       \b
-
   ";
-
   let re = RegexSetBuilder::new([pat])
-
       .ignore_whitespace(true)
-
       .build()
-
       .unwrap();
-
   assert!(re.is_match("Harry Potter"));
-
   assert!(re.is_match("Harry J. Potter"));
-
   assert!(re.is_match("Harry James Potter"));
-
   assert!(!re.is_match("harry J. Potter"));
-
   ```
 
 - <span id="regexsetbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   This configures octal mode for all of the patterns.
-
   
-
   Octal syntax is a little-known way of uttering Unicode codepoints
-
   in a pattern. For example, `a`, `\x61`, `\u0061` and `\141` are all
-
   equivalent patterns, where the last example shows octal syntax.
-
   
-
   While supporting octal syntax isn't in and of itself a problem,
-
   it does make good error messages harder. That is, in PCRE based
-
   regex engines, syntax like `\1` invokes a backreference, which is
-
   explicitly unsupported this library. However, many users expect
-
   backreferences to be supported. Therefore, when octal support
-
   is disabled, the error message will explicitly mention that
-
   backreferences aren't supported.
-
   
-
   The default for this is `false`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   // Normally this pattern would not compile, with an error message
-
   // about backreferences not being supported. But with octal mode
-
   // enabled, octal escape sequences work.
-
   let re = RegexSetBuilder::new([r"\141"])
-
       .octal(true)
-
       .build()
-
       .unwrap();
-
   assert!(re.is_match("a"));
-
   ```
 
 - <span id="regexsetbuilder-size-limit"></span>`fn size_limit(&mut self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   Sets the approximate size limit, in bytes, of the compiled regex.
-
   
-
   This roughly corresponds to the number of heap memory, in
-
   bytes, occupied by a single regex. If the regex would otherwise
-
   approximately exceed this limit, then compiling that regex will
-
   fail.
-
   
-
   The main utility of a method like this is to avoid compiling
-
   regexes that use an unexpected amount of resources, such as
-
   time and memory. Even if the memory usage of a large regex is
-
   acceptable, its search time may not be. Namely, worst case time
-
   complexity for search is `O(m * n)`, where `m ~ len(pattern)` and
-
   `n ~ len(haystack)`. That is, search time depends, in part, on the
-
   size of the compiled regex. This means that putting a limit on the
-
   size of the regex limits how much a regex can impact search time.
-
   
-
   For more information about regex size limits, see the section on
-
   [untrusted inputs](crate#untrusted-input) in the top-level crate
-
   documentation.
-
   
-
   The default for this is some reasonable number that permits most
-
   patterns to compile successfully.
-
   
-
   # Example
-
   
-
   ```rust
-
   if !cfg!(target_pointer_width = "64") { return; } // see #1041
-
   use regex::RegexSetBuilder;
-
   
-
   // It may surprise you how big some seemingly small patterns can
-
   // be! Since \w is Unicode aware, this generates a regex that can
-
   // match approximately 140,000 distinct codepoints.
-
   assert!(
-
       RegexSetBuilder::new([r"\w"])
-
           .size_limit(45_000)
-
           .build()
-
           .is_err()
-
   );
-
   ```
 
 - <span id="regexsetbuilder-dfa-size-limit"></span>`fn dfa_size_limit(&mut self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   Set the approximate capacity, in bytes, of the cache of transitions
-
   used by the lazy DFA.
-
   
-
   While the lazy DFA isn't always used, in tends to be the most
-
   commonly use regex engine in default configurations. It tends to
-
   adopt the performance profile of a fully build DFA, but without the
-
   downside of taking worst case exponential time to build.
-
   
-
   The downside is that it needs to keep a cache of transitions and
-
   states that are built while running a search, and this cache
-
   can fill up. When it fills up, the cache will reset itself. Any
-
   previously generated states and transitions will then need to be
-
   re-generated. If this happens too many times, then this library
-
   will bail out of using the lazy DFA and switch to a different regex
-
   engine.
-
   
-
   If your regex provokes this particular downside of the lazy DFA,
-
   then it may be beneficial to increase its cache capacity. This will
-
   potentially reduce the frequency of cache resetting (ideally to
-
   `0`). While it won't fix all potential performance problems with
-
   the lazy DFA, increasing the cache capacity does fix some.
-
   
-
   There is no easy way to determine, a priori, whether increasing
-
   this cache capacity will help. In general, the larger your regex,
-
   the more cache it's likely to use. But that isn't an ironclad rule.
-
   For example, a regex like `[01]*1[01]{N}` would normally produce a
-
   fully build DFA that is exponential in size with respect to `N`.
-
   The lazy DFA will prevent exponential space blow-up, but it cache
-
   is likely to fill up, even when it's large and even for smallish
-
   values of `N`.
-
   
-
   If you aren't sure whether this helps or not, it is sensible to
-
   set this to some arbitrarily large number in testing, such as
-
   `usize::MAX`. Namely, this represents the amount of capacity that
-
   *may* be used. It's probably not a good idea to use `usize::MAX` in
-
   production though, since it implies there are no controls on heap
-
   memory used by this library during a search. In effect, set it to
-
   whatever you're willing to allocate for a single regex search.
 
 - <span id="regexsetbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
   Set the nesting limit for this parser.
-
   
-
   The nesting limit controls how deep the abstract syntax tree is
-
   allowed to be. If the AST exceeds the given limit (e.g., with too
-
   many nested groups), then an error is returned by the parser.
-
   
-
   The purpose of this limit is to act as a heuristic to prevent stack
-
   overflow for consumers that do structural induction on an AST using
-
   explicit recursion. While this crate never does this (instead using
-
   constant stack space and moving the call stack to the heap), other
-
   crates may.
-
   
-
   This limit is not checked until the entire AST is parsed.
-
   Therefore, if callers want to put a limit on the amount of heap
-
   space used, then they should impose a limit on the length, in
-
   bytes, of the concrete pattern string. In particular, this is
-
   viable since this parser implementation will limit itself to heap
-
   space proportional to the length of the pattern string. See also
-
   the [untrusted inputs](crate#untrusted-input) section in the
-
   top-level crate documentation for more information about this.
-
   
-
   Note that a nest limit of `0` will return a nest limit error for
-
   most patterns but not all. For example, a nest limit of `0` permits
-
   `a` but not `ab`, since `ab` requires an explicit concatenation,
-
   which results in a nest depth of `1`. In general, a nest limit is
-
   not something that manifests in an obvious way in the concrete
-
   syntax, therefore, it should not be used in a granular way.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSetBuilder;
-
   
-
   assert!(RegexSetBuilder::new([r"a"]).nest_limit(0).build().is_ok());
-
   assert!(RegexSetBuilder::new([r"ab"]).nest_limit(0).build().is_err());
-
   ```
 
 #### Trait Implementations
@@ -3523,11 +2575,8 @@ and a size limit on the compiled regular expression.
 - <span id="regexsetbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RegexSetBuilder`
@@ -3559,7 +2608,7 @@ struct Regex {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:101-104`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L101-L104)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:101-104`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L101-L104)*
 
 A compiled regular expression for searching Unicode haystacks.
 
@@ -3660,1409 +2709,727 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 - <span id="regex-new"></span>`fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md#error)
 
   Compiles a regular expression. Once compiled, it can be used repeatedly
-
   to search, split or replace substrings in a haystack.
-
   
-
   Note that regex compilation tends to be a somewhat expensive process,
-
   and unlike higher level environments, compilation is not automatically
-
   cached for you. One should endeavor to compile a regex once and then
-
   reuse it. For example, it's a bad idea to compile the same regex
-
   repeatedly in a loop.
-
   
-
   # Errors
-
   
-
   If an invalid pattern is given, then an error is returned.
-
   An error is also returned if the pattern is valid, but would
-
   produce a regex that is bigger than the configured size limit via
-
   `RegexBuilder::size_limit`. (A reasonable size limit is enabled by
-
   default.)
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   // An Invalid pattern because of an unclosed parenthesis
-
   assert!(Regex::new(r"foo(bar").is_err());
-
   // An invalid pattern because the regex would be too big
-
   // because Unicode tends to inflate things.
-
   assert!(Regex::new(r"\w{1000}").is_err());
-
   // Disabling Unicode can make the regex much smaller,
-
   // potentially by up to or more than an order of magnitude.
-
   assert!(Regex::new(r"(?-u:\w){1000}").is_ok());
-
   ```
 
 - <span id="regex-is-match"></span>`fn is_match(&self, haystack: &str) -> bool`
 
   Returns true if and only if there is a match for the regex anywhere
-
   in the haystack given.
-
   
-
   It is recommended to use this method if all you need to do is test
-
   whether a match exists, since the underlying matching engine may be
-
   able to do less work.
-
   
-
   # Example
-
   
-
   Test if some haystack contains at least one word with exactly 13
-
   Unicode word characters:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"\b\w{13}\b").unwrap();
-
   let hay = "I categorically deny having triskaidekaphobia.";
-
   assert!(re.is_match(hay));
-
   ```
 
 - <span id="regex-find"></span>`fn find<'h>(&self, haystack: &'h str) -> Option<Match<'h>>` — [`Match`](#match)
 
   This routine searches for the first match of this regex in the
-
   haystack given, and if found, returns a [`Match`](#match). The `Match`
-
   provides access to both the byte offsets of the match and the actual
-
   substring that matched.
-
   
-
   Note that this should only be used if you want to find the entire
-
   match. If instead you just want to test the existence of a match,
-
   it's potentially faster to use `Regex::is_match(hay)` instead of
-
   `Regex::find(hay).is_some()`.
-
   
-
   # Example
-
   
-
   Find the first word with exactly 13 Unicode word characters:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"\b\w{13}\b").unwrap();
-
   let hay = "I categorically deny having triskaidekaphobia.";
-
   let mat = re.find(hay).unwrap();
-
   assert_eq!(2..15, mat.range());
-
   assert_eq!("categorically", mat.as_str());
-
   ```
 
 - <span id="regex-find-iter"></span>`fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> Matches<'r, 'h>` — [`Matches`](#matches)
 
   Returns an iterator that yields successive non-overlapping matches in
-
   the given haystack. The iterator yields values of type [`Match`](#match).
-
   
-
   # Time complexity
-
   
-
   Note that since `find_iter` runs potentially many searches on the
-
   haystack and since each search has worst case `O(m * n)` time
-
   complexity, the overall worst case time complexity for iteration is
-
   `O(m * n^2)`.
-
   
-
   # Example
-
   
-
   Find every word with exactly 13 Unicode word characters:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"\b\w{13}\b").unwrap();
-
   let hay = "Retroactively relinquishing remunerations is reprehensible.";
-
   let matches: Vec<_> = re.find_iter(hay).map(|m| m.as_str()).collect();
-
   assert_eq!(matches, vec![
-
       "Retroactively",
-
       "relinquishing",
-
       "remunerations",
-
       "reprehensible",
-
   ]);
-
   ```
 
 - <span id="regex-captures"></span>`fn captures<'h>(&self, haystack: &'h str) -> Option<Captures<'h>>` — [`Captures`](#captures)
 
   This routine searches for the first match of this regex in the haystack
-
   given, and if found, returns not only the overall match but also the
-
   matches of each capture group in the regex. If no match is found, then
-
   `None` is returned.
-
   
-
   Capture group `0` always corresponds to an implicit unnamed group that
-
   includes the entire match. If a match is found, this group is always
-
   present. Subsequent groups may be named and are numbered, starting
-
   at 1, by the order in which the opening parenthesis appears in the
-
   pattern. For example, in the pattern `(?<a>.(?<b>.))(?<c>.)`, `a`,
-
   `b` and `c` correspond to capture group indices `1`, `2` and `3`,
-
   respectively.
-
   
-
   You should only use `captures` if you need access to the capture group
-
   matches. Otherwise, `Regex::find` is generally faster for discovering
-
   just the overall match.
-
   
-
   # Example
-
   
-
   Say you have some haystack with movie names and their release years,
-
   like "'Citizen Kane' (1941)". It'd be nice if we could search for
-
   substrings looking like that, while also extracting the movie name and
-
   its release year separately. The example below shows how to do that.
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"'([^']+)'\s+\((\d{4})\)").unwrap();
-
   let hay = "Not my favorite movie: 'Citizen Kane' (1941).";
-
   let caps = re.captures(hay).unwrap();
-
   assert_eq!(caps.get(0).unwrap().as_str(), "'Citizen Kane' (1941)");
-
   assert_eq!(caps.get(1).unwrap().as_str(), "Citizen Kane");
-
   assert_eq!(caps.get(2).unwrap().as_str(), "1941");
-
   // You can also access the groups by index using the Index notation.
-
   // Note that this will panic on an invalid index. In this case, these
-
   // accesses are always correct because the overall regex will only
-
   // match when these capture groups match.
-
   assert_eq!(&caps[0], "'Citizen Kane' (1941)");
-
   assert_eq!(&caps[1], "Citizen Kane");
-
   assert_eq!(&caps[2], "1941");
-
   ```
-
   
-
   Note that the full match is at capture group `0`. Each subsequent
-
   capture group is indexed by the order of its opening `(`.
-
   
-
   We can make this example a bit clearer by using *named* capture groups:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"'(?<title>[^']+)'\s+\((?<year>\d{4})\)").unwrap();
-
   let hay = "Not my favorite movie: 'Citizen Kane' (1941).";
-
   let caps = re.captures(hay).unwrap();
-
   assert_eq!(caps.get(0).unwrap().as_str(), "'Citizen Kane' (1941)");
-
   assert_eq!(caps.name("title").unwrap().as_str(), "Citizen Kane");
-
   assert_eq!(caps.name("year").unwrap().as_str(), "1941");
-
   // You can also access the groups by name using the Index notation.
-
   // Note that this will panic on an invalid group name. In this case,
-
   // these accesses are always correct because the overall regex will
-
   // only match when these capture groups match.
-
   assert_eq!(&caps[0], "'Citizen Kane' (1941)");
-
   assert_eq!(&caps["title"], "Citizen Kane");
-
   assert_eq!(&caps["year"], "1941");
-
   ```
-
   
-
   Here we name the capture groups, which we can access with the `name`
-
   method or the `Index` notation with a `&str`. Note that the named
-
   capture groups are still accessible with `get` or the `Index` notation
-
   with a `usize`.
-
   
-
   The `0`th capture group is always unnamed, so it must always be
-
   accessed with `get(0)` or `[0]`.
-
   
-
   Finally, one other way to get the matched substrings is with the
-
   `Captures::extract` API:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"'([^']+)'\s+\((\d{4})\)").unwrap();
-
   let hay = "Not my favorite movie: 'Citizen Kane' (1941).";
-
   let (full, [title, year]) = re.captures(hay).unwrap().extract();
-
   assert_eq!(full, "'Citizen Kane' (1941)");
-
   assert_eq!(title, "Citizen Kane");
-
   assert_eq!(year, "1941");
-
   ```
 
 - <span id="regex-captures-iter"></span>`fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](#capturematches)
 
   Returns an iterator that yields successive non-overlapping matches in
-
   the given haystack. The iterator yields values of type [`Captures`](#captures).
-
   
-
   This is the same as `Regex::find_iter`, but instead of only providing
-
   access to the overall match, each value yield includes access to the
-
   matches of all capture groups in the regex. Reporting this extra match
-
   data is potentially costly, so callers should only use `captures_iter`
-
   over `find_iter` when they actually need access to the capture group
-
   matches.
-
   
-
   # Time complexity
-
   
-
   Note that since `captures_iter` runs potentially many searches on the
-
   haystack and since each search has worst case `O(m * n)` time
-
   complexity, the overall worst case time complexity for iteration is
-
   `O(m * n^2)`.
-
   
-
   # Example
-
   
-
   We can use this to find all movie titles and their release years in
-
   some haystack, where the movie is formatted like "'Title' (xxxx)":
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"'([^']+)'\s+\(([0-9]{4})\)").unwrap();
-
   let hay = "'Citizen Kane' (1941), 'The Wizard of Oz' (1939), 'M' (1931).";
-
   let mut movies = vec![];
-
   for (_, [title, year]) in re.captures_iter(hay).map(|c| c.extract()) {
-
       movies.push((title, year.parse::<i64>()?));
-
   }
-
   assert_eq!(movies, vec![
-
       ("Citizen Kane", 1941),
-
       ("The Wizard of Oz", 1939),
-
       ("M", 1931),
-
   ]);
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
-
   
-
   Or with named groups:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"'(?<title>[^']+)'\s+\((?<year>[0-9]{4})\)").unwrap();
-
   let hay = "'Citizen Kane' (1941), 'The Wizard of Oz' (1939), 'M' (1931).";
-
   let mut it = re.captures_iter(hay);
-
   
-
   let caps = it.next().unwrap();
-
   assert_eq!(&caps["title"], "Citizen Kane");
-
   assert_eq!(&caps["year"], "1941");
-
   
-
   let caps = it.next().unwrap();
-
   assert_eq!(&caps["title"], "The Wizard of Oz");
-
   assert_eq!(&caps["year"], "1939");
-
   
-
   let caps = it.next().unwrap();
-
   assert_eq!(&caps["title"], "M");
-
   assert_eq!(&caps["year"], "1931");
-
   ```
 
 - <span id="regex-split"></span>`fn split<'r, 'h>(self: &'r Self, haystack: &'h str) -> Split<'r, 'h>` — [`Split`](#split)
 
   Returns an iterator of substrings of the haystack given, delimited by a
-
   match of the regex. Namely, each element of the iterator corresponds to
-
   a part of the haystack that *isn't* matched by the regular expression.
-
   
-
   # Time complexity
-
   
-
   Since iterators over all matches requires running potentially many
-
   searches on the haystack, and since each search has worst case
-
   `O(m * n)` time complexity, the overall worst case time complexity for
-
   this routine is `O(m * n^2)`.
-
   
-
   # Example
-
   
-
   To split a string delimited by arbitrary amounts of spaces or tabs:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"[ \t]+").unwrap();
-
   let hay = "a b \t  c\td    e";
-
   let fields: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(fields, vec!["a", "b", "c", "d", "e"]);
-
   ```
-
   
-
   # Example: more cases
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r" ").unwrap();
-
   let hay = "Mary had a little lamb";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec!["Mary", "had", "a", "little", "lamb"]);
-
   
-
   let re = Regex::new(r"X").unwrap();
-
   let hay = "";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec![""]);
-
   
-
   let re = Regex::new(r"X").unwrap();
-
   let hay = "lionXXtigerXleopard";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec!["lion", "", "tiger", "leopard"]);
-
   
-
   let re = Regex::new(r"::").unwrap();
-
   let hay = "lion::tiger::leopard";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec!["lion", "tiger", "leopard"]);
-
   ```
-
   
-
   If a haystack contains multiple contiguous matches, you will end up
-
   with empty spans yielded by the iterator:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"X").unwrap();
-
   let hay = "XXXXaXXbXc";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec!["", "", "", "", "a", "", "b", "c"]);
-
   
-
   let re = Regex::new(r"/").unwrap();
-
   let hay = "(///)";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec!["(", "", "", ")"]);
-
   ```
-
   
-
   Separators at the start or end of a haystack are neighbored by empty
-
   substring.
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"0").unwrap();
-
   let hay = "010";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec!["", "1", ""]);
-
   ```
-
   
-
   When the empty string is used as a regex, it splits at every valid
-
   UTF-8 boundary by default (which includes the beginning and end of the
-
   haystack):
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"").unwrap();
-
   let hay = "rust";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec!["", "r", "u", "s", "t", ""]);
-
   
-
   // Splitting by an empty string is UTF-8 aware by default!
-
   let re = Regex::new(r"").unwrap();
-
   let hay = "☃";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec!["", "☃", ""]);
-
   ```
-
   
-
   Contiguous separators (commonly shows up with whitespace), can lead to
-
   possibly surprising behavior. For example, this code is correct:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r" ").unwrap();
-
   let hay = "    a  b c";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   assert_eq!(got, vec!["", "", "", "", "a", "", "b", "c"]);
-
   ```
-
   
-
   It does *not* give you `["a", "b", "c"]`. For that behavior, you'd want
-
   to match contiguous space characters:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r" +").unwrap();
-
   let hay = "    a  b c";
-
   let got: Vec<&str> = re.split(hay).collect();
-
   // N.B. This does still include a leading empty span because ' +'
-
   // matches at the beginning of the haystack.
-
   assert_eq!(got, vec!["", "a", "b", "c"]);
-
   ```
 
 - <span id="regex-splitn"></span>`fn splitn<'r, 'h>(self: &'r Self, haystack: &'h str, limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](#splitn)
 
   Returns an iterator of at most `limit` substrings of the haystack
-
   given, delimited by a match of the regex. (A `limit` of `0` will return
-
   no substrings.) Namely, each element of the iterator corresponds to a
-
   part of the haystack that *isn't* matched by the regular expression.
-
   The remainder of the haystack that is not split will be the last
-
   element in the iterator.
-
   
-
   # Time complexity
-
   
-
   Since iterators over all matches requires running potentially many
-
   searches on the haystack, and since each search has worst case
-
   `O(m * n)` time complexity, the overall worst case time complexity for
-
   this routine is `O(m * n^2)`.
-
   
-
   Although note that the worst case time here has an upper bound given
-
   by the `limit` parameter.
-
   
-
   # Example
-
   
-
   Get the first two words in some haystack:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"\W+").unwrap();
-
   let hay = "Hey! How are you?";
-
   let fields: Vec<&str> = re.splitn(hay, 3).collect();
-
   assert_eq!(fields, vec!["Hey", "How", "are you?"]);
-
   ```
-
   
-
   # Examples: more cases
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r" ").unwrap();
-
   let hay = "Mary had a little lamb";
-
   let got: Vec<&str> = re.splitn(hay, 3).collect();
-
   assert_eq!(got, vec!["Mary", "had", "a little lamb"]);
-
   
-
   let re = Regex::new(r"X").unwrap();
-
   let hay = "";
-
   let got: Vec<&str> = re.splitn(hay, 3).collect();
-
   assert_eq!(got, vec![""]);
-
   
-
   let re = Regex::new(r"X").unwrap();
-
   let hay = "lionXXtigerXleopard";
-
   let got: Vec<&str> = re.splitn(hay, 3).collect();
-
   assert_eq!(got, vec!["lion", "", "tigerXleopard"]);
-
   
-
   let re = Regex::new(r"::").unwrap();
-
   let hay = "lion::tiger::leopard";
-
   let got: Vec<&str> = re.splitn(hay, 2).collect();
-
   assert_eq!(got, vec!["lion", "tiger::leopard"]);
-
   
-
   let re = Regex::new(r"X").unwrap();
-
   let hay = "abcXdef";
-
   let got: Vec<&str> = re.splitn(hay, 1).collect();
-
   assert_eq!(got, vec!["abcXdef"]);
-
   
-
   let re = Regex::new(r"X").unwrap();
-
   let hay = "abcdef";
-
   let got: Vec<&str> = re.splitn(hay, 2).collect();
-
   assert_eq!(got, vec!["abcdef"]);
-
   
-
   let re = Regex::new(r"X").unwrap();
-
   let hay = "abcXdef";
-
   let got: Vec<&str> = re.splitn(hay, 0).collect();
-
   assert!(got.is_empty());
-
   ```
 
 - <span id="regex-replace"></span>`fn replace<'h, R: Replacer>(&self, haystack: &'h str, rep: R) -> Cow<'h, str>`
 
   Replaces the leftmost-first match in the given haystack with the
-
   replacement provided. The replacement can be a regular string (where
-
   `$N` and `$name` are expanded to match capture groups) or a function
-
   that takes a [`Captures`](#captures) and returns the replaced string.
-
   
-
   If no match is found, then the haystack is returned unchanged. In that
-
   case, this implementation will likely return a `Cow::Borrowed` value
-
   such that no allocation is performed.
-
   
-
   When a `Cow::Borrowed` is returned, the value returned is guaranteed
-
   to be equivalent to the `haystack` given.
-
   
-
   # Replacement string syntax
-
   
-
   All instances of `$ref` in the replacement string are replaced with
-
   the substring corresponding to the capture group identified by `ref`.
-
   
-
   `ref` may be an integer corresponding to the index of the capture group
-
   (counted by order of opening parenthesis where `0` is the entire match)
-
   or it can be a name (consisting of letters, digits or underscores)
-
   corresponding to a named capture group.
-
   
-
   If `ref` isn't a valid capture group (whether the name doesn't exist or
-
   isn't a valid index), then it is replaced with the empty string.
-
   
-
   The longest possible name is used. For example, `$1a` looks up the
-
   capture group named `1a` and not the capture group at index `1`. To
-
   exert more precise control over the name, use braces, e.g., `${1}a`.
-
   
-
   To write a literal `$` use `$$`.
-
   
-
   # Example
-
   
-
   Note that this function is polymorphic with respect to the replacement.
-
   In typical usage, this can just be a normal string:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"[^01]+").unwrap();
-
   assert_eq!(re.replace("1078910", ""), "1010");
-
   ```
-
   
-
   But anything satisfying the [`Replacer`](#replacer) trait will work. For example,
-
   a closure of type `|&Captures| -> String` provides direct access to the
-
   captures corresponding to a match. This allows one to access capturing
-
   group matches easily:
-
   
-
   ```rust
-
   use regex::{Captures, Regex};
-
   
-
   let re = Regex::new(r"([^,\s]+),\s+(\S+)").unwrap();
-
   let result = re.replace("Springsteen, Bruce", |caps: &Captures| {
-
       format!("{} {}", &caps[2], &caps[1])
-
   });
-
   assert_eq!(result, "Bruce Springsteen");
-
   ```
-
   
-
   But this is a bit cumbersome to use all the time. Instead, a simple
-
   syntax is supported (as described above) that expands `$name` into the
-
   corresponding capture group. Here's the last example, but using this
-
   expansion technique with named capture groups:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"(?<last>[^,\s]+),\s+(?<first>\S+)").unwrap();
-
   let result = re.replace("Springsteen, Bruce", "$first $last");
-
   assert_eq!(result, "Bruce Springsteen");
-
   ```
-
   
-
   Note that using `$2` instead of `$first` or `$1` instead of `$last`
-
   would produce the same result. To write a literal `$` use `$$`.
-
   
-
   Sometimes the replacement string requires use of curly braces to
-
   delineate a capture group replacement when it is adjacent to some other
-
   literal text. For example, if we wanted to join two words together with
-
   an underscore:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"(?<first>\w+)\s+(?<second>\w+)").unwrap();
-
   let result = re.replace("deep fried", "${first}_$second");
-
   assert_eq!(result, "deep_fried");
-
   ```
-
   
-
   Without the curly braces, the capture group name `first_` would be
-
   used, and since it doesn't exist, it would be replaced with the empty
-
   string.
-
   
-
   Finally, sometimes you just want to replace a literal string with no
-
   regard for capturing group expansion. This can be done by wrapping a
-
   string with [`NoExpand`](#noexpand):
-
   
-
   ```rust
-
   use regex::{NoExpand, Regex};
-
   
-
   let re = Regex::new(r"(?<last>[^,\s]+),\s+(\S+)").unwrap();
-
   let result = re.replace("Springsteen, Bruce", NoExpand("$2 $last"));
-
   assert_eq!(result, "$2 $last");
-
   ```
-
   
-
   Using `NoExpand` may also be faster, since the replacement string won't
-
   need to be parsed for the `$` syntax.
 
 - <span id="regex-replace-all"></span>`fn replace_all<'h, R: Replacer>(&self, haystack: &'h str, rep: R) -> Cow<'h, str>`
 
   Replaces all non-overlapping matches in the haystack with the
-
   replacement provided. This is the same as calling `replacen` with
-
   `limit` set to `0`.
-
   
-
   If no match is found, then the haystack is returned unchanged. In that
-
   case, this implementation will likely return a `Cow::Borrowed` value
-
   such that no allocation is performed.
-
   
-
   When a `Cow::Borrowed` is returned, the value returned is guaranteed
-
   to be equivalent to the `haystack` given.
-
   
-
   The documentation for `Regex::replace` goes into more detail about
-
   what kinds of replacement strings are supported.
-
   
-
   # Time complexity
-
   
-
   Since iterators over all matches requires running potentially many
-
   searches on the haystack, and since each search has worst case
-
   `O(m * n)` time complexity, the overall worst case time complexity for
-
   this routine is `O(m * n^2)`.
-
   
-
   # Fallibility
-
   
-
   If you need to write a replacement routine where any individual
-
   replacement might "fail," doing so with this API isn't really feasible
-
   because there's no way to stop the search process if a replacement
-
   fails. Instead, if you need this functionality, you should consider
-
   implementing your own replacement routine:
-
   
-
   ```rust
-
   use regex::{Captures, Regex};
-
   
-
   fn replace_all<E>(
-
       re: &Regex,
-
       haystack: &str,
-
       replacement: impl Fn(&Captures) -> Result<String, E>,
-
   ) -> Result<String, E> {
-
       let mut new = String::with_capacity(haystack.len());
-
       let mut last_match = 0;
-
       for caps in re.captures_iter(haystack) {
-
           let m = caps.get(0).unwrap();
-
           new.push_str(&haystack[last_match..m.start()]);
-
           new.push_str(&replacement(&caps)?);
-
           last_match = m.end();
-
       }
-
       new.push_str(&haystack[last_match..]);
-
       Ok(new)
-
   }
-
   
-
   // Let's replace each word with the number of bytes in that word.
-
   // But if we see a word that is "too long," we'll give up.
-
   let re = Regex::new(r"\w+").unwrap();
-
   let replacement = |caps: &Captures| -> Result<String, &'static str> {
-
       if caps[0].len() >= 5 {
-
           return Err("word too long");
-
       }
-
       Ok(caps[0].len().to_string())
-
   };
-
   assert_eq!(
-
       Ok("2 3 3 3?".to_string()),
-
       replace_all(&re, "hi how are you?", &replacement),
-
   );
-
   assert!(replace_all(&re, "hi there", &replacement).is_err());
-
   ```
-
   
-
   # Example
-
   
-
   This example shows how to flip the order of whitespace (excluding line
-
   terminators) delimited fields, and normalizes the whitespace that
-
   delimits the fields:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"(?m)^(\S+)[\s--\r\n]+(\S+)$").unwrap();
-
   let hay = "
-
   Greetings  1973
-
   Wild\t1973
-
   BornToRun\t\t\t\t1975
-
   Darkness                    1978
-
   TheRiver 1980
-
   ";
-
   let new = re.replace_all(hay, "$2 $1");
-
   assert_eq!(new, "
-
   1973 Greetings
-
   1973 Wild
-
   1975 BornToRun
-
   1978 Darkness
-
   1980 TheRiver
-
   ");
-
   ```
 
 - <span id="regex-replacen"></span>`fn replacen<'h, R: Replacer>(&self, haystack: &'h str, limit: usize, rep: R) -> Cow<'h, str>`
 
   Replaces at most `limit` non-overlapping matches in the haystack with
-
   the replacement provided. If `limit` is `0`, then all non-overlapping
-
   matches are replaced. That is, `Regex::replace_all(hay, rep)` is
-
   equivalent to `Regex::replacen(hay, 0, rep)`.
-
   
-
   If no match is found, then the haystack is returned unchanged. In that
-
   case, this implementation will likely return a `Cow::Borrowed` value
-
   such that no allocation is performed.
-
   
-
   When a `Cow::Borrowed` is returned, the value returned is guaranteed
-
   to be equivalent to the `haystack` given.
-
   
-
   The documentation for `Regex::replace` goes into more detail about
-
   what kinds of replacement strings are supported.
-
   
-
   # Time complexity
-
   
-
   Since iterators over all matches requires running potentially many
-
   searches on the haystack, and since each search has worst case
-
   `O(m * n)` time complexity, the overall worst case time complexity for
-
   this routine is `O(m * n^2)`.
-
   
-
   Although note that the worst case time here has an upper bound given
-
   by the `limit` parameter.
-
   
-
   # Fallibility
-
   
-
   See the corresponding section in the docs for `Regex::replace_all`
-
   for tips on how to deal with a replacement routine that can fail.
-
   
-
   # Example
-
   
-
   This example shows how to flip the order of whitespace (excluding line
-
   terminators) delimited fields, and normalizes the whitespace that
-
   delimits the fields. But we only do it for the first two matches.
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"(?m)^(\S+)[\s--\r\n]+(\S+)$").unwrap();
-
   let hay = "
-
   Greetings  1973
-
   Wild\t1973
-
   BornToRun\t\t\t\t1975
-
   Darkness                    1978
-
   TheRiver 1980
-
   ";
-
   let new = re.replacen(hay, 2, "$2 $1");
-
   assert_eq!(new, "
-
   1973 Greetings
-
   1973 Wild
-
   BornToRun\t\t\t\t1975
-
   Darkness                    1978
-
   TheRiver 1980
-
   ");
-
   ```
 
 #### Trait Implementations
@@ -5118,11 +3485,8 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 - <span id="regex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Regex`
@@ -5159,7 +3523,7 @@ struct Match<'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:1490-1494`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L1490-L1494)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:1490-1494`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L1490-L1494)*
 
 Represents a single match of a regex in a haystack.
 
@@ -5217,61 +3581,37 @@ assert_eq!("αβγδ", m.as_str());
 - <span id="match-start"></span>`fn start(&self) -> usize`
 
   Returns the byte offset of the start of the match in the haystack. The
-
   start of the match corresponds to the position where the match begins
-
   and includes the first byte in the match.
-
   
-
   It is guaranteed that `Match::start() <= Match::end()`.
-
   
-
   This is guaranteed to fall on a valid UTF-8 codepoint boundary. That
-
   is, it will never be an offset that appears between the UTF-8 code
-
   units of a UTF-8 encoded Unicode scalar value. Consequently, it is
-
   always safe to slice the corresponding haystack using this offset.
 
 - <span id="match-end"></span>`fn end(&self) -> usize`
 
   Returns the byte offset of the end of the match in the haystack. The
-
   end of the match corresponds to the byte immediately following the last
-
   byte in the match. This means that `&slice[start..end]` works as one
-
   would expect.
-
   
-
   It is guaranteed that `Match::start() <= Match::end()`.
-
   
-
   This is guaranteed to fall on a valid UTF-8 codepoint boundary. That
-
   is, it will never be an offset that appears between the UTF-8 code
-
   units of a UTF-8 encoded Unicode scalar value. Consequently, it is
-
   always safe to slice the corresponding haystack using this offset.
 
 - <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns true if and only if this match has a length of zero.
-
   
-
   Note that an empty match can only occur when the regex itself can
-
   match the empty string. Here are some examples of regexes that can
-
   all match the empty string: `^`, `^$`, `\b`, `a?`, `a*`, `a{0}`,
-
   `(foo|\d+|quux)?`.
 
 - <span id="match-len"></span>`fn len(&self) -> usize`
@@ -5281,15 +3621,10 @@ assert_eq!("αβγδ", m.as_str());
 - <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
 
   Returns the range over the starting and ending byte offsets of the
-
   match in the haystack.
-
   
-
   It is always correct to slice the original haystack searched with this
-
   range. That is, because the offsets are guaranteed to fall on valid
-
   UTF-8 boundaries, the range returned is always valid.
 
 - <span id="match-as-str"></span>`fn as_str(&self) -> &'h str`
@@ -5341,11 +3676,8 @@ assert_eq!("αβγδ", m.as_str());
 - <span id="match-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Match<'h>`
@@ -5384,7 +3716,7 @@ struct Captures<'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:1642-1646`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L1642-L1646)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:1642-1646`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L1642-L1646)*
 
 Represents the capture groups for a single match.
 
@@ -5443,497 +3775,263 @@ assert_eq!("y", &caps["last"]);
 - <span id="captures-get"></span>`fn get(&self, i: usize) -> Option<Match<'h>>` — [`Match`](#match)
 
   Returns the `Match` associated with the capture group at index `i`. If
-
   `i` does not correspond to a capture group, or if the capture group did
-
   not participate in the match, then `None` is returned.
-
   
-
   When `i == 0`, this is guaranteed to return a non-`None` value.
-
   
-
   # Examples
-
   
-
   Get the substring that matched with a default of an empty string if the
-
   group didn't participate in the match:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"[a-z]+(?:([0-9]+)|([A-Z]+))").unwrap();
-
   let caps = re.captures("abc123").unwrap();
-
   
-
   let substr1 = caps.get(1).map_or("", |m| m.as_str());
-
   let substr2 = caps.get(2).map_or("", |m| m.as_str());
-
   assert_eq!(substr1, "123");
-
   assert_eq!(substr2, "");
-
   ```
 
 - <span id="captures-get-match"></span>`fn get_match(&self) -> Match<'h>` — [`Match`](#match)
 
   Return the overall match for the capture.
-
   
-
   This returns the match for index `0`. That is it is equivalent to
-
   `m.get(0).unwrap()`
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"[a-z]+([0-9]+)").unwrap();
-
   let caps = re.captures("   abc123-def").unwrap();
-
   
-
   assert_eq!(caps.get_match().as_str(), "abc123");
-
   
-
   ```
 
 - <span id="captures-name"></span>`fn name(&self, name: &str) -> Option<Match<'h>>` — [`Match`](#match)
 
   Returns the `Match` associated with the capture group named `name`. If
-
   `name` isn't a valid capture group or it refers to a group that didn't
-
   match, then `None` is returned.
-
   
-
   Note that unlike `caps["name"]`, this returns a `Match` whose lifetime
-
   matches the lifetime of the haystack in this `Captures` value.
-
   Conversely, the substring returned by `caps["name"]` has a lifetime
-
   of the `Captures` value, which is likely shorter than the lifetime of
-
   the haystack. In some cases, it may be necessary to use this method to
-
   access the matching substring instead of the `caps["name"]` notation.
-
   
-
   # Examples
-
   
-
   Get the substring that matched with a default of an empty string if the
-
   group didn't participate in the match:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(
-
       r"[a-z]+(?:(?<numbers>[0-9]+)|(?<letters>[A-Z]+))",
-
   ).unwrap();
-
   let caps = re.captures("abc123").unwrap();
-
   
-
   let numbers = caps.name("numbers").map_or("", |m| m.as_str());
-
   let letters = caps.name("letters").map_or("", |m| m.as_str());
-
   assert_eq!(numbers, "123");
-
   assert_eq!(letters, "");
-
   ```
 
 - <span id="captures-extract"></span>`fn extract<const N: usize>(&self) -> (&'h str, [&'h str; N])`
 
   This is a convenience routine for extracting the substrings
-
   corresponding to matching capture groups.
-
   
-
   This returns a tuple where the first element corresponds to the full
-
   substring of the haystack that matched the regex. The second element is
-
   an array of substrings, with each corresponding to the substring that
-
   matched for a particular capture group.
-
   
-
   # Panics
-
   
-
   This panics if the number of possible matching groups in this
-
   `Captures` value is not fixed to `N` in all circumstances.
-
   More precisely, this routine only works when `N` is equivalent to
-
   `Regex::static_captures_len`.
-
   
-
   Stated more plainly, if the number of matching capture groups in a
-
   regex can vary from match to match, then this function always panics.
-
   
-
   For example, `(a)(b)|(c)` could produce two matching capture groups
-
   or one matching capture group for any given match. Therefore, one
-
   cannot use `extract` with such a pattern.
-
   
-
   But a pattern like `(a)(b)|(c)(d)` can be used with `extract` because
-
   the number of capture groups in every match is always equivalent,
-
   even if the capture _indices_ in each match are not.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"([0-9]{4})-([0-9]{2})-([0-9]{2})").unwrap();
-
   let hay = "On 2010-03-14, I became a Tennessee lamb.";
-
   let Some((full, [year, month, day])) =
-
       re.captures(hay).map(|caps| caps.extract()) else { return };
-
   assert_eq!("2010-03-14", full);
-
   assert_eq!("2010", year);
-
   assert_eq!("03", month);
-
   assert_eq!("14", day);
-
   ```
-
   
-
   # Example: iteration
-
   
-
   This example shows how to use this method when iterating over all
-
   `Captures` matches in a haystack.
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"([0-9]{4})-([0-9]{2})-([0-9]{2})").unwrap();
-
   let hay = "1973-01-05, 1975-08-25 and 1980-10-18";
-
   
-
   let mut dates: Vec<(&str, &str, &str)> = vec![];
-
   for (_, [y, m, d]) in re.captures_iter(hay).map(|c| c.extract()) {
-
       dates.push((y, m, d));
-
   }
-
   assert_eq!(dates, vec![
-
       ("1973", "01", "05"),
-
       ("1975", "08", "25"),
-
       ("1980", "10", "18"),
-
   ]);
-
   ```
-
   
-
   # Example: parsing different formats
-
   
-
   This API is particularly useful when you need to extract a particular
-
   value that might occur in a different format. Consider, for example,
-
   an identifier that might be in double quotes or single quotes:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r#"id:(?:"([^"]+)"|'([^']+)')"#).unwrap();
-
   let hay = r#"The first is id:"foo" and the second is id:'bar'."#;
-
   let mut ids = vec![];
-
   for (_, [id]) in re.captures_iter(hay).map(|c| c.extract()) {
-
       ids.push(id);
-
   }
-
   assert_eq!(ids, vec!["foo", "bar"]);
-
   ```
 
 - <span id="captures-expand"></span>`fn expand(&self, replacement: &str, dst: &mut String)`
 
   Expands all instances of `$ref` in `replacement` to the corresponding
-
   capture group, and writes them to the `dst` buffer given. A `ref` can
-
   be a capture group index or a name. If `ref` doesn't refer to a capture
-
   group that participated in the match, then it is replaced with the
-
   empty string.
-
   
-
   # Format
-
   
-
   The format of the replacement string supports two different kinds of
-
   capture references: unbraced and braced.
-
   
-
   For the unbraced format, the format supported is `$ref` where `name`
-
   can be any character in the class `[0-9A-Za-z_]`. `ref` is always
-
   the longest possible parse. So for example, `$1a` corresponds to the
-
   capture group named `1a` and not the capture group at index `1`. If
-
   `ref` matches `^[0-9]+$`, then it is treated as a capture group index
-
   itself and not a name.
-
   
-
   For the braced format, the format supported is `${ref}` where `ref` can
-
   be any sequence of bytes except for `}`. If no closing brace occurs,
-
   then it is not considered a capture reference. As with the unbraced
-
   format, if `ref` matches `^[0-9]+$`, then it is treated as a capture
-
   group index and not a name.
-
   
-
   The braced format is useful for exerting precise control over the name
-
   of the capture reference. For example, `${1}a` corresponds to the
-
   capture group reference `1` followed by the letter `a`, where as `$1a`
-
   (as mentioned above) corresponds to the capture group reference `1a`.
-
   The braced format is also useful for expressing capture group names
-
   that use characters not supported by the unbraced format. For example,
-
   `${foo[bar].baz}` refers to the capture group named `foo[bar].baz`.
-
   
-
   If a capture group reference is found and it does not refer to a valid
-
   capture group, then it will be replaced with the empty string.
-
   
-
   To write a literal `$`, use `$$`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(
-
       r"(?<day>[0-9]{2})-(?<month>[0-9]{2})-(?<year>[0-9]{4})",
-
   ).unwrap();
-
   let hay = "On 14-03-2010, I became a Tennessee lamb.";
-
   let caps = re.captures(hay).unwrap();
-
   
-
   let mut dst = String::new();
-
   caps.expand("year=$year, month=$month, day=$day", &mut dst);
-
   assert_eq!(dst, "year=2010, month=03, day=14");
-
   ```
 
 - <span id="captures-iter"></span>`fn iter<'c>(self: &'c Self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](#subcapturematches)
 
   Returns an iterator over all capture groups. This includes both
-
   matching and non-matching groups.
-
   
-
   The iterator always yields at least one matching group: the first group
-
   (at index `0`) with no name. Subsequent groups are returned in the order
-
   of their opening parenthesis in the regex.
-
   
-
   The elements yielded have type `Option<Match<'h>>`, where a non-`None`
-
   value is present if the capture group matches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"(\w)(\d)?(\w)").unwrap();
-
   let caps = re.captures("AZ").unwrap();
-
   
-
   let mut it = caps.iter();
-
   assert_eq!(it.next().unwrap().map(|m| m.as_str()), Some("AZ"));
-
   assert_eq!(it.next().unwrap().map(|m| m.as_str()), Some("A"));
-
   assert_eq!(it.next().unwrap().map(|m| m.as_str()), None);
-
   assert_eq!(it.next().unwrap().map(|m| m.as_str()), Some("Z"));
-
   assert_eq!(it.next(), None);
-
   ```
 
 - <span id="captures-len"></span>`fn len(&self) -> usize`
 
   Returns the total number of capture groups. This includes both
-
   matching and non-matching groups.
-
   
-
   The length returned is always equivalent to the number of elements
-
   yielded by `Captures::iter`. Consequently, the length is always
-
   greater than zero since every `Captures` value always includes the
-
   match for the entire regex.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"(\w)(\d)?(\w)").unwrap();
-
   let caps = re.captures("AZ").unwrap();
-
   assert_eq!(caps.len(), 4);
-
   ```
 
 #### Trait Implementations
@@ -5971,11 +4069,8 @@ assert_eq!("y", &caps["last"]);
 - <span id="captures-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Captures<'h>`
@@ -5996,7 +4091,7 @@ assert_eq!("y", &caps["last"]);
 struct CaptureLocations(captures::Captures);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2093`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2093)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2093`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2093)*
 
 A low level representation of the byte offsets of each capture group.
 
@@ -6042,101 +4137,55 @@ assert_eq!(None, locs.get(9944060567225171988));
 - <span id="capturelocations-get"></span>`fn get(&self, i: usize) -> Option<(usize, usize)>`
 
   Returns the start and end byte offsets of the capture group at index
-
   `i`. This returns `None` if `i` is not a valid capture group or if the
-
   capture group did not match.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"(?<first>\w+)\s+(?<last>\w+)").unwrap();
-
   let mut locs = re.capture_locations();
-
   re.captures_read(&mut locs, "Bruce Springsteen").unwrap();
-
   assert_eq!(Some((0, 17)), locs.get(0));
-
   assert_eq!(Some((0, 5)), locs.get(1));
-
   assert_eq!(Some((6, 17)), locs.get(2));
-
   ```
 
 - <span id="capturelocations-len"></span>`fn len(&self) -> usize`
 
   Returns the total number of capture groups (even if they didn't match).
-
   That is, the length returned is unaffected by the result of a search.
-
   
-
   This is always at least `1` since every regex has at least `1`
-
   capturing group that corresponds to the entire match.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"(?<first>\w+)\s+(?<last>\w+)").unwrap();
-
   let mut locs = re.capture_locations();
-
   assert_eq!(3, locs.len());
-
   re.captures_read(&mut locs, "Bruce Springsteen").unwrap();
-
   assert_eq!(3, locs.len());
-
   ```
-
   
-
   Notice that the length is always at least `1`, regardless of the regex:
-
   
-
   ```rust
-
   use regex::Regex;
-
   
-
   let re = Regex::new(r"").unwrap();
-
   let locs = re.capture_locations();
-
   assert_eq!(1, locs.len());
-
   
-
   // [a&&b] is a regex that never matches anything.
-
   let re = Regex::new(r"[a&&b]").unwrap();
-
   let locs = re.capture_locations();
-
   assert_eq!(1, locs.len());
-
   ```
 
 #### Trait Implementations
@@ -6176,11 +4225,8 @@ assert_eq!(None, locs.get(9944060567225171988));
 - <span id="capturelocations-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for CaptureLocations`
@@ -6212,7 +4258,7 @@ struct Matches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2193-2196`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2193-L2196)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2193-2196`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2193-L2196)*
 
 An iterator over all non-overlapping matches in a haystack.
 
@@ -6261,11 +4307,8 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 - <span id="matches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Matches<'r, 'h>`
@@ -6305,7 +4348,7 @@ struct CaptureMatches<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2237-2240`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2237-L2240)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2237-2240`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2237-L2240)*
 
 An iterator over all non-overlapping capture matches in a haystack.
 
@@ -6354,11 +4397,8 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 - <span id="capturematches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CaptureMatches<'r, 'h>`
@@ -6398,7 +4438,7 @@ struct Split<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2281-2284`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2281-L2284)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2281-2284`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2281-L2284)*
 
 An iterator over all substrings delimited by a regex match.
 
@@ -6444,11 +4484,8 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 - <span id="split-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Split<'r, 'h>`
@@ -6486,7 +4523,7 @@ struct SplitN<'r, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2316-2319`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2316-L2319)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2316-2319`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2316-L2319)*
 
 An iterator over at most `N` substrings delimited by a regex match.
 
@@ -6538,11 +4575,8 @@ by the `limit` parameter to `Regex::splitn`.
 - <span id="splitn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SplitN<'r, 'h>`
@@ -6579,7 +4613,7 @@ by the `limit` parameter to `Regex::splitn`.
 struct CaptureNames<'r>(captures::GroupInfoPatternNames<'r>);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2348`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2348)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2348`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2348)*
 
 An iterator over the names of all capture groups in a regex.
 
@@ -6633,11 +4667,8 @@ This iterator is created by `Regex::capture_names`.
 - <span id="capturenames-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for CaptureNames<'r>`
@@ -6687,7 +4718,7 @@ struct SubCaptureMatches<'c, 'h> {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2390-2393`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2390-L2393)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2390-2393`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2390-L2393)*
 
 An iterator over all group matches in a [`Captures`](#captures) value.
 
@@ -6747,11 +4778,8 @@ matched haystack.
 - <span id="subcapturematches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SubCaptureMatches<'c, 'h>`
@@ -6798,7 +4826,7 @@ matched haystack.
 struct ReplacerRef<'a, R: ?Sized>(&'a mut R);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2567`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2567)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2567`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2567)*
 
 A by-reference adaptor for a [`Replacer`](#replacer).
 
@@ -6836,11 +4864,8 @@ This type is created by `Replacer::by_ref`.
 - <span id="replacerref-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Replacer + ?Sized + 'a> Replacer for ReplacerRef<'a, R>`
@@ -6867,7 +4892,7 @@ This type is created by `Replacer::by_ref`.
 struct NoExpand<'s>(&'s str);
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2599`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2599)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2599`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2599)*
 
 A helper type for forcing literal string replacement.
 
@@ -6926,11 +4951,8 @@ assert_eq!(result, "$2 $last");
 - <span id="noexpand-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Replacer for NoExpand<'s>`
@@ -6968,7 +4990,7 @@ struct RegexSet {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:132-135`](../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L132-L135)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:132-135`](../../.source_1765894658/regex-1.12.2/src/regexset/string.rs#L132-L135)*
 
 Match multiple, possibly overlapping, regexes in a single search.
 
@@ -7100,433 +5122,235 @@ alternate isn't always obvious to reason about.
 - <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md#error)
 
   Create a new regex set with the given regular expressions.
-
   
-
   This takes an iterator of `S`, where `S` is something that can produce
-
   a `&str`. If any of the strings in the iterator are not valid regular
-
   expressions, then an error is returned.
-
   
-
   # Example
-
   
-
   Create a new regex set from an iterator of strings:
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new([r"\w+", r"\d+"]).unwrap();
-
   assert!(set.is_match("foo"));
-
   ```
 
 - <span id="regexset-empty"></span>`fn empty() -> RegexSet` — [`RegexSet`](#regexset)
 
   Create a new empty regex set.
-
   
-
   An empty regex never matches anything.
-
   
-
   This is a convenience function for `RegexSet::new([])`, but doesn't
-
   require one to specify the type of the input.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::empty();
-
   assert!(set.is_empty());
-
   // an empty set matches nothing
-
   assert!(!set.is_match(""));
-
   ```
 
 - <span id="regexset-is-match"></span>`fn is_match(&self, haystack: &str) -> bool`
 
   Returns true if and only if one of the regexes in this set matches
-
   the haystack given.
-
   
-
   This method should be preferred if you only need to test whether any
-
   of the regexes in the set should match, but don't care about *which*
-
   regexes matched. This is because the underlying matching engine will
-
   quit immediately after seeing the first match instead of continuing to
-
   find all matches.
-
   
-
   Note that as with searches using [`Regex`](crate::Regex), the
-
   expression is unanchored by default. That is, if the regex does not
-
   start with `^` or `\A`, or end with `$` or `\z`, then it is permitted
-
   to match anywhere in the haystack.
-
   
-
   # Example
-
   
-
   Tests whether a set matches somewhere in a haystack:
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new([r"\w+", r"\d+"]).unwrap();
-
   assert!(set.is_match("foo"));
-
   assert!(!set.is_match("☃"));
-
   ```
 
 - <span id="regexset-is-match-at"></span>`fn is_match_at(&self, haystack: &str, start: usize) -> bool`
 
   Returns true if and only if one of the regexes in this set matches the
-
   haystack given, with the search starting at the offset given.
-
   
-
   The significance of the starting point is that it takes the surrounding
-
   context into consideration. For example, the `\A` anchor can only
-
   match when `start == 0`.
-
   
-
   # Panics
-
   
-
   This panics when `start >= haystack.len() + 1`.
-
   
-
   # Example
-
   
-
   This example shows the significance of `start`. Namely, consider a
-
   haystack `foobar` and a desire to execute a search starting at offset
-
   `3`. You could search a substring explicitly, but then the look-around
-
   assertions won't work correctly. Instead, you can use this method to
-
   specify the start position of a search.
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new([r"\bbar\b", r"(?m)^bar$"]).unwrap();
-
   let hay = "foobar";
-
   // We get a match here, but it's probably not intended.
-
   assert!(set.is_match(&hay[3..]));
-
   // No match because the  assertions take the context into account.
-
   assert!(!set.is_match_at(hay, 3));
-
   ```
 
 - <span id="regexset-matches"></span>`fn matches(&self, haystack: &str) -> SetMatches` — [`SetMatches`](#setmatches)
 
   Returns the set of regexes that match in the given haystack.
-
   
-
   The set returned contains the index of each regex that matches in
-
   the given haystack. The index is in correspondence with the order of
-
   regular expressions given to `RegexSet`'s constructor.
-
   
-
   The set can also be used to iterate over the matched indices. The order
-
   of iteration is always ascending with respect to the matching indices.
-
   
-
   Note that as with searches using [`Regex`](crate::Regex), the
-
   expression is unanchored by default. That is, if the regex does not
-
   start with `^` or `\A`, or end with `$` or `\z`, then it is permitted
-
   to match anywhere in the haystack.
-
   
-
   # Example
-
   
-
   Tests which regular expressions match the given haystack:
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"\w+",
-
       r"\d+",
-
       r"\pL+",
-
       r"foo",
-
       r"bar",
-
       r"barfoo",
-
       r"foobar",
-
   ]).unwrap();
-
   let matches: Vec<_> = set.matches("foobar").into_iter().collect();
-
   assert_eq!(matches, vec![0, 2, 3, 4, 6]);
-
   
-
   // You can also test whether a particular regex matched:
-
   let matches = set.matches("foobar");
-
   assert!(!matches.matched(5));
-
   assert!(matches.matched(6));
-
   ```
 
 - <span id="regexset-matches-at"></span>`fn matches_at(&self, haystack: &str, start: usize) -> SetMatches` — [`SetMatches`](#setmatches)
 
   Returns the set of regexes that match in the given haystack.
-
   
-
   The set returned contains the index of each regex that matches in
-
   the given haystack. The index is in correspondence with the order of
-
   regular expressions given to `RegexSet`'s constructor.
-
   
-
   The set can also be used to iterate over the matched indices. The order
-
   of iteration is always ascending with respect to the matching indices.
-
   
-
   The significance of the starting point is that it takes the surrounding
-
   context into consideration. For example, the `\A` anchor can only
-
   match when `start == 0`.
-
   
-
   # Panics
-
   
-
   This panics when `start >= haystack.len() + 1`.
-
   
-
   # Example
-
   
-
   Tests which regular expressions match the given haystack:
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new([r"\bbar\b", r"(?m)^bar$"]).unwrap();
-
   let hay = "foobar";
-
   // We get matches here, but it's probably not intended.
-
   let matches: Vec<_> = set.matches(&hay[3..]).into_iter().collect();
-
   assert_eq!(matches, vec![0, 1]);
-
   // No matches because the  assertions take the context into account.
-
   let matches: Vec<_> = set.matches_at(hay, 3).into_iter().collect();
-
   assert_eq!(matches, vec![]);
-
   ```
 
 - <span id="regexset-len"></span>`fn len(&self) -> usize`
 
   Returns the total number of regexes in this set.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   assert_eq!(0, RegexSet::empty().len());
-
   assert_eq!(1, RegexSet::new([r"[0-9]"]).unwrap().len());
-
   assert_eq!(2, RegexSet::new([r"[0-9]", r"[a-z]"]).unwrap().len());
-
   ```
 
 - <span id="regexset-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns `true` if this set contains no regexes.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   assert!(RegexSet::empty().is_empty());
-
   assert!(!RegexSet::new([r"[0-9]"]).unwrap().is_empty());
-
   ```
 
 - <span id="regexset-patterns"></span>`fn patterns(&self) -> &[String]`
 
   Returns the regex patterns that this regex set was constructed from.
-
   
-
   This function can be used to determine the pattern for a match. The
-
   slice returned has exactly as many patterns givens to this regex set,
-
   and the order of the slice is the same as the order of the patterns
-
   provided to the set.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new(&[
-
       r"\w+",
-
       r"\d+",
-
       r"\pL+",
-
       r"foo",
-
       r"bar",
-
       r"barfoo",
-
       r"foobar",
-
   ]).unwrap();
-
   let matches: Vec<_> = set
-
       .matches("foobar")
-
       .into_iter()
-
       .map(|index| &set.patterns()[index])
-
       .collect();
-
   assert_eq!(matches, vec![r"\w+", r"\pL+", r"foo", r"bar", r"foobar"]);
-
   ```
 
 #### Trait Implementations
@@ -7570,11 +5394,8 @@ alternate isn't always obvious to reason about.
 - <span id="regexset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RegexSet`
@@ -7603,7 +5424,7 @@ alternate isn't always obvious to reason about.
 struct SetMatches(regex_automata::PatternSet);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:459`](../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L459)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:459`](../../.source_1765894658/regex-1.12.2/src/regexset/string.rs#L459)*
 
 A set of matches returned by a regex set.
 
@@ -7614,247 +5435,134 @@ Values of this type are constructed by `RegexSet::matches`.
 - <span id="setmatches-matched-any"></span>`fn matched_any(&self) -> bool`
 
   Whether this set contains any matches.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new(&[
-
       r"[a-z]+@[a-z]+\.(com|org|net)",
-
       r"[a-z]+\.(com|org|net)",
-
   ]).unwrap();
-
   let matches = set.matches("foo@example.com");
-
   assert!(matches.matched_any());
-
   ```
 
 - <span id="setmatches-matched-all"></span>`fn matched_all(&self) -> bool`
 
   Whether all patterns in this set matched.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new(&[
-
       r"^foo",
-
       r"[a-z]+\.com",
-
   ]).unwrap();
-
   let matches = set.matches("foo.example.com");
-
   assert!(matches.matched_all());
-
   ```
 
 - <span id="setmatches-matched"></span>`fn matched(&self, index: usize) -> bool`
 
   Whether the regex at the given index matched.
-
   
-
   The index for a regex is determined by its insertion order upon the
-
   initial construction of a `RegexSet`, starting at `0`.
-
   
-
   # Panics
-
   
-
   If `index` is greater than or equal to the number of regexes in the
-
   original set that produced these matches. Equivalently, when `index`
-
   is greater than or equal to `SetMatches::len`.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"[a-z]+@[a-z]+\.(com|org|net)",
-
       r"[a-z]+\.(com|org|net)",
-
   ]).unwrap();
-
   let matches = set.matches("example.com");
-
   assert!(!matches.matched(0));
-
   assert!(matches.matched(1));
-
   ```
 
 - <span id="setmatches-len"></span>`fn len(&self) -> usize`
 
   The total number of regexes in the set that created these matches.
-
   
-
   **WARNING:** This always returns the same value as `RegexSet::len`.
-
   In particular, it does *not* return the number of elements yielded by
-
   `SetMatches::iter`. The only way to determine the total number of
-
   matched regexes is to iterate over them.
-
   
-
   # Example
-
   
-
   Notice that this method returns the total number of regexes in the
-
   original set, and *not* the total number of regexes that matched.
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"[a-z]+@[a-z]+\.(com|org|net)",
-
       r"[a-z]+\.(com|org|net)",
-
   ]).unwrap();
-
   let matches = set.matches("example.com");
-
   // Total number of patterns that matched.
-
   assert_eq!(1, matches.iter().count());
-
   // Total number of patterns in the set.
-
   assert_eq!(2, matches.len());
-
   ```
 
 - <span id="setmatches-iter"></span>`fn iter(&self) -> SetMatchesIter<'_>` — [`SetMatchesIter`](#setmatchesiter)
 
   Returns an iterator over the indices of the regexes that matched.
-
   
-
   This will always produces matches in ascending order, where the index
-
   yielded corresponds to the index of the regex that matched with respect
-
   to its position when initially building the set.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"[0-9]",
-
       r"[a-z]",
-
       r"[A-Z]",
-
       r"\p{Greek}",
-
   ]).unwrap();
-
   let hay = "βa1";
-
   let matches: Vec<_> = set.matches(hay).iter().collect();
-
   assert_eq!(matches, vec![0, 1, 3]);
-
   ```
-
   
-
   Note that `SetMatches` also implements the `IntoIterator` trait, so
-
   this method is not always needed. For example:
-
   
-
   ```rust
-
   use regex::RegexSet;
-
   
-
   let set = RegexSet::new([
-
       r"[0-9]",
-
       r"[a-z]",
-
       r"[A-Z]",
-
       r"\p{Greek}",
-
   ]).unwrap();
-
   let hay = "βa1";
-
   let mut matches = vec![];
-
   for index in set.matches(hay) {
-
       matches.push(index);
-
   }
-
   assert_eq!(matches, vec![0, 1, 3]);
-
   ```
 
 #### Trait Implementations
@@ -7894,11 +5602,8 @@ Values of this type are constructed by `RegexSet::matches`.
 - <span id="setmatches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SetMatches`
@@ -7938,7 +5643,7 @@ struct SetMatchesIntoIter {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:652-655`](../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L652-L655)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:652-655`](../../.source_1765894658/regex-1.12.2/src/regexset/string.rs#L652-L655)*
 
 An owned iterator over the set of matches from a regex set.
 
@@ -8003,11 +5708,8 @@ assert_eq!(matches, vec![0, 1, 3]);
 - <span id="setmatchesintoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SetMatchesIntoIter`
@@ -8044,7 +5746,7 @@ assert_eq!(matches, vec![0, 1, 3]);
 struct SetMatchesIter<'a>(regex_automata::PatternSetIter<'a>);
 ```
 
-*Defined in [`regex-1.12.2/src/regexset/string.rs:698`](../../.source_1765633015/regex-1.12.2/src/regexset/string.rs#L698)*
+*Defined in [`regex-1.12.2/src/regexset/string.rs:698`](../../.source_1765894658/regex-1.12.2/src/regexset/string.rs#L698)*
 
 A borrowed iterator over the set of matches from a regex set.
 
@@ -8100,11 +5802,8 @@ This iterator is created by the `SetMatches::iter` method.
 - <span id="setmatchesiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SetMatchesIter<'a>`
@@ -8154,7 +5853,7 @@ enum Error {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/error.rs:8-32`](../../.source_1765633015/regex-1.12.2/src/error.rs#L8-L32)*
+*Defined in [`regex-1.12.2/src/error.rs:8-32`](../../.source_1765894658/regex-1.12.2/src/error.rs#L8-L32)*
 
 An error that occurred during parsing or compiling a regular expression.
 
@@ -8236,11 +5935,8 @@ An error that occurred during parsing or compiling a regular expression.
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Error`
@@ -8281,7 +5977,7 @@ An error that occurred during parsing or compiling a regular expression.
 trait Replacer { ... }
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2452-2498`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2452-L2498)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2452-2498`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2452-L2498)*
 
 A trait for types that can be used to replace matches in a haystack.
 
@@ -8321,16 +6017,49 @@ assert_eq!(result, "Bruce Springsteen");
 - `fn replace_append(&mut self, caps: &Captures<'_>, dst: &mut String)`
 
   Appends possibly empty data to `dst` to replace the current match.
+  
+  The current match is represented by `caps`, which is guaranteed to
+  have a match at capture group `0`.
+  
+  For example, a no-op replacement would be `dst.push_str(&caps[0])`.
 
 #### Provided Methods
 
 - `fn no_expansion<'r>(self: &'r mut Self) -> Option<Cow<'r, str>>`
 
   Return a fixed unchanging replacement string.
+  
+  When doing replacements, if access to [`Captures`](#captures) is not needed (e.g.,
+  the replacement string does not need `$` expansion), then it can be
+  beneficial to avoid finding sub-captures.
+  
+  In general, this is called once for every call to a replacement routine
+  such as `Regex::replace_all`.
 
 - `fn by_ref<'r>(self: &'r mut Self) -> ReplacerRef<'r, Self>`
 
   Returns a type that implements `Replacer`, but that borrows and wraps
+  this `Replacer`.
+  
+  This is useful when you want to take a generic `Replacer` (which might
+  not be cloneable) and use it without consuming it, so it can be used
+  more than once.
+  
+  # Example
+  
+  ```rust
+  use regex::{Regex, Replacer};
+  
+  fn replace_all_twice<R: Replacer>(
+      re: Regex,
+      src: &str,
+      mut rep: R,
+  ) -> String {
+      let dst = re.replace_all(src, rep.by_ref());
+      let dst = re.replace_all(&dst, rep.by_ref());
+      dst.into_owned()
+  }
+  ```
 
 #### Implementors
 
@@ -8351,7 +6080,7 @@ assert_eq!(result, "Bruce Springsteen");
 fn escape(pattern: &str) -> alloc::string::String
 ```
 
-*Defined in [`regex-1.12.2/src/lib.rs:1351-1353`](../../.source_1765633015/regex-1.12.2/src/lib.rs#L1351-L1353)*
+*Defined in [`regex-1.12.2/src/lib.rs:1351-1353`](../../.source_1765894658/regex-1.12.2/src/lib.rs#L1351-L1353)*
 
 Escapes all regular expression meta characters in `pattern`.
 
@@ -8364,7 +6093,7 @@ expression.
 fn no_expansion<T: AsRef<str>>(replacement: &T) -> Option<alloc::borrow::Cow<'_, str>>
 ```
 
-*Defined in [`regex-1.12.2/src/regex/string.rs:2619-2625`](../../.source_1765633015/regex-1.12.2/src/regex/string.rs#L2619-L2625)*
+*Defined in [`regex-1.12.2/src/regex/string.rs:2619-2625`](../../.source_1765894658/regex-1.12.2/src/regex/string.rs#L2619-L2625)*
 
 Quickly checks the given replacement string for whether interpolation
 should be done on it. It returns `None` if a `$` was found anywhere in the

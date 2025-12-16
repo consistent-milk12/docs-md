@@ -18,7 +18,7 @@
 struct NumberPrefixParseError(());
 ```
 
-*Defined in [`unit-prefix-0.5.2/src/parse.rs:50`](../../../.source_1765633015/unit-prefix-0.5.2/src/parse.rs#L50)*
+*Defined in [`unit-prefix-0.5.2/src/parse.rs:50`](../../../.source_1765894658/unit-prefix-0.5.2/src/parse.rs#L50)*
 
 The error returned when a `NumberPrefix` is failed to be parsed.
 
@@ -69,11 +69,8 @@ The error returned when a `NumberPrefix` is failed to be parsed.
 - <span id="numberprefixparseerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for NumberPrefixParseError`

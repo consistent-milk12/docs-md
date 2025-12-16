@@ -78,7 +78,7 @@ struct ArchiveFile<'data, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:66-73`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L66-L73)*
+*Defined in [`object-0.37.3/src/read/archive.rs:66-73`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L66-L73)*
 
 A partially parsed archive file.
 
@@ -101,9 +101,7 @@ A partially parsed archive file.
 - <span id="archivefile-members"></span>`fn members(&self) -> ArchiveMemberIterator<'data, R>` — [`ArchiveMemberIterator`](#archivememberiterator)
 
   Iterate over the members of the archive.
-
   
-
   This does not return special members.
 
 - <span id="archivefile-member"></span>`fn member(&self, member: ArchiveOffset) -> read::Result<ArchiveMember<'data>>` — [`ArchiveOffset`](#archiveoffset), [`Result`](../../index.md#result), [`ArchiveMember`](#archivemember)
@@ -153,11 +151,8 @@ A partially parsed archive file.
 - <span id="archivefile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ArchiveFile<'data, R>`
@@ -191,7 +186,7 @@ struct ArchiveMemberIterator<'data, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:323-328`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L323-L328)*
+*Defined in [`object-0.37.3/src/read/archive.rs:323-328`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L323-L328)*
 
 An iterator over the members of an archive.
 
@@ -224,11 +219,8 @@ An iterator over the members of an archive.
 - <span id="archivememberiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ArchiveMemberIterator<'data, R>`
@@ -268,7 +260,7 @@ struct ArchiveMember<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:374-380`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L374-L380)*
+*Defined in [`object-0.37.3/src/read/archive.rs:374-380`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L374-L380)*
 
 A partially parsed archive member.
 
@@ -277,15 +269,12 @@ A partially parsed archive member.
 - <span id="archivemember-parse"></span>`fn parse<R: ReadRef<'data>>(data: R, offset: &mut u64, names: &'data [u8], thin: bool) -> read::Result<Self>` — [`Result`](../../index.md#result)
 
   Parse the member header, name, and file data in an archive with the common format.
-
   
-
   This reads the extended name (if any) and adjusts the file size.
 
 - <span id="archivemember-parse-aixbig-index"></span>`fn parse_aixbig_index<R: ReadRef<'data>>(data: R, index: &archive::AixMemberOffset) -> read::Result<Self>` — [`AixMemberOffset`](../../archive/index.md#aixmemberoffset), [`Result`](../../index.md#result)
 
   Parse a member index entry in an AIX big archive,
-
   and then parse the member header, name, and file data.
 
 - <span id="archivemember-parse-aixbig"></span>`fn parse_aixbig<R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<Self>` — [`Result`](../../index.md#result)
@@ -295,25 +284,19 @@ A partially parsed archive member.
 - <span id="archivemember-header"></span>`fn header(&self) -> Option<&'data archive::Header>` — [`Header`](../../archive/index.md#header)
 
   Return the raw header that is common to many archive formats.
-
   
-
   Returns `None` if this archive does not use the common header format.
 
 - <span id="archivemember-aix-header"></span>`fn aix_header(&self) -> Option<&'data archive::AixHeader>` — [`AixHeader`](../../archive/index.md#aixheader)
 
   Return the raw header for AIX big archives.
-
   
-
   Returns `None` if this is not an AIX big archive.
 
 - <span id="archivemember-name"></span>`fn name(&self) -> &'data [u8]`
 
   Return the parsed file name.
-
   
-
   This may be an extended file name.
 
 - <span id="archivemember-date"></span>`fn date(&self) -> Option<u64>`
@@ -343,17 +326,13 @@ A partially parsed archive member.
 - <span id="archivemember-is-thin"></span>`fn is_thin(&self) -> bool`
 
   Return true if the member is a thin member.
-
   
-
   Thin members have no file data.
 
 - <span id="archivemember-data"></span>`fn data<R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
   Return the file data.
-
   
-
   This is an empty slice for thin members.
 
 #### Trait Implementations
@@ -385,11 +364,8 @@ A partially parsed archive member.
 - <span id="archivemember-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ArchiveMember<'data>`
@@ -410,7 +386,7 @@ A partially parsed archive member.
 struct ArchiveOffset(u64);
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:598`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L598)*
+*Defined in [`object-0.37.3/src/read/archive.rs:598`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L598)*
 
 An offset of a member in an archive.
 
@@ -453,11 +429,8 @@ An offset of a member in an archive.
 - <span id="archiveoffset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ArchiveOffset`
@@ -486,7 +459,7 @@ An offset of a member in an archive.
 struct ArchiveSymbolIterator<'data>(SymbolIteratorInternal<'data>);
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:602`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L602)*
+*Defined in [`object-0.37.3/src/read/archive.rs:602`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L602)*
 
 An iterator over the symbols in the archive symbol table.
 
@@ -531,11 +504,8 @@ An iterator over the symbols in the archive symbol table.
 - <span id="archivesymboliterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ArchiveSymbolIterator<'data>`
@@ -583,7 +553,7 @@ struct ArchiveSymbol<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:825-828`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L825-L828)*
+*Defined in [`object-0.37.3/src/read/archive.rs:825-828`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L825-L828)*
 
 A symbol in the archive symbol table.
 
@@ -638,11 +608,8 @@ This is used to find the member containing the symbol.
 - <span id="archivesymbol-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ArchiveSymbol<'data>`
@@ -681,7 +648,7 @@ enum ArchiveKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:33-50`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L33-L50)*
+*Defined in [`object-0.37.3/src/read/archive.rs:33-50`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L33-L50)*
 
 The kind of archive format.
 
@@ -762,11 +729,8 @@ The kind of archive format.
 - <span id="archivekind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ArchiveKind`
@@ -809,7 +773,7 @@ enum Members<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:54-62`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L54-L62)*
+*Defined in [`object-0.37.3/src/read/archive.rs:54-62`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L54-L62)*
 
 The list of members in the archive.
 
@@ -852,11 +816,8 @@ The list of members in the archive.
 - <span id="members-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Members<'data>`
@@ -888,7 +849,7 @@ enum MemberHeader<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:365-370`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L365-L370)*
+*Defined in [`object-0.37.3/src/read/archive.rs:365-370`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L365-L370)*
 
 An archive member header.
 
@@ -941,11 +902,8 @@ An archive member header.
 - <span id="memberheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MemberHeader<'data>`
@@ -997,7 +955,7 @@ enum SymbolIteratorInternal<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:605-665`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L605-L665)*
+*Defined in [`object-0.37.3/src/read/archive.rs:605-665`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L605-L665)*
 
 #### Variants
 
@@ -1093,11 +1051,8 @@ enum SymbolIteratorInternal<'data> {
 - <span id="symboliteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SymbolIteratorInternal<'data>`
@@ -1128,7 +1083,7 @@ enum SymbolIteratorInternal<'data> {
 fn parse_u64_digits(digits: &[u8], radix: u32) -> Option<u64>
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:845-861`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L845-L861)*
+*Defined in [`object-0.37.3/src/read/archive.rs:845-861`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L845-L861)*
 
 ### `parse_sysv_extended_name`
 
@@ -1136,7 +1091,7 @@ fn parse_u64_digits(digits: &[u8], radix: u32) -> Option<u64>
 fn parse_sysv_extended_name<'data>(digits: &[u8], names: &'data [u8]) -> Result<&'data [u8], ()>
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:865-879`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L865-L879)*
+*Defined in [`object-0.37.3/src/read/archive.rs:865-879`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L865-L879)*
 
 Digits are a decimal offset into the extended name table.
 Name is terminated by "/\n" (for GNU) or a null byte (for COFF).
@@ -1147,7 +1102,7 @@ Name is terminated by "/\n" (for GNU) or a null byte (for COFF).
 fn parse_bsd_extended_name<'data, R: ReadRef<'data>>(digits: &[u8], data: R, offset: &mut u64, size: &mut u64) -> Result<&'data [u8], ()>
 ```
 
-*Defined in [`object-0.37.3/src/read/archive.rs:884-898`](../../../../.source_1765633015/object-0.37.3/src/read/archive.rs#L884-L898)*
+*Defined in [`object-0.37.3/src/read/archive.rs:884-898`](../../../../.source_1765894658/object-0.37.3/src/read/archive.rs#L884-L898)*
 
 Digits are a decimal length of the extended name, which is contained
 in `data` at `offset`.

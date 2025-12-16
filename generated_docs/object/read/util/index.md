@@ -38,7 +38,7 @@
 struct Bytes<'data>(&'data [u8]);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L16)*
+*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../../.source_1765894658/object-0.37.3/src/read/util.rs#L16)*
 
 A newtype for byte slices.
 
@@ -60,91 +60,64 @@ It has these important features:
 - <span id="bytes-skip"></span>`fn skip(&mut self, offset: usize) -> Result<(), ()>`
 
   Skip over the given number of bytes at the start of the byte slice.
-
   
-
   Modifies the byte slice to start after the bytes.
-
   
-
   Returns an error if there are too few bytes.
 
 - <span id="bytes-read-bytes"></span>`fn read_bytes(&mut self, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md#bytes)
 
   Return a reference to the given number of bytes at the start of the byte slice.
-
   
-
   Modifies the byte slice to start after the bytes.
-
   
-
   Returns an error if there are too few bytes.
 
 - <span id="bytes-read-bytes-at"></span>`fn read_bytes_at(self, offset: usize, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md#bytes)
 
   Return a reference to the given number of bytes at the given offset of the byte slice.
-
   
-
   Returns an error if the offset is invalid or there are too few bytes.
 
 - <span id="bytes-read"></span>`fn read<T: Pod>(&mut self) -> Result<&'data T, ()>`
 
   Return a reference to a `Pod` struct at the start of the byte slice.
-
   
-
   Modifies the byte slice to start after the bytes.
-
   
-
   Returns an error if there are too few bytes or the slice is incorrectly aligned.
 
 - <span id="bytes-read-at"></span>`fn read_at<T: Pod>(self, offset: usize) -> Result<&'data T, ()>`
 
   Return a reference to a `Pod` struct at the given offset of the byte slice.
-
   
-
   Returns an error if there are too few bytes or the offset is incorrectly aligned.
 
 - <span id="bytes-read-slice"></span>`fn read_slice<T: Pod>(&mut self, count: usize) -> Result<&'data [T], ()>`
 
   Return a reference to a slice of `Pod` structs at the start of the byte slice.
-
   
-
   Modifies the byte slice to start after the bytes.
-
   
-
   Returns an error if there are too few bytes or the offset is incorrectly aligned.
 
 - <span id="bytes-read-slice-at"></span>`fn read_slice_at<T: Pod>(self, offset: usize, count: usize) -> Result<&'data [T], ()>`
 
   Return a reference to a slice of `Pod` structs at the given offset of the byte slice.
-
   
-
   Returns an error if there are too few bytes or the offset is incorrectly aligned.
 
 - <span id="bytes-read-string"></span>`fn read_string(&mut self) -> Result<&'data [u8], ()>`
 
   Read a null terminated string.
-
   
-
   Does not assume any encoding.
-
   Reads past the null byte, but doesn't return it.
 
 - <span id="bytes-read-string-at"></span>`fn read_string_at(self, offset: usize) -> Result<&'data [u8], ()>`
 
   Read a null terminated string at an offset.
-
   
-
   Does not assume any encoding. Does not return the null byte.
 
 - <span id="bytes-read-uleb128"></span>`fn read_uleb128(&mut self) -> Result<u64, ()>`
@@ -200,11 +173,8 @@ It has these important features:
 - <span id="bytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Bytes<'data>`
@@ -239,7 +209,7 @@ It has these important features:
 struct DebugByte(u8);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L222)*
+*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../../.source_1765894658/object-0.37.3/src/read/util.rs#L222)*
 
 #### Trait Implementations
 
@@ -270,11 +240,8 @@ struct DebugByte(u8);
 - <span id="debugbyte-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugByte`
@@ -295,7 +262,7 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L230)*
+*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../../.source_1765894658/object-0.37.3/src/read/util.rs#L230)*
 
 #### Trait Implementations
 
@@ -326,11 +293,8 @@ struct DebugLen(usize);
 - <span id="debuglen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugLen`
@@ -351,7 +315,7 @@ struct DebugLen(usize);
 struct ByteString<'data>(&'data [u8]);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L244)*
+*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../../.source_1765894658/object-0.37.3/src/read/util.rs#L244)*
 
 A newtype for byte strings.
 
@@ -404,11 +368,8 @@ Provides a `Debug` implementation that interprets the bytes as UTF-8.
 - <span id="bytestring-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ByteString<'data>`
@@ -450,7 +411,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L274-L282)*
+*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../../.source_1765894658/object-0.37.3/src/read/util.rs#L274-L282)*
 
 A table of zero-terminated strings.
 
@@ -509,11 +470,8 @@ This is used by most file formats for strings such as section names and symbol n
 - <span id="stringtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StringTable<'data, R>`
@@ -544,7 +502,7 @@ This is used by most file formats for strings such as section names and symbol n
 fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L213-L220)*
+*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../../.source_1765894658/object-0.37.3/src/read/util.rs#L213-L220)*
 
 ### `align`
 
@@ -552,7 +510,7 @@ fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 fn align(offset: usize, size: usize) -> usize
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L254-L256)*
+*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../../.source_1765894658/object-0.37.3/src/read/util.rs#L254-L256)*
 
 ### `data_range`
 
@@ -560,5 +518,5 @@ fn align(offset: usize, size: usize) -> usize
 fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> Option<&[u8]>
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../../.source_1765633015/object-0.37.3/src/read/util.rs#L259-L268)*
+*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../../.source_1765894658/object-0.37.3/src/read/util.rs#L259-L268)*
 

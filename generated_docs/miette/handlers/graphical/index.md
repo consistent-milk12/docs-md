@@ -39,7 +39,7 @@ struct GraphicalReportHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
 
 A [`ReportHandler`](../../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -58,7 +58,6 @@ printer.
 - <span id="graphicalreporthandler-new"></span>`fn new() -> Self`
 
   Create a new `GraphicalReportHandler` with the default
-
   [`GraphicalTheme`](../index.md). This will use both unicode characters and colors.
 
 - <span id="graphicalreporthandler-new-themed"></span>`fn new_themed(theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md#graphicaltheme)
@@ -76,35 +75,28 @@ printer.
 - <span id="graphicalreporthandler-with-cause-chain"></span>`fn with_cause_chain(self) -> Self`
 
   Include the cause chain of the top-level error in the graphical output,
-
   if available.
 
 - <span id="graphicalreporthandler-without-cause-chain"></span>`fn without_cause_chain(self) -> Self`
 
   Do not include the cause chain of the top-level error in the graphical
-
   output.
 
 - <span id="graphicalreporthandler-with-primary-span-start"></span>`fn with_primary_span_start(self) -> Self`
 
   Include the line and column for the the start of the primary span when the
-
   snippet extends multiple lines
 
 - <span id="graphicalreporthandler-without-primary-span-start"></span>`fn without_primary_span_start(self) -> Self`
 
   Do not include the line and column for the the start of the primary span
-
   when the snippet extends multiple lines
 
 - <span id="graphicalreporthandler-with-urls"></span>`fn with_urls(self, urls: bool) -> Self`
 
   Whether to include `Diagnostic::url()` in the output.
-
   
-
   Disabling this is not recommended, but can be useful for more easily
-
   reproducible tests, as `url(docsrs)` links are version-dependent.
 
 - <span id="graphicalreporthandler-with-theme"></span>`fn with_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md#graphicaltheme)
@@ -146,21 +138,17 @@ printer.
 - <span id="graphicalreporthandler-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../../highlighters/index.md#highlighter)
 
   Enable syntax highlighting for source code snippets, using the given
-
   [`Highlighter`](../../highlighters/index.md). See the [highlighters](crate::highlighters) crate
-
   for more details.
 
 - <span id="graphicalreporthandler-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
   Disable syntax highlighting. This uses the
-
   [`crate::highlighters::BlankHighlighter`](../../highlighters/index.md) as a no-op highlighter.
 
 - <span id="graphicalreporthandler-with-link-display-text"></span>`fn with_link_display_text(self, text: impl Into<String>) -> Self`
 
   Sets the display text for links.
-
   Miette displays `(link)` if this option is not set.
 
 #### Trait Implementations
@@ -204,11 +192,8 @@ printer.
 - <span id="graphicalreporthandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GraphicalReportHandler`
@@ -248,7 +233,7 @@ struct Line {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
 
 #### Implementations
 
@@ -257,13 +242,11 @@ struct Line {
 - <span id="line-span-applies"></span>`fn span_applies(&self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
 
   Returns whether `span` should be visible on this line, either in the gutter or under the
-
   text on this line
 
 - <span id="line-span-applies-gutter"></span>`fn span_applies_gutter(&self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
 
   Returns whether `span` should be visible on this line in the gutter (so this excludes spans
-
   that are only visible on this line and do not span multiple lines)
 
 - <span id="line-span-flyby"></span>`fn span_flyby(&self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
@@ -301,11 +284,8 @@ struct Line {
 - <span id="line-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Line`
@@ -332,7 +312,7 @@ struct FancySpan {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
 
 #### Fields
 
@@ -393,11 +373,8 @@ struct FancySpan {
 - <span id="fancyspan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for FancySpan`
@@ -438,7 +415,7 @@ enum LinkStyle {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
 
 #### Trait Implementations
 
@@ -481,11 +458,8 @@ enum LinkStyle {
 - <span id="linkstyle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LinkStyle`
@@ -526,7 +500,7 @@ enum LabelRenderMode {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
 
 #### Variants
 
@@ -571,11 +545,8 @@ enum LabelRenderMode {
 - <span id="labelrendermode-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LabelRenderMode`
@@ -606,5 +577,5 @@ enum LabelRenderMode {
 fn split_label(v: String) -> Vec<String>
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../../.source_1765633015/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../../.source_1765894658/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
 

@@ -20,7 +20,7 @@ struct CachePadded<T> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/cache_padded.rs:148-150`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/cache_padded.rs#L148-L150)*
+*Defined in [`crossbeam-utils-0.8.21/src/cache_padded.rs:148-150`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/cache_padded.rs#L148-L150)*
 
 Pads and aligns a value to the length of a cache line.
 
@@ -86,45 +86,27 @@ struct Queue<T> {
 - <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
   Pads and aligns a value to the length of a cache line.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::CachePadded;
-
   
-
   let padded_value = CachePadded::new(1);
-
   ```
 
 - <span id="cachepadded-into-inner"></span>`fn into_inner(self) -> T`
 
   Returns the inner value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::CachePadded;
-
   
-
   let padded_value = CachePadded::new(7);
-
   let value = padded_value.into_inner();
-
   assert_eq!(value, 7);
-
   ```
 
 #### Trait Implementations
@@ -190,11 +172,8 @@ struct Queue<T> {
 - <span id="cachepadded-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for CachePadded<T>`

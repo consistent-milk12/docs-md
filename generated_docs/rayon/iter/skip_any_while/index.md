@@ -24,7 +24,7 @@ struct SkipAnyWhile<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:13-16`](../../../../.source_1765633015/rayon-1.11.0/src/iter/skip_any_while.rs#L13-L16)*
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:13-16`](../../../../.source_1765894658/rayon-1.11.0/src/iter/skip_any_while.rs#L13-L16)*
 
 `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I`
 until the callback returns `false`.
@@ -74,11 +74,8 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 - <span id="skipanywhile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SkipAnyWhile<I, P>`
@@ -141,7 +138,7 @@ struct SkipAnyWhileConsumer<'p, C, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:56-60`](../../../../.source_1765633015/rayon-1.11.0/src/iter/skip_any_while.rs#L56-L60)*
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:56-60`](../../../../.source_1765894658/rayon-1.11.0/src/iter/skip_any_while.rs#L56-L60)*
 
 #### Trait Implementations
 
@@ -182,11 +179,8 @@ struct SkipAnyWhileConsumer<'p, C, P> {
 - <span id="skipanywhileconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SkipAnyWhileConsumer<'p, C, P>`
@@ -233,7 +227,7 @@ struct SkipAnyWhileFolder<'p, C, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:113-117`](../../../../.source_1765633015/rayon-1.11.0/src/iter/skip_any_while.rs#L113-L117)*
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:113-117`](../../../../.source_1765894658/rayon-1.11.0/src/iter/skip_any_while.rs#L113-L117)*
 
 #### Trait Implementations
 
@@ -272,11 +266,8 @@ struct SkipAnyWhileFolder<'p, C, P> {
 - <span id="skipanywhilefolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SkipAnyWhileFolder<'p, C, P>`
@@ -315,5 +306,5 @@ struct SkipAnyWhileFolder<'p, C, P> {
 fn skip<T>(item: &T, skipping: &std::sync::atomic::AtomicBool, predicate: &impl Fn(&T) -> bool) -> bool
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:119-128`](../../../../.source_1765633015/rayon-1.11.0/src/iter/skip_any_while.rs#L119-L128)*
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:119-128`](../../../../.source_1765894658/rayon-1.11.0/src/iter/skip_any_while.rs#L119-L128)*
 

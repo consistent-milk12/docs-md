@@ -20,9 +20,9 @@
 struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../../.source_1765894658/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
 
-`FD_*` constants for use with [`fcntl_getfd`](../syscalls/index.md) and [`fcntl_setfd`](../syscalls/index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../../../io/index.md) and [`fcntl_setfd`](../../../io/index.md).
 
 
 
@@ -143,11 +143,8 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 - <span id="fdflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FdFlags`
@@ -193,11 +190,8 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 - <span id="fdflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl SubAssign for FdFlags`
@@ -205,11 +199,8 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 - <span id="fdflags-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl ToOwned for FdFlags`
@@ -242,7 +233,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../../.source_1765894658/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
 
 `RWF_*` constants for use with [`preadv2`](../../../io/index.md) and [`pwritev2`](../../../io/index.md).
 
@@ -373,11 +364,8 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 - <span id="readwriteflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ReadWriteFlags`
@@ -423,11 +411,8 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 - <span id="readwriteflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl SubAssign for ReadWriteFlags`
@@ -435,11 +420,8 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 - <span id="readwriteflags-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl ToOwned for ReadWriteFlags`
@@ -472,9 +454,9 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../../.source_1765633015/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../../.source_1765894658/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
 
-`O_*` constants for use with [`dup2`](../syscalls/index.md).
+`O_*` constants for use with [`dup2`](../../../io/index.md).
 
 
 #### Implementations
@@ -594,11 +576,8 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 - <span id="dupflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DupFlags`
@@ -644,11 +623,8 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 - <span id="dupflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl SubAssign for DupFlags`
@@ -656,11 +632,8 @@ struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 - <span id="dupflags-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl ToOwned for DupFlags`

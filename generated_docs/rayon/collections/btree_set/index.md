@@ -25,7 +25,7 @@ struct IntoIter<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/btree_set.rs:14-16`](../../../../.source_1765633015/rayon-1.11.0/src/collections/btree_set.rs#L14-L16)*
+*Defined in [`rayon-1.11.0/src/collections/btree_set.rs:14-16`](../../../../.source_1765894658/rayon-1.11.0/src/collections/btree_set.rs#L14-L16)*
 
 Parallel iterator over a B-Tree set
 
@@ -58,11 +58,8 @@ Parallel iterator over a B-Tree set
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IntoIter<T>`
@@ -117,7 +114,7 @@ struct Iter<'a, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/btree_set.rs:30-32`](../../../../.source_1765633015/rayon-1.11.0/src/collections/btree_set.rs#L30-L32)*
+*Defined in [`rayon-1.11.0/src/collections/btree_set.rs:30-32`](../../../../.source_1765894658/rayon-1.11.0/src/collections/btree_set.rs#L30-L32)*
 
 Parallel iterator over an immutable reference to a B-Tree set
 
@@ -158,11 +155,8 @@ Parallel iterator over an immutable reference to a B-Tree set
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Iter<'a, T>`

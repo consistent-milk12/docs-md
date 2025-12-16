@@ -118,7 +118,7 @@ struct Error {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/parse.rs:21-23`](../../.source_1765633015/semver-1.0.27/src/parse.rs#L21-L23)*
+*Defined in [`semver-1.0.27/src/parse.rs:21-23`](../../.source_1765894658/semver-1.0.27/src/parse.rs#L21-L23)*
 
 Error parsing a SemVer version or version requirement.
 
@@ -174,11 +174,8 @@ fn main() {
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Error`
@@ -209,7 +206,7 @@ struct Version {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:159-165`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L159-L165)*
+*Defined in [`semver-1.0.27/src/lib.rs:159-165`](../../.source_1765894658/semver-1.0.27/src/lib.rs#L159-L165)*
 
 **SemVer version** as defined by <https://semver.org>.
 
@@ -266,167 +263,90 @@ Example:&ensp;`1.0.0-alpha`&ensp;&lt;&ensp;`1.0.0-alpha.1`&ensp;&lt;&ensp;`1.0.0
 - <span id="version-new"></span>`const fn new(major: u64, minor: u64, patch: u64) -> Self`
 
   Create `Version` with an empty pre-release and build metadata.
-
   
-
   Equivalent to:
-
   
-
   ```rust
-
   use semver::{BuildMetadata, Prerelease, Version};
-
   
-
   const fn new(major: u64, minor: u64, patch: u64) -> Version {
-
   Version {
-
       major,
-
       minor,
-
       patch,
-
       pre: Prerelease::EMPTY,
-
       build: BuildMetadata::EMPTY,
-
   }
-
   }
-
   ```
 
 - <span id="version-parse"></span>`fn parse(text: &str) -> Result<Self, Error>` — [`Error`](parse/index.md#error)
 
   Create `Version` by parsing from string representation.
-
   
-
   # Errors
-
   
-
   Possible reasons for the parse to fail include:
-
   
-
   - `1.0` &mdash; too few numeric components. A SemVer version must have
-
     exactly three. If you are looking at something that has fewer than
-
     three numbers in it, it's possible it is a `VersionReq` instead (with
-
     an implicit default `^` comparison operator).
-
   
-
   - `1.0.01` &mdash; a numeric component has a leading zero.
-
   
-
   - `1.0.unknown` &mdash; unexpected character in one of the components.
-
   
-
   - `1.0.0-` or `1.0.0+` &mdash; the pre-release or build metadata are
-
     indicated present but empty.
-
   
-
   - `1.0.0-alpha_123` &mdash; pre-release or build metadata have something
-
     outside the allowed characters, which are `0-9`, `A-Z`, `a-z`, `-`,
-
     and `.` (dot).
-
   
-
   - `23456789999999999999.0.0` &mdash; overflow of a u64.
 
 - <span id="version-cmp-precedence"></span>`fn cmp_precedence(&self, other: &Self) -> Ordering`
 
   Compare the major, minor, patch, and pre-release value of two versions,
-
   disregarding build metadata. Versions that differ only in build metadata
-
   are considered equal. This comparison is what the SemVer spec refers to
-
   as "precedence".
-
   
-
   # Example
-
   
-
   ```rust
-
   use semver::Version;
-
   
-
   let mut versions = [
-
       "1.20.0+c144a98".parse::<Version>().unwrap(),
-
       "1.20.0".parse().unwrap(),
-
       "1.0.0".parse().unwrap(),
-
       "1.0.0-alpha".parse().unwrap(),
-
       "1.20.0+bc17664".parse().unwrap(),
-
   ];
-
   
-
   // This is a stable sort, so it preserves the relative order of equal
-
   // elements. The three 1.20.0 versions differ only in build metadata so
-
   // they are not reordered relative to one another.
-
   versions.sort_by(Version::cmp_precedence);
-
   assert_eq!(versions, [
-
       "1.0.0-alpha".parse().unwrap(),
-
       "1.0.0".parse().unwrap(),
-
       "1.20.0+c144a98".parse().unwrap(),
-
       "1.20.0".parse().unwrap(),
-
       "1.20.0+bc17664".parse().unwrap(),
-
   ]);
-
   
-
   // Totally order the versions, including comparing the build metadata.
-
   versions.sort();
-
   assert_eq!(versions, [
-
       "1.0.0-alpha".parse().unwrap(),
-
       "1.0.0".parse().unwrap(),
-
       "1.20.0".parse().unwrap(),
-
       "1.20.0+bc17664".parse().unwrap(),
-
       "1.20.0+c144a98".parse().unwrap(),
-
   ]);
-
   ```
 
 #### Trait Implementations
@@ -488,11 +408,8 @@ Example:&ensp;`1.0.0-alpha`&ensp;&lt;&ensp;`1.0.0-alpha.1`&ensp;&lt;&ensp;`1.0.0
 - <span id="version-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Version`
@@ -545,7 +462,7 @@ struct VersionReq {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:185-187`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L185-L187)*
+*Defined in [`semver-1.0.27/src/lib.rs:185-187`](../../.source_1765894658/semver-1.0.27/src/lib.rs#L185-L187)*
 
 **SemVer version requirement** describing the intersection of some version
 comparators, such as `>=1.2.3, <1.8`.
@@ -572,39 +489,24 @@ comparators, such as `>=1.2.3, <1.8`.
 - <span id="versionreq-parse"></span>`fn parse(text: &str) -> Result<Self, Error>` — [`Error`](parse/index.md#error)
 
   Create `VersionReq` by parsing from string representation.
-
   
-
   # Errors
-
   
-
   Possible reasons for the parse to fail include:
-
   
-
   - `>a.b` &mdash; unexpected characters in the partial version.
-
   
-
   - `@1.0.0` &mdash; unrecognized comparison operator.
-
   
-
   - `^1.0.0, ` &mdash; unexpected end of input.
-
   
-
   - `>=1.0 <2.0` &mdash; missing comma between comparators.
-
   
-
   - `*.*` &mdash; unsupported wildcard syntax.
 
 - <span id="versionreq-matches"></span>`fn matches(&self, version: &Version) -> bool` — [`Version`](#version)
 
   Evaluate whether the given `Version` satisfies the version requirement
-
   described by `self`.
 
 #### Trait Implementations
@@ -674,11 +576,8 @@ comparators, such as `>=1.2.3, <1.8`.
 - <span id="versionreq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for VersionReq`
@@ -727,7 +626,7 @@ struct Comparator {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:192-200`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L192-L200)*
+*Defined in [`semver-1.0.27/src/lib.rs:192-200`](../../.source_1765894658/semver-1.0.27/src/lib.rs#L192-L200)*
 
 A pair of comparison operator and partial version, such as `>=1.2`. Forms
 one piece of a VersionReq.
@@ -811,11 +710,8 @@ one piece of a VersionReq.
 - <span id="comparator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Comparator`
@@ -860,7 +756,7 @@ struct Prerelease {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:310-312`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L310-L312)*
+*Defined in [`semver-1.0.27/src/lib.rs:310-312`](../../.source_1765894658/semver-1.0.27/src/lib.rs#L310-L312)*
 
 Optional pre-release identifier on a version string. This comes after `-` in
 a SemVer version, like `1.0.0-alpha.1`
@@ -983,11 +879,8 @@ Example:&ensp;`alpha`&ensp;&lt;&ensp;`alpha.85`&ensp;&lt;&ensp;`alpha.90`&ensp;&
 - <span id="prerelease-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for crate::Prerelease`
@@ -1040,7 +933,7 @@ struct BuildMetadata {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:368-370`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L368-L370)*
+*Defined in [`semver-1.0.27/src/lib.rs:368-370`](../../.source_1765894658/semver-1.0.27/src/lib.rs#L368-L370)*
 
 Optional build metadata identifier. This comes after `+` in a SemVer
 version, as in `0.8.1+zstd.1.5.0`.
@@ -1167,11 +1060,8 @@ Example:&ensp;`demo`&ensp;&lt;&ensp;`demo.85`&ensp;&lt;&ensp;`demo.90`&ensp;&lt;
 - <span id="buildmetadata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for crate::BuildMetadata`
@@ -1233,7 +1123,7 @@ enum Op {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/lib.rs:249-258`](../../.source_1765633015/semver-1.0.27/src/lib.rs#L249-L258)*
+*Defined in [`semver-1.0.27/src/lib.rs:249-258`](../../.source_1765894658/semver-1.0.27/src/lib.rs#L249-L258)*
 
 SemVer comparison operator: `=`, `>`, `>=`, `<`, `<=`, `~`, `^`, `*`.
 
@@ -1330,11 +1220,8 @@ SemVer comparison operator: `=`, `>`, `>=`, `<`, `<=`, `~`, `^`, `*`.
 - <span id="op-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Op`

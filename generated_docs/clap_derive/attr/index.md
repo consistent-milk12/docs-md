@@ -26,7 +26,7 @@ struct ClapAttr {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/attr.rs:17-22`](../../../.source_1765633015/clap_derive-4.5.49/src/attr.rs#L17-L22)*
+*Defined in [`clap_derive-4.5.49/src/attr.rs:17-22`](../../../.source_1765894658/clap_derive-4.5.49/src/attr.rs#L17-L22)*
 
 #### Implementations
 
@@ -69,11 +69,8 @@ struct ClapAttr {
 - <span id="clapattr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for ClapAttr`
@@ -134,7 +131,7 @@ enum MagicAttrName {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/attr.rs:145-171`](../../../.source_1765633015/clap_derive-4.5.49/src/attr.rs#L145-L171)*
+*Defined in [`clap_derive-4.5.49/src/attr.rs:145-171`](../../../.source_1765894658/clap_derive-4.5.49/src/attr.rs#L145-L171)*
 
 #### Trait Implementations
 
@@ -173,11 +170,8 @@ enum MagicAttrName {
 - <span id="magicattrname-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MagicAttrName`
@@ -216,7 +210,7 @@ enum AttrValue {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/attr.rs:175-179`](../../../.source_1765633015/clap_derive-4.5.49/src/attr.rs#L175-L179)*
+*Defined in [`clap_derive-4.5.49/src/attr.rs:175-179`](../../../.source_1765894658/clap_derive-4.5.49/src/attr.rs#L175-L179)*
 
 #### Trait Implementations
 
@@ -251,11 +245,8 @@ enum AttrValue {
 - <span id="attrvalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Spanned for AttrValue`
@@ -299,7 +290,7 @@ enum AttrKind {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/attr.rs:195-202`](../../../.source_1765633015/clap_derive-4.5.49/src/attr.rs#L195-L202)*
+*Defined in [`clap_derive-4.5.49/src/attr.rs:195-202`](../../../.source_1765894658/clap_derive-4.5.49/src/attr.rs#L195-L202)*
 
 #### Implementations
 
@@ -342,11 +333,8 @@ enum AttrKind {
 - <span id="attrkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AttrKind`

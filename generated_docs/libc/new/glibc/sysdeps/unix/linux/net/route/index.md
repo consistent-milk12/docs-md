@@ -39,7 +39,7 @@ struct rtentry {
 }
 ```
 
-*Defined in [`libc-0.2.178/src/new/glibc/sysdeps/unix/linux/net/route.rs:8-30`](../../../../../../../../../.source_1765633015/libc-0.2.178/src/new/glibc/sysdeps/unix/linux/net/route.rs#L8-L30)*
+*Defined in [`libc-0.2.178/src/new/glibc/sysdeps/unix/linux/net/route.rs:8-30`](../../../../../../../../../.source_1765894658/libc-0.2.178/src/new/glibc/sysdeps/unix/linux/net/route.rs#L8-L30)*
 
 #### Trait Implementations
 
@@ -80,11 +80,8 @@ struct rtentry {
 - <span id="rtentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for rtentry`

@@ -25,7 +25,7 @@ struct DebugMacinfo<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:11-13`](../../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L11-L13)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:11-13`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L11-L13)*
 
 The raw contents of the `.debug_macinfo` section.
 
@@ -34,31 +34,18 @@ The raw contents of the `.debug_macinfo` section.
 - <span id="debugmacinfo-new"></span>`fn new(macinfo_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugMacinfo` instance from the data in the `.debug_macinfo`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_macinfo` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugMacinfo, LittleEndian};
-
   
-
   let buf = [1, 0, 95, 95, 83, 84, 68, 67, 95, 95, 32, 49, 0];
-
   let read_section_somehow = || &buf;
-
   let debug_str = DebugMacinfo::new(read_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -104,11 +91,8 @@ The raw contents of the `.debug_macinfo` section.
 - <span id="debugmacinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugMacinfo<R>`
@@ -145,7 +129,7 @@ struct DebugMacro<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:104-106`](../../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L104-L106)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:104-106`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L104-L106)*
 
 The raw contents of the `.debug_macro` section.
 
@@ -154,31 +138,18 @@ The raw contents of the `.debug_macro` section.
 - <span id="debugmacro-new"></span>`fn new(macro_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugMacro` instance from the data in the `.debug_macro`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_macro` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugMacro, LittleEndian};
-
   
-
   let buf = [1, 0, 95, 95, 83, 84, 68, 67, 95, 95, 32, 49, 0];
-
   let read_section_somehow = || &buf;
-
   let debug_str = DebugMacro::new(read_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -224,11 +195,8 @@ The raw contents of the `.debug_macro` section.
 - <span id="debugmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugMacro<R>`
@@ -267,7 +235,7 @@ struct MacroUnitHeader<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:197-202`](../../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L197-L202)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:197-202`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L197-L202)*
 
 #### Fields
 
@@ -324,11 +292,8 @@ struct MacroUnitHeader<R: Reader> {
 - <span id="macrounitheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MacroUnitHeader<R>`
@@ -361,7 +326,7 @@ struct MacroIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:327-331`](../../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L327-L331)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:327-331`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L327-L331)*
 
 Iterator over the entries in the `.debug_macro` section.
 
@@ -408,11 +373,8 @@ Iterator over the entries in the `.debug_macro` section.
 - <span id="macroiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MacroIter<R>`
@@ -451,7 +413,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:244-258`](../../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L244-L258)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:244-258`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L244-L258)*
 
 A string in a macro entry.
 
@@ -519,11 +481,8 @@ A string in a macro entry.
 - <span id="macrostring-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for MacroString<R, Offset>`
@@ -585,7 +544,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/macros.rs:277-323`](../../../../.source_1765633015/gimli-0.32.3/src/read/macros.rs#L277-L323)*
+*Defined in [`gimli-0.32.3/src/read/macros.rs:277-323`](../../../../.source_1765894658/gimli-0.32.3/src/read/macros.rs#L277-L323)*
 
 an Entry in the `.debug_macro` section.
 
@@ -658,11 +617,8 @@ an Entry in the `.debug_macro` section.
 - <span id="macroentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for MacroEntry<R, Offset>`

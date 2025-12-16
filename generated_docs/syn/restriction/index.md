@@ -32,7 +32,7 @@ struct VisRestricted {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../../.source_1765633015/syn-2.0.111/src/restriction.rs#L27-L37)*
+*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../../.source_1765894658/syn-2.0.111/src/restriction.rs#L27-L37)*
 
 A visibility level restricted to some path: `pub(self)` or
 `pub(super)` or `pub(crate)` or `pub(in some::module)`.
@@ -84,11 +84,8 @@ A visibility level restricted to some path: `pub(self)` or
 - <span id="visrestricted-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::VisRestricted`
@@ -137,7 +134,7 @@ enum Visibility {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../../.source_1765633015/syn-2.0.111/src/restriction.rs#L4-L25)*
+*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../../.source_1765894658/syn-2.0.111/src/restriction.rs#L4-L25)*
 
 The visibility level of an item: inherited or `pub` or
 `pub(restricted)`.
@@ -209,11 +206,8 @@ This type is a [syntax tree enum].
 - <span id="visibility-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::restriction::Visibility`
@@ -262,7 +256,7 @@ enum FieldMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../../.source_1765633015/syn-2.0.111/src/restriction.rs#L39-L57)*
+*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../../.source_1765894658/syn-2.0.111/src/restriction.rs#L39-L57)*
 
 Unused, but reserved for RFC 3323 restrictions.
 
@@ -309,11 +303,8 @@ Unused, but reserved for RFC 3323 restrictions.
 - <span id="fieldmutability-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::FieldMutability`

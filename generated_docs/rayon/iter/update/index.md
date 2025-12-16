@@ -26,7 +26,7 @@ struct Update<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/update.rs:14-17`](../../../../.source_1765633015/rayon-1.11.0/src/iter/update.rs#L14-L17)*
+*Defined in [`rayon-1.11.0/src/iter/update.rs:14-17`](../../../../.source_1765894658/rayon-1.11.0/src/iter/update.rs#L14-L17)*
 
 `Update` is an iterator that mutates the elements of an
 underlying iterator before they are yielded.
@@ -85,11 +85,8 @@ This struct is created by the `update()` method on [`ParallelIterator`](../index
 - <span id="update-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Update<I, F>`
@@ -153,7 +150,7 @@ struct UpdateProducer<'f, P, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/update.rs:106-109`](../../../../.source_1765633015/rayon-1.11.0/src/iter/update.rs#L106-L109)*
+*Defined in [`rayon-1.11.0/src/iter/update.rs:106-109`](../../../../.source_1765894658/rayon-1.11.0/src/iter/update.rs#L106-L109)*
 
 #### Trait Implementations
 
@@ -180,11 +177,8 @@ struct UpdateProducer<'f, P, F> {
 - <span id="updateproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UpdateProducer<'f, P, F>`
@@ -240,7 +234,7 @@ struct UpdateConsumer<'f, C, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/update.rs:162-165`](../../../../.source_1765633015/rayon-1.11.0/src/iter/update.rs#L162-L165)*
+*Defined in [`rayon-1.11.0/src/iter/update.rs:162-165`](../../../../.source_1765894658/rayon-1.11.0/src/iter/update.rs#L162-L165)*
 
 #### Implementations
 
@@ -285,11 +279,8 @@ struct UpdateConsumer<'f, C, F> {
 - <span id="updateconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UpdateConsumer<'f, C, F>`
@@ -335,7 +326,7 @@ struct UpdateFolder<'f, C, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/update.rs:217-220`](../../../../.source_1765633015/rayon-1.11.0/src/iter/update.rs#L217-L220)*
+*Defined in [`rayon-1.11.0/src/iter/update.rs:217-220`](../../../../.source_1765894658/rayon-1.11.0/src/iter/update.rs#L217-L220)*
 
 #### Trait Implementations
 
@@ -374,11 +365,8 @@ struct UpdateFolder<'f, C, F> {
 - <span id="updatefolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UpdateFolder<'f, C, F>`
@@ -418,7 +406,7 @@ struct UpdateSeq<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/update.rs:268-271`](../../../../.source_1765633015/rayon-1.11.0/src/iter/update.rs#L268-L271)*
+*Defined in [`rayon-1.11.0/src/iter/update.rs:268-271`](../../../../.source_1765894658/rayon-1.11.0/src/iter/update.rs#L268-L271)*
 
 Standard Update adaptor, based on `itertools::adaptors::Update`
 
@@ -465,11 +453,8 @@ Standard Update adaptor, based on `itertools::adaptors::Update`
 - <span id="updateseq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UpdateSeq<I, F>`
@@ -536,5 +521,5 @@ Standard Update adaptor, based on `itertools::adaptors::Update`
 fn apply<T>(update_op: impl Fn(&mut T)) -> impl Fn(T) -> T
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/update.rs:222-227`](../../../../.source_1765633015/rayon-1.11.0/src/iter/update.rs#L222-L227)*
+*Defined in [`rayon-1.11.0/src/iter/update.rs:222-227`](../../../../.source_1765894658/rayon-1.11.0/src/iter/update.rs#L222-L227)*
 

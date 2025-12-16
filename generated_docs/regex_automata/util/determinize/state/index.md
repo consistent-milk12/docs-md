@@ -130,7 +130,7 @@ as long as everything in this module agrees.
 struct State(alloc::sync::Arc<[u8]>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:109`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L109)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:109`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L109)*
 
 A DFA state that, at its core, is represented by an ordered set of NFA
 states.
@@ -210,11 +210,8 @@ simultaneously.
 - <span id="state-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for State`
@@ -257,7 +254,7 @@ simultaneously.
 struct StateBuilderEmpty(alloc::vec::Vec<u8>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:191`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L191)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:191`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L191)*
 
 A state builder that represents an empty state.
 
@@ -313,11 +310,8 @@ builder that can capture assertions and pattern IDs.
 - <span id="statebuilderempty-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StateBuilderEmpty`
@@ -346,7 +340,7 @@ builder that can capture assertions and pattern IDs.
 struct StateBuilderMatches(alloc::vec::Vec<u8>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:218`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L218)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:218`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L218)*
 
 A state builder that collects assertions and pattern IDs.
 
@@ -408,11 +402,8 @@ builder that collects NFA state IDs.
 - <span id="statebuildermatches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StateBuilderMatches`
@@ -444,7 +435,7 @@ struct StateBuilderNFA {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:274-277`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L274-L277)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:274-277`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L274-L277)*
 
 A state builder that collects some assertions and NFA state IDs.
 
@@ -512,11 +503,8 @@ that it can be reused to build the next state.
 - <span id="statebuildernfa-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StateBuilderNFA`
@@ -545,7 +533,7 @@ that it can be reused to build the next state.
 struct Repr<'a>(&'a [u8]);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:386`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L386)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:386`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L386)*
 
 Repr is a read-only view into the representation of a DFA state.
 
@@ -606,129 +594,83 @@ previous NFA state ID.
 - <span id="repr-is-match"></span>`fn is_match(&self) -> bool`
 
   Returns true if and only if this is a match state.
-
   
-
   If callers have added pattern IDs to this state, then callers MUST set
-
   this state as a match state explicitly. However, as a special case,
-
   states that are marked as match states but with no pattern IDs, then
-
   the state is treated as if it had a single pattern ID equivalent to
-
   PatternID::ZERO.
 
 - <span id="repr-has-pattern-ids"></span>`fn has_pattern_ids(&self) -> bool`
 
   Returns true if and only if this state has had at least one pattern
-
   ID added to it.
-
   
-
   This is an internal-only flag that permits the representation to save
-
   space in the common case of an NFA with one pattern in it. In that
-
   case, a match state can only ever have exactly one pattern ID:
-
   PatternID::ZERO. So there's no need to represent it.
 
 - <span id="repr-is-from-word"></span>`fn is_from_word(&self) -> bool`
 
   Returns true if and only if this state is marked as having been created
-
   from a transition over a word byte. This is useful for checking whether
-
   a word boundary assertion is true or not, which requires look-behind
-
   (whether the current state came from a word byte or not) and look-ahead
-
   (whether the transition byte is a word byte or not).
-
   
-
   Since states with this set are distinct from states that don't have
-
   this set (even if they are otherwise equivalent), callers should not
-
   set this assertion unless the underlying NFA has at least one word
-
   boundary assertion somewhere. Otherwise, a superfluous number of states
-
   may be created.
 
 - <span id="repr-is-half-crlf"></span>`fn is_half_crlf(&self) -> bool`
 
   Returns true if and only if this state is marked as being inside of a
-
   CRLF terminator. In the forward direction, this means the state was
-
   created after seeing a `\r`. In the reverse direction, this means the
-
   state was created after seeing a `\n`.
 
 - <span id="repr-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
   The set of look-behind assertions that were true in the transition that
-
   created this state.
-
   
-
   Generally, this should be empty if 'look_need' is empty, since there is
-
   no reason to track which look-behind assertions are true if the state
-
   has no conditional epsilon transitions.
-
   
-
   Satisfied look-ahead assertions are not tracked in states. Instead,
-
   these are re-computed on demand via epsilon closure when computing the
-
   transition function.
 
 - <span id="repr-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
   The set of look-around (both behind and ahead) assertions that appear
-
   at least once in this state's set of NFA states.
-
   
-
   This is used to determine whether the epsilon closure needs to be
-
   re-computed when computing the transition function. Namely, if the
-
   state has no conditional epsilon transitions, then there is no need
-
   to re-compute the epsilon closure.
 
 - <span id="repr-match-len"></span>`fn match_len(&self) -> usize`
 
   Returns the total number of match pattern IDs in this state.
-
   
-
   If this state is not a match state, then this always returns 0.
 
 - <span id="repr-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../primitives/index.md#patternid)
 
   Returns the pattern ID for this match state at the given index.
-
   
-
   If the given index is greater than or equal to `match_len()` for this
-
   state, then this could panic or return incorrect results.
 
 - <span id="repr-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../primitives/index.md#patternid)
 
   Returns a copy of all match pattern IDs in this state. If this state
-
   is not a match state, then this returns None.
 
 - <span id="repr-iter-match-pattern-ids"></span>`fn iter_match_pattern_ids<F: FnMut(PatternID)>(&self, f: F)`
@@ -742,19 +684,14 @@ previous NFA state ID.
 - <span id="repr-pattern-offset-end"></span>`fn pattern_offset_end(&self) -> usize`
 
   Returns the offset into this state's representation where the pattern
-
   IDs end and the NFA state IDs begin.
 
 - <span id="repr-encoded-pattern-len"></span>`fn encoded_pattern_len(&self) -> usize`
 
   Returns the total number of *encoded* pattern IDs in this state.
-
   
-
   This may return 0 even when this is a match state, since the pattern
-
   ID `PatternID::ZERO` is not encoded when it's the only pattern ID in
-
   the match state (the overwhelming common case).
 
 #### Trait Implementations
@@ -786,11 +723,8 @@ previous NFA state ID.
 - <span id="repr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Repr<'a>`
@@ -811,7 +745,7 @@ previous NFA state ID.
 struct ReprVec<'a>(&'a mut alloc::vec::Vec<u8>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:588`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L588)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:588`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L588)*
 
 ReprVec is a write-only view into the representation of a DFA state.
 
@@ -826,113 +760,79 @@ permit valid combinations via Rust's linear typing.
 - <span id="reprvec-set-is-match"></span>`fn set_is_match(&mut self)`
 
   Set this state as a match state.
-
   
-
   This should not be exposed explicitly outside of this module. It is
-
   set automatically when a pattern ID is added.
 
 - <span id="reprvec-set-has-pattern-ids"></span>`fn set_has_pattern_ids(&mut self)`
 
   Set that this state has pattern IDs explicitly written to it.
-
   
-
   This should not be exposed explicitly outside of this module. This is
-
   used internally as a space saving optimization. Namely, if the state
-
   is a match state but does not have any pattern IDs written to it,
-
   then it is automatically inferred to have a pattern ID of ZERO.
 
 - <span id="reprvec-set-is-from-word"></span>`fn set_is_from_word(&mut self)`
 
   Set this state as being built from a transition over a word byte.
-
   
-
   Setting this is only necessary when one needs to deal with word
-
   boundary assertions. Therefore, if the underlying NFA has no word
-
   boundary assertions, callers should not set this.
 
 - <span id="reprvec-set-is-half-crlf"></span>`fn set_is_half_crlf(&mut self)`
 
   Set this state as having seen half of a CRLF terminator.
-
   
-
   In the forward direction, this should be set when a `\r` has been seen.
-
   In the reverse direction, this should be set when a `\n` has been seen.
 
 - <span id="reprvec-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
   The set of look-behind assertions that were true in the transition that
-
   created this state.
 
 - <span id="reprvec-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md#lookset)
 
   The set of look-around (both behind and ahead) assertions that appear
-
   at least once in this state's set of NFA states.
 
 - <span id="reprvec-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md#lookset)
 
   Mutate the set of look-behind assertions that were true in the
-
   transition that created this state.
 
 - <span id="reprvec-set-look-need"></span>`fn set_look_need(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md#lookset)
 
   Mutate the set of look-around (both behind and ahead) assertions that
-
   appear at least once in this state's set of NFA states.
 
 - <span id="reprvec-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../primitives/index.md#patternid)
 
   Add a pattern ID to this state. All match states must have at least
-
   one pattern ID associated with it.
-
   
-
   Callers must never add duplicative pattern IDs.
-
   
-
   The order in which patterns are added must correspond to the order
-
   in which patterns are reported as matches.
 
 - <span id="reprvec-close-match-pattern-ids"></span>`fn close_match_pattern_ids(&mut self)`
 
   Indicate that no more pattern IDs will be added to this state.
-
   
-
   Once this is called, callers must not call it or 'add_match_pattern_id'
-
   again.
-
   
-
   This should not be exposed explicitly outside of this module. It
-
   should be called only when converting a StateBuilderMatches into a
-
   StateBuilderNFA.
 
 - <span id="reprvec-add-nfa-state-id"></span>`fn add_nfa_state_id(&mut self, prev: &mut StateID, sid: StateID)` — [`StateID`](../../primitives/index.md#stateid)
 
   Add an NFA state ID to this state. The order in which NFA states are
-
   added matters. It is the caller's responsibility to ensure that
-
   duplicate NFA state IDs are not added.
 
 - <span id="reprvec-repr"></span>`fn repr(&self) -> Repr<'_>` — [`Repr`](#repr)
@@ -964,11 +864,8 @@ permit valid combinations via Rust's linear typing.
 - <span id="reprvec-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ReprVec<'a>`
@@ -991,7 +888,7 @@ permit valid combinations via Rust's linear typing.
 fn write_vari32(data: &mut alloc::vec::Vec<u8>, n: i32)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:735-741`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L735-L741)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:735-741`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L735-L741)*
 
 Write a signed 32-bit integer using zig-zag encoding.
 
@@ -1003,7 +900,7 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 fn read_vari32(data: &[u8]) -> (i32, usize)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:747-754`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L747-L754)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:747-754`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L747-L754)*
 
 Read a signed 32-bit integer using zig-zag encoding. Also, return the
 number of bytes read.
@@ -1016,7 +913,7 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 fn write_varu32(data: &mut alloc::vec::Vec<u8>, n: u32)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:763-769`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L763-L769)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:763-769`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L763-L769)*
 
 Write an unsigned 32-bit integer as a varint. In essence, `n` is written
 as a sequence of bytes where all bytes except for the last one have the
@@ -1032,7 +929,7 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 fn read_varu32(data: &[u8]) -> (u32, usize)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:774-788`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L774-L788)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:774-788`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L774-L788)*
 
 Read an unsigned 32-bit varint. Also, return the number of bytes read.
 
@@ -1044,7 +941,7 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 fn write_u32(dst: &mut alloc::vec::Vec<u8>, n: u32)
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:791-797`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/determinize/state.rs#L791-L797)*
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:791-797`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/determinize/state.rs#L791-L797)*
 
 Push a native-endian encoded `n` on to `dst`.
 

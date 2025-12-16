@@ -63,11 +63,8 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-insert"></span>`fn insert(&mut self, name: String, krate: Crate) -> Option<Crate>`
 
   Insert a crate into the collection.
-
   
-
   If a crate with the same name already exists, it is replaced
-
   and `Some(old_crate)` is returned.
 
 - <span id="cratecollection-get"></span>`fn get(&self, name: &str) -> Option<&Crate>`
@@ -77,11 +74,8 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-get-with-name"></span>`fn get_with_name(&self, name: &str) -> Option<(&str, &Crate)>`
 
   Get a crate by name, returning the stored key as well.
-
   
-
   This is useful when you need a reference to the crate name that
-
   has the same lifetime as the collection.
 
 - <span id="cratecollection-contains"></span>`fn contains(&self, name: &str) -> bool`
@@ -91,15 +85,10 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-iter"></span>`fn iter(&self) -> impl Iterator<Item = (&String, &Crate)>`
 
   Iterate over crates in alphabetical order.
-
   
-
   Returns tuples of `(&crate_name, &Crate)` sorted alphabetically
-
   by crate name for deterministic output.
-
   
-
   Sorting is done on-demand since collection size is small (10-50 crates).
 
 - <span id="cratecollection-len"></span>`fn len(&self) -> usize`
@@ -113,11 +102,8 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-names"></span>`fn names(&self) -> Vec<&String>`
 
   Get crate names in alphabetical order.
-
   
-
   Returns a sorted `Vec` of crate names for deterministic processing.
-
   Sorting is done on-demand since collection size is small.
 
 #### Trait Implementations
@@ -155,11 +141,8 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CrateCollection`

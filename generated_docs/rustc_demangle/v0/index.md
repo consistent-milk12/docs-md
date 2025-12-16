@@ -53,7 +53,7 @@ struct Demangle<'a> {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:19-21`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L19-L21)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:19-21`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L19-L21)*
 
 Representation of a demangled symbol name.
 
@@ -86,11 +86,8 @@ Representation of a demangled symbol name.
 - <span id="demangle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Demangle<'a>`
@@ -114,7 +111,7 @@ struct Ident<'s> {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:108-113`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L108-L113)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:108-113`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L108-L113)*
 
 #### Fields
 
@@ -131,17 +128,13 @@ struct Ident<'s> {
 - <span id="ident-try-small-punycode-decode"></span>`fn try_small_punycode_decode<F: FnOnce(&[char]) -> R, R>(&self, f: F) -> Option<R>`
 
   Attempt to decode punycode on the stack (allocation-free),
-
   and pass the char slice to the closure, if successful.
-
   This supports up to `SMALL_PUNYCODE_LEN` characters.
 
 - <span id="ident-punycode-decode"></span>`fn punycode_decode<F: FnMut(usize, char) -> Result<(), ()>>(&self, insert: F) -> Result<(), ()>`
 
   Decode punycode as insertion positions and characters
-
   and pass them to the closure, which can return `Err(())`
-
   to stop the decoding process.
 
 #### Trait Implementations
@@ -173,11 +166,8 @@ struct Ident<'s> {
 - <span id="ident-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Ident<'s>`
@@ -200,7 +190,7 @@ struct HexNibbles<'s> {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:269-271`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L269-L271)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:269-271`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L269-L271)*
 
 Sequence of lowercase hexadecimal nibbles (`0-9a-f`), used by leaf consts.
 
@@ -209,13 +199,11 @@ Sequence of lowercase hexadecimal nibbles (`0-9a-f`), used by leaf consts.
 - <span id="hexnibbles-try-parse-uint"></span>`fn try_parse_uint(&self) -> Option<u64>`
 
   Decode an integer value (with the "most significant nibble" first),
-
   returning `None` if it can't fit in an `u64`.
 
 - <span id="hexnibbles-try-parse-str-chars"></span>`fn try_parse_str_chars(&self) -> Option<impl Iterator<Item = char> + 's>`
 
   Decode a UTF-8 byte sequence (with each byte using a pair of nibbles)
-
   into individual `char`s, returning `None` for invalid UTF-8.
 
 #### Trait Implementations
@@ -243,11 +231,8 @@ Sequence of lowercase hexadecimal nibbles (`0-9a-f`), used by leaf consts.
 - <span id="hexnibbles-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for HexNibbles<'s>`
@@ -272,7 +257,7 @@ struct Parser<'s> {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:398-402`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L398-L402)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:398-402`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L398-L402)*
 
 #### Implementations
 
@@ -329,11 +314,8 @@ struct Parser<'s> {
 - <span id="parser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Parser<'s>`
@@ -358,7 +340,7 @@ struct Printer<'a, 'b: 'a, 's> {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:568-584`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L568-L584)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:568-584`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L568-L584)*
 
 #### Fields
 
@@ -386,23 +368,18 @@ struct Printer<'a, 'b: 'a, 's> {
 - <span id="printer-eat"></span>`fn eat(&mut self, b: u8) -> bool`
 
   Eat the given character from the parser,
-
   returning `false` if the parser errored.
 
 - <span id="printer-skipping-printing"></span>`fn skipping_printing<F>(&mut self, f: F)`
 
   Skip printing (i.e. `self.out` will be `None`) for the duration of the
-
   given closure. This should not change parsing behavior, only disable the
-
   output, but there may be optimizations (such as not traversing backrefs).
 
 - <span id="printer-print-backref"></span>`fn print_backref<F>(&mut self, f: F) -> fmt::Result`
 
   Print the target of a backref, using the given closure.
-
   When printing is being skipped, the backref will only be parsed,
-
   ignoring the backref's target completely.
 
 - <span id="printer-pop-depth"></span>`fn pop_depth(&mut self)`
@@ -410,39 +387,30 @@ struct Printer<'a, 'b: 'a, 's> {
 - <span id="printer-print"></span>`fn print(&mut self, x: impl fmt::Display) -> fmt::Result`
 
   Output the given value to `self.out` (using `fmt::Display` formatting),
-
   if printing isn't being skipped.
 
 - <span id="printer-print-quoted-escaped-chars"></span>`fn print_quoted_escaped_chars(&mut self, quote: char, chars: impl Iterator<Item = char>) -> fmt::Result`
 
   Output the given `char`s (escaped using `char::escape_debug`), with the
-
   whole sequence wrapped in quotes, for either a `char` or `&str` literal,
-
   if printing isn't being skipped.
 
 - <span id="printer-print-lifetime-from-index"></span>`fn print_lifetime_from_index(&mut self, lt: u64) -> fmt::Result`
 
   Print the lifetime according to the previously decoded index.
-
   An index of `0` always refers to `'_`, but starting with `1`,
-
   indices refer to late-bound lifetimes introduced by a binder.
 
 - <span id="printer-in-binder"></span>`fn in_binder<F>(&mut self, f: F) -> fmt::Result`
 
   Optionally enter a binder ('G') for late-bound lifetimes,
-
   printing e.g. `for<'a, 'b> ` before calling the closure,
-
   and make those lifetimes visible to it (via depth level).
 
 - <span id="printer-print-sep-list"></span>`fn print_sep_list<F>(&mut self, f: F, sep: &str) -> Result<usize, fmt::Error>`
 
   Print list elements using the given closure and separator,
-
   until the end of the list ('E') is found, or the parser errors.
-
   Returns the number of elements printed.
 
 - <span id="printer-print-path"></span>`fn print_path(&mut self, in_value: bool) -> fmt::Result`
@@ -454,13 +422,9 @@ struct Printer<'a, 'b: 'a, 's> {
 - <span id="printer-print-path-maybe-open-generics"></span>`fn print_path_maybe_open_generics(&mut self) -> Result<bool, fmt::Error>`
 
   A trait in a trait object may have some "existential projections"
-
   (i.e. associated type bindings) after it, which should be printed
-
   in the `<...>` of the trait, e.g. `dyn Trait<T, U, Assoc=X>`.
-
   To this end, this method will keep the `<...>` of an 'I' path
-
   open, by omitting the `>`, and return `Ok(true)` in that case.
 
 - <span id="printer-print-dyn-trait"></span>`fn print_dyn_trait(&mut self) -> fmt::Result`
@@ -498,11 +462,8 @@ struct Printer<'a, 'b: 'a, 's> {
 - <span id="printer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Printer<'a, 'b, 's>`
@@ -528,7 +489,7 @@ enum ParseError {
 }
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:24-30`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L24-L30)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:24-30`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L24-L30)*
 
 #### Variants
 
@@ -577,11 +538,8 @@ enum ParseError {
 - <span id="parseerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ParseError`
@@ -610,7 +568,7 @@ enum ParseError {
 fn demangle(s: &str) -> Result<(Demangle<'_>, &str), ParseError>
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:37-91`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L37-L91)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:37-91`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L37-L91)*
 
 De-mangles a Rust symbol into a more readable version
 
@@ -624,7 +582,7 @@ a mangled symbol, the original value will be written instead.
 fn basic_type(tag: u8) -> Option<&'static str>
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:370-396`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L370-L396)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:370-396`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L370-L396)*
 
 ## Constants
 
@@ -633,31 +591,31 @@ fn basic_type(tag: u8) -> Option<&'static str>
 const MAX_DEPTH: u32 = 500u32;
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:16`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L16)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:16`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L16)*
 
 ### `SMALL_PUNYCODE_LEN`
 ```rust
 const SMALL_PUNYCODE_LEN: usize = 128usize;
 ```
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:115`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L115)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:115`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L115)*
 
 ## Macros
 
 ### `write!`
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:5-12`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L5-L12)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:5-12`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L5-L12)*
 
 ### `invalid!`
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:598-605`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L598-L605)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:598-605`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L598-L605)*
 
 Mark the parser as errored (with `ParseError::Invalid`), print the
 appropriate message (see `ParseError::message`) and return early.
 
 ### `parse!`
 
-*Defined in [`rustc-demangle-0.1.26/src/v0.rs:616-630`](../../../.source_1765633015/rustc-demangle-0.1.26/src/v0.rs#L616-L630)*
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:616-630`](../../../.source_1765894658/rustc-demangle-0.1.26/src/v0.rs#L616-L630)*
 
 Call a parser method (if the parser hasn't errored yet),
 and mark the parser as errored if it returns `Err`.

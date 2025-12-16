@@ -20,7 +20,7 @@
 struct JSONReportHandler;
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../../.source_1765633015/miette-7.6.0/src/handlers/json.rs#L11)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../../.source_1765894658/miette-7.6.0/src/handlers/json.rs#L11)*
 
 [`ReportHandler`](../../index.md) that renders JSON output. It's a machine-readable output.
 
@@ -29,7 +29,6 @@ struct JSONReportHandler;
 - <span id="jsonreporthandler-new"></span>`const fn new() -> Self`
 
   Create a new [`JSONReportHandler`](../index.md). There are no customization
-
   options.
 
 #### Trait Implementations
@@ -73,11 +72,8 @@ struct JSONReportHandler;
 - <span id="jsonreporthandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for JSONReportHandler`
@@ -112,7 +108,7 @@ struct JSONReportHandler;
 struct Escape<'a>(&'a str);
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../../.source_1765633015/miette-7.6.0/src/handlers/json.rs#L27)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../../.source_1765894658/miette-7.6.0/src/handlers/json.rs#L27)*
 
 #### Trait Implementations
 
@@ -143,11 +139,8 @@ struct Escape<'a>(&'a str);
 - <span id="escape-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Escape<'a>`
@@ -176,5 +169,5 @@ struct Escape<'a>(&'a str);
 const fn escape(input: &str) -> Escape<'_>
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../../.source_1765633015/miette-7.6.0/src/handlers/json.rs#L52-L54)*
+*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../../.source_1765894658/miette-7.6.0/src/handlers/json.rs#L52-L54)*
 

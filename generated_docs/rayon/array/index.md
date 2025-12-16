@@ -26,7 +26,7 @@ struct IntoIter<T, const N: usize> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/array.rs:43-45`](../../../.source_1765633015/rayon-1.11.0/src/array.rs#L43-L45)*
+*Defined in [`rayon-1.11.0/src/array.rs:43-45`](../../../.source_1765894658/rayon-1.11.0/src/array.rs#L43-L45)*
 
 Parallel iterator that moves out of an array.
 
@@ -75,11 +75,8 @@ Parallel iterator that moves out of an array.
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for IntoIter<T, N>`

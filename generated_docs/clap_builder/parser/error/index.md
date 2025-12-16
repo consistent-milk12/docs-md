@@ -25,7 +25,7 @@ enum MatchesError {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/error.rs:7-21`](../../../../.source_1765633015/clap_builder-4.5.53/src/parser/error.rs#L7-L21)*
+*Defined in [`clap_builder-4.5.53/src/parser/error.rs:7-21`](../../../../.source_1765894658/clap_builder-4.5.53/src/parser/error.rs#L7-L21)*
 
 Violation of `ArgMatches` assumptions
 
@@ -86,11 +86,8 @@ Violation of `ArgMatches` assumptions
 - <span id="matcheserror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MatchesError`

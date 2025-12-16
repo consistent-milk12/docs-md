@@ -21,7 +21,7 @@ struct Replacements<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/replace.rs:18-23`](../../../.source_1765633015/unicode-normalization-0.1.25/src/replace.rs#L18-L23)*
+*Defined in [`unicode-normalization-0.1.25/src/replace.rs:18-23`](../../../.source_1765894658/unicode-normalization-0.1.25/src/replace.rs#L18-L23)*
 
 External iterator for replacements for a string's characters.
 
@@ -30,13 +30,9 @@ External iterator for replacements for a string's characters.
 - <span id="replacements-new-cjk-compat-variants"></span>`fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](#replacements)
 
   Create a new iterator that replaces [CJK Compatibility Ideograph] codepoints with normal forms using [Standardized Variation Sequences].
-
   
-
   Note that this iterator can also be obtained by directly calling `.cjk_compat_variants()` on the iterator.
-
   
-
   
 
 #### Trait Implementations
@@ -78,11 +74,8 @@ External iterator for replacements for a string's characters.
 - <span id="replacements-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for Replacements<I>`

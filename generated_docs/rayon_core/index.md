@@ -184,7 +184,7 @@ struct BroadcastContext<'a> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:45-50`](../../.source_1765633015/rayon-core-1.13.0/src/broadcast/mod.rs#L45-L50)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:45-50`](../../.source_1765894658/rayon-core-1.13.0/src/broadcast/mod.rs#L45-L50)*
 
 Provides context to a closure called by `broadcast`.
 
@@ -205,17 +205,11 @@ Provides context to a closure called by `broadcast`.
 - <span id="broadcastcontext-num-threads"></span>`fn num_threads(&self) -> usize`
 
   The number of threads receiving the broadcast in the thread pool.
-
   
-
   # Future compatibility note
-
   
-
   Future versions of Rayon might vary the number of threads over time, but
-
   this method will always return the number of threads which are actually
-
   receiving your particular `broadcast` call.
 
 #### Trait Implementations
@@ -247,11 +241,8 @@ Provides context to a closure called by `broadcast`.
 - <span id="broadcastcontext-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for BroadcastContext<'a>`
@@ -293,7 +284,7 @@ struct ThreadBuilder {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../.source_1765633015/rayon-core-1.13.0/src/registry.rs#L22-L29)*
+*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../.source_1765894658/rayon-core-1.13.0/src/registry.rs#L22-L29)*
 
 Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
@@ -314,7 +305,6 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 - <span id="threadbuilder-run"></span>`fn run(self)`
 
   Executes the main loop for this thread. This will not return until the
-
   thread pool is dropped.
 
 #### Trait Implementations
@@ -346,11 +336,8 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 - <span id="threadbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadBuilder`
@@ -387,7 +374,7 @@ struct Scope<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 See [`scope()`](scope/index.md) for more information.
@@ -399,113 +386,61 @@ See [`scope()`](scope/index.md) for more information.
 - <span id="scope-spawn"></span>`fn spawn<BODY>(&self, body: BODY)`
 
   Spawns a job into the fork-join scope `self`. This job will
-
   execute sometime before the fork-join scope completes.  The
-
   job is specified as a closure, and this closure receives its
-
   own reference to the scope `self` as argument. This can be
-
   used to inject new jobs into `self`.
-
   
-
   # Returns
-
   
-
   Nothing. The spawned closures cannot pass back values to the
-
   caller directly, though they can write to local variables on
-
   the stack (if those variables outlive the scope) or
-
   communicate through shared channels.
-
   
-
   (The intention is to eventually integrate with Rust futures to
-
   support spawns of functions that compute a value.)
-
   
-
   # Examples
-
   
-
   ```rust
-
   use rayon_core as rayon;
-
   let mut value_a = None;
-
   let mut value_b = None;
-
   let mut value_c = None;
-
   rayon::scope(|s| {
-
       s.spawn(|s1| {
-
             // ^ this is the same scope as `s`; this handle `s1`
-
             //   is intended for use by the spawned task,
-
             //   since scope handles cannot cross thread boundaries.
-
   
-
           value_a = Some(22);
-
   
-
           // the scope `s` will not end until all these tasks are done
-
           s1.spawn(|_| {
-
               value_b = Some(44);
-
           });
-
       });
-
   
-
       s.spawn(|_| {
-
           value_c = Some(66);
-
       });
-
   });
-
   assert_eq!(value_a, Some(22));
-
   assert_eq!(value_b, Some(44));
-
   assert_eq!(value_c, Some(66));
-
   ```
-
   
-
   # See also
-
   
-
   The [`scope` function] has more extensive documentation about
-
   task spawning.
 
 - <span id="scope-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
   Spawns a job into every thread of the fork-join scope `self`. This job will
-
   execute on each thread sometime before the fork-join scope completes.  The
-
   job is specified as a closure, and this closure receives its own reference
-
   to the scope `self` as argument, as well as a `BroadcastContext`.
 
 #### Trait Implementations
@@ -537,11 +472,8 @@ See [`scope()`](scope/index.md) for more information.
 - <span id="scope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Scope<'scope>`
@@ -579,7 +511,7 @@ struct ScopeFifo<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
@@ -592,35 +524,22 @@ See [`scope_fifo()`](scope/index.md) for more information.
 - <span id="scopefifo-spawn-fifo"></span>`fn spawn_fifo<BODY>(&self, body: BODY)`
 
   Spawns a job into the fork-join scope `self`. This job will
-
   execute sometime before the fork-join scope completes.  The
-
   job is specified as a closure, and this closure receives its
-
   own reference to the scope `self` as argument. This can be
-
   used to inject new jobs into `self`.
-
   
-
   # See also
-
   
-
   This method is akin to `Scope::spawn()`, but with a FIFO
-
   priority.  The [`scope_fifo` function] has more details about
-
   this distinction.
 
 - <span id="scopefifo-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
   Spawns a job into every thread of the fork-join scope `self`. This job will
-
   execute on each thread sometime before the fork-join scope completes.  The
-
   job is specified as a closure, and this closure receives its own reference
-
   to the scope `self` as argument, as well as a `BroadcastContext`.
 
 #### Trait Implementations
@@ -652,11 +571,8 @@ See [`scope_fifo()`](scope/index.md) for more information.
 - <span id="scopefifo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ScopeFifo<'scope>`
@@ -693,7 +609,7 @@ struct ThreadPool {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:46-48`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L46-L48)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:46-48`](../../.source_1765894658/rayon-core-1.13.0/src/thread_pool/mod.rs#L46-L48)*
 
 Represents a user-created [thread pool].
 
@@ -733,439 +649,250 @@ terminate.
 - <span id="threadpool-install"></span>`fn install<OP, R>(&self, op: OP) -> R`
 
   Executes `op` within the thread pool. Any attempts to use
-
   `join`, `scope`, or parallel iterators will then operate
-
   within that thread pool.
-
   
-
   # Warning: thread-local data
-
   
-
   Because `op` is executing within the Rayon thread pool,
-
   thread-local data from the current thread will not be
-
   accessible.
-
   
-
   # Warning: execution order
-
   
-
   If the current thread is part of a different thread pool, it will try to
-
   keep busy while the `op` completes in its target pool, similar to
-
   calling `ThreadPool::yield_now()` in a loop. Therefore, it may
-
   potentially schedule other tasks to run on the current thread in the
-
   meantime. For example
-
   
-
   ```ignore-wasm
-
   use rayon_core as rayon;
-
   fn main() {
-
       rayon::ThreadPoolBuilder::new().num_threads(1).build_global().unwrap();
-
       let pool = rayon_core::ThreadPoolBuilder::default().build().unwrap();
-
       let do_it = || {
-
           print!("one ");
-
           pool.install(||{});
-
           print!("two ");
-
       };
-
       rayon::join(|| do_it(), || do_it());
-
   }
-
   ```
-
   
-
   Since we configured just one thread in the global pool, one might
-
   expect `do_it()` to run sequentially, producing:
-
   
-
   ```ascii
-
   one two one two
-
   ```
-
   
-
   However each call to `install()` yields implicitly, allowing rayon to
-
   run multiple instances of `do_it()` concurrently on the single, global
-
   thread. The following output would be equally valid:
-
   
-
   ```ascii
-
   one one two two
-
   ```
-
   
-
   # Panics
-
   
-
   If `op` should panic, that panic will be propagated.
-
   
-
   ## Using `install()`
-
   
-
   ```ignore-wasm
-
      use rayon_core as rayon;
-
      fn main() {
-
           let pool = rayon::ThreadPoolBuilder::new().num_threads(8).build().unwrap();
-
           let n = pool.install(|| fib(20));
-
           println!("{}", n);
-
      }
-
   
-
      fn fib(n: usize) -> usize {
-
           if n == 0 || n == 1 {
-
               return n;
-
           }
-
           let (a, b) = rayon::join(|| fib(n - 1), || fib(n - 2)); // runs inside of `pool`
-
           return a + b;
-
       }
-
   ```
 
 - <span id="threadpool-broadcast"></span>`fn broadcast<OP, R>(&self, op: OP) -> Vec<R>`
 
   Executes `op` within every thread in the thread pool. Any attempts to use
-
   `join`, `scope`, or parallel iterators will then operate within that
-
   thread pool.
-
   
-
   Broadcasts are executed on each thread after they have exhausted their
-
   local work queue, before they attempt work-stealing from other threads.
-
   The goal of that strategy is to run everywhere in a timely manner
-
   *without* being too disruptive to current work. There may be alternative
-
   broadcast styles added in the future for more or less aggressive
-
   injection, if the need arises.
-
   
-
   # Warning: thread-local data
-
   
-
   Because `op` is executing within the Rayon thread pool,
-
   thread-local data from the current thread will not be
-
   accessible.
-
   
-
   # Panics
-
   
-
   If `op` should panic on one or more threads, exactly one panic
-
   will be propagated, only after all threads have completed
-
   (or panicked) their own `op`.
-
   
-
   # Examples
-
   
-
   ```ignore-wasm
-
      use rayon_core as rayon;
-
      use std::sync::atomic::{AtomicUsize, Ordering};
-
   
-
      fn main() {
-
           let pool = rayon::ThreadPoolBuilder::new().num_threads(5).build().unwrap();
-
   
-
           // The argument gives context, including the index of each thread.
-
           let v: Vec<usize> = pool.broadcast(|ctx| ctx.index() * ctx.index());
-
           assert_eq!(v, &[0, 1, 4, 9, 16]);
-
   
-
           // The closure can reference the local stack
-
           let count = AtomicUsize::new(0);
-
           pool.broadcast(|_| count.fetch_add(1, Ordering::Relaxed));
-
           assert_eq!(count.into_inner(), 5);
-
      }
-
   ```
 
 - <span id="threadpool-current-num-threads"></span>`fn current_num_threads(&self) -> usize`
 
   Returns the (current) number of threads in the thread pool.
-
   
-
   # Future compatibility note
-
   
-
   Note that unless this thread pool was created with a
-
   [`ThreadPoolBuilder`](#threadpoolbuilder) that specifies the number of threads,
-
   then this number may vary over time in future versions (see [the
-
   `num_threads()` method for details][snt]).
 
 - <span id="threadpool-current-thread-index"></span>`fn current_thread_index(&self) -> Option<usize>`
 
   If called from a Rayon worker thread in this thread pool,
-
   returns the index of that thread; if not called from a Rayon
-
   thread, or called from a Rayon thread that belongs to a
-
   different thread pool, returns `None`.
-
   
-
   The index for a given thread will not change over the thread's
-
   lifetime. However, multiple threads may share the same index if
-
   they are in distinct thread pools.
-
   
-
   # Future compatibility note
-
   
-
   Currently, every thread pool (including the global
-
   thread pool) has a fixed number of threads, but this may
-
   change in future Rayon versions (see [the `num_threads()` method
-
   for details][snt]). In that case, the index for a
-
   thread would not change during its lifetime, but thread
-
   indices may wind up being reused if threads are terminated and
-
   restarted.
 
 - <span id="threadpool-current-thread-has-pending-tasks"></span>`fn current_thread_has_pending_tasks(&self) -> Option<bool>`
 
   Returns true if the current worker thread currently has "local
-
   tasks" pending. This can be useful as part of a heuristic for
-
   deciding whether to spawn a new task or execute code on the
-
   current thread, particularly in breadth-first
-
   schedulers. However, keep in mind that this is an inherently
-
   racy check, as other worker threads may be actively "stealing"
-
   tasks from our local deque.
-
   
-
   **Background:** Rayon's uses a [work-stealing] scheduler. The
-
   key idea is that each thread has its own [`deque`](../crossbeam_deque/deque/index.md) of
-
   tasks. Whenever a new task is spawned -- whether through
-
   `join()`, `Scope::spawn()`, or some other means -- that new
-
   task is pushed onto the thread's *local* deque. Worker threads
-
   have a preference for executing their own tasks; if however
-
   they run out of tasks, they will go try to "steal" tasks from
-
   other threads. This function therefore has an inherent race
-
   with other active worker threads, which may be removing items
-
   from the local deque.
-
   
 
 - <span id="threadpool-join"></span>`fn join<A, B, RA, RB>(&self, oper_a: A, oper_b: B) -> (RA, RB)`
 
   Execute `oper_a` and `oper_b` in the thread pool and return
-
   the results. Equivalent to `self.install(|| join(oper_a,
-
   oper_b))`.
 
 - <span id="threadpool-scope"></span>`fn scope<'scope, OP, R>(&self, op: OP) -> R`
 
   Creates a scope that executes within this thread pool.
-
   Equivalent to `self.install(|| scope(...))`.
-
   
-
   See also: [the `scope()` function].
 
 - <span id="threadpool-scope-fifo"></span>`fn scope_fifo<'scope, OP, R>(&self, op: OP) -> R`
 
   Creates a scope that executes within this thread pool.
-
   Spawns from the same thread are prioritized in relative FIFO order.
-
   Equivalent to `self.install(|| scope_fifo(...))`.
-
   
-
   See also: [the `scope_fifo()` function].
 
 - <span id="threadpool-in-place-scope"></span>`fn in_place_scope<'scope, OP, R>(&self, op: OP) -> R`
 
   Creates a scope that spawns work into this thread pool.
-
   
-
   See also: [the `in_place_scope()` function].
 
 - <span id="threadpool-in-place-scope-fifo"></span>`fn in_place_scope_fifo<'scope, OP, R>(&self, op: OP) -> R`
 
   Creates a scope that spawns work into this thread pool in FIFO order.
-
   
-
   See also: [the `in_place_scope_fifo()` function].
 
 - <span id="threadpool-spawn"></span>`fn spawn<OP>(&self, op: OP)`
 
   Spawns an asynchronous task in this thread pool. This task will
-
   run in the implicit, global scope, which means that it may outlast
-
   the current stack frame -- therefore, it cannot capture any references
-
   onto the stack (you will likely need a `move` closure).
-
   
-
   See also: [the `spawn()` function defined on scopes][`spawn`](spawn/index.md).
 
 - <span id="threadpool-spawn-fifo"></span>`fn spawn_fifo<OP>(&self, op: OP)`
 
   Spawns an asynchronous task in this thread pool. This task will
-
   run in the implicit, global scope, which means that it may outlast
-
   the current stack frame -- therefore, it cannot capture any references
-
   onto the stack (you will likely need a `move` closure).
-
   
-
   See also: [the `spawn_fifo()` function defined on scopes][`spawn_fifo`](spawn/index.md).
 
 - <span id="threadpool-spawn-broadcast"></span>`fn spawn_broadcast<OP>(&self, op: OP)`
 
   Spawns an asynchronous task on every thread in this thread pool. This task
-
   will run in the implicit, global scope, which means that it may outlast the
-
   current stack frame -- therefore, it cannot capture any references onto the
-
   stack (you will likely need a `move` closure).
 
 - <span id="threadpool-yield-now"></span>`fn yield_now(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md#yield)
 
   Cooperatively yields execution to Rayon.
-
   
-
   This is similar to the general [`yield_now()`](thread_pool/index.md), but only if the current
-
   thread is part of *this* thread pool.
-
   
-
   Returns `Some(Yield::Executed)` if anything was executed, `Some(Yield::Idle)` if
-
   nothing was available, or `None` if the current thread is not part this pool.
 
 - <span id="threadpool-yield-local"></span>`fn yield_local(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md#yield)
 
   Cooperatively yields execution to local Rayon work.
-
   
-
   This is similar to the general [`yield_local()`](thread_pool/index.md), but only if the current
-
   thread is part of *this* thread pool.
-
   
-
   Returns `Some(Yield::Executed)` if anything was executed, `Some(Yield::Idle)` if
-
   nothing was available, or `None` if the current thread is not part this pool.
 
 #### Trait Implementations
@@ -1201,11 +928,8 @@ terminate.
 - <span id="threadpool-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadPool`
@@ -1242,7 +966,7 @@ struct ThreadPoolBuildError {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:142-144`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L142-L144)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:142-144`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L142-L144)*
 
 Error when initializing a thread pool.
 
@@ -1291,11 +1015,8 @@ Error when initializing a thread pool.
 - <span id="threadpoolbuilderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadPoolBuildError`
@@ -1344,7 +1065,7 @@ struct ThreadPoolBuilder<S> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:170-202`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L170-L202)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:170-202`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L170-L202)*
 
 Used to create a new [`ThreadPool`](thread_pool/index.md) or to configure the global rayon thread pool.
 ## Creating a ThreadPool
@@ -1445,11 +1166,8 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 - <span id="threadpoolbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ThreadPoolBuilder<S>`
@@ -1486,7 +1204,7 @@ struct Configuration {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:207-209`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L207-L209)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:207-209`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L207-L209)*
 
 Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadpoolbuilder) instead.
 
@@ -1565,11 +1283,8 @@ Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadp
 - <span id="configuration-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Configuration`
@@ -1607,7 +1322,7 @@ struct FnContext {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:840-845`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L840-L845)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:840-845`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L840-L845)*
 
 Provides the calling context to a closure called by `join_context`.
 
@@ -1650,11 +1365,8 @@ Provides the calling context to a closure called by `join_context`.
 - <span id="fncontext-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for FnContext`
@@ -1694,7 +1406,7 @@ enum Yield {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:497-502`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L497-L502)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:497-502`](../../.source_1765894658/rayon-core-1.13.0/src/thread_pool/mod.rs#L497-L502)*
 
 Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool/index.md).
 
@@ -1749,11 +1461,8 @@ Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool
 - <span id="yield-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Yield`
@@ -1806,7 +1515,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:147-151`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L147-L151)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:147-151`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L147-L151)*
 
 #### Trait Implementations
 
@@ -1837,11 +1546,8 @@ enum ErrorKind {
 - <span id="errorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ErrorKind`
@@ -1881,7 +1587,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:19-26`](../../.source_1765633015/rayon-core-1.13.0/src/broadcast/mod.rs#L19-L26)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:19-26`](../../.source_1765894658/rayon-core-1.13.0/src/broadcast/mod.rs#L19-L26)*
 
 Executes `op` within every thread in the current thread pool. If this is
 called from a non-Rayon thread, it will execute in the global thread pool.
@@ -1900,7 +1606,7 @@ where
     OP: Fn(BroadcastContext<'_>) + Send + Sync + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:36-42`](../../.source_1765633015/rayon-core-1.13.0/src/broadcast/mod.rs#L36-L42)*
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:36-42`](../../.source_1765894658/rayon-core-1.13.0/src/broadcast/mod.rs#L36-L42)*
 
 Spawns an asynchronous task on every thread in this thread pool. This task
 will run in the implicit, global scope, which means that it may outlast the
@@ -1921,7 +1627,7 @@ where
     RB: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/join/mod.rs:93-106`](../../.source_1765633015/rayon-core-1.13.0/src/join/mod.rs#L93-L106)*
+*Defined in [`rayon-core-1.13.0/src/join/mod.rs:93-106`](../../.source_1765894658/rayon-core-1.13.0/src/join/mod.rs#L93-L106)*
 
 Takes two closures and *potentially* runs them in parallel. It
 returns a pair of the results from those closures.
@@ -2014,7 +1720,7 @@ where
     RB: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/join/mod.rs:115-173`](../../.source_1765633015/rayon-core-1.13.0/src/join/mod.rs#L115-L173)*
+*Defined in [`rayon-core-1.13.0/src/join/mod.rs:115-173`](../../.source_1765894658/rayon-core-1.13.0/src/join/mod.rs#L115-L173)*
 
 Identical to `join`, except that the closures have a parameter
 that provides context for the way the closure has been called,
@@ -2032,7 +1738,7 @@ where
     OP: FnOnce(&Scope<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
 
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
@@ -2065,7 +1771,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
 
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
@@ -2297,7 +2003,7 @@ where
     OP: FnOnce(&ScopeFifo<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
 
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
@@ -2330,7 +2036,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
 
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
@@ -2417,7 +2123,7 @@ where
     F: FnOnce() + Send + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:58-64`](../../.source_1765633015/rayon-core-1.13.0/src/spawn/mod.rs#L58-L64)*
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:58-64`](../../.source_1765894658/rayon-core-1.13.0/src/spawn/mod.rs#L58-L64)*
 
 Puts the task into the Rayon thread pool's job queue in the "static"
 or "global" scope. Just like a standard thread, this task is not
@@ -2475,7 +2181,7 @@ where
     F: FnOnce() + Send + 'static
 ```
 
-*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:130-136`](../../.source_1765633015/rayon-core-1.13.0/src/spawn/mod.rs#L130-L136)*
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:130-136`](../../.source_1765894658/rayon-core-1.13.0/src/spawn/mod.rs#L130-L136)*
 
 Fires off a task into the Rayon thread pool in the "static" or
 "global" scope.  Just like a standard thread, this task is not
@@ -2509,7 +2215,7 @@ details.
 fn current_thread_has_pending_tasks() -> Option<bool>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:452-457`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L452-L457)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:452-457`](../../.source_1765894658/rayon-core-1.13.0/src/thread_pool/mod.rs#L452-L457)*
 
 If called from a Rayon worker thread, indicates whether that
 thread's local deque still has pending tasks. Otherwise, returns
@@ -2523,7 +2229,7 @@ thread's local deque still has pending tasks. Otherwise, returns
 fn current_thread_index() -> Option<usize>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:438-443`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L438-L443)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:438-443`](../../.source_1765894658/rayon-core-1.13.0/src/thread_pool/mod.rs#L438-L443)*
 
 If called from a Rayon worker thread, returns the index of that
 thread within its current pool; if not called from a Rayon thread,
@@ -2552,7 +2258,7 @@ restarted.
 fn yield_local() -> Option<Yield>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:488-493`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L488-L493)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:488-493`](../../.source_1765894658/rayon-core-1.13.0/src/thread_pool/mod.rs#L488-L493)*
 
 Cooperatively yields execution to local Rayon work.
 
@@ -2571,7 +2277,7 @@ nothing was available, or `None` if this thread is not part of any pool at all.
 fn yield_now() -> Option<Yield>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:471-476`](../../.source_1765633015/rayon-core-1.13.0/src/thread_pool/mod.rs#L471-L476)*
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:471-476`](../../.source_1765894658/rayon-core-1.13.0/src/thread_pool/mod.rs#L471-L476)*
 
 Cooperatively yields execution to Rayon.
 
@@ -2579,7 +2285,7 @@ If the current thread is part of a rayon thread pool, this looks for a
 single unit of pending work in the pool, then executes it. Completion of
 that work might include nested work or further work stealing.
 
-This is similar to [`std::thread::yield_now()`](../rayon/index.md), but does not literally make
+This is similar to `std::thread::yield_now()`, but does not literally make
 that call. If you are implementing a polling loop, you may want to also
 yield to the OS scheduler yourself if no Rayon work was found.
 
@@ -2592,7 +2298,7 @@ nothing was available, or `None` if this thread is not part of any pool at all.
 fn max_num_threads() -> usize
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:113-116`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L113-L116)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:113-116`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L113-L116)*
 
 Returns the maximum number of threads that Rayon supports in a single thread pool.
 
@@ -2607,7 +2313,7 @@ The value may vary between different targets, and is subject to change in new Ra
 fn current_num_threads() -> usize
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:136-138`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L136-L138)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:136-138`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L136-L138)*
 
 Returns the number of threads in the current registry. If this
 code is executing within a Rayon thread pool, then this will be
@@ -2633,7 +2339,7 @@ number may vary over time in future versions (see [the
 fn initialize(config: Configuration) -> Result<(), Box<dyn Error>>
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:787-789`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L787-L789)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:787-789`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L787-L789)*
 
 Deprecated in favor of `ThreadPoolBuilder::build_global`.
 
@@ -2645,7 +2351,7 @@ Deprecated in favor of `ThreadPoolBuilder::build_global`.
 type PanicHandler = dyn Fn(Box<dyn Any + Send>) + Send + Sync;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:213`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L213)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:213`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L213)*
 
 The type for a panic-handling closure. Note that this same closure
 may be invoked multiple times in parallel.
@@ -2656,7 +2362,7 @@ may be invoked multiple times in parallel.
 type StartHandler = dyn Fn(usize) + Send + Sync;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:218`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L218)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:218`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L218)*
 
 The type for a closure that gets invoked when a thread starts. The
 closure is passed the index of the thread on which it is invoked.
@@ -2668,7 +2374,7 @@ Note that this same closure may be invoked multiple times in parallel.
 type ExitHandler = dyn Fn(usize) + Send + Sync;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:223`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L223)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:223`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L223)*
 
 The type for a closure that gets invoked when a thread exits. The
 closure is passed the index of the thread on which it is invoked.
@@ -2681,12 +2387,12 @@ Note that this same closure may be invoked multiple times in parallel.
 const GLOBAL_POOL_ALREADY_INITIALIZED: &str;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:750-751`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L750-L751)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:750-751`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L750-L751)*
 
 ### `CURRENT_THREAD_ALREADY_IN_POOL`
 ```rust
 const CURRENT_THREAD_ALREADY_IN_POOL: &str;
 ```
 
-*Defined in [`rayon-core-1.13.0/src/lib.rs:753-754`](../../.source_1765633015/rayon-core-1.13.0/src/lib.rs#L753-L754)*
+*Defined in [`rayon-core-1.13.0/src/lib.rs:753-754`](../../.source_1765894658/rayon-core-1.13.0/src/lib.rs#L753-L754)*
 

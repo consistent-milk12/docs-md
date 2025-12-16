@@ -158,7 +158,7 @@ struct LineColumn {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/location.rs:8-15`](../../.source_1765633015/proc-macro2-1.0.103/src/location.rs#L8-L15)*
+*Defined in [`proc-macro2-1.0.103/src/location.rs:8-15`](../../.source_1765894658/proc-macro2-1.0.103/src/location.rs#L8-L15)*
 
 A line-column pair representing the start or end of a `Span`.
 
@@ -221,11 +221,8 @@ This type is semver exempt and not exposed by default.
 - <span id="linecolumn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for LineColumn`
@@ -271,7 +268,7 @@ struct TokenStream {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
 
 An abstract stream of tokens, or more concretely a sequence of token trees.
 
@@ -354,11 +351,8 @@ Token stream is both the input and output of `#[proc_macro]`,
 - <span id="tokenstream-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TokenStream`
@@ -416,7 +410,7 @@ struct LexError {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:211-214`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L211-L214)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:211-214`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L211-L214)*
 
 Error returned from `TokenStream::from_str`.
 
@@ -459,11 +453,8 @@ Error returned from `TokenStream::from_str`.
 - <span id="lexerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for LexError`
@@ -491,7 +482,7 @@ struct Span {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:358-361`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L358-L361)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:358-361`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L358-L361)*
 
 A region of source code, along with macro expansion information.
 
@@ -504,173 +495,111 @@ A region of source code, along with macro expansion information.
 - <span id="span-call-site"></span>`fn call_site() -> Self`
 
   The span of the invocation of the current procedural macro.
-
   
-
   Identifiers created with this span will be resolved as if they were
-
   written directly at the macro call location (call-site hygiene) and
-
   other code at the macro call site will be able to refer to them as well.
 
 - <span id="span-mixed-site"></span>`fn mixed_site() -> Self`
 
   The span located at the invocation of the procedural macro, but with
-
   local variables, labels, and `$crate` resolved at the definition site
-
   of the macro. This is the same hygiene behavior as `macro_rules`.
 
 - <span id="span-resolved-at"></span>`fn resolved_at(&self, other: Span) -> Span` — [`Span`](#span)
 
   Creates a new span with the same line/column information as `self` but
-
   that resolves symbols as though it were at `other`.
 
 - <span id="span-located-at"></span>`fn located_at(&self, other: Span) -> Span` — [`Span`](#span)
 
   Creates a new span with the same name resolution behavior as `self` but
-
   with the line/column information of `other`.
 
 - <span id="span-unwrap"></span>`fn unwrap(self) -> proc_macro::Span`
 
   Convert `proc_macro2::Span` to `proc_macro::Span`.
-
   
-
   This method is available when building with a nightly compiler, or when
-
   building with rustc 1.29+ *without* semver exempt features.
-
   
-
   # Panics
-
   
-
   Panics if called from outside of a procedural macro. Unlike
-
   `proc_macro2::Span`, the `proc_macro::Span` type can only exist within
-
   the context of a procedural macro invocation.
 
 - <span id="span-byte-range"></span>`fn byte_range(&self) -> Range<usize>`
 
   Returns the span's byte position range in the source file.
-
   
-
   This method requires the `"span-locations"` feature to be enabled.
-
   
-
   When executing in a procedural macro context, the returned range is only
-
   accurate if compiled with a nightly toolchain. The stable toolchain does
-
   not have this information available. When executing outside of a
-
   procedural macro, such as main.rs or build.rs, the byte range is always
-
   accurate regardless of toolchain.
 
 - <span id="span-start"></span>`fn start(&self) -> LineColumn` — [`LineColumn`](location/index.md#linecolumn)
 
   Get the starting line/column in the source file for this span.
-
   
-
   This method requires the `"span-locations"` feature to be enabled.
-
   
-
   When executing in a procedural macro context, the returned line/column
-
   are only meaningful if compiled with a nightly toolchain. The stable
-
   toolchain does not have this information available. When executing
-
   outside of a procedural macro, such as main.rs or build.rs, the
-
   line/column are always meaningful regardless of toolchain.
 
 - <span id="span-end"></span>`fn end(&self) -> LineColumn` — [`LineColumn`](location/index.md#linecolumn)
 
   Get the ending line/column in the source file for this span.
-
   
-
   This method requires the `"span-locations"` feature to be enabled.
-
   
-
   When executing in a procedural macro context, the returned line/column
-
   are only meaningful if compiled with a nightly toolchain. The stable
-
   toolchain does not have this information available. When executing
-
   outside of a procedural macro, such as main.rs or build.rs, the
-
   line/column are always meaningful regardless of toolchain.
 
 - <span id="span-file"></span>`fn file(&self) -> String`
 
   The path to the source file in which this span occurs, for display
-
   purposes.
-
   
-
   This might not correspond to a valid file system path. It might be
-
   remapped, or might be an artificial path such as `"<macro expansion>"`.
 
 - <span id="span-local-file"></span>`fn local_file(&self) -> Option<PathBuf>`
 
   The path to the source file in which this span occurs on disk.
-
   
-
   This is the actual path on disk. It is unaffected by path remapping.
-
   
-
   This path should not be embedded in the output of the macro; prefer
-
   `file()` instead.
 
 - <span id="span-join"></span>`fn join(&self, other: Span) -> Option<Span>` — [`Span`](#span)
 
   Create a new span encompassing `self` and `other`.
-
   
-
   Returns `None` if `self` and `other` are from different files.
-
   
-
   Warning: the underlying `proc_macro::Span::join` method is
-
   nightly-only. When called from within a procedural macro not using a
-
   nightly compiler, this method will always return `None`.
 
 - <span id="span-source-text"></span>`fn source_text(&self) -> Option<String>`
 
   Returns the source text behind a span. This preserves the original
-
   source code, including spaces and comments. It only returns a result if
-
   the span corresponds to real source code.
-
   
-
   Note: The observable result of a macro should only rely on the tokens
-
   and not on this source text. The result of this function is a best
-
   effort to be used for diagnostics only.
 
 #### Trait Implementations
@@ -712,11 +641,8 @@ A region of source code, along with macro expansion information.
 - <span id="span-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl SpanError for proc_macro2::Span`
@@ -749,7 +675,7 @@ struct Group {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:647-649`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L647-L649)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:647-649`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L647-L649)*
 
 A delimited token stream.
 
@@ -765,95 +691,64 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 - <span id="group-new"></span>`fn new(delimiter: Delimiter, stream: TokenStream) -> Self` — [`Delimiter`](#delimiter), [`TokenStream`](#tokenstream)
 
   Creates a new `Group` with the given delimiter and token stream.
-
   
-
   This constructor will set the span for this group to
-
   `Span::call_site()`. To change the span you can use the `set_span`
-
   method below.
 
 - <span id="group-delimiter"></span>`fn delimiter(&self) -> Delimiter` — [`Delimiter`](#delimiter)
 
   Returns the punctuation used as the delimiter for this group: a set of
-
   parentheses, square brackets, or curly braces.
 
 - <span id="group-stream"></span>`fn stream(&self) -> TokenStream` — [`TokenStream`](#tokenstream)
 
   Returns the `TokenStream` of tokens that are delimited in this `Group`.
-
   
-
   Note that the returned token stream does not include the delimiter
-
   returned above.
 
 - <span id="group-span"></span>`fn span(&self) -> Span` — [`Span`](#span)
 
   Returns the span for the delimiters of this token stream, spanning the
-
   entire `Group`.
-
   
-
   ```text
-
   pub fn span(&self) -> Span {
-
              ^^^^^^^
-
   ```
 
 - <span id="group-span-open"></span>`fn span_open(&self) -> Span` — [`Span`](#span)
 
   Returns the span pointing to the opening delimiter of this group.
-
   
-
   ```text
-
   pub fn span_open(&self) -> Span {
-
                   ^
-
   ```
 
 - <span id="group-span-close"></span>`fn span_close(&self) -> Span` — [`Span`](#span)
 
   Returns the span pointing to the closing delimiter of this group.
-
   
-
   ```text
-
   pub fn span_close(&self) -> Span {
-
                          ^
-
   ```
 
 - <span id="group-delim-span"></span>`fn delim_span(&self) -> DelimSpan` — [`DelimSpan`](extra/index.md#delimspan)
 
   Returns an object that holds this group's `span_open()` and
-
   `span_close()` together (in a more compact representation than holding
-
   those 2 spans individually).
 
 - <span id="group-set-span"></span>`fn set_span(&mut self, span: Span)` — [`Span`](#span)
 
   Configures the span for this `Group`'s delimiters, but not its internal
-
   tokens.
-
   
-
   This method will **not** set the span of all the internal tokens spanned
-
   by this group, but rather it will only set the span of the delimiter
-
   tokens at the level of the `Group`.
 
 #### Trait Implementations
@@ -897,11 +792,8 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 - <span id="group-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for proc_macro2::Group`
@@ -948,7 +840,7 @@ struct Punct {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:787-791`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L787-L791)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:787-791`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L787-L791)*
 
 A `Punct` is a single punctuation character like `+`, `-` or `#`.
 
@@ -960,17 +852,11 @@ Multicharacter operators like `+=` are represented as two instances of
 - <span id="punct-new"></span>`fn new(ch: char, spacing: Spacing) -> Self` — [`Spacing`](#spacing)
 
   Creates a new `Punct` from the given character and spacing.
-
   
-
   The `ch` argument must be a valid punctuation character permitted by the
-
   language, otherwise the function will panic.
-
   
-
   The returned `Punct` will have the default span of `Span::call_site()`
-
   which can be further configured with the `set_span` method below.
 
 - <span id="punct-as-char"></span>`fn as_char(&self) -> char`
@@ -980,13 +866,9 @@ Multicharacter operators like `+=` are represented as two instances of
 - <span id="punct-spacing"></span>`fn spacing(&self) -> Spacing` — [`Spacing`](#spacing)
 
   Returns the spacing of this punctuation character, indicating whether
-
   it's immediately followed by another `Punct` in the token stream, so
-
   they can potentially be combined into a multicharacter operator
-
   (`Joint`), or it's followed by some other token or whitespace (`Alone`)
-
   so the operator has certainly ended.
 
 - <span id="punct-span"></span>`fn span(&self) -> Span` — [`Span`](#span)
@@ -1038,11 +920,8 @@ Multicharacter operators like `+=` are represented as two instances of
 - <span id="punct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for proc_macro2::Punct`
@@ -1090,7 +969,7 @@ struct Ident {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:936-939`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L936-L939)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:936-939`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L936-L939)*
 
 A word of Rust code, which may be a keyword or legal variable name.
 
@@ -1164,77 +1043,43 @@ if ident_string.len() > 60 {
 - <span id="ident-new"></span>`fn new(string: &str, span: Span) -> Self` — [`Span`](#span)
 
   Creates a new `Ident` with the given `string` as well as the specified
-
   `span`.
-
   
-
   The `string` argument must be a valid identifier permitted by the
-
   language, otherwise the function will panic.
-
   
-
   Note that `span`, currently in rustc, configures the hygiene information
-
   for this identifier.
-
   
-
   As of this time `Span::call_site()` explicitly opts-in to "call-site"
-
   hygiene meaning that identifiers created with this span will be resolved
-
   as if they were written directly at the location of the macro call, and
-
   other code at the macro call site will be able to refer to them as well.
-
   
-
   Later spans like `Span::def_site()` will allow to opt-in to
-
   "definition-site" hygiene meaning that identifiers created with this
-
   span will be resolved at the location of the macro definition and other
-
   code at the macro call site will not be able to refer to them.
-
   
-
   Due to the current importance of hygiene this constructor, unlike other
-
   tokens, requires a `Span` to be specified at construction.
-
   
-
   # Panics
-
   
-
   Panics if the input string is neither a keyword nor a legal variable
-
   name. If you are not sure whether the string contains an identifier and
-
   need to handle an error case, use
-
   <a href="https://docs.rs/syn/2.0/syn/fn.parse_str.html"><code
-
     style="padding-right:0;">syn::parse_str</code></a><code
-
     style="padding-left:0;">::&lt;Ident&gt;</code>
-
   rather than `Ident::new`.
 
 - <span id="ident-new-raw"></span>`fn new_raw(string: &str, span: Span) -> Self` — [`Span`](#span)
 
   Same as `Ident::new`, but creates a raw identifier (`r#ident`). The
-
   `string` argument must be a valid identifier permitted by the language
-
   (including keywords, e.g. `fn`). Keywords which are usable in path
-
   segments (e.g. `self`, `super`) are not supported, and will cause a
-
   panic.
 
 - <span id="ident-span"></span>`fn span(&self) -> Span` — [`Span`](#span)
@@ -1244,7 +1089,6 @@ if ident_string.len() > 60 {
 - <span id="ident-set-span"></span>`fn set_span(&mut self, span: Span)` — [`Span`](#span)
 
   Configures the span of this `Ident`, possibly changing its hygiene
-
   context.
 
 #### Trait Implementations
@@ -1300,11 +1144,8 @@ if ident_string.len() > 60 {
 - <span id="ident-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Ident`
@@ -1362,7 +1203,7 @@ struct Literal {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1070-1073`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L1070-L1073)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1070-1073`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L1070-L1073)*
 
 A literal string (`"hello"`), byte string (`b"hello"`), character (`'a'`),
 byte character (`b'a'`), an integer or floating point number with or without
@@ -1380,737 +1221,425 @@ Boolean literals like `true` and `false` do not belong here, they are
 - <span id="literal-u8-suffixed"></span>`fn u8_suffixed(n: u8) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-u16-suffixed"></span>`fn u16_suffixed(n: u16) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-u32-suffixed"></span>`fn u32_suffixed(n: u32) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-u64-suffixed"></span>`fn u64_suffixed(n: u64) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-u128-suffixed"></span>`fn u128_suffixed(n: u128) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-usize-suffixed"></span>`fn usize_suffixed(n: usize) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i8-suffixed"></span>`fn i8_suffixed(n: i8) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i16-suffixed"></span>`fn i16_suffixed(n: i16) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i32-suffixed"></span>`fn i32_suffixed(n: i32) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i64-suffixed"></span>`fn i64_suffixed(n: i64) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i128-suffixed"></span>`fn i128_suffixed(n: i128) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-isize-suffixed"></span>`fn isize_suffixed(n: isize) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1u32` where the integer
-
   value specified is the first part of the token and the integral is
-
   also suffixed at the end. Literals created from negative numbers may
-
   not survive roundtrips through `TokenStream` or strings and may be
-
   broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-u8-unsuffixed"></span>`fn u8_unsuffixed(n: u8) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-u16-unsuffixed"></span>`fn u16_unsuffixed(n: u16) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-u32-unsuffixed"></span>`fn u32_unsuffixed(n: u32) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-u64-unsuffixed"></span>`fn u64_unsuffixed(n: u64) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-u128-unsuffixed"></span>`fn u128_unsuffixed(n: u128) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-usize-unsuffixed"></span>`fn usize_unsuffixed(n: usize) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i8-unsuffixed"></span>`fn i8_unsuffixed(n: i8) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i16-unsuffixed"></span>`fn i16_unsuffixed(n: i16) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i32-unsuffixed"></span>`fn i32_unsuffixed(n: i32) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i64-unsuffixed"></span>`fn i64_unsuffixed(n: i64) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-i128-unsuffixed"></span>`fn i128_unsuffixed(n: i128) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-isize-unsuffixed"></span>`fn isize_unsuffixed(n: isize) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed integer literal with the specified value.
-
   
-
   This function will create an integer like `1` where the integer
-
   value specified is the first part of the token. No suffix is
-
   specified on this token, meaning that invocations like
-
   `Literal::i8_unsuffixed(1)` are equivalent to
-
   `Literal::u32_unsuffixed(1)`. Literals created from negative numbers
-
   may not survive roundtrips through `TokenStream` or strings and may
-
   be broken into two tokens (`-` and positive literal).
-
   
-
   Literals created through this method have the `Span::call_site()`
-
   span by default, which can be configured with the `set_span` method
-
   below.
 
 - <span id="literal-f64-unsuffixed"></span>`fn f64_unsuffixed(f: f64) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed floating-point literal.
-
   
-
   This constructor is similar to those like `Literal::i8_unsuffixed` where
-
   the float's value is emitted directly into the token but no suffix is
-
   used, so it may be inferred to be a `f64` later in the compiler.
-
   Literals created from negative numbers may not survive round-trips
-
   through `TokenStream` or strings and may be broken into two tokens (`-`
-
   and positive literal).
-
   
-
   # Panics
-
   
-
   This function requires that the specified float is finite, for example
-
   if it is infinity or NaN this function will panic.
 
 - <span id="literal-f64-suffixed"></span>`fn f64_suffixed(f: f64) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed floating-point literal.
-
   
-
   This constructor will create a literal like `1.0f64` where the value
-
   specified is the preceding part of the token and `f64` is the suffix of
-
   the token. This token will always be inferred to be an `f64` in the
-
   compiler. Literals created from negative numbers may not survive
-
   round-trips through `TokenStream` or strings and may be broken into two
-
   tokens (`-` and positive literal).
-
   
-
   # Panics
-
   
-
   This function requires that the specified float is finite, for example
-
   if it is infinity or NaN this function will panic.
 
 - <span id="literal-f32-unsuffixed"></span>`fn f32_unsuffixed(f: f32) -> Literal` — [`Literal`](#literal)
 
   Creates a new unsuffixed floating-point literal.
-
   
-
   This constructor is similar to those like `Literal::i8_unsuffixed` where
-
   the float's value is emitted directly into the token but no suffix is
-
   used, so it may be inferred to be a `f64` later in the compiler.
-
   Literals created from negative numbers may not survive round-trips
-
   through `TokenStream` or strings and may be broken into two tokens (`-`
-
   and positive literal).
-
   
-
   # Panics
-
   
-
   This function requires that the specified float is finite, for example
-
   if it is infinity or NaN this function will panic.
 
 - <span id="literal-f32-suffixed"></span>`fn f32_suffixed(f: f32) -> Literal` — [`Literal`](#literal)
 
   Creates a new suffixed floating-point literal.
-
   
-
   This constructor will create a literal like `1.0f32` where the value
-
   specified is the preceding part of the token and `f32` is the suffix of
-
   the token. This token will always be inferred to be an `f32` in the
-
   compiler. Literals created from negative numbers may not survive
-
   round-trips through `TokenStream` or strings and may be broken into two
-
   tokens (`-` and positive literal).
-
   
-
   # Panics
-
   
-
   This function requires that the specified float is finite, for example
-
   if it is infinity or NaN this function will panic.
 
 - <span id="literal-string"></span>`fn string(string: &str) -> Literal` — [`Literal`](#literal)
@@ -2144,17 +1673,11 @@ Boolean literals like `true` and `false` do not belong here, they are
 - <span id="literal-subspan"></span>`fn subspan<R: RangeBounds<usize>>(&self, range: R) -> Option<Span>` — [`Span`](#span)
 
   Returns a `Span` that is a subset of `self.span()` containing only
-
   the source bytes in range `range`. Returns `None` if the would-be
-
   trimmed span is outside the bounds of `self`.
-
   
-
   Warning: the underlying `proc_macro::Literal::subspan` method is
-
   nightly-only. When called from within a procedural macro not using a
-
   nightly compiler, this method will always return `None`.
 
 #### Trait Implementations
@@ -2204,11 +1727,8 @@ Boolean literals like `true` and `false` do not belong here, they are
 - <span id="literal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for proc_macro2::Literal`
@@ -2256,7 +1776,7 @@ enum TokenTree {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:546-555`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L546-L555)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:546-555`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L546-L555)*
 
 A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
@@ -2283,19 +1803,14 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 - <span id="tokentree-span"></span>`fn span(&self) -> Span` — [`Span`](#span)
 
   Returns the span of this tree, delegating to the `span` method of
-
   the contained token or a delimited stream.
 
 - <span id="tokentree-set-span"></span>`fn set_span(&mut self, span: Span)` — [`Span`](#span)
 
   Configures the span for *only this token*.
-
   
-
   Note that if this token is a `Group` then this method will not configure
-
   the span of each of the internal tokens, this will simply delegate to
-
   the `set_span` method of each variant.
 
 #### Trait Implementations
@@ -2347,11 +1862,8 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 - <span id="tokentree-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for proc_macro2::TokenTree`
@@ -2399,7 +1911,7 @@ enum Delimiter {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:653-680`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L653-L680)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:653-680`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L653-L680)*
 
 Describes how a sequence of token trees is delimited.
 
@@ -2480,11 +1992,8 @@ Describes how a sequence of token trees is delimited.
 - <span id="delimiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Delimiter`
@@ -2522,7 +2031,7 @@ enum Spacing {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:796-804`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L796-L804)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:796-804`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L796-L804)*
 
 Whether a `Punct` is followed immediately by another `Punct` or followed by
 another token or whitespace.
@@ -2581,11 +2090,8 @@ another token or whitespace.
 - <span id="spacing-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Spacing`
@@ -2618,9 +2124,9 @@ another token or whitespace.
 
 ### `suffixed_int_literals!`
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1075-1092`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L1075-L1092)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1075-1092`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L1075-L1092)*
 
 ### `unsuffixed_int_literals!`
 
-*Defined in [`proc-macro2-1.0.103/src/lib.rs:1094-1113`](../../.source_1765633015/proc-macro2-1.0.103/src/lib.rs#L1094-L1113)*
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1094-1113`](../../.source_1765894658/proc-macro2-1.0.103/src/lib.rs#L1094-L1113)*
 

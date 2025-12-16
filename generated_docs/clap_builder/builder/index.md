@@ -147,7 +147,7 @@ struct Str {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
+*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
 
 A UTF-8-encoded fixed string
 
@@ -229,11 +229,8 @@ feature
 - <span id="str-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for Str`
@@ -318,7 +315,7 @@ struct Arg {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
 
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
@@ -354,1343 +351,710 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 - <span id="arg-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../util/id/index.md#id)
 
   Create a new [`Arg`](arg/index.md) with a unique name.
-
   
-
   The name is used to check whether or not the argument was used at
-
   runtime, get values, set relationships with other args, etc..
-
   
-
   By default, an `Arg` is
-
   - Positional, see `Arg::short` or `Arg::long` turn it into an option
-
   - Accept a single value, see `Arg::action` to override this
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** In the case of arguments that take values (i.e. `Arg::action(ArgAction::Set)`)
-
   and positional arguments (i.e. those without a preceding `-` or `--`) the name will also
-
   be displayed when the user prints the usage/help information of the program.
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   Arg::new("config")
-
   ;
-
   ```
 
 - <span id="arg-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../util/id/index.md#id)
 
   Set the identifier used for referencing this argument in the clap API.
-
   
-
   See `Arg::new` for more details.
 
 - <span id="arg-short"></span>`fn short(self, s: impl IntoResettable<char>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable)
 
   Sets the short version of the argument without the preceding `-`.
-
   
-
   By default `V` and `h` are used by the auto-generated `version` and `help` arguments,
-
   respectively. You will need to disable the auto-generated flags
-
   (`disable_help_flag`,
-
   `disable_version_flag`) and define your own.
-
   
-
   # Examples
-
   
-
   When calling `short`, use a single valid UTF-8 character which will allow using the
-
   argument via a single hyphen (`-`) such as `-c`:
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg,  ArgAction};
-
   let m = Command::new("prog")
-
       .arg(Arg::new("config")
-
           .short('c')
-
           .action(ArgAction::Set))
-
       .get_matches_from(vec![
-
           "prog", "-c", "file.toml"
-
       ]);
-
   
-
   assert_eq!(m.get_one::<String>("config").map(String::as_str), Some("file.toml"));
-
   ```
-
   
-
   To use `-h` for your own flag and still have help:
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg,  ArgAction};
-
   let m = Command::new("prog")
-
       .disable_help_flag(true)
-
       .arg(Arg::new("host")
-
           .short('h')
-
           .long("host"))
-
       .arg(Arg::new("help")
-
           .long("help")
-
           .global(true)
-
           .action(ArgAction::Help))
-
       .get_matches_from(vec![
-
           "prog", "-h", "wikipedia.org"
-
       ]);
-
   
-
   assert_eq!(m.get_one::<String>("host").map(String::as_str), Some("wikipedia.org"));
-
   ```
 
 - <span id="arg-long"></span>`fn long(self, l: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable), [`Str`](str/index.md#str)
 
   Sets the long version of the argument without the preceding `--`.
-
   
-
   By default `version` and `help` are used by the auto-generated `version` and `help`
-
   arguments, respectively. You may use the word `version` or `help` for the long form of your
-
   own arguments, in which case `clap` simply will not assign those to the auto-generated
-
   `version` or `help` arguments.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** Any leading `-` characters will be stripped
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   To set `long` use a word containing valid UTF-8. If you supply a double leading
-
   `--` such as `--config` they will be stripped. Hyphens in the middle of the word, however,
-
   will *not* be stripped (i.e. `config-file` is allowed).
-
   
-
   Setting `long` allows using the argument via a double hyphen (`--`) such as `--config`
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
       .arg(Arg::new("cfg")
-
           .long("config")
-
           .action(ArgAction::Set))
-
       .get_matches_from(vec![
-
           "prog", "--config", "file.toml"
-
       ]);
-
   
-
   assert_eq!(m.get_one::<String>("cfg").map(String::as_str), Some("file.toml"));
-
   ```
 
 - <span id="arg-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable), [`Str`](str/index.md#str)
 
   Add an alias, which functions as a hidden long flag.
-
   
-
   This is more efficient, and easier than creating multiple hidden arguments as one only
-
   needs to check for the existence of this command, and not all variants.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
               .arg(Arg::new("test")
-
               .long("test")
-
               .alias("alias")
-
               .action(ArgAction::Set))
-
          .get_matches_from(vec![
-
               "prog", "--alias", "cool"
-
           ]);
-
   assert_eq!(m.get_one::<String>("test").unwrap(), "cool");
-
   ```
 
 - <span id="arg-short-alias"></span>`fn short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable)
 
   Add an alias, which functions as a hidden short flag.
-
   
-
   This is more efficient, and easier than creating multiple hidden arguments as one only
-
   needs to check for the existence of this command, and not all variants.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
               .arg(Arg::new("test")
-
               .short('t')
-
               .short_alias('e')
-
               .action(ArgAction::Set))
-
          .get_matches_from(vec![
-
               "prog", "-e", "cool"
-
           ]);
-
   assert_eq!(m.get_one::<String>("test").unwrap(), "cool");
-
   ```
 
 - <span id="arg-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md#str)
 
   Add aliases, which function as hidden long flags.
-
   
-
   This is more efficient, and easier than creating multiple hidden subcommands as one only
-
   needs to check for the existence of this command, and not all variants.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
               .arg(Arg::new("test")
-
                       .long("test")
-
                       .aliases(["do-stuff", "do-tests", "tests"])
-
                       .action(ArgAction::SetTrue)
-
                       .help("the file to add")
-
                       .required(false))
-
               .get_matches_from(vec![
-
                   "prog", "--do-tests"
-
               ]);
-
   assert_eq!(m.get_flag("test"), true);
-
   ```
 
 - <span id="arg-short-aliases"></span>`fn short_aliases(self, names: impl IntoIterator<Item = char>) -> Self`
 
   Add aliases, which functions as a hidden short flag.
-
   
-
   This is more efficient, and easier than creating multiple hidden subcommands as one only
-
   needs to check for the existence of this command, and not all variants.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
               .arg(Arg::new("test")
-
                       .short('t')
-
                       .short_aliases(['e', 's'])
-
                       .action(ArgAction::SetTrue)
-
                       .help("the file to add")
-
                       .required(false))
-
               .get_matches_from(vec![
-
                   "prog", "-s"
-
               ]);
-
   assert_eq!(m.get_flag("test"), true);
-
   ```
 
 - <span id="arg-visible-alias"></span>`fn visible_alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable), [`Str`](str/index.md#str)
 
   Add an alias, which functions as a visible long flag.
-
   
-
   Like `Arg::alias`, except that they are visible inside the help message.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
               .arg(Arg::new("test")
-
                   .visible_alias("something-awesome")
-
                   .long("test")
-
                   .action(ArgAction::Set))
-
          .get_matches_from(vec![
-
               "prog", "--something-awesome", "coffee"
-
           ]);
-
   assert_eq!(m.get_one::<String>("test").unwrap(), "coffee");
-
   ```
 
 - <span id="arg-visible-short-alias"></span>`fn visible_short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable)
 
   Add an alias, which functions as a visible short flag.
-
   
-
   Like `Arg::short_alias`, except that they are visible inside the help message.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
               .arg(Arg::new("test")
-
                   .long("test")
-
                   .visible_short_alias('t')
-
                   .action(ArgAction::Set))
-
          .get_matches_from(vec![
-
               "prog", "-t", "coffee"
-
           ]);
-
   assert_eq!(m.get_one::<String>("test").unwrap(), "coffee");
-
   ```
 
 - <span id="arg-visible-aliases"></span>`fn visible_aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md#str)
 
   Add aliases, which function as visible long flags.
-
   
-
   Like `Arg::aliases`, except that they are visible inside the help message.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
               .arg(Arg::new("test")
-
                   .long("test")
-
                   .action(ArgAction::SetTrue)
-
                   .visible_aliases(["something", "awesome", "cool"]))
-
          .get_matches_from(vec![
-
               "prog", "--awesome"
-
           ]);
-
   assert_eq!(m.get_flag("test"), true);
-
   ```
 
 - <span id="arg-visible-short-aliases"></span>`fn visible_short_aliases(self, names: impl IntoIterator<Item = char>) -> Self`
 
   Add aliases, which function as visible short flags.
-
   
-
   Like `Arg::short_aliases`, except that they are visible inside the help message.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
               .arg(Arg::new("test")
-
                   .long("test")
-
                   .action(ArgAction::SetTrue)
-
                   .visible_short_aliases(['t', 'e']))
-
          .get_matches_from(vec![
-
               "prog", "-t"
-
           ]);
-
   assert_eq!(m.get_flag("test"), true);
-
   ```
 
 - <span id="arg-index"></span>`fn index(self, idx: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable)
 
   Specifies the index of a positional argument **starting at** 1.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** The index refers to position according to **other positional argument**. It does
-
   not define position in the argument list as a whole.
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** You can optionally leave off the `index` method, and the index will be
-
   assigned in order of evaluation. Utilizing the `index` method allows for setting
-
   indexes out of order
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** This is only meant to be used for positional arguments and shouldn't to be used
-
   with `Arg::short` or `Arg::long`.
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** When utilized with `Arg::num_args(1..)`, only the **last** positional argument
-
   may be defined as having a variable number of arguments (i.e. with the highest index)
-
   
-
   </div>
-
   
-
   # Panics
-
   
-
-  [`Command`](../index.md) will [`panic!`](../../miette/panic/index.md) if indexes are skipped (such as defining `index(1)` and `index(3)`
-
+  [`Command`](command/index.md) will `panic!` if indexes are skipped (such as defining `index(1)` and `index(3)`
   but not `index(2)`, or a positional argument is defined as multiple and is not the highest
-
   index (debug builds)
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   Arg::new("config")
-
       .index(1)
-
   ;
-
   ```
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
       .arg(Arg::new("mode")
-
           .index(1))
-
       .arg(Arg::new("debug")
-
           .long("debug")
-
           .action(ArgAction::SetTrue))
-
       .get_matches_from(vec![
-
           "prog", "--debug", "fast"
-
       ]);
-
   
-
   assert!(m.contains_id("mode"));
-
   assert_eq!(m.get_one::<String>("mode").unwrap(), "fast"); // notice index(1) means "first positional"
-
                                                             // *not* first argument
-
   ```
-
   
-
   
-
   
 
 - <span id="arg-trailing-var-arg"></span>`fn trailing_var_arg(self, yes: bool) -> Self`
 
   This is a "var arg" and everything that follows should be captured by it, as if the user had
-
   used a `--`.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** To start the trailing "var arg" on unknown flags (and not just a positional
-
   value), set `allow_hyphen_values`.  Either way, users still
-
   have the option to explicitly escape ambiguous arguments with `--`.
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** `Arg::value_delimiter` still applies if set.
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** Setting this requires `Arg::num_args(..)`.
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, arg};
-
   let m = Command::new("myprog")
-
       .arg(arg!(<cmd> ... "commands to run").trailing_var_arg(true))
-
       .get_matches_from(vec!["myprog", "arg1", "-r", "val1"]);
-
   
-
   let trail: Vec<_> = m.get_many::<String>("cmd").unwrap().collect();
-
   assert_eq!(trail, ["arg1", "-r", "val1"]);
-
   ```
 
 - <span id="arg-last"></span>`fn last(self, yes: bool) -> Self`
 
   This arg is the last, or final, positional argument (i.e. has the highest
-
   index) and is *only* able to be accessed via the `--` syntax (i.e. `$ prog args --
-
   last_arg`).
-
   
-
   Even, if no other arguments are left to parse, if the user omits the `--` syntax
-
   they will receive an [`UnknownArgument`](../index.md) error. Setting an argument to `.last(true)` also
-
   allows one to access this arg early using the `--` syntax. Accessing an arg early, even with
-
   the `--` syntax is otherwise not possible.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** This will change the usage string to look like `$ prog [OPTIONS] [-- <ARG>]` if
-
   `ARG` is marked as `.last(true)`.
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
-  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](../index.md#dont-collapse-args-in-usage) because failing
-
+  **NOTE:** This setting will imply [`crate::Command::dont_collapse_args_in_usage`](command/index.md#dont-collapse-args-in-usage) because failing
   to set this can make the usage string very confusing.
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE**: This setting only applies to positional arguments, and has no effect on OPTIONS
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** Setting this requires `taking values`
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **WARNING:** Using this setting *and* having child subcommands is not
-
   recommended with the exception of *also* using
-
-  [`crate::Command::args_conflicts_with_subcommands`](../index.md#args-conflicts-with-subcommands)
-
-  (or [`crate::Command::subcommand_negates_reqs`](../index.md#subcommand-negates-reqs) if the argument marked `Last` is also
-
+  [`crate::Command::args_conflicts_with_subcommands`](command/index.md#args-conflicts-with-subcommands)
+  (or [`crate::Command::subcommand_negates_reqs`](command/index.md#subcommand-negates-reqs) if the argument marked `Last` is also
   marked `Arg::required`)
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Arg, ArgAction};
-
   Arg::new("args")
-
       .action(ArgAction::Set)
-
       .last(true)
-
   ;
-
   ```
-
   
-
   Setting `last` ensures the arg has the highest [`index`](../../gimli/read/index/index.md) of all positional args
-
   and requires that the `--` syntax be used to access it early.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let res = Command::new("prog")
-
       .arg(Arg::new("first"))
-
       .arg(Arg::new("second"))
-
       .arg(Arg::new("third")
-
           .action(ArgAction::Set)
-
           .last(true))
-
       .try_get_matches_from(vec![
-
           "prog", "one", "--", "three"
-
       ]);
-
   
-
   assert!(res.is_ok());
-
   let m = res.unwrap();
-
   assert_eq!(m.get_one::<String>("third").unwrap(), "three");
-
   assert_eq!(m.get_one::<String>("second"), None);
-
   ```
-
   
-
   Even if the positional argument marked `Last` is the only argument left to parse,
-
   failing to use the `--` syntax results in an error.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, error::ErrorKind, ArgAction};
-
   let res = Command::new("prog")
-
       .arg(Arg::new("first"))
-
       .arg(Arg::new("second"))
-
       .arg(Arg::new("third")
-
           .action(ArgAction::Set)
-
           .last(true))
-
       .try_get_matches_from(vec![
-
           "prog", "one", "two", "three"
-
       ]);
-
   
-
   assert!(res.is_err());
-
   assert_eq!(res.unwrap_err().kind(), ErrorKind::UnknownArgument);
-
   ```
-
   
 
 - <span id="arg-required"></span>`fn required(self, yes: bool) -> Self`
 
   Specifies that the argument must be present.
-
   
-
   Required by default means it is required, when no other conflicting rules or overrides have
-
   been evaluated. Conflicting rules take precedence over being required.
-
   
-
   **Pro tip:** Flags (i.e. not positional, or arguments that take values) shouldn't be
-
   required by default. This is because if a flag were to be required, it should simply be
-
   implied. No additional information is required from user. Flags by their very nature are
-
   simply boolean on/off switches. The only time a user *should* be required to use a flag
-
   is if the operation is destructive in nature, and the user is essentially proving to you,
-
   "Yes, I know what I'm doing."
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Arg;
-
   Arg::new("config")
-
       .required(true)
-
   ;
-
   ```
-
   
-
   Setting required requires that the argument be used at runtime.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let res = Command::new("prog")
-
       .arg(Arg::new("cfg")
-
           .required(true)
-
           .action(ArgAction::Set)
-
           .long("config"))
-
       .try_get_matches_from(vec![
-
           "prog", "--config", "file.conf",
-
       ]);
-
   
-
   assert!(res.is_ok());
-
   ```
-
   
-
   Setting required and then *not* supplying that argument at runtime is an error.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, error::ErrorKind, ArgAction};
-
   let res = Command::new("prog")
-
       .arg(Arg::new("cfg")
-
           .required(true)
-
           .action(ArgAction::Set)
-
           .long("config"))
-
       .try_get_matches_from(vec![
-
           "prog"
-
       ]);
-
   
-
   assert!(res.is_err());
-
   assert_eq!(res.unwrap_err().kind(), ErrorKind::MissingRequiredArgument);
-
   ```
 
 - <span id="arg-requires"></span>`fn requires(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable), [`Id`](../util/id/index.md#id)
 
   Sets an argument that is required when this one is present
-
   
-
   i.e. when using this argument, the following argument *must* be present.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** [Conflicting] rules and [override] rules take precedence over being required
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Arg;
-
   Arg::new("config")
-
       .requires("input")
-
   ;
-
   ```
-
   
-
   Setting `Arg::requires(name)` requires that the argument be used at runtime if the
-
   defining argument is used. If the defining argument isn't used, the other argument isn't
-
   required
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let res = Command::new("prog")
-
       .arg(Arg::new("cfg")
-
           .action(ArgAction::Set)
-
           .requires("input")
-
           .long("config"))
-
       .arg(Arg::new("input"))
-
       .try_get_matches_from(vec![
-
           "prog"
-
       ]);
-
   
-
   assert!(res.is_ok()); // We didn't use cfg, so input wasn't required
-
   ```
-
   
-
   Setting `Arg::requires(name)` and *not* supplying that argument is an error.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, error::ErrorKind, ArgAction};
-
   let res = Command::new("prog")
-
       .arg(Arg::new("cfg")
-
           .action(ArgAction::Set)
-
           .requires("input")
-
           .long("config"))
-
       .arg(Arg::new("input"))
-
       .try_get_matches_from(vec![
-
           "prog", "--config", "file.conf"
-
       ]);
-
   
-
   assert!(res.is_err());
-
   assert_eq!(res.unwrap_err().kind(), ErrorKind::MissingRequiredArgument);
-
   ```
-
   
-
   
 
 - <span id="arg-exclusive"></span>`fn exclusive(self, yes: bool) -> Self`
 
   This argument must be passed alone; it conflicts with all other arguments.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Arg;
-
   Arg::new("config")
-
       .exclusive(true)
-
   ;
-
   ```
-
   
-
   Setting an exclusive argument and having any other arguments present at runtime
-
   is an error.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, error::ErrorKind, ArgAction};
-
   let res = Command::new("prog")
-
       .arg(Arg::new("exclusive")
-
           .action(ArgAction::Set)
-
           .exclusive(true)
-
           .long("exclusive"))
-
       .arg(Arg::new("debug")
-
           .long("debug"))
-
       .arg(Arg::new("input"))
-
       .try_get_matches_from(vec![
-
           "prog", "--exclusive", "file.conf", "file.txt"
-
       ]);
-
   
-
   assert!(res.is_err());
-
   assert_eq!(res.unwrap_err().kind(), ErrorKind::ArgumentConflict);
-
   ```
 
 - <span id="arg-global"></span>`fn global(self, yes: bool) -> Self`
 
   Specifies that an argument can be matched to all child [`Subcommand`](../derive/index.md)s.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** Global arguments *only* propagate down, **not** up (to parent commands), however
-
   their values once a user uses them will be propagated back up to parents. In effect, this
-
   means one should *define* all global arguments at the top level, however it doesn't matter
-
   where the user *uses* the global argument.
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   Assume an application with two subcommands, and you'd like to define a
-
   `--verbose` flag that can be called on any of the subcommands and parent, but you don't
-
   want to clutter the source with three duplicate [`Arg`](arg/index.md) definitions.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("prog")
-
       .arg(Arg::new("verb")
-
           .long("verbose")
-
           .short('v')
-
           .action(ArgAction::SetTrue)
-
           .global(true))
-
       .subcommand(Command::new("test"))
-
       .subcommand(Command::new("do-stuff"))
-
       .get_matches_from(vec![
-
           "prog", "do-stuff", "--verbose"
-
       ]);
-
   
-
   assert_eq!(m.subcommand_name(), Some("do-stuff"));
-
   let sub_m = m.subcommand_matches("do-stuff").unwrap();
-
   assert_eq!(sub_m.get_flag("verb"), true);
-
   ```
 
 - <span id="arg-is-set"></span>`fn is_set(&self, s: ArgSettings) -> bool` — [`ArgSettings`](arg_settings/index.md#argsettings)
@@ -1746,11 +1110,8 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 - <span id="arg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Arg`
@@ -1802,7 +1163,7 @@ struct ArgGroup {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
 
 Specifies a logical group of [arguments]
 
@@ -1872,703 +1233,376 @@ assert_eq!(matches
 - <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../util/id/index.md#id)
 
   Create a `ArgGroup` using a unique name.
-
   
-
   The name will be used to get values from the group or refer to the group inside of conflict
-
   and requirement rules.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, ArgGroup};
-
   ArgGroup::new("config")
-
   ;
-
   ```
 
 - <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../util/id/index.md#id)
 
   Sets the group name.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, ArgGroup};
-
   ArgGroup::default().id("config")
-
   ;
-
   ```
 
 - <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable), [`Id`](../util/id/index.md#id)
 
   Adds an [argument] to this group by name
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgGroup, ArgAction};
-
   let m = Command::new("myprog")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("color")
-
           .short('c')
-
           .action(ArgAction::SetTrue))
-
       .group(ArgGroup::new("req_flags")
-
           .arg("flag")
-
           .arg("color"))
-
       .get_matches_from(vec!["myprog", "-f"]);
-
   // maybe we don't know which of the two flags was used...
-
   assert!(m.contains_id("req_flags"));
-
   // but we can also check individually if needed
-
   assert!(m.contains_id("flag"));
-
   ```
 
 - <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../util/id/index.md#id)
 
   Adds multiple [arguments] to this group by name
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgGroup, ArgAction};
-
   let m = Command::new("myprog")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("color")
-
           .short('c')
-
           .action(ArgAction::SetTrue))
-
       .group(ArgGroup::new("req_flags")
-
           .args(["flag", "color"]))
-
       .get_matches_from(vec!["myprog", "-f"]);
-
   // maybe we don't know which of the two flags was used...
-
   assert!(m.contains_id("req_flags"));
-
   // but we can also check individually if needed
-
   assert!(m.contains_id("flag"));
-
   ```
 
 - <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](../util/id/index.md#id)
 
   Getters for all args. It will return a vector of `Id`
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{ArgGroup};
-
   let args: Vec<&str> = vec!["a1".into(), "a4".into()];
-
   let grp = ArgGroup::new("program").args(&args);
-
   
-
   for (pos, arg) in grp.get_args().enumerate() {
-
       assert_eq!(*arg, args[pos]);
-
   }
-
   ```
 
 - <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
 
-  Allows more than one of the [`Arg`](../index.md)s in this group to be used. (Default: `false`)
-
+  Allows more than one of the [`Arg`](arg/index.md)s in this group to be used. (Default: `false`)
   
-
   # Examples
-
   
-
   Notice in this example we use *both* the `-f` and `-c` flags which are both part of the
-
   group
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgGroup, ArgAction};
-
   let m = Command::new("myprog")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("color")
-
           .short('c')
-
           .action(ArgAction::SetTrue))
-
       .group(ArgGroup::new("req_flags")
-
           .args(["flag", "color"])
-
           .multiple(true))
-
       .get_matches_from(vec!["myprog", "-f", "-c"]);
-
   // maybe we don't know which of the two flags was used...
-
   assert!(m.contains_id("req_flags"));
-
   ```
-
   In this next example, we show the default behavior (i.e. `multiple(false)`) which will throw
-
   an error if more than one of the args in the group was used.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgGroup, error::ErrorKind, ArgAction};
-
   let result = Command::new("myprog")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("color")
-
           .short('c')
-
           .action(ArgAction::SetTrue))
-
       .group(ArgGroup::new("req_flags")
-
           .args(["flag", "color"]))
-
       .try_get_matches_from(vec!["myprog", "-f", "-c"]);
-
   // Because we used both args in the group it's an error
-
   assert!(result.is_err());
-
   let err = result.unwrap_err();
-
   assert_eq!(err.kind(), ErrorKind::ArgumentConflict);
-
   ```
 
 - <span id="arggroup-is-multiple"></span>`fn is_multiple(&mut self) -> bool`
 
   Return true if the group allows more than one of the arguments
-
   in this group to be used. (Default: `false`)
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{ArgGroup};
-
   let mut group = ArgGroup::new("myprog")
-
       .args(["f", "c"])
-
       .multiple(true);
-
   
-
   assert!(group.is_multiple());
-
   ```
 
 - <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
 
   Require an argument from the group to be present when parsing.
-
   
-
   This is unless conflicting with another argument.  A required group will be displayed in
-
   the usage string of the application in the format `<arg|arg2|arg3>`.
-
   
-
   <div class="warning">
-
   
-
-  **NOTE:** This setting only applies to the current [`Command`](../index.md) / [`Subcommand`](../derive/index.md)s, and not
-
+  **NOTE:** This setting only applies to the current [`Command`](command/index.md) / [`Subcommand`](../derive/index.md)s, and not
   globally.
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** By default, `ArgGroup::multiple` is set to `false` which when combined with
-
   `ArgGroup::required(true)` states, "One and *only one* arg must be used from this group.
-
   Use of more than one arg is an error." Vice setting `ArgGroup::multiple(true)` which
-
   states, '*At least* one arg from this group must be used. Using multiple is OK."
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgGroup, error::ErrorKind, ArgAction};
-
   let result = Command::new("myprog")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("color")
-
           .short('c')
-
           .action(ArgAction::SetTrue))
-
       .group(ArgGroup::new("req_flags")
-
           .args(["flag", "color"])
-
           .required(true))
-
       .try_get_matches_from(vec!["myprog"]);
-
   // Because we didn't use any of the args in the group, it's an error
-
   assert!(result.is_err());
-
   let err = result.unwrap_err();
-
   assert_eq!(err.kind(), ErrorKind::MissingRequiredArgument);
-
   ```
-
   
-
   
 
 - <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable), [`Id`](../util/id/index.md#id)
 
   Specify an argument or group that must be present when this group is.
-
   
-
   This is not to be confused with a [required group]. Requirement rules function just like
-
   [argument requirement rules], you can name other arguments or groups that must be present
-
   when any one of the arguments from this group is used.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** The name provided may be an argument or group name
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgGroup, error::ErrorKind, ArgAction};
-
   let result = Command::new("myprog")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("color")
-
           .short('c')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("debug")
-
           .short('d')
-
           .action(ArgAction::SetTrue))
-
       .group(ArgGroup::new("req_flags")
-
           .args(["flag", "color"])
-
           .requires("debug"))
-
       .try_get_matches_from(vec!["myprog", "-c"]);
-
   // because we used an arg from the group, and the group requires "-d" to be used, it's an
-
   // error
-
   assert!(result.is_err());
-
   let err = result.unwrap_err();
-
   assert_eq!(err.kind(), ErrorKind::MissingRequiredArgument);
-
   ```
-
   
 
 - <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../util/id/index.md#id)
 
   Specify arguments or groups that must be present when this group is.
-
   
-
   This is not to be confused with a [required group]. Requirement rules function just like
-
   [argument requirement rules], you can name other arguments or groups that must be present
-
   when one of the arguments from this group is used.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** The names provided may be an argument or group name
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgGroup, error::ErrorKind, ArgAction};
-
   let result = Command::new("myprog")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("color")
-
           .short('c')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("debug")
-
           .short('d')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("verb")
-
           .short('v')
-
           .action(ArgAction::SetTrue))
-
       .group(ArgGroup::new("req_flags")
-
           .args(["flag", "color"])
-
           .requires_all(["debug", "verb"]))
-
       .try_get_matches_from(vec!["myprog", "-c", "-d"]);
-
   // because we used an arg from the group, and the group requires "-d" and "-v" to be used,
-
   // yet we only used "-d" it's an error
-
   assert!(result.is_err());
-
   let err = result.unwrap_err();
-
   assert_eq!(err.kind(), ErrorKind::MissingRequiredArgument);
-
   ```
-
   
 
 - <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable), [`Id`](../util/id/index.md#id)
 
   Specify an argument or group that must **not** be present when this group is.
-
   
-
   Exclusion (aka conflict) rules function just like [argument exclusion rules], you can name
-
   other arguments or groups that must *not* be present when one of the arguments from this
-
   group are used.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** The name provided may be an argument, or group name
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgGroup, error::ErrorKind, ArgAction};
-
   let result = Command::new("myprog")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("color")
-
           .short('c')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("debug")
-
           .short('d')
-
           .action(ArgAction::SetTrue))
-
       .group(ArgGroup::new("req_flags")
-
           .args(["flag", "color"])
-
           .conflicts_with("debug"))
-
       .try_get_matches_from(vec!["myprog", "-c", "-d"]);
-
   // because we used an arg from the group, and the group conflicts with "-d", it's an error
-
   assert!(result.is_err());
-
   let err = result.unwrap_err();
-
   assert_eq!(err.kind(), ErrorKind::ArgumentConflict);
-
   ```
 
 - <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../util/id/index.md#id)
 
   Specify arguments or groups that must **not** be present when this group is.
-
   
-
   Exclusion rules function just like [argument exclusion rules], you can name other arguments
-
   or groups that must *not* be present when one of the arguments from this group are used.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** The names provided may be an argument, or group name
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgGroup, error::ErrorKind, ArgAction};
-
   let result = Command::new("myprog")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("color")
-
           .short('c')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("debug")
-
           .short('d')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("verb")
-
           .short('v')
-
           .action(ArgAction::SetTrue))
-
       .group(ArgGroup::new("req_flags")
-
           .args(["flag", "color"])
-
           .conflicts_with_all(["debug", "verb"]))
-
       .try_get_matches_from(vec!["myprog", "-c", "-v"]);
-
   // because we used an arg from the group, and the group conflicts with either "-v" or "-d"
-
   // it's an error
-
   assert!(result.is_err());
-
   let err = result.unwrap_err();
-
   assert_eq!(err.kind(), ErrorKind::ArgumentConflict);
-
   ```
 
 #### Trait Implementations
@@ -2614,11 +1648,8 @@ assert_eq!(matches
 - <span id="arggroup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ArgGroup`
@@ -2689,7 +1720,7 @@ struct Command {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
 
 Build a command-line interface.
 
@@ -2734,79 +1765,44 @@ let m = Command::new("My Program")
 - <span id="command-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](str/index.md#str)
 
   Creates a new instance of an `Command`.
-
   
-
   It is common, but not required, to use binary name as the `name`. This
-
   name will only be displayed to the user when they request to print
-
   version or help and usage information.
-
   
-
   See also [`command!`](crate::command!) and [`crate_name!`](crate::crate_name!).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   Command::new("My Program")
-
   ;
-
   ```
 
 - <span id="command-arg"></span>`fn arg(self, a: impl Into<Arg>) -> Self` — [`Arg`](arg/index.md#arg)
 
   Adds an [argument] to the list of valid possibilities.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, arg, Arg};
-
   Command::new("myprog")
-
       // Adding a single "flag" argument with a short and help text, using Arg::new()
-
       .arg(
-
           Arg::new("debug")
-
              .short('d')
-
              .help("turns on debugging mode")
-
       )
-
       // Adding a single "option" argument with a short, a long, and help text using the less
-
       // verbose Arg::from()
-
       .arg(
-
           arg!(-c --config <CONFIG> "Optionally sets a config file to use")
-
       )
-
   ;
-
   ```
 
 - <span id="command-arg-internal"></span>`fn arg_internal(&mut self, arg: Arg)` — [`Arg`](arg/index.md#arg)
@@ -2814,493 +1810,265 @@ let m = Command::new("My Program")
 - <span id="command-args"></span>`fn args(self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](arg/index.md#arg)
 
   Adds multiple [arguments] to the list of valid possibilities.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, arg, Arg};
-
   Command::new("myprog")
-
       .args([
-
           arg!(-d --debug "turns on debugging info"),
-
           Arg::new("input").help("the input file to use")
-
       ])
-
   ;
-
   ```
 
 - <span id="command-mut-arg"></span>`fn mut_arg<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
   Allows one to mutate an [`Arg`](arg/index.md) after it's been added to a [`Command`](command/index.md).
-
   
-
   # Panics
-
   
-
   If the argument is undefined
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   
-
   let mut cmd = Command::new("foo")
-
       .arg(Arg::new("bar")
-
           .short('b')
-
           .action(ArgAction::SetTrue))
-
       .mut_arg("bar", |a| a.short('B'));
-
   
-
   let res = cmd.try_get_matches_from_mut(vec!["foo", "-b"]);
-
   
-
   // Since we changed `bar`'s short to "B" this should err as there
-
   // is no `-b` anymore, only `-B`
-
   
-
   assert!(res.is_err());
-
   
-
   let res = cmd.try_get_matches_from_mut(vec!["foo", "-B"]);
-
   assert!(res.is_ok());
-
   ```
 
 - <span id="command-mut-args"></span>`fn mut_args<F>(self, f: F) -> Self`
 
   Allows one to mutate all [`Arg`](arg/index.md)s after they've been added to a [`Command`](command/index.md).
-
   
-
   This does not affect the built-in `--help` or `--version` arguments.
-
   
-
   # Examples
-
   
-
   ```ignore
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   
-
   let mut cmd = Command::new("foo")
-
       .arg(Arg::new("bar")
-
           .long("bar")
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("baz")
-
           .long("baz")
-
           .action(ArgAction::SetTrue))
-
       .mut_args(|a| {
-
           if let Some(l) = a.get_long().map(|l| format!("prefix-{l}")) {
-
               a.long(l)
-
           } else {
-
               a
-
           }
-
       });
-
   
-
   let res = cmd.try_get_matches_from_mut(vec!["foo", "--bar"]);
-
   
-
   // Since we changed `bar`'s long to "prefix-bar" this should err as there
-
   // is no `--bar` anymore, only `--prefix-bar`.
-
   
-
   assert!(res.is_err());
-
   
-
   let res = cmd.try_get_matches_from_mut(vec!["foo", "--prefix-bar"]);
-
   assert!(res.is_ok());
-
   ```
 
 - <span id="command-mut-group"></span>`fn mut_group<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
   Allows one to mutate an [`ArgGroup`](arg_group/index.md) after it's been added to a [`Command`](command/index.md).
-
   
-
   # Panics
-
   
-
   If the argument is undefined
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, arg, ArgGroup};
-
   
-
   Command::new("foo")
-
       .arg(arg!(--"set-ver" <ver> "set the version manually").required(false))
-
       .arg(arg!(--major "auto increase major"))
-
       .arg(arg!(--minor "auto increase minor"))
-
       .arg(arg!(--patch "auto increase patch"))
-
       .group(ArgGroup::new("vers")
-
            .args(["set-ver", "major", "minor","patch"])
-
            .required(true))
-
       .mut_group("vers", |a| a.required(false));
-
   ```
 
 - <span id="command-mut-subcommand"></span>`fn mut_subcommand<F>(self, name: impl AsRef<str>, f: F) -> Self`
 
   Allows one to mutate a [`Command`](command/index.md) after it's been added as a subcommand.
-
   
-
   This can be useful for modifying auto-generated arguments of nested subcommands with
-
   `Command::mut_arg`.
-
   
-
   # Panics
-
   
-
   If the subcommand is undefined
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   
-
   let mut cmd = Command::new("foo")
-
           .subcommand(Command::new("bar"))
-
           .mut_subcommand("bar", |subcmd| subcmd.disable_help_flag(true));
-
   
-
   let res = cmd.try_get_matches_from_mut(vec!["foo", "bar", "--help"]);
-
   
-
   // Since we disabled the help flag on the "bar" subcommand, this should err.
-
   
-
   assert!(res.is_err());
-
   
-
   let res = cmd.try_get_matches_from_mut(vec!["foo", "bar"]);
-
   assert!(res.is_ok());
-
   ```
 
 - <span id="command-mut-subcommands"></span>`fn mut_subcommands<F>(self, f: F) -> Self`
 
   Allows one to mutate all [`Command`](command/index.md)s after they've been added as subcommands.
-
   
-
   This does not affect the built-in `--help` or `--version` arguments.
-
   
-
   # Examples
-
   
-
   ```ignore
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   
-
   let mut cmd = Command::new("foo")
-
       .subcommands([
-
           Command::new("fetch"),
-
           Command::new("push"),
-
       ])
-
       // Allow title-case subcommands
-
       .mut_subcommands(|sub| {
-
           let name = sub.get_name();
-
           let alias = name.chars().enumerate().map(|(i, c)| {
-
               if i == 0 {
-
                   c.to_ascii_uppercase()
-
               } else {
-
                   c
-
               }
-
           }).collect::<String>();
-
           sub.alias(alias)
-
       });
-
   
-
   let res = cmd.try_get_matches_from_mut(vec!["foo", "fetch"]);
-
   assert!(res.is_ok());
-
   
-
   let res = cmd.try_get_matches_from_mut(vec!["foo", "Fetch"]);
-
   assert!(res.is_ok());
-
   ```
 
 - <span id="command-group"></span>`fn group(self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](arg_group/index.md#arggroup)
 
   Adds an [`ArgGroup`](arg_group/index.md) to the application.
-
   
-
   [`ArgGroup`](arg_group/index.md)s are a family of related arguments.
-
   By placing them in a logical group, you can build easier requirement and exclusion rules.
-
   
-
   Example use cases:
-
   - Make an entire [`ArgGroup`](arg_group/index.md) required, meaning that one (and *only*
-
     one) argument from that group must be present at runtime.
-
   - Name an [`ArgGroup`](arg_group/index.md) as a conflict to another argument.
-
     Meaning any of the arguments that belong to that group will cause a failure if present with
-
     the conflicting argument.
-
   - Ensure exclusion between arguments.
-
   - Extract a value from a group instead of determining exactly which argument was used.
-
   
-
   # Examples
-
   
-
   The following example demonstrates using an [`ArgGroup`](arg_group/index.md) to ensure that one, and only one,
-
   of the arguments from the specified group is present at runtime.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, arg, ArgGroup};
-
   Command::new("cmd")
-
       .arg(arg!(--"set-ver" <ver> "set the version manually").required(false))
-
       .arg(arg!(--major "auto increase major"))
-
       .arg(arg!(--minor "auto increase minor"))
-
       .arg(arg!(--patch "auto increase patch"))
-
       .group(ArgGroup::new("vers")
-
            .args(["set-ver", "major", "minor","patch"])
-
            .required(true))
-
   ;
-
   ```
 
 - <span id="command-groups"></span>`fn groups(self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](arg_group/index.md#arggroup)
 
   Adds multiple [`ArgGroup`](arg_group/index.md)s to the [`Command`](command/index.md) at once.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, arg, ArgGroup};
-
   Command::new("cmd")
-
       .arg(arg!(--"set-ver" <ver> "set the version manually").required(false))
-
       .arg(arg!(--major         "auto increase major"))
-
       .arg(arg!(--minor         "auto increase minor"))
-
       .arg(arg!(--patch         "auto increase patch"))
-
       .arg(arg!(-c <FILE>       "a config file").required(false))
-
       .arg(arg!(-i <IFACE>      "an interface").required(false))
-
       .groups([
-
           ArgGroup::new("vers")
-
               .args(["set-ver", "major", "minor","patch"])
-
               .required(true),
-
           ArgGroup::new("input")
-
               .args(["c", "i"])
-
       ])
-
   ;
-
   ```
 
 - <span id="command-subcommand"></span>`fn subcommand(self, subcmd: impl Into<Command>) -> Self` — [`Command`](command/index.md#command)
 
   Adds a subcommand to the list of valid possibilities.
-
   
-
   Subcommands are effectively sub-[`Command`](command/index.md)s, because they can contain their own arguments,
-
   subcommands, version, usage, etc. They also function just like [`Command`](command/index.md)s, in that they get
-
   their own auto generated help, version, and usage.
-
   
-
   A subcommand's `Command::name` will be used for:
-
   - The argument the user passes in
-
   - Programmatically looking up the subcommand
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, arg};
-
   Command::new("myprog")
-
       .subcommand(Command::new("config")
-
           .about("Controls configuration features")
-
           .arg(arg!(<config> "Required configuration file to use")))
-
   ;
-
   ```
 
 - <span id="command-subcommand-internal"></span>`fn subcommand_internal(self, subcmd: Self) -> Self`
@@ -3308,833 +2076,451 @@ let m = Command::new("My Program")
 - <span id="command-subcommands"></span>`fn subcommands(self, subcmds: impl IntoIterator<Item = impl Into<Self>>) -> Self`
 
   Adds multiple subcommands to the list of valid possibilities.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, };
-
   Command::new("myprog")
-
   .subcommands( [
-
          Command::new("config").about("Controls configuration functionality")
-
                                   .arg(Arg::new("config_file")),
-
          Command::new("debug").about("Controls debug functionality")])
-
   ;
-
   ```
 
 - <span id="command-defer"></span>`fn defer(self, deferred: fn(Command) -> Command) -> Self` — [`Command`](command/index.md#command)
 
   Delay initialization for parts of the `Command`
-
   
-
   This is useful for large applications to delay definitions of subcommands until they are
-
   being invoked.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, arg};
-
   Command::new("myprog")
-
       .subcommand(Command::new("config")
-
           .about("Controls configuration features")
-
           .defer(|cmd| {
-
               cmd.arg(arg!(<config> "Required configuration file to use"))
-
           })
-
       )
-
   ;
-
   ```
 
 - <span id="command-debug-assert"></span>`fn debug_assert(self)`
 
   Catch problems earlier in the development cycle.
-
   
-
   Most error states are handled as asserts under the assumption they are programming mistake
-
   and not something to handle at runtime.  Rather than relying on tests (manual or automated)
-
   that exhaustively test your CLI to ensure the asserts are evaluated, this will run those
-
   asserts in a way convenient for running as a test.
-
   
-
   **Note:** This will not help with asserts in [`ArgMatches`](../parser/matches/arg_matches/index.md), those will need exhaustive
-
   testing of your CLI.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   fn cmd() -> Command {
-
       Command::new("foo")
-
           .arg(
-
               Arg::new("bar").short('b').action(ArgAction::SetTrue)
-
           )
-
   }
-
   
-
   #[test]
-
   fn verify_app() {
-
       cmd().debug_assert();
-
   }
-
   
-
   fn main() {
-
       let m = cmd().get_matches_from(vec!["foo", "-b"]);
-
       println!("{}", m.get_flag("bar"));
-
   }
-
   ```
 
 - <span id="command-error"></span>`fn error(&mut self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](../error/kind/index.md#errorkind), [`Error`](../index.md#error)
 
   Custom error message for post-parsing validation
-
   
-
   **Note:** this will ensure the `Command` has been sufficiently `built` for any
-
   relevant context, including usage.
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, error::ErrorKind};
-
   let mut cmd = Command::new("myprog");
-
   let err = cmd.error(ErrorKind::InvalidValue, "Some failure case");
-
   ```
 
 - <span id="command-get-matches"></span>`fn get_matches(self) -> ArgMatches` — [`ArgMatches`](../parser/matches/arg_matches/index.md#argmatches)
 
   Parse `env::args_os`, `exiting` on failure.
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```no_run
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   let matches = Command::new("myprog")
-
       // Args and options go here...
-
       .get_matches();
-
   ```
-
   
 
 - <span id="command-get-matches-mut"></span>`fn get_matches_mut(&mut self) -> ArgMatches` — [`ArgMatches`](../parser/matches/arg_matches/index.md#argmatches)
 
   Parse `env::args_os`, `exiting` on failure.
-
   
-
   Like `Command::get_matches` but doesn't consume the `Command`.
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```no_run
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   let mut cmd = Command::new("myprog")
-
       // Args and options go here...
-
       ;
-
   let matches = cmd.get_matches_mut();
-
   ```
-
   
 
 - <span id="command-try-get-matches"></span>`fn try_get_matches(self) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md#result), [`ArgMatches`](../parser/matches/arg_matches/index.md#argmatches)
 
   Parse `env::args_os`, returning a `clap::Result` on failure.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** This method WILL NOT exit when `--help` or `--version` (or short versions) are
-
   used. It will return a `clap::Error`, where the [`kind`](../error/kind/index.md) is a
-
   `ErrorKind::DisplayHelp` or `ErrorKind::DisplayVersion` respectively. You must call
-
   `Error::exit` or perform a `std::process::exit`.
-
   
-
   </div>
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```no_run
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   let matches = Command::new("myprog")
-
       // Args and options go here...
-
       .try_get_matches()
-
       .unwrap_or_else(|e| e.exit());
-
   ```
-
   
-
   
-
   
-
   
-
   
-
   
-
   
 
 - <span id="command-get-matches-from"></span>`fn get_matches_from<I, T>(self, itr: I) -> ArgMatches` — [`ArgMatches`](../parser/matches/arg_matches/index.md#argmatches)
 
   Parse the specified arguments, `exiting` on failure.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** The first argument will be parsed as the binary name unless
-
   `Command::no_binary_name` is used.
-
   
-
   </div>
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```no_run
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   let arg_vec = vec!["my_prog", "some", "args", "to", "parse"];
-
   
-
   let matches = Command::new("myprog")
-
       // Args and options go here...
-
       .get_matches_from(arg_vec);
-
   ```
-
   
-
   
 
 - <span id="command-try-get-matches-from"></span>`fn try_get_matches_from<I, T>(self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md#result), [`ArgMatches`](../parser/matches/arg_matches/index.md#argmatches)
 
   Parse the specified arguments, returning a `clap::Result` on failure.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** This method WILL NOT exit when `--help` or `--version` (or short versions) are
-
   used. It will return a `clap::Error`, where the [`kind`](../error/kind/index.md) is a `ErrorKind::DisplayHelp`
-
   or `ErrorKind::DisplayVersion` respectively. You must call `Error::exit` or
-
   perform a `std::process::exit` yourself.
-
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** The first argument will be parsed as the binary name unless
-
   `Command::no_binary_name` is used.
-
   
-
   </div>
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```no_run
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   let arg_vec = vec!["my_prog", "some", "args", "to", "parse"];
-
   
-
   let matches = Command::new("myprog")
-
       // Args and options go here...
-
       .try_get_matches_from(arg_vec)
-
       .unwrap_or_else(|e| e.exit());
-
   ```
-
   
-
   
-
   
-
   
-
   
-
   
-
   
-
   
-
   
 
 - <span id="command-try-get-matches-from-mut"></span>`fn try_get_matches_from_mut<I, T>(&mut self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md#result), [`ArgMatches`](../parser/matches/arg_matches/index.md#argmatches)
 
   Parse the specified arguments, returning a `clap::Result` on failure.
-
   
-
   Like `Command::try_get_matches_from` but doesn't consume the `Command`.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** This method WILL NOT exit when `--help` or `--version` (or short versions) are
-
   used. It will return a `clap::Error`, where the [`kind`](../error/kind/index.md) is a [`ErrorKind::DisplayHelp`](../index.md)
-
   or [`ErrorKind::DisplayVersion`](../index.md) respectively. You must call `Error::exit` or
-
-  perform a [`std::process::exit`](../../libc/index.md) yourself.
-
+  perform a `std::process::exit` yourself.
   
-
   </div>
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** The first argument will be parsed as the binary name unless
-
   `Command::no_binary_name` is used.
-
   
-
   </div>
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```no_run
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   let arg_vec = vec!["my_prog", "some", "args", "to", "parse"];
-
   
-
   let mut cmd = Command::new("myprog");
-
       // Args and options go here...
-
   let matches = cmd.try_get_matches_from_mut(arg_vec)
-
       .unwrap_or_else(|e| e.exit());
-
   ```
-
   
-
   
-
   
 
 - <span id="command-print-help"></span>`fn print_help(&mut self) -> io::Result<()>`
 
   Prints the short help message (`-h`) to `io::stdout()`.
-
   
-
   See also `Command::print_long_help`.
-
   
-
   **Note:** this will ensure the `Command` has been sufficiently `built`.
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   let mut cmd = Command::new("myprog");
-
   cmd.print_help();
-
   ```
 
 - <span id="command-print-long-help"></span>`fn print_long_help(&mut self) -> io::Result<()>`
 
   Prints the long help message (`--help`) to `io::stdout()`.
-
   
-
   See also `Command::print_help`.
-
   
-
   **Note:** this will ensure the `Command` has been sufficiently `built`.
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   let mut cmd = Command::new("myprog");
-
   cmd.print_long_help();
-
   ```
-
   
-
   
-
   
 
 - <span id="command-render-help"></span>`fn render_help(&mut self) -> StyledStr` — [`StyledStr`](styled_str/index.md#styledstr)
 
   Render the short help message (`-h`) to a [`StyledStr`](styled_str/index.md)
-
   
-
   See also `Command::render_long_help`.
-
   
-
   **Note:** this will ensure the `Command` has been sufficiently `built`.
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   use std::io;
-
   let mut cmd = Command::new("myprog");
-
   let mut out = io::stdout();
-
   let help = cmd.render_help();
-
   println!("{help}");
-
   ```
-
   
-
   
 
 - <span id="command-render-long-help"></span>`fn render_long_help(&mut self) -> StyledStr` — [`StyledStr`](styled_str/index.md#styledstr)
 
   Render the long help message (`--help`) to a [`StyledStr`](styled_str/index.md).
-
   
-
   See also `Command::render_help`.
-
   
-
   **Note:** this will ensure the `Command` has been sufficiently `built`.
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   use std::io;
-
   let mut cmd = Command::new("myprog");
-
   let mut out = io::stdout();
-
   let help = cmd.render_long_help();
-
   println!("{help}");
-
   ```
-
   
-
   
 
 - <span id="command-render-version"></span>`fn render_version(&self) -> String`
 
   Version message rendered as if the user ran `-V`.
-
   
-
   See also `Command::render_long_version`.
-
   
-
   ### Coloring
-
   
-
   This function does not try to color the message nor it inserts any [ANSI escape codes].
-
   
-
   ### Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   use std::io;
-
   let cmd = Command::new("myprog");
-
   println!("{}", cmd.render_version());
-
   ```
-
   
-
   
-
   
 
 - <span id="command-render-long-version"></span>`fn render_long_version(&self) -> String`
 
   Version message rendered as if the user ran `--version`.
-
   
-
   See also `Command::render_version`.
-
   
-
   ### Coloring
-
   
-
   This function does not try to color the message nor it inserts any [ANSI escape codes].
-
   
-
   ### Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   use std::io;
-
   let cmd = Command::new("myprog");
-
   println!("{}", cmd.render_long_version());
-
   ```
-
   
-
   
-
   
 
 - <span id="command-render-usage"></span>`fn render_usage(&mut self) -> StyledStr` — [`StyledStr`](styled_str/index.md#styledstr)
 
   Usage statement
-
   
-
   **Note:** this will ensure the `Command` has been sufficiently `built`.
-
   
-
   # Panics
-
   
-
   If contradictory arguments or settings exist (debug builds).
-
   
-
   ### Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   use std::io;
-
   let mut cmd = Command::new("myprog");
-
   println!("{}", cmd.render_usage());
-
   ```
 
 - <span id="command-render-usage"></span>`fn render_usage_(&mut self) -> Option<StyledStr>` — [`StyledStr`](styled_str/index.md#styledstr)
@@ -4190,11 +2576,8 @@ let m = Command::new("My Program")
 - <span id="command-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Command`
@@ -4229,7 +2612,7 @@ struct OsStr {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
+*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
 
 A UTF-8-encoded fixed string
 
@@ -4309,11 +2692,8 @@ feature
 - <span id="osstr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for OsStr`
@@ -4369,7 +2749,7 @@ struct PossibleValue {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
+*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
 
 A possible value of an argument.
 
@@ -4409,153 +2789,87 @@ let cfg = Arg::new("config")
 - <span id="possiblevalue-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](str/index.md#str)
 
   Create a [`PossibleValue`](possible_value/index.md) with its name.
-
   
-
   The name will be used to decide whether this value was provided by the user to an argument.
-
   
-
   <div class="warning">
-
   
-
   **NOTE:** In case it is not [hidden] it will also be shown in help messages for arguments
-
   that use it as a [possible value] and have not hidden them through `Arg::hide_possible_values(true)`.
-
   
-
   </div>
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::builder::PossibleValue;
-
   PossibleValue::new("fast")
-
   ;
-
   ```
-
   
-
   
 
 - <span id="possiblevalue-help"></span>`fn help(self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable), [`StyledStr`](styled_str/index.md#styledstr)
 
   Sets the help description of the value.
-
   
-
   This is typically displayed in completions (where supported) and should be a short, one-line
-
   description.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::builder::PossibleValue;
-
   PossibleValue::new("slow")
-
       .help("not fast")
-
   ;
-
   ```
 
 - <span id="possiblevalue-hide"></span>`fn hide(self, yes: bool) -> Self`
 
   Hides this value from help and shell completions.
-
   
-
   This is an alternative to hiding through `Arg::hide_possible_values(true)`, if you only
-
   want to hide some values.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::builder::PossibleValue;
-
   PossibleValue::new("secret")
-
       .hide(true)
-
   ;
-
   ```
 
 - <span id="possiblevalue-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md#intoresettable), [`Str`](str/index.md#str)
 
   Sets a *hidden* alias for this argument value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::builder::PossibleValue;
-
   PossibleValue::new("slow")
-
       .alias("not-fast")
-
   ;
-
   ```
 
 - <span id="possiblevalue-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md#str)
 
   Sets multiple *hidden* aliases for this argument value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::builder::PossibleValue;
-
   PossibleValue::new("slow")
-
       .aliases(["not-fast", "snake-like"])
-
   ;
-
   ```
 
 #### Trait Implementations
@@ -4601,11 +2915,8 @@ let cfg = Arg::new("config")
 - <span id="possiblevalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for PossibleValue`
@@ -4643,7 +2954,7 @@ struct ValueRange {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
+*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
 
 Values per occurrence for an argument
 
@@ -4660,53 +2971,29 @@ Values per occurrence for an argument
 - <span id="valuerange-new"></span>`fn new(range: impl Into<Self>) -> Self`
 
   Create a range
-
   
-
   # Panics
-
   
-
   If the end is less than the start (debug builds)
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::builder::ValueRange;
-
   let range = ValueRange::new(5);
-
   let range = ValueRange::new(5..10);
-
   let range = ValueRange::new(5..=10);
-
   let range = ValueRange::new(5..);
-
   let range = ValueRange::new(..10);
-
   let range = ValueRange::new(..=10);
-
   ```
-
   
-
   While this will panic:
-
   ```should_panic
-
   use clap_builder as clap;
-
   use clap::builder::ValueRange;
-
   let range = ValueRange::new(10..5);  // Panics!
-
   ```
 
 - <span id="valuerange-raw"></span>`fn raw(start_inclusive: usize, end_inclusive: usize) -> Self`
@@ -4722,29 +3009,17 @@ Values per occurrence for an argument
 - <span id="valuerange-takes-values"></span>`fn takes_values(&self) -> bool`
 
   Report whether the argument takes any values (ie is a flag)
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::builder::ValueRange;
-
   let range = ValueRange::new(5);
-
   assert!(range.takes_values());
-
   
-
   let range = ValueRange::new(0);
-
   assert!(!range.takes_values());
-
   ```
 
 - <span id="valuerange-is-unbounded"></span>`fn is_unbounded(&self) -> bool`
@@ -4810,11 +3085,8 @@ Values per occurrence for an argument
 - <span id="valuerange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for ValueRange`
@@ -4863,7 +3135,7 @@ Values per occurrence for an argument
 struct StyledStr(String);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
+*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
 
 Terminal-styling container
 
@@ -4899,7 +3171,6 @@ let cmd = clap::Command::new("mybin")
 - <span id="styledstr-push-string"></span>`fn push_string(&mut self, msg: String)`
 
   May allow the compiler to consolidate the `Drop`s for `msg`, reducing code size compared to
-
   `styled.push_str(&msg)`
 
 - <span id="styledstr-push-str"></span>`fn push_str(&mut self, msg: &str)`
@@ -4975,11 +3246,8 @@ let cmd = clap::Command::new("mybin")
 - <span id="styledstr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for StyledStr`
@@ -5046,7 +3314,7 @@ struct Styles {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
+*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
 
 Terminal styling definitions
 
@@ -5106,17 +3374,13 @@ let styles = Styles::styled()
 - <span id="styles-context"></span>`const fn context(self, style: Style) -> Self`
 
   Highlight all specified contexts, e.g. `[default: false]`
-
   
-
   To specialize the style of the value within the context, see `Styles::context_value`
 
 - <span id="styles-context-value"></span>`const fn context_value(self, style: Style) -> Self`
 
   Highlight values within all of the context, e.g. the `false` in `[default: false]`
-
   
-
   If not explicitly set, falls back to `context`'s style.
 
 #### Trait Implementations
@@ -5162,11 +3426,8 @@ let styles = Styles::styled()
 - <span id="styles-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Styles`
@@ -5196,7 +3457,7 @@ struct BoolValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
 
 Implementation for `ValueParser::bool`
 
@@ -5253,11 +3514,8 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 - <span id="boolvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for BoolValueParser`
@@ -5299,7 +3557,7 @@ struct BoolishValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
 
 Parse bool-like string values
 
@@ -5397,11 +3655,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 - <span id="boolishvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for BoolishValueParser`
@@ -5442,7 +3697,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 struct EnumValueParser<E: crate::ValueEnum + Clone + Send + Sync + 'static>(std::marker::PhantomData<E>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
 
 Parse an `ValueEnum` value.
 
@@ -5530,11 +3785,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), Colo
 - <span id="enumvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for EnumValueParser<E>`
@@ -5576,7 +3828,7 @@ struct FalseyValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
 
 Parse false-like string values, everything else is `true`
 
@@ -5670,11 +3922,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 - <span id="falseyvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for FalseyValueParser`
@@ -5718,7 +3967,7 @@ struct MapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -5765,11 +4014,8 @@ See `TypedValueParser::map`
 - <span id="mapvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for MapValueParser<P, F>`
@@ -5813,7 +4059,7 @@ struct NonEmptyStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
 
 Parse non-empty string values
 
@@ -5899,11 +4145,8 @@ assert!(value_parser.parse_ref(&cmd, arg, OsStr::new("")).is_err());
 - <span id="nonemptystringvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for NonEmptyStringValueParser`
@@ -5943,7 +4186,7 @@ struct OsStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
 
 Implementation for `ValueParser::os_string`
 
@@ -5998,11 +4241,8 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 - <span id="osstringvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for OsStringValueParser`
@@ -6044,7 +4284,7 @@ struct PathBufValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
 
 Implementation for `ValueParser::path_buf`
 
@@ -6099,11 +4339,8 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 - <span id="pathbufvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for PathBufValueParser`
@@ -6144,7 +4381,7 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 struct PossibleValuesParser(Vec<super::PossibleValue>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
 
 Verify the value is from an enumerated set of `PossibleValue`.
 
@@ -6229,11 +4466,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), "nev
 - <span id="possiblevaluesparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for PossibleValuesParser`
@@ -6279,7 +4513,7 @@ struct RangedI64ValueParser<T: TryFrom<i64> + Clone + Send + Sync> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
 
 Parse number that fall within a range of values
 
@@ -6383,11 +4617,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 - <span id="rangedi64valueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for RangedI64ValueParser<T>`
@@ -6429,7 +4660,7 @@ struct RangedU64ValueParser<T: TryFrom<u64>> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
 
 Parse number that fall within a range of values
 
@@ -6525,11 +4756,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 - <span id="rangedu64valueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for RangedU64ValueParser<T>`
@@ -6569,7 +4797,7 @@ struct StringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
 
 Implementation for `ValueParser::string`
 
@@ -6624,11 +4852,8 @@ Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 - <span id="stringvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for StringValueParser`
@@ -6672,7 +4897,7 @@ struct TryMapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -6719,11 +4944,8 @@ See `TypedValueParser::try_map`
 - <span id="trymapvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for TryMapValueParser<P, F>`
@@ -6767,7 +4989,7 @@ struct UnknownArgumentValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
 
 When encountered, report `ErrorKind::UnknownArgument`
 
@@ -6854,11 +5076,8 @@ assert_eq!(err.kind(), clap::error::ErrorKind::UnknownArgument);
 - <span id="unknownargumentvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for UnknownArgumentValueParser`
@@ -6899,7 +5118,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::UnknownArgument);
 struct ValueParser(ValueParserInner);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
 
 Parse/validate argument values
 
@@ -6960,269 +5179,145 @@ assert_eq!(port, 3001);
 - <span id="valueparser-new"></span>`fn new<P>(other: P) -> Self`
 
   Custom parser for argument values
-
   
-
   Pre-existing [`TypedValueParser`](value_parser/index.md) implementations include:
-
   - `Fn(&str) -> Result<T, E>`
-
   - [`EnumValueParser`](value_parser/index.md) and  [`PossibleValuesParser`](value_parser/index.md) for static enumerated values
-
   - [`BoolishValueParser`](value_parser/index.md) and [`FalseyValueParser`](value_parser/index.md) for alternative `bool` implementations
-
   - [`RangedI64ValueParser`](value_parser/index.md) and [`RangedU64ValueParser`](value_parser/index.md)
-
   - [`NonEmptyStringValueParser`](value_parser/index.md)
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   type EnvVar = (String, Option<String>);
-
   fn parse_env_var(env: &str) -> Result<EnvVar, std::io::Error> {
-
       if let Some((var, value)) = env.split_once('=') {
-
           Ok((var.to_owned(), Some(value.to_owned())))
-
       } else {
-
           Ok((env.to_owned(), None))
-
       }
-
   }
-
   
-
   let mut cmd = clap::Command::new("raw")
-
       .arg(
-
           clap::Arg::new("env")
-
               .value_parser(clap::builder::ValueParser::new(parse_env_var))
-
               .required(true)
-
       );
-
   
-
   let m = cmd.try_get_matches_from_mut(["cmd", "key=value"]).unwrap();
-
   let port: &EnvVar = m.get_one("env")
-
       .expect("required");
-
   assert_eq!(*port, ("key".into(), Some("value".into())));
-
   ```
 
 - <span id="valueparser-bool"></span>`const fn bool() -> Self`
 
   `bool` parser for argument values
-
   
-
   See also:
-
   - [`BoolishValueParser`](value_parser/index.md) for different human readable bool representations
-
   - [`FalseyValueParser`](value_parser/index.md) for assuming non-false is true
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   let mut cmd = clap::Command::new("raw")
-
       .arg(
-
           clap::Arg::new("download")
-
               .value_parser(clap::value_parser!(bool))
-
               .required(true)
-
       );
-
   
-
   let m = cmd.try_get_matches_from_mut(["cmd", "true"]).unwrap();
-
   let port: bool = *m.get_one("download")
-
       .expect("required");
-
   assert_eq!(port, true);
-
   
-
   assert!(cmd.try_get_matches_from_mut(["cmd", "forever"]).is_err());
-
   ```
 
 - <span id="valueparser-string"></span>`const fn string() -> Self`
 
-  [`String`](../../cargo_platform/index.md) parser for argument values
-
+  [`String`](../index.md) parser for argument values
   
-
   See also:
-
   - [`NonEmptyStringValueParser`](value_parser/index.md)
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   let mut cmd = clap::Command::new("raw")
-
       .arg(
-
           clap::Arg::new("port")
-
               .value_parser(clap::value_parser!(String))
-
               .required(true)
-
       );
-
   
-
   let m = cmd.try_get_matches_from_mut(["cmd", "80"]).unwrap();
-
   let port: &String = m.get_one("port")
-
       .expect("required");
-
   assert_eq!(port, "80");
-
   ```
 
 - <span id="valueparser-os-string"></span>`const fn os_string() -> Self`
 
   `OsString` parser for argument values
-
   
-
   # Example
-
   
-
   ```rust
-
   #[cfg(unix)] {
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, builder::ValueParser};
-
   use std::ffi::OsString;
-
   use std::os::unix::ffi::{OsStrExt,OsStringExt};
-
   let r = Command::new("myprog")
-
       .arg(
-
           Arg::new("arg")
-
           .required(true)
-
           .value_parser(ValueParser::os_string())
-
       )
-
       .try_get_matches_from(vec![
-
           OsString::from("myprog"),
-
           OsString::from_vec(vec![0xe9])
-
       ]);
-
   
-
   assert!(r.is_ok());
-
   let m = r.unwrap();
-
   let arg: &OsString = m.get_one("arg")
-
       .expect("required");
-
   assert_eq!(arg.as_bytes(), &[0xe9]);
-
   }
-
   ```
 
 - <span id="valueparser-path-buf"></span>`const fn path_buf() -> Self`
 
   `PathBuf` parser for argument values
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use std::path::PathBuf;
-
   use std::path::Path;
-
   let mut cmd = clap::Command::new("raw")
-
       .arg(
-
           clap::Arg::new("output")
-
               .value_parser(clap::value_parser!(PathBuf))
-
               .required(true)
-
       );
-
   
-
   let m = cmd.try_get_matches_from_mut(["cmd", "hello.txt"]).unwrap();
-
   let port: &PathBuf = m.get_one("output")
-
       .expect("required");
-
   assert_eq!(port, Path::new("hello.txt"));
-
   
-
   assert!(cmd.try_get_matches_from_mut(["cmd", ""]).is_err());
-
   ```
 
 #### Trait Implementations
@@ -7262,11 +5357,8 @@ assert_eq!(port, 3001);
 - <span id="valueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for ValueParser`
@@ -7311,7 +5403,7 @@ enum ArgAction {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
 
 Behavior of arguments when they are encountered while parsing
 
@@ -7682,11 +5774,8 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 - <span id="argaction-takes-values"></span>`fn takes_values(&self) -> bool`
 
   Returns whether this action accepts values on the command-line
-
   
-
   `default_values` and `env` may still be
-
   processed.
 
 - <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](range/index.md#valuerange)
@@ -7738,11 +5827,8 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 - <span id="argaction-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for Option<crate::builder::ArgAction>`
@@ -7778,7 +5864,7 @@ enum ArgPredicate {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
 
 Operations to perform on argument values
 
@@ -7833,11 +5919,8 @@ These do not apply to `ValueSource::DefaultValue`
 - <span id="argpredicate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ArgPredicate`
@@ -7875,7 +5958,7 @@ enum Resettable<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
 
 Clearable builder value
 
@@ -7957,11 +6040,8 @@ command.mut_arg("input", |arg| arg.short(None));
 - <span id="resettable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoResettable for Resettable<T>`
@@ -8022,7 +6102,7 @@ enum ValueHint {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
 
 Provide shell with hint on how to complete an argument.
 
@@ -8168,11 +6248,8 @@ Overview of which hints are supported by which shell:
 - <span id="valuehint-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for Option<crate::builder::ValueHint>`
@@ -8213,7 +6290,7 @@ Overview of which hints are supported by which shell:
 trait IntoResettable<T> { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
 
 Convert to the intended resettable type
 
@@ -8244,7 +6321,7 @@ Convert to the intended resettable type
 trait TypedValueParser: Clone + Send + Sync + 'static { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
 
 Parse/validate argument values
 
@@ -8307,32 +6384,120 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 - `fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
+  
+  When `arg` is `None`, an external subcommand value is being parsed.
 
 #### Provided Methods
 
 - `fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
+  
+  When `arg` is `None`, an external subcommand value is being parsed.
 
 - `fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
+  
+  When `arg` is `None`, an external subcommand value is being parsed.
 
 - `fn parse_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
+  
+  When `arg` is `None`, an external subcommand value is being parsed.
 
 - `fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
 
   Reflect on enumerated value properties
+  
+  Error checking should not be done with this; it is mostly targeted at user-facing
+  applications like errors and completion.
 
 - `fn map<T, F>(self, func: F) -> MapValueParser<Self, F>`
 
   Adapt a `TypedValueParser` from one value to another
+  
+  # Example
+  
+  ```rust
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
+  use clap::builder::TypedValueParser as _;
+  use clap::builder::BoolishValueParser;
+  let cmd = Command::new("mycmd")
+      .arg(
+          Arg::new("flag")
+              .long("flag")
+              .action(clap::ArgAction::SetTrue)
+              .value_parser(
+                  BoolishValueParser::new()
+                  .map(|b| -> usize {
+                      if b { 10 } else { 5 }
+                  })
+              )
+      );
+  
+  let matches = cmd.clone().try_get_matches_from(["mycmd", "--flag"]).unwrap();
+  assert!(matches.contains_id("flag"));
+  assert_eq!(
+      matches.get_one::<usize>("flag").copied(),
+      Some(10)
+  );
+  
+  let matches = cmd.try_get_matches_from(["mycmd"]).unwrap();
+  assert!(matches.contains_id("flag"));
+  assert_eq!(
+      matches.get_one::<usize>("flag").copied(),
+      Some(5)
+  );
+  ```
 
 - `fn try_map<T, E, F>(self, func: F) -> TryMapValueParser<Self, F>`
 
   Adapt a `TypedValueParser` from one value to another
+  
+  # Example
+  
+  ```rust
+  use clap_builder as clap;
+  use std::ffi::OsString;
+  use std::ffi::OsStr;
+  use std::path::PathBuf;
+  use std::path::Path;
+  use clap::Command;
+  use clap::Arg;
+  use clap::builder::TypedValueParser as _;
+  use clap::builder::OsStringValueParser;
+  let cmd = Command::new("mycmd")
+      .arg(
+          Arg::new("flag")
+              .long("flag")
+              .value_parser(
+                  OsStringValueParser::new()
+                  .try_map(verify_ext)
+              )
+      );
+  
+  fn verify_ext(os: OsString) -> Result<PathBuf, &'static str> {
+      let path = PathBuf::from(os);
+      if path.extension() != Some(OsStr::new("rs")) {
+          return Err("only Rust files are supported");
+      }
+      Ok(path)
+  }
+  
+  let error = cmd.clone().try_get_matches_from(["mycmd", "--flag", "foo.txt"]).unwrap_err();
+  error.print();
+  
+  let matches = cmd.try_get_matches_from(["mycmd", "--flag", "foo.rs"]).unwrap();
+  assert!(matches.contains_id("flag"));
+  assert_eq!(
+      matches.get_one::<PathBuf>("flag").map(|s| s.as_path()),
+      Some(Path::new("foo.rs"))
+  );
+  ```
 
 #### Implementors
 
@@ -8358,7 +6523,7 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 trait ValueParserFactory { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
 
 Register a type with [`value_parser!`][crate::value_parser!]
 

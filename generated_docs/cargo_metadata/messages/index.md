@@ -50,7 +50,7 @@ struct ArtifactProfile {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:15-28`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L15-L28)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:15-28`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L15-L28)*
 
 Profile settings used to determine which compiler flags to use for a
 target.
@@ -127,11 +127,8 @@ target.
 - <span id="artifactprofile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ArtifactProfile`
@@ -179,7 +176,7 @@ struct Artifact {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:156-175`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L156-L175)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:156-175`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L156-L175)*
 
 A compiler-generated file.
 
@@ -267,11 +264,8 @@ A compiler-generated file.
 - <span id="artifact-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Artifact`
@@ -314,7 +308,7 @@ struct CompilerMessage {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:183-190`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L183-L190)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:183-190`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L183-L190)*
 
 Message left by the compiler
 
@@ -385,11 +379,8 @@ Message left by the compiler
 - <span id="compilermessage-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for CompilerMessage`
@@ -439,7 +430,7 @@ struct BuildScript {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:197-213`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L197-L213)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:197-213`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L197-L213)*
 
 Output of a build script execution.
 
@@ -520,11 +511,8 @@ Output of a build script execution.
 - <span id="buildscript-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for BuildScript`
@@ -565,7 +553,7 @@ struct BuildFinished {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:220-223`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L220-L223)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:220-223`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L220-L223)*
 
 Final result of a build.
 
@@ -624,11 +612,8 @@ Final result of a build.
 - <span id="buildfinished-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for BuildFinished`
@@ -669,7 +654,7 @@ struct MessageIter<R> {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:262-264`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L262-L264)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:262-264`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L262-L264)*
 
 An iterator of Messages.
 
@@ -698,11 +683,8 @@ An iterator of Messages.
 - <span id="messageiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MessageIter<R>`
@@ -747,7 +729,7 @@ enum ArtifactDebuginfo {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:33-57`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L33-L57)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:33-57`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L33-L57)*
 
 The kind of debug information included in the artifact.
 
@@ -846,11 +828,8 @@ The kind of debug information included in the artifact.
 - <span id="artifactdebuginfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ArtifactDebuginfo`
@@ -899,7 +878,7 @@ enum Message {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:229-245`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L229-L245)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:229-245`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L229-L245)*
 
 A cargo message
 
@@ -934,7 +913,6 @@ A cargo message
 - <span id="message-parse-stream"></span>`fn parse_stream<R: Read>(input: R) -> MessageIter<R>` — [`MessageIter`](#messageiter)
 
   Creates an iterator of Message from a Read outputting a stream of JSON
-
   messages. For usage information, look at the top-level documentation.
 
 #### Trait Implementations
@@ -986,11 +964,8 @@ A cargo message
 - <span id="message-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Message`
@@ -1031,7 +1006,7 @@ A cargo message
 fn parse_messages<R: Read>(input: R) -> serde_json::StreamDeserializer<'static, serde_json::de::IoRead<R>, Message>
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:295-297`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L295-L297)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:295-297`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L295-L297)*
 
 Creates an iterator of Message from a Read outputting a stream of JSON
 messages. For usage information, look at the top-level documentation.
@@ -1044,7 +1019,7 @@ messages. For usage information, look at the top-level documentation.
 type MessageIterator<R> = serde_json::StreamDeserializer<'static, serde_json::de::IoRead<R>, Message>;
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/messages.rs:289-290`](../../../.source_1765633015/cargo_metadata-0.23.1/src/messages.rs#L289-L290)*
+*Defined in [`cargo_metadata-0.23.1/src/messages.rs:289-290`](../../../.source_1765894658/cargo_metadata-0.23.1/src/messages.rs#L289-L290)*
 
 An iterator of Message.
 

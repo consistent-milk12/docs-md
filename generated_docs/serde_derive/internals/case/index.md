@@ -24,7 +24,7 @@ struct ParseError<'a> {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/case.rs:120-122`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/case.rs#L120-L122)*
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:120-122`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/case.rs#L120-L122)*
 
 #### Trait Implementations
 
@@ -55,11 +55,8 @@ struct ParseError<'a> {
 - <span id="parseerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ParseError<'a>`
@@ -96,7 +93,7 @@ enum RenameRule {
 }
 ```
 
-*Defined in [`serde_derive-1.0.228/src/internals/case.rs:9-31`](../../../../.source_1765633015/serde_derive-1.0.228/src/internals/case.rs#L9-L31)*
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:9-31`](../../../../.source_1765894658/serde_derive-1.0.228/src/internals/case.rs#L9-L31)*
 
 The different possible ways to change case of fields in a struct, or variants in an enum.
 
@@ -192,11 +189,8 @@ The different possible ways to change case of fields in a struct, or variants in
 - <span id="renamerule-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RenameRule`

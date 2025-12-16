@@ -21,7 +21,7 @@ struct SeqLock {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:7-13`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L7-L13)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:7-13`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L7-L13)*
 
 A simple stamped lock.
 
@@ -41,19 +41,14 @@ A simple stamped lock.
 - <span id="seqlock-optimistic-read"></span>`fn optimistic_read(&self) -> Option<usize>`
 
   If not locked, returns the current stamp.
-
   
-
   This method should be called before optimistic reads.
 
 - <span id="seqlock-validate-read"></span>`fn validate_read(&self, stamp: usize) -> bool`
 
   Returns `true` if the current stamp is equal to `stamp`.
-
   
-
   This method should be called after optimistic reads to check whether they are valid. The
-
   argument `stamp` should correspond to the one returned by method `optimistic_read`.
 
 - <span id="seqlock-write"></span>`fn write(self: &'static Self) -> SeqLockWriteGuard` — [`SeqLockWriteGuard`](#seqlockwriteguard)
@@ -85,11 +80,8 @@ A simple stamped lock.
 - <span id="seqlock-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SeqLock`
@@ -113,7 +105,7 @@ struct SeqLockWriteGuard {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:67-73`](../../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L67-L73)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:67-73`](../../../../.source_1765894658/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L67-L73)*
 
 An RAII guard that releases the lock and increments the stamp when dropped.
 
@@ -162,11 +154,8 @@ An RAII guard that releases the lock and increments the stamp when dropped.
 - <span id="seqlockwriteguard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SeqLockWriteGuard`

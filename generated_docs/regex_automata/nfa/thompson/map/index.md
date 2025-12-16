@@ -28,7 +28,7 @@ struct Utf8BoundedMap {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:81-94`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/map.rs#L81-L94)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:81-94`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/map.rs#L81-L94)*
 
 A bounded hash map where the key is a sequence of NFA transitions and the
 value is a pre-existing NFA state ID.
@@ -85,29 +85,19 @@ amount of extra time they cost.
 - <span id="utf8boundedmap-new"></span>`fn new(capacity: usize) -> Utf8BoundedMap` — [`Utf8BoundedMap`](#utf8boundedmap)
 
   Create a new bounded map with the given capacity. The map will never
-
   grow beyond the given size.
-
   
-
   Note that this does not allocate. Instead, callers must call `clear`
-
   before using this map. `clear` will allocate space if necessary.
-
   
-
   This avoids the need to pay for the allocation of this map when
-
   compiling regexes that lack large Unicode character classes.
 
 - <span id="utf8boundedmap-clear"></span>`fn clear(&mut self)`
 
   Clear this map of all entries, but permit the reuse of allocation
-
   if possible.
-
   
-
   This must be called before the map can be used.
 
 - <span id="utf8boundedmap-hash"></span>`fn hash(&self, key: &[Transition]) -> usize` — [`Transition`](../nfa/index.md#transition)
@@ -117,27 +107,18 @@ amount of extra time they cost.
 - <span id="utf8boundedmap-get"></span>`fn get(&mut self, key: &[Transition], hash: usize) -> Option<StateID>` — [`Transition`](../nfa/index.md#transition), [`StateID`](../../../util/primitives/index.md#stateid)
 
   Retrieve the cached state ID corresponding to the given key. The hash
-
   given must have been computed with `hash` using the same key value.
-
   
-
   If there is no cached state with the given transitions, then None is
-
   returned.
 
 - <span id="utf8boundedmap-set"></span>`fn set(&mut self, key: Vec<Transition>, hash: usize, state_id: StateID)` — [`Transition`](../nfa/index.md#transition), [`StateID`](../../../util/primitives/index.md#stateid)
 
   Add a cached state to this map with the given key. Callers should
-
   ensure that `state_id` points to a state that contains precisely the
-
   NFA transitions given.
-
   
-
   `hash` must have been computed using the `hash` method with the same
-
   key.
 
 #### Trait Implementations
@@ -177,11 +158,8 @@ amount of extra time they cost.
 - <span id="utf8boundedmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Utf8BoundedMap`
@@ -214,7 +192,7 @@ struct Utf8BoundedEntry {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:98-108`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/map.rs#L98-L108)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:98-108`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/map.rs#L98-L108)*
 
 An entry in this map.
 
@@ -276,11 +254,8 @@ An entry in this map.
 - <span id="utf8boundedentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Utf8BoundedEntry`
@@ -313,7 +288,7 @@ struct Utf8SuffixMap {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:190-200`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/map.rs#L190-L200)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:190-200`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/map.rs#L190-L200)*
 
 A cache of suffixes used to modestly compress UTF-8 automata for large
 Unicode character classes.
@@ -340,29 +315,19 @@ Unicode character classes.
 - <span id="utf8suffixmap-new"></span>`fn new(capacity: usize) -> Utf8SuffixMap` — [`Utf8SuffixMap`](#utf8suffixmap)
 
   Create a new bounded map with the given capacity. The map will never
-
   grow beyond the given size.
-
   
-
   Note that this does not allocate. Instead, callers must call `clear`
-
   before using this map. `clear` will allocate space if necessary.
-
   
-
   This avoids the need to pay for the allocation of this map when
-
   compiling regexes that lack large Unicode character classes.
 
 - <span id="utf8suffixmap-clear"></span>`fn clear(&mut self)`
 
   Clear this map of all entries, but permit the reuse of allocation
-
   if possible.
-
   
-
   This must be called before the map can be used.
 
 - <span id="utf8suffixmap-hash"></span>`fn hash(&self, key: &Utf8SuffixKey) -> usize` — [`Utf8SuffixKey`](#utf8suffixkey)
@@ -372,25 +337,17 @@ Unicode character classes.
 - <span id="utf8suffixmap-get"></span>`fn get(&mut self, key: &Utf8SuffixKey, hash: usize) -> Option<StateID>` — [`Utf8SuffixKey`](#utf8suffixkey), [`StateID`](../../../util/primitives/index.md#stateid)
 
   Retrieve the cached state ID corresponding to the given key. The hash
-
   given must have been computed with `hash` using the same key value.
-
   
-
   If there is no cached state with the given key, then None is returned.
 
 - <span id="utf8suffixmap-set"></span>`fn set(&mut self, key: Utf8SuffixKey, hash: usize, state_id: StateID)` — [`Utf8SuffixKey`](#utf8suffixkey), [`StateID`](../../../util/primitives/index.md#stateid)
 
   Add a cached state to this map with the given key. Callers should
-
   ensure that `state_id` points to a state that contains precisely the
-
   NFA transition given.
-
   
-
   `hash` must have been computed using the `hash` method with the same
-
   key.
 
 #### Trait Implementations
@@ -430,11 +387,8 @@ Unicode character classes.
 - <span id="utf8suffixmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Utf8SuffixMap`
@@ -467,7 +421,7 @@ struct Utf8SuffixKey {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:205-209`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/map.rs#L205-L209)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:205-209`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/map.rs#L205-L209)*
 
 A key that uniquely identifies an NFA state. It is a triple that represents
 a transition from one state for a particular byte range.
@@ -515,11 +469,8 @@ a transition from one state for a particular byte range.
 - <span id="utf8suffixkey-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Utf8SuffixKey`
@@ -558,7 +509,7 @@ struct Utf8SuffixEntry {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:213-222`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/map.rs#L213-L222)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:213-222`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/map.rs#L213-L222)*
 
 An entry in this map.
 
@@ -619,11 +570,8 @@ An entry in this map.
 - <span id="utf8suffixentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Utf8SuffixEntry`
@@ -653,12 +601,12 @@ An entry in this map.
 const PRIME: u64 = 1_099_511_628_211u64;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:48`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/map.rs#L48)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:48`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/map.rs#L48)*
 
 ### `INIT`
 ```rust
 const INIT: u64 = 14_695_981_039_346_656_037u64;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:49`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/map.rs#L49)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:49`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/map.rs#L49)*
 

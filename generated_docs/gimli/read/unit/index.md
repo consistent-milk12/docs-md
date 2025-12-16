@@ -85,7 +85,7 @@ struct DebugInfo<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:82-84`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L82-L84)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:82-84`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L82-L84)*
 
 The `DebugInfo` struct represents the DWARF debugging information found in
 the `.debug_info` section.
@@ -95,31 +95,18 @@ the `.debug_info` section.
 - <span id="debuginfo-new"></span>`fn new(debug_info_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugInfo` instance from the data in the `.debug_info`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_info` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugInfo, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_info_section_somehow = || &buf;
-
   let debug_info = DebugInfo::new(read_debug_info_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -165,11 +152,8 @@ the `.debug_info` section.
 - <span id="debuginfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugInfo<R>`
@@ -207,7 +191,7 @@ struct DebugInfoUnitHeadersIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:179-182`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L179-L182)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:179-182`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L179-L182)*
 
 An iterator over the units of a .debug_info section.
 
@@ -257,11 +241,8 @@ See the [documentation on
 - <span id="debuginfounitheadersiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DebugInfoUnitHeadersIter<R>`
@@ -300,7 +281,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:303-314`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L303-L314)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:303-314`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L303-L314)*
 
 The common fields for the headers of compilation units and
 type units.
@@ -352,11 +333,8 @@ type units.
 - <span id="unitheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for UnitHeader<R, Offset>`
@@ -400,7 +378,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:647-657`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L647-L657)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:647-657`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L647-L657)*
 
 A Debugging Information Entry (DIE).
 
@@ -423,129 +401,67 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 - <span id="debugginginformationentry-tag"></span>`fn tag(&self) -> constants::DwTag` — [`DwTag`](../../index.md#dwtag)
 
   Get this entry's `DW_TAG_whatever` tag.
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, DebugInfo, LittleEndian};
-
   let info_buf = [
-
       // Comilation unit header
-
   
-
       // 32-bit unit length = 12
-
       0x0c, 0x00, 0x00, 0x00,
-
       // Version 4
-
       0x04, 0x00,
-
       // debug_abbrev_offset
-
       0x00, 0x00, 0x00, 0x00,
-
       // Address size
-
       0x04,
-
   
-
       // DIEs
-
   
-
       // Abbreviation code
-
       0x01,
-
       // Attribute of form DW_FORM_string = "foo\0"
-
       0x66, 0x6f, 0x6f, 0x00,
-
   ];
-
   let debug_info = DebugInfo::new(&info_buf, LittleEndian);
-
   let abbrev_buf = [
-
       // Code
-
       0x01,
-
       // DW_TAG_subprogram
-
       0x2e,
-
       // DW_CHILDREN_no
-
       0x00,
-
       // Begin attributes
-
         // Attribute name = DW_AT_name
-
         0x03,
-
         // Attribute form = DW_FORM_string
-
         0x08,
-
       // End attributes
-
       0x00,
-
       0x00,
-
       // Null terminator
-
       0x00
-
   ];
-
   let debug_abbrev = DebugAbbrev::new(&abbrev_buf, LittleEndian);
-
   let unit = debug_info.units().next().unwrap().unwrap();
-
   let abbrevs = unit.abbreviations(&debug_abbrev).unwrap();
-
   let mut cursor = unit.entries(&abbrevs);
-
   let (_, entry) = cursor.next_dfs().unwrap().unwrap();
-
   let mut get_some_entry = || entry;
-
   let entry = get_some_entry();
-
   
-
   match entry.tag() {
-
       gimli::DW_TAG_subprogram =>
-
           println!("this entry contains debug info about a function"),
-
       gimli::DW_TAG_inlined_subroutine =>
-
           println!("this entry contains debug info about a particular instance of inlining"),
-
       gimli::DW_TAG_variable =>
-
           println!("this entry contains debug info about a local variable"),
-
       gimli::DW_TAG_formal_parameter =>
-
           println!("this entry contains debug info about a function parameter"),
-
       otherwise =>
-
           println!("this entry is some other kind of data: {:?}", otherwise),
-
   };
-
   ```
 
 - <span id="debugginginformationentry-has-children"></span>`fn has_children(&self) -> bool`
@@ -555,179 +471,98 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 - <span id="debugginginformationentry-attrs"></span>`fn attrs<'me>(self: &'me Self) -> AttrsIter<'abbrev, 'me, 'unit, R>` — [`AttrsIter`](../index.md#attrsiter)
 
   Iterate over this entry's set of attributes.
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, DebugInfo, LittleEndian};
-
   
-
   // Read the `.debug_info` section.
-
   
-
   let info_buf = [
-
       // Comilation unit header
-
   
-
       // 32-bit unit length = 12
-
       0x0c, 0x00, 0x00, 0x00,
-
       // Version 4
-
       0x04, 0x00,
-
       // debug_abbrev_offset
-
       0x00, 0x00, 0x00, 0x00,
-
       // Address size
-
       0x04,
-
   
-
       // DIEs
-
   
-
       // Abbreviation code
-
       0x01,
-
       // Attribute of form DW_FORM_string = "foo\0"
-
       0x66, 0x6f, 0x6f, 0x00,
-
   ];
-
   let read_debug_info_section_somehow = || &info_buf;
-
   let debug_info = DebugInfo::new(read_debug_info_section_somehow(), LittleEndian);
-
   
-
   // Get the data about the first compilation unit out of the `.debug_info`.
-
   
-
   let unit = debug_info.units().next()
-
       .expect("Should have at least one compilation unit")
-
       .expect("and it should parse ok");
-
   
-
   // Read the `.debug_abbrev` section and parse the
-
   // abbreviations for our compilation unit.
-
   
-
   let abbrev_buf = [
-
       // Code
-
       0x01,
-
       // DW_TAG_subprogram
-
       0x2e,
-
       // DW_CHILDREN_no
-
       0x00,
-
       // Begin attributes
-
         // Attribute name = DW_AT_name
-
         0x03,
-
         // Attribute form = DW_FORM_string
-
         0x08,
-
       // End attributes
-
       0x00,
-
       0x00,
-
       // Null terminator
-
       0x00
-
   ];
-
   let read_debug_abbrev_section_somehow = || &abbrev_buf;
-
   let debug_abbrev = DebugAbbrev::new(read_debug_abbrev_section_somehow(), LittleEndian);
-
   let abbrevs = unit.abbreviations(&debug_abbrev).unwrap();
-
   
-
   // Get the first entry from that compilation unit.
-
   
-
   let mut cursor = unit.entries(&abbrevs);
-
   let (_, entry) = cursor.next_dfs()
-
       .expect("Should parse next entry")
-
       .expect("Should have at least one entry");
-
   
-
   // Finally, print the first entry's attributes.
-
   
-
   let mut attrs = entry.attrs();
-
   while let Some(attr) = attrs.next().unwrap() {
-
       println!("Attribute name = {:?}", attr.name());
-
       println!("Attribute value = {:?}", attr.value());
-
   }
-
   ```
-
   
-
   Can be [used with
-
   `FallibleIterator`](./index.html#using-with-fallibleiterator).
 
 - <span id="debugginginformationentry-attr"></span>`fn attr(&self, name: constants::DwAt) -> Result<Option<Attribute<R>>>` — [`DwAt`](../../index.md#dwat), [`Result`](../../index.md#result), [`Attribute`](../index.md#attribute)
 
   Find the first attribute in this entry which has the given name,
-
   and return it. Returns `Ok(None)` if no attribute is found.
 
 - <span id="debugginginformationentry-attr-value-raw"></span>`fn attr_value_raw(&self, name: constants::DwAt) -> Result<Option<AttributeValue<R>>>` — [`DwAt`](../../index.md#dwat), [`Result`](../../index.md#result), [`AttributeValue`](../index.md#attributevalue)
 
   Find the first attribute in this entry which has the given name,
-
   and return its raw value. Returns `Ok(None)` if no attribute is found.
 
 - <span id="debugginginformationentry-attr-value"></span>`fn attr_value(&self, name: constants::DwAt) -> Result<Option<AttributeValue<R>>>` — [`DwAt`](../../index.md#dwat), [`Result`](../../index.md#result), [`AttributeValue`](../index.md#attributevalue)
 
   Find the first attribute in this entry which has the given name,
-
   and return its normalized value.  Returns `Ok(None)` if no
-
   attribute is found.
 
 - <span id="debugginginformationentry-after-attrs"></span>`fn after_attrs(&self) -> Result<R>` — [`Result`](../../index.md#result)
@@ -737,7 +572,6 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 - <span id="debugginginformationentry-sibling"></span>`fn sibling(&self) -> Option<R>`
 
   Use the `DW_AT_sibling` attribute to find the input buffer for the
-
   next sibling. Returns `None` if the attribute is missing or invalid.
 
 - <span id="debugginginformationentry-parse"></span>`fn parse(input: &mut R, unit: &'unit UnitHeader<R>, abbreviations: &'abbrev Abbreviations) -> Result<Option<Self>>` — [`UnitHeader`](../index.md#unitheader), [`Abbreviations`](../index.md#abbreviations), [`Result`](../../index.md#result)
@@ -781,11 +615,8 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 - <span id="debugginginformationentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
@@ -817,7 +648,7 @@ struct Attribute<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1111-1114`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1111-L1114)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1111-1114`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1111-L1114)*
 
 An attribute in a `DebuggingInformationEntry`, consisting of a name and
 associated value.
@@ -835,19 +666,12 @@ associated value.
 - <span id="attribute-value"></span>`fn value(&self) -> AttributeValue<R>` — [`AttributeValue`](../index.md#attributevalue)
 
   Get this attribute's normalized value.
-
   
-
   Attribute values can potentially be encoded in multiple equivalent forms,
-
   and may have special meaning depending on the attribute name.  This method
-
   converts the attribute value to a normalized form based on the attribute
-
   name.
-
   
-
   See "Table 7.5: Attribute encodings" and "Table 7.6: Attribute form encodings".
 
 - <span id="attribute-u8-value"></span>`fn u8_value(&self) -> Option<u8>`
@@ -873,55 +697,34 @@ associated value.
 - <span id="attribute-exprloc-value"></span>`fn exprloc_value(&self) -> Option<Expression<R>>` — [`Expression`](../index.md#expression)
 
   Try to convert this attribute's value to an expression or location buffer.
-
   
-
   Expressions and locations may be `DW_FORM_block*` or `DW_FORM_exprloc`.
-
   The standard doesn't mention `DW_FORM_block*` as a possible form, but
-
   it is encountered in practice.
 
 - <span id="attribute-string-value"></span>`fn string_value(&self, debug_str: &DebugStr<R>) -> Option<R>` — [`DebugStr`](../index.md#debugstr)
 
   Try to return this attribute's value as a string slice.
-
   
-
   If this attribute's value is either an inline `DW_FORM_string` string,
-
   or a `DW_FORM_strp` reference to an offset into the `.debug_str`
-
   section, return the attribute's string value as `Some`. Other attribute
-
   value forms are returned as `None`.
-
   
-
   Warning: this function does not handle all possible string forms.
-
   Use `Dwarf::attr_string` instead.
 
 - <span id="attribute-string-value-sup"></span>`fn string_value_sup(&self, debug_str: &DebugStr<R>, debug_str_sup: Option<&DebugStr<R>>) -> Option<R>` — [`DebugStr`](../index.md#debugstr)
 
   Try to return this attribute's value as a string slice.
-
   
-
   If this attribute's value is either an inline `DW_FORM_string` string,
-
   or a `DW_FORM_strp` reference to an offset into the `.debug_str`
-
   section, or a `DW_FORM_strp_sup` reference to an offset into a supplementary
-
   object file, return the attribute's string value as `Some`. Other attribute
-
   value forms are returned as `None`.
-
   
-
   Warning: this function does not handle all possible string forms.
-
   Use `Dwarf::attr_string` instead.
 
 #### Trait Implementations
@@ -965,11 +768,8 @@ associated value.
 - <span id="attribute-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for Attribute<R>`
@@ -1008,7 +808,7 @@ struct AttrsIter<'abbrev, 'entry, 'unit, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2272-2276`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2272-L2276)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2272-2276`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2272-L2276)*
 
 An iterator over a particular entry's attributes.
 
@@ -1024,13 +824,9 @@ Can be [used with
 - <span id="attrsiter-next"></span>`fn next(&mut self) -> Result<Option<Attribute<R>>>` — [`Result`](../../index.md#result), [`Attribute`](../index.md#attribute)
 
   Advance the iterator and return the next attribute.
-
   
-
   Returns `None` when iteration is finished. If an error
-
   occurs while parsing the next attribute, then this error
-
   is returned, and all subsequent calls return `None`.
 
 #### Trait Implementations
@@ -1072,11 +868,8 @@ Can be [used with
 - <span id="attrsiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AttrsIter<'abbrev, 'entry, 'unit, R>`
@@ -1112,7 +905,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2382-2390`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2382-L2390)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2382-2390`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2382-L2390)*
 
 A raw reader of the data that defines the Debugging Information Entries.
 
@@ -1176,29 +969,21 @@ unreachable!()
 - <span id="entriesraw-next-offset"></span>`fn next_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md#unitoffset), [`Reader`](../index.md#reader)
 
   Return the unit offset at which the reader will read next.
-
   
-
   If you want the offset of the next entry, then this must be called prior to reading
-
   the next entry.
 
 - <span id="entriesraw-next-depth"></span>`fn next_depth(&self) -> isize`
 
   Return the depth of the next entry.
-
   
-
   This depth is updated when `read_abbreviation` is called, and is updated
-
   based on null entries and the `has_children` field in the abbreviation.
 
 - <span id="entriesraw-read-abbreviation"></span>`fn read_abbreviation(&mut self) -> Result<Option<&'abbrev Abbreviation>>` — [`Result`](../../index.md#result), [`Abbreviation`](../index.md#abbreviation)
 
   Read an abbreviation code and lookup the corresponding `Abbreviation`.
-
   
-
   Returns `Ok(None)` for null entries.
 
 - <span id="entriesraw-read-attribute"></span>`fn read_attribute(&mut self, spec: AttributeSpecification) -> Result<Attribute<R>>` — [`AttributeSpecification`](../index.md#attributespecification), [`Result`](../../index.md#result), [`Attribute`](../index.md#attribute)
@@ -1246,11 +1031,8 @@ unreachable!()
 - <span id="entriesraw-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EntriesRaw<'abbrev, 'unit, R>`
@@ -1287,7 +1069,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2463-2472`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2463-L2472)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2463-2472`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2463-L2472)*
 
 A cursor into the Debugging Information Entries tree for a compilation unit.
 
@@ -1308,471 +1090,244 @@ end of the current tree depth.
 - <span id="entriescursor-current"></span>`fn current(&self) -> Option<&DebuggingInformationEntry<'abbrev, 'unit, R>>` — [`DebuggingInformationEntry`](../index.md#debugginginformationentry)
 
   Get a reference to the entry that the cursor is currently pointing to.
-
   
-
   If the cursor is not pointing at an entry, or if the current entry is a
-
   null entry, then `None` is returned.
 
 - <span id="entriescursor-next-entry"></span>`fn next_entry(&mut self) -> Result<Option<()>>` — [`Result`](../../index.md#result)
 
   Move the cursor to the next DIE in the tree.
-
   
-
   Returns `Some` if there is a next entry, even if this entry is null.
-
   If there is no next entry, then `None` is returned.
 
 - <span id="entriescursor-next-dfs"></span>`fn next_dfs(&mut self) -> Result<Option<(isize, &DebuggingInformationEntry<'abbrev, 'unit, R>)>>` — [`Result`](../../index.md#result), [`DebuggingInformationEntry`](../index.md#debugginginformationentry)
 
   Move the cursor to the next DIE in the tree in DFS order.
-
   
-
   Upon successful movement of the cursor, return the delta traversal
-
   depth and the entry:
-
   
-
     * If we moved down into the previous current entry's children, we get
-
       `Some((1, entry))`.
-
   
-
     * If we moved to the previous current entry's sibling, we get
-
       `Some((0, entry))`.
-
   
-
     * If the previous entry does not have any siblings and we move up to
-
       its parent's next sibling, then we get `Some((-1, entry))`. Note that
-
       if the parent doesn't have a next sibling, then it could go up to the
-
       parent's parent's next sibling and return `Some((-2, entry))`, etc.
-
   
-
   If there is no next entry, then `None` is returned.
-
   
-
   Here is an example that finds the first entry in a compilation unit that
-
   does not have any children.
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, DebugInfo, LittleEndian};
-
   let info_buf = [
-
       // Comilation unit header
-
   
-
       // 32-bit unit length = 25
-
       0x19, 0x00, 0x00, 0x00,
-
       // Version 4
-
       0x04, 0x00,
-
       // debug_abbrev_offset
-
       0x00, 0x00, 0x00, 0x00,
-
       // Address size
-
       0x04,
-
   
-
       // DIEs
-
   
-
       // Abbreviation code
-
       0x01,
-
       // Attribute of form DW_FORM_string = "foo\0"
-
       0x66, 0x6f, 0x6f, 0x00,
-
   
-
         // Children
-
   
-
         // Abbreviation code
-
         0x01,
-
         // Attribute of form DW_FORM_string = "foo\0"
-
         0x66, 0x6f, 0x6f, 0x00,
-
   
-
           // Children
-
   
-
           // Abbreviation code
-
           0x01,
-
           // Attribute of form DW_FORM_string = "foo\0"
-
           0x66, 0x6f, 0x6f, 0x00,
-
   
-
             // Children
-
   
-
             // End of children
-
             0x00,
-
   
-
           // End of children
-
           0x00,
-
   
-
         // End of children
-
         0x00,
-
   ];
-
   let debug_info = DebugInfo::new(&info_buf, LittleEndian);
-
   
-
   let abbrev_buf = [
-
       // Code
-
       0x01,
-
       // DW_TAG_subprogram
-
       0x2e,
-
       // DW_CHILDREN_yes
-
       0x01,
-
       // Begin attributes
-
         // Attribute name = DW_AT_name
-
         0x03,
-
         // Attribute form = DW_FORM_string
-
         0x08,
-
       // End attributes
-
       0x00,
-
       0x00,
-
       // Null terminator
-
       0x00
-
   ];
-
   let debug_abbrev = DebugAbbrev::new(&abbrev_buf, LittleEndian);
-
   
-
   let get_some_unit = || debug_info.units().next().unwrap().unwrap();
-
   
-
   let unit = get_some_unit();
-
   let get_abbrevs_for_unit = |_| unit.abbreviations(&debug_abbrev).unwrap();
-
   let abbrevs = get_abbrevs_for_unit(&unit);
-
   
-
   let mut first_entry_with_no_children = None;
-
   let mut cursor = unit.entries(&abbrevs);
-
   
-
   // Move the cursor to the root.
-
   assert!(cursor.next_dfs().unwrap().is_some());
-
   
-
   // Traverse the DIE tree in depth-first search order.
-
   let mut depth = 0;
-
   while let Some((delta_depth, current)) = cursor.next_dfs().expect("Should parse next dfs") {
-
       // Update depth value, and break out of the loop when we
-
       // return to the original starting position.
-
       depth += delta_depth;
-
       if depth <= 0 {
-
           break;
-
       }
-
   
-
       first_entry_with_no_children = Some(current.clone());
-
   }
-
   
-
   println!("The first entry with no children is {:?}",
-
            first_entry_with_no_children.unwrap());
-
   ```
 
 - <span id="entriescursor-next-sibling"></span>`fn next_sibling(&mut self) -> Result<Option<&DebuggingInformationEntry<'abbrev, 'unit, R>>>` — [`Result`](../../index.md#result), [`DebuggingInformationEntry`](../index.md#debugginginformationentry)
 
   Move the cursor to the next sibling DIE of the current one.
-
   
-
   Returns `Ok(Some(entry))` when the cursor has been moved to
-
   the next sibling, `Ok(None)` when there is no next sibling.
-
   
-
   The depth of the cursor is never changed if this method returns `Ok`.
-
   Once `Ok(None)` is returned, this method will continue to return
-
   `Ok(None)` until either `next_entry` or `next_dfs` is called.
-
   
-
   Here is an example that iterates over all of the direct children of the
-
   root entry:
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, DebugInfo, LittleEndian};
-
   let info_buf = [
-
       // Comilation unit header
-
   
-
       // 32-bit unit length = 25
-
       0x19, 0x00, 0x00, 0x00,
-
       // Version 4
-
       0x04, 0x00,
-
       // debug_abbrev_offset
-
       0x00, 0x00, 0x00, 0x00,
-
       // Address size
-
       0x04,
-
   
-
       // DIEs
-
   
-
       // Abbreviation code
-
       0x01,
-
       // Attribute of form DW_FORM_string = "foo\0"
-
       0x66, 0x6f, 0x6f, 0x00,
-
   
-
         // Children
-
   
-
         // Abbreviation code
-
         0x01,
-
         // Attribute of form DW_FORM_string = "foo\0"
-
         0x66, 0x6f, 0x6f, 0x00,
-
   
-
           // Children
-
   
-
           // Abbreviation code
-
           0x01,
-
           // Attribute of form DW_FORM_string = "foo\0"
-
           0x66, 0x6f, 0x6f, 0x00,
-
   
-
             // Children
-
   
-
             // End of children
-
             0x00,
-
   
-
           // End of children
-
           0x00,
-
   
-
         // End of children
-
         0x00,
-
   ];
-
   let debug_info = DebugInfo::new(&info_buf, LittleEndian);
-
   
-
   let get_some_unit = || debug_info.units().next().unwrap().unwrap();
-
   
-
   let abbrev_buf = [
-
       // Code
-
       0x01,
-
       // DW_TAG_subprogram
-
       0x2e,
-
       // DW_CHILDREN_yes
-
       0x01,
-
       // Begin attributes
-
         // Attribute name = DW_AT_name
-
         0x03,
-
         // Attribute form = DW_FORM_string
-
         0x08,
-
       // End attributes
-
       0x00,
-
       0x00,
-
       // Null terminator
-
       0x00
-
   ];
-
   let debug_abbrev = DebugAbbrev::new(&abbrev_buf, LittleEndian);
-
   
-
   let unit = get_some_unit();
-
   let get_abbrevs_for_unit = |_| unit.abbreviations(&debug_abbrev).unwrap();
-
   let abbrevs = get_abbrevs_for_unit(&unit);
-
   
-
   let mut cursor = unit.entries(&abbrevs);
-
   
-
   // Move the cursor to the root.
-
   assert!(cursor.next_dfs().unwrap().is_some());
-
   
-
   // Move the cursor to the root's first child.
-
   assert!(cursor.next_dfs().unwrap().is_some());
-
   
-
   // Iterate the root's children.
-
   loop {
-
       {
-
           let current = cursor.current().expect("Should be at an entry");
-
           println!("{:?} is a child of the root", current);
-
       }
-
   
-
       if cursor.next_sibling().expect("Should parse next sibling").is_none() {
-
           break;
-
       }
-
   }
-
   ```
 
 #### Trait Implementations
@@ -1812,11 +1367,8 @@ end of the current tree depth.
 - <span id="entriescursor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EntriesCursor<'abbrev, 'unit, R>`
@@ -1854,7 +1406,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2847-2857`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2847-L2857)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2847-2857`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2847-L2857)*
 
 The state information for a tree view of the Debugging Information Entries.
 
@@ -1908,13 +1460,9 @@ fn process_tree<R>(mut node: gimli::EntriesTreeNode<R>) -> gimli::Result<()>
 - <span id="entriestree-next"></span>`fn next(&mut self, depth: isize) -> Result<bool>` — [`Result`](../../index.md#result)
 
   Move the cursor to the next entry at the specified depth.
-
   
-
   Requires `depth <= self.depth + 1`.
-
   
-
   Returns `true` if successful.
 
 #### Trait Implementations
@@ -1954,11 +1502,8 @@ fn process_tree<R>(mut node: gimli::EntriesTreeNode<R>) -> gimli::Result<()>
 - <span id="entriestree-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EntriesTree<'abbrev, 'unit, R>`
@@ -1990,7 +1535,7 @@ struct EntriesTreeNode<'abbrev, 'unit, 'tree, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2979-2982`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2979-L2982)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2979-2982`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2979-L2982)*
 
 A node in the Debugging Information Entry tree.
 
@@ -2008,11 +1553,8 @@ via [`EntriesTree::root`](./struct.EntriesTree.html#method.root).
 - <span id="entriestreenode-children"></span>`fn children(self) -> EntriesTreeIter<'abbrev, 'unit, 'tree, R>` — [`EntriesTreeIter`](../index.md#entriestreeiter)
 
   Create an iterator for the children of the current entry.
-
   
-
   The current entry can no longer be accessed after creating the
-
   iterator.
 
 #### Trait Implementations
@@ -2044,11 +1586,8 @@ via [`EntriesTree::root`](./struct.EntriesTree.html#method.root).
 - <span id="entriestreenode-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for EntriesTreeNode<'abbrev, 'unit, 'tree, R>`
@@ -2073,7 +1612,7 @@ struct EntriesTreeIter<'abbrev, 'unit, 'tree, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3014-3018`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3014-L3018)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3014-3018`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3014-L3018)*
 
 An iterator that allows traversal of the children of an
 `EntriesTreeNode`.
@@ -2088,9 +1627,7 @@ which allow recursive traversal of grandchildren, etc.
 - <span id="entriestreeiter-next"></span>`fn next<'me>(self: &'me mut Self) -> Result<Option<EntriesTreeNode<'abbrev, 'unit, 'me, R>>>` — [`Result`](../../index.md#result), [`EntriesTreeNode`](../index.md#entriestreenode)
 
   Returns an `EntriesTreeNode` for the next child entry.
-
   
-
   Returns `None` if there are no more children.
 
 #### Trait Implementations
@@ -2122,11 +1659,8 @@ which allow recursive traversal of grandchildren, etc.
 - <span id="entriestreeiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for EntriesTreeIter<'abbrev, 'unit, 'tree, R>`
@@ -2149,7 +1683,7 @@ struct DebugTypes<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3061-3063`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3061-L3063)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3061-3063`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3061-L3063)*
 
 The `DebugTypes` struct represents the DWARF type information
 found in the `.debug_types` section.
@@ -2159,31 +1693,18 @@ found in the `.debug_types` section.
 - <span id="debugtypes-new"></span>`fn new(debug_types_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugTypes` instance from the data in the `.debug_types`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_types` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugTypes, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_types_section_somehow = || &buf;
-
   let debug_types = DebugTypes::new(read_debug_types_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -2229,11 +1750,8 @@ found in the `.debug_types` section.
 - <span id="debugtypes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugTypes<R>`
@@ -2271,7 +1789,7 @@ struct DebugTypesUnitHeadersIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3152-3155`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3152-L3155)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3152-3155`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3152-L3155)*
 
 An iterator over the type-units of this `.debug_types` section.
 
@@ -2322,11 +1840,8 @@ more detail.
 - <span id="debugtypesunitheadersiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DebugTypesUnitHeadersIter<R>`
@@ -2372,7 +1887,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:241-279`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L241-L279)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:241-279`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L241-L279)*
 
 This enum specifies the type of the unit and any type
 specific data carried in the header (e.g. the type
@@ -2461,11 +1976,8 @@ signature/type offset of a type unit).
 - <span id="unittype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Offset> PartialEq for UnitType<Offset>`
@@ -2550,7 +2062,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:933-1106`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L933-L1106)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:933-1106`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L933-L1106)*
 
 The value of an attribute in a `DebuggingInformationEntry`.
 
@@ -2796,55 +2308,34 @@ The value of an attribute in a `DebuggingInformationEntry`.
 - <span id="attributevalue-exprloc-value"></span>`fn exprloc_value(&self) -> Option<Expression<R>>` — [`Expression`](../index.md#expression)
 
   Try to convert this attribute's value to an expression or location buffer.
-
   
-
   Expressions and locations may be `DW_FORM_block*` or `DW_FORM_exprloc`.
-
   The standard doesn't mention `DW_FORM_block*` as a possible form, but
-
   it is encountered in practice.
 
 - <span id="attributevalue-string-value"></span>`fn string_value(&self, debug_str: &DebugStr<R>) -> Option<R>` — [`DebugStr`](../index.md#debugstr)
 
   Try to return this attribute's value as a string slice.
-
   
-
   If this attribute's value is either an inline `DW_FORM_string` string,
-
   or a `DW_FORM_strp` reference to an offset into the `.debug_str`
-
   section, return the attribute's string value as `Some`. Other attribute
-
   value forms are returned as `None`.
-
   
-
   Warning: this function does not handle all possible string forms.
-
   Use `Dwarf::attr_string` instead.
 
 - <span id="attributevalue-string-value-sup"></span>`fn string_value_sup(&self, debug_str: &DebugStr<R>, debug_str_sup: Option<&DebugStr<R>>) -> Option<R>` — [`DebugStr`](../index.md#debugstr)
 
   Try to return this attribute's value as a string slice.
-
   
-
   If this attribute's value is either an inline `DW_FORM_string` string,
-
   or a `DW_FORM_strp` reference to an offset into the `.debug_str`
-
   section, or a `DW_FORM_strp_sup` reference to an offset into a supplementary
-
   object file, return the attribute's string value as `Some`. Other attribute
-
   value forms are returned as `None`.
-
   
-
   Warning: this function does not handle all possible string forms.
-
   Use `Dwarf::attr_string` instead.
 
 #### Trait Implementations
@@ -2888,11 +2379,8 @@ The value of an attribute in a `DebuggingInformationEntry`.
 - <span id="attributevalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for AttributeValue<R, Offset>`
@@ -2929,7 +2417,7 @@ The value of an attribute in a `DebuggingInformationEntry`.
 fn parse_unit_type<R: Reader>(input: &mut R) -> crate::read::Result<constants::DwUt>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:216-219`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L216-L219)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:216-219`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L216-L219)*
 
 Parse the unit type from the unit header.
 
@@ -2939,7 +2427,7 @@ Parse the unit type from the unit header.
 fn parse_debug_abbrev_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugAbbrevOffset<<R as >::Offset>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:222-227`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L222-L227)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:222-227`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L222-L227)*
 
 Parse the `debug_abbrev_offset` in the compilation unit header.
 
@@ -2949,7 +2437,7 @@ Parse the `debug_abbrev_offset` in the compilation unit header.
 fn parse_debug_info_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugInfoOffset<<R as >::Offset>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:230-235`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L230-L235)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:230-235`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L230-L235)*
 
 Parse the `debug_info_offset` in the arange header.
 
@@ -2962,7 +2450,7 @@ where
     Offset: ReaderOffset
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L558-L636)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L558-L636)*
 
 Parse a unit header.
 
@@ -2972,7 +2460,7 @@ Parse a unit header.
 fn parse_dwo_id<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DwoId>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:639-641`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L639-L641)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:639-641`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L639-L641)*
 
 Parse a dwo_id from a header
 
@@ -2982,7 +2470,7 @@ Parse a dwo_id from a header
 fn length_u8_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1928-1931`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1928-L1931)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1928-1931`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1928-L1931)*
 
 ### `length_u16_value`
 
@@ -2990,7 +2478,7 @@ fn length_u8_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_u16_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1933-1936`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1933-L1936)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1933-1936`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1933-L1936)*
 
 ### `length_u32_value`
 
@@ -2998,7 +2486,7 @@ fn length_u16_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_u32_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1938-1941`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1938-L1941)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1938-1941`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1938-L1941)*
 
 ### `length_uleb128_value`
 
@@ -3006,7 +2494,7 @@ fn length_u32_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_uleb128_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1943-1946`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1943-L1946)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1943-1946`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1943-L1946)*
 
 ### `allow_section_offset`
 
@@ -3014,7 +2502,7 @@ fn length_uleb128_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn allow_section_offset(name: constants::DwAt, version: u16) -> bool
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1950-1968`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1950-L1968)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1950-1968`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1950-L1968)*
 
 ### `parse_attribute`
 
@@ -3022,7 +2510,7 @@ fn allow_section_offset(name: constants::DwAt, version: u16) -> bool
 fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, spec: crate::read::AttributeSpecification) -> crate::read::Result<Attribute<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:1970-2193`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L1970-L2193)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1970-2193`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L1970-L2193)*
 
 ### `skip_attributes`
 
@@ -3030,7 +2518,7 @@ fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 fn skip_attributes<R: Reader>(input: &mut R, encoding: crate::common::Encoding, specs: &[crate::read::AttributeSpecification]) -> crate::read::Result<()>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:2195-2261`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L2195-L2261)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2195-2261`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L2195-L2261)*
 
 ### `parse_type_signature`
 
@@ -3038,7 +2526,7 @@ fn skip_attributes<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 fn parse_type_signature<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DebugTypeSignature>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3049-3051`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3049-L3051)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3049-3051`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3049-L3051)*
 
 Parse a type unit header's unique type signature. Callers should handle
 unique-ness checking.
@@ -3049,7 +2537,7 @@ unique-ness checking.
 fn parse_type_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::read::UnitOffset<<R as >::Offset>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/unit.rs:3054-3056`](../../../../.source_1765633015/gimli-0.32.3/src/read/unit.rs#L3054-L3056)*
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3054-3056`](../../../../.source_1765894658/gimli-0.32.3/src/read/unit.rs#L3054-L3056)*
 
 Parse a type unit header's type offset.
 

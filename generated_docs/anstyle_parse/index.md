@@ -87,7 +87,7 @@ struct Params {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/params.rs:8-25`](../../.source_1765633015/anstyle-parse-0.2.7/src/params.rs#L8-L25)*
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:8-25`](../../.source_1765894658/anstyle-parse-0.2.7/src/params.rs#L8-L25)*
 
 #### Fields
 
@@ -185,11 +185,8 @@ struct Params {
 - <span id="params-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for &'a Params`
@@ -235,7 +232,7 @@ struct ParamsIter<'a> {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/params.rs:88-91`](../../.source_1765633015/anstyle-parse-0.2.7/src/params.rs#L88-L91)*
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:88-91`](../../.source_1765894658/anstyle-parse-0.2.7/src/params.rs#L88-L91)*
 
 Immutable subparameter iterator.
 
@@ -268,11 +265,8 @@ Immutable subparameter iterator.
 - <span id="paramsiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ParamsIter<'a>`
@@ -320,7 +314,7 @@ struct Parser<C> {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/lib.rs:62-76`](../../.source_1765633015/anstyle-parse-0.2.7/src/lib.rs#L62-L76)*
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:62-76`](../../.source_1765894658/anstyle-parse-0.2.7/src/lib.rs#L62-L76)*
 
 Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
@@ -337,9 +331,7 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 - <span id="parser-advance"></span>`fn advance<P: Perform>(&mut self, performer: &mut P, byte: u8)`
 
   Advance the parser state
-
   
-
   Requires a [`Perform`](#perform) in case `byte` triggers an action
 
 - <span id="parser-process-utf8"></span>`fn process_utf8<P>(&mut self, performer: &mut P, byte: u8)`
@@ -349,9 +341,7 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 - <span id="parser-osc-dispatch"></span>`fn osc_dispatch<P: Perform>(&self, performer: &mut P, byte: u8)`
 
   Separate method for `osc_dispatch` that borrows self as read-only
-
   
-
   The aliasing is needed here for multiple slices into `self.osc_raw`
 
 - <span id="parser-perform-action"></span>`fn perform_action<P: Perform>(&mut self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/definitions/index.md#action)
@@ -399,11 +389,8 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 - <span id="parser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<C: cmp::PartialEq> PartialEq for Parser<C>`
@@ -438,7 +425,7 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 struct AsciiParser;
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/lib.rs:339`](../../.source_1765633015/anstyle-parse-0.2.7/src/lib.rs#L339)*
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:339`](../../.source_1765894658/anstyle-parse-0.2.7/src/lib.rs#L339)*
 
 Only allow parsing 7-bit ASCII
 
@@ -489,11 +476,8 @@ Only allow parsing 7-bit ASCII
 - <span id="asciiparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AsciiParser`
@@ -530,7 +514,7 @@ struct Utf8Parser {
 }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/lib.rs:350-352`](../../.source_1765633015/anstyle-parse-0.2.7/src/lib.rs#L350-L352)*
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:350-352`](../../.source_1765894658/anstyle-parse-0.2.7/src/lib.rs#L350-L352)*
 
 Allow parsing UTF-8
 
@@ -581,11 +565,8 @@ Allow parsing UTF-8
 - <span id="utf8parser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Utf8Parser`
@@ -620,7 +601,7 @@ Allow parsing UTF-8
 struct VtUtf8Receiver<'a>(&'a mut Option<char>);
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/lib.rs:365`](../../.source_1765633015/anstyle-parse-0.2.7/src/lib.rs#L365)*
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:365`](../../.source_1765894658/anstyle-parse-0.2.7/src/lib.rs#L365)*
 
 #### Trait Implementations
 
@@ -647,11 +628,8 @@ struct VtUtf8Receiver<'a>(&'a mut Option<char>);
 - <span id="vtutf8receiver-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for VtUtf8Receiver<'_>`
@@ -680,7 +658,7 @@ struct VtUtf8Receiver<'a>(&'a mut Option<char>);
 trait CharAccumulator: Default { ... }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/lib.rs:323-328`](../../.source_1765633015/anstyle-parse-0.2.7/src/lib.rs#L323-L328)*
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:323-328`](../../.source_1765894658/anstyle-parse-0.2.7/src/lib.rs#L323-L328)*
 
 Build a `char` out of bytes
 
@@ -689,6 +667,8 @@ Build a `char` out of bytes
 - `fn add(&mut self, byte: u8) -> Option<char>`
 
   Build a `char` out of bytes
+  
+  Return `None` when more data is needed
 
 #### Implementors
 
@@ -701,7 +681,7 @@ Build a `char` out of bytes
 trait Perform { ... }
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/lib.rs:388-438`](../../.source_1765633015/anstyle-parse-0.2.7/src/lib.rs#L388-L438)*
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:388-438`](../../.source_1765894658/anstyle-parse-0.2.7/src/lib.rs#L388-L438)*
 
 Performs actions requested by the [`Parser`](#parser)
 
@@ -727,14 +707,26 @@ the future, consider checking archive.org.
 - `fn hook(&mut self, _params: &Params, _intermediates: &[u8], _ignore: bool, _action: u8)`
 
   Invoked when a final character arrives in first part of device control string.
+  
+  The control function should be determined from the private marker, final character, and
+  execute with a parameter list. A handler should be selected for remaining characters in the
+  string; the handler function should subsequently be called by `put` for every character in
+  the control string.
+  
+  The `ignore` flag indicates that more than two intermediates arrived and
+  subsequent characters were ignored.
 
 - `fn put(&mut self, _byte: u8)`
 
   Pass bytes as part of a device control string to the handle chosen in `hook`. C0 controls
+  will also be passed to the handler.
 
 - `fn unhook(&mut self)`
 
   Called when a device control string is terminated.
+  
+  The previously selected handler should be notified that the DCS has
+  terminated.
 
 - `fn osc_dispatch(&mut self, _params: &[&[u8]], _bell_terminated: bool)`
 
@@ -743,10 +735,17 @@ the future, consider checking archive.org.
 - `fn csi_dispatch(&mut self, _params: &Params, _intermediates: &[u8], _ignore: bool, _action: u8)`
 
   A final character has arrived for a CSI sequence
+  
+  The `ignore` flag indicates that either more than two intermediates arrived
+  or the number of parameters exceeded the maximum supported length,
+  and subsequent characters were ignored.
 
 - `fn esc_dispatch(&mut self, _intermediates: &[u8], _ignore: bool, _byte: u8)`
 
   The final character of an escape sequence has arrived.
+  
+  The `ignore` flag indicates that more than two intermediates arrived and
+  subsequent characters were ignored.
 
 ## Type Aliases
 
@@ -756,7 +755,7 @@ the future, consider checking archive.org.
 type DefaultCharAccumulator = Utf8Parser;
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/lib.rs:332`](../../.source_1765633015/anstyle-parse-0.2.7/src/lib.rs#L332)*
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:332`](../../.source_1765894658/anstyle-parse-0.2.7/src/lib.rs#L332)*
 
 Most flexible [`CharAccumulator`](#characcumulator) for [`Parser`](#parser) based on active features
 
@@ -767,12 +766,12 @@ Most flexible [`CharAccumulator`](#characcumulator) for [`Parser`](#parser) base
 const MAX_INTERMEDIATES: usize = 2usize;
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/lib.rs:54`](../../.source_1765633015/anstyle-parse-0.2.7/src/lib.rs#L54)*
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:54`](../../.source_1765894658/anstyle-parse-0.2.7/src/lib.rs#L54)*
 
 ### `MAX_OSC_PARAMS`
 ```rust
 const MAX_OSC_PARAMS: usize = 16usize;
 ```
 
-*Defined in [`anstyle-parse-0.2.7/src/lib.rs:55`](../../.source_1765633015/anstyle-parse-0.2.7/src/lib.rs#L55)*
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:55`](../../.source_1765894658/anstyle-parse-0.2.7/src/lib.rs#L55)*
 

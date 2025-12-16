@@ -41,32 +41,24 @@ struct SlimSSSE3<const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:465-467`](../../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L465-L467)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:465-467`](../../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L465-L467)*
 
 #### Implementations
 
 - <span id="slimssse3-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
   Creates a new searcher using "slim" Teddy with 128-bit
-
   vectors. If SSSE3 is not available in the current
-
   environment, then this returns `None`.
 
 - <span id="slimssse3-new-unchecked"></span>`unsafe fn new_unchecked(patterns: &Arc<Patterns>) -> Searcher` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
   Creates a new searcher using "slim" Teddy with 256-bit
-
   vectors without checking whether SSSE3 is available or not.
-
   
-
   # Safety
-
   
-
   Callers must ensure that SSSE3 is available in the current
-
   environment.
 
 #### Trait Implementations
@@ -106,11 +98,8 @@ struct SlimSSSE3<const BYTES: usize> {
 - <span id="slimssse3-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl SearcherT for SlimSSSE3<1>`
@@ -146,32 +135,24 @@ struct SlimAVX2<const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:528-531`](../../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L528-L531)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:528-531`](../../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L528-L531)*
 
 #### Implementations
 
 - <span id="slimavx2-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
   Creates a new searcher using "slim" Teddy with 256-bit
-
   vectors. If AVX2 is not available in the current
-
   environment, then this returns `None`.
 
 - <span id="slimavx2-new-unchecked"></span>`unsafe fn new_unchecked(patterns: &Arc<Patterns>) -> Searcher` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
   Creates a new searcher using "slim" Teddy with 256-bit
-
   vectors without checking whether AVX2 is available or not.
-
   
-
   # Safety
-
   
-
   Callers must ensure that AVX2 is available in the current
-
   environment.
 
 #### Trait Implementations
@@ -211,11 +192,8 @@ struct SlimAVX2<const BYTES: usize> {
 - <span id="slimavx2-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl SearcherT for SlimAVX2<1>`
@@ -250,32 +228,24 @@ struct FatAVX2<const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:601-603`](../../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L601-L603)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:601-603`](../../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L601-L603)*
 
 #### Implementations
 
 - <span id="fatavx2-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
   Creates a new searcher using "slim" Teddy with 256-bit
-
   vectors. If AVX2 is not available in the current
-
   environment, then this returns `None`.
 
 - <span id="fatavx2-new-unchecked"></span>`unsafe fn new_unchecked(patterns: &Arc<Patterns>) -> Searcher` — [`Patterns`](../../../pattern/index.md#patterns), [`Searcher`](../index.md#searcher)
 
   Creates a new searcher using "slim" Teddy with 256-bit
-
   vectors without checking whether AVX2 is available or not.
-
   
-
   # Safety
-
   
-
   Callers must ensure that AVX2 is available in the current
-
   environment.
 
 #### Trait Implementations
@@ -315,11 +285,8 @@ struct FatAVX2<const BYTES: usize> {
 - <span id="fatavx2-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl SearcherT for FatAVX2<1>`
@@ -354,7 +321,7 @@ struct FatAVX2<const BYTES: usize> {
 fn is_available_ssse3() -> bool
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:664-687`](../../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L664-L687)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:664-687`](../../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L664-L687)*
 
 ### `is_available_avx2`
 
@@ -362,19 +329,19 @@ fn is_available_ssse3() -> bool
 fn is_available_avx2() -> bool
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:690-713`](../../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L690-L713)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:690-713`](../../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L690-L713)*
 
 ## Macros
 
 ### `slim_ssse3!`
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:470-520`](../../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L470-L520)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:470-520`](../../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L470-L520)*
 
 ### `slim_avx2!`
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:534-593`](../../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L534-L593)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:534-593`](../../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L534-L593)*
 
 ### `fat_avx2!`
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:606-656`](../../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L606-L656)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:606-656`](../../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L606-L656)*
 

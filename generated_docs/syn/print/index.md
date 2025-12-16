@@ -18,7 +18,7 @@
 struct TokensOrDefault<'a, T: 'a>(&'a Option<T>);
 ```
 
-*Defined in [`syn-2.0.111/src/print.rs:4`](../../../.source_1765633015/syn-2.0.111/src/print.rs#L4)*
+*Defined in [`syn-2.0.111/src/print.rs:4`](../../../.source_1765894658/syn-2.0.111/src/print.rs#L4)*
 
 #### Trait Implementations
 
@@ -45,11 +45,8 @@ struct TokensOrDefault<'a, T: 'a>(&'a Option<T>);
 - <span id="tokensordefault-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Sealed for TokensOrDefault<'a, T>`

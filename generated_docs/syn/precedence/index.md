@@ -35,7 +35,7 @@ enum Precedence {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/precedence.rs:18-54`](../../../.source_1765633015/syn-2.0.111/src/precedence.rs#L18-L54)*
+*Defined in [`syn-2.0.111/src/precedence.rs:18-54`](../../../.source_1765894658/syn-2.0.111/src/precedence.rs#L18-L54)*
 
 #### Implementations
 
@@ -80,11 +80,8 @@ enum Precedence {
 - <span id="precedence-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Precedence`

@@ -202,7 +202,7 @@ struct SectionTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/section.rs:19-21`](../../../../.source_1765633015/object-0.37.3/src/read/coff/section.rs#L19-L21)*
+*Defined in [`object-0.37.3/src/read/coff/section.rs:19-21`](../../../../.source_1765894658/object-0.37.3/src/read/coff/section.rs#L19-L21)*
 
 The table of section headers in a COFF or PE file.
 
@@ -214,19 +214,14 @@ Returned by `CoffHeader::sections` and
 - <span id="sectiontable-parse"></span>`fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md#result)
 
   Parse the section table.
-
   
-
   `data` must be the entire file data.
-
   `offset` must be after the optional file header.
 
 - <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
 
   Iterate over the section headers.
-
   
-
   Warning: section indices start at 1.
 
 - <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md#sectionindex), [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
@@ -244,31 +239,22 @@ Returned by `CoffHeader::sections` and
 - <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
 
   Return the section header at the given index.
-
   
-
   The index is 1-based.
 
 - <span id="sectiontable-section-by-name"></span>`fn section_by_name<R: ReadRef<'data>>(&self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md#stringtable), [`SectionIndex`](../../index.md#sectionindex), [`ImageSectionHeader`](../../pe/index.md#imagesectionheader)
 
   Return the section header with the given name.
-
   
-
   The returned index is 1-based.
-
   
-
   Ignores sections with invalid names.
 
 - <span id="sectiontable-max-section-file-offset"></span>`fn max_section_file_offset(&self) -> u64`
 
   Compute the maximum file offset used by sections.
-
   
-
   This will usually match the end of file, unless the PE file has a
-
   [data overlay](https://security.stackexchange.com/questions/77336/how-is-the-file-overlay-read-by-an-exe-virus)
 
 #### Trait Implementations
@@ -314,11 +300,8 @@ Returned by `CoffHeader::sections` and
 - <span id="sectiontable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SectionTable<'data>`
@@ -353,7 +336,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../.source_1765633015/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../.source_1765894658/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
 
 A table of symbol entries in a COFF or PE file.
 
@@ -379,9 +362,7 @@ Returned by `CoffHeader::symbols` and
 - <span id="symboltable-len"></span>`fn len(&self) -> usize`
 
   The number of symbol table entries.
-
   
-
   This includes auxiliary symbol table entries.
 
 - <span id="symboltable-iter"></span>`fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, R, Coff>` — [`SymbolIterator`](../coff/index.md#symboliterator)
@@ -395,33 +376,25 @@ Returned by `CoffHeader::symbols` and
 - <span id="symboltable-aux-function"></span>`fn aux_function(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolFunction>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ImageAuxSymbolFunction`](../../pe/index.md#imageauxsymbolfunction)
 
   Return the auxiliary function symbol for the symbol table entry at the given index.
-
   
-
   Note that the index is of the symbol, not the first auxiliary record.
 
 - <span id="symboltable-aux-section"></span>`fn aux_section(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolSection>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ImageAuxSymbolSection`](../../pe/index.md#imageauxsymbolsection)
 
   Return the auxiliary section symbol for the symbol table entry at the given index.
-
   
-
   Note that the index is of the symbol, not the first auxiliary record.
 
 - <span id="symboltable-aux-weak-external"></span>`fn aux_weak_external(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolWeak>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result), [`ImageAuxSymbolWeak`](../../pe/index.md#imageauxsymbolweak)
 
   Return the auxiliary weak external symbol for the symbol table entry at the given index.
-
   
-
   Note that the index is of the symbol, not the first auxiliary record.
 
 - <span id="symboltable-aux-file-name"></span>`fn aux_file_name(&self, index: SymbolIndex, aux_count: u8) -> Result<&'data [u8]>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result)
 
   Return the auxiliary file name for the symbol table entry at the given index.
-
   
-
   Note that the index is of the symbol, not the first auxiliary record.
 
 - <span id="symboltable-get"></span>`fn get<T: Pod>(&self, index: SymbolIndex, offset: usize) -> Result<&'data T>` — [`SymbolIndex`](../../index.md#symbolindex), [`Result`](../../index.md#result)
@@ -465,11 +438,8 @@ Returned by `CoffHeader::symbols` and
 - <span id="symboltable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SymbolTable<'data, R, Coff>`
@@ -499,7 +469,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:37-47`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L37-L47)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:37-47`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L37-L47)*
 
 A PE image file.
 
@@ -542,17 +512,13 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 - <span id="pefile-export-table"></span>`fn export_table(&self) -> Result<Option<ExportTable<'data>>>` — [`Result`](../../index.md#result), [`ExportTable`](#exporttable)
 
   Returns the export table of this file.
-
   
-
   The export table is located using the data directory.
 
 - <span id="pefile-import-table"></span>`fn import_table(&self) -> Result<Option<ImportTable<'data>>>` — [`Result`](../../index.md#result), [`ImportTable`](#importtable)
 
   Returns the import table of this file.
-
   
-
   The import table is located using the data directory.
 
 - <span id="pefile-section-alignment"></span>`fn section_alignment(&self) -> u64`
@@ -586,11 +552,8 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 - <span id="pefile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Pe, R> Object for PeFile<'data, Pe, R>`
@@ -686,7 +649,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:432-439`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L432-L439)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:432-439`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L432-L439)*
 
 An iterator for the COMDAT section groups in a [`PeFile`](#pefile).
 
@@ -721,11 +684,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="pecomdatiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeComdatIterator<'data, 'file, Pe, R>`
@@ -765,7 +725,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:465-472`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L465-L472)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:465-472`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L465-L472)*
 
 A COMDAT section group in a [`PeFile`](#pefile).
 
@@ -800,11 +760,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="pecomdat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Pe, R> ObjectComdat for PeComdat<'data, 'file, Pe, R>`
@@ -846,7 +803,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:525-532`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L525-L532)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:525-532`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L525-L532)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile`](#pefile).
 
@@ -881,11 +838,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="pecomdatsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
@@ -926,7 +880,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:23-30`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L23-L30)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:23-30`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L23-L30)*
 
 An iterator for the loadable sections in a [`PeFile`](#pefile).
 
@@ -959,11 +913,8 @@ An iterator for the loadable sections in a [`PeFile`](#pefile).
 - <span id="pesegmentiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeSegmentIterator<'data, 'file, Pe, R>`
@@ -1004,7 +955,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:58-65`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L58-L65)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:58-65`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L58-L65)*
 
 A loadable section in a [`PeFile`](#pefile).
 
@@ -1049,11 +1000,8 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 - <span id="pesegment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Pe, R> ObjectSegment for PeSegment<'data, 'file, Pe, R>`
@@ -1102,7 +1050,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:162-169`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L162-L169)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:162-169`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L162-L169)*
 
 An iterator for the sections in a [`PeFile`](#pefile).
 
@@ -1135,11 +1083,8 @@ An iterator for the sections in a [`PeFile`](#pefile).
 - <span id="pesectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeSectionIterator<'data, 'file, Pe, R>`
@@ -1181,7 +1126,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:198-206`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L198-L206)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:198-206`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L198-L206)*
 
 A section in a [`PeFile`](#pefile).
 
@@ -1226,11 +1171,8 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 - <span id="pesection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Pe, R> ObjectSection for PeSection<'data, 'file, Pe, R>`
@@ -1291,7 +1233,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 struct PeRelocationIterator<'data, 'file, R>(core::marker::PhantomData<(&'data (), &'file (), R)>);
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:466-468`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L466-L468)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:466-468`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L466-L468)*
 
 An iterator for the relocations in an [`PeSection`](#pesection).
 
@@ -1326,11 +1268,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="perelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeRelocationIterator<'data, 'file, R>`
@@ -1367,7 +1306,7 @@ struct DataDirectories<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/data_directory.rs:16-18`](../../../../.source_1765633015/object-0.37.3/src/read/pe/data_directory.rs#L16-L18)*
+*Defined in [`object-0.37.3/src/read/pe/data_directory.rs:16-18`](../../../../.source_1765894658/object-0.37.3/src/read/pe/data_directory.rs#L16-L18)*
 
 The table of data directories in a PE file.
 
@@ -1378,15 +1317,10 @@ Returned by [`ImageNtHeaders::parse`](super::ImageNtHeaders::parse).
 - <span id="datadirectories-parse"></span>`fn parse(data: &'data [u8], number: u32) -> Result<Self>` — [`Result`](../../index.md#result)
 
   Parse the data directory table.
-
   
-
   `data` must be the remaining optional data following the
-
   [optional header](pe::ImageOptionalHeader64).  `number` must be from the
-
   [`number_of_rva_and_sizes`](pe::ImageOptionalHeader64::number_of_rva_and_sizes)
-
   field of the optional header.
 
 - <span id="datadirectories-len"></span>`fn len(&self) -> usize`
@@ -1404,63 +1338,46 @@ Returned by [`ImageNtHeaders::parse`](super::ImageNtHeaders::parse).
 - <span id="datadirectories-get"></span>`fn get(&self, index: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../pe/index.md#imagedatadirectory)
 
   Returns the data directory at the given index.
-
   
-
   Index should be one of the `IMAGE_DIRECTORY_ENTRY_*` constants.
-
   
-
   Returns `None` if the index is larger than the table size,
-
   or if the entry at the index has a zero virtual address.
 
 - <span id="datadirectories-export-directory"></span>`fn export_directory<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<&'data pe::ImageExportDirectory>>` — [`SectionTable`](../coff/index.md#sectiontable), [`Result`](../../index.md#result), [`ImageExportDirectory`](../../pe/index.md#imageexportdirectory)
 
   Returns the unparsed export directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-export-table"></span>`fn export_table<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<ExportTable<'data>>>` — [`SectionTable`](../coff/index.md#sectiontable), [`Result`](../../index.md#result), [`ExportTable`](#exporttable)
 
   Returns the partially parsed export directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-import-table"></span>`fn import_table<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<ImportTable<'data>>>` — [`SectionTable`](../coff/index.md#sectiontable), [`Result`](../../index.md#result), [`ImportTable`](#importtable)
 
   Returns the partially parsed import directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-delay-load-import-table"></span>`fn delay_load_import_table<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<DelayLoadImportTable<'data>>>` — [`SectionTable`](../coff/index.md#sectiontable), [`Result`](../../index.md#result), [`DelayLoadImportTable`](#delayloadimporttable)
 
   Returns the partially parsed delay-load import directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-relocation-blocks"></span>`fn relocation_blocks<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<RelocationBlockIterator<'data>>>` — [`SectionTable`](../coff/index.md#sectiontable), [`Result`](../../index.md#result), [`RelocationBlockIterator`](#relocationblockiterator)
 
   Returns the blocks in the base relocation directory.
-
   
-
   `data` must be the entire file data.
 
 - <span id="datadirectories-resource-directory"></span>`fn resource_directory<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<ResourceDirectory<'data>>>` — [`SectionTable`](../coff/index.md#sectiontable), [`Result`](../../index.md#result), [`ResourceDirectory`](#resourcedirectory)
 
   Returns the resource directory.
-
   
-
   `data` must be the entire file data.
 
 #### Trait Implementations
@@ -1502,11 +1419,8 @@ Returned by [`ImageNtHeaders::parse`](super::ImageNtHeaders::parse).
 - <span id="datadirectories-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DataDirectories<'data>`
@@ -1539,7 +1453,7 @@ struct Export<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:42-51`](../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L42-L51)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:42-51`](../../../../.source_1765894658/object-0.37.3/src/read/pe/export.rs#L42-L51)*
 
 An export from a PE file.
 
@@ -1600,11 +1514,8 @@ There are multiple kinds of PE exports (with or without a name, and local or for
 - <span id="export-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Export<'data>`
@@ -1640,7 +1551,7 @@ struct ExportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:87-94`](../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L87-L94)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:87-94`](../../../../.source_1765894658/object-0.37.3/src/read/pe/export.rs#L87-L94)*
 
 A partially parsed PE export table.
 
@@ -1663,83 +1574,58 @@ Returned by [`DataDirectories::export_table`](super::DataDirectories::export_tab
 - <span id="exporttable-ordinal-base"></span>`fn ordinal_base(&self) -> u32`
 
   Returns the base value of ordinals.
-
   
-
   Adding this to an address index will give an ordinal.
 
 - <span id="exporttable-addresses"></span>`fn addresses(&self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../index.md#u32bytes), [`LittleEndian`](../../index.md#littleendian)
 
   Returns the unparsed address table.
-
   
-
   An address table entry may be a local address, or the address of a forwarded export entry.
-
   See `Self::is_forward` and `Self::target_from_address`.
 
 - <span id="exporttable-name-pointers"></span>`fn name_pointers(&self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../index.md#u32bytes), [`LittleEndian`](../../index.md#littleendian)
 
   Returns the unparsed name pointer table.
-
   
-
   A name pointer table entry can be used with `Self::name_from_pointer`.
 
 - <span id="exporttable-name-ordinals"></span>`fn name_ordinals(&self) -> &'data [U16Bytes<LE>]` — [`U16Bytes`](../../index.md#u16bytes), [`LittleEndian`](../../index.md#littleendian)
 
   Returns the unparsed ordinal table.
-
   
-
   An ordinal table entry is a 0-based index into the address table.
-
   See `Self::address_by_index` and `Self::target_by_index`.
 
 - <span id="exporttable-name-iter"></span>`fn name_iter(&self) -> impl Iterator<Item = (u32, u16)> + 'data`
 
   Returns an iterator for the entries in the name pointer table and ordinal table.
-
   
-
   A name pointer table entry can be used with `Self::name_from_pointer`.
-
   
-
   An ordinal table entry is a 0-based index into the address table.
-
   See `Self::address_by_index` and `Self::target_by_index`.
 
 - <span id="exporttable-address-by-index"></span>`fn address_by_index(&self, index: u32) -> Result<u32>` — [`Result`](../../index.md#result)
 
   Returns the export address table entry at the given address index.
-
   
-
   This may be a local address, or the address of a forwarded export entry.
-
   See `Self::is_forward` and `Self::target_from_address`.
-
   
-
   `index` is a 0-based index into the export address table.
 
 - <span id="exporttable-address-by-ordinal"></span>`fn address_by_ordinal(&self, ordinal: u32) -> Result<u32>` — [`Result`](../../index.md#result)
 
   Returns the export address table entry at the given ordinal.
-
   
-
   This may be a local address, or the address of a forwarded export entry.
-
   See `Self::is_forward` and `Self::target_from_address`.
 
 - <span id="exporttable-target-by-index"></span>`fn target_by_index(&self, index: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../index.md#result), [`ExportTarget`](#exporttarget)
 
   Returns the target of the export at the given address index.
-
   
-
   `index` is a 0-based index into the export address table.
 
 - <span id="exporttable-target-by-ordinal"></span>`fn target_by_ordinal(&self, ordinal: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../index.md#result), [`ExportTarget`](#exporttarget)
@@ -1805,11 +1691,8 @@ Returned by [`DataDirectories::export_table`](super::DataDirectories::export_tab
 - <span id="exporttable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ExportTable<'data>`
@@ -1842,7 +1725,7 @@ struct ImportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:15-19`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L15-L19)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:15-19`](../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L15-L19)*
 
 Information for parsing a PE import table.
 
@@ -1853,21 +1736,13 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 - <span id="importtable-new"></span>`fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
 
   Create a new import table parser.
-
   
-
   The import descriptors start at `import_address`.
-
   The size declared in the `IMAGE_DIRECTORY_ENTRY_IMPORT` data directory is
-
   ignored by the Windows loader, and so descriptors will be parsed until a null entry.
-
   
-
   `section_data` should be from the section containing `import_address`, and
-
   `section_address` should be the address of that section. Pointers within the
-
   descriptors and thunks may point to anywhere within the section data.
 
 - <span id="importtable-descriptors"></span>`fn descriptors(&self) -> Result<ImportDescriptorIterator<'data>>` — [`Result`](../../index.md#result), [`ImportDescriptorIterator`](#importdescriptoriterator)
@@ -1877,19 +1752,14 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 - <span id="importtable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
   Return a library name given its address.
-
   
-
   This address may be from `pe::ImageImportDescriptor::name`.
 
 - <span id="importtable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../index.md#result), [`ImportThunkList`](#importthunklist)
 
   Return a list of thunks given its address.
-
   
-
   This address may be from `pe::ImageImportDescriptor::original_first_thunk`
-
   or `pe::ImageImportDescriptor::first_thunk`.
 
 - <span id="importtable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](#imagentheaders), [`Result`](../../index.md#result), [`Import`](#import)
@@ -1899,13 +1769,9 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 - <span id="importtable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../index.md#result)
 
   Return the hint and name at the given address.
-
   
-
   This address may be from [`pe::ImageThunkData32`](../../pe/index.md) or [`pe::ImageThunkData64`](../../pe/index.md).
-
   
-
   The hint is an index into the export name pointer table in the target library.
 
 #### Trait Implementations
@@ -1945,11 +1811,8 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 - <span id="importtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ImportTable<'data>`
@@ -1981,7 +1844,7 @@ struct ImportDescriptorIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:102-105`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L102-L105)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:102-105`](../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L102-L105)*
 
 A fallible iterator for the descriptors in the import data directory.
 
@@ -1990,9 +1853,7 @@ A fallible iterator for the descriptors in the import data directory.
 - <span id="importdescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageImportDescriptor>>` — [`Result`](../../index.md#result), [`ImageImportDescriptor`](../../pe/index.md#imageimportdescriptor)
 
   Return the next descriptor.
-
   
-
   Returns `Ok(None)` when a null descriptor is found.
 
 #### Trait Implementations
@@ -2032,11 +1893,8 @@ A fallible iterator for the descriptors in the import data directory.
 - <span id="importdescriptoriterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ImportDescriptorIterator<'data>`
@@ -2081,7 +1939,7 @@ struct ImportThunkList<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:148-150`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L148-L150)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:148-150`](../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L148-L150)*
 
 A list of import thunks.
 
@@ -2096,9 +1954,7 @@ These may be in the import lookup table, or the import address table.
 - <span id="importthunklist-next"></span>`fn next<Pe: ImageNtHeaders>(&mut self) -> Result<Option<<Pe as >::ImageThunkData>>` — [`Result`](../../index.md#result), [`ImageNtHeaders`](#imagentheaders)
 
   Return the first thunk in the list, and update `self` to point after it.
-
   
-
   Returns `Ok(None)` when a null thunk is found.
 
 #### Trait Implementations
@@ -2138,11 +1994,8 @@ These may be in the import lookup table, or the import address table.
 - <span id="importthunklist-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ImportThunkList<'data>`
@@ -2175,7 +2028,7 @@ struct DelayLoadImportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:250-254`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L250-L254)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:250-254`](../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L250-L254)*
 
 Information for parsing a PE delay-load import table.
 
@@ -2187,21 +2040,13 @@ Returned by
 - <span id="delayloadimporttable-new"></span>`fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
 
   Create a new delay load import table parser.
-
   
-
   The import descriptors start at `import_address`.
-
   This table works in the same way the import table does: descriptors will be
-
   parsed until a null entry.
-
   
-
   `section_data` should be from the section containing `import_address`, and
-
   `section_address` should be the address of that section. Pointers within the
-
   descriptors and thunks may point to anywhere within the section data.
 
 - <span id="delayloadimporttable-descriptors"></span>`fn descriptors(&self) -> Result<DelayLoadDescriptorIterator<'data>>` — [`Result`](../../index.md#result), [`DelayLoadDescriptorIterator`](#delayloaddescriptoriterator)
@@ -2211,27 +2056,18 @@ Returned by
 - <span id="delayloadimporttable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../index.md#result)
 
   Return a library name given its address.
-
   
-
   This address may be from `pe::ImageDelayloadDescriptor::dll_name_rva`.
 
 - <span id="delayloadimporttable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../index.md#result), [`ImportThunkList`](#importthunklist)
 
   Return a list of thunks given its address.
-
   
-
   This address may be from the INT, i.e. from
-
   `pe::ImageDelayloadDescriptor::import_name_table_rva`.
-
   
-
   Please note that others RVA values from [`pe::ImageDelayloadDescriptor`](../../pe/index.md) are used
-
   by the delay loader at runtime to store values, and thus do not point inside the same
-
   section as the INT. Calling this function on those addresses will fail.
 
 - <span id="delayloadimporttable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](#imagentheaders), [`Result`](../../index.md#result), [`Import`](#import)
@@ -2241,13 +2077,9 @@ Returned by
 - <span id="delayloadimporttable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../index.md#result)
 
   Return the hint and name at the given address.
-
   
-
   This address may be from [`pe::ImageThunkData32`](../../pe/index.md) or [`pe::ImageThunkData64`](../../pe/index.md).
-
   
-
   The hint is an index into the export name pointer table in the target library.
 
 #### Trait Implementations
@@ -2287,11 +2119,8 @@ Returned by
 - <span id="delayloadimporttable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DelayLoadImportTable<'data>`
@@ -2323,7 +2152,7 @@ struct DelayLoadDescriptorIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:341-344`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L341-L344)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:341-344`](../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L341-L344)*
 
 A fallible iterator for the descriptors in the delay-load data directory.
 
@@ -2332,9 +2161,7 @@ A fallible iterator for the descriptors in the delay-load data directory.
 - <span id="delayloaddescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageDelayloadDescriptor>>` — [`Result`](../../index.md#result), [`ImageDelayloadDescriptor`](../../pe/index.md#imagedelayloaddescriptor)
 
   Return the next descriptor.
-
   
-
   Returns `Ok(None)` when a null descriptor is found.
 
 #### Trait Implementations
@@ -2374,11 +2201,8 @@ A fallible iterator for the descriptors in the delay-load data directory.
 - <span id="delayloaddescriptoriterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DelayLoadDescriptorIterator<'data>`
@@ -2423,7 +2247,7 @@ struct RelocationBlockIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/relocation.rs:11-13`](../../../../.source_1765633015/object-0.37.3/src/read/pe/relocation.rs#L11-L13)*
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:11-13`](../../../../.source_1765894658/object-0.37.3/src/read/pe/relocation.rs#L11-L13)*
 
 An iterator over the relocation blocks in the `.reloc` section of a PE file.
 
@@ -2484,11 +2308,8 @@ Returned by [`DataDirectories::relocation_blocks`](super::DataDirectories::reloc
 - <span id="relocationblockiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RelocationBlockIterator<'data>`
@@ -2535,7 +2356,7 @@ struct RelocationIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/relocation.rs:68-72`](../../../../.source_1765633015/object-0.37.3/src/read/pe/relocation.rs#L68-L72)*
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:68-72`](../../../../.source_1765894658/object-0.37.3/src/read/pe/relocation.rs#L68-L72)*
 
 An iterator of the relocations in a block in the `.reloc` section of a PE file.
 
@@ -2586,11 +2407,8 @@ An iterator of the relocations in a block in the `.reloc` section of a PE file.
 - <span id="relocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RelocationIterator<'data>`
@@ -2636,7 +2454,7 @@ struct Relocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/relocation.rs:104-109`](../../../../.source_1765633015/object-0.37.3/src/read/pe/relocation.rs#L104-L109)*
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:104-109`](../../../../.source_1765894658/object-0.37.3/src/read/pe/relocation.rs#L104-L109)*
 
 A relocation in the `.reloc` section of a PE file.
 
@@ -2693,11 +2511,8 @@ A relocation in the `.reloc` section of a PE file.
 - <span id="relocation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Relocation`
@@ -2728,7 +2543,7 @@ struct ResourceDirectory<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:12-14`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L12-L14)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:12-14`](../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L12-L14)*
 
 The `.rsrc` section of a PE file.
 
@@ -2783,11 +2598,8 @@ Returned by [`DataDirectories::resource_directory`](super::DataDirectories::reso
 - <span id="resourcedirectory-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ResourceDirectory<'data>`
@@ -2819,7 +2631,7 @@ struct ResourceDirectoryTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:30-35`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L30-L35)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:30-35`](../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L30-L35)*
 
 A table of resource entries.
 
@@ -2874,11 +2686,8 @@ A table of resource entries.
 - <span id="resourcedirectorytable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ResourceDirectoryTable<'data>`
@@ -2909,7 +2718,7 @@ struct ResourceName {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:143-145`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L143-L145)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:143-145`](../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L143-L145)*
 
 A resource name.
 
@@ -2966,11 +2775,8 @@ A resource name.
 - <span id="resourcename-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ResourceName`
@@ -3004,7 +2810,7 @@ struct RichHeaderInfo<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/rich.rs:12-26`](../../../../.source_1765633015/object-0.37.3/src/read/pe/rich.rs#L12-L26)*
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:12-26`](../../../../.source_1765894658/object-0.37.3/src/read/pe/rich.rs#L12-L26)*
 
 Parsed information about a Rich Header.
 
@@ -3077,11 +2883,8 @@ Parsed information about a Rich Header.
 - <span id="richheaderinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RichHeaderInfo<'data>`
@@ -3113,7 +2916,7 @@ struct RichHeaderEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/rich.rs:33-38`](../../../../.source_1765633015/object-0.37.3/src/read/pe/rich.rs#L33-L38)*
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:33-38`](../../../../.source_1765894658/object-0.37.3/src/read/pe/rich.rs#L33-L38)*
 
 A PE rich header entry after it has been unmasked.
 
@@ -3168,11 +2971,8 @@ See [`pe::MaskedRichHeaderEntry`](../../pe/index.md).
 - <span id="richheaderentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RichHeaderEntry`
@@ -3207,7 +3007,7 @@ enum ExportTarget<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:10-21`](../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L10-L21)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:10-21`](../../../../.source_1765894658/object-0.37.3/src/read/pe/export.rs#L10-L21)*
 
 Where an export is pointing to.
 
@@ -3278,11 +3078,8 @@ Where an export is pointing to.
 - <span id="exporttarget-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ExportTarget<'data>`
@@ -3314,7 +3111,7 @@ enum Import<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:180-187`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L180-L187)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:180-187`](../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L180-L187)*
 
 A parsed import thunk.
 
@@ -3369,11 +3166,8 @@ A parsed import thunk.
 - <span id="import-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Import<'data>`
@@ -3405,7 +3199,7 @@ enum ResourceDirectoryEntryData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:112-117`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L112-L117)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:112-117`](../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L112-L117)*
 
 Data associated with a resource directory entry.
 
@@ -3424,17 +3218,13 @@ Data associated with a resource directory entry.
 - <span id="resourcedirectoryentrydata-table"></span>`fn table(self) -> Option<ResourceDirectoryTable<'data>>` — [`ResourceDirectoryTable`](#resourcedirectorytable)
 
   Converts to an option of table.
-
   
-
   Helper for iterator filtering.
 
 - <span id="resourcedirectoryentrydata-data"></span>`fn data(self) -> Option<&'data pe::ImageResourceDataEntry>` — [`ImageResourceDataEntry`](../../pe/index.md#imageresourcedataentry)
 
   Converts to an option of data entry.
-
   
-
   Helper for iterator filtering.
 
 #### Trait Implementations
@@ -3474,11 +3264,8 @@ Data associated with a resource directory entry.
 - <span id="resourcedirectoryentrydata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ResourceDirectoryEntryData<'data>`
@@ -3510,7 +3297,7 @@ enum ResourceNameOrId {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:183-188`](../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L183-L188)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:183-188`](../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L183-L188)*
 
 A resource name or ID.
 
@@ -3531,17 +3318,13 @@ Can be either a string or a numeric ID.
 - <span id="resourcenameorid-name"></span>`fn name(self) -> Option<ResourceName>` — [`ResourceName`](#resourcename)
 
   Converts to an option of name.
-
   
-
   Helper for iterator filtering.
 
 - <span id="resourcenameorid-id"></span>`fn id(self) -> Option<u16>`
 
   Converts to an option of ID.
-
   
-
   Helper for iterator filtering.
 
 #### Trait Implementations
@@ -3573,11 +3356,8 @@ Can be either a string or a numeric ID.
 - <span id="resourcenameorid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ResourceNameOrId`
@@ -3600,7 +3380,7 @@ Can be either a string or a numeric ID.
 trait ImageNtHeaders: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:589-671`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L589-L671)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:589-671`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L589-L671)*
 
 A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`pe::ImageNtHeaders64`](../../pe/index.md).
 
@@ -3615,6 +3395,8 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`
 - `fn is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
+  
+  This is a property of the type, not a value in the header data.
 
 - `fn is_valid_optional_magic(&self) -> bool`
 
@@ -3637,14 +3419,26 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<(&'data Self, DataDirectories<'data>)>`
 
   Read the NT headers, including the data directories.
+  
+  `data` must be for the entire file.
+  
+  `offset` must be headers offset, which can be obtained from `pe::ImageDosHeader::nt_headers_offset`.
+  It is updated to point after the optional header, which is where the section headers are located.
+  
+  Also checks that the `signature` and `magic` fields in the headers are valid.
 
 - `fn sections<'data, R: ReadRef<'data>>(&self, data: R, offset: u64) -> read::Result<SectionTable<'data>>`
 
   Read the section table.
+  
+  `data` must be for the entire file.
+  `offset` must be after the optional file header.
 
 - `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<SymbolTable<'data, R>>`
 
   Read the COFF symbol table and string table.
+  
+  `data` must be the entire file data.
 
 #### Implementors
 
@@ -3657,7 +3451,7 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`
 trait ImageOptionalHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:675-709`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L675-L709)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:675-709`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L675-L709)*
 
 A trait for generic access to [`pe::ImageOptionalHeader32`](../../pe/index.md) and [`pe::ImageOptionalHeader64`](../../pe/index.md).
 
@@ -3734,7 +3528,7 @@ A trait for generic access to [`pe::ImageOptionalHeader32`](../../pe/index.md) a
 trait ImageThunkData: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:191-207`](../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L191-L207)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:191-207`](../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L191-L207)*
 
 A trait for generic access to [`pe::ImageThunkData32`](../../pe/index.md) and [`pe::ImageThunkData64`](../../pe/index.md).
 
@@ -3751,10 +3545,14 @@ A trait for generic access to [`pe::ImageThunkData32`](../../pe/index.md) and [`
 - `fn ordinal(self) -> u16`
 
   Return the ordinal portion of the thunk.
+  
+  Does not check the ordinal flag.
 
 - `fn address(self) -> u32`
 
   Return the RVA portion of the thunk.
+  
+  Does not check the ordinal flag.
 
 #### Implementors
 
@@ -3769,7 +3567,7 @@ A trait for generic access to [`pe::ImageThunkData32`](../../pe/index.md) and [`
 fn optional_header_magic<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<u16>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:572-585`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L572-L585)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:572-585`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L572-L585)*
 
 Find the optional header and read its `magic` field.
 
@@ -3782,7 +3580,7 @@ fully parse the NT headers.
 fn parse_ordinal(digits: &[u8]) -> Option<u32>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:324-334`](../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L324-L334)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:324-334`](../../../../.source_1765894658/object-0.37.3/src/read/pe/export.rs#L324-L334)*
 
 ### `memmem`
 
@@ -3790,7 +3588,7 @@ fn parse_ordinal(digits: &[u8]) -> Option<u32>
 fn memmem(data: &[u8], needle: &[u8], align: usize) -> Option<usize>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/rich.rs:84-92`](../../../../.source_1765633015/object-0.37.3/src/read/pe/rich.rs#L84-L92)*
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:84-92`](../../../../.source_1765894658/object-0.37.3/src/read/pe/rich.rs#L84-L92)*
 
 Find the offset of the first occurrence of needle in the data.
 
@@ -3804,7 +3602,7 @@ The offset must have the given alignment.
 type PeFile32<'data, R> = PeFile<'data, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:26`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L26)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:26`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L26)*
 
 A PE32 (32-bit) image file.
 
@@ -3817,7 +3615,7 @@ to [`crate::FileKind::Pe32`](../../index.md).
 type PeFile64<'data, R> = PeFile<'data, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:31`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L31)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:31`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L31)*
 
 A PE32+ (64-bit) image file.
 
@@ -3830,7 +3628,7 @@ to [`crate::FileKind::Pe64`](../../index.md).
 type PeComdatIterator32<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:422-423`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L422-L423)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:422-423`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L422-L423)*
 
 An iterator for the COMDAT section groups in a [`PeFile32`](#pefile32).
 
@@ -3840,7 +3638,7 @@ An iterator for the COMDAT section groups in a [`PeFile32`](#pefile32).
 type PeComdatIterator64<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:425-426`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L425-L426)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:425-426`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L425-L426)*
 
 An iterator for the COMDAT section groups in a [`PeFile64`](#pefile64).
 
@@ -3850,7 +3648,7 @@ An iterator for the COMDAT section groups in a [`PeFile64`](#pefile64).
 type PeComdat32<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:455-456`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L455-L456)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:455-456`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L455-L456)*
 
 A COMDAT section group in a [`PeFile32`](#pefile32).
 
@@ -3860,7 +3658,7 @@ A COMDAT section group in a [`PeFile32`](#pefile32).
 type PeComdat64<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:458-459`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L458-L459)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:458-459`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L458-L459)*
 
 A COMDAT section group in a [`PeFile64`](#pefile64).
 
@@ -3870,7 +3668,7 @@ A COMDAT section group in a [`PeFile64`](#pefile64).
 type PeComdatSectionIterator32<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:515-516`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L515-L516)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:515-516`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L515-L516)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile32`](#pefile32).
 
@@ -3880,7 +3678,7 @@ An iterator for the sections in a COMDAT section group in a [`PeFile32`](#pefile
 type PeComdatSectionIterator64<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/file.rs:518-519`](../../../../.source_1765633015/object-0.37.3/src/read/pe/file.rs#L518-L519)*
+*Defined in [`object-0.37.3/src/read/pe/file.rs:518-519`](../../../../.source_1765894658/object-0.37.3/src/read/pe/file.rs#L518-L519)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile64`](#pefile64).
 
@@ -3890,7 +3688,7 @@ An iterator for the sections in a COMDAT section group in a [`PeFile64`](#pefile
 type PeSegmentIterator32<'data, 'file, R> = PeSegmentIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:15-16`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:15-16`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L15-L16)*
 
 An iterator for the loadable sections in a [`PeFile32`](super::PeFile32).
 
@@ -3900,7 +3698,7 @@ An iterator for the loadable sections in a [`PeFile32`](super::PeFile32).
 type PeSegmentIterator64<'data, 'file, R> = PeSegmentIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:18-19`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L18-L19)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:18-19`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L18-L19)*
 
 An iterator for the loadable sections in a [`PeFile64`](super::PeFile64).
 
@@ -3910,7 +3708,7 @@ An iterator for the loadable sections in a [`PeFile64`](super::PeFile64).
 type PeSegment32<'data, 'file, R> = PeSegment<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:48-49`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L48-L49)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:48-49`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L48-L49)*
 
 A loadable section in a [`PeFile32`](super::PeFile32).
 
@@ -3920,7 +3718,7 @@ A loadable section in a [`PeFile32`](super::PeFile32).
 type PeSegment64<'data, 'file, R> = PeSegment<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:51-52`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L51-L52)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:51-52`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L51-L52)*
 
 A loadable section in a [`PeFile64`](super::PeFile64).
 
@@ -3930,7 +3728,7 @@ A loadable section in a [`PeFile64`](super::PeFile64).
 type PeSectionIterator32<'data, 'file, R> = PeSectionIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:154-155`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L154-L155)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:154-155`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L154-L155)*
 
 An iterator for the sections in a [`PeFile32`](super::PeFile32).
 
@@ -3940,7 +3738,7 @@ An iterator for the sections in a [`PeFile32`](super::PeFile32).
 type PeSectionIterator64<'data, 'file, R> = PeSectionIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:157-158`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L157-L158)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:157-158`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L157-L158)*
 
 An iterator for the sections in a [`PeFile64`](super::PeFile64).
 
@@ -3950,7 +3748,7 @@ An iterator for the sections in a [`PeFile64`](super::PeFile64).
 type PeSection32<'data, 'file, R> = PeSection<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:188-189`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L188-L189)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:188-189`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L188-L189)*
 
 A section in a [`PeFile32`](super::PeFile32).
 
@@ -3960,7 +3758,7 @@ A section in a [`PeFile32`](super::PeFile32).
 type PeSection64<'data, 'file, R> = PeSection<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:191-192`](../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L191-L192)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:191-192`](../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L191-L192)*
 
 A section in a [`PeFile64`](super::PeFile64).
 

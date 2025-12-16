@@ -21,7 +21,7 @@ struct Splice<'a, I: Iterator + 'a, A: Allocator + 'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
 
 A splicing iterator for `Vec`.
 
@@ -75,11 +75,8 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 - <span id="splice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for Splice<'a, I, A>`

@@ -6,8 +6,8 @@ This crate works fully on stable Rust, and also does not require the
 standard library. To disable references to the standard library, you must
 opt-out of the `std` feature using `default-features = false` in your
 `Cargo.toml` file. When in no-std mode, a separate `alloc` feature flag
-is available to support casting to several [`alloc`](../allocator_api2/index.md) types not included
-in [`core`](../clap_builder/output/textwrap/core/index.md).
+is available to support casting to several [`alloc`](#alloc) types not included
+in `core`.
 
 Castaway provides the following key macros:
 
@@ -39,7 +39,7 @@ Castaway provides the following key macros:
 trait LifetimeFree { ... }
 ```
 
-*Defined in [`castaway-0.2.4/src/lifetime_free.rs:43`](../../.source_1765633015/castaway-0.2.4/src/lifetime_free.rs#L43)*
+*Defined in [`castaway-0.2.4/src/lifetime_free.rs:43`](../../.source_1765894658/castaway-0.2.4/src/lifetime_free.rs#L43)*
 
 Marker trait for types that do not contain any lifetime parameters. Such
 types are safe to cast from non-static type parameters if their types are
@@ -142,7 +142,7 @@ unsafe impl LifetimeFree for PlainOldData {}
 
 ### `cast!`
 
-*Defined in [`castaway-0.2.4/src/lib.rs:177-207`](../../.source_1765633015/castaway-0.2.4/src/lib.rs#L177-L207)*
+*Defined in [`castaway-0.2.4/src/lib.rs:177-207`](../../.source_1765894658/castaway-0.2.4/src/lib.rs#L177-L207)*
 
 Attempt to cast the result of an expression into a given concrete type.
 
@@ -202,9 +202,9 @@ bounds, ensuring that all possible instantiations of the type are always
 `'static`. To mark a type as being lifetime-free and enable it to be casted
 to in this manner by this macro it must implement the [`LifetimeFree`](lifetime_free/index.md)
 trait. This is implemented automatically for all primitive types and for
-several [`core`](../clap_builder/output/textwrap/core/index.md) types. If you enable the `std` crate feature, then it will
+several `core` types. If you enable the `std` crate feature, then it will
 also be implemented for several `std` types as well. If you enable the
-`alloc` crate feature, then it will be implemented for several [`alloc`](../allocator_api2/index.md)
+`alloc` crate feature, then it will be implemented for several [`alloc`](#alloc)
 types without linking to the standard library as the `std` feature would.
 
 # Examples
@@ -291,7 +291,7 @@ println!("default: {}", "hello".fast_to_string());
 
 ### `match_type!`
 
-*Defined in [`castaway-0.2.4/src/lib.rs:263-285`](../../.source_1765633015/castaway-0.2.4/src/lib.rs#L263-L285)*
+*Defined in [`castaway-0.2.4/src/lib.rs:263-285`](../../.source_1765894658/castaway-0.2.4/src/lib.rs#L263-L285)*
 
 Match the result of an expression against multiple concrete types.
 

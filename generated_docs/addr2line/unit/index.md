@@ -42,7 +42,7 @@ struct UnitRange {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:12-16`](../../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L12-L16)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:12-16`](../../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L12-L16)*
 
 #### Trait Implementations
 
@@ -69,11 +69,8 @@ struct UnitRange {
 - <span id="unitrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for UnitRange`
@@ -101,7 +98,7 @@ struct ResUnit<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:18-25`](../../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L18-L25)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:18-25`](../../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L18-L25)*
 
 #### Implementations
 
@@ -110,9 +107,7 @@ struct ResUnit<R: gimli::Reader> {
 - <span id="resunit-dwarf-and-unit"></span>`fn dwarf_and_unit<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<SimpleLookup<Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>, R, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>>>` — [`Context`](../index.md#context), [`LookupResult`](../lookup/index.md#lookupresult), [`SimpleLookup`](../lookup/index.md#simplelookup), [`DebugFile`](../index.md#debugfile)
 
   Returns the DWARF sections and the unit.
-
   
-
   Loads the DWO unit if necessary.
 
 - <span id="resunit-parse-lines"></span>`fn parse_lines(&self, sections: &gimli::Dwarf<R>) -> Result<Option<&Lines>, gimli::Error>` — [`Lines`](../line/index.md#lines)
@@ -152,11 +147,8 @@ struct ResUnit<R: gimli::Reader> {
 - <span id="resunit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ResUnit<R>`
@@ -180,7 +172,7 @@ struct ResUnits<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:196-199`](../../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L196-L199)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:196-199`](../../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L196-L199)*
 
 #### Implementations
 
@@ -193,33 +185,21 @@ struct ResUnits<R: gimli::Reader> {
 - <span id="resunits-find"></span>`fn find(&self, probe: u64) -> impl Iterator<Item = &ResUnit<R>>` — [`ResUnit`](#resunit)
 
   Finds the CUs for the function address given.
-
   
-
   There might be multiple CUs whose range contains this address.
-
   Weak symbols have shown up in the wild which cause this to happen
-
   but otherwise this can happen if the CU has non-contiguous functions
-
   but only reports a single range.
-
   
-
   Consequently we return an iterator for all CUs which may contain the
-
   address, and the caller must check if there is actually a function or
-
   location in the CU for that address.
 
 - <span id="resunits-find-range"></span>`fn find_range(&self, probe_low: u64, probe_high: u64) -> impl Iterator<Item = (&ResUnit<R>, &gimli::Range)>` — [`ResUnit`](#resunit)
 
   Finds the CUs covering the range of addresses given.
-
   
-
   The range is [low, high) (ie, the upper bound is exclusive). This can return multiple
-
   ranges for the same unit.
 
 - <span id="resunits-find-location-range"></span>`fn find_location_range<'a>(self: &'a Self, probe_low: u64, probe_high: u64, sections: &'a gimli::Dwarf<R>) -> Result<LocationRangeIter<'a, R>, gimli::Error>` — [`LocationRangeIter`](#locationrangeiter)
@@ -249,11 +229,8 @@ struct ResUnits<R: gimli::Reader> {
 - <span id="resunits-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ResUnits<R>`
@@ -277,7 +254,7 @@ struct DwoUnit<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:475-478`](../../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L475-L478)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:475-478`](../../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L475-L478)*
 
 A DWO unit has its own DWARF sections.
 
@@ -310,11 +287,8 @@ A DWO unit has its own DWARF sections.
 - <span id="dwounit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DwoUnit<R>`
@@ -338,7 +312,7 @@ struct SupUnit<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:486-489`](../../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L486-L489)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:486-489`](../../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L486-L489)*
 
 #### Trait Implementations
 
@@ -365,11 +339,8 @@ struct SupUnit<R: gimli::Reader> {
 - <span id="supunit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SupUnit<R>`
@@ -392,7 +363,7 @@ struct SupUnits<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:491-493`](../../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L491-L493)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:491-493`](../../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L491-L493)*
 
 #### Implementations
 
@@ -429,11 +400,8 @@ struct SupUnits<R: gimli::Reader> {
 - <span id="supunits-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SupUnits<R>`
@@ -460,7 +428,7 @@ struct LocationRangeIter<'ctx, R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:539-546`](../../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L539-L546)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:539-546`](../../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L539-L546)*
 
 Iterator over `Location`s in a range of addresses, returned by `Context::find_location_range`.
 
@@ -493,11 +461,8 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 - <span id="locationrangeiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LocationRangeIter<'ctx, R>`
@@ -534,5 +499,5 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 type UnitRef<'unit, R> = (crate::DebugFile, gimli::UnitRef<'unit, R>);
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:27`](../../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L27)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:27`](../../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L27)*
 

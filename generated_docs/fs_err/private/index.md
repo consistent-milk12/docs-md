@@ -18,7 +18,7 @@
 trait Sealed { ... }
 ```
 
-*Defined in [`fs-err-3.2.0/src/lib.rs:327`](../../../.source_1765633015/fs-err-3.2.0/src/lib.rs#L327)*
+*Defined in [`fs-err-3.2.1/src/lib.rs:337`](../../../.source_1765894658/fs-err-3.2.1/src/lib.rs#L337)*
 
 #### Implementors
 

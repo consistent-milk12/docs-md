@@ -62,7 +62,7 @@ struct Bag {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:63-67`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/internal.rs#L63-L67)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:63-67`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L63-L67)*
 
 A bag of deferred functions.
 
@@ -85,19 +85,12 @@ A bag of deferred functions.
 - <span id="bag-try-push"></span>`unsafe fn try_push(&mut self, deferred: Deferred) -> Result<(), Deferred>` — [`Deferred`](../deferred/index.md#deferred)
 
   Attempts to insert a deferred function into the bag.
-
   
-
   Returns `Ok(())` if successful, and `Err(deferred)` for the given `deferred` if the bag is
-
   full.
-
   
-
   # Safety
-
   
-
   It should be safe for another thread to execute the given function.
 
 - <span id="bag-seal"></span>`fn seal(self, epoch: Epoch) -> SealedBag` — [`Epoch`](../epoch/index.md#epoch), [`SealedBag`](#sealedbag)
@@ -141,11 +134,8 @@ A bag of deferred functions.
 - <span id="bag-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Bag`
@@ -185,7 +175,7 @@ struct SealedBag {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:138-141`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/internal.rs#L138-L141)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:138-141`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L138-L141)*
 
 A pair of an epoch and a bag.
 
@@ -228,11 +218,8 @@ A pair of an epoch and a bag.
 - <span id="sealedbag-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for SealedBag`
@@ -273,7 +260,7 @@ struct Global {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:156-165`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/internal.rs#L156-L165)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:156-165`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L156-L165)*
 
 The global data for a garbage collector.
 
@@ -306,35 +293,22 @@ The global data for a garbage collector.
 - <span id="global-collect"></span>`fn collect(&self, guard: &Guard)` — [`Guard`](../guard/index.md#guard)
 
   Collects several bags from the global queue and executes deferred functions in them.
-
   
-
   Note: This may itself produce garbage and in turn allocate new bags.
-
   
-
   `pin()` rarely calls `collect()`, so we want the compiler to place that call on a cold
-
   path. In other words, we want the compiler to optimize branching for the case when
-
   `collect()` is not called.
 
 - <span id="global-try-advance"></span>`fn try_advance(&self, guard: &Guard) -> Epoch` — [`Guard`](../guard/index.md#guard), [`Epoch`](../epoch/index.md#epoch)
 
   Attempts to advance the global epoch.
-
   
-
   The global epoch can advance only if all currently pinned participants have been pinned in
-
   the current epoch.
-
   
-
   Returns the current global epoch.
-
   
-
   `try_advance()` is annotated `#[cold]` because it is rarely called.
 
 #### Trait Implementations
@@ -362,11 +336,8 @@ The global data for a garbage collector.
 - <span id="global-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Global`
@@ -409,7 +380,7 @@ struct Local {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:271-296`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/internal.rs#L271-L296)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:271-296`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L271-L296)*
 
 Participant for garbage collection.
 
@@ -470,13 +441,9 @@ Participant for garbage collection.
 - <span id="local-defer"></span>`unsafe fn defer(&self, deferred: Deferred, guard: &Guard)` — [`Deferred`](../deferred/index.md#deferred), [`Guard`](../guard/index.md#guard)
 
   Adds `deferred` to the thread-local bag.
-
   
-
   # Safety
-
   
-
   It should be safe for another thread to execute the given function.
 
 - <span id="local-flush"></span>`fn flush(&self, guard: &Guard)` — [`Guard`](../guard/index.md#guard)
@@ -530,11 +497,8 @@ Participant for garbage collection.
 - <span id="local-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IsElement for Local`
@@ -578,7 +542,7 @@ Participant for garbage collection.
 const MAX_OBJECTS: usize = 64usize;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:57`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/internal.rs#L57)*
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:57`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/internal.rs#L57)*
 
 Maximum number of objects a bag can contain.
 

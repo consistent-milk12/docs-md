@@ -23,7 +23,7 @@ struct DebugAddr<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L6-L8)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L6-L8)*
 
 The raw contents of the `.debug_addr` section.
 
@@ -32,39 +32,24 @@ The raw contents of the `.debug_addr` section.
 - <span id="debugaddr-get-address"></span>`fn get_address(&self, address_size: u8, base: DebugAddrBase<<R as >::Offset>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrBase`](../../index.md#debugaddrbase), [`Reader`](../index.md#reader), [`DebugAddrIndex`](../../index.md#debugaddrindex), [`Result`](../../index.md#result)
 
   Returns the address at the given `base` and `index`.
-
   
-
   A set of addresses in the `.debug_addr` section consists of a header
-
   followed by a series of addresses.
-
   
-
   The `base` must be the `DW_AT_addr_base` value from the compilation unit DIE.
-
   This is an offset that points to the first address following the header.
-
   
-
   The `index` is the value of a `DW_FORM_addrx` attribute.
-
   
-
   The `address_size` must be the size of the address for the compilation unit.
-
   This value must also match the header. However, note that we do not parse the
-
   header to validate this, since locating the header is unreliable, and the GNU
-
   extensions do not emit it.
 
 - <span id="debugaddr-headers"></span>`fn headers(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md#addrheaderiter)
 
   Iterate the sets of entries in the `.debug_addr` section.
-
   
-
   Each set of entries belongs to a single unit.
 
 #### Trait Implementations
@@ -110,11 +95,8 @@ The raw contents of the `.debug_addr` section.
 - <span id="debugaddr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugAddr<R>`
@@ -152,7 +134,7 @@ struct AddrHeaderIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L82-L85)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L82-L85)*
 
 An iterator over the headers of a `.debug_addr` section.
 
@@ -199,11 +181,8 @@ An iterator over the headers of a `.debug_addr` section.
 - <span id="addrheaderiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AddrHeaderIter<R>`
@@ -240,7 +219,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L122-L131)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L122-L131)*
 
 A header for a set of entries in the `.debug_addr` section.
 
@@ -305,11 +284,8 @@ These entries all belong to a single unit.
 - <span id="addrheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for AddrHeader<R, Offset>`
@@ -347,7 +323,7 @@ struct AddrEntryIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../../.source_1765633015/gimli-0.32.3/src/read/addr.rs#L217-L220)*
+*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../../.source_1765894658/gimli-0.32.3/src/read/addr.rs#L217-L220)*
 
 An iterator over the addresses from a `.debug_addr` section.
 
@@ -359,15 +335,10 @@ Can be [used with
 - <span id="addrentryiter-next"></span>`fn next(&mut self) -> Result<Option<u64>>` — [`Result`](../../index.md#result)
 
   Advance the iterator and return the next address.
-
   
-
   Returns the newly parsed address as `Ok(Some(addr))`. Returns `Ok(None)`
-
   when iteration is complete and all addresses have already been parsed and
-
   yielded. If an error occurs while parsing the next address, then this error
-
   is returned as `Err(e)`, and all subsequent calls return `Ok(None)`.
 
 #### Trait Implementations
@@ -407,11 +378,8 @@ Can be [used with
 - <span id="addrentryiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AddrEntryIter<R>`

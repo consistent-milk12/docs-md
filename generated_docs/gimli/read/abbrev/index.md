@@ -46,7 +46,7 @@ struct DebugAbbrev<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:22-24`](../../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L22-L24)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:22-24`](../../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L22-L24)*
 
 The `DebugAbbrev` struct represents the abbreviations describing
 `DebuggingInformationEntry`s' attribute names and forms found in the
@@ -57,31 +57,18 @@ The `DebugAbbrev` struct represents the abbreviations describing
 - <span id="debugabbrev-new"></span>`fn new(debug_abbrev_section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugAbbrev` instance from the data in the `.debug_abbrev`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_abbrev` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugAbbrev, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_abbrev_section_somehow = || &buf;
-
   let debug_abbrev = DebugAbbrev::new(read_debug_abbrev_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -127,11 +114,8 @@ The `DebugAbbrev` struct represents the abbreviations describing
 - <span id="debugabbrev-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugAbbrev<R>`
@@ -168,7 +152,7 @@ struct AbbreviationsCache {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:112-114`](../../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L112-L114)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:112-114`](../../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L112-L114)*
 
 A cache of previously parsed `Abbreviations`.
 
@@ -181,33 +165,23 @@ A cache of previously parsed `Abbreviations`.
 - <span id="abbreviationscache-populate"></span>`fn populate<R: Reader>(&mut self, strategy: AbbreviationsCacheStrategy, debug_abbrev: &DebugAbbrev<R>, units: DebugInfoUnitHeadersIter<R>)` — [`AbbreviationsCacheStrategy`](../index.md#abbreviationscachestrategy), [`DebugAbbrev`](../index.md#debugabbrev), [`DebugInfoUnitHeadersIter`](../index.md#debuginfounitheadersiter)
 
   Parse abbreviations and store them in the cache.
-
   
-
   This will iterate over the given units to determine the abbreviations
-
   offsets. Any existing cache entries are discarded.
-
   
-
   Errors during parsing abbreviations are also stored in the cache.
-
   Errors during iterating over the units are ignored.
 
 - <span id="abbreviationscache-set"></span>`fn set<R: Reader>(&mut self, offset: DebugAbbrevOffset<<R as >::Offset>, abbreviations: Arc<Abbreviations>)` — [`DebugAbbrevOffset`](../../index.md#debugabbrevoffset), [`Reader`](../index.md#reader), [`Abbreviations`](../index.md#abbreviations)
 
   Set an entry in the abbreviations cache.
-
   
-
   This is only required if you want to manually populate the cache.
 
 - <span id="abbreviationscache-get"></span>`fn get<R: Reader>(&self, debug_abbrev: &DebugAbbrev<R>, offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Arc<Abbreviations>>` — [`DebugAbbrev`](../index.md#debugabbrev), [`DebugAbbrevOffset`](../../index.md#debugabbrevoffset), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`Abbreviations`](../index.md#abbreviations)
 
   Parse the abbreviations at the given offset.
-
   
-
   This uses the cache if possible, but does not update it.
 
 #### Trait Implementations
@@ -243,11 +217,8 @@ A cache of previously parsed `Abbreviations`.
 - <span id="abbreviationscache-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for AbbreviationsCache`
@@ -271,7 +242,7 @@ struct Abbreviations {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:206-209`](../../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L206-L209)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:206-209`](../../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L206-L209)*
 
 A set of type abbreviations.
 
@@ -288,13 +259,9 @@ method.
 - <span id="abbreviations-insert"></span>`fn insert(&mut self, abbrev: Abbreviation) -> ::core::result::Result<(), ()>` — [`Abbreviation`](../index.md#abbreviation)
 
   Insert an abbreviation into the set.
-
   
-
   Returns `Ok` if it is the first abbreviation in the set with its code,
-
   `Err` if the code is a duplicate and there already exists an
-
   abbreviation in the set with the given abbreviation's code.
 
 - <span id="abbreviations-get"></span>`fn get(&self, code: u64) -> Option<&Abbreviation>` — [`Abbreviation`](../index.md#abbreviation)
@@ -346,11 +313,8 @@ method.
 - <span id="abbreviations-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Abbreviations`
@@ -384,7 +348,7 @@ struct Abbreviation {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:282-287`](../../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L282-L287)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:282-287`](../../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L282-L287)*
 
 An abbreviation describes the shape of a `DebuggingInformationEntry`'s type:
 its code, tag type, whether it has children, and its set of attributes.
@@ -394,13 +358,9 @@ its code, tag type, whether it has children, and its set of attributes.
 - <span id="abbreviation-new"></span>`fn new(code: u64, tag: constants::DwTag, has_children: constants::DwChildren, attributes: Attributes) -> Abbreviation` — [`DwTag`](../../index.md#dwtag), [`DwChildren`](../../index.md#dwchildren), [`Attributes`](#attributes), [`Abbreviation`](../index.md#abbreviation)
 
   Construct a new `Abbreviation`.
-
   
-
   ### Panics
-
   
-
   Panics if `code` is `0`.
 
 - <span id="abbreviation-code"></span>`fn code(&self) -> u64`
@@ -430,13 +390,11 @@ its code, tag type, whether it has children, and its set of attributes.
 - <span id="abbreviation-parse-attributes"></span>`fn parse_attributes<R: Reader>(input: &mut R) -> Result<Attributes>` — [`Result`](../../index.md#result), [`Attributes`](#attributes)
 
   Parse a series of attribute specifications, terminated by a null attribute
-
   specification.
 
 - <span id="abbreviation-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<Abbreviation>>` — [`Result`](../../index.md#result), [`Abbreviation`](../index.md#abbreviation)
 
   Parse an abbreviation. Return `None` for the null abbreviation, `Some`
-
   for an actual abbreviation.
 
 #### Trait Implementations
@@ -478,11 +436,8 @@ its code, tag type, whether it has children, and its set of attributes.
 - <span id="abbreviation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Abbreviation`
@@ -521,7 +476,7 @@ struct AttributeSpecification {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:479-483`](../../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L479-L483)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:479-483`](../../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L479-L483)*
 
 The description of an attribute in an abbreviated type. It is a pair of name
 and form.
@@ -531,7 +486,6 @@ and form.
 - <span id="attributespecification-new"></span>`fn new(name: constants::DwAt, form: constants::DwForm, implicit_const_value: Option<i64>) -> AttributeSpecification` — [`DwAt`](../../index.md#dwat), [`DwForm`](../../index.md#dwform), [`AttributeSpecification`](../index.md#attributespecification)
 
   Construct a new `AttributeSpecification` from the given name and form
-
   and implicit const value.
 
 - <span id="attributespecification-name"></span>`fn name(&self) -> constants::DwAt` — [`DwAt`](../../index.md#dwat)
@@ -549,11 +503,8 @@ and form.
 - <span id="attributespecification-size"></span>`fn size<R: Reader>(&self, header: &UnitHeader<R>) -> Option<usize>` — [`UnitHeader`](../index.md#unitheader)
 
   Return the size of the attribute, in bytes.
-
   
-
   Note that because some attributes are variably sized, the size cannot
-
   always be known without parsing, in which case we return `None`.
 
 - <span id="attributespecification-parse-form"></span>`fn parse_form<R: Reader>(input: &mut R) -> Result<constants::DwForm>` — [`Result`](../../index.md#result), [`DwForm`](../../index.md#dwform)
@@ -563,7 +514,6 @@ and form.
 - <span id="attributespecification-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<AttributeSpecification>>` — [`Result`](../../index.md#result), [`AttributeSpecification`](../index.md#attributespecification)
 
   Parse an attribute specification. Returns `None` for the null attribute
-
   specification, `Some` for an actual attribute specification.
 
 #### Trait Implementations
@@ -611,11 +561,8 @@ and form.
 - <span id="attributespecification-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AttributeSpecification`
@@ -655,7 +602,7 @@ enum AbbreviationsCacheStrategy {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:99-108`](../../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L99-L108)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:99-108`](../../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L99-L108)*
 
 The strategy to use for caching abbreviations.
 
@@ -714,11 +661,8 @@ The strategy to use for caching abbreviations.
 - <span id="abbreviationscachestrategy-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AbbreviationsCacheStrategy`
@@ -759,7 +703,7 @@ enum Attributes {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:391-397`](../../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L391-L397)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:391-397`](../../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L391-L397)*
 
 A list of attributes found in an `Abbreviation`
 
@@ -822,11 +766,8 @@ A list of attributes found in an `Abbreviation`
 - <span id="attributes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Attributes`
@@ -865,7 +806,7 @@ A list of attributes found in an `Abbreviation`
 fn get_attribute_size(form: constants::DwForm, encoding: crate::common::Encoding) -> Option<u8>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:572-637`](../../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L572-L637)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:572-637`](../../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L572-L637)*
 
 ## Constants
 
@@ -874,5 +815,5 @@ fn get_attribute_size(form: constants::DwForm, encoding: crate::common::Encoding
 const MAX_ATTRIBUTES_INLINE: usize = 5usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/abbrev.rs:400`](../../../../.source_1765633015/gimli-0.32.3/src/read/abbrev.rs#L400)*
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:400`](../../../../.source_1765894658/gimli-0.32.3/src/read/abbrev.rs#L400)*
 

@@ -233,10 +233,10 @@ Thanks for readingme!
 struct CompactString(repr::Repr);
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:128`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L128)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:128`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L128)*
 
 A [`CompactString`](#compactstring) is a compact string type that can be used almost anywhere a
-[`String`](../cargo_platform/index.md) or [`str`](../clap_builder/builder/str/index.md) can be used.
+`String` or [`str`](#str) can be used.
 
 ## Using `CompactString`
 ```rust
@@ -328,695 +328,382 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 - <span id="compactstring-new"></span>`fn new<T: AsRef<str>>(text: T) -> Self`
 
   Creates a new [`CompactString`](#compactstring) from any type that implements `AsRef<str>`.
-
   If the string is short enough, then it will be inlined on the stack!
-
   
-
   In a `static` or `const` context you can use the method `CompactString::const_new()`.
-
   
-
   # Examples
-
   
-
   ### Inlined
-
   ```rust
-
   use compact_str::CompactString;
-
   // We can inline strings up to 12 characters long on 32-bit architectures...
-
   #[cfg(target_pointer_width = "32")]
-
   let s = "i'm 12 chars";
-
   // ...and up to 24 characters on 64-bit architectures!
-
   #[cfg(target_pointer_width = "64")]
-
   let s = "i am 24 characters long!";
-
   
-
   let compact = CompactString::new(&s);
-
   
-
   assert_eq!(compact, s);
-
   // we are not allocated on the heap!
-
   assert!(!compact.is_heap_allocated());
-
   ```
-
   
-
   ### Heap
-
   ```rust
-
   use compact_str::CompactString;
-
   // For longer strings though, we get allocated on the heap
-
   let long = "I am a longer string that will be allocated on the heap";
-
   let compact = CompactString::new(long);
-
   
-
   assert_eq!(compact, long);
-
   // we are allocated on the heap!
-
   assert!(compact.is_heap_allocated());
-
   ```
-
   
-
   ### Creation
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   // Using a `&'static str`
-
   let s = "hello world!";
-
   let hello = CompactString::new(&s);
-
   
-
   // Using a `String`
-
   let u = String::from("🦄🌈");
-
   let unicorn = CompactString::new(u);
-
   
-
   // Using a `Box<str>`
-
   let b: Box<str> = String::from("📦📦📦").into_boxed_str();
-
   let boxed = CompactString::new(&b);
-
   ```
 
 - <span id="compactstring-try-new"></span>`fn try_new<T: AsRef<str>>(text: T) -> Result<Self, ReserveError>` — [`ReserveError`](#reserveerror)
 
   Fallible version of `CompactString::new()`
-
   
-
   This method won't panic if the system is out-of-memory, but return an [`ReserveError`](#reserveerror).
-
   Otherwise it behaves the same as `CompactString::new()`.
 
 - <span id="compactstring-const-new"></span>`const fn const_new(text: &'static str) -> Self`
 
   Creates a new inline [`CompactString`](#compactstring) from `&'static str` at compile time.
-
   Complexity: O(1). As an optimization, short strings get inlined.
-
   
-
   In a dynamic context you can use the method `CompactString::new()`.
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   const DEFAULT_NAME: CompactString = CompactString::const_new("untitled");
-
   ```
 
 - <span id="compactstring-as-static-str"></span>`const fn as_static_str(&self) -> Option<&'static str>`
 
   Get back the `&'static str` constructed by `CompactString::const_new`.
-
   
-
   If the string was short enough that it could be inlined, then it was inline, and
-
   this method will return `None`.
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   const DEFAULT_NAME: CompactString =
-
       CompactString::const_new("That is not dead which can eternal lie.");
-
   assert_eq!(
-
       DEFAULT_NAME.as_static_str().unwrap(),
-
       "That is not dead which can eternal lie.",
-
   );
-
   ```
 
 - <span id="compactstring-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
   Creates a new empty [`CompactString`](#compactstring) with the capacity to fit at least `capacity` bytes.
-
   
-
   A `CompactString` will inline strings on the stack, if they're small enough. Specifically,
-
   if the string has a length less than or equal to `std::mem::size_of::<String>` bytes
-
   then it will be inlined. This also means that `CompactString`s have a minimum capacity
-
   of `std::mem::size_of::<String>`.
-
   
-
   # Panics
-
   
-
   This method panics if the system is out-of-memory.
-
   Use `CompactString::try_with_capacity()` if you want to handle such a problem manually.
-
   
-
   # Examples
-
   
-
   ### "zero" Capacity
-
   ```rust
-
   use compact_str::CompactString;
-
   // Creating a CompactString with a capacity of 0 will create
-
   // one with capacity of std::mem::size_of::<String>();
-
   let empty = CompactString::with_capacity(0);
-
   let min_size = std::mem::size_of::<String>();
-
   
-
   assert_eq!(empty.capacity(), min_size);
-
   assert_ne!(0, min_size);
-
   assert!(!empty.is_heap_allocated());
-
   ```
-
   
-
   ### Max Inline Size
-
   ```rust
-
   use compact_str::CompactString;
-
   // Creating a CompactString with a capacity of std::mem::size_of::<String>()
-
   // will not heap allocate.
-
   let str_size = std::mem::size_of::<String>();
-
   let empty = CompactString::with_capacity(str_size);
-
   
-
   assert_eq!(empty.capacity(), str_size);
-
   assert!(!empty.is_heap_allocated());
-
   ```
-
   
-
   ### Heap Allocating
-
   ```rust
-
   use compact_str::CompactString;
-
   // If you create a `CompactString` with a capacity greater than
-
   // `std::mem::size_of::<String>`, it will heap allocated. For heap
-
   // allocated strings we have a minimum capacity
-
   
-
   const MIN_HEAP_CAPACITY: usize = std::mem::size_of::<usize>() * 4;
-
   
-
   let heap_size = std::mem::size_of::<String>() + 1;
-
   let empty = CompactString::with_capacity(heap_size);
-
   
-
   assert_eq!(empty.capacity(), MIN_HEAP_CAPACITY);
-
   assert!(empty.is_heap_allocated());
-
   ```
 
 - <span id="compactstring-try-with-capacity"></span>`fn try_with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](#reserveerror)
 
   Fallible version of `CompactString::with_capacity()`
-
   
-
   This method won't panic if the system is out-of-memory, but return an [`ReserveError`](#reserveerror).
-
   Otherwise it behaves the same as `CompactString::with_capacity()`.
 
 - <span id="compactstring-from-utf8"></span>`fn from_utf8<B: AsRef<[u8]>>(buf: B) -> Result<Self, Utf8Error>`
 
   Convert a slice of bytes into a [`CompactString`](#compactstring).
-
   
-
   A [`CompactString`](#compactstring) is a contiguous collection of bytes (`u8`s) that is valid [`UTF-8`](https://en.wikipedia.org/wiki/UTF-8).
-
   This method converts from an arbitrary contiguous collection of bytes into a
-
   [`CompactString`](#compactstring), failing if the provided bytes are not `UTF-8`.
-
   
-
   Note: If you want to create a [`CompactString`](#compactstring) from a non-contiguous collection of bytes,
-
   enable the `bytes` feature of this crate, and see `CompactString::from_utf8_buf`
-
   
-
   # Examples
-
   ### Valid UTF-8
-
   ```rust
-
   use compact_str::CompactString;
-
   let bytes = vec![240, 159, 166, 128, 240, 159, 146, 175];
-
   let compact = CompactString::from_utf8(bytes).expect("valid UTF-8");
-
   
-
   assert_eq!(compact, "🦀💯");
-
   ```
-
   
-
   ### Invalid UTF-8
-
   ```rust
-
   use compact_str::CompactString;
-
   let bytes = vec![255, 255, 255];
-
   let result = CompactString::from_utf8(bytes);
-
   
-
   assert!(result.is_err());
-
   ```
 
 - <span id="compactstring-from-utf8-unchecked"></span>`unsafe fn from_utf8_unchecked<B: AsRef<[u8]>>(buf: B) -> Self`
 
   Converts a vector of bytes to a [`CompactString`](#compactstring) without checking that the string contains
-
   valid UTF-8.
-
   
-
   See the safe version, `CompactString::from_utf8`, for more details.
-
   
-
   # Safety
-
   
-
   * The contents pased to this method must be valid UTF-8.
-
   
-
   It's very important that this constraint is upheld because the internals of a
-
   [`CompactString`](#compactstring) (e.g. determing an inline string versus a heap allocated string) rely on
-
   the [`CompactString`](#compactstring) containing valid UTF-8. If this constraint is violated any further
-
   use of the returned [`CompactString`](#compactstring) (including dropping it) can cause undefined behavior.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   // some bytes, in a vector
-
   let sparkle_heart = vec![240, 159, 146, 150];
-
   
-
   let sparkle_heart = unsafe {
-
       CompactString::from_utf8_unchecked(sparkle_heart)
-
   };
-
   
-
   assert_eq!("💖", sparkle_heart);
-
   ```
 
 - <span id="compactstring-from-utf16"></span>`fn from_utf16<B: AsRef<[u16]>>(buf: B) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
   Decode a [`UTF-16`](https://en.wikipedia.org/wiki/UTF-16) slice of bytes into a
-
   [`CompactString`](#compactstring), returning an `Err` if the slice contains any invalid data.
-
   
-
   # Examples
-
   ### Valid UTF-16
-
   ```rust
-
   use compact_str::CompactString;
-
   let buf: &[u16] = &[0xD834, 0xDD1E, 0x006d, 0x0075, 0x0073, 0x0069, 0x0063];
-
   let compact = CompactString::from_utf16(buf).unwrap();
-
   
-
   assert_eq!(compact, "𝄞music");
-
   ```
-
   
-
   ### Invalid UTF-16
-
   ```rust
-
   use compact_str::CompactString;
-
   let buf: &[u16] = &[0xD834, 0xDD1E, 0x006d, 0x0075, 0xD800, 0x0069, 0x0063];
-
   let res = CompactString::from_utf16(buf);
-
   
-
   assert!(res.is_err());
-
   ```
 
 - <span id="compactstring-from-utf16-lossy"></span>`fn from_utf16_lossy<B: AsRef<[u16]>>(buf: B) -> Self`
 
   Decode a UTF-16–encoded slice `v` into a `CompactString`, replacing invalid data with
-
   the replacement character (`U+FFFD`), �.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   // 𝄞mus<invalid>ic<invalid>
-
   let v = &[0xD834, 0xDD1E, 0x006d, 0x0075,
-
             0x0073, 0xDD1E, 0x0069, 0x0063,
-
             0xD834];
-
   
-
   assert_eq!(CompactString::from("𝄞mus\u{FFFD}ic\u{FFFD}"),
-
              CompactString::from_utf16_lossy(v));
-
   ```
 
 - <span id="compactstring-len"></span>`fn len(&self) -> usize`
 
-  Returns the length of the [`CompactString`](#compactstring) in `bytes`, not [`char`](../unicode_normalization/char/index.md)s or graphemes.
-
+  Returns the length of the [`CompactString`](#compactstring) in `bytes`, not [`char`]()s or graphemes.
   
-
   When using `UTF-8` encoding (which all strings in Rust do) a single character will be 1 to 4
-
   bytes long, therefore the return value of this method might not be what a human considers
-
   the length of the string.
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   let ascii = CompactString::new("hello world");
-
   assert_eq!(ascii.len(), 11);
-
   
-
   let emoji = CompactString::new("👱");
-
   assert_eq!(emoji.len(), 4);
-
   ```
 
 - <span id="compactstring-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns `true` if the [`CompactString`](#compactstring) has a length of 0, `false` otherwise
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut msg = CompactString::new("");
-
   assert!(msg.is_empty());
-
   
-
   // add some characters
-
   msg.push_str("hello reader!");
-
   assert!(!msg.is_empty());
-
   ```
 
 - <span id="compactstring-capacity"></span>`fn capacity(&self) -> usize`
 
   Returns the capacity of the [`CompactString`](#compactstring), in bytes.
-
   
-
   # Note
-
   * A `CompactString` will always have a capacity of at least `std::mem::size_of::<String>()`
-
   
-
   # Examples
-
   ### Minimum Size
-
   ```rust
-
   use compact_str::CompactString;
-
   let min_size = std::mem::size_of::<String>();
-
   let compact = CompactString::new("");
-
   
-
   assert!(compact.capacity() >= min_size);
-
   ```
-
   
-
   ### Heap Allocated
-
   ```rust
-
   use compact_str::CompactString;
-
   let compact = CompactString::with_capacity(128);
-
   assert_eq!(compact.capacity(), 128);
-
   ```
 
 - <span id="compactstring-reserve"></span>`fn reserve(&mut self, additional: usize)`
 
   Ensures that this [`CompactString`](#compactstring)'s capacity is at least `additional` bytes longer than
-
   its length. The capacity may be increased by more than `additional` bytes if it chooses,
-
   to prevent frequent reallocations.
-
   
-
   # Note
-
   * A `CompactString` will always have at least a capacity of `std::mem::size_of::<String>()`
-
   * Reserving additional bytes may cause the `CompactString` to become heap allocated
-
   
-
   # Panics
-
   This method panics if the new capacity overflows `usize` or if the system is out-of-memory.
-
   Use `CompactString::try_reserve()` if you want to handle such a problem manually.
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   const WORD: usize = std::mem::size_of::<usize>();
-
   let mut compact = CompactString::default();
-
   assert!(compact.capacity() >= (WORD * 3) - 1);
-
   
-
   compact.reserve(200);
-
   assert!(compact.is_heap_allocated());
-
   assert!(compact.capacity() >= 200);
-
   ```
 
 - <span id="compactstring-try-reserve"></span>`fn try_reserve(&mut self, additional: usize) -> Result<(), ReserveError>` — [`ReserveError`](#reserveerror)
 
   Fallible version of `CompactString::reserve()`
-
   
-
   This method won't panic if the system is out-of-memory, but return an [`ReserveError`](#reserveerror)
-
   Otherwise it behaves the same as `CompactString::reserve()`.
 
 - <span id="compactstring-as-str"></span>`fn as_str(&self) -> &str`
 
   Returns a string slice containing the entire [`CompactString`](#compactstring).
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   let s = CompactString::new("hello");
-
   
-
   assert_eq!(s.as_str(), "hello");
-
   ```
 
 - <span id="compactstring-as-mut-str"></span>`fn as_mut_str(&mut self) -> &mut str`
 
   Returns a mutable string slice containing the entire [`CompactString`](#compactstring).
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("hello");
-
   s.as_mut_str().make_ascii_uppercase();
-
   
-
   assert_eq!(s.as_str(), "HELLO");
-
   ```
 
 - <span id="compactstring-spare-capacity-mut"></span>`unsafe fn spare_capacity_mut(&mut self) -> &mut [mem::MaybeUninit<u8>]`
@@ -1024,345 +711,193 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 - <span id="compactstring-as-bytes"></span>`fn as_bytes(&self) -> &[u8]`
 
   Returns a byte slice of the [`CompactString`](#compactstring)'s contents.
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   let s = CompactString::new("hello");
-
   
-
   assert_eq!(&[104, 101, 108, 108, 111], s.as_bytes());
-
   ```
 
 - <span id="compactstring-as-mut-bytes"></span>`unsafe fn as_mut_bytes(&mut self) -> &mut [u8]`
 
   Provides a mutable reference to the underlying buffer of bytes.
-
   
-
   # Safety
-
   * All Rust strings, including `CompactString`, must be valid UTF-8. The caller must
-
     guarantee that any modifications made to the underlying buffer are valid UTF-8.
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("hello");
-
   
-
   let slice = unsafe { s.as_mut_bytes() };
-
   // copy bytes into our string
-
   slice[5..11].copy_from_slice(" world".as_bytes());
-
   // set the len of the string
-
   unsafe { s.set_len(11) };
-
   
-
   assert_eq!(s, "hello world");
-
   ```
 
 - <span id="compactstring-push"></span>`fn push(&mut self, ch: char)`
 
-  Appends the given [`char`](../unicode_normalization/char/index.md) to the end of this [`CompactString`](#compactstring).
-
+  Appends the given [`char`]() to the end of this [`CompactString`](#compactstring).
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("foo");
-
   
-
   s.push('b');
-
   s.push('a');
-
   s.push('r');
-
   
-
   assert_eq!("foobar", s);
-
   ```
 
 - <span id="compactstring-pop"></span>`fn pop(&mut self) -> Option<char>`
 
   Removes the last character from the [`CompactString`](#compactstring) and returns it.
-
   Returns `None` if this [`CompactString`](#compactstring) is empty.
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("abc");
-
   
-
   assert_eq!(s.pop(), Some('c'));
-
   assert_eq!(s.pop(), Some('b'));
-
   assert_eq!(s.pop(), Some('a'));
-
   
-
   assert_eq!(s.pop(), None);
-
   ```
 
 - <span id="compactstring-push-str"></span>`fn push_str(&mut self, s: &str)`
 
   Appends a given string slice onto the end of this [`CompactString`](#compactstring)
-
   
-
   # Examples
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("abc");
-
   
-
   s.push_str("123");
-
   
-
   assert_eq!("abc123", s);
-
   ```
 
 - <span id="compactstring-remove"></span>`fn remove(&mut self, idx: usize) -> char`
 
-  Removes a [`char`](../unicode_normalization/char/index.md) from this [`CompactString`](#compactstring) at a byte position and returns it.
-
+  Removes a [`char`]() from this [`CompactString`](#compactstring) at a byte position and returns it.
   
-
   This is an *O*(*n*) operation, as it requires copying every element in the
-
   buffer.
-
   
-
   # Panics
-
   
-
   Panics if `idx` is larger than or equal to the [`CompactString`](#compactstring)'s length,
-
-  or if it does not lie on a [`char`](../unicode_normalization/char/index.md) boundary.
-
+  or if it does not lie on a [`char`]() boundary.
   
-
   # Examples
-
   
-
   ### Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut c = CompactString::from("hello world");
-
   
-
   assert_eq!(c.remove(0), 'h');
-
   assert_eq!(c, "ello world");
-
   
-
   assert_eq!(c.remove(5), 'w');
-
   assert_eq!(c, "ello orld");
-
   ```
-
   
-
   ### Past total length:
-
   
-
   ```should_panic
-
   use compact_str::CompactString;
-
   let mut c = CompactString::from("hello there!");
-
   c.remove(100);
-
   ```
-
   
-
   ### Not on char boundary:
-
   
-
   ```should_panic
-
   use compact_str::CompactString;
-
   let mut c = CompactString::from("🦄");
-
   c.remove(1);
-
   ```
 
 - <span id="compactstring-set-len"></span>`unsafe fn set_len(&mut self, new_len: usize)`
 
   Forces the length of the [`CompactString`](#compactstring) to `new_len`.
-
   
-
   This is a low-level operation that maintains none of the normal invariants for
-
   `CompactString`. If you want to modify the `CompactString` you should use methods like
-
   `push`, `push_str` or `pop`.
-
   
-
   # Safety
-
   * `new_len` must be less than or equal to `capacity()`
-
   * The elements at `old_len..new_len` must be initialized
 
 - <span id="compactstring-is-heap-allocated"></span>`fn is_heap_allocated(&self) -> bool`
 
   Returns whether or not the [`CompactString`](#compactstring) is heap allocated.
-
   
-
   # Examples
-
   ### Inlined
-
   ```rust
-
   use compact_str::CompactString;
-
   let hello = CompactString::new("hello world");
-
   
-
   assert!(!hello.is_heap_allocated());
-
   ```
-
   
-
   ### Heap Allocated
-
   ```rust
-
   use compact_str::CompactString;
-
   let msg = CompactString::new("this message will self destruct in 5, 4, 3, 2, 1 💥");
-
   
-
   assert!(msg.is_heap_allocated());
-
   ```
 
 - <span id="compactstring-ensure-range"></span>`fn ensure_range(&self, range: impl RangeBounds<usize>) -> (usize, usize)`
 
   Ensure that the given range is inside the set data, and that no codepoints are split.
-
   
-
   Returns the range `start..end` as a tuple.
 
 - <span id="compactstring-replace-range"></span>`fn replace_range(&mut self, range: impl RangeBounds<usize>, replace_with: &str)`
 
   Removes the specified range in the [`CompactString`](#compactstring),
-
   and replaces it with the given string.
-
   The given string doesn't need to be the same length as the range.
-
   
-
   # Panics
-
   
-
-  Panics if the starting point or end point do not lie on a [`char`](../unicode_normalization/char/index.md)
-
+  Panics if the starting point or end point do not lie on a [`char`]()
   boundary, or if they're out of bounds.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("Hello, world!");
-
   
-
   s.replace_range(7..12, "WORLD");
-
   assert_eq!(s, "Hello, WORLD!");
-
   
-
   s.replace_range(7..=11, "you");
-
   assert_eq!(s, "Hello, you!");
-
   
-
   s.replace_range(5.., "! Is it me you're looking for?");
-
   assert_eq!(s, "Hello! Is it me you're looking for?");
-
   ```
 
 - <span id="compactstring-replace-range-same-size"></span>`unsafe fn replace_range_same_size(&mut self, start: usize, end: usize, replace_with: &str)`
@@ -1380,91 +915,50 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 - <span id="compactstring-repeat"></span>`fn repeat(&self, n: usize) -> Self`
 
   Creates a new [`CompactString`](#compactstring) by repeating a string `n` times.
-
   
-
   # Panics
-
   
-
   This function will panic if the capacity would overflow.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   assert_eq!(CompactString::new("abc").repeat(4), CompactString::new("abcabcabcabc"));
-
   ```
-
   
-
   A panic upon overflow:
-
   
-
   ```should_panic
-
   use compact_str::CompactString;
-
   
-
   // this will panic at runtime
-
   let huge = CompactString::new("0123456789abcdef").repeat(usize::MAX);
-
   ```
 
 - <span id="compactstring-truncate"></span>`fn truncate(&mut self, new_len: usize)`
 
   Truncate the [`CompactString`](#compactstring) to a shorter length.
-
   
-
   If the length of the [`CompactString`](#compactstring) is less or equal to `new_len`, the call is a no-op.
-
   
-
   Calling this function does not change the capacity of the [`CompactString`](#compactstring).
-
   
-
   # Panics
-
   
-
-  Panics if the new end of the string does not lie on a [`char`](../unicode_normalization/char/index.md) boundary.
-
+  Panics if the new end of the string does not lie on a [`char`]() boundary.
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("Hello, world!");
-
   s.truncate(5);
-
   assert_eq!(s, "Hello");
-
   ```
 
 - <span id="compactstring-as-ptr"></span>`fn as_ptr(&self) -> *const u8`
@@ -1478,409 +972,223 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 - <span id="compactstring-insert-str"></span>`fn insert_str(&mut self, idx: usize, string: &str)`
 
   Insert string character at an index.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("Hello!");
-
   s.insert_str(5, ", world");
-
   assert_eq!(s, "Hello, world!");
-
   ```
 
 - <span id="compactstring-insert"></span>`fn insert(&mut self, idx: usize, ch: char)`
 
   Insert a character at an index.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("Hello world!");
-
   s.insert(5, ',');
-
   assert_eq!(s, "Hello, world!");
-
   ```
 
 - <span id="compactstring-clear"></span>`fn clear(&mut self)`
 
   Reduces the length of the [`CompactString`](#compactstring) to zero.
-
   
-
   Calling this function does not change the capacity of the [`CompactString`](#compactstring).
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("Rust is the most loved language on Stackoverflow!");
-
   assert_eq!(s.capacity(), 49);
-
   
-
   s.clear();
-
   
-
   assert_eq!(s, "");
-
   assert_eq!(s.capacity(), 49);
-
   ```
 
 - <span id="compactstring-split-off"></span>`fn split_off(&mut self, at: usize) -> Self`
 
   Split the [`CompactString`](#compactstring) into at the given byte index.
-
   
-
   Calling this function does not change the capacity of the [`CompactString`](#compactstring), unless the
-
   [`CompactString`](#compactstring) is backed by a `&'static str`.
-
   
-
   # Panics
-
   
-
-  Panics if `at` does not lie on a [`char`](../unicode_normalization/char/index.md) boundary.
-
+  Panics if `at` does not lie on a [`char`]() boundary.
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::const_new("Hello, world!");
-
   let w = s.split_off(5);
-
   
-
   assert_eq!(w, ", world!");
-
   assert_eq!(s, "Hello");
-
   ```
 
 - <span id="compactstring-drain"></span>`fn drain(&mut self, range: impl RangeBounds<usize>) -> Drain<'_>` — [`Drain`](#drain)
 
   Remove a range from the [`CompactString`](#compactstring), and return it as an iterator.
-
   
-
   Calling this function does not change the capacity of the [`CompactString`](#compactstring).
-
   
-
   # Panics
-
   
-
-  Panics if the start or end of the range does not lie on a [`char`](../unicode_normalization/char/index.md) boundary.
-
+  Panics if the start or end of the range does not lie on a [`char`]() boundary.
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::new("Hello, world!");
-
   
-
   let mut d = s.drain(5..12);
-
   assert_eq!(d.next(), Some(','));   // iterate over the extracted data
-
   assert_eq!(d.as_str(), " world"); // or get the whole data as &str
-
   
-
   // The iterator keeps a reference to `s`, so you have to drop() the iterator,
-
   // before you can access `s` again.
-
   drop(d);
-
   assert_eq!(s, "Hello!");
-
   ```
 
 - <span id="compactstring-shrink-to"></span>`fn shrink_to(&mut self, min_capacity: usize)`
 
   Shrinks the capacity of this [`CompactString`](#compactstring) with a lower bound.
-
   
-
   The resulting capactity is never less than the size of 3×`usize`,
-
   i.e. the capacity than can be inlined.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::with_capacity(100);
-
   assert_eq!(s.capacity(), 100);
-
   
-
   // if the capacity was already bigger than the argument, the call is a no-op
-
   s.shrink_to(100);
-
   assert_eq!(s.capacity(), 100);
-
   
-
   s.shrink_to(50);
-
   assert_eq!(s.capacity(), 50);
-
   
-
   // if the string can be inlined, it is
-
   s.shrink_to(10);
-
   assert_eq!(s.capacity(), 3 * std::mem::size_of::<usize>());
-
   ```
 
 - <span id="compactstring-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
 
   Shrinks the capacity of this [`CompactString`](#compactstring) to match its length.
-
   
-
   The resulting capactity is never less than the size of 3×`usize`,
-
   i.e. the capacity than can be inlined.
-
   
-
   This method is effectively the same as calling `string.shrink_to(0)`.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::from("This is a string with more than 24 characters.");
-
   
-
   s.reserve(100);
-
   assert!(s.capacity() >= 100);
-
   
-
    s.shrink_to_fit();
-
   assert_eq!(s.len(), s.capacity());
-
   ```
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::from("short string");
-
   
-
   s.reserve(100);
-
   assert!(s.capacity() >= 100);
-
   
-
   s.shrink_to_fit();
-
   assert_eq!(s.capacity(), 3 * std::mem::size_of::<usize>());
-
   ```
 
 - <span id="compactstring-retain"></span>`fn retain(&mut self, predicate: impl FnMut(char) -> bool)`
 
   Retains only the characters specified by the predicate.
-
   
-
   The method iterates over the characters in the string and calls the `predicate`.
-
   
-
   If the `predicate` returns `false`, then the character gets removed.
-
   If the `predicate` returns `true`, then the character is kept.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let mut s = CompactString::from("äb𝄞d€");
-
   
-
   let keep = [false, true, true, false, true];
-
   let mut iter = keep.iter();
-
   s.retain(|_| *iter.next().unwrap());
-
   
-
   assert_eq!(s, "b𝄞€");
-
   ```
 
 - <span id="compactstring-from-utf8-lossy"></span>`fn from_utf8_lossy(v: &[u8]) -> Self`
 
   Decode a bytes slice as UTF-8 string, replacing any illegal codepoints
-
   
-
   # Examples
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let chess_knight = b"\xf0\x9f\xa8\x84";
-
   
-
   assert_eq!(
-
       "🨄",
-
       CompactString::from_utf8_lossy(chess_knight),
-
   );
-
   
-
   // For valid UTF-8 slices, this is the same as:
-
   assert_eq!(
-
       "🨄",
-
       CompactString::new(std::str::from_utf8(chess_knight).unwrap()),
-
   );
-
   ```
-
   
-
   Incorrect bytes:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let broken = b"\xf0\x9f\xc8\x84";
-
   
-
   assert_eq!(
-
       "�Ȅ",
-
       CompactString::from_utf8_lossy(broken),
-
   );
-
   
-
   // For invalid UTF-8 slices, this is an optimized implemented for:
-
   assert_eq!(
-
       "�Ȅ",
-
       CompactString::from(String::from_utf8_lossy(broken)),
-
   );
-
   ```
 
 - <span id="compactstring-from-utf16x"></span>`fn from_utf16x(v: &[u8], from_int: impl Fn(u16) -> u16, from_bytes: impl Fn([u8; 2]) -> u16) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
@@ -1890,681 +1198,365 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 - <span id="compactstring-from-utf16le"></span>`fn from_utf16le(v: impl AsRef<[u8]>) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
   Decode a slice of bytes as UTF-16 encoded string, in little endian.
-
   
-
   # Errors
-
   
-
   If the slice has an odd number of bytes, or if it did not contain valid UTF-16 characters,
-
   a [`Utf16Error`](#utf16error) is returned.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   const DANCING_MEN: &[u8] = b"\x3d\xd8\x6f\xdc\x0d\x20\x42\x26\x0f\xfe";
-
   let dancing_men = CompactString::from_utf16le(DANCING_MEN).unwrap();
-
   assert_eq!(dancing_men, "👯‍♂️");
-
   ```
 
 - <span id="compactstring-from-utf16be"></span>`fn from_utf16be(v: impl AsRef<[u8]>) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
   Decode a slice of bytes as UTF-16 encoded string, in big endian.
-
   
-
   # Errors
-
   
-
   If the slice has an odd number of bytes, or if it did not contain valid UTF-16 characters,
-
   a [`Utf16Error`](#utf16error) is returned.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   const DANCING_WOMEN: &[u8] = b"\xd8\x3d\xdc\x6f\x20\x0d\x26\x40\xfe\x0f";
-
   let dancing_women = CompactString::from_utf16be(DANCING_WOMEN).unwrap();
-
   assert_eq!(dancing_women, "👯‍♀️");
-
   ```
 
 - <span id="compactstring-from-utf16le-lossy"></span>`fn from_utf16le_lossy(v: impl AsRef<[u8]>) -> Self`
 
   Lossy decode a slice of bytes as UTF-16 encoded string, in little endian.
-
   
-
   In this context "lossy" means that any broken characters in the input are replaced by the
-
   \<REPLACEMENT CHARACTER\> `'�'`. Please notice that, unlike UTF-8, UTF-16 is not self
-
   synchronizing. I.e. if a byte in the input is dropped, all following data is broken.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   // A "random" bit was flipped in the 4th byte:
-
   const DANCING_MEN: &[u8] = b"\x3d\xd8\x6f\xfc\x0d\x20\x42\x26\x0f\xfe";
-
   let dancing_men = CompactString::from_utf16le_lossy(DANCING_MEN);
-
   assert_eq!(dancing_men, "�\u{fc6f}\u{200d}♂️");
-
   ```
 
 - <span id="compactstring-from-utf16be-lossy"></span>`fn from_utf16be_lossy(v: impl AsRef<[u8]>) -> Self`
 
   Lossy decode a slice of bytes as UTF-16 encoded string, in big endian.
-
   
-
   In this context "lossy" means that any broken characters in the input are replaced by the
-
   \<REPLACEMENT CHARACTER\> `'�'`. Please notice that, unlike UTF-8, UTF-16 is not self
-
   synchronizing. I.e. if a byte in the input is dropped, all following data is broken.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   // A "random" bit was flipped in the 9th byte:
-
   const DANCING_WOMEN: &[u8] = b"\xd8\x3d\xdc\x6f\x20\x0d\x26\x40\xde\x0f";
-
   let dancing_women = CompactString::from_utf16be_lossy(DANCING_WOMEN);
-
   assert_eq!(dancing_women, "👯\u{200d}♀�");
-
   ```
 
 - <span id="compactstring-into-string"></span>`fn into_string(self) -> String`
 
-  Convert the [`CompactString`](#compactstring) into a [`String`](../cargo_platform/index.md).
-
+  Convert the [`CompactString`](#compactstring) into a `String`.
   
-
   # Examples
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let s = CompactString::new("Hello world");
-
   let s = s.into_string();
-
   assert_eq!(s, "Hello world");
-
   ```
 
 - <span id="compactstring-from-string-buffer"></span>`fn from_string_buffer(s: String) -> Self`
 
-  Convert a [`String`](../cargo_platform/index.md) into a [`CompactString`](#compactstring) _without inlining_.
-
+  Convert a `String` into a [`CompactString`](#compactstring) _without inlining_.
   
-
   Note: You probably don't need to use this method, instead you should use `From<String>`
-
   which is implemented for [`CompactString`](#compactstring).
-
   
-
   This method exists incase your code is very sensitive to memory allocations. Normally when
-
-  converting a [`String`](../cargo_platform/index.md) to a [`CompactString`](#compactstring) we'll inline short strings onto the stack.
-
-  But this results in [`Drop`](../gimli/index.md)-ing the original [`String`](../cargo_platform/index.md), which causes memory it owned on
-
+  converting a `String` to a [`CompactString`](#compactstring) we'll inline short strings onto the stack.
+  But this results in `Drop`-ing the original `String`, which causes memory it owned on
   the heap to be deallocated. Instead when using this method, we always reuse the buffer that
-
-  was previously owned by the [`String`](../cargo_platform/index.md), so no trips to the allocator are needed.
-
+  was previously owned by the `String`, so no trips to the allocator are needed.
   
-
   # Examples
-
   
-
   ### Short Strings
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   let short = "hello world".to_string();
-
   let c_heap = CompactString::from_string_buffer(short);
-
   
-
   // using CompactString::from_string_buffer, we'll re-use the String's underlying buffer
-
   assert!(c_heap.is_heap_allocated());
-
   
-
   // note: when Clone-ing a short heap allocated string, we'll eagerly inline at that point
-
   let c_inline = c_heap.clone();
-
   assert!(!c_inline.is_heap_allocated());
-
   
-
   assert_eq!(c_heap, c_inline);
-
   ```
-
   
-
   ### Longer Strings
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   let x = "longer string that will be on the heap".to_string();
-
   let c1 = CompactString::from(x);
-
   
-
   let y = "longer string that will be on the heap".to_string();
-
   let c2 = CompactString::from_string_buffer(y);
-
   
-
   // for longer strings, we re-use the underlying String's buffer in both cases
-
   assert!(c1.is_heap_allocated());
-
   assert!(c2.is_heap_allocated());
-
   ```
-
   
-
   ### Buffer Re-use
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   let og = "hello world".to_string();
-
   let og_addr = og.as_ptr();
-
   
-
   let mut c = CompactString::from_string_buffer(og);
-
   let ex_addr = c.as_ptr();
-
   
-
   // When converting to/from String and CompactString with from_string_buffer we always re-use
-
   // the same underlying allocated memory/buffer
-
   assert_eq!(og_addr, ex_addr);
-
   
-
   let long = "this is a long string that will be on the heap".to_string();
-
   let long_addr = long.as_ptr();
-
   
-
   let mut long_c = CompactString::from(long);
-
   let long_ex_addr = long_c.as_ptr();
-
   
-
   // When converting to/from String and CompactString with From<String>, we'll also re-use the
-
   // underlying buffer, if the string is long, otherwise when converting to CompactString we
-
   // eagerly inline
-
   assert_eq!(long_addr, long_ex_addr);
-
   ```
 
 - <span id="compactstring-to-ascii-lowercase"></span>`fn to_ascii_lowercase(&self) -> Self`
 
   Returns a copy of this string where each character is mapped to its
-
   ASCII lower case equivalent.
-
   
-
   ASCII letters 'A' to 'Z' are mapped to 'a' to 'z',
-
   but non-ASCII letters are unchanged.
-
   
-
   To lowercase the value in-place, use `str::make_ascii_lowercase`.
-
   
-
   To lowercase ASCII characters in addition to non-ASCII characters, use
-
   `CompactString::to_lowercase`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let s = CompactString::new("Grüße, Jürgen ❤");
-
   
-
   assert_eq!("grüße, jürgen ❤", s.to_ascii_lowercase());
-
   ```
 
 - <span id="compactstring-to-ascii-uppercase"></span>`fn to_ascii_uppercase(&self) -> Self`
 
   Returns a copy of this string where each character is mapped to its
-
   ASCII upper case equivalent.
-
   
-
   ASCII letters 'a' to 'z' are mapped to 'A' to 'Z',
-
   but non-ASCII letters are unchanged.
-
   
-
   To uppercase the value in-place, use `str::make_ascii_uppercase`.
-
   
-
   To uppercase ASCII characters in addition to non-ASCII characters, use
-
   `CompactString::to_uppercase`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let s = CompactString::new("Grüße, Jürgen ❤");
-
   
-
   assert_eq!("GRüßE, JüRGEN ❤", s.to_ascii_uppercase());
-
   ```
 
 - <span id="compactstring-to-lowercase"></span>`fn to_lowercase(&self) -> Self`
 
   Returns the lowercase equivalent of this string slice, as a new [`CompactString`](#compactstring).
-
   
-
   'Lowercase' is defined according to the terms of the Unicode Derived Core Property
-
   `Lowercase`.
-
   
-
   Since some characters can expand into multiple characters when changing
-
   the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
-
   parameter in-place.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let s = CompactString::new("HELLO");
-
   
-
   assert_eq!("hello", s.to_lowercase());
-
   ```
-
   
-
   A tricky example, with sigma:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let sigma = CompactString::new("Σ");
-
   
-
   assert_eq!("σ", sigma.to_lowercase());
-
   
-
   // but at the end of a word, it's ς, not σ:
-
   let odysseus = CompactString::new("ὈΔΥΣΣΕΎΣ");
-
   
-
   assert_eq!("ὀδυσσεύς", odysseus.to_lowercase());
-
   ```
-
   
-
   Languages without case are not changed:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let new_year = CompactString::new("农历新年");
-
   
-
   assert_eq!(new_year, new_year.to_lowercase());
-
   ```
 
 - <span id="compactstring-from-str-to-lowercase"></span>`fn from_str_to_lowercase(input: &str) -> Self`
 
   Returns the lowercase equivalent of this string slice, as a new [`CompactString`](#compactstring).
-
   
-
   'Lowercase' is defined according to the terms of the Unicode Derived Core Property
-
   `Lowercase`.
-
   
-
   Since some characters can expand into multiple characters when changing
-
   the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
-
   parameter in-place.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   assert_eq!("hello", CompactString::from_str_to_lowercase("HELLO"));
-
   ```
-
   
-
   A tricky example, with sigma:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   assert_eq!("σ", CompactString::from_str_to_lowercase("Σ"));
-
   
-
   // but at the end of a word, it's ς, not σ:
-
   assert_eq!("ὀδυσσεύς", CompactString::from_str_to_lowercase("ὈΔΥΣΣΕΎΣ"));
-
   ```
-
   
-
   Languages without case are not changed:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   let new_year = "农历新年";
-
   assert_eq!(new_year, CompactString::from_str_to_lowercase(new_year));
-
   ```
 
 - <span id="compactstring-to-uppercase"></span>`fn to_uppercase(&self) -> Self`
 
   Returns the uppercase equivalent of this string slice, as a new [`CompactString`](#compactstring).
-
   
-
   'Uppercase' is defined according to the terms of the Unicode Derived Core Property
-
   `Uppercase`.
-
   
-
   Since some characters can expand into multiple characters when changing
-
   the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
-
   parameter in-place.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let s = CompactString::new("hello");
-
   
-
   assert_eq!("HELLO", s.to_uppercase());
-
   ```
-
   
-
   Scripts without case are not changed:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   let new_year = CompactString::new("农历新年");
-
   
-
   assert_eq!(new_year, new_year.to_uppercase());
-
   ```
-
   
-
   One character can become multiple:
-
   ```rust
-
   use compact_str::CompactString;
-
   let s = CompactString::new("tschüß");
-
   
-
   assert_eq!("TSCHÜSS", s.to_uppercase());
-
   ```
 
 - <span id="compactstring-from-str-to-uppercase"></span>`fn from_str_to_uppercase(input: &str) -> Self`
 
   Returns the uppercase equivalent of this string slice, as a new [`CompactString`](#compactstring).
-
   
-
   'Uppercase' is defined according to the terms of the Unicode Derived Core Property
-
   `Uppercase`.
-
   
-
   Since some characters can expand into multiple characters when changing
-
   the case, this function returns a [`CompactString`](#compactstring) instead of modifying the
-
   parameter in-place.
-
   
-
   # Examples
-
   
-
   Basic usage:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   assert_eq!("HELLO", CompactString::from_str_to_uppercase("hello"));
-
   ```
-
   
-
   Scripts without case are not changed:
-
   
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   let new_year = "农历新年";
-
   assert_eq!(new_year, CompactString::from_str_to_uppercase(new_year));
-
   ```
-
   
-
   One character can become multiple:
-
   ```rust
-
   use compact_str::CompactString;
-
   
-
   assert_eq!("TSCHÜSS", CompactString::from_str_to_uppercase("tschüß"));
-
   ```
 
 #### Trait Implementations
@@ -2658,11 +1650,8 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 - <span id="compactstring-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl LifetimeFree for crate::CompactString`
@@ -2723,7 +1712,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 struct Utf16Error(());
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2483`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2483)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2483`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2483)*
 
 A possible error value when converting a [`CompactString`](#compactstring) from a UTF-16 byte slice.
 
@@ -2785,11 +1774,8 @@ assert!(CompactString::from_utf16(v).is_err());
 - <span id="utf16error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToCompactString for Utf16Error`
@@ -2831,7 +1817,7 @@ struct Drain<'a> {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2493-2498`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2493-L2498)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2493-2498`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2493-L2498)*
 
 An iterator over the exacted data by `CompactString::drain()`.
 
@@ -2890,11 +1876,8 @@ An iterator over the exacted data by `CompactString::drain()`.
 - <span id="drain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Drain<'a>`
@@ -2951,7 +1934,7 @@ An iterator over the exacted data by `CompactString::drain()`.
 struct ReserveError(());
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2579`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2579)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2579`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2579)*
 
 A possible error value if allocating or resizing a [`CompactString`](#compactstring) failed.
 
@@ -3000,11 +1983,8 @@ A possible error value if allocating or resizing a [`CompactString`](#compactstr
 - <span id="reserveerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ReserveError`
@@ -3052,7 +2032,7 @@ enum ToCompactStringError {
 }
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2594-2599`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2594-L2599)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2594-2599`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2594-L2599)*
 
 A possible error value if `ToCompactString::try_to_compact_string()` failed.
 
@@ -3113,11 +2093,8 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 - <span id="tocompactstringerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ToCompactStringError`
@@ -3162,7 +2139,7 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 trait CompactStringExt { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../.source_1765633015/compact_str-0.9.0/src/traits.rs#L142-L169)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../.source_1765894658/compact_str-0.9.0/src/traits.rs#L142-L169)*
 
 A trait that provides convenience methods for creating a [`CompactString`](#compactstring) from a collection of
 items. It is implemented for all types that can be converted into an iterator, and that iterator
@@ -3191,10 +2168,31 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
 - `fn concat_compact(self) -> CompactString`
 
   Concatenates all the items of a collection into a [`CompactString`](#compactstring)
+  
+  # Example
+  ```rust
+  use compact_str::CompactStringExt;
+  
+  let items = ["hello", " ", "world", "!"];
+  let compact = items.concat_compact();
+  
+  assert_eq!(compact, "hello world!");
+  ```
 
 - `fn join_compact<S: AsRef<str>>(self, separator: S) -> CompactString`
 
   Joins all the items of a collection, placing a separator between them, forming a
+  [`CompactString`](#compactstring)
+  
+  # Example
+  ```rust
+  use compact_str::CompactStringExt;
+  
+  let fruits = vec!["apples", "oranges", "bananas"];
+  let compact = fruits.join_compact(", ");
+  
+  assert_eq!(compact, "apples, oranges, bananas");
+  ```
 
 #### Implementors
 
@@ -3206,13 +2204,13 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
 trait ToCompactString { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../.source_1765633015/compact_str-0.9.0/src/traits.rs#L16-L49)*
+*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../.source_1765894658/compact_str-0.9.0/src/traits.rs#L16-L49)*
 
 A trait for converting a value to a `CompactString`.
 
 This trait is automatically implemented for any type which implements the
-[`fmt::Display`](../miette_derive/index.md) trait. As such, [`ToCompactString`](traits/index.md) shouldn't be implemented directly:
-[`fmt::Display`](../miette_derive/index.md) should be implemented instead, and you get the [`ToCompactString`](traits/index.md)
+`fmt::Display` trait. As such, [`ToCompactString`](traits/index.md) shouldn't be implemented directly:
+`fmt::Display` should be implemented instead, and you get the [`ToCompactString`](traits/index.md)
 implementation for free.
 
 #### Required Methods
@@ -3220,12 +2218,35 @@ implementation for free.
 - `fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
 
   Fallible version of `ToCompactString::to_compact_string()`
+  
+  This method won't panic if the system is out-of-memory, but return a
+  `ReserveError`.
+  Otherwise it behaves the same as `ToCompactString::to_compact_string()`.
 
 #### Provided Methods
 
 - `fn to_compact_string(&self) -> CompactString`
 
   Converts the given value to a [`CompactString`](#compactstring).
+  
+  # Panics
+  
+  Panics if the system runs out of memory and it cannot hold the whole string,
+  or if `Display::fmt()` returns an error.
+  
+  # Examples
+  
+  Basic usage:
+  
+  ```rust
+  use compact_str::ToCompactString;
+  use compact_str::CompactString;
+  
+  let i = 5;
+  let five = CompactString::new("5");
+  
+  assert_eq!(i.to_compact_string(), five);
+  ```
 
 #### Implementors
 
@@ -3237,7 +2258,7 @@ implementation for free.
 trait UnwrapWithMsg { ... }
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2635-2639`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2635-L2639)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2635-2639`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2635-L2639)*
 
 #### Associated Types
 
@@ -3259,7 +2280,7 @@ trait UnwrapWithMsg { ... }
 fn convert_while_ascii(b: &[u8], convert: fn(&u8) -> u8) -> CompactString
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:1907-1947`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L1907-L1947)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:1907-1947`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L1907-L1947)*
 
 Converts the bytes while the bytes are still ascii.
 For better average performance, this is happens in chunks of `2*size_of::<usize>()`.
@@ -3273,13 +2294,13 @@ Copied from https://doc.rust-lang.org/nightly/src/alloc/str.rs.html#623-666
 fn unwrap_with_msg_fail<E: fmt::Display>(error: E) -> never
 ```
 
-*Defined in [`compact_str-0.9.0/src/lib.rs:2657-2659`](../../.source_1765633015/compact_str-0.9.0/src/lib.rs#L2657-L2659)*
+*Defined in [`compact_str-0.9.0/src/lib.rs:2657-2659`](../../.source_1765894658/compact_str-0.9.0/src/lib.rs#L2657-L2659)*
 
 ## Macros
 
 ### `format_compact!`
 
-*Defined in [`compact_str-0.9.0/src/macros.rs:28-32`](../../.source_1765633015/compact_str-0.9.0/src/macros.rs#L28-L32)*
+*Defined in [`compact_str-0.9.0/src/macros.rs:28-32`](../../.source_1765894658/compact_str-0.9.0/src/macros.rs#L28-L32)*
 
 Creates a `CompactString` using interpolation of runtime expressions.
 
@@ -3289,16 +2310,16 @@ The power of the formatting string is in the `{}`s contained.
 
 Additional parameters passed to `format_compact!` replace the `{}`s within
 the formatting string in the order given unless named or
-positional parameters are used; see [`std::fmt`](../anstream/fmt/index.md) for more information.
+positional parameters are used; see `std::fmt` for more information.
 
 A common use for `format_compact!` is concatenation and interpolation
 of strings.
-The same convention is used with [`print!`](../backtrace/print/index.md) and [`write!`](../anstream/strip/index.md) macros,
+The same convention is used with `print!` and `write!` macros,
 depending on the intended destination of the string.
 
 To convert a single value to a string, use the
 `ToCompactString::to_compact_string` method, which uses
-the [`std::fmt::Display`](../miette_derive/index.md) formatting trait.
+the `std::fmt::Display` formatting trait.
 
 # Panics
 

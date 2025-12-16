@@ -75,19 +75,12 @@ anchor link, and first-sentence summary.
 - <span id="quickrefentry-new"></span>`fn new(name: impl Into<String>, kind: &'static str, anchor: impl Into<String>, summary: impl Into<String>) -> Self`
 
   Create a new quick reference entry.
-
   
-
   # Arguments
-
   
-
   * `name` - Display name for the entry
-
   * `kind` - Item kind (struct, enum, fn, etc.)
-
   * `anchor` - Anchor link target (without `#`)
-
   * `summary` - First-sentence summary
 
 #### Trait Implementations
@@ -129,11 +122,8 @@ anchor link, and first-sentence summary.
 - <span id="quickrefentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for QuickRefEntry`
@@ -198,25 +188,15 @@ kinds, and first-sentence descriptions.
 - <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](#quickrefentry)
 
   Generate a markdown quick reference table from the given entries.
-
   
-
   Returns an empty string if there are no entries.
-
   
-
   # Arguments
-
   
-
   * `entries` - Quick reference entries to include in the table
-
   
-
   # Returns
-
   
-
   A formatted markdown table string.
 
 #### Trait Implementations
@@ -262,11 +242,8 @@ kinds, and first-sentence descriptions.
 - <span id="quickrefgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for QuickRefGenerator`

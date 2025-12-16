@@ -24,7 +24,7 @@ struct LoadCommandIterator<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
 
 An iterator for the load commands from a [`MachHeader`](../index.md).
 
@@ -81,11 +81,8 @@ An iterator for the load commands from a [`MachHeader`](../index.md).
 - <span id="loadcommanditerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LoadCommandIterator<'data, E>`
@@ -132,7 +129,7 @@ struct LoadCommandData<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
 
 The data for a [`macho::LoadCommand`](../../../macho/index.md).
 
@@ -141,9 +138,7 @@ The data for a [`macho::LoadCommand`](../../../macho/index.md).
 - <span id="loadcommanddata-cmd"></span>`fn cmd(&self) -> u32`
 
   Return the `cmd` field of the [`macho::LoadCommand`](../../../macho/index.md).
-
   
-
   This is one of the `LC_` constants.
 
 - <span id="loadcommanddata-cmdsize"></span>`fn cmdsize(&self) -> u32`
@@ -161,11 +156,8 @@ The data for a [`macho::LoadCommand`](../../../macho/index.md).
 - <span id="loadcommanddata-string"></span>`fn string(&self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../../macho/index.md#lcstr), [`Result`](../../../index.md#result)
 
   Parse a load command string value.
-
   
-
   Strings used by load commands are specified by offsets that are
-
   relative to the load command header.
 
 - <span id="loadcommanddata-variant"></span>`fn variant(&self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../../index.md#result), [`LoadCommandVariant`](../index.md#loadcommandvariant)
@@ -175,9 +167,7 @@ The data for a [`macho::LoadCommand`](../../../macho/index.md).
 - <span id="loadcommanddata-segment-32"></span>`fn segment_32(self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../../index.md#result), [`SegmentCommand32`](../../../macho/index.md#segmentcommand32)
 
   Try to parse this command as a [`macho::SegmentCommand32`](../../../macho/index.md).
-
   
-
   Returns the segment command and the data containing the sections.
 
 - <span id="loadcommanddata-symtab"></span>`fn symtab(self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../../index.md#result), [`SymtabCommand`](../../../macho/index.md#symtabcommand)
@@ -251,11 +241,8 @@ The data for a [`macho::LoadCommand`](../../../macho/index.md).
 - <span id="loadcommanddata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LoadCommandData<'data, E>`
@@ -320,7 +307,7 @@ enum LoadCommandVariant<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
 
 A [`macho::LoadCommand`](../../../macho/index.md) that has been interpreted according to its `cmd` field.
 
@@ -501,11 +488,8 @@ A [`macho::LoadCommand`](../../../macho/index.md) that has been interpreted acco
 - <span id="loadcommandvariant-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LoadCommandVariant<'data, E>`

@@ -62,9 +62,9 @@ struct Termios {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L14-L75)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L14-L75)*
 
-`struct termios` for use with [`tcgetattr`](../index.md) and [`tcsetattr`](../../backend/termios/syscalls/index.md).
+`struct termios` for use with [`tcgetattr`](../index.md) and [`tcsetattr`](../index.md).
 
 
 
@@ -113,91 +113,58 @@ struct Termios {
 - <span id="termios-make-raw"></span>`fn make_raw(&mut self)`
 
   `cfmakeraw(self)`—Set a `Termios` value to the settings for “raw” mode.
-
   
-
   In raw mode, input is available a byte at a time, echoing is disabled,
-
   and special terminal input and output codes are disabled.
 
 - <span id="termios-input-speed"></span>`fn input_speed(&self) -> u32`
 
   Return the input communication speed.
-
   
-
   Unlike the `c_ispeed` field in glibc and others, this returns the
-
   integer value of the speed, rather than the `B*` encoded constant
-
   value.
 
 - <span id="termios-output-speed"></span>`fn output_speed(&self) -> u32`
 
   Return the output communication speed.
-
   
-
   Unlike the `c_ospeed` field in glibc and others, this returns the
-
   arbitrary integer value of the speed, rather than the `B*` encoded
-
   constant value.
 
 - <span id="termios-set-speed"></span>`fn set_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md#result)
 
   Set the input and output communication speeds.
-
   
-
   Unlike the `c_ispeed` and `c_ospeed` fields in glibc and others, this
-
   takes the arbitrary integer value of the speed, rather than the `B*`
-
   encoded constant value. Not all implementations support all integer
-
   values; use the constants in the [`speed`](../index.md) module for likely-supported
-
   speeds.
 
 - <span id="termios-set-input-speed"></span>`fn set_input_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md#result)
 
   Set the input communication speed.
-
   
-
   Unlike the `c_ispeed` field in glibc and others, this takes the
-
   arbitrary integer value of the speed, rather than the `B*` encoded
-
   constant value. Not all implementations support all integer values; use
-
   the constants in the [`speed`](../index.md) module for known-supported speeds.
-
   
-
   On some platforms, changing the input speed changes the output speed to
-
   the same speed.
 
 - <span id="termios-set-output-speed"></span>`fn set_output_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md#result)
 
   Set the output communication speed.
-
   
-
   Unlike the `c_ospeed` field in glibc and others, this takes the
-
   arbitrary integer value of the speed, rather than the `B*` encoded
-
   constant value. Not all implementations support all integer values; use
-
   the constants in the [`speed`](../index.md) module for known-supported speeds.
-
   
-
   On some platforms, changing the output speed changes the input speed to
-
   the same speed.
 
 #### Trait Implementations
@@ -237,11 +204,8 @@ struct Termios {
 - <span id="termios-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Termios`
@@ -270,7 +234,7 @@ struct Termios {
 struct InputModes(<InputModes as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:245-311`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L245-L311)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:245-311`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L245-L311)*
 
 Flags controlling terminal input.
 
@@ -419,11 +383,8 @@ Flags controlling terminal input.
 - <span id="inputmodes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for InputModes`
@@ -469,11 +430,8 @@ Flags controlling terminal input.
 - <span id="inputmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl SubAssign for InputModes`
@@ -481,11 +439,8 @@ Flags controlling terminal input.
 - <span id="inputmodes-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl ToOwned for InputModes`
@@ -518,7 +473,7 @@ Flags controlling terminal input.
 struct OutputModes(<OutputModes as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:313-526`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L313-L526)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:313-526`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L313-L526)*
 
 Flags controlling terminal output.
 
@@ -699,11 +654,8 @@ Flags controlling terminal output.
 - <span id="outputmodes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for OutputModes`
@@ -749,11 +701,8 @@ Flags controlling terminal output.
 - <span id="outputmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl SubAssign for OutputModes`
@@ -761,11 +710,8 @@ Flags controlling terminal output.
 - <span id="outputmodes-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl ToOwned for OutputModes`
@@ -798,7 +744,7 @@ Flags controlling terminal output.
 struct ControlModes(<ControlModes as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:528-592`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L528-L592)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:528-592`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L528-L592)*
 
 Flags controlling special terminal modes.
 
@@ -949,11 +895,8 @@ probably these flags.
 - <span id="controlmodes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ControlModes`
@@ -999,11 +942,8 @@ probably these flags.
 - <span id="controlmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl SubAssign for ControlModes`
@@ -1011,11 +951,8 @@ probably these flags.
 - <span id="controlmodes-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl ToOwned for ControlModes`
@@ -1048,7 +985,7 @@ probably these flags.
 struct LocalModes(<LocalModes as __private::PublicFlags>::Internal);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:594-664`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L594-L664)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:594-664`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L594-L664)*
 
 Flags controlling “local” terminal modes.
 
@@ -1199,11 +1136,8 @@ Flags controlling “local” terminal modes.
 - <span id="localmodes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LocalModes`
@@ -1249,11 +1183,8 @@ Flags controlling “local” terminal modes.
 - <span id="localmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl SubAssign for LocalModes`
@@ -1261,11 +1192,8 @@ Flags controlling “local” terminal modes.
 - <span id="localmodes-subassign-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
-
   
-
   This method is not equivalent to `self & !other` when `other` has unknown bits set.
-
   `difference` won't truncate `other`, but the `!` operator will.
 
 ##### `impl ToOwned for LocalModes`
@@ -1298,7 +1226,7 @@ Flags controlling “local” terminal modes.
 struct SpecialCodes([linux_raw_sys::general::cc_t; 19]);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1124`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L1124)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1124`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1124)*
 
 An array indexed by [`SpecialCodeIndex`](../index.md) indicating the current values of
 various special control codes.
@@ -1350,11 +1278,8 @@ various special control codes.
 - <span id="specialcodes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SpecialCodes`
@@ -1383,7 +1308,7 @@ various special control codes.
 struct SpecialCode(u8);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1162`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L1162)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1162`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1162)*
 
 A newtype for pretty printing.
 
@@ -1416,11 +1341,8 @@ A newtype for pretty printing.
 - <span id="specialcode-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SpecialCode`
@@ -1441,7 +1363,7 @@ A newtype for pretty printing.
 struct SpecialCodeIndex(usize);
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1183`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L1183)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1183`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1183)*
 
 Indices for use with `Termios::special_codes`.
 
@@ -1536,11 +1458,8 @@ Indices for use with `Termios::special_codes`.
 - <span id="specialcodeindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SpecialCodeIndex`
@@ -1580,9 +1499,9 @@ struct Winsize {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1436-1444`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L1436-L1444)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1436-1444`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1436-L1444)*
 
-`struct winsize` for use with [`tcgetwinsize`](../../backend/termios/syscalls/index.md).
+`struct winsize` for use with [`tcgetwinsize`](../index.md).
 
 
 #### Fields
@@ -1640,11 +1559,8 @@ struct Winsize {
 - <span id="winsize-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Winsize`
@@ -1685,9 +1601,9 @@ enum OptionalActions {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1372-1385`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L1372-L1385)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1372-1385`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1372-L1385)*
 
-`TCSA*` values for use with [`tcsetattr`](../../backend/termios/syscalls/index.md).
+`TCSA*` values for use with [`tcsetattr`](../index.md).
 
 
 #### Variants
@@ -1750,11 +1666,8 @@ enum OptionalActions {
 - <span id="optionalactions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for OptionalActions`
@@ -1793,7 +1706,7 @@ enum QueueSelector {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1392-1404`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L1392-L1404)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1392-1404`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1392-L1404)*
 
 `TC*` values for use with [`tcflush`](../index.md).
 
@@ -1857,11 +1770,8 @@ enum QueueSelector {
 - <span id="queueselector-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for QueueSelector`
@@ -1901,9 +1811,9 @@ enum Action {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/termios/types.rs:1411-1427`](../../../../.source_1765633015/rustix-1.1.2/src/termios/types.rs#L1411-L1427)*
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1411-1427`](../../../../.source_1765894658/rustix-1.1.2/src/termios/types.rs#L1411-L1427)*
 
-`TC*` values for use with [`tcflow`](../index.md).
+`TC*` values for use with [`tcflow`](../../backend/termios/syscalls/index.md).
 
 
 #### Variants
@@ -1969,11 +1879,8 @@ enum Action {
 - <span id="action-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Action`

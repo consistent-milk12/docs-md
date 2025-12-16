@@ -18,7 +18,7 @@
 struct Related(syn::Member);
 ```
 
-*Defined in [`miette-derive-7.6.0/src/related.rs:11`](../../../.source_1765633015/miette-derive-7.6.0/src/related.rs#L11)*
+*Defined in [`miette-derive-7.6.0/src/related.rs:11`](../../../.source_1765894658/miette-derive-7.6.0/src/related.rs#L11)*
 
 #### Implementations
 
@@ -55,11 +55,8 @@ struct Related(syn::Member);
 - <span id="related-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Related`

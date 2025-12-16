@@ -21,7 +21,7 @@
 struct Labels(Vec<Label>);
 ```
 
-*Defined in [`miette-derive-7.6.0/src/label.rs:17`](../../../.source_1765633015/miette-derive-7.6.0/src/label.rs#L17)*
+*Defined in [`miette-derive-7.6.0/src/label.rs:17`](../../../.source_1765894658/miette-derive-7.6.0/src/label.rs#L17)*
 
 #### Implementations
 
@@ -58,11 +58,8 @@ struct Labels(Vec<Label>);
 - <span id="labels-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Labels`
@@ -88,7 +85,7 @@ struct Label {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/label.rs:26-31`](../../../.source_1765633015/miette-derive-7.6.0/src/label.rs#L26-L31)*
+*Defined in [`miette-derive-7.6.0/src/label.rs:26-31`](../../../.source_1765894658/miette-derive-7.6.0/src/label.rs#L26-L31)*
 
 #### Trait Implementations
 
@@ -115,11 +112,8 @@ struct Label {
 - <span id="label-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Label`
@@ -143,7 +137,7 @@ struct LabelAttr {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/label.rs:33-36`](../../../.source_1765633015/miette-derive-7.6.0/src/label.rs#L33-L36)*
+*Defined in [`miette-derive-7.6.0/src/label.rs:33-36`](../../../.source_1765894658/miette-derive-7.6.0/src/label.rs#L33-L36)*
 
 #### Trait Implementations
 
@@ -170,11 +164,8 @@ struct LabelAttr {
 - <span id="labelattr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for LabelAttr`
@@ -205,7 +196,7 @@ enum LabelType {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/label.rs:20-24`](../../../.source_1765633015/miette-derive-7.6.0/src/label.rs#L20-L24)*
+*Defined in [`miette-derive-7.6.0/src/label.rs:20-24`](../../../.source_1765894658/miette-derive-7.6.0/src/label.rs#L20-L24)*
 
 #### Trait Implementations
 
@@ -234,11 +225,8 @@ enum LabelType {
 - <span id="labeltype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LabelType`

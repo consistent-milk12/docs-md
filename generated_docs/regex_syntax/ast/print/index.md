@@ -24,7 +24,7 @@ struct PrinterBuilder {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/print.rs:18-20`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/print.rs#L18-L20)*
+*Defined in [`regex-syntax-0.8.8/src/ast/print.rs:18-20`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/print.rs#L18-L20)*
 
 A builder for constructing a printer.
 
@@ -78,11 +78,8 @@ remains unexported.
 - <span id="printerbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PrinterBuilder`
@@ -113,7 +110,7 @@ struct Printer {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/print.rs:48-50`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/print.rs#L48-L50)*
+*Defined in [`regex-syntax-0.8.8/src/ast/print.rs:48-50`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/print.rs#L48-L50)*
 
 A printer for a regular expression abstract syntax tree.
 
@@ -134,11 +131,8 @@ are ignored.
 - <span id="printer-print"></span>`fn print<W: fmt::Write>(&mut self, ast: &Ast, wtr: W) -> fmt::Result` — [`Ast`](../index.md#ast)
 
   Print the given `Ast` to the given writer. The writer must implement
-
   `fmt::Write`. Typical implementations of `fmt::Write` that can be used
-
   here are a `fmt::Formatter` (which is available in `fmt::Display`
-
   implementations) or a `&mut String`.
 
 #### Trait Implementations
@@ -170,11 +164,8 @@ are ignored.
 - <span id="printer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Printer`
@@ -197,7 +188,7 @@ struct Writer<W> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/print.rs:68-70`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/print.rs#L68-L70)*
+*Defined in [`regex-syntax-0.8.8/src/ast/print.rs:68-70`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/print.rs#L68-L70)*
 
 #### Implementations
 
@@ -258,11 +249,8 @@ struct Writer<W> {
 - <span id="writer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Writer<W>`

@@ -65,51 +65,34 @@ output/
 - <span id="flatgenerator-new"></span>`const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../context/index.md#generatorcontext)
 
   Create a new flat generator.
-
   
-
   # Arguments
-
   
-
   * `ctx` - Shared generator context
-
   * `output_dir` - Directory to write markdown files to
-
   * `progress` - Progress bar for user feedback
 
 - <span id="flatgenerator-generate"></span>`fn generate(&self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
   Generate all documentation files in flat format.
-
   
-
   Generates `index.md` for the root module, then recursively generates
-
   files for all submodules with flattened names.
 
 - <span id="flatgenerator-generate-module"></span>`fn generate_module(&self, item: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
   Generate a single module file and its children.
-
   
-
   Creates `{module_name}.md` in the output directory and recursively
-
   generates child modules with flattened names (e.g., `parent__child.md`).
 
 - <span id="flatgenerator-generate-module-recursive"></span>`fn generate_module_recursive(&self, item: &Item, prefix: &str) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
   Recursively generate nested module files with flattened names.
-
   
-
   # Arguments
-
   
-
   * `item` - The module item to generate
-
   * `prefix` - Accumulated path prefix (e.g., "`parent__child`")
 
 #### Trait Implementations
@@ -139,11 +122,8 @@ output/
 - <span id="flatgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatGenerator<'a>`

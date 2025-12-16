@@ -48,7 +48,7 @@ struct ProgressDrawTarget {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
 
 Target for draw operations
 
@@ -63,35 +63,26 @@ device.
 - <span id="progressdrawtarget-stdout"></span>`fn stdout() -> Self`
 
   Draw to a buffered stdout terminal at a max of 20 times a second.
-
   
-
   For more information see `ProgressDrawTarget::term`.
 
 - <span id="progressdrawtarget-stderr"></span>`fn stderr() -> Self`
 
   Draw to a buffered stderr terminal at a max of 20 times a second.
-
   
-
   This is the default draw target for progress bars.  For more
-
   information see `ProgressDrawTarget::term`.
 
 - <span id="progressdrawtarget-stdout-with-hz"></span>`fn stdout_with_hz(refresh_rate: u8) -> Self`
 
   Draw to a buffered stdout terminal at a max of `refresh_rate` times a second.
-
   
-
   For more information see `ProgressDrawTarget::term`.
 
 - <span id="progressdrawtarget-stderr-with-hz"></span>`fn stderr_with_hz(refresh_rate: u8) -> Self`
 
   Draw to a buffered stderr terminal at a max of `refresh_rate` times a second.
-
   
-
   For more information see `ProgressDrawTarget::term`.
 
 - <span id="progressdrawtarget-new-remote"></span>`fn new_remote(state: Arc<RwLock<MultiState>>, idx: usize) -> Self` — [`MultiState`](../multi/index.md#multistate)
@@ -99,19 +90,12 @@ device.
 - <span id="progressdrawtarget-term"></span>`fn term(term: Term, refresh_rate: u8) -> Self`
 
   Draw to a terminal, with a specific refresh rate.
-
   
-
   Progress bars are by default drawn to terminals however if the
-
   terminal is not user attended the entire progress bar will be
-
   hidden.  This is done so that piping to a file will not produce
-
   useless escape codes in that file.
-
   
-
   Will panic if `refresh_rate` is `0`.
 
 - <span id="progressdrawtarget-term-like"></span>`fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](../term_like/index.md#termlike)
@@ -121,31 +105,24 @@ device.
 - <span id="progressdrawtarget-term-like-with-hz"></span>`fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](../term_like/index.md#termlike)
 
   Draw to a boxed object that implements the [`TermLike`](../term_like/index.md) trait,
-
   with a specific refresh rate.
 
 - <span id="progressdrawtarget-hidden"></span>`fn hidden() -> Self`
 
   A hidden draw target.
-
   
-
   This forces a progress bar to be not rendered at all.
 
 - <span id="progressdrawtarget-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
   Returns true if the draw target is hidden.
-
   
-
   This is internally used in progress bars to figure out if overhead
-
   from drawing can be prevented.
 
 - <span id="progressdrawtarget-is-stderr"></span>`fn is_stderr(&self) -> bool`
 
   This is used in progress bars to determine whether to use stdout or stderr
-
   for detecting color support.
 
 - <span id="progressdrawtarget-width"></span>`fn width(&self) -> Option<u16>`
@@ -155,7 +132,6 @@ device.
 - <span id="progressdrawtarget-mark-zombie"></span>`fn mark_zombie(&self)`
 
   Notifies the backing `MultiProgress` (if applicable) that the associated progress bar should
-
   be marked a zombie.
 
 - <span id="progressdrawtarget-set-move-cursor"></span>`fn set_move_cursor(&mut self, move_cursor: bool)`
@@ -203,11 +179,8 @@ device.
 - <span id="progressdrawtarget-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ProgressDrawTarget`
@@ -231,7 +204,7 @@ struct DrawStateWrapper<'a> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:380-383`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L380-L383)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:380-383`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L380-L383)*
 
 #### Implementations
 
@@ -278,11 +251,8 @@ struct DrawStateWrapper<'a> {
 - <span id="drawstatewrapper-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for DrawStateWrapper<'a>`
@@ -311,7 +281,7 @@ struct RateLimiter {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:435-439`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L435-L439)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:435-439`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L435-L439)*
 
 #### Implementations
 
@@ -348,11 +318,8 @@ struct RateLimiter {
 - <span id="ratelimiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RateLimiter`
@@ -377,7 +344,7 @@ struct DrawState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:488-495`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L488-L495)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:488-495`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L488-L495)*
 
 The drawn state of an element.
 
@@ -400,11 +367,8 @@ The drawn state of an element.
 - <span id="drawstate-draw-to-term"></span>`fn draw_to_term(&mut self, term: &impl TermLike + ?Sized, bar_count: &mut VisualLines) -> io::Result<()>` — [`TermLike`](../term_like/index.md#termlike), [`VisualLines`](#visuallines)
 
   Draw the current state to the terminal
-
   We expect a few things:
-
   - self.lines contains n lines of text/empty then m lines of bars
-
   - None of those lines contain newlines
 
 - <span id="drawstate-reset"></span>`fn reset(&mut self)`
@@ -452,11 +416,8 @@ The drawn state of an element.
 - <span id="drawstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DrawState`
@@ -485,7 +446,7 @@ The drawn state of an element.
 struct VisualLines(usize);
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:600`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L600)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:600`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L600)*
 
 #### Implementations
 
@@ -550,11 +511,8 @@ struct VisualLines(usize);
 - <span id="visuallines-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for VisualLines`
@@ -623,7 +581,7 @@ enum TargetKind {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:248-266`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L248-L266)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:248-266`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L248-L266)*
 
 #### Implementations
 
@@ -660,11 +618,8 @@ enum TargetKind {
 - <span id="targetkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for TargetKind`
@@ -702,7 +657,7 @@ enum Drawable<'a> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:288-305`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L288-L305)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:288-305`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L288-L305)*
 
 #### Implementations
 
@@ -743,11 +698,8 @@ enum Drawable<'a> {
 - <span id="drawable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Drawable<'a>`
@@ -771,7 +723,7 @@ enum LineAdjust {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:373-378`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L373-L378)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:373-378`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L373-L378)*
 
 #### Variants
 
@@ -808,11 +760,8 @@ enum LineAdjust {
 - <span id="lineadjust-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for LineAdjust`
@@ -837,7 +786,7 @@ enum LineType {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:653-657`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L653-L657)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:653-657`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L653-L657)*
 
 #### Implementations
 
@@ -886,11 +835,8 @@ enum LineType {
 - <span id="linetype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LineType`
@@ -925,7 +871,7 @@ enum LineType {
 fn visual_line_count(lines: &[LineType], width: usize) -> VisualLines
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:646-650`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L646-L650)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:646-650`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L646-L650)*
 
 Calculate the number of visual lines in the given lines, after
 accounting for line wrapping and non-printable characters.
@@ -937,5 +883,5 @@ accounting for line wrapping and non-printable characters.
 const MAX_BURST: u8 = 20u8;
 ```
 
-*Defined in [`indicatif-0.18.3/src/draw_target.rs:484`](../../../.source_1765633015/indicatif-0.18.3/src/draw_target.rs#L484)*
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:484`](../../../.source_1765894658/indicatif-0.18.3/src/draw_target.rs#L484)*
 

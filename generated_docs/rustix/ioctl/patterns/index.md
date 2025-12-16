@@ -25,7 +25,7 @@ struct NoArg<const OPCODE: super::Opcode> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:17`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L17)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:17`](../../../../.source_1765894658/rustix-1.1.2/src/ioctl/patterns.rs#L17)*
 
 Implements an `ioctl` with no real arguments.
 
@@ -38,13 +38,9 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="noarg-new"></span>`const unsafe fn new() -> Self`
 
   Create a new no-argument `ioctl` object.
-
   
-
   # Safety
-
   
-
    - `OPCODE` must provide a valid opcode.
 
 #### Trait Implementations
@@ -76,11 +72,8 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="noarg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ioctl for NoArg<OPCODE>`
@@ -115,7 +108,7 @@ struct Getter<const OPCODE: super::Opcode, Output> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:64-67`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L64-L67)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:64-67`](../../../../.source_1765894658/rustix-1.1.2/src/ioctl/patterns.rs#L64-L67)*
 
 Implements the traditional “getter” pattern for `ioctl`s.
 
@@ -137,17 +130,11 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="getter-new"></span>`const unsafe fn new() -> Self`
 
   Create a new getter-style `ioctl` object.
-
   
-
   # Safety
-
   
-
    - `OPCODE` must provide a valid opcode.
-
    - For this opcode, `Output` must be the type that the kernel expects
-
      to write into.
 
 #### Trait Implementations
@@ -179,11 +166,8 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="getter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Output> Ioctl for Getter<OPCODE, Output>`
@@ -218,7 +202,7 @@ struct Setter<const OPCODE: super::Opcode, Input> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:118-121`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L118-L121)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:118-121`](../../../../.source_1765894658/rustix-1.1.2/src/ioctl/patterns.rs#L118-L121)*
 
 Implements the pattern for `ioctl`s where a pointer argument is given to
 the `ioctl`.
@@ -240,17 +224,11 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="setter-new"></span>`const unsafe fn new(input: Input) -> Self`
 
   Create a new pointer setter-style `ioctl` object.
-
   
-
   # Safety
-
   
-
    - `OPCODE` must provide a valid opcode.
-
    - For this opcode, `Input` must be the type that the kernel expects to
-
      get.
 
 #### Trait Implementations
@@ -282,11 +260,8 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="setter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Input> Ioctl for Setter<OPCODE, Input>`
@@ -321,7 +296,7 @@ struct Updater<'a, const OPCODE: super::Opcode, Value> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:173-176`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L173-L176)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:173-176`](../../../../.source_1765894658/rustix-1.1.2/src/ioctl/patterns.rs#L173-L176)*
 
 Implements an “updater” pattern for `ioctl`s.
 
@@ -343,17 +318,11 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="updater-new"></span>`unsafe fn new(value: &'a mut Value) -> Self`
 
   Create a new pointer updater-style `ioctl` object.
-
   
-
   # Safety
-
   
-
    - `OPCODE` must provide a valid opcode.
-
    - For this opcode, `Value` must be the type that the kernel expects to
-
      get.
 
 #### Trait Implementations
@@ -381,11 +350,8 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="updater-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Ioctl for Updater<'a, OPCODE, T>`
@@ -420,7 +386,7 @@ struct IntegerSetter<const OPCODE: super::Opcode> {
 }
 ```
 
-*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:216-221`](../../../../.source_1765633015/rustix-1.1.2/src/ioctl/patterns.rs#L216-L221)*
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:216-221`](../../../../.source_1765894658/rustix-1.1.2/src/ioctl/patterns.rs#L216-L221)*
 
 Implements an `ioctl` that passes an integer into the `ioctl`.
 
@@ -441,33 +407,21 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="integersetter-new-usize"></span>`const unsafe fn new_usize(value: usize) -> Self`
 
   Create a new integer `Ioctl` helper containing a `usize`.
-
   
-
   # Safety
-
   
-
    - `OPCODE` must provide a valid opcode.
-
    - For this opcode, it must expect an integer.
-
    - The integer is in the valid range for this opcode.
 
 - <span id="integersetter-new-pointer"></span>`const unsafe fn new_pointer(value: *mut c::c_void) -> Self`
 
   Create a new integer `Ioctl` helper containing a `*mut c_void`.
-
   
-
   # Safety
-
   
-
    - `OPCODE` must provide a valid opcode.
-
    - For this opcode, it must expect an integer.
-
    - The integer is in the valid range for this opcode.
 
 #### Trait Implementations
@@ -495,11 +449,8 @@ To compute a value for the `OPCODE` argument, see the functions in the
 - <span id="integersetter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ioctl for IntegerSetter<OPCODE>`

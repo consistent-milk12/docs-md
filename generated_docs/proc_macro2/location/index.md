@@ -21,7 +21,7 @@ struct LineColumn {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/location.rs:8-15`](../../../.source_1765633015/proc-macro2-1.0.103/src/location.rs#L8-L15)*
+*Defined in [`proc-macro2-1.0.103/src/location.rs:8-15`](../../../.source_1765894658/proc-macro2-1.0.103/src/location.rs#L8-L15)*
 
 A line-column pair representing the start or end of a `Span`.
 
@@ -84,11 +84,8 @@ This type is semver exempt and not exposed by default.
 - <span id="linecolumn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for LineColumn`

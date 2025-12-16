@@ -28,7 +28,7 @@ struct Match {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:26-30`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L26-L30)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:26-30`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L26-L30)*
 
 A match type specialized to the Teddy implementations below.
 
@@ -92,11 +92,8 @@ Also, the `PatternID` used here is a `u16`.
 - <span id="match-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Match`
@@ -128,7 +125,7 @@ struct Slim<V, const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:54-60`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L54-L60)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:54-60`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L54-L60)*
 
 A "slim" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
@@ -151,35 +148,24 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 - <span id="slim-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Slim<V, BYTES>` — [`Patterns`](../../pattern/index.md#patterns), [`Slim`](#slim)
 
   Create a new "slim" Teddy searcher for the given patterns.
-
   
-
   # Panics
-
   
-
   This panics when `BYTES` is any value other than 1, 2, 3 or 4.
-
   
-
   # Safety
-
   
-
   Callers must ensure that this is okay to call in the current target for
-
   the current CPU.
 
 - <span id="slim-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
   Returns the approximate total amount of heap used by this type, in
-
   units of bytes.
 
 - <span id="slim-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
   Returns the minimum length, in bytes, that a haystack must be in order
-
   to use it with this searcher.
 
 #### Trait Implementations
@@ -219,11 +205,8 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 - <span id="slim-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Slim<V, BYTES>`
@@ -255,7 +238,7 @@ struct Fat<V, const BYTES: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:387-393`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L387-L393)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:387-393`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L387-L393)*
 
 A "fat" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
@@ -278,35 +261,24 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 - <span id="fat-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Fat<V, BYTES>` — [`Patterns`](../../pattern/index.md#patterns), [`Fat`](#fat)
 
   Create a new "fat" Teddy searcher for the given patterns.
-
   
-
   # Panics
-
   
-
   This panics when `BYTES` is any value other than 1, 2, 3 or 4.
-
   
-
   # Safety
-
   
-
   Callers must ensure that this is okay to call in the current target for
-
   the current CPU.
 
 - <span id="fat-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
   Returns the approximate total amount of heap used by this type, in
-
   units of bytes.
 
 - <span id="fat-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
   Returns the minimum length, in bytes, that a haystack must be in order
-
   to use it with this searcher.
 
 #### Trait Implementations
@@ -346,11 +318,8 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 - <span id="fat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Fat<V, BYTES>`
@@ -382,7 +351,7 @@ struct Teddy<const BUCKETS: usize> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:728-747`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L728-L747)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:728-747`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L728-L747)*
 
 The common elements of all "slim" and "fat" Teddy search implementations.
 
@@ -420,69 +389,43 @@ be quite expensive if `N` is not a multiple of 2.
 - <span id="teddy-verify64"></span>`unsafe fn verify64(&self, cur: *const u8, end: *const u8, candidate_chunk: u64) -> Option<Match>` — [`Match`](#match)
 
   Verify whether there are any matches starting at or after `cur` in the
-
   haystack. The candidate chunk given should correspond to 8-bit bitsets
-
   for N buckets.
-
   
-
   # Safety
-
   
-
   The given pointers representing the haystack must be valid to read
-
   from.
 
 - <span id="teddy-verify-bucket"></span>`unsafe fn verify_bucket(&self, cur: *const u8, end: *const u8, bucket: usize) -> Option<Match>` — [`Match`](#match)
 
   Verify whether there are any matches starting at `at` in the given
-
   `haystack` corresponding only to patterns in the given bucket.
-
   
-
   # Safety
-
   
-
   The given pointers representing the haystack must be valid to read
-
   from.
-
   
-
   The bucket index must be less than or equal to `self.buckets.len()`.
 
 - <span id="teddy-mask-len"></span>`fn mask_len(&self) -> usize`
 
   Returns the total number of masks required by the patterns in this
-
   Teddy searcher.
-
   
-
   Basically, the mask length corresponds to the type of Teddy searcher
-
   to use: a 1-byte, 2-byte, 3-byte or 4-byte searcher. The bigger the
-
   better, typically, since searching for longer substrings usually
-
   decreases the rate of false positives. Therefore, the number of masks
-
   needed is the length of the shortest pattern in this searcher. If the
-
   length of the shortest pattern (in bytes) is bigger than 4, then the
-
   mask length is 4 since there are no Teddy searchers for more than 4
-
   bytes.
 
 - <span id="teddy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
   Returns the approximate total amount of heap used by this type, in
-
   units of bytes.
 
 #### Trait Implementations
@@ -522,11 +465,8 @@ be quite expensive if `N` is not a multiple of 2.
 - <span id="teddy-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Teddy<BUCKETS>`
@@ -558,7 +498,7 @@ struct Mask<V> {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1016-1019`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1016-L1019)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1016-1019`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1016-L1019)*
 
 A vector generic mask for the low and high nybbles in a set of patterns.
 Each 8-bit lane `j` in a vector corresponds to a bitset where the `i`th bit
@@ -581,147 +521,82 @@ if it's in the higher half.
 - <span id="mask-members1"></span>`unsafe fn members1(chunk: V, masks: [Mask<V>; 1]) -> V` — [`Mask`](#mask)
 
   Return a candidate for Teddy (fat or slim) that is searching for 1-byte
-
   candidates.
-
   
-
   If a candidate is returned, it will be a collection of 8-bit bitsets
-
   (one bitset per lane), where the ith bit is set in the jth lane if and
-
   only if the byte occurring at the jth lane in `chunk` is in the bucket
-
   `i`. If no candidate is found, then the vector returned will have all
-
   lanes set to zero.
-
   
-
   `chunk` should correspond to a `V::BYTES` window of the haystack (where
-
   the least significant byte corresponds to the start of the window). For
-
   fat Teddy, the haystack window length should be `V::BYTES / 2`, with
-
   the window repeated in each half of the vector.
-
   
-
   `mask1` should correspond to a low/high mask for the first byte of all
-
   patterns that are being searched.
 
 - <span id="mask-members2"></span>`unsafe fn members2(chunk: V, masks: [Mask<V>; 2]) -> (V, V)` — [`Mask`](#mask)
 
   Return a candidate for Teddy (fat or slim) that is searching for 2-byte
-
   candidates.
-
   
-
   If candidates are returned, each will be a collection of 8-bit bitsets
-
   (one bitset per lane), where the ith bit is set in the jth lane if and
-
   only if the byte occurring at the jth lane in `chunk` is in the bucket
-
   `i`. Each candidate returned corresponds to the first and second bytes
-
   of the patterns being searched. If no candidate is found, then all of
-
   the lanes will be set to zero in at least one of the vectors returned.
-
   
-
   `chunk` should correspond to a `V::BYTES` window of the haystack (where
-
   the least significant byte corresponds to the start of the window). For
-
   fat Teddy, the haystack window length should be `V::BYTES / 2`, with
-
   the window repeated in each half of the vector.
-
   
-
   The masks should correspond to the masks computed for the first and
-
   second bytes of all patterns that are being searched.
 
 - <span id="mask-members3"></span>`unsafe fn members3(chunk: V, masks: [Mask<V>; 3]) -> (V, V, V)` — [`Mask`](#mask)
 
   Return a candidate for Teddy (fat or slim) that is searching for 3-byte
-
   candidates.
-
   
-
   If candidates are returned, each will be a collection of 8-bit bitsets
-
   (one bitset per lane), where the ith bit is set in the jth lane if and
-
   only if the byte occurring at the jth lane in `chunk` is in the bucket
-
   `i`. Each candidate returned corresponds to the first, second and third
-
   bytes of the patterns being searched. If no candidate is found, then
-
   all of the lanes will be set to zero in at least one of the vectors
-
   returned.
-
   
-
   `chunk` should correspond to a `V::BYTES` window of the haystack (where
-
   the least significant byte corresponds to the start of the window). For
-
   fat Teddy, the haystack window length should be `V::BYTES / 2`, with
-
   the window repeated in each half of the vector.
-
   
-
   The masks should correspond to the masks computed for the first, second
-
   and third bytes of all patterns that are being searched.
 
 - <span id="mask-members4"></span>`unsafe fn members4(chunk: V, masks: [Mask<V>; 4]) -> (V, V, V, V)` — [`Mask`](#mask)
 
   Return a candidate for Teddy (fat or slim) that is searching for 4-byte
-
   candidates.
-
   
-
   If candidates are returned, each will be a collection of 8-bit bitsets
-
   (one bitset per lane), where the ith bit is set in the jth lane if and
-
   only if the byte occurring at the jth lane in `chunk` is in the bucket
-
   `i`. Each candidate returned corresponds to the first, second, third
-
   and fourth bytes of the patterns being searched. If no candidate is
-
   found, then all of the lanes will be set to zero in at least one of the
-
   vectors returned.
-
   
-
   `chunk` should correspond to a `V::BYTES` window of the haystack (where
-
   the least significant byte corresponds to the start of the window). For
-
   fat Teddy, the haystack window length should be `V::BYTES / 2`, with
-
   the window repeated in each half of the vector.
-
   
-
   The masks should correspond to the masks computed for the first,
-
   second, third and fourth bytes of all patterns that are being searched.
 
 #### Trait Implementations
@@ -763,11 +638,8 @@ if it's in the higher half.
 - <span id="mask-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Mask<V>`
@@ -799,7 +671,7 @@ struct SlimMaskBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1178-1181`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1178-L1181)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1178-1181`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1178-L1181)*
 
 Represents the low and high nybble masks that will be used during
 search. Each mask is 32 bytes wide, although only the first 16 bytes are
@@ -819,61 +691,37 @@ low and high masks together also results in 8-bit bitsets, but where bit
 - <span id="slimmaskbuilder-add"></span>`fn add(&mut self, bucket: usize, byte: u8)`
 
   Update this mask by adding the given byte to the given bucket. The
-
   given bucket must be in the range 0-7.
-
   
-
   # Panics
-
   
-
   When `bucket >= 8`.
 
 - <span id="slimmaskbuilder-build"></span>`unsafe fn build<V: Vector>(&self) -> Mask<V>` — [`Mask`](#mask)
 
   Turn this builder into a vector mask.
-
   
-
   # Panics
-
   
-
   When `V` represents a vector bigger than what `MaskBytes` can contain.
-
   
-
   # Safety
-
   
-
   Callers must ensure that this is okay to call in the current target for
-
   the current CPU.
 
 - <span id="slimmaskbuilder-from-teddy"></span>`unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<8>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
 
   A convenience function for building `N` vector masks from a slim
-
   `Teddy` value.
-
   
-
   # Panics
-
   
-
   When `V` represents a vector bigger than what `MaskBytes` can contain.
-
   
-
   # Safety
-
   
-
   Callers must ensure that this is okay to call in the current target for
-
   the current CPU.
 
 #### Trait Implementations
@@ -917,11 +765,8 @@ low and high masks together also results in 8-bit bitsets, but where bit
 - <span id="slimmaskbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SlimMaskBuilder`
@@ -953,7 +798,7 @@ struct FatMaskBuilder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1288-1291`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1288-L1291)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1288-1291`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1288-L1291)*
 
 Represents the low and high nybble masks that will be used during "fat"
 Teddy search.
@@ -976,61 +821,37 @@ the byte (0-15, inclusive) corresponds to the nybble.
 - <span id="fatmaskbuilder-add"></span>`fn add(&mut self, bucket: usize, byte: u8)`
 
   Update this mask by adding the given byte to the given bucket. The
-
   given bucket must be in the range 0-15.
-
   
-
   # Panics
-
   
-
   When `bucket >= 16`.
 
 - <span id="fatmaskbuilder-build"></span>`unsafe fn build<V: Vector>(&self) -> Mask<V>` — [`Mask`](#mask)
 
   Turn this builder into a vector mask.
-
   
-
   # Panics
-
   
-
   When `V` represents a vector bigger than what `MaskBytes` can contain.
-
   
-
   # Safety
-
   
-
   Callers must ensure that this is okay to call in the current target for
-
   the current CPU.
 
 - <span id="fatmaskbuilder-from-teddy"></span>`unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<16>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
 
   A convenience function for building `N` vector masks from a fat
-
   `Teddy` value.
-
   
-
   # Panics
-
   
-
   When `V` represents a vector bigger than what `MaskBytes` can contain.
-
   
-
   # Safety
-
   
-
   Callers must ensure that this is okay to call in the current target for
-
   the current CPU.
 
 #### Trait Implementations
@@ -1076,11 +897,8 @@ the byte (0-15, inclusive) corresponds to the nybble.
 - <span id="fatmaskbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for FatMaskBuilder`

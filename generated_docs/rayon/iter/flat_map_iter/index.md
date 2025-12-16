@@ -23,7 +23,7 @@ struct FlatMapIter<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:12-15`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map_iter.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:12-15`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flat_map_iter.rs#L12-L15)*
 
 `FlatMapIter` maps each element to a serial iterator, then flattens these iterators together.
 This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](../index.md)
@@ -72,11 +72,8 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](.
 - <span id="flatmapiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMapIter<I, F>`
@@ -138,7 +135,7 @@ struct FlatMapIterConsumer<'f, C, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:52-55`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map_iter.rs#L52-L55)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:52-55`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flat_map_iter.rs#L52-L55)*
 
 #### Implementations
 
@@ -183,11 +180,8 @@ struct FlatMapIterConsumer<'f, C, F> {
 - <span id="flatmapiterconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMapIterConsumer<'f, C, F>`
@@ -233,7 +227,7 @@ struct FlatMapIterFolder<'f, C, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:109-112`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map_iter.rs#L109-L112)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:109-112`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flat_map_iter.rs#L109-L112)*
 
 #### Trait Implementations
 
@@ -272,11 +266,8 @@ struct FlatMapIterFolder<'f, C, F> {
 - <span id="flatmapiterfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMapIterFolder<'f, C, F>`

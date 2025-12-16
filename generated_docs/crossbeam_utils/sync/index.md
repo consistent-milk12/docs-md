@@ -58,7 +58,7 @@ struct Parker {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
 
 A thread parking primitive.
 
@@ -111,207 +111,118 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 - <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](parker/index.md#parker)
 
   Creates a new `Parker`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::Parker;
-
   
-
   let p = Parker::new();
-
   ```
 
 - <span id="parker-park"></span>`fn park(&self)`
 
   Blocks the current thread until the token is made available.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::Parker;
-
   
-
   let p = Parker::new();
-
   let u = p.unparker().clone();
-
   
-
   // Make the token available.
-
   u.unpark();
-
   
-
   // Wakes up immediately and consumes the token.
-
   p.park();
-
   ```
 
 - <span id="parker-park-timeout"></span>`fn park_timeout(&self, timeout: Duration)`
 
   Blocks the current thread until the token is made available, but only for a limited time.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use std::time::Duration;
-
   use crossbeam_utils::sync::Parker;
-
   
-
   let p = Parker::new();
-
   
-
   // Waits for the token to become available, but will not wait longer than 500 ms.
-
   p.park_timeout(Duration::from_millis(500));
-
   ```
 
 - <span id="parker-park-deadline"></span>`fn park_deadline(&self, deadline: Instant)`
 
   Blocks the current thread until the token is made available, or until a certain deadline.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use std::time::{Duration, Instant};
-
   use crossbeam_utils::sync::Parker;
-
   
-
   let p = Parker::new();
-
   let deadline = Instant::now() + Duration::from_millis(500);
-
   
-
   // Waits for the token to become available, but will not wait longer than 500 ms.
-
   p.park_deadline(deadline);
-
   ```
 
 - <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](parker/index.md#unparker)
 
   Returns a reference to an associated [`Unparker`](parker/index.md).
-
   
-
   The returned [`Unparker`](parker/index.md) doesn't have to be used by reference - it can also be cloned.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::Parker;
-
   
-
   let p = Parker::new();
-
   let u = p.unparker().clone();
-
   
-
   // Make the token available.
-
   u.unpark();
-
   // Wakes up immediately and consumes the token.
-
   p.park();
-
   ```
-
   
 
 - <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](parker/index.md#parker)
 
   Converts a `Parker` into a raw pointer.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::Parker;
-
   
-
   let p = Parker::new();
-
   let raw = Parker::into_raw(p);
-
   let _ = unsafe { Parker::from_raw(raw) };
-
   ```
 
 - <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](parker/index.md#parker)
 
   Converts a raw pointer into a `Parker`.
-
   
-
   # Safety
-
   
-
   This method is safe to use only with pointers returned by `Parker::into_raw`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::Parker;
-
   
-
   let p = Parker::new();
-
   let raw = Parker::into_raw(p);
-
   let p = unsafe { Parker::from_raw(raw) };
-
   ```
 
 #### Trait Implementations
@@ -347,11 +258,8 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 - <span id="parker-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Send for Parker`
@@ -376,7 +284,7 @@ struct Unparker {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
 
 Unparks a thread parked by the associated [`Parker`](parker/index.md).
 
@@ -385,115 +293,64 @@ Unparks a thread parked by the associated [`Parker`](parker/index.md).
 - <span id="unparker-unpark"></span>`fn unpark(&self)`
 
   Atomically makes the token available if it is not already.
-
   
-
   This method will wake up the thread blocked on `park` or `park_timeout`, if there is
-
   any.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use std::thread;
-
   use std::time::Duration;
-
   use crossbeam_utils::sync::Parker;
-
   
-
   let p = Parker::new();
-
   let u = p.unparker().clone();
-
   
-
   thread::spawn(move || {
-
       thread::sleep(Duration::from_millis(500));
-
       u.unpark();
-
   });
-
   
-
   // Wakes up when `u.unpark()` provides the token.
-
   p.park();
-
   std::thread::sleep(std::time::Duration::from_millis(500)); // wait for background threads closed: https://github.com/rust-lang/miri/issues/1371
-
   ```
-
   
 
 - <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](parker/index.md#unparker)
 
   Converts an `Unparker` into a raw pointer.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::{Parker, Unparker};
-
   
-
   let p = Parker::new();
-
   let u = p.unparker().clone();
-
   let raw = Unparker::into_raw(u);
-
   let _ = unsafe { Unparker::from_raw(raw) };
-
   ```
 
 - <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](parker/index.md#unparker)
 
   Converts a raw pointer into an `Unparker`.
-
   
-
   # Safety
-
   
-
   This method is safe to use only with pointers returned by `Unparker::into_raw`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::{Parker, Unparker};
-
   
-
   let p = Parker::new();
-
   let u = p.unparker().clone();
-
   
-
   let raw = Unparker::into_raw(u);
-
   let u = unsafe { Unparker::from_raw(raw) };
-
   ```
 
 #### Trait Implementations
@@ -533,11 +390,8 @@ Unparks a thread parked by the associated [`Parker`](parker/index.md).
 - <span id="unparker-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Send for Unparker`
@@ -573,7 +427,7 @@ struct ShardedLock<T: ?Sized> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:78-84`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L78-L84)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:78-84`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L78-L84)*
 
 A sharded reader-writer lock.
 
@@ -636,61 +490,35 @@ let lock = ShardedLock::new(5);
 - <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md#shardedlock)
 
   Creates a new sharded reader-writer lock.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::ShardedLock;
-
   
-
   let lock = ShardedLock::new(5);
-
   ```
 
 - <span id="shardedlock-into-inner"></span>`fn into_inner(self) -> LockResult<T>`
 
   Consumes this lock, returning the underlying data.
-
   
-
   # Errors
-
   
-
   This method will return an error if the lock is poisoned. A lock gets poisoned when a write
-
   operation panics.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::ShardedLock;
-
   
-
   let lock = ShardedLock::new(String::new());
-
   {
-
       let mut s = lock.write().unwrap();
-
       *s = "modified".to_owned();
-
   }
-
   assert_eq!(lock.into_inner().unwrap(), "modified");
-
   ```
 
 #### Trait Implementations
@@ -726,11 +554,8 @@ let lock = ShardedLock::new(5);
 - <span id="shardedlock-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
@@ -763,7 +588,7 @@ struct ShardedLockReadGuard<'a, T: ?Sized> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:486-490`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L486-L490)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:486-490`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L486-L490)*
 
 A guard used to release the shared read access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
 
@@ -806,11 +631,8 @@ A guard used to release the shared read access of a [`ShardedLock`](sharded_lock
 - <span id="shardedlockreadguard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for ShardedLockReadGuard<'a, T>`
@@ -844,7 +666,7 @@ struct ShardedLockWriteGuard<'a, T: ?Sized> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:518-521`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L518-L521)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:518-521`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L518-L521)*
 
 A guard used to release the exclusive write access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
 
@@ -895,11 +717,8 @@ A guard used to release the exclusive write access of a [`ShardedLock`](sharded_
 - <span id="shardedlockwriteguard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for ShardedLockWriteGuard<'a, T>`
@@ -932,7 +751,7 @@ struct WaitGroup {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
 
 Enables threads to synchronize the beginning or end of some computation.
 
@@ -981,67 +800,38 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 - <span id="waitgroup-new"></span>`fn new() -> Self`
 
   Creates a new wait group and returns the single reference to it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::WaitGroup;
-
   
-
   let wg = WaitGroup::new();
-
   ```
 
 - <span id="waitgroup-wait"></span>`fn wait(self)`
 
   Drops this reference and waits until all other references are dropped.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::sync::WaitGroup;
-
   use std::thread;
-
   
-
   let wg = WaitGroup::new();
-
   
-
   thread::spawn({
-
       let wg = wg.clone();
-
       move || {
-
           // Block until both threads have reached `wait()`.
-
           wg.wait();
-
       }
-
   });
-
   
-
   // Block until both threads have reached `wait()`.
-
   wg.wait();
-
   std::thread::sleep(std::time::Duration::from_millis(500)); // wait for background threads closed: https://github.com/rust-lang/miri/issues/1371
-
   ```
 
 #### Trait Implementations
@@ -1089,11 +879,8 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 - <span id="waitgroup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for WaitGroup`

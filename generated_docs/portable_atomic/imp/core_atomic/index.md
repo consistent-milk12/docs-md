@@ -48,7 +48,7 @@
 struct NotRefUnwindSafe(core::cell::UnsafeCell<()>);
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:22`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L22)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:22`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L22)*
 
 #### Trait Implementations
 
@@ -75,11 +75,8 @@ struct NotRefUnwindSafe(core::cell::UnsafeCell<()>);
 - <span id="notrefunwindsafe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Sync for NotRefUnwindSafe`
@@ -105,7 +102,7 @@ struct AtomicPtr<T> {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:27-31`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L27-L31)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:27-31`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L27-L31)*
 
 #### Implementations
 
@@ -152,11 +149,8 @@ struct AtomicPtr<T> {
 - <span id="atomicptr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for AtomicPtr<T>`
@@ -184,7 +178,7 @@ struct AtomicIsize {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:398`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L398)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:398`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L398)*
 
 #### Implementations
 
@@ -229,11 +223,8 @@ struct AtomicIsize {
 - <span id="atomicisize-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicIsize`
@@ -261,7 +252,7 @@ struct AtomicUsize {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:399`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L399)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:399`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L399)*
 
 #### Implementations
 
@@ -306,11 +297,8 @@ struct AtomicUsize {
 - <span id="atomicusize-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicUsize`
@@ -338,7 +326,7 @@ struct AtomicI8 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:401`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L401)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:401`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L401)*
 
 #### Implementations
 
@@ -383,11 +371,8 @@ struct AtomicI8 {
 - <span id="atomici8-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicI8`
@@ -415,7 +400,7 @@ struct AtomicU8 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:403`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L403)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:403`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L403)*
 
 #### Implementations
 
@@ -460,11 +445,8 @@ struct AtomicU8 {
 - <span id="atomicu8-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicU8`
@@ -492,7 +474,7 @@ struct AtomicI16 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:405`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L405)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:405`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L405)*
 
 #### Implementations
 
@@ -537,11 +519,8 @@ struct AtomicI16 {
 - <span id="atomici16-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicI16`
@@ -569,7 +548,7 @@ struct AtomicU16 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:407`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L407)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:407`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L407)*
 
 #### Implementations
 
@@ -614,11 +593,8 @@ struct AtomicU16 {
 - <span id="atomicu16-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicU16`
@@ -646,7 +622,7 @@ struct AtomicI32 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:410`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L410)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:410`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L410)*
 
 #### Implementations
 
@@ -691,11 +667,8 @@ struct AtomicI32 {
 - <span id="atomici32-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicI32`
@@ -723,7 +696,7 @@ struct AtomicU32 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:413`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L413)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:413`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L413)*
 
 #### Implementations
 
@@ -768,11 +741,8 @@ struct AtomicU32 {
 - <span id="atomicu32-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicU32`
@@ -800,7 +770,7 @@ struct AtomicI64 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:422`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L422)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:422`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L422)*
 
 #### Implementations
 
@@ -845,11 +815,8 @@ struct AtomicI64 {
 - <span id="atomici64-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicI64`
@@ -877,7 +844,7 @@ struct AtomicU64 {
 }
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:431`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L431)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:431`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L431)*
 
 #### Implementations
 
@@ -922,11 +889,8 @@ struct AtomicU64 {
 - <span id="atomicu64-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Receiver for AtomicU64`
@@ -949,5 +913,5 @@ struct AtomicU64 {
 
 ### `atomic_int!`
 
-*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:118-396`](../../../../.source_1765633015/portable-atomic-1.11.1/src/imp/core_atomic.rs#L118-L396)*
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:118-396`](../../../../.source_1765894658/portable-atomic-1.11.1/src/imp/core_atomic.rs#L118-L396)*
 

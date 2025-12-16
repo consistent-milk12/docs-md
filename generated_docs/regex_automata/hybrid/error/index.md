@@ -23,7 +23,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:23-25`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/error.rs#L23-L25)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:23-25`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/error.rs#L23-L25)*
 
 An error that occurs when initial construction of a lazy DFA fails.
 
@@ -100,11 +100,8 @@ trait.
 - <span id="builderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BuildError`
@@ -137,7 +134,7 @@ trait.
 struct CacheError(());
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:222`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/error.rs#L222)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:222`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/error.rs#L222)*
 
 An error that occurs when cache usage has become inefficient.
 
@@ -206,11 +203,8 @@ trait.
 - <span id="cacheerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for CacheError`
@@ -255,7 +249,7 @@ enum BuildErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:28-33`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/error.rs#L28-L33)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:28-33`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/error.rs#L28-L33)*
 
 #### Trait Implementations
 
@@ -294,11 +288,8 @@ enum BuildErrorKind {
 - <span id="builderrorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BuildErrorKind`
@@ -337,7 +328,7 @@ enum StartError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:117-136`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/error.rs#L117-L136)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:117-136`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/error.rs#L117-L136)*
 
 An error that can occur when computing the start state for a search.
 
@@ -428,11 +419,8 @@ semver compatible release.
 - <span id="starterror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StartError`

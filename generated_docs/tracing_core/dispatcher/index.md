@@ -185,7 +185,7 @@ struct Dispatch {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
 
 `Dispatch` trace data to a [`Subscriber`](../subscriber/index.md).
 
@@ -204,27 +204,16 @@ struct Dispatch {
 - <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
 
   Creates a [`WeakDispatch`](#weakdispatch) from this `Dispatch`.
-
   
-
   A [`WeakDispatch`](#weakdispatch) is similar to a [`Dispatch`](#dispatch), but it does not prevent
-
   the underlying [`Subscriber`](../subscriber/index.md) from being dropped. Instead, it only permits
-
   access while other references to the `Subscriber` exist. This is equivalent
-
   to the standard library's `Arc::downgrade` method, but for `Dispatch`
-
   rather than `Arc`.
-
   
-
   The primary use for creating a [`WeakDispatch`](#weakdispatch) is to allow a `Subscriber`
-
   to hold a cyclical reference to itself without creating a memory leak.
-
   See [here] for details.
-
   
 
 - <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](../subscriber/index.md#subscriber)
@@ -232,247 +221,154 @@ struct Dispatch {
 - <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](../metadata/index.md#metadata), [`Interest`](../subscriber/index.md#interest)
 
   Registers a new callsite with this subscriber, returning whether or not
-
   the subscriber is interested in being notified about the callsite.
-
   
-
   This calls the `register_callsite` function on the [`Subscriber`](../subscriber/index.md)
-
   that this `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](../metadata/index.md#levelfilter)
 
   Returns the highest [verbosity level][`level`](../../tracing_attributes/attr/kw/index.md) that this [`Subscriber`](../subscriber/index.md) will
-
   enable, or `None`, if the subscriber does not implement level-based
-
   filtering or chooses not to implement this method.
-
   
-
   This calls the `max_level_hint` function on the [`Subscriber`](../subscriber/index.md)
-
   that this `Dispatch` forwards to.
-
   
-
   
 
 - <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md#attributes), [`Id`](../span/index.md#id)
 
   Record the construction of a new span, returning a new [ID] for the
-
   span being constructed.
-
   
-
   This calls the `new_span` function on the [`Subscriber`](../subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
-
   
 
 - <span id="dispatch-record"></span>`fn record(&self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](../span/index.md#id), [`Record`](../span/index.md#record)
 
   Record a set of values on a span.
-
   
-
   This calls the `record` function on the [`Subscriber`](../subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](../span/index.md#id)
 
   Adds an indication that `span` follows from the span with the id
-
   `follows`.
-
   
-
   This calls the `record_follows_from` function on the [`Subscriber`](../subscriber/index.md)
-
   that this `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](../metadata/index.md#metadata)
 
   Returns true if a span with the specified [`metadata`](../metadata/index.md) would be
-
   recorded.
-
   
-
   This calls the `enabled` function on the [`Subscriber`](../subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
-
   
 
 - <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](../event/index.md#event)
 
   Records that an [`Event`](../event/index.md) has occurred.
-
   
-
   This calls the [`event`](../event/index.md) function on the [`Subscriber`](../subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
-
   
 
 - <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](../span/index.md#id)
 
   Records that a span has been can_enter.
-
   
-
   This calls the `enter` function on the [`Subscriber`](../subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-exit"></span>`fn exit(&self, span: &span::Id)` — [`Id`](../span/index.md#id)
 
   Records that a span has been exited.
-
   
-
   This calls the [`exit`](#exit) function on the [`Subscriber`](../subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
 
 - <span id="dispatch-clone-span"></span>`fn clone_span(&self, id: &span::Id) -> span::Id` — [`Id`](../span/index.md#id)
 
   Notifies the subscriber that a [span ID] has been cloned.
-
   
-
   This function must only be called with span IDs that were returned by
-
   this `Dispatch`'s `new_span` function. The `tracing` crate upholds
-
   this guarantee and any other libraries implementing instrumentation APIs
-
   must as well.
-
   
-
   This calls the `clone_span` function on the `Subscriber` that this
-
   `Dispatch` forwards to.
-
   
-
   
-
   
 
 - <span id="dispatch-drop-span"></span>`fn drop_span(&self, id: span::Id)` — [`Id`](../span/index.md#id)
 
   Notifies the subscriber that a [span ID] has been dropped.
-
   
-
   This function must only be called with span IDs that were returned by
-
   this `Dispatch`'s `new_span` function. The `tracing` crate upholds
-
   this guarantee and any other libraries implementing instrumentation APIs
-
   must as well.
-
   
-
   This calls the `drop_span` function on the [`Subscriber`](../subscriber/index.md) that this
-
   `Dispatch` forwards to.
-
   
-
   <pre class="compile_fail" style="white-space:normal;font:inherit;">
-
       <strong>Deprecated</strong>: The <a href="#method.try_close"><code>
-
       try_close</code></a> method is functionally identical, but returns
-
       <code>true</code> if the span is now closed. It should be used
-
       instead of this method.
-
   </pre>
-
   
-
   
-
   
-
   
 
 - <span id="dispatch-try-close"></span>`fn try_close(&self, id: span::Id) -> bool` — [`Id`](../span/index.md#id)
 
   Notifies the subscriber that a [span ID] has been dropped, and returns
-
   `true` if there are now 0 IDs referring to that span.
-
   
-
   This function must only be called with span IDs that were returned by
-
   this `Dispatch`'s `new_span` function. The `tracing` crate upholds
-
   this guarantee and any other libraries implementing instrumentation APIs
-
   must as well.
-
   
-
   This calls the `try_close` function on the [`Subscriber`](../subscriber/index.md) that this
-
    `Dispatch` forwards to.
-
   
-
   
-
   
 
 - <span id="dispatch-current-span"></span>`fn current_span(&self) -> span::Current` — [`Current`](../span/index.md#current)
 
   Returns a type representing this subscriber's view of the current span.
-
   
-
   This calls the `current` function on the `Subscriber` that this
-
   `Dispatch` forwards to.
 
 - <span id="dispatch-is"></span>`fn is<T: Any>(&self) -> bool`
 
   Returns `true` if this `Dispatch` forwards to a `Subscriber` of type
-
   `T`.
 
 - <span id="dispatch-downcast-ref"></span>`fn downcast_ref<T: Any>(&self) -> Option<&T>`
 
   Returns some reference to the `Subscriber` this `Dispatch` forwards to
-
   if it is of type `T`, or `None` if it isn't.
 
 #### Trait Implementations
@@ -518,11 +414,8 @@ struct Dispatch {
 - <span id="dispatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Dispatch`
@@ -553,7 +446,7 @@ struct WeakDispatch {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:172-174`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L172-L174)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:172-174`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L172-L174)*
 
 `WeakDispatch` is a version of [`Dispatch`](#dispatch) that holds a non-owning reference
 to a [`Subscriber`](../subscriber/index.md).
@@ -578,39 +471,22 @@ This type is analogous to the `std::sync::Weak` type, but for a
 - <span id="weakdispatch-upgrade"></span>`fn upgrade(&self) -> Option<Dispatch>` — [`Dispatch`](#dispatch)
 
   Attempts to upgrade this `WeakDispatch` to a [`Dispatch`](#dispatch).
-
   
-
   Returns `None` if the referenced `Dispatch` has already been dropped.
-
   
-
   ## Examples
-
   
-
   ```rust
-
   use tracing_core::subscriber::NoSubscriber;
-
   use tracing_core::dispatcher::Dispatch;
-
   let strong = Dispatch::new(NoSubscriber::default());
-
   let weak = strong.downgrade();
-
   
-
   // The strong here keeps it alive, so we can still access the object.
-
   assert!(weak.upgrade().is_some());
-
   
-
   drop(strong); // But not any more.
-
   assert!(weak.upgrade().is_none());
-
   ```
 
 #### Trait Implementations
@@ -650,11 +526,8 @@ This type is analogous to the `std::sync::Weak` type, but for a
 - <span id="weakdispatch-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for WeakDispatch`
@@ -686,7 +559,7 @@ struct State {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:212-223`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L212-L223)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:212-223`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L212-L223)*
 
 The dispatch state of a thread.
 
@@ -711,13 +584,9 @@ The dispatch state of a thread.
 - <span id="state-set-default"></span>`fn set_default(new_dispatch: Dispatch) -> DefaultGuard` — [`Dispatch`](#dispatch), [`DefaultGuard`](#defaultguard)
 
   Replaces the current default dispatcher on this thread with the provided
-
   dispatcher.Any
-
   
-
   Dropping the returned `ResetGuard` will reset the default dispatcher to
-
   the previous value.
 
 - <span id="state-enter"></span>`fn enter(&self) -> Option<Entered<'_>>` — [`Entered`](#entered)
@@ -747,11 +616,8 @@ The dispatch state of a thread.
 - <span id="state-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for State`
@@ -772,7 +638,7 @@ The dispatch state of a thread.
 struct Entered<'a>(&'a State);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:229`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L229)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:229`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L229)*
 
 While this guard is active, additional calls to subscriber functions on
 the default dispatcher will not be able to access the dispatch context.
@@ -811,11 +677,8 @@ Dropping the guard will allow the dispatch context to be re-entered.
 - <span id="entered-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Entered<'a>`
@@ -836,7 +699,7 @@ Dropping the guard will allow the dispatch context to be re-entered.
 struct DefaultGuard(Option<Dispatch>);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:236`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L236)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:236`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L236)*
 
 A guard that resets the current default dispatcher to the prior
 default dispatcher when dropped.
@@ -874,11 +737,8 @@ default dispatcher when dropped.
 - <span id="defaultguard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DefaultGuard`
@@ -901,7 +761,7 @@ struct SetGlobalDefaultError {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:345-347`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L345-L347)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:345-347`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L345-L347)*
 
 Returned if setting the global dispatcher fails.
 
@@ -944,11 +804,8 @@ Returned if setting the global dispatcher fails.
 - <span id="setglobaldefaulterror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for SetGlobalDefaultError`
@@ -973,7 +830,7 @@ Returned if setting the global dispatcher fails.
 struct Registrar(Kind<alloc::sync::Weak<dyn Subscriber + Send + Sync>>);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:458`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L458)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:458`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L458)*
 
 #### Implementations
 
@@ -1004,11 +861,8 @@ struct Registrar(Kind<alloc::sync::Weak<dyn Subscriber + Send + Sync>>);
 - <span id="registrar-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Registrar`
@@ -1034,7 +888,7 @@ enum Kind<T> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:177-180`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L177-L180)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:177-180`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L177-L180)*
 
 #### Implementations
 
@@ -1073,11 +927,8 @@ enum Kind<T> {
 - <span id="kind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToOwned for Kind<T>`
@@ -1108,7 +959,7 @@ enum Kind<T> {
 fn with_default<T>(dispatcher: &Dispatch, f: impl FnOnce() -> T) -> T
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:254-261`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L254-L261)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:254-261`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L254-L261)*
 
 Sets this dispatch as the default for the duration of a closure.
 
@@ -1130,7 +981,7 @@ The default dispatcher is used when creating a new [`span`](../span/index.md) or
 fn set_default(dispatcher: &Dispatch) -> DefaultGuard
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:276-281`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L276-L281)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:276-281`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L276-L281)*
 
 Sets the dispatch as the default dispatch for the duration of the lifetime
 of the returned DefaultGuard
@@ -1148,7 +999,7 @@ of the returned DefaultGuard
 fn set_global_default(dispatcher: Dispatch) -> Result<(), SetGlobalDefaultError>
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:299-332`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L299-L332)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:299-332`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L299-L332)*
 
 Sets this dispatch as the global default for the duration of the entire program.
 Will be used as a fallback if no thread-local dispatch has been set in a thread
@@ -1174,7 +1025,7 @@ where
     F: FnMut(&Dispatch) -> T
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:379-398`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L379-L398)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:379-398`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L379-L398)*
 
 Executes a closure with a reference to this thread's current [dispatcher](#dispatcher).
 
@@ -1189,7 +1040,7 @@ with `Dispatch::none` rather than the previously set dispatcher.
 fn get_global() -> &'static Dispatch
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:446-455`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L446-L455)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:446-455`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L446-L455)*
 
 ## Constants
 
@@ -1198,26 +1049,26 @@ fn get_global() -> &'static Dispatch
 const CURRENT_STATE: thread::LocalKey<State>;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:183-190`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L183-L190)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:183-190`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L183-L190)*
 
 ### `UNINITIALIZED`
 ```rust
 const UNINITIALIZED: usize = 0usize;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:198`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L198)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:198`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L198)*
 
 ### `INITIALIZING`
 ```rust
 const INITIALIZING: usize = 1usize;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:199`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L199)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:199`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L199)*
 
 ### `INITIALIZED`
 ```rust
 const INITIALIZED: usize = 2usize;
 ```
 
-*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:200`](../../../.source_1765633015/tracing-core-0.1.35/src/dispatcher.rs#L200)*
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:200`](../../../.source_1765894658/tracing-core-0.1.35/src/dispatcher.rs#L200)*
 

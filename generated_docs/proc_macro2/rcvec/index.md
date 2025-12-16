@@ -23,7 +23,7 @@ struct RcVec<T> {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:7-9`](../../../.source_1765633015/proc-macro2-1.0.103/src/rcvec.rs#L7-L9)*
+*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:7-9`](../../../.source_1765894658/proc-macro2-1.0.103/src/rcvec.rs#L7-L9)*
 
 #### Implementations
 
@@ -72,11 +72,8 @@ struct RcVec<T> {
 - <span id="rcvec-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> RefUnwindSafe for RcVec<T>`
@@ -109,7 +106,7 @@ struct RcVecBuilder<T> {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:11-13`](../../../.source_1765633015/proc-macro2-1.0.103/src/rcvec.rs#L11-L13)*
+*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:11-13`](../../../.source_1765894658/proc-macro2-1.0.103/src/rcvec.rs#L11-L13)*
 
 #### Implementations
 
@@ -150,11 +147,8 @@ struct RcVecBuilder<T> {
 - <span id="rcvecbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoIterator for RcVecBuilder<T>`
@@ -185,7 +179,7 @@ struct RcVecMut<'a, T> {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:15-17`](../../../.source_1765633015/proc-macro2-1.0.103/src/rcvec.rs#L15-L17)*
+*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:15-17`](../../../.source_1765894658/proc-macro2-1.0.103/src/rcvec.rs#L15-L17)*
 
 #### Implementations
 
@@ -222,11 +216,8 @@ struct RcVecMut<'a, T> {
 - <span id="rcvecmut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for RcVecMut<'a, T>`
@@ -249,7 +240,7 @@ struct RcVecIntoIter<T> {
 }
 ```
 
-*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:20-22`](../../../.source_1765633015/proc-macro2-1.0.103/src/rcvec.rs#L20-L22)*
+*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:20-22`](../../../.source_1765894658/proc-macro2-1.0.103/src/rcvec.rs#L20-L22)*
 
 #### Trait Implementations
 
@@ -284,11 +275,8 @@ struct RcVecIntoIter<T> {
 - <span id="rcvecintoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RcVecIntoIter<T>`

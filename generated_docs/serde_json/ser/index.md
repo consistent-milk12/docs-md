@@ -82,7 +82,7 @@ struct Serializer<W, F> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:17-20`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L17-L20)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:17-20`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L17-L20)*
 
 A structure for serializing Rust values into JSON.
 
@@ -117,11 +117,8 @@ A structure for serializing Rust values into JSON.
 - <span id="serializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<W, F> Serializer for &'a mut Serializer<W, F>`
@@ -228,7 +225,7 @@ struct MapKeySerializer<'a, W: 'a, F: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:773-775`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L773-L775)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:773-775`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L773-L775)*
 
 #### Trait Implementations
 
@@ -255,11 +252,8 @@ struct MapKeySerializer<'a, W: 'a, F: 'a> {
 - <span id="mapkeyserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<W, F> Serializer for MapKeySerializer<'a, W, F>`
@@ -362,7 +356,7 @@ struct MapKeySerializer<'a, W: 'a, F: 'a> {
 struct CompactFormatter;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:1939`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L1939)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:1939`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L1939)*
 
 This structure compacts a JSON value with no extra whitespace.
 
@@ -409,11 +403,8 @@ This structure compacts a JSON value with no extra whitespace.
 - <span id="compactformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for CompactFormatter`
@@ -446,7 +437,7 @@ struct PrettyFormatter<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:1945-1949`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L1945-L1949)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:1945-1949`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L1945-L1949)*
 
 This structure pretty prints a JSON value to make it human readable.
 
@@ -521,11 +512,8 @@ This structure pretty prints a JSON value to make it human readable.
 - <span id="prettyformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PrettyFormatter<'a>`
@@ -566,7 +554,7 @@ enum CharEscape {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:1517-1537`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L1517-L1537)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:1517-1537`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L1517-L1537)*
 
 Represents a character escape code in a type-safe manner.
 
@@ -634,11 +622,8 @@ Represents a character escape code in a type-safe manner.
 - <span id="charescape-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for CharEscape`
@@ -661,7 +646,7 @@ Represents a character escape code in a type-safe manner.
 trait Formatter { ... }
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:1541-1935`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L1541-L1935)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:1541-1935`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L1541-L1935)*
 
 This trait abstracts away serializing the JSON control characters, which allows the user to
 optionally pretty print the JSON output.
@@ -719,10 +704,34 @@ optionally pretty print the JSON output.
 - `fn write_f32<W>(&mut self, writer: &mut W, value: f32) -> io::Result<()>`
 
   Writes a floating point value like `-31.26e+12` to the specified writer.
+  
+  # Special cases
+  
+  This function **does not** check for NaN or infinity. If the input
+  number is not a finite float, the printed representation will be some
+  correctly formatted but unspecified numerical value.
+  
+  Please check `is_finite` yourself before calling this function, or
+  check `is_nan` and `is_infinite` and handle those cases yourself
+  with a different `Formatter` method.
+  
+  
 
 - `fn write_f64<W>(&mut self, writer: &mut W, value: f64) -> io::Result<()>`
 
   Writes a floating point value like `-31.26e+12` to the specified writer.
+  
+  # Special cases
+  
+  This function **does not** check for NaN or infinity. If the input
+  number is not a finite float, the printed representation will be some
+  correctly formatted but unspecified numerical value.
+  
+  Please check `is_finite` yourself before calling this function, or
+  check `is_nan` and `is_infinite` and handle those cases yourself
+  with a different `Formatter` method.
+  
+  
 
 - `fn write_number_str<W>(&mut self, writer: &mut W, value: &str) -> io::Result<()>`
 
@@ -731,14 +740,17 @@ optionally pretty print the JSON output.
 - `fn begin_string<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called before each series of `write_string_fragment` and
+  `write_char_escape`.  Writes a `"` to the specified writer.
 
 - `fn end_string<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called after each series of `write_string_fragment` and
+  `write_char_escape`.  Writes a `"` to the specified writer.
 
 - `fn write_string_fragment<W>(&mut self, writer: &mut W, fragment: &str) -> io::Result<()>`
 
   Writes a string fragment that doesn't need any escaping to the
+  specified writer.
 
 - `fn write_char_escape<W>(&mut self, writer: &mut W, char_escape: CharEscape) -> io::Result<()>`
 
@@ -747,18 +759,23 @@ optionally pretty print the JSON output.
 - `fn write_byte_array<W>(&mut self, writer: &mut W, value: &[u8]) -> io::Result<()>`
 
   Writes the representation of a byte array. Formatters can choose whether
+  to represent bytes as a JSON array of integers (the default), or some
+  JSON string encoding like hex or base64.
 
 - `fn begin_array<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called before every array.  Writes a `[` to the specified
+  writer.
 
 - `fn end_array<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called after every array.  Writes a `]` to the specified
+  writer.
 
 - `fn begin_array_value<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>`
 
   Called before every array value.  Writes a `,` if needed to
+  the specified writer.
 
 - `fn end_array_value<W>(&mut self, _writer: &mut W) -> io::Result<()>`
 
@@ -767,10 +784,12 @@ optionally pretty print the JSON output.
 - `fn begin_object<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called before every object.  Writes a `{` to the specified
+  writer.
 
 - `fn end_object<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called after every object.  Writes a `}` to the specified
+  writer.
 
 - `fn begin_object_key<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>`
 
@@ -779,10 +798,14 @@ optionally pretty print the JSON output.
 - `fn end_object_key<W>(&mut self, _writer: &mut W) -> io::Result<()>`
 
   Called after every object key.  A `:` should be written to the
+  specified writer by either this method or
+  `begin_object_value`.
 
 - `fn begin_object_value<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called before every object value.  A `:` should be written to
+  the specified writer by either this method or
+  `end_object_key`.
 
 - `fn end_object_value<W>(&mut self, _writer: &mut W) -> io::Result<()>`
 
@@ -791,6 +814,7 @@ optionally pretty print the JSON output.
 - `fn write_raw_fragment<W>(&mut self, writer: &mut W, fragment: &str) -> io::Result<()>`
 
   Writes a raw JSON fragment that doesn't need any escaping to the
+  specified writer.
 
 #### Implementors
 
@@ -805,7 +829,7 @@ optionally pretty print the JSON output.
 fn key_must_be_a_string() -> crate::error::Error
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:787-789`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L787-L789)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:787-789`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L787-L789)*
 
 ### `float_key_must_be_finite`
 
@@ -813,7 +837,7 @@ fn key_must_be_a_string() -> crate::error::Error
 fn float_key_must_be_finite() -> crate::error::Error
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:791-793`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L791-L793)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:791-793`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L791-L793)*
 
 ### `format_escaped_str`
 
@@ -824,7 +848,7 @@ where
     F: ?Sized + Formatter
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2069-2077`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2069-L2077)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2069-2077`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2069-L2077)*
 
 ### `format_escaped_str_contents`
 
@@ -835,7 +859,7 @@ where
     F: ?Sized + Formatter
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2079-2133`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2079-L2133)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2079-2133`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2079-L2133)*
 
 ### `to_writer`
 
@@ -846,7 +870,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2177-2184`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2177-L2184)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2177-2184`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2177-L2184)*
 
 Serialize the given data structure as JSON into the I/O stream.
 
@@ -866,7 +890,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2197-2204`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2197-L2204)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2197-2204`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2197-L2204)*
 
 Serialize the given data structure as pretty-printed JSON into the I/O
 stream.
@@ -886,7 +910,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2213-2220`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2213-L2220)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2213-2220`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2213-L2220)*
 
 Serialize the given data structure as a JSON byte vector.
 
@@ -903,7 +927,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2229-2236`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2229-L2236)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2229-2236`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2229-L2236)*
 
 Serialize the given data structure as a pretty-printed JSON byte vector.
 
@@ -920,7 +944,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2245-2255`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2245-L2255)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2245-2255`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2245-L2255)*
 
 Serialize the given data structure as a String of JSON.
 
@@ -937,7 +961,7 @@ where
     T: ?Sized + Serialize
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2264-2274`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2264-L2274)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2264-2274`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2264-L2274)*
 
 Serialize the given data structure as a pretty-printed String of JSON.
 
@@ -954,7 +978,7 @@ where
     W: ?Sized + io::Write
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2276-2285`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2276-L2285)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2276-2285`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2276-L2285)*
 
 ## Constants
 
@@ -963,61 +987,61 @@ where
 const BB: u8 = 98u8;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2135`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2135)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2135`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2135)*
 
 ### `TT`
 ```rust
 const TT: u8 = 116u8;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2136`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2136)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2136`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2136)*
 
 ### `NN`
 ```rust
 const NN: u8 = 110u8;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2137`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2137)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2137`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2137)*
 
 ### `FF`
 ```rust
 const FF: u8 = 102u8;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2138`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2138)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2138`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2138)*
 
 ### `RR`
 ```rust
 const RR: u8 = 114u8;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2139`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2139)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2139`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2139)*
 
 ### `QU`
 ```rust
 const QU: u8 = 34u8;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2140`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2140)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2140`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2140)*
 
 ### `BS`
 ```rust
 const BS: u8 = 92u8;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2141`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2141)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2141`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2141)*
 
 ### `UU`
 ```rust
 const UU: u8 = 117u8;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2142`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2142)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2142`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2142)*
 
 ### `__`
 ```rust
 const __: u8 = 0u8;
 ```
 
-*Defined in [`serde_json-1.0.145/src/ser.rs:2143`](../../../.source_1765633015/serde_json-1.0.145/src/ser.rs#L2143)*
+*Defined in [`serde_json-1.0.145/src/ser.rs:2143`](../../../.source_1765894658/serde_json-1.0.145/src/ser.rs#L2143)*
 

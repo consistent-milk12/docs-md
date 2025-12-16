@@ -22,7 +22,7 @@ struct Lazy<T, F> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/lazy.rs:120-131`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/lazy.rs#L120-L131)*
+*Defined in [`regex-automata-0.4.13/src/util/lazy.rs:120-131`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/lazy.rs#L120-L131)*
 
 A non-std lazy initialized value.
 
@@ -43,9 +43,7 @@ convenient I think.
 - <span id="lazy-new"></span>`const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
   Create a new alloc but non-std lazy value that is racily
-
   initialized. That is, the 'create' function may be called more than
-
   once.
 
 #### Trait Implementations
@@ -81,11 +79,8 @@ convenient I think.
 - <span id="lazy-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: Send + Sync, F: Send + Sync> Sync for Lazy<T, F>`

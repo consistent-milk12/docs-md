@@ -23,7 +23,7 @@ struct FlatMap<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:12-15`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:12-15`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flat_map.rs#L12-L15)*
 
 `FlatMap` maps each element to a parallel iterator, then flattens these iterators together.
 This struct is created by the `flat_map()` method on [`ParallelIterator`](../index.md)
@@ -72,11 +72,8 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](../ind
 - <span id="flatmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMap<I, F>`
@@ -138,7 +135,7 @@ struct FlatMapConsumer<'f, C, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:50-53`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map.rs#L50-L53)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:50-53`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flat_map.rs#L50-L53)*
 
 #### Implementations
 
@@ -183,11 +180,8 @@ struct FlatMapConsumer<'f, C, F> {
 - <span id="flatmapconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMapConsumer<'f, C, F>`
@@ -234,7 +228,7 @@ struct FlatMapFolder<'f, C, F, R> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:108-112`](../../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map.rs#L108-L112)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:108-112`](../../../../.source_1765894658/rayon-1.11.0/src/iter/flat_map.rs#L108-L112)*
 
 #### Trait Implementations
 
@@ -271,11 +265,8 @@ struct FlatMapFolder<'f, C, F, R> {
 - <span id="flatmapfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMapFolder<'f, C, F, R>`

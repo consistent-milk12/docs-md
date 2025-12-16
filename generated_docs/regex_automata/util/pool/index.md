@@ -34,7 +34,7 @@ being quite expensive.
 struct Pool<T, F>(alloc::boxed::Box<inner::Pool<T, F>>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/pool.rs:154`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/pool.rs#L154)*
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:154`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/pool.rs#L154)*
 
 A thread safe pool that works in an `alloc`-only context.
 
@@ -104,7 +104,6 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 - <span id="pool-new"></span>`fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
 
   Create a new pool. The given closure is used to create values in
-
   the pool when necessary.
 
 #### Trait Implementations
@@ -136,11 +135,8 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 - <span id="pool-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for Pool<T, F>`
@@ -161,7 +157,7 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 struct PoolGuard<'a, T: Send, F: Fn() -> T>(inner::PoolGuard<'a, T, F>);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/pool.rs:196`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/pool.rs#L196)*
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:196`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/pool.rs#L196)*
 
 A guard that is returned when a caller requests a value from the pool.
 
@@ -173,13 +169,9 @@ back in the pool once it's dropped.
 - <span id="poolguard-put"></span>`fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
 
   Consumes this guard and puts it back into the pool.
-
   
-
   This circumvents the guard's `Drop` implementation. This can be useful
-
   in circumstances where the automatic `Drop` results in poorer codegen,
-
   such as calling non-inlined functions.
 
 #### Trait Implementations
@@ -221,11 +213,8 @@ back in the pool once it's dropped.
 - <span id="poolguard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for PoolGuard<'a, T, F>`

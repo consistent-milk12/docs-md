@@ -27,7 +27,7 @@
 struct SensibleMoveMask(u32);
 ```
 
-*Defined in [`memchr-2.7.6/src/vector.rs:118`](../../../.source_1765633015/memchr-2.7.6/src/vector.rs#L118)*
+*Defined in [`memchr-2.7.6/src/vector.rs:118`](../../../.source_1765894658/memchr-2.7.6/src/vector.rs#L118)*
 
 This is a "sensible" movemask implementation where each bit represents
 whether the most significant bit is set in each corresponding lane of a
@@ -42,11 +42,8 @@ movemask instructions. But neon has no such native equivalent.
 - <span id="sensiblemovemask-get-for-offset"></span>`fn get_for_offset(self) -> u32`
 
   Get the mask in a form suitable for computing offsets.
-
   
-
   Basically, this normalizes to little endian. On big endian, this swaps
-
   the bytes.
 
 #### Trait Implementations
@@ -88,11 +85,8 @@ movemask instructions. But neon has no such native equivalent.
 - <span id="sensiblemovemask-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl MoveMask for SensibleMoveMask`
@@ -141,7 +135,7 @@ movemask instructions. But neon has no such native equivalent.
 trait Vector: Copy + core::fmt::Debug { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/vector.rs:17-66`](../../../.source_1765633015/memchr-2.7.6/src/vector.rs#L17-L66)*
+*Defined in [`memchr-2.7.6/src/vector.rs:17-66`](../../../.source_1765894658/memchr-2.7.6/src/vector.rs#L17-L66)*
 
 A trait for describing vector operations used by vectorized searchers.
 
@@ -175,14 +169,27 @@ with target_feature.)
 - `fn splat(byte: u8) -> Self`
 
   Create a vector with 8-bit lanes with the given byte repeated into each
+  lane.
 
 - `fn load_aligned(data: *const u8) -> Self`
 
   Read a vector-size number of bytes from the given pointer. The pointer
+  must be aligned to the size of the vector.
+  
+  # Safety
+  
+  Callers must guarantee that at least `BYTES` bytes are readable from
+  `data` and that `data` is aligned to a `BYTES` boundary.
 
 - `fn load_unaligned(data: *const u8) -> Self`
 
   Read a vector-size number of bytes from the given pointer. The pointer
+  does not need to be aligned.
+  
+  # Safety
+  
+  Callers must guarantee that at least `BYTES` bytes are readable from
+  `data`.
 
 - `fn movemask(self) -> <Self as >::Mask`
 
@@ -205,6 +212,7 @@ with target_feature.)
 - `fn movemask_will_have_non_zero(self) -> bool`
 
   Returns true if and only if `Self::movemask` would return a mask that
+  contains at least one non-zero bit.
 
 #### Implementors
 
@@ -217,7 +225,7 @@ with target_feature.)
 trait MoveMask: Copy + core::fmt::Debug { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/vector.rs:82-108`](../../../.source_1765633015/memchr-2.7.6/src/vector.rs#L82-L108)*
+*Defined in [`memchr-2.7.6/src/vector.rs:82-108`](../../../.source_1765894658/memchr-2.7.6/src/vector.rs#L82-L108)*
 
 A trait that abstracts over a vector-to-scalar operation called
 "move mask."
@@ -239,6 +247,7 @@ representation with this trait and define the operations we actually need.
 - `fn all_zeros_except_least_significant(n: usize) -> Self`
 
   Return a mask that is all zeros except for the least significant `n`
+  lanes in a corresponding vector.
 
 - `fn has_non_zero(self) -> bool`
 
@@ -259,6 +268,7 @@ representation with this trait and define the operations we actually need.
 - `fn clear_least_significant_bit(self) -> Self`
 
   Returns a mask that is equivalent to `self` but with the least
+  significant 1-bit set to 0.
 
 - `fn first_offset(self) -> usize`
 

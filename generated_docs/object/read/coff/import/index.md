@@ -32,7 +32,7 @@ struct ImportFile<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:20-26`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/import.rs#L20-L26)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:20-26`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/import.rs#L20-L26)*
 
 A Windows short form description of a symbol to import.
 
@@ -109,11 +109,8 @@ to [`crate::FileKind::CoffImport`](../../../index.md).
 - <span id="importfile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ImportFile<'data>`
@@ -146,7 +143,7 @@ struct ImportObjectData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:200-204`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/import.rs#L200-L204)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:200-204`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/import.rs#L200-L204)*
 
 The data following [`pe::ImportObjectHeader`](../../../pe/index.md).
 
@@ -163,9 +160,7 @@ The data following [`pe::ImportObjectHeader`](../../../pe/index.md).
 - <span id="importobjectdata-export"></span>`fn export(&self) -> Option<&'data [u8]>`
 
   The name exported from the DLL.
-
   
-
   This is only set if the name is not derived from the symbol name.
 
 #### Trait Implementations
@@ -205,11 +200,8 @@ The data following [`pe::ImportObjectHeader`](../../../pe/index.md).
 - <span id="importobjectdata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ImportObjectData<'data>`
@@ -243,7 +235,7 @@ enum ImportName<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:114-119`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/import.rs#L114-L119)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:114-119`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/import.rs#L114-L119)*
 
 The name or ordinal to import from a DLL.
 
@@ -298,11 +290,8 @@ The name or ordinal to import from a DLL.
 - <span id="importname-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ImportName<'data>`
@@ -341,7 +330,7 @@ enum ImportType {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/coff/import.rs:123-130`](../../../../../.source_1765633015/object-0.37.3/src/read/coff/import.rs#L123-L130)*
+*Defined in [`object-0.37.3/src/read/coff/import.rs:123-130`](../../../../../.source_1765894658/object-0.37.3/src/read/coff/import.rs#L123-L130)*
 
 The kind of import symbol.
 
@@ -404,11 +393,8 @@ The kind of import symbol.
 - <span id="importtype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ImportType`

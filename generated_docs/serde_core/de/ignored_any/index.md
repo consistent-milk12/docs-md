@@ -18,7 +18,7 @@
 struct IgnoredAny;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../../.source_1765633015/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
+*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../../.source_1765894658/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
 
 An efficient way of discarding data from a deserializer.
 
@@ -177,11 +177,8 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 - <span id="ignoredany-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for IgnoredAny`

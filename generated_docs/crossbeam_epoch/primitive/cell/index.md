@@ -18,7 +18,7 @@
 struct UnsafeCell<T>(::core::cell::UnsafeCell<T>);
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/lib.rs:97`](../../../../.source_1765633015/crossbeam-epoch-0.9.18/src/lib.rs#L97)*
+*Defined in [`crossbeam-epoch-0.9.18/src/lib.rs:97`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/lib.rs#L97)*
 
 #### Implementations
 
@@ -57,11 +57,8 @@ struct UnsafeCell<T>(::core::cell::UnsafeCell<T>);
 - <span id="unsafecell-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for UnsafeCell<T>`

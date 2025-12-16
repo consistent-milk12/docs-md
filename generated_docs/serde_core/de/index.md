@@ -184,7 +184,7 @@ One example is `OsStr`.
 struct IgnoredAny;
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../.source_1765633015/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
+*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../.source_1765894658/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
 
 An efficient way of discarding data from a deserializer.
 
@@ -343,11 +343,8 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 - <span id="ignoredany-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for IgnoredAny`
@@ -420,7 +417,7 @@ struct OneOf {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:2333-2335`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L2333-L2335)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2333-2335`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L2333-L2335)*
 
 Used in error messages.
 
@@ -459,11 +456,8 @@ The slice of names must not be empty.
 - <span id="oneof-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for OneOf`
@@ -488,7 +482,7 @@ The slice of names must not be empty.
 struct WithDecimalPoint(f64);
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:2357`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L2357)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2357`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L2357)*
 
 #### Trait Implementations
 
@@ -519,11 +513,8 @@ struct WithDecimalPoint(f64);
 - <span id="withdecimalpoint-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for WithDecimalPoint`
@@ -569,7 +560,7 @@ enum Unexpected<'a> {
 }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:338-399`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L338-L399)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:338-399`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L338-L399)*
 
 `Unexpected` represents an unexpected invocation of any one of the `Visitor`
 trait methods.
@@ -724,11 +715,8 @@ where
 - <span id="unexpected-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Unexpected<'a>`
@@ -769,7 +757,7 @@ where
 trait Error: Sized + StdError { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:304`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L304)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:304`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L304)*
 
 The `Error` trait allows `Deserialize` implementations to create descriptive
 error messages belonging to the `Deserializer` against which they are
@@ -796,36 +784,101 @@ type appropriate for a basic JSON data format.
 - `fn custom<T>(msg: T) -> Self`
 
   Raised when there is general error when deserializing a type.
+  
+  The message should not be capitalized and should not end with a period.
+  
+  ```edition2021
+  use std::str::FromStr;
+  
+  struct IpAddr;
+  
+  impl FromStr for IpAddr {
+      type Err = String;
+  
+      fn from_str(_: &str) -> Result<Self, String> {
+          unimplemented!()
+      }
+  }
+  
+  use serde::de::{self, Deserialize, Deserializer};
+  
+  impl<'de> Deserialize<'de> for IpAddr {
+      fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+      where
+          D: Deserializer<'de>,
+      {
+          let s = String::deserialize(deserializer)?;
+          s.parse().map_err(de::Error::custom)
+      }
+  }
+  ```
 
 #### Provided Methods
 
 - `fn invalid_type(unexp: Unexpected<'_>, exp: &dyn Expected) -> Self`
 
   Raised when a `Deserialize` receives a type different from what it was
+  expecting.
+  
+  The `unexp` argument provides information about what type was received.
+  This is the type that was present in the input file or other source data
+  of the Deserializer.
+  
+  The `exp` argument provides information about what type was being
+  expected. This is the type that is written in the program.
+  
+  For example if we try to deserialize a String out of a JSON file
+  containing an integer, the unexpected type is the integer and the
+  expected type is the string.
 
 - `fn invalid_value(unexp: Unexpected<'_>, exp: &dyn Expected) -> Self`
 
   Raised when a `Deserialize` receives a value of the right type but that
+  is wrong for some other reason.
+  
+  The `unexp` argument provides information about what value was received.
+  This is the value that was present in the input file or other source
+  data of the Deserializer.
+  
+  The `exp` argument provides information about what value was being
+  expected. This is the type that is written in the program.
+  
+  For example if we try to deserialize a String out of some binary data
+  that is not valid UTF-8, the unexpected value is the bytes and the
+  expected value is a string.
 
 - `fn invalid_length(len: usize, exp: &dyn Expected) -> Self`
 
   Raised when deserializing a sequence or map and the input data contains
+  too many or too few elements.
+  
+  The `len` argument is the number of elements encountered. The sequence
+  or map may have expected more arguments or fewer arguments.
+  
+  The `exp` argument provides information about what data was being
+  expected. For example `exp` might say that a tuple of size 6 was
+  expected.
 
 - `fn unknown_variant(variant: &str, expected: &'static [&'static str]) -> Self`
 
   Raised when a `Deserialize` enum type received a variant with an
+  unrecognized name.
 
 - `fn unknown_field(field: &str, expected: &'static [&'static str]) -> Self`
 
   Raised when a `Deserialize` struct type received a field with an
+  unrecognized name.
 
 - `fn missing_field(field: &'static str) -> Self`
 
   Raised when a `Deserialize` struct type expected to receive a required
+  field with a particular name but that field was not present in the
+  input.
 
 - `fn duplicate_field(field: &'static str) -> Self`
 
   Raised when a `Deserialize` struct type received more than one of the
+  same field.
 
 #### Implementors
 
@@ -837,7 +890,7 @@ type appropriate for a basic JSON data format.
 trait Expected { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:484-488`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L484-L488)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:484-488`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L484-L488)*
 
 `Expected` represents an explanation of what data a `Visitor` was expecting
 to receive.
@@ -896,6 +949,7 @@ return Err(de::Error::invalid_type(
 - `fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   Format an explanation of what data was being expected. Same signature as
+  the `Display` and `Debug` traits.
 
 #### Implementors
 
@@ -910,7 +964,7 @@ return Err(de::Error::invalid_type(
 trait Deserialize<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:554-593`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L554-L593)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:554-593`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L554-L593)*
 
 A **data structure** that can be deserialized from any data format supported
 by Serde.
@@ -946,6 +1000,9 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 - `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
   Deserialize this value from the given Serde deserializer.
+  
+  See the [Implementing `Deserialize`][impl-deserialize] section of the
+  manual for more information about how to implement this method.
 
 #### Implementors
 
@@ -1090,7 +1147,7 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 trait DeserializeOwned: Deserialize<'de> { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:632`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L632)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:632`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L632)*
 
 A data structure that can be deserialized without borrowing any data from
 the deserializer.
@@ -1133,7 +1190,7 @@ lifetimes].
 trait DeserializeSeed<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:803-812`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L803-L812)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:803-812`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L803-L812)*
 
 `DeserializeSeed` is the stateful form of the `Deserialize` trait. If you
 ever find yourself looking for a way to pass data into a `Deserialize` impl,
@@ -1305,6 +1362,7 @@ let flattened: Vec<u64> = deserializer.deserialize_seq(visitor)?;
 - `fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   Equivalent to the more common `Deserialize::deserialize` method, except
+  with some initial piece of data (the seed) passed in.
 
 #### Implementors
 
@@ -1318,7 +1376,7 @@ let flattened: Vec<u64> = deserializer.deserialize_seq(visitor)?;
 trait Deserializer<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:945-1266`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L945-L1266)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:945-1266`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L945-L1266)*
 
 A **data format** that can deserialize any data structure supported by
 Serde.
@@ -1433,6 +1491,14 @@ a basic JSON `Deserializer`.
 - `fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Require the `Deserializer` to figure out how to drive the visitor based
+  on what data type is in the input.
+  
+  When implementing `Deserialize`, you should avoid relying on
+  `Deserializer::deserialize_any` unless you need to be told by the
+  Deserializer what type is in the input. Know that relying on
+  `Deserializer::deserialize_any` means your data type will be able to
+  deserialize from self-describing formats only, ruling out Postcard and
+  many others.
 
 - `fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -1485,22 +1551,50 @@ a basic JSON `Deserializer`.
 - `fn deserialize_str<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a string value and does
+  not benefit from taking ownership of buffered data owned by the
+  `Deserializer`.
+  
+  If the `Visitor` would benefit from taking ownership of `String` data,
+  indicate this to the `Deserializer` by using `deserialize_string`
+  instead.
 
 - `fn deserialize_string<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a string value and would
+  benefit from taking ownership of buffered data owned by the
+  `Deserializer`.
+  
+  If the `Visitor` would not benefit from taking ownership of `String`
+  data, indicate that to the `Deserializer` by using `deserialize_str`
+  instead.
 
 - `fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a byte array and does not
+  benefit from taking ownership of buffered data owned by the
+  `Deserializer`.
+  
+  If the `Visitor` would benefit from taking ownership of `Vec<u8>` data,
+  indicate this to the `Deserializer` by using `deserialize_byte_buf`
+  instead.
 
 - `fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a byte array and would
+  benefit from taking ownership of buffered data owned by the
+  `Deserializer`.
+  
+  If the `Visitor` would not benefit from taking ownership of `Vec<u8>`
+  data, indicate that to the `Deserializer` by using `deserialize_bytes`
+  instead.
 
 - `fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an optional value.
+  
+  This allows deserializers that encode an optional value as a nullable
+  value to convert the null value into `None` and a regular value into
+  `Some(value)`.
 
 - `fn deserialize_unit<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -1509,10 +1603,12 @@ a basic JSON `Deserializer`.
 - `fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a unit struct with a
+  particular name.
 
 - `fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a newtype struct with a
+  particular name.
 
 - `fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -1521,10 +1617,12 @@ a basic JSON `Deserializer`.
 - `fn deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a sequence of values and
+  knows how many values there are without looking at the serialized data.
 
 - `fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a tuple struct with a
+  particular name and number of fields.
 
 - `fn deserialize_map<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -1533,32 +1631,107 @@ a basic JSON `Deserializer`.
 - `fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a struct with a particular
+  name and fields.
 
 - `fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an enum value with a
+  particular name and possible variants.
 
 - `fn deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting the name of a struct
+  field or the discriminant of an enum variant.
 
 - `fn deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type needs to deserialize a value whose type
+  doesn't matter because it is ignored.
+  
+  Deserializers for non-self-describing formats may not support this mode.
 
 #### Provided Methods
 
 - `fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i128` value.
+  
+  The default behavior unconditionally returns an error.
 
 - `fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `u128` value.
+  
+  The default behavior unconditionally returns an error.
 
 - `fn is_human_readable(&self) -> bool`
 
   Determine whether `Deserialize` implementations should expect to
+  deserialize their human-readable form.
+  
+  Some types have a human-readable form that may be somewhat expensive to
+  construct, as well as a binary form that is compact and efficient.
+  Generally text-based formats like JSON and YAML will prefer to use the
+  human-readable one and binary formats like Postcard will prefer the
+  compact one.
+  
+  ```edition2021
+  use std::ops::Add;
+  use std::str::FromStr;
+  
+  struct Timestamp;
+  
+  impl Timestamp {
+      const EPOCH: Timestamp = Timestamp;
+  }
+  
+  impl FromStr for Timestamp {
+      type Err = String;
+      fn from_str(_: &str) -> Result<Self, Self::Err> {
+          unimplemented!()
+      }
+  }
+  
+  struct Duration;
+  
+  impl Duration {
+      fn seconds(_: u64) -> Self { unimplemented!() }
+  }
+  
+  impl Add<Duration> for Timestamp {
+      type Output = Timestamp;
+      fn add(self, _: Duration) -> Self::Output {
+          unimplemented!()
+      }
+  }
+  
+  use serde::de::{self, Deserialize, Deserializer};
+  
+  impl<'de> Deserialize<'de> for Timestamp {
+      fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+      where
+          D: Deserializer<'de>,
+      {
+          if deserializer.is_human_readable() {
+              // Deserialize from a human-readable string like "2015-05-15T17:01:00Z".
+              let s = String::deserialize(deserializer)?;
+              Timestamp::from_str(&s).map_err(de::Error::custom)
+          } else {
+              // Deserialize from a compact binary representation, seconds since
+              // the Unix epoch.
+              let n = u64::deserialize(deserializer)?;
+              Ok(Timestamp::EPOCH + Duration::seconds(n))
+          }
+      }
+  }
+  ```
+  
+  The default implementation of this method returns `true`. Data formats
+  may override this to `false` to request a compact form for types that
+  support one. Note that modifying this method to change a format from
+  human-readable to compact or vice versa should be regarded as a breaking
+  change, as a value serialized in human-readable mode is not required to
+  deserialize from the same data in compact mode.
 
 #### Implementors
 
@@ -1598,7 +1771,7 @@ a basic JSON `Deserializer`.
 trait Visitor<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:1317-1720`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L1317-L1720)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:1317-1720`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L1317-L1720)*
 
 This trait represents a visitor that walks through a deserializer.
 
@@ -1649,116 +1822,247 @@ impl<'de> Visitor<'de> for LongString {
 - `fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   Format a message stating what data this Visitor expects to receive.
+  
+  This is used in error messages. The message should complete the sentence
+  "This Visitor expects to receive ...", for example the message could be
+  "an integer between 0 and 64". The message should not be capitalized and
+  should not end with a period.
+  
+  ```edition2021
+  use std::fmt;
+  
+  struct S {
+      max: usize,
+  }
+  
+  impl<'de> serde::de::Visitor<'de> for S {
+      type Value = ();
+  
+  fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+      write!(formatter, "an integer between 0 and {}", self.max)
+  }
+  }
+  ```
 
 #### Provided Methods
 
 - `fn visit_bool<E>(self, v: bool) -> Result<<Self as >::Value, E>`
 
   The input contains a boolean.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_i8<E>(self, v: i8) -> Result<<Self as >::Value, E>`
 
   The input contains an `i8`.
+  
+  The default implementation forwards to `visit_i64`.
 
 - `fn visit_i16<E>(self, v: i16) -> Result<<Self as >::Value, E>`
 
   The input contains an `i16`.
+  
+  The default implementation forwards to `visit_i64`.
 
 - `fn visit_i32<E>(self, v: i32) -> Result<<Self as >::Value, E>`
 
   The input contains an `i32`.
+  
+  The default implementation forwards to `visit_i64`.
 
 - `fn visit_i64<E>(self, v: i64) -> Result<<Self as >::Value, E>`
 
   The input contains an `i64`.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_i128<E>(self, v: i128) -> Result<<Self as >::Value, E>`
 
   The input contains a `i128`.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_u8<E>(self, v: u8) -> Result<<Self as >::Value, E>`
 
   The input contains a `u8`.
+  
+  The default implementation forwards to `visit_u64`.
 
 - `fn visit_u16<E>(self, v: u16) -> Result<<Self as >::Value, E>`
 
   The input contains a `u16`.
+  
+  The default implementation forwards to `visit_u64`.
 
 - `fn visit_u32<E>(self, v: u32) -> Result<<Self as >::Value, E>`
 
   The input contains a `u32`.
+  
+  The default implementation forwards to `visit_u64`.
 
 - `fn visit_u64<E>(self, v: u64) -> Result<<Self as >::Value, E>`
 
   The input contains a `u64`.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_u128<E>(self, v: u128) -> Result<<Self as >::Value, E>`
 
   The input contains a `u128`.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_f32<E>(self, v: f32) -> Result<<Self as >::Value, E>`
 
   The input contains an `f32`.
+  
+  The default implementation forwards to `visit_f64`.
 
 - `fn visit_f64<E>(self, v: f64) -> Result<<Self as >::Value, E>`
 
   The input contains an `f64`.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_char<E>(self, v: char) -> Result<<Self as >::Value, E>`
 
   The input contains a `char`.
+  
+  The default implementation forwards to `visit_str` as a one-character
+  string.
 
 - `fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>`
 
   The input contains a string. The lifetime of the string is ephemeral and
+  it may be destroyed after this method returns.
+  
+  This method allows the `Deserializer` to avoid a copy by retaining
+  ownership of any buffered data. `Deserialize` implementations that do
+  not benefit from taking ownership of `String` data should indicate that
+  to the deserializer by using `Deserializer::deserialize_str` rather than
+  `Deserializer::deserialize_string`.
+  
+  It is never correct to implement `visit_string` without implementing
+  `visit_str`. Implement neither, both, or just `visit_str`.
 
 - `fn visit_borrowed_str<E>(self, v: &'de str) -> Result<<Self as >::Value, E>`
 
   The input contains a string that lives at least as long as the
+  `Deserializer`.
+  
+  This enables zero-copy deserialization of strings in some formats. For
+  example JSON input containing the JSON string `"borrowed"` can be
+  deserialized with zero copying into a `&'a str` as long as the input
+  data outlives `'a`.
+  
+  The default implementation forwards to `visit_str`.
 
 - `fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>`
 
   The input contains a string and ownership of the string is being given
+  to the `Visitor`.
+  
+  This method allows the `Visitor` to avoid a copy by taking ownership of
+  a string created by the `Deserializer`. `Deserialize` implementations
+  that benefit from taking ownership of `String` data should indicate that
+  to the deserializer by using `Deserializer::deserialize_string` rather
+  than `Deserializer::deserialize_str`, although not every deserializer
+  will honor such a request.
+  
+  It is never correct to implement `visit_string` without implementing
+  `visit_str`. Implement neither, both, or just `visit_str`.
+  
+  The default implementation forwards to `visit_str` and then drops the
+  `String`.
 
 - `fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>`
 
   The input contains a byte array. The lifetime of the byte array is
+  ephemeral and it may be destroyed after this method returns.
+  
+  This method allows the `Deserializer` to avoid a copy by retaining
+  ownership of any buffered data. `Deserialize` implementations that do
+  not benefit from taking ownership of `Vec<u8>` data should indicate that
+  to the deserializer by using `Deserializer::deserialize_bytes` rather
+  than `Deserializer::deserialize_byte_buf`.
+  
+  It is never correct to implement `visit_byte_buf` without implementing
+  `visit_bytes`. Implement neither, both, or just `visit_bytes`.
 
 - `fn visit_borrowed_bytes<E>(self, v: &'de [u8]) -> Result<<Self as >::Value, E>`
 
   The input contains a byte array that lives at least as long as the
+  `Deserializer`.
+  
+  This enables zero-copy deserialization of bytes in some formats. For
+  example Postcard data containing bytes can be deserialized with zero
+  copying into a `&'a [u8]` as long as the input data outlives `'a`.
+  
+  The default implementation forwards to `visit_bytes`.
 
 - `fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>`
 
   The input contains a byte array and ownership of the byte array is being
+  given to the `Visitor`.
+  
+  This method allows the `Visitor` to avoid a copy by taking ownership of
+  a byte buffer created by the `Deserializer`. `Deserialize`
+  implementations that benefit from taking ownership of `Vec<u8>` data
+  should indicate that to the deserializer by using
+  `Deserializer::deserialize_byte_buf` rather than
+  `Deserializer::deserialize_bytes`, although not every deserializer will
+  honor such a request.
+  
+  It is never correct to implement `visit_byte_buf` without implementing
+  `visit_bytes`. Implement neither, both, or just `visit_bytes`.
+  
+  The default implementation forwards to `visit_bytes` and then drops the
+  `Vec<u8>`.
 
 - `fn visit_none<E>(self) -> Result<<Self as >::Value, E>`
 
   The input contains an optional that is absent.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_some<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   The input contains an optional that is present.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_unit<E>(self) -> Result<<Self as >::Value, E>`
 
   The input contains a unit `()`.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_newtype_struct<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   The input contains a newtype struct.
+  
+  The content of the newtype struct may be read from the given
+  `Deserializer`.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>`
 
   The input contains a sequence of elements.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_map<A>(self, map: A) -> Result<<Self as >::Value, <A as >::Error>`
 
   The input contains a key-value map.
+  
+  The default implementation fails with a type error.
 
 - `fn visit_enum<A>(self, data: A) -> Result<<Self as >::Value, <A as >::Error>`
 
   The input contains an enum.
+  
+  The default implementation fails with a type error.
 
 #### Implementors
 
@@ -1789,7 +2093,7 @@ impl<'de> Visitor<'de> for LongString {
 trait SeqAccess<'de> { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:1749-1781`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L1749-L1781)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:1749-1781`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L1749-L1781)*
 
 Provides a `Visitor` access to each element of a sequence in the input.
 
@@ -1817,12 +2121,20 @@ implementation of `SeqAccess` for a basic JSON data format.
 - `fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>`
 
   This returns `Ok(Some(value))` for the next value in the sequence, or
+  `Ok(None)` if there are no more remaining items.
+  
+  `Deserialize` implementations should typically use
+  `SeqAccess::next_element` instead.
 
 #### Provided Methods
 
 - `fn next_element<T>(&mut self) -> Result<Option<T>, <Self as >::Error>`
 
   This returns `Ok(Some(value))` for the next value in the sequence, or
+  `Ok(None)` if there are no more remaining items.
+  
+  This method exists as a convenience for `Deserialize` implementations.
+  `SeqAccess` implementations should not override the default behavior.
 
 - `fn size_hint(&self) -> Option<usize>`
 
@@ -1841,7 +2153,7 @@ implementation of `SeqAccess` for a basic JSON data format.
 trait MapAccess<'de> { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:1837-1940`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L1837-L1940)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:1837-1940`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L1837-L1940)*
 
 Provides a `Visitor` access to each entry of a map in the input.
 
@@ -1868,28 +2180,63 @@ implementation of `MapAccess` for a basic JSON data format.
 - `fn next_key_seed<K>(&mut self, seed: K) -> Result<Option<<K as >::Value>, <Self as >::Error>`
 
   This returns `Ok(Some(key))` for the next key in the map, or `Ok(None)`
+  if there are no more remaining entries.
+  
+  `Deserialize` implementations should typically use
+  `MapAccess::next_key` or `MapAccess::next_entry` instead.
 
 - `fn next_value_seed<V>(&mut self, seed: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   This returns a `Ok(value)` for the next value in the map.
+  
+  `Deserialize` implementations should typically use
+  `MapAccess::next_value` instead.
+  
+  # Panics
+  
+  Calling `next_value_seed` before `next_key_seed` is incorrect and is
+  allowed to panic or return bogus results.
 
 #### Provided Methods
 
 - `fn next_entry_seed<K, V>(&mut self, kseed: K, vseed: V) -> Result<Option<(<K as >::Value, <V as >::Value)>, <Self as >::Error>`
 
   This returns `Ok(Some((key, value)))` for the next (key-value) pair in
+  the map, or `Ok(None)` if there are no more remaining items.
+  
+  `MapAccess` implementations should override the default behavior if a
+  more efficient implementation is possible.
+  
+  `Deserialize` implementations should typically use
+  `MapAccess::next_entry` instead.
 
 - `fn next_key<K>(&mut self) -> Result<Option<K>, <Self as >::Error>`
 
   This returns `Ok(Some(key))` for the next key in the map, or `Ok(None)`
+  if there are no more remaining entries.
+  
+  This method exists as a convenience for `Deserialize` implementations.
+  `MapAccess` implementations should not override the default behavior.
 
 - `fn next_value<V>(&mut self) -> Result<V, <Self as >::Error>`
 
   This returns a `Ok(value)` for the next value in the map.
+  
+  This method exists as a convenience for `Deserialize` implementations.
+  `MapAccess` implementations should not override the default behavior.
+  
+  # Panics
+  
+  Calling `next_value` before `next_key` is incorrect and is allowed to
+  panic or return bogus results.
 
 - `fn next_entry<K, V>(&mut self) -> Result<Option<(K, V)>, <Self as >::Error>`
 
   This returns `Ok(Some((key, value)))` for the next (key-value) pair in
+  the map, or `Ok(None)` if there are no more remaining items.
+  
+  This method exists as a convenience for `Deserialize` implementations.
+  `MapAccess` implementations should not override the default behavior.
 
 - `fn size_hint(&self) -> Option<usize>`
 
@@ -1906,7 +2253,7 @@ implementation of `MapAccess` for a basic JSON data format.
 trait EnumAccess<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:2035-2062`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L2035-L2062)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2035-2062`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L2035-L2062)*
 
 Provides a `Visitor` access to the data of an enum in the input.
 
@@ -1936,12 +2283,18 @@ implementation of `EnumAccess` for a basic JSON data format.
 - `fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), <Self as >::Error>`
 
   `variant` is called to identify which variant to deserialize.
+  
+  `Deserialize` implementations should typically use `EnumAccess::variant`
+  instead.
 
 #### Provided Methods
 
 - `fn variant<V>(self) -> Result<(V, <Self as >::Variant), <Self as >::Error>`
 
   `variant` is called to identify which variant to deserialize.
+  
+  This method exists as a convenience for `Deserialize` implementations.
+  `EnumAccess` implementations should not override the default behavior.
 
 #### Implementors
 
@@ -1958,7 +2311,7 @@ implementation of `EnumAccess` for a basic JSON data format.
 trait VariantAccess<'de>: Sized { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:2088-2280`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L2088-L2280)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2088-2280`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L2088-L2280)*
 
 `VariantAccess` is a visitor that is created by the `Deserializer` and
 passed to the `Deserialize` to deserialize the content of a particular enum
@@ -1985,24 +2338,181 @@ implementation of `VariantAccess` for a basic JSON data format.
 - `fn unit_variant(self) -> Result<(), <Self as >::Error>`
 
   Called when deserializing a variant with no values.
+  
+  If the data contains a different type of variant, the following
+  `invalid_type` error should be constructed:
+  
+  ```edition2021
+  use serde::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
+  
+  struct X;
+  
+  impl<'de> VariantAccess<'de> for X {
+      type Error = value::Error;
+  
+  fn unit_variant(self) -> Result<(), Self::Error> {
+      // What the data actually contained; suppose it is a tuple variant.
+      let unexp = Unexpected::TupleVariant;
+      Err(de::Error::invalid_type(unexp, &"unit variant"))
+  }
+  
+      fn newtype_variant_seed<T>(self, _: T) -> Result<T::Value, Self::Error>
+      where
+          T: DeserializeSeed<'de>,
+      { unimplemented!() }
+  
+      fn tuple_variant<V>(self, _: usize, _: V) -> Result<V::Value, Self::Error>
+      where
+          V: Visitor<'de>,
+      { unimplemented!() }
+  
+      fn struct_variant<V>(self, _: &[&str], _: V) -> Result<V::Value, Self::Error>
+      where
+          V: Visitor<'de>,
+      { unimplemented!() }
+  }
+  ```
 
 - `fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, <Self as >::Error>`
 
   Called when deserializing a variant with a single value.
+  
+  `Deserialize` implementations should typically use
+  `VariantAccess::newtype_variant` instead.
+  
+  If the data contains a different type of variant, the following
+  `invalid_type` error should be constructed:
+  
+  ```edition2021
+  use serde::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
+  
+  struct X;
+  
+  impl<'de> VariantAccess<'de> for X {
+      type Error = value::Error;
+  
+      fn unit_variant(self) -> Result<(), Self::Error> {
+          unimplemented!()
+      }
+  
+  fn newtype_variant_seed<T>(self, _seed: T) -> Result<T::Value, Self::Error>
+  where
+      T: DeserializeSeed<'de>,
+  {
+      // What the data actually contained; suppose it is a unit variant.
+      let unexp = Unexpected::UnitVariant;
+      Err(de::Error::invalid_type(unexp, &"newtype variant"))
+  }
+  
+      fn tuple_variant<V>(self, _: usize, _: V) -> Result<V::Value, Self::Error>
+      where
+          V: Visitor<'de>,
+      { unimplemented!() }
+  
+      fn struct_variant<V>(self, _: &[&str], _: V) -> Result<V::Value, Self::Error>
+      where
+          V: Visitor<'de>,
+      { unimplemented!() }
+  }
+  ```
 
 - `fn tuple_variant<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Called when deserializing a tuple-like variant.
+  
+  The `len` is the number of fields expected in the tuple variant.
+  
+  If the data contains a different type of variant, the following
+  `invalid_type` error should be constructed:
+  
+  ```edition2021
+  use serde::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
+  
+  struct X;
+  
+  impl<'de> VariantAccess<'de> for X {
+      type Error = value::Error;
+  
+      fn unit_variant(self) -> Result<(), Self::Error> {
+          unimplemented!()
+      }
+  
+      fn newtype_variant_seed<T>(self, _: T) -> Result<T::Value, Self::Error>
+      where
+          T: DeserializeSeed<'de>,
+      { unimplemented!() }
+  
+  fn tuple_variant<V>(self, _len: usize, _visitor: V) -> Result<V::Value, Self::Error>
+  where
+      V: Visitor<'de>,
+  {
+      // What the data actually contained; suppose it is a unit variant.
+      let unexp = Unexpected::UnitVariant;
+      Err(de::Error::invalid_type(unexp, &"tuple variant"))
+  }
+  
+      fn struct_variant<V>(self, _: &[&str], _: V) -> Result<V::Value, Self::Error>
+      where
+          V: Visitor<'de>,
+      { unimplemented!() }
+  }
+  ```
 
 - `fn struct_variant<V>(self, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Called when deserializing a struct-like variant.
+  
+  The `fields` are the names of the fields of the struct variant.
+  
+  If the data contains a different type of variant, the following
+  `invalid_type` error should be constructed:
+  
+  ```edition2021
+  use serde::de::{self, value, DeserializeSeed, Visitor, VariantAccess, Unexpected};
+  
+  struct X;
+  
+  impl<'de> VariantAccess<'de> for X {
+      type Error = value::Error;
+  
+      fn unit_variant(self) -> Result<(), Self::Error> {
+          unimplemented!()
+      }
+  
+      fn newtype_variant_seed<T>(self, _: T) -> Result<T::Value, Self::Error>
+      where
+          T: DeserializeSeed<'de>,
+      { unimplemented!() }
+  
+      fn tuple_variant<V>(self, _: usize, _: V) -> Result<V::Value, Self::Error>
+      where
+          V: Visitor<'de>,
+      { unimplemented!() }
+  
+  fn struct_variant<V>(
+      self,
+      _fields: &'static [&'static str],
+      _visitor: V,
+  ) -> Result<V::Value, Self::Error>
+  where
+      V: Visitor<'de>,
+  {
+      // What the data actually contained; suppose it is a unit variant.
+      let unexp = Unexpected::UnitVariant;
+      Err(de::Error::invalid_type(unexp, &"struct variant"))
+  }
+  }
+  ```
 
 #### Provided Methods
 
 - `fn newtype_variant<T>(self) -> Result<T, <Self as >::Error>`
 
   Called when deserializing a variant with a single value.
+  
+  This method exists as a convenience for `Deserialize` implementations.
+  `VariantAccess` implementations should not override the default
+  behavior.
 
 #### Implementors
 
@@ -2015,7 +2525,7 @@ implementation of `VariantAccess` for a basic JSON data format.
 trait IntoDeserializer<'de, E: Error> { ... }
 ```
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:2316-2322`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L2316-L2322)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2316-2322`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L2316-L2322)*
 
 Converts an existing value into a `Deserializer` from which other values can
 be deserialized.
@@ -2119,5 +2629,5 @@ impl FromStr for Setting {
 
 ### `declare_error_trait!`
 
-*Defined in [`serde_core-1.0.228/src/de/mod.rs:137-301`](../../../.source_1765633015/serde_core-1.0.228/src/de/mod.rs#L137-L301)*
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:137-301`](../../../.source_1765894658/serde_core-1.0.228/src/de/mod.rs#L137-L301)*
 

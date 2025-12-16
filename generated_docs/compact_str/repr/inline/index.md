@@ -18,7 +18,7 @@
 struct InlineBuffer([u8; 24]);
 ```
 
-*Defined in [`compact_str-0.9.0/src/repr/inline.rs:8`](../../../../.source_1765633015/compact_str-0.9.0/src/repr/inline.rs#L8)*
+*Defined in [`compact_str-0.9.0/src/repr/inline.rs:8`](../../../../.source_1765894658/compact_str-0.9.0/src/repr/inline.rs#L8)*
 
 A buffer stored on the stack whose size is equal to the stack size of `String`
 
@@ -27,11 +27,8 @@ A buffer stored on the stack whose size is equal to the stack size of `String`
 - <span id="inlinebuffer-new"></span>`unsafe fn new(text: &str) -> Self`
 
   Construct a new `InlineString`. A string that lives in a small buffer on the stack
-
   
-
   SAFETY:
-
   * The caller must guarantee that the length of `text` is less than [`MAX_SIZE`](../index.md)
 
 - <span id="inlinebuffer-new-const"></span>`const fn new_const(text: &str) -> Self`
@@ -43,11 +40,8 @@ A buffer stored on the stack whose size is equal to the stack size of `String`
 - <span id="inlinebuffer-set-len"></span>`unsafe fn set_len(&mut self, len: usize)`
 
   Set's the length of the content for this [`InlineBuffer`](#inlinebuffer)
-
   
-
   # SAFETY:
-
   * The caller must guarantee that `len` bytes in the buffer are valid UTF-8
 
 #### Trait Implementations
@@ -75,11 +69,8 @@ A buffer stored on the stack whose size is equal to the stack size of `String`
 - <span id="inlinebuffer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for InlineBuffer`

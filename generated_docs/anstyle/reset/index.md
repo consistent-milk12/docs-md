@@ -19,7 +19,7 @@
 struct Reset;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../../.source_1765633015/anstyle-1.0.13/src/reset.rs#L4)*
+*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../../.source_1765894658/anstyle-1.0.13/src/reset.rs#L4)*
 
 Reset terminal formatting
 
@@ -28,9 +28,7 @@ Reset terminal formatting
 - <span id="reset-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
   Render the ANSI code
-
   
-
   `Reset` also implements `Display` directly, so calling this method is optional.
 
 #### Trait Implementations
@@ -86,11 +84,8 @@ Reset terminal formatting
 - <span id="reset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Reset`
@@ -138,5 +133,5 @@ Reset terminal formatting
 const RESET: &str;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../../.source_1765633015/anstyle-1.0.13/src/reset.rs#L22)*
+*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../../.source_1765894658/anstyle-1.0.13/src/reset.rs#L22)*
 

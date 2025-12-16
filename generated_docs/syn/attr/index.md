@@ -50,7 +50,7 @@ struct Attribute {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L19-L179)*
+*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L19-L179)*
 
 An attribute, like `#[repr(transparent)]`.
 
@@ -206,377 +206,201 @@ assert_eq!(doc, attr);
 - <span id="attribute-path"></span>`fn path(&self) -> &Path` — [`Path`](../path/index.md#path)
 
   Returns the path that identifies the interpretation of this attribute.
-
   
-
   For example this would return the `test` in `#[test]`, the `derive` in
-
   `#[derive(Copy)]`, and the `path` in `#[path = "sys/windows.rs"]`.
 
 - <span id="attribute-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md#result)
 
   Parse the arguments to the attribute as a syntax tree.
-
   
-
   This is similar to pulling out the `TokenStream` from `Meta::List` and
-
   doing `syn::parse2::<T>(meta_list.tokens)`, except that using
-
   `parse_args` the error message has a more useful span when `tokens` is
-
   empty.
-
   
-
   The surrounding delimiters are *not* included in the input to the
-
   parser.
-
   
-
   ```text
-
   #[my_attr(value < 5)]
-
             ^^^^^^^^^ what gets parsed
-
   ```
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{parse_quote, Attribute, Expr};
-
   
-
   let attr: Attribute = parse_quote! {
-
       #[precondition(value < 5)]
-
   };
-
   
-
   if attr.path().is_ident("precondition") {
-
       let precondition: Expr = attr.parse_args()?;
-
       // ...
-
   }
-
   anyhow::Ok(())
-
   ```
 
 - <span id="attribute-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md#result), [`Parser`](../parse/index.md#parser)
 
   Parse the arguments to the attribute using the given parser.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{parse_quote, Attribute};
-
   
-
   let attr: Attribute = parse_quote! {
-
       #[inception { #[brrrrrrraaaaawwwwrwrrrmrmrmmrmrmmmmm] }]
-
   };
-
   
-
   let bwom = attr.parse_args_with(Attribute::parse_outer)?;
-
   
-
   // Attribute does not have a Parse impl, so we couldn't directly do:
-
   // let bwom: Attribute = attr.parse_args()?;
-
   anyhow::Ok(())
-
   ```
 
 - <span id="attribute-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md#parsenestedmeta), [`Result`](../error/index.md#result)
 
   Parse the arguments to the attribute, expecting it to follow the
-
   conventional structure used by most of Rust's built-in attributes.
-
   
-
   The [*Meta Item Attribute Syntax*][`syntax`](../../regex_automata/util/syntax/index.md) section in the Rust reference
-
   explains the convention in more detail. Not all attributes follow this
-
   convention, so `parse_args()` is available if you
-
   need to parse arbitrarily goofy attribute syntax.
-
   
-
   # Example
-
   
-
   We'll parse a struct, and then parse some of Rust's `#[repr]` attribute
-
   syntax.
-
   
-
   ```rust
-
   use syn::{parenthesized, parse_quote, token, ItemStruct, LitInt};
-
   
-
   let input: ItemStruct = parse_quote! {
-
       #[repr(C, align(4))]
-
       pub struct MyStruct(u16, u32);
-
   };
-
   
-
   let mut repr_c = false;
-
   let mut repr_transparent = false;
-
   let mut repr_align = None::<usize>;
-
   let mut repr_packed = None::<usize>;
-
   for attr in &input.attrs {
-
       if attr.path().is_ident("repr") {
-
           attr.parse_nested_meta(|meta| {
-
               // #[repr(C)]
-
               if meta.path.is_ident("C") {
-
                   repr_c = true;
-
                   return Ok(());
-
               }
-
   
-
               // #[repr(transparent)]
-
               if meta.path.is_ident("transparent") {
-
                   repr_transparent = true;
-
                   return Ok(());
-
               }
-
   
-
               // #[repr(align(N))]
-
               if meta.path.is_ident("align") {
-
                   let content;
-
                   parenthesized!(content in meta.input);
-
                   let lit: LitInt = content.parse()?;
-
                   let n: usize = lit.base10_parse()?;
-
                   repr_align = Some(n);
-
                   return Ok(());
-
               }
-
   
-
               // #[repr(packed)] or #[repr(packed(N))], omitted N means 1
-
               if meta.path.is_ident("packed") {
-
                   if meta.input.peek(token::Paren) {
-
                       let content;
-
                       parenthesized!(content in meta.input);
-
                       let lit: LitInt = content.parse()?;
-
                       let n: usize = lit.base10_parse()?;
-
                       repr_packed = Some(n);
-
                   } else {
-
                       repr_packed = Some(1);
-
                   }
-
                   return Ok(());
-
               }
-
   
-
               Err(meta.error("unrecognized repr"))
-
           })?;
-
       }
-
   }
-
   anyhow::Ok(())
-
   ```
-
   
-
   # Alternatives
-
   
-
   In some cases, for attributes which have nested layers of structured
-
   content, the following less flexible approach might be more convenient:
-
   
-
   ```rust
-
   use syn::{parse_quote, ItemStruct};
-
   
-
   let input: ItemStruct = parse_quote! {
-
       #[repr(C, align(4))]
-
       pub struct MyStruct(u16, u32);
-
   };
-
   
-
   use syn::punctuated::Punctuated;
-
   use syn::{parenthesized, token, Error, LitInt, Meta, Token};
-
   
-
   let mut repr_c = false;
-
   let mut repr_transparent = false;
-
   let mut repr_align = None::<usize>;
-
   let mut repr_packed = None::<usize>;
-
   for attr in &input.attrs {
-
       if attr.path().is_ident("repr") {
-
           let nested = attr.parse_args_with(Punctuated::<Meta, Token![,]>::parse_terminated)?;
-
           for meta in nested {
-
               match meta {
-
                   // #[repr(C)]
-
                   Meta::Path(path) if path.is_ident("C") => {
-
                       repr_c = true;
-
                   }
-
   
-
                   // #[repr(align(N))]
-
                   Meta::List(meta) if meta.path.is_ident("align") => {
-
                       let lit: LitInt = meta.parse_args()?;
-
                       let n: usize = lit.base10_parse()?;
-
                       repr_align = Some(n);
-
                   }
-
   
-
                   /* ... */
-
   
-
                   _ => {
-
                       return Err(Error::new_spanned(meta, "unrecognized repr"));
-
                   }
-
               }
-
           }
-
       }
-
   }
-
   Ok(())
-
   ```
 
 - <span id="attribute-parse-outer"></span>`fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parses zero or more outer attributes from the stream.
-
   
-
   # Example
-
   
-
   See
-
   [*Parsing from tokens to Attribute*](#parsing-from-tokens-to-attribute).
 
 - <span id="attribute-parse-inner"></span>`fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parses zero or more inner attributes from the stream.
-
   
-
   # Example
-
   
-
   See
-
   [*Parsing from tokens to Attribute*](#parsing-from-tokens-to-attribute).
 
 #### Trait Implementations
@@ -622,11 +446,8 @@ assert_eq!(doc, attr);
 - <span id="attribute-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Attribute`
@@ -673,7 +494,7 @@ struct MetaList {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L484-L492)*
+*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L484-L492)*
 
 A structured list within an attribute, like `derive(Copy, Clone)`.
 
@@ -734,11 +555,8 @@ A structured list within an attribute, like `derive(Copy, Clone)`.
 - <span id="metalist-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::attr::MetaList`
@@ -789,7 +607,7 @@ struct MetaNameValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L494-L502)*
+*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L494-L502)*
 
 A name-value pair within an attribute, like `feature = "nightly"`.
 
@@ -840,11 +658,8 @@ A name-value pair within an attribute, like `feature = "nightly"`.
 - <span id="metanamevalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::attr::MetaNameValue`
@@ -896,7 +711,7 @@ enum AttrStyle {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L429-L449)*
+*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L429-L449)*
 
 Distinguishes between attributes that decorate an item and attributes
 that are contained within an item.
@@ -958,11 +773,8 @@ that are contained within an item.
 - <span id="attrstyle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::AttrStyle`
@@ -999,7 +811,7 @@ enum Meta {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L451-L482)*
+*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L451-L482)*
 
 Content of a compile-time structured attribute.
 
@@ -1036,11 +848,8 @@ This type is a [syntax tree enum].
 - <span id="meta-path"></span>`fn path(&self) -> &Path` — [`Path`](../path/index.md#path)
 
   Returns the path that begins this structured meta item.
-
   
-
   For example this would return the `test` in `#[test]`, the `derive` in
-
   `#[derive(Copy)]`, and the `path` in `#[path = "sys/windows.rs"]`.
 
 - <span id="meta-require-path-only"></span>`fn require_path_only(&self) -> Result<&Path>` — [`Result`](../error/index.md#result), [`Path`](../path/index.md#path)
@@ -1098,11 +907,8 @@ This type is a [syntax tree enum].
 - <span id="meta-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::attr::Meta`
@@ -1151,7 +957,7 @@ This type is a [syntax tree enum].
 trait FilterAttrs<'a> { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/attr.rs:594-600`](../../../.source_1765633015/syn-2.0.111/src/attr.rs#L594-L600)*
+*Defined in [`syn-2.0.111/src/attr.rs:594-600`](../../../.source_1765894658/syn-2.0.111/src/attr.rs#L594-L600)*
 
 #### Associated Types
 

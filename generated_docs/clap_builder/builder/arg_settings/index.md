@@ -19,7 +19,7 @@
 struct ArgFlags(u32);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:5`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_settings.rs#L5)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:5`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg_settings.rs#L5)*
 
 #### Implementations
 
@@ -82,11 +82,8 @@ struct ArgFlags(u32);
 - <span id="argflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ArgFlags`
@@ -139,11 +136,11 @@ enum ArgSettings {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:44-64`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_settings.rs#L44-L64)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:44-64`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg_settings.rs#L44-L64)*
 
 Various settings that apply to arguments and may be set, unset, and checked via getter/setter
 methods `Arg::setting`, `Arg::unset_setting`, and `Arg::is_set`. This is what the
-[`Arg`](../../index.md) methods which accept a `bool` use internally.
+[`Arg`](../arg/index.md) methods which accept a `bool` use internally.
 
 
 
@@ -192,11 +189,8 @@ methods `Arg::setting`, `Arg::unset_setting`, and `Arg::is_set`. This is what th
 - <span id="argsettings-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ArgSettings`

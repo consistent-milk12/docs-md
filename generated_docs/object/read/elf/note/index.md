@@ -28,7 +28,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L17-L24)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L17-L24)*
 
 An iterator over the notes in an ELF section or segment.
 
@@ -40,19 +40,12 @@ and [`SectionHeader::notes`](super::SectionHeader::notes).
 - <span id="noteiterator-new"></span>`fn new(endian: <Elf as >::Endian, align: <Elf as >::Word, data: &'data [u8]) -> read::Result<Self>` — [`FileHeader`](../index.md#fileheader), [`Result`](../../../index.md#result)
 
   An iterator over the notes in an ELF section or segment.
-
   
-
   `align` should be from the `p_align` field of the segment,
-
   or the `sh_addralign` field of the section. Supported values are
-
   either 4 or 8, but values less than 4 are treated as 4.
-
   This matches the behaviour of binutils.
-
   
-
   Returns `Err` if `align` is invalid.
 
 - <span id="noteiterator-next"></span>`fn next(&mut self) -> read::Result<Option<Note<'data, Elf>>>` — [`Result`](../../../index.md#result), [`Note`](../index.md#note)
@@ -90,11 +83,8 @@ and [`SectionHeader::notes`](super::SectionHeader::notes).
 - <span id="noteiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for NoteIterator<'data, Elf>`
@@ -135,7 +125,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L109-L116)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L109-L116)*
 
 A parsed [`NoteHeader`](../index.md).
 
@@ -144,9 +134,7 @@ A parsed [`NoteHeader`](../index.md).
 - <span id="note-n-type"></span>`fn n_type(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](../index.md#fileheader)
 
   Return the `n_type` field of the `NoteHeader`.
-
   
-
   The meaning of this field is determined by `name`.
 
 - <span id="note-n-namesz"></span>`fn n_namesz(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](../index.md#fileheader)
@@ -160,31 +148,22 @@ A parsed [`NoteHeader`](../index.md).
 - <span id="note-name-bytes"></span>`fn name_bytes(&self) -> &'data [u8]`
 
   Return the bytes for the name field following the `NoteHeader`.
-
   
-
   This field is usually a string including one or more trailing null bytes
-
   (but it is not required to be).
-
   
-
   The length of this field is given by `n_namesz`.
 
 - <span id="note-name"></span>`fn name(&self) -> &'data [u8]`
 
   Return the bytes for the name field following the `NoteHeader`,
-
   excluding all trailing null bytes.
 
 - <span id="note-desc"></span>`fn desc(&self) -> &'data [u8]`
 
   Return the bytes for the desc field following the `NoteHeader`.
-
   
-
   The length of this field is given by `n_descsz`. The meaning
-
   of this field is determined by `name` and `n_type`.
 
 - <span id="note-gnu-properties"></span>`fn gnu_properties(&self, endian: <Elf as >::Endian) -> Option<GnuPropertyIterator<'data, <Elf as >::Endian>>` — [`FileHeader`](../index.md#fileheader), [`GnuPropertyIterator`](../index.md#gnupropertyiterator)
@@ -220,11 +199,8 @@ A parsed [`NoteHeader`](../index.md).
 - <span id="note-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Note<'data, Elf>`
@@ -249,7 +225,7 @@ struct GnuPropertyIterator<'data, Endian: endian::Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L235-L239)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L235-L239)*
 
 An iterator for the properties in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 
@@ -292,11 +268,8 @@ Returned by `Note::gnu_properties`.
 - <span id="gnupropertyiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for GnuPropertyIterator<'data, Endian>`
@@ -334,7 +307,7 @@ struct GnuProperty<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L277-L280)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L277-L280)*
 
 A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 
@@ -343,9 +316,7 @@ A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 - <span id="gnuproperty-pr-type"></span>`fn pr_type(&self) -> u32`
 
   Return the property type.
-
   
-
   This is one of the `GNU_PROPERTY_*` constants.
 
 - <span id="gnuproperty-pr-data"></span>`fn pr_data(&self) -> &'data [u8]`
@@ -385,11 +356,8 @@ A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 - <span id="gnuproperty-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for GnuProperty<'data>`
@@ -412,7 +380,7 @@ A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 trait NoteHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/note.rs#L185-L191)*
+*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/note.rs#L185-L191)*
 
 A trait for generic access to [`elf::NoteHeader32`](../../../elf/index.md) and [`elf::NoteHeader64`](../../../elf/index.md).
 

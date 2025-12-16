@@ -20,7 +20,7 @@ struct FlatSet<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/flat_set.rs:9-11`](../../../../.source_1765633015/clap_builder-4.5.53/src/util/flat_set.rs#L9-L11)*
+*Defined in [`clap_builder-4.5.53/src/util/flat_set.rs:9-11`](../../../../.source_1765894658/clap_builder-4.5.53/src/util/flat_set.rs#L9-L11)*
 
 Flat (Vec) backed set
 
@@ -93,11 +93,8 @@ This preserves insertion order
 - <span id="flatset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: PartialEq + Eq> IntoIterator for FlatSet<T>`

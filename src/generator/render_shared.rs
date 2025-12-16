@@ -326,7 +326,7 @@ impl TraitRenderer {
     /// Render a single trait item (method, associated type, or constant).
     ///
     /// Each item is rendered as a bullet point with its signature in backticks.
-    /// For methods, the first line of documentation is included.
+    /// For methods, documentation is included based on the `full_method_docs` flag.
     ///
     /// # Arguments
     ///
@@ -334,11 +334,13 @@ impl TraitRenderer {
     /// * `item` - The trait item (function, assoc type, or assoc const)
     /// * `type_renderer` - Type renderer for types
     /// * `process_docs` - Closure to process documentation with intra-doc link resolution
+    /// * `full_method_docs` - If true, include full docs; otherwise extract summary
     pub fn render_trait_item<F>(
         md: &mut String,
         item: &Item,
         type_renderer: &TypeRenderer,
         process_docs: F,
+        full_method_docs: bool,
     ) where
         F: Fn(&Item) -> Option<String>,
     {
@@ -375,10 +377,17 @@ impl TraitRenderer {
                     ret
                 );
 
-                if let Some(docs) = process_docs(item)
-                    && let Some(first_line) = docs.lines().next()
-                {
-                    _ = write!(md, "\n\n  {first_line}");
+                // Extract and render method documentation using the same logic as impl blocks
+                if let Some(docs) = process_docs(item) {
+                    let summary =
+                        RendererInternals::extract_method_summary(&docs, full_method_docs);
+                    if !summary.is_empty() {
+                        // Add blank line before docs, then indent each line
+                        _ = write!(md, "\n");
+                        for line in summary.lines() {
+                            _ = write!(md, "\n  {line}");
+                        }
+                    }
                 }
 
                 _ = write!(md, "\n\n");
@@ -868,9 +877,10 @@ impl RendererInternals {
                         {
                             let summary = Self::extract_method_summary(&docs, full_method_docs);
                             if !summary.is_empty() {
-                                // Indent the summary for proper markdown rendering under the list item
+                                // Add blank line before docs, then indent each line
+                                _ = write!(md, "\n");
                                 for line in summary.lines() {
-                                    _ = write!(md, "\n\n  {line}");
+                                    _ = write!(md, "\n  {line}");
                                 }
                             }
                         }

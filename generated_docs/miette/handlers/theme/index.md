@@ -24,7 +24,7 @@ struct GraphicalTheme {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../../.source_1765633015/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../../.source_1765894658/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
 
 Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to
 render fancy [`Diagnostic`](crate::Diagnostic) reports.
@@ -55,37 +55,25 @@ one of the predefined ones using the methods below.
 - <span id="graphicaltheme-unicode"></span>`fn unicode() -> Self`
 
   Graphical theme that draws using both ansi colors and unicode
-
   characters.
-
   
-
   Note that full rgb colors aren't enabled by default because they're
-
   an accessibility hazard, especially in the context of terminal themes
-
   that can change the background color and make hardcoded colors illegible.
-
   Such themes typically remap ansi codes properly, treating them more
-
   like CSS classes than specific colors.
 
 - <span id="graphicaltheme-unicode-nocolor"></span>`fn unicode_nocolor() -> Self`
 
   Graphical theme that draws in monochrome, while still using unicode
-
   characters.
 
 - <span id="graphicaltheme-none"></span>`fn none() -> Self`
 
   A "basic" graphical theme that skips colors and unicode characters and
-
   just does monochrome ascii art. If you want a completely non-graphical
-
   rendering of your [`Diagnostic`](crate::Diagnostic)s, check out
-
   [`NarratableReportHandler`](crate::NarratableReportHandler), or write
-
   your own [`ReportHandler`](crate::ReportHandler)
 
 #### Trait Implementations
@@ -129,11 +117,8 @@ one of the predefined ones using the methods below.
 - <span id="graphicaltheme-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GraphicalTheme`
@@ -172,7 +157,7 @@ struct ThemeStyles {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../../.source_1765633015/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../../.source_1765894658/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
 
 Styles for various parts of graphical rendering for the
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -213,7 +198,6 @@ Styles for various parts of graphical rendering for the
 - <span id="themestyles-rgb"></span>`fn rgb() -> Self`
 
   Nice RGB colors.
-
   [Credit](http://terminal.sexy/#FRUV0NDQFRUVrEFCkKlZ9L91ap-1qnWfdbWq0NDQUFBQrEFCkKlZ9L91ap-1qnWfdbWq9fX1).
 
 - <span id="themestyles-ansi"></span>`fn ansi() -> Self`
@@ -261,11 +245,8 @@ Styles for various parts of graphical rendering for the
 - <span id="themestyles-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ThemeStyles`
@@ -318,7 +299,7 @@ struct ThemeCharacters {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../../.source_1765633015/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../../.source_1765894658/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
 
 Characters to be used when drawing when using
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -376,11 +357,8 @@ Characters to be used when drawing when using
 - <span id="themecharacters-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ThemeCharacters`
@@ -419,5 +397,5 @@ Characters to be used when drawing when using
 fn style() -> owo_colors::Style
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../../.source_1765633015/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../../.source_1765894658/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
 

@@ -31,7 +31,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:35-45`](../../../../../.source_1765633015/object-0.37.3/src/read/xcoff/file.rs#L35-L45)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:35-45`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L35-L45)*
 
 A partially parsed XCOFF file.
 
@@ -96,11 +96,8 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 - <span id="xcofffile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Xcoff, R> Object for XcoffFile<'data, Xcoff, R>`
@@ -189,7 +186,7 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 trait FileHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:306-387`](../../../../../.source_1765633015/object-0.37.3/src/read/xcoff/file.rs#L306-L387)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:306-387`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L306-L387)*
 
 A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) and [`xcoff::FileHeader64`](../../../xcoff/index.md).
 
@@ -234,6 +231,8 @@ A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) a
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>`
 
   Read the file header.
+  
+  Also checks that the magic field in the file header is a supported format.
 
 - `fn is_supported(&self) -> bool`
 
@@ -260,7 +259,7 @@ A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) a
 trait AuxHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:475-508`](../../../../../.source_1765633015/object-0.37.3/src/read/xcoff/file.rs#L475-L508)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:475-508`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L475-L508)*
 
 A trait for generic access to [`xcoff::AuxHeader32`](../../../xcoff/index.md) and [`xcoff::AuxHeader64`](../../../xcoff/index.md).
 
@@ -343,7 +342,7 @@ A trait for generic access to [`xcoff::AuxHeader32`](../../../xcoff/index.md) an
 type XcoffFile32<'data, R> = XcoffFile<'data, xcoff::FileHeader32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:24`](../../../../../.source_1765633015/object-0.37.3/src/read/xcoff/file.rs#L24)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:24`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L24)*
 
 A 32-bit XCOFF object file.
 
@@ -356,7 +355,7 @@ to [`crate::FileKind::Xcoff32`](../../../index.md).
 type XcoffFile64<'data, R> = XcoffFile<'data, xcoff::FileHeader64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/xcoff/file.rs:29`](../../../../../.source_1765633015/object-0.37.3/src/read/xcoff/file.rs#L29)*
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:29`](../../../../../.source_1765894658/object-0.37.3/src/read/xcoff/file.rs#L29)*
 
 A 64-bit XCOFF object file.
 

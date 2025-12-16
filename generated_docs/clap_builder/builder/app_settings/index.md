@@ -19,7 +19,7 @@
 struct AppFlags(u32);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:7`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/app_settings.rs#L7)*
+*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:7`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/app_settings.rs#L7)*
 
 #### Implementations
 
@@ -82,11 +82,8 @@ struct AppFlags(u32);
 - <span id="appflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AppFlags`
@@ -156,9 +153,9 @@ enum AppSettings {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:48-82`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/app_settings.rs#L48-L82)*
+*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:48-82`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/app_settings.rs#L48-L82)*
 
-Application level settings, which affect how [`Command`](../../index.md) operates
+Application level settings, which affect how [`Command`](../command/index.md) operates
 
 <div class="warning">
 
@@ -211,11 +208,8 @@ propagated down or up through child or parent subcommands
 - <span id="appsettings-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AppSettings`

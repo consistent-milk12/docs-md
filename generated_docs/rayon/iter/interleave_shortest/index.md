@@ -20,7 +20,7 @@ struct InterleaveShortest<I, J> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/interleave_shortest.rs:14-16`](../../../../.source_1765633015/rayon-1.11.0/src/iter/interleave_shortest.rs#L14-L16)*
+*Defined in [`rayon-1.11.0/src/iter/interleave_shortest.rs:14-16`](../../../../.source_1765894658/rayon-1.11.0/src/iter/interleave_shortest.rs#L14-L16)*
 
 `InterleaveShortest` is an iterator that works similarly to
 `Interleave`, but this version stops returning elements once one
@@ -81,11 +81,8 @@ This struct is created by the `interleave_shortest()` method on
 - <span id="interleaveshortest-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for InterleaveShortest<I, J>`

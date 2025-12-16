@@ -55,7 +55,7 @@ struct CompareExchangeError<'g, T: ?Sized + Pointable, P: Pointer<T>> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
 
 The error returned on failed compare-and-swap operation.
 
@@ -98,11 +98,8 @@ The error returned on failed compare-and-swap operation.
 - <span id="compareexchangeerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for CompareExchangeError<'g, T, P>`
@@ -140,7 +137,7 @@ struct Array<T> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:237-241`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L237-L241)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:237-241`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L237-L241)*
 
 Array with size.
 
@@ -198,11 +195,8 @@ Elements are not present in the type, but they will be in the allocation.
 - <span id="array-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Array<T>`
@@ -240,7 +234,7 @@ struct Atomic<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
 
 An atomic pointer that can be safely shared between threads.
 
@@ -257,23 +251,14 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for d
 - <span id="atomic-new"></span>`fn new(init: T) -> Atomic<T>` — [`Atomic`](#atomic)
 
   Allocates `value` on the heap and returns a new atomic pointer pointing to it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::Atomic;
-
   
-
   let a = Atomic::new(1234);
-
   unsafe { drop(a.into_owned()); } // avoid leak
-
   ```
 
 #### Trait Implementations
@@ -295,11 +280,8 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for d
 - <span id="atomic-clone"></span>`fn clone(&self) -> Self`
 
   Returns a copy of the atomic value.
-
   
-
   Note that a `Relaxed` load is used here. If you need synchronization, use it with other
-
   atomics or fences.
 
 ##### `impl<T> CloneToUninit for Atomic<T>`
@@ -325,11 +307,8 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for d
 - <span id="atomic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Atomic<T>`
@@ -383,7 +362,7 @@ struct Owned<T: ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
 
 An owned heap-allocated object.
 
@@ -397,91 +376,52 @@ least significant bits of the address.
 - <span id="owned-from-raw"></span>`unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](#owned)
 
   Returns a new owned pointer pointing to `raw`.
-
   
-
   This function is unsafe because improper use may lead to memory problems. Argument `raw`
-
   must be a valid pointer. Also, a double-free may occur if the function is called twice on
-
   the same raw pointer.
-
   
-
   # Panics
-
   
-
   Panics if `raw` is not properly aligned.
-
   
-
   # Safety
-
   
-
   The given `raw` should have been derived from `Owned`, and one `raw` should not be converted
-
   back by `Owned::from_raw()` multiple times.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::Owned;
-
   
-
   let o = unsafe { Owned::from_raw(Box::into_raw(Box::new(1234))) };
-
   ```
 
 - <span id="owned-into-box"></span>`fn into_box(self) -> Box<T>`
 
   Converts the owned pointer into a `Box`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::Owned;
-
   
-
   let o = Owned::new(1234);
-
   let b: Box<i32> = o.into_box();
-
   assert_eq!(*b, 1234);
-
   ```
 
 - <span id="owned-new"></span>`fn new(init: T) -> Owned<T>` — [`Owned`](#owned)
 
   Allocates `value` on the heap and returns a new owned pointer pointing to it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::Owned;
-
   
-
   let o = Owned::new(1234);
-
   ```
 
 #### Trait Implementations
@@ -543,11 +483,8 @@ least significant bits of the address.
 - <span id="owned-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Owned<T>`
@@ -571,13 +508,9 @@ least significant bits of the address.
 - <span id="owned-pointer-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
   Returns a new pointer pointing to the tagged pointer `data`.
-
   
-
   # Panics
-
   
-
   Panics if the data is zero in debug mode.
 
 ##### `impl<T> Receiver for Owned<T>`
@@ -613,7 +546,7 @@ struct Shared<'g, T: 'g + ?Sized + Pointable> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
 
 A pointer to an object protected by the epoch GC.
 
@@ -627,37 +560,21 @@ least significant bits of the address.
 - <span id="shared-as-raw"></span>`fn as_raw(&self) -> *const T`
 
   Converts the pointer to a raw pointer (without the tag).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_epoch::{self as epoch, Atomic, Owned};
-
   use std::sync::atomic::Ordering::SeqCst;
-
   
-
   let o = Owned::new(1234);
-
   let raw = &*o as *const _;
-
   let a = Atomic::from(o);
-
   
-
   let guard = &epoch::pin();
-
   let p = a.load(SeqCst, guard);
-
   assert_eq!(p.as_raw(), raw);
-
   unsafe { drop(a.into_owned()); } // avoid leak
-
   ```
 
 #### Trait Implementations
@@ -705,11 +622,8 @@ least significant bits of the address.
 - <span id="shared-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: ?Sized + Pointable> Ord for Shared<'_, T>`
@@ -772,7 +686,7 @@ least significant bits of the address.
 trait CompareAndSetOrdering { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
 
 Memory orderings for compare-and-set operations.
 
@@ -795,6 +709,9 @@ The two ways of specifying orderings for compare-and-set are:
 - `fn failure(&self) -> Ordering`
 
   The ordering of the operation when it fails.
+  
+  The failure ordering can't be `Release` or `AcqRel` and must be equivalent or weaker than
+  the success ordering.
 
 #### Implementors
 
@@ -807,7 +724,7 @@ The two ways of specifying orderings for compare-and-set are:
 trait Pointable { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
 
 Types that are pointed to by a single word.
 
@@ -843,18 +760,42 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 - `fn init(init: <Self as >::Init) -> usize`
 
   Initializes a with the given initializer.
+  
+  # Safety
+  
+  The result should be a multiple of `ALIGN`.
 
 - `fn deref<'a>(ptr: usize) -> &'a Self`
 
   Dereferences the given pointer.
+  
+  # Safety
+  
+  - The given `ptr` should have been initialized with `Pointable::init`.
+  - `ptr` should not have yet been dropped by `Pointable::drop`.
+  - `ptr` should not be mutably dereferenced by `Pointable::deref_mut` concurrently.
 
 - `fn deref_mut<'a>(ptr: usize) -> &'a mut Self`
 
   Mutably dereferences the given pointer.
+  
+  # Safety
+  
+  - The given `ptr` should have been initialized with `Pointable::init`.
+  - `ptr` should not have yet been dropped by `Pointable::drop`.
+  - `ptr` should not be dereferenced by `Pointable::deref` or `Pointable::deref_mut`
+    concurrently.
 
 - `fn drop(ptr: usize)`
 
   Drops the object pointed to by the given pointer.
+  
+  # Safety
+  
+  - The given `ptr` should have been initialized with `Pointable::init`.
+  - `ptr` should not have yet been dropped by `Pointable::drop`.
+  - `ptr` should not be dereferenced by `Pointable::deref` or `Pointable::deref_mut`
+    concurrently.
 
 #### Implementors
 
@@ -867,7 +808,7 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 trait Pointer<T: ?Sized + Pointable> { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
 
 A trait for either `Owned` or `Shared` pointers.
 
@@ -880,6 +821,11 @@ A trait for either `Owned` or `Shared` pointers.
 - `fn from_usize(data: usize) -> Self`
 
   Returns a new pointer pointing to the tagged pointer `data`.
+  
+  # Safety
+  
+  The given `data` should have been created by `Pointer::into_usize()`, and one `data` should
+  not be converted back by `Pointer::from_usize()` multiple times.
 
 #### Implementors
 
@@ -894,7 +840,7 @@ A trait for either `Owned` or `Shared` pointers.
 fn strongest_failure_ordering(ord: core::sync::atomic::Ordering) -> core::sync::atomic::Ordering
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:19-26`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L19-L26)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:19-26`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L19-L26)*
 
 Given ordering for the success case in a compare-exchange operation, returns the strongest
 appropriate ordering for the failure case.
@@ -905,7 +851,7 @@ appropriate ordering for the failure case.
 fn low_bits<T: ?Sized + Pointable>() -> usize
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:106-108`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L106-L108)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:106-108`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L106-L108)*
 
 Returns a bitmask containing the unused least significant bits of an aligned pointer to `T`.
 
@@ -915,7 +861,7 @@ Returns a bitmask containing the unused least significant bits of an aligned poi
 fn ensure_aligned<T: ?Sized + Pointable>(raw: usize)
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:112-114`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L112-L114)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:112-114`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L112-L114)*
 
 Panics if the pointer is not properly unaligned.
 
@@ -925,7 +871,7 @@ Panics if the pointer is not properly unaligned.
 fn compose_tag<T: ?Sized + Pointable>(data: usize, tag: usize) -> usize
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:120-122`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L120-L122)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:120-122`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L120-L122)*
 
 Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`.
 
@@ -937,7 +883,7 @@ Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`.
 fn decompose_tag<T: ?Sized + Pointable>(data: usize) -> (usize, usize)
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:126-128`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L126-L128)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:126-128`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L126-L128)*
 
 Decomposes a tagged pointer `data` into the pointer and the tag.
 
@@ -949,7 +895,7 @@ Decomposes a tagged pointer `data` into the pointer and the tag.
 type CompareAndSetError<'g, T, P> = CompareExchangeError<'g, T, P>;
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
 
 The error returned on failed compare-and-set operation.
 

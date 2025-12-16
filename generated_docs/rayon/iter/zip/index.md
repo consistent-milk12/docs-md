@@ -22,7 +22,7 @@ struct Zip<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../../.source_1765633015/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../../.source_1765894658/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
 
 `Zip` is an iterator that zips up `a` and `b` into a single iterator
 of pairs. This struct is created by the `zip()` method on
@@ -80,11 +80,8 @@ of pairs. This struct is created by the `zip()` method on
 - <span id="zip-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Zip<A, B>`
@@ -148,7 +145,7 @@ struct ZipProducer<A: Producer, B: Producer> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/zip.rs:118-121`](../../../../.source_1765633015/rayon-1.11.0/src/iter/zip.rs#L118-L121)*
+*Defined in [`rayon-1.11.0/src/iter/zip.rs:118-121`](../../../../.source_1765894658/rayon-1.11.0/src/iter/zip.rs#L118-L121)*
 
 #### Trait Implementations
 
@@ -175,11 +172,8 @@ struct ZipProducer<A: Producer, B: Producer> {
 - <span id="zipproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ZipProducer<A, B>`

@@ -337,7 +337,7 @@ struct Underscore {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:521-523`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L521-L523)*
+*Defined in [`syn-2.0.111/src/token.rs:521-523`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L521-L523)*
 
 `_`
 
@@ -407,11 +407,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="underscore-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Underscore`
@@ -466,7 +463,7 @@ struct Group {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:574-576`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L574-L576)*
+*Defined in [`syn-2.0.111/src/token.rs:574-576`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L574-L576)*
 
 None-delimited group
 
@@ -523,11 +520,8 @@ None-delimited group
 - <span id="group-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Group`
@@ -566,7 +560,7 @@ struct Abstract {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `abstract`
 
@@ -623,11 +617,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="abstract-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Abstract`
@@ -678,7 +669,7 @@ struct As {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `as`
 
@@ -735,11 +726,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="as-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for As`
@@ -790,7 +778,7 @@ struct Async {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `async`
 
@@ -847,11 +835,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="async-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Async`
@@ -902,7 +887,7 @@ struct Auto {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `auto`
 
@@ -959,11 +944,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="auto-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Auto`
@@ -1014,7 +996,7 @@ struct Await {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `await`
 
@@ -1071,11 +1053,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="await-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Await`
@@ -1126,7 +1105,7 @@ struct Become {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `become`
 
@@ -1183,11 +1162,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="become-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Become`
@@ -1238,7 +1214,7 @@ struct Box {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `box`
 
@@ -1295,11 +1271,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="box-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Box`
@@ -1350,7 +1323,7 @@ struct Break {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `break`
 
@@ -1407,11 +1380,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="break-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Break`
@@ -1462,7 +1432,7 @@ struct Const {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `const`
 
@@ -1519,11 +1489,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="const-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Const`
@@ -1574,7 +1541,7 @@ struct Continue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `continue`
 
@@ -1631,11 +1598,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="continue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Continue`
@@ -1686,7 +1650,7 @@ struct Crate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `crate`
 
@@ -1743,11 +1707,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="crate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Crate`
@@ -1798,7 +1759,7 @@ struct Default {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `default`
 
@@ -1855,11 +1816,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="default-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Default`
@@ -1910,7 +1868,7 @@ struct Do {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `do`
 
@@ -1967,11 +1925,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="do-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Do`
@@ -2022,7 +1977,7 @@ struct Dyn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `dyn`
 
@@ -2079,11 +2034,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="dyn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Dyn`
@@ -2134,7 +2086,7 @@ struct Else {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `else`
 
@@ -2191,11 +2143,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="else-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Else`
@@ -2246,7 +2195,7 @@ struct Enum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `enum`
 
@@ -2303,11 +2252,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="enum-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Enum`
@@ -2358,7 +2304,7 @@ struct Extern {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `extern`
 
@@ -2415,11 +2361,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="extern-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Extern`
@@ -2470,7 +2413,7 @@ struct Final {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `final`
 
@@ -2527,11 +2470,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="final-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Final`
@@ -2582,7 +2522,7 @@ struct Fn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `fn`
 
@@ -2639,11 +2579,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="fn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Fn`
@@ -2694,7 +2631,7 @@ struct For {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `for`
 
@@ -2751,11 +2688,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="for-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for For`
@@ -2806,7 +2740,7 @@ struct If {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `if`
 
@@ -2863,11 +2797,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="if-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for If`
@@ -2918,7 +2849,7 @@ struct Impl {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `impl`
 
@@ -2975,11 +2906,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="impl-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Impl`
@@ -3030,7 +2958,7 @@ struct In {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `in`
 
@@ -3087,11 +3015,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="in-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for In`
@@ -3142,7 +3067,7 @@ struct Let {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `let`
 
@@ -3199,11 +3124,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="let-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Let`
@@ -3254,7 +3176,7 @@ struct Loop {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `loop`
 
@@ -3311,11 +3233,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="loop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Loop`
@@ -3366,7 +3285,7 @@ struct Macro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `macro`
 
@@ -3423,11 +3342,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="macro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Macro`
@@ -3478,7 +3394,7 @@ struct Match {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `match`
 
@@ -3535,11 +3451,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="match-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Match`
@@ -3590,7 +3503,7 @@ struct Mod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `mod`
 
@@ -3647,11 +3560,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="mod-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Mod`
@@ -3702,7 +3612,7 @@ struct Move {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `move`
 
@@ -3759,11 +3669,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="move-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Move`
@@ -3814,7 +3721,7 @@ struct Mut {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `mut`
 
@@ -3871,11 +3778,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="mut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Mut`
@@ -3926,7 +3830,7 @@ struct Override {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `override`
 
@@ -3983,11 +3887,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="override-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Override`
@@ -4038,7 +3939,7 @@ struct Priv {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `priv`
 
@@ -4095,11 +3996,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="priv-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Priv`
@@ -4150,7 +4048,7 @@ struct Pub {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `pub`
 
@@ -4207,11 +4105,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="pub-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Pub`
@@ -4262,7 +4157,7 @@ struct Raw {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `raw`
 
@@ -4319,11 +4214,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="raw-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Raw`
@@ -4374,7 +4266,7 @@ struct Ref {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `ref`
 
@@ -4431,11 +4323,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="ref-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Ref`
@@ -4486,7 +4375,7 @@ struct Return {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `return`
 
@@ -4543,11 +4432,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="return-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Return`
@@ -4598,7 +4484,7 @@ struct SelfType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `Self`
 
@@ -4655,11 +4541,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="selftype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for SelfType`
@@ -4710,7 +4593,7 @@ struct SelfValue {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `self`
 
@@ -4767,11 +4650,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="selfvalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for SelfValue`
@@ -4822,7 +4702,7 @@ struct Static {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `static`
 
@@ -4879,11 +4759,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="static-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Static`
@@ -4934,7 +4811,7 @@ struct Struct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `struct`
 
@@ -4991,11 +4868,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="struct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Struct`
@@ -5046,7 +4920,7 @@ struct Super {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `super`
 
@@ -5103,11 +4977,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="super-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Super`
@@ -5158,7 +5029,7 @@ struct Trait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `trait`
 
@@ -5215,11 +5086,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="trait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Trait`
@@ -5270,7 +5138,7 @@ struct Try {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `try`
 
@@ -5327,11 +5195,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="try-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Try`
@@ -5382,7 +5247,7 @@ struct Type {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `type`
 
@@ -5439,11 +5304,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="type-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Type`
@@ -5494,7 +5356,7 @@ struct Typeof {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `typeof`
 
@@ -5551,11 +5413,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="typeof-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Typeof`
@@ -5606,7 +5465,7 @@ struct Union {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `union`
 
@@ -5663,11 +5522,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="union-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Union`
@@ -5718,7 +5574,7 @@ struct Unsafe {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `unsafe`
 
@@ -5775,11 +5631,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="unsafe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Unsafe`
@@ -5830,7 +5683,7 @@ struct Unsized {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `unsized`
 
@@ -5887,11 +5740,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="unsized-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Unsized`
@@ -5942,7 +5792,7 @@ struct Use {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `use`
 
@@ -5999,11 +5849,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="use-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Use`
@@ -6054,7 +5901,7 @@ struct Virtual {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `virtual`
 
@@ -6111,11 +5958,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="virtual-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Virtual`
@@ -6166,7 +6010,7 @@ struct Where {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `where`
 
@@ -6223,11 +6067,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="where-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Where`
@@ -6278,7 +6119,7 @@ struct While {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `while`
 
@@ -6335,11 +6176,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="while-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for While`
@@ -6390,7 +6228,7 @@ struct Yield {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L692-L746)*
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L692-L746)*
 
 `yield`
 
@@ -6447,11 +6285,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="yield-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Yield`
@@ -6502,7 +6337,7 @@ struct And {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&`
 
@@ -6572,11 +6407,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="and-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for And`
@@ -6631,7 +6463,7 @@ struct AndAnd {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&&`
 
@@ -6691,11 +6523,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="andand-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for AndAnd`
@@ -6746,7 +6575,7 @@ struct AndEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&=`
 
@@ -6806,11 +6635,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="andeq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for AndEq`
@@ -6861,7 +6687,7 @@ struct At {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `@`
 
@@ -6931,11 +6757,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="at-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for At`
@@ -6990,7 +6813,7 @@ struct Caret {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `^`
 
@@ -7060,11 +6883,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="caret-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Caret`
@@ -7119,7 +6939,7 @@ struct CaretEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `^=`
 
@@ -7179,11 +6999,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="careteq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for CaretEq`
@@ -7234,7 +7051,7 @@ struct Colon {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `:`
 
@@ -7304,11 +7121,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="colon-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Colon`
@@ -7363,7 +7177,7 @@ struct Comma {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `,`
 
@@ -7433,11 +7247,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="comma-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Comma`
@@ -7492,7 +7303,7 @@ struct Dollar {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `$`
 
@@ -7562,11 +7373,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="dollar-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Dollar`
@@ -7621,7 +7429,7 @@ struct Dot {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `.`
 
@@ -7691,11 +7499,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="dot-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Dot`
@@ -7750,7 +7555,7 @@ struct DotDot {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `..`
 
@@ -7810,11 +7615,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="dotdot-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for DotDot`
@@ -7865,7 +7667,7 @@ struct DotDotDot {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `...`
 
@@ -7925,11 +7727,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="dotdotdot-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for DotDotDot`
@@ -7980,7 +7779,7 @@ struct DotDotEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `..=`
 
@@ -8040,11 +7839,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="dotdoteq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for DotDotEq`
@@ -8095,7 +7891,7 @@ struct Eq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `=`
 
@@ -8165,11 +7961,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="eq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Eq`
@@ -8224,7 +8017,7 @@ struct EqEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `==`
 
@@ -8284,11 +8077,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="eqeq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for EqEq`
@@ -8339,7 +8129,7 @@ struct FatArrow {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `=>`
 
@@ -8399,11 +8189,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="fatarrow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for FatArrow`
@@ -8454,7 +8241,7 @@ struct Ge {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>=`
 
@@ -8514,11 +8301,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="ge-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Ge`
@@ -8569,7 +8353,7 @@ struct Gt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>`
 
@@ -8639,11 +8423,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="gt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Gt`
@@ -8698,7 +8479,7 @@ struct LArrow {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<-`
 
@@ -8758,11 +8539,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="larrow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for LArrow`
@@ -8813,7 +8591,7 @@ struct Le {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<=`
 
@@ -8873,11 +8651,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="le-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Le`
@@ -8928,7 +8703,7 @@ struct Lt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<`
 
@@ -8998,11 +8773,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="lt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Lt`
@@ -9057,7 +8829,7 @@ struct Minus {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `-`
 
@@ -9127,11 +8899,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="minus-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Minus`
@@ -9186,7 +8955,7 @@ struct MinusEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `-=`
 
@@ -9246,11 +9015,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="minuseq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for MinusEq`
@@ -9301,7 +9067,7 @@ struct Ne {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `!=`
 
@@ -9361,11 +9127,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="ne-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Ne`
@@ -9416,7 +9179,7 @@ struct Not {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `!`
 
@@ -9486,11 +9249,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="not-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Not`
@@ -9545,7 +9305,7 @@ struct Or {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `|`
 
@@ -9615,11 +9375,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="or-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Or`
@@ -9674,7 +9431,7 @@ struct OrEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `|=`
 
@@ -9734,11 +9491,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="oreq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for OrEq`
@@ -9789,7 +9543,7 @@ struct OrOr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `||`
 
@@ -9849,11 +9603,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="oror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for OrOr`
@@ -9904,7 +9655,7 @@ struct PathSep {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `::`
 
@@ -9964,11 +9715,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="pathsep-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for PathSep`
@@ -10019,7 +9767,7 @@ struct Percent {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `%`
 
@@ -10089,11 +9837,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="percent-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Percent`
@@ -10148,7 +9893,7 @@ struct PercentEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `%=`
 
@@ -10208,11 +9953,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="percenteq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for PercentEq`
@@ -10263,7 +10005,7 @@ struct Plus {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `+`
 
@@ -10333,11 +10075,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="plus-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Plus`
@@ -10392,7 +10131,7 @@ struct PlusEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `+=`
 
@@ -10452,11 +10191,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="pluseq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for PlusEq`
@@ -10507,7 +10243,7 @@ struct Pound {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `#`
 
@@ -10577,11 +10313,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="pound-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Pound`
@@ -10636,7 +10369,7 @@ struct Question {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `?`
 
@@ -10706,11 +10439,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="question-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Question`
@@ -10765,7 +10495,7 @@ struct RArrow {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `->`
 
@@ -10825,11 +10555,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="rarrow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for RArrow`
@@ -10880,7 +10607,7 @@ struct Semi {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `;`
 
@@ -10950,11 +10677,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="semi-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Semi`
@@ -11009,7 +10733,7 @@ struct Shl {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<<`
 
@@ -11069,11 +10793,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="shl-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Shl`
@@ -11124,7 +10845,7 @@ struct ShlEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<<=`
 
@@ -11184,11 +10905,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="shleq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for ShlEq`
@@ -11239,7 +10957,7 @@ struct Shr {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>>`
 
@@ -11299,11 +11017,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="shr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Shr`
@@ -11354,7 +11069,7 @@ struct ShrEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>>=`
 
@@ -11414,11 +11129,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="shreq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for ShrEq`
@@ -11469,7 +11181,7 @@ struct Slash {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `/`
 
@@ -11539,11 +11251,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="slash-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Slash`
@@ -11598,7 +11307,7 @@ struct SlashEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `/=`
 
@@ -11658,11 +11367,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="slasheq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for SlashEq`
@@ -11713,7 +11419,7 @@ struct Star {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `*`
 
@@ -11783,11 +11489,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="star-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Star`
@@ -11842,7 +11545,7 @@ struct StarEq {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `*=`
 
@@ -11902,11 +11605,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="stareq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for StarEq`
@@ -11957,7 +11657,7 @@ struct Tilde {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L748-L795)*
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L748-L795)*
 
 `~`
 
@@ -12027,11 +11727,8 @@ Don't try to remember the name of this type &mdash; use the
 - <span id="tilde-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Tilde`
@@ -12086,7 +11783,7 @@ struct Brace {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L797-L801)*
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L797-L801)*
 
 `{`&hellip;`}`
 
@@ -12143,11 +11840,8 @@ struct Brace {
 - <span id="brace-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Brace`
@@ -12186,7 +11880,7 @@ struct Bracket {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L797-L801)*
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L797-L801)*
 
 ``&hellip;``
 
@@ -12243,11 +11937,8 @@ struct Bracket {
 - <span id="bracket-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Bracket`
@@ -12286,7 +11977,7 @@ struct Paren {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L797-L801)*
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L797-L801)*
 
 `(`&hellip;`)`
 
@@ -12343,11 +12034,8 @@ struct Paren {
 - <span id="paren-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Paren`
@@ -12386,7 +12074,7 @@ struct Paren {
 trait Token: private::Sealed { ... }
 ```
 
-*Defined in [`syn-2.0.111/src/token.rs:125-133`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L125-L133)*
+*Defined in [`syn-2.0.111/src/token.rs:125-133`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L125-L133)*
 
 Marker trait for types that represent single tokens.
 
@@ -12519,25 +12207,25 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 
 ### `impl_low_level_token!`
 
-*Defined in [`syn-2.0.111/src/token.rs:163-179`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L163-L179)*
+*Defined in [`syn-2.0.111/src/token.rs:163-179`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L163-L179)*
 
 ### `define_keywords!`
 
-*Defined in [`syn-2.0.111/src/token.rs:201-301`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L201-L301)*
+*Defined in [`syn-2.0.111/src/token.rs:201-301`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L201-L301)*
 
 ### `impl_deref_if_len_is_1!`
 
-*Defined in [`syn-2.0.111/src/token.rs:303-321`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L303-L321)*
+*Defined in [`syn-2.0.111/src/token.rs:303-321`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L303-L321)*
 
 ### `define_punctuation_structs!`
 
-*Defined in [`syn-2.0.111/src/token.rs:323-398`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L323-L398)*
+*Defined in [`syn-2.0.111/src/token.rs:323-398`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L323-L398)*
 
 ### `define_punctuation!`
 
-*Defined in [`syn-2.0.111/src/token.rs:400-440`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L400-L440)*
+*Defined in [`syn-2.0.111/src/token.rs:400-440`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L400-L440)*
 
 ### `define_delimiters!`
 
-*Defined in [`syn-2.0.111/src/token.rs:442-519`](../../../.source_1765633015/syn-2.0.111/src/token.rs#L442-L519)*
+*Defined in [`syn-2.0.111/src/token.rs:442-519`](../../../.source_1765894658/syn-2.0.111/src/token.rs#L442-L519)*
 

@@ -90,7 +90,7 @@ struct Prefilter {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:142-151`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/prefilter/mod.rs#L142-L151)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:142-151`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L142-L151)*
 
 A prefilter for accelerating regex searches.
 
@@ -175,377 +175,201 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="prefilter-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Prefilter>` — [`MatchKind`](../../index.md#matchkind), [`Prefilter`](#prefilter)
 
   Create a new prefilter from a sequence of needles and a corresponding
-
   match semantics.
-
   
-
   This may return `None` for a variety of reasons, for example, if
-
   a suitable prefilter could not be constructed. That might occur
-
   if they are unavailable (e.g., the `perf-literal-substring` and
-
   `perf-literal-multisubstring` features aren't enabled), or it might
-
   occur because of heuristics or other artifacts of how the prefilter
-
   works.
-
   
-
   Note that if you have an [`Hir`](../../../regex_syntax/hir/index.md) expression, it may be more convenient
-
   to use `Prefilter::from_hir_prefix`. It will automatically handle the
-
   task of extracting prefix literals for you.
-
   
-
   # Example
-
   
-
   This example shows how match semantics can impact the matching
-
   algorithm used by the prefilter. For this reason, it is important to
-
   ensure that the match semantics given here are consistent with the
-
   match semantics intended for the regular expression that the literals
-
   were extracted from.
-
   
-
   ```rust
-
   use regex_automata::{
-
       util::{prefilter::Prefilter, syntax},
-
       MatchKind, Span,
-
   };
-
   
-
   let hay = "Hello samwise";
-
   
-
   // With leftmost-first, we find 'samwise' here because it comes
-
   // before 'sam' in the sequence we give it..
-
   let pre = Prefilter::new(MatchKind::LeftmostFirst, &["samwise", "sam"])
-
       .expect("a prefilter");
-
   assert_eq!(
-
       Some(Span::from(6..13)),
-
       pre.find(hay.as_bytes(), Span::from(0..hay.len())),
-
   );
-
   // Still with leftmost-first but with the literals reverse, now 'sam'
-
   // will match instead!
-
   let pre = Prefilter::new(MatchKind::LeftmostFirst, &["sam", "samwise"])
-
       .expect("a prefilter");
-
   assert_eq!(
-
       Some(Span::from(6..9)),
-
       pre.find(hay.as_bytes(), Span::from(0..hay.len())),
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="prefilter-from-choice"></span>`fn from_choice(choice: Choice, max_needle_len: usize) -> Option<Prefilter>` — [`Choice`](#choice), [`Prefilter`](#prefilter)
 
   This turns a prefilter selection into a `Prefilter`. That is, in turns
-
   the enum given into a trait object.
 
 - <span id="prefilter-from-hir-prefix"></span>`fn from_hir_prefix(kind: MatchKind, hir: &Hir) -> Option<Prefilter>` — [`MatchKind`](../../index.md#matchkind), [`Prefilter`](#prefilter)
 
   This attempts to extract prefixes from the given `Hir` expression for
-
   the given match semantics, and if possible, builds a prefilter for
-
   them.
-
   
-
   # Example
-
   
-
   This example shows how to build a prefilter directly from an [`Hir`](../../../regex_syntax/hir/index.md)
-
   expression, and use to find an occurrence of a prefix from the regex
-
   pattern.
-
   
-
   ```rust
-
   use regex_automata::{
-
       util::{prefilter::Prefilter, syntax},
-
       MatchKind, Span,
-
   };
-
   
-
   let hir = syntax::parse(r"(Bruce|Patti) \w+")?;
-
   let pre = Prefilter::from_hir_prefix(MatchKind::LeftmostFirst, &hir)
-
       .expect("a prefilter");
-
   let hay = "Hello Patti Scialfa!";
-
   assert_eq!(
-
       Some(Span::from(6..12)),
-
       pre.find(hay.as_bytes(), Span::from(0..hay.len())),
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="prefilter-from-hirs-prefix"></span>`fn from_hirs_prefix<H: Borrow<Hir>>(kind: MatchKind, hirs: &[H]) -> Option<Prefilter>` — [`MatchKind`](../../index.md#matchkind), [`Prefilter`](#prefilter)
 
   This attempts to extract prefixes from the given `Hir` expressions for
-
   the given match semantics, and if possible, builds a prefilter for
-
   them.
-
   
-
   Note that as of now, prefilters throw away information about which
-
   pattern each literal comes from. In other words, when a prefilter finds
-
   a match, there's no way to know which pattern (or patterns) it came
-
   from. Therefore, in order to confirm a match, you'll have to check all
-
   of the patterns by running the full regex engine.
-
   
-
   # Example
-
   
-
   This example shows how to build a prefilter directly from multiple
-
   `Hir` expressions expression, and use it to find an occurrence of a
-
   prefix from the regex patterns.
-
   
-
   ```rust
-
   use regex_automata::{
-
       util::{prefilter::Prefilter, syntax},
-
       MatchKind, Span,
-
   };
-
   
-
   let hirs = syntax::parse_many(&[
-
       r"(Bruce|Patti) \w+",
-
       r"Mrs?\. Doubtfire",
-
   ])?;
-
   let pre = Prefilter::from_hirs_prefix(MatchKind::LeftmostFirst, &hirs)
-
       .expect("a prefilter");
-
   let hay = "Hello Mrs. Doubtfire";
-
   assert_eq!(
-
       Some(Span::from(6..20)),
-
       pre.find(hay.as_bytes(), Span::from(0..hay.len())),
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="prefilter-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md#span)
 
   Run this prefilter on `haystack[span.start..end]` and return a matching
-
   span if one exists.
-
   
-
   The span returned is guaranteed to have a start position greater than
-
   or equal to the one given, and an end position less than or equal to
-
   the one given.
-
   
-
   # Example
-
   
-
   This example shows how to build a prefilter directly from an [`Hir`](../../../regex_syntax/hir/index.md)
-
   expression, and use it to find an occurrence of a prefix from the regex
-
   pattern.
-
   
-
   ```rust
-
   use regex_automata::{
-
       util::{prefilter::Prefilter, syntax},
-
       MatchKind, Span,
-
   };
-
   
-
   let hir = syntax::parse(r"Bruce \w+")?;
-
   let pre = Prefilter::from_hir_prefix(MatchKind::LeftmostFirst, &hir)
-
       .expect("a prefilter");
-
   let hay = "Hello Bruce Springsteen!";
-
   assert_eq!(
-
       Some(Span::from(6..12)),
-
       pre.find(hay.as_bytes(), Span::from(0..hay.len())),
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="prefilter-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md#span)
 
   Returns the span of a prefix of `haystack[span.start..span.end]` if
-
   the prefilter matches.
-
   
-
   The span returned is guaranteed to have a start position equivalent to
-
   the one given, and an end position less than or equal to the one given.
-
   
-
   # Example
-
   
-
   This example shows how to build a prefilter directly from an [`Hir`](../../../regex_syntax/hir/index.md)
-
   expression, and use it to find an occurrence of a prefix from the regex
-
   pattern that begins at the start of a haystack only.
-
   
-
   ```rust
-
   use regex_automata::{
-
       util::{prefilter::Prefilter, syntax},
-
       MatchKind, Span,
-
   };
-
   
-
   let hir = syntax::parse(r"Bruce \w+")?;
-
   let pre = Prefilter::from_hir_prefix(MatchKind::LeftmostFirst, &hir)
-
       .expect("a prefilter");
-
   let hay = "Hello Bruce Springsteen!";
-
   // Nothing is found here because 'Bruce' does
-
   // not occur at the beginning of our search.
-
   assert_eq!(
-
       None,
-
       pre.prefix(hay.as_bytes(), Span::from(0..hay.len())),
-
   );
-
   // But if we change where we start the search
-
   // to begin where 'Bruce ' begins, then a
-
   // match will be found.
-
   assert_eq!(
-
       Some(Span::from(6..12)),
-
       pre.prefix(hay.as_bytes(), Span::from(6..hay.len())),
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="prefilter-memory-usage"></span>`fn memory_usage(&self) -> usize`
@@ -555,43 +379,26 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="prefilter-max-needle-len"></span>`fn max_needle_len(&self) -> usize`
 
   Return the length of the longest needle
-
   in this Prefilter
 
 - <span id="prefilter-is-fast"></span>`fn is_fast(&self) -> bool`
 
   Implementations might return true here if they believe themselves to
-
   be "fast." The concept of "fast" is deliberately left vague, but in
-
   practice this usually corresponds to whether it's believed that SIMD
-
   will be used.
-
   
-
   Why do we care about this? Well, some prefilter tricks tend to come
-
   with their own bits of overhead, and so might only make sense if we
-
   know that a scan will be *much* faster than the regex engine itself.
-
   Otherwise, the trick may not be worth doing. Whether something is
-
   "much" faster than the regex engine generally boils down to whether
-
   SIMD is used. (But not always. Even a SIMD matcher with a high false
-
   positive rate can become quite slow.)
-
   
-
   Even if this returns true, it is still possible for the prefilter to
-
   be "slow." Remember, prefilters are just heuristics. We can't really
-
   *know* a prefilter will be fast without actually trying the prefilter.
-
   (Which of course we cannot afford to do.)
 
 #### Trait Implementations
@@ -631,11 +438,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="prefilter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Prefilter`
@@ -674,7 +478,7 @@ enum Choice {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:546-554`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/prefilter/mod.rs#L546-L554)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:546-554`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L546-L554)*
 
 A type that encapsulates the selection of a prefilter algorithm from a
 sequence of needles.
@@ -704,43 +508,24 @@ features enabled.
 - <span id="choice-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Choice>` — [`MatchKind`](../../index.md#matchkind), [`Choice`](#choice)
 
   Select what is believed to be the best prefilter algorithm for the
-
   match semantics and sequence of needles given.
-
   
-
   This selection algorithm uses the needles as given without any
-
   modification. For example, if `[bar]` is given, then this doesn't
-
   try to select `memchr` for `b`. Instead, it would select `memmem`
-
   for `bar`. If callers would want `memchr` selected for `[bar]`, then
-
   callers should massages the literals themselves. That is, callers are
-
   responsible for heuristics surrounding which sequence of literals is
-
   best.
-
   
-
   What this selection algorithm does is attempt to use the fastest
-
   prefilter that works for the literals given. So if `[a, b]`, is given,
-
   then `memchr2` is selected.
-
   
-
   Of course, which prefilter is selected is also subject to what
-
   is available. For example, if `alloc` isn't enabled, then
-
   that limits which prefilters can be selected. Similarly, if
-
   `perf-literal-substring` isn't enabled, then nothing from the `memchr`
-
   crate can be returned.
 
 #### Trait Implementations
@@ -780,11 +565,8 @@ features enabled.
 - <span id="choice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Choice`
@@ -815,7 +597,7 @@ features enabled.
 trait PrefilterI: Debug + Send + Sync + RefUnwindSafe + UnwindSafe + 'static { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:474-498`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/prefilter/mod.rs#L474-L498)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:474-498`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L474-L498)*
 
 A trait for abstracting over prefilters. Basically, a prefilter is
 something that do an unanchored *and* an anchored search in a haystack
@@ -830,10 +612,19 @@ and to an enum, then it's likely this trait could be removed.
 - `fn find(&self, haystack: &[u8], span: Span) -> Option<Span>`
 
   Run this prefilter on `haystack[span.start..end]` and return a matching
+  span if one exists.
+  
+  The span returned is guaranteed to have a start position greater than
+  or equal to the one given, and an end position less than or equal to
+  the one given.
 
 - `fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>`
 
   Returns the span of a prefix of `haystack[span.start..span.end]` if
+  the prefilter matches.
+  
+  The span returned is guaranteed to have a start position equivalent to
+  the one given, and an end position less than or equal to the one given.
 
 - `fn memory_usage(&self) -> usize`
 
@@ -842,6 +633,7 @@ and to an enum, then it's likely this trait could be removed.
 - `fn is_fast(&self) -> bool`
 
   Implementations might return true here if they believe themselves to
+  be "fast." See `Prefilter::is_fast` for more details.
 
 #### Implementors
 
@@ -864,7 +656,7 @@ where
     H: core::borrow::Borrow<regex_syntax::hir::Hir>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:649-682`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/prefilter/mod.rs#L649-L682)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:649-682`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L649-L682)*
 
 Extracts all of the prefix literals from the given HIR expressions into a
 single `Seq`. The literals in the sequence are ordered with respect to the
@@ -891,7 +683,7 @@ where
     H: core::borrow::Borrow<regex_syntax::hir::Hir>
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:686-719`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/prefilter/mod.rs#L686-L719)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:686-719`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/mod.rs#L686-L719)*
 
 Like `prefixes`, but for all suffixes of all matches for the given HIRs.
 

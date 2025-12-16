@@ -28,7 +28,7 @@ struct Chunks<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:6-9`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunks.rs#L6-L9)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:6-9`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L6-L9)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice
 
@@ -81,11 +81,8 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 - <span id="chunks-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Chunks<'data, T>`
@@ -149,7 +146,7 @@ struct ChunksProducer<'data, T: Sync> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:61-64`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunks.rs#L61-L64)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:61-64`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L61-L64)*
 
 #### Trait Implementations
 
@@ -176,11 +173,8 @@ struct ChunksProducer<'data, T: Sync> {
 - <span id="chunksproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksProducer<'data, T>`
@@ -231,7 +225,7 @@ struct ChunksExact<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:92-96`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunks.rs#L92-L96)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:92-96`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L92-L96)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice
 
@@ -242,9 +236,7 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 - <span id="chunksexact-remainder"></span>`fn remainder(&self) -> &'data [T]`
 
   Return the remainder of the original slice that is not going to be
-
   returned by the iterator. The returned slice has at most `chunk_size-1`
-
   elements.
 
 #### Trait Implementations
@@ -292,11 +284,8 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 - <span id="chunksexact-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksExact<'data, T>`
@@ -360,7 +349,7 @@ struct ChunksExactProducer<'data, T: Sync> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:162-165`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunks.rs#L162-L165)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:162-165`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L162-L165)*
 
 #### Trait Implementations
 
@@ -387,11 +376,8 @@ struct ChunksExactProducer<'data, T: Sync> {
 - <span id="chunksexactproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksExactProducer<'data, T>`
@@ -441,7 +427,7 @@ struct ChunksMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:193-196`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunks.rs#L193-L196)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:193-196`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L193-L196)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice
 
@@ -486,11 +472,8 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 - <span id="chunksmut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksMut<'data, T>`
@@ -546,7 +529,7 @@ struct ChunksMutProducer<'data, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:242-245`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunks.rs#L242-L245)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:242-245`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L242-L245)*
 
 #### Trait Implementations
 
@@ -573,11 +556,8 @@ struct ChunksMutProducer<'data, T: Send> {
 - <span id="chunksmutproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksMutProducer<'data, T>`
@@ -628,7 +608,7 @@ struct ChunksExactMut<'data, T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:273-277`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunks.rs#L273-L277)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:273-277`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L273-L277)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice
 
@@ -639,43 +619,28 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 - <span id="chunksexactmut-into-remainder"></span>`fn into_remainder(self) -> &'data mut [T]`
 
   Return the remainder of the original slice that is not going to be
-
   returned by the iterator. The returned slice has at most `chunk_size-1`
-
   elements.
-
   
-
   Note that this has to consume `self` to return the original lifetime of
-
   the data, which prevents this from actually being used as a parallel
-
   iterator since that also consumes. This method is provided for parity
-
   with `std::iter::ChunksExactMut`, but consider calling `remainder()` or
-
   `take_remainder()` as alternatives.
 
 - <span id="chunksexactmut-remainder"></span>`fn remainder(&mut self) -> &mut [T]`
 
   Return the remainder of the original slice that is not going to be
-
   returned by the iterator. The returned slice has at most `chunk_size-1`
-
   elements.
-
   
-
   Consider `take_remainder()` if you need access to the data with its
-
   original lifetime, rather than borrowing through `&mut self` here.
 
 - <span id="chunksexactmut-take-remainder"></span>`fn take_remainder(&mut self) -> &'data mut [T]`
 
   Return the remainder of the original slice that is not going to be
-
   returned by the iterator. The returned slice has at most `chunk_size-1`
-
   elements. Subsequent calls will return an empty slice.
 
 #### Trait Implementations
@@ -715,11 +680,8 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 - <span id="chunksexactmut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksExactMut<'data, T>`
@@ -775,7 +737,7 @@ struct ChunksExactMutProducer<'data, T: Send> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/slice/chunks.rs:360-363`](../../../../.source_1765633015/rayon-1.11.0/src/slice/chunks.rs#L360-L363)*
+*Defined in [`rayon-1.11.0/src/slice/chunks.rs:360-363`](../../../../.source_1765894658/rayon-1.11.0/src/slice/chunks.rs#L360-L363)*
 
 #### Trait Implementations
 
@@ -802,11 +764,8 @@ struct ChunksExactMutProducer<'data, T: Send> {
 - <span id="chunksexactmutproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for ChunksExactMutProducer<'data, T>`

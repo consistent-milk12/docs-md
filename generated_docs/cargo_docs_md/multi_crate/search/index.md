@@ -126,11 +126,8 @@ Contains all metadata needed for search and display in results.
 - <span id="searchentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SearchEntry`
@@ -220,11 +217,8 @@ Serialized to `search_index.json` for client-side consumption.
 - <span id="searchindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SearchIndex`
@@ -314,81 +308,51 @@ generator.write(Path::new("generated_docs/"))?;
 - <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](../collection/index.md#cratecollection)
 
   Create a new search index generator.
-
   
-
   # Arguments
-
   
-
   * `crates` - Collection of parsed crates to index
-
   * `include_private` - Whether to include non-public items
-
   * `rendered_items` - Map of crate name to set of rendered item IDs
 
 - <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](#searchindex)
 
   Generate the complete search index.
-
   
-
   Traverses all crates and collects searchable items including:
-
   - Modules
-
   - Structs
-
   - Enums
-
   - Traits
-
   - Functions
-
   - Type aliases
-
   - Constants
-
   - Macros
-
   
-
   Items are sorted alphabetically by name for consistent output.
 
 - <span id="searchindexgenerator-write"></span>`fn write(&self, output_dir: &Path) -> std::io::Result<()>`
 
   Write the search index to `search_index.json` in the output directory.
-
   
-
   # Arguments
-
   
-
   * `output_dir` - Directory where `search_index.json` will be written
-
   
-
   # Errors
-
   
-
   Returns an error if the file cannot be written.
 
 - <span id="searchindexgenerator-index-crate"></span>`fn index_crate(&self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](#searchentry)
 
   Index all items in a single crate.
-
   
-
   Only indexes items that were actually rendered (present in `rendered_items`).
 
 - <span id="searchindexgenerator-build-path-map"></span>`fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
 
   Build a map from item ID to its module path.
-
   
-
   This allows us to reconstruct the full path for each item.
 
 - <span id="searchindexgenerator-compute-file-path"></span>`fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
@@ -422,11 +386,8 @@ generator.write(Path::new("generated_docs/"))?;
 - <span id="searchindexgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SearchIndexGenerator<'a>`

@@ -49,7 +49,7 @@ struct Variant {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../../.source_1765633015/syn-2.0.111/src/data.rs#L9-L24)*
+*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../../.source_1765894658/syn-2.0.111/src/data.rs#L9-L24)*
 
 An enum variant.
 
@@ -110,11 +110,8 @@ An enum variant.
 - <span id="variant-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::data::Variant`
@@ -164,7 +161,7 @@ struct FieldsNamed {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../../.source_1765633015/syn-2.0.111/src/data.rs#L48-L56)*
+*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../../.source_1765894658/syn-2.0.111/src/data.rs#L48-L56)*
 
 Named fields of a struct or struct variant such as `Point { x: f64,
 y: f64 }`.
@@ -216,11 +213,8 @@ y: f64 }`.
 - <span id="fieldsnamed-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::data::FieldsNamed`
@@ -270,7 +264,7 @@ struct FieldsUnnamed {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../../.source_1765633015/syn-2.0.111/src/data.rs#L58-L65)*
+*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../../.source_1765894658/syn-2.0.111/src/data.rs#L58-L65)*
 
 Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
@@ -321,11 +315,8 @@ Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 - <span id="fieldsunnamed-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::data::FieldsUnnamed`
@@ -379,7 +370,7 @@ struct Field {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../../.source_1765633015/syn-2.0.111/src/data.rs#L181-L200)*
+*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../../.source_1765894658/syn-2.0.111/src/data.rs#L181-L200)*
 
 A field of a struct or enum variant.
 
@@ -444,11 +435,8 @@ A field of a struct or enum variant.
 - <span id="field-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Field`
@@ -494,7 +482,7 @@ struct Members<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:202-205`](../../../.source_1765633015/syn-2.0.111/src/data.rs#L202-L205)*
+*Defined in [`syn-2.0.111/src/data.rs:202-205`](../../../.source_1765894658/syn-2.0.111/src/data.rs#L202-L205)*
 
 #### Trait Implementations
 
@@ -529,11 +517,8 @@ struct Members<'a> {
 - <span id="members-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Members<'a>`
@@ -582,7 +567,7 @@ enum Fields {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../../.source_1765633015/syn-2.0.111/src/data.rs#L26-L46)*
+*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../../.source_1765894658/syn-2.0.111/src/data.rs#L26-L46)*
 
 Data stored within an enum variant or struct.
 
@@ -611,17 +596,13 @@ This type is a [syntax tree enum].
 - <span id="fields-iter"></span>`fn iter(&self) -> punctuated::Iter<'_, Field>` — [`Iter`](../punctuated/index.md#iter), [`Field`](#field)
 
   Get an iterator over the borrowed [`Field`](#field) items in this object. This
-
   iterator can be used to iterate over a named or unnamed struct or
-
   variant's fields uniformly.
 
 - <span id="fields-iter-mut"></span>`fn iter_mut(&mut self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](../punctuated/index.md#itermut), [`Field`](#field)
 
   Get an iterator over the mutably borrowed [`Field`](#field) items in this
-
   object. This iterator can be used to iterate over a named or unnamed
-
   struct or variant's fields uniformly.
 
 - <span id="fields-len"></span>`fn len(&self) -> usize`
@@ -635,67 +616,36 @@ This type is a [syntax tree enum].
 - <span id="fields-members"></span>`fn members(&self) -> Members<'_>` — [`Members`](#members)
 
   Get an iterator over the fields of a struct or variant as [`Member`](../expr/index.md)s.
-
   This iterator can be used to iterate over a named or unnamed struct or
-
   variant's fields uniformly.
-
   
-
   # Example
-
   
-
-  The following is a simplistic [`Clone`](../../fs_err/index.md) derive for structs. (A more
-
+  The following is a simplistic `Clone` derive for structs. (A more
   complete implementation would additionally want to infer trait bounds on
-
   the generic type parameters.)
-
   
-
   ```rust
-
   use quote::quote;
-
   
-
   fn derive_clone(input: &syn::ItemStruct) -> proc_macro2::TokenStream {
-
       let ident = &input.ident;
-
       let members = input.fields.members();
-
       let (impl_generics, ty_generics, where_clause) = input.generics.split_for_impl();
-
       quote! {
-
           impl #impl_generics Clone for #ident #ty_generics #where_clause {
-
               fn clone(&self) -> Self {
-
                   Self {
-
                       #(#members: self.#members.clone()),*
-
                   }
-
               }
-
           }
-
       }
-
   }
-
   ```
-
   
-
   For structs with named fields, it produces an expression like `Self { a:
-
   self.a.clone() }`. For structs with unnamed fields, `Self { 0:
-
   self.0.clone() }`. And for unit structs, `Self {}`.
 
 #### Trait Implementations
@@ -741,11 +691,8 @@ This type is a [syntax tree enum].
 - <span id="fields-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Fields`

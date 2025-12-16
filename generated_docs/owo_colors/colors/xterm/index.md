@@ -545,7 +545,7 @@ XTerm 256-bit colors. Not as widely supported as standard ANSI but contains 240 
 struct UserBlack;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -582,11 +582,8 @@ struct UserBlack;
 - <span id="userblack-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBlack`
@@ -609,7 +606,7 @@ struct UserBlack;
 struct UserRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -646,11 +643,8 @@ struct UserRed;
 - <span id="userred-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserRed`
@@ -673,7 +667,7 @@ struct UserRed;
 struct UserGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -710,11 +704,8 @@ struct UserGreen;
 - <span id="usergreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserGreen`
@@ -737,7 +728,7 @@ struct UserGreen;
 struct UserYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -774,11 +765,8 @@ struct UserYellow;
 - <span id="useryellow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserYellow`
@@ -801,7 +789,7 @@ struct UserYellow;
 struct UserBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -838,11 +826,8 @@ struct UserBlue;
 - <span id="userblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBlue`
@@ -865,7 +850,7 @@ struct UserBlue;
 struct UserMagenta;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -902,11 +887,8 @@ struct UserMagenta;
 - <span id="usermagenta-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserMagenta`
@@ -929,7 +911,7 @@ struct UserMagenta;
 struct UserCyan;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -966,11 +948,8 @@ struct UserCyan;
 - <span id="usercyan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserCyan`
@@ -993,7 +972,7 @@ struct UserCyan;
 struct UserWhite;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1030,11 +1009,8 @@ struct UserWhite;
 - <span id="userwhite-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserWhite`
@@ -1057,7 +1033,7 @@ struct UserWhite;
 struct UserBrightBlack;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1094,11 +1070,8 @@ struct UserBrightBlack;
 - <span id="userbrightblack-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBrightBlack`
@@ -1121,7 +1094,7 @@ struct UserBrightBlack;
 struct UserBrightRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1158,11 +1131,8 @@ struct UserBrightRed;
 - <span id="userbrightred-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBrightRed`
@@ -1185,7 +1155,7 @@ struct UserBrightRed;
 struct UserBrightGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1222,11 +1192,8 @@ struct UserBrightGreen;
 - <span id="userbrightgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBrightGreen`
@@ -1249,7 +1216,7 @@ struct UserBrightGreen;
 struct UserBrightYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1286,11 +1253,8 @@ struct UserBrightYellow;
 - <span id="userbrightyellow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBrightYellow`
@@ -1313,7 +1277,7 @@ struct UserBrightYellow;
 struct UserBrightBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1350,11 +1314,8 @@ struct UserBrightBlue;
 - <span id="userbrightblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBrightBlue`
@@ -1377,7 +1338,7 @@ struct UserBrightBlue;
 struct UserBrightMagenta;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1414,11 +1375,8 @@ struct UserBrightMagenta;
 - <span id="userbrightmagenta-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBrightMagenta`
@@ -1441,7 +1399,7 @@ struct UserBrightMagenta;
 struct UserBrightCyan;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1478,11 +1436,8 @@ struct UserBrightCyan;
 - <span id="userbrightcyan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBrightCyan`
@@ -1505,7 +1460,7 @@ struct UserBrightCyan;
 struct UserBrightWhite;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1542,11 +1497,8 @@ struct UserBrightWhite;
 - <span id="userbrightwhite-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for UserBrightWhite`
@@ -1569,7 +1521,7 @@ struct UserBrightWhite;
 struct Black;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1606,11 +1558,8 @@ struct Black;
 - <span id="black-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Black`
@@ -1633,7 +1582,7 @@ struct Black;
 struct StratosBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1670,11 +1619,8 @@ struct StratosBlue;
 - <span id="stratosblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StratosBlue`
@@ -1697,7 +1643,7 @@ struct StratosBlue;
 struct NavyBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1734,11 +1680,8 @@ struct NavyBlue;
 - <span id="navyblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for NavyBlue`
@@ -1761,7 +1704,7 @@ struct NavyBlue;
 struct MidnightBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1798,11 +1741,8 @@ struct MidnightBlue;
 - <span id="midnightblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MidnightBlue`
@@ -1825,7 +1765,7 @@ struct MidnightBlue;
 struct DarkBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1862,11 +1802,8 @@ struct DarkBlue;
 - <span id="darkblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkBlue`
@@ -1889,7 +1826,7 @@ struct DarkBlue;
 struct Blue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1926,11 +1863,8 @@ struct Blue;
 - <span id="blue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Blue`
@@ -1953,7 +1887,7 @@ struct Blue;
 struct CamaroneGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -1990,11 +1924,8 @@ struct CamaroneGreen;
 - <span id="camaronegreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CamaroneGreen`
@@ -2017,7 +1948,7 @@ struct CamaroneGreen;
 struct BlueStone;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2054,11 +1985,8 @@ struct BlueStone;
 - <span id="bluestone-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BlueStone`
@@ -2081,7 +2009,7 @@ struct BlueStone;
 struct OrientBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2118,11 +2046,8 @@ struct OrientBlue;
 - <span id="orientblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for OrientBlue`
@@ -2145,7 +2070,7 @@ struct OrientBlue;
 struct EndeavourBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2182,11 +2107,8 @@ struct EndeavourBlue;
 - <span id="endeavourblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for EndeavourBlue`
@@ -2209,7 +2131,7 @@ struct EndeavourBlue;
 struct ScienceBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2246,11 +2168,8 @@ struct ScienceBlue;
 - <span id="scienceblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ScienceBlue`
@@ -2273,7 +2192,7 @@ struct ScienceBlue;
 struct BlueRibbon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2310,11 +2229,8 @@ struct BlueRibbon;
 - <span id="blueribbon-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BlueRibbon`
@@ -2337,7 +2253,7 @@ struct BlueRibbon;
 struct JapaneseLaurel;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2374,11 +2290,8 @@ struct JapaneseLaurel;
 - <span id="japaneselaurel-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for JapaneseLaurel`
@@ -2401,7 +2314,7 @@ struct JapaneseLaurel;
 struct DeepSeaGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2438,11 +2351,8 @@ struct DeepSeaGreen;
 - <span id="deepseagreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DeepSeaGreen`
@@ -2465,7 +2375,7 @@ struct DeepSeaGreen;
 struct Teal;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2502,11 +2412,8 @@ struct Teal;
 - <span id="teal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Teal`
@@ -2529,7 +2436,7 @@ struct Teal;
 struct DeepCerulean;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2566,11 +2473,8 @@ struct DeepCerulean;
 - <span id="deepcerulean-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DeepCerulean`
@@ -2593,7 +2497,7 @@ struct DeepCerulean;
 struct LochmaraBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2630,11 +2534,8 @@ struct LochmaraBlue;
 - <span id="lochmarablue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LochmaraBlue`
@@ -2657,7 +2558,7 @@ struct LochmaraBlue;
 struct AzureRadiance;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2694,11 +2595,8 @@ struct AzureRadiance;
 - <span id="azureradiance-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for AzureRadiance`
@@ -2721,7 +2619,7 @@ struct AzureRadiance;
 struct LightJapaneseLaurel;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2758,11 +2656,8 @@ struct LightJapaneseLaurel;
 - <span id="lightjapaneselaurel-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightJapaneseLaurel`
@@ -2785,7 +2680,7 @@ struct LightJapaneseLaurel;
 struct Jade;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2822,11 +2717,8 @@ struct Jade;
 - <span id="jade-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Jade`
@@ -2849,7 +2741,7 @@ struct Jade;
 struct PersianGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2886,11 +2778,8 @@ struct PersianGreen;
 - <span id="persiangreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PersianGreen`
@@ -2913,7 +2802,7 @@ struct PersianGreen;
 struct BondiBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -2950,11 +2839,8 @@ struct BondiBlue;
 - <span id="bondiblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BondiBlue`
@@ -2977,7 +2863,7 @@ struct BondiBlue;
 struct Cerulean;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3014,11 +2900,8 @@ struct Cerulean;
 - <span id="cerulean-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Cerulean`
@@ -3041,7 +2924,7 @@ struct Cerulean;
 struct LightAzureRadiance;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3078,11 +2961,8 @@ struct LightAzureRadiance;
 - <span id="lightazureradiance-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightAzureRadiance`
@@ -3105,7 +2985,7 @@ struct LightAzureRadiance;
 struct DarkGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3142,11 +3022,8 @@ struct DarkGreen;
 - <span id="darkgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkGreen`
@@ -3169,7 +3046,7 @@ struct DarkGreen;
 struct Malachite;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3206,11 +3083,8 @@ struct Malachite;
 - <span id="malachite-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Malachite`
@@ -3233,7 +3107,7 @@ struct Malachite;
 struct CaribbeanGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3270,11 +3144,8 @@ struct CaribbeanGreen;
 - <span id="caribbeangreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CaribbeanGreen`
@@ -3297,7 +3168,7 @@ struct CaribbeanGreen;
 struct LightCaribbeanGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3334,11 +3205,8 @@ struct LightCaribbeanGreen;
 - <span id="lightcaribbeangreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightCaribbeanGreen`
@@ -3361,7 +3229,7 @@ struct LightCaribbeanGreen;
 struct RobinEggBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3398,11 +3266,8 @@ struct RobinEggBlue;
 - <span id="robineggblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for RobinEggBlue`
@@ -3425,7 +3290,7 @@ struct RobinEggBlue;
 struct Aqua;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3462,11 +3327,8 @@ struct Aqua;
 - <span id="aqua-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Aqua`
@@ -3489,7 +3351,7 @@ struct Aqua;
 struct Green;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3526,11 +3388,8 @@ struct Green;
 - <span id="green-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Green`
@@ -3553,7 +3412,7 @@ struct Green;
 struct DarkSpringGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3590,11 +3449,8 @@ struct DarkSpringGreen;
 - <span id="darkspringgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkSpringGreen`
@@ -3617,7 +3473,7 @@ struct DarkSpringGreen;
 struct SpringGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3654,11 +3510,8 @@ struct SpringGreen;
 - <span id="springgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for SpringGreen`
@@ -3681,7 +3534,7 @@ struct SpringGreen;
 struct LightSpringGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3718,11 +3571,8 @@ struct LightSpringGreen;
 - <span id="lightspringgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightSpringGreen`
@@ -3745,7 +3595,7 @@ struct LightSpringGreen;
 struct BrightTurquoise;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3782,11 +3632,8 @@ struct BrightTurquoise;
 - <span id="brightturquoise-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BrightTurquoise`
@@ -3809,7 +3656,7 @@ struct BrightTurquoise;
 struct Cyan;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3846,11 +3693,8 @@ struct Cyan;
 - <span id="cyan-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Cyan`
@@ -3873,7 +3717,7 @@ struct Cyan;
 struct Rosewood;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3910,11 +3754,8 @@ struct Rosewood;
 - <span id="rosewood-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Rosewood`
@@ -3937,7 +3778,7 @@ struct Rosewood;
 struct PompadourMagenta;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -3974,11 +3815,8 @@ struct PompadourMagenta;
 - <span id="pompadourmagenta-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PompadourMagenta`
@@ -4001,7 +3839,7 @@ struct PompadourMagenta;
 struct PigmentIndigo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4038,11 +3876,8 @@ struct PigmentIndigo;
 - <span id="pigmentindigo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PigmentIndigo`
@@ -4065,7 +3900,7 @@ struct PigmentIndigo;
 struct DarkPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4102,11 +3937,8 @@ struct DarkPurple;
 - <span id="darkpurple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkPurple`
@@ -4129,7 +3961,7 @@ struct DarkPurple;
 struct ElectricIndigo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4166,11 +3998,8 @@ struct ElectricIndigo;
 - <span id="electricindigo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ElectricIndigo`
@@ -4193,7 +4022,7 @@ struct ElectricIndigo;
 struct ElectricPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4230,11 +4059,8 @@ struct ElectricPurple;
 - <span id="electricpurple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ElectricPurple`
@@ -4257,7 +4083,7 @@ struct ElectricPurple;
 struct VerdunGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4294,11 +4120,8 @@ struct VerdunGreen;
 - <span id="verdungreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for VerdunGreen`
@@ -4321,7 +4144,7 @@ struct VerdunGreen;
 struct ScorpionOlive;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4358,11 +4181,8 @@ struct ScorpionOlive;
 - <span id="scorpionolive-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ScorpionOlive`
@@ -4385,7 +4205,7 @@ struct ScorpionOlive;
 struct Lilac;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4422,11 +4242,8 @@ struct Lilac;
 - <span id="lilac-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Lilac`
@@ -4449,7 +4266,7 @@ struct Lilac;
 struct ScampiIndigo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4486,11 +4303,8 @@ struct ScampiIndigo;
 - <span id="scampiindigo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ScampiIndigo`
@@ -4513,7 +4327,7 @@ struct ScampiIndigo;
 struct Indigo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4550,11 +4364,8 @@ struct Indigo;
 - <span id="indigo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Indigo`
@@ -4577,7 +4388,7 @@ struct Indigo;
 struct DarkCornflowerBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4614,11 +4425,8 @@ struct DarkCornflowerBlue;
 - <span id="darkcornflowerblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkCornflowerBlue`
@@ -4641,7 +4449,7 @@ struct DarkCornflowerBlue;
 struct DarkLimeade;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4678,11 +4486,8 @@ struct DarkLimeade;
 - <span id="darklimeade-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkLimeade`
@@ -4705,7 +4510,7 @@ struct DarkLimeade;
 struct GladeGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4742,11 +4547,8 @@ struct GladeGreen;
 - <span id="gladegreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GladeGreen`
@@ -4769,7 +4571,7 @@ struct GladeGreen;
 struct JuniperGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4806,11 +4608,8 @@ struct JuniperGreen;
 - <span id="junipergreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for JuniperGreen`
@@ -4833,7 +4632,7 @@ struct JuniperGreen;
 struct HippieBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4870,11 +4669,8 @@ struct HippieBlue;
 - <span id="hippieblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for HippieBlue`
@@ -4897,7 +4693,7 @@ struct HippieBlue;
 struct HavelockBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4934,11 +4730,8 @@ struct HavelockBlue;
 - <span id="havelockblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for HavelockBlue`
@@ -4961,7 +4754,7 @@ struct HavelockBlue;
 struct CornflowerBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -4998,11 +4791,8 @@ struct CornflowerBlue;
 - <span id="cornflowerblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CornflowerBlue`
@@ -5025,7 +4815,7 @@ struct CornflowerBlue;
 struct Limeade;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5062,11 +4852,8 @@ struct Limeade;
 - <span id="limeade-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Limeade`
@@ -5089,7 +4876,7 @@ struct Limeade;
 struct FernGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5126,11 +4913,8 @@ struct FernGreen;
 - <span id="ferngreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for FernGreen`
@@ -5153,7 +4937,7 @@ struct FernGreen;
 struct SilverTree;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5190,11 +4974,8 @@ struct SilverTree;
 - <span id="silvertree-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for SilverTree`
@@ -5217,7 +4998,7 @@ struct SilverTree;
 struct Tradewind;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5254,11 +5035,8 @@ struct Tradewind;
 - <span id="tradewind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Tradewind`
@@ -5281,7 +5059,7 @@ struct Tradewind;
 struct ShakespeareBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5318,11 +5096,8 @@ struct ShakespeareBlue;
 - <span id="shakespeareblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ShakespeareBlue`
@@ -5345,7 +5120,7 @@ struct ShakespeareBlue;
 struct DarkMalibuBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5382,11 +5157,8 @@ struct DarkMalibuBlue;
 - <span id="darkmalibublue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkMalibuBlue`
@@ -5409,7 +5181,7 @@ struct DarkMalibuBlue;
 struct DarkBrightGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5446,11 +5218,8 @@ struct DarkBrightGreen;
 - <span id="darkbrightgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkBrightGreen`
@@ -5473,7 +5242,7 @@ struct DarkBrightGreen;
 struct DarkPastelGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5510,11 +5279,8 @@ struct DarkPastelGreen;
 - <span id="darkpastelgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkPastelGreen`
@@ -5537,7 +5303,7 @@ struct DarkPastelGreen;
 struct PastelGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5574,11 +5340,8 @@ struct PastelGreen;
 - <span id="pastelgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PastelGreen`
@@ -5601,7 +5364,7 @@ struct PastelGreen;
 struct DownyTeal;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5638,11 +5401,8 @@ struct DownyTeal;
 - <span id="downyteal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DownyTeal`
@@ -5665,7 +5425,7 @@ struct DownyTeal;
 struct Viking;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5702,11 +5462,8 @@ struct Viking;
 - <span id="viking-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Viking`
@@ -5729,7 +5486,7 @@ struct Viking;
 struct MalibuBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5766,11 +5523,8 @@ struct MalibuBlue;
 - <span id="malibublue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MalibuBlue`
@@ -5793,7 +5547,7 @@ struct MalibuBlue;
 struct BrightGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5830,11 +5584,8 @@ struct BrightGreen;
 - <span id="brightgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BrightGreen`
@@ -5857,7 +5608,7 @@ struct BrightGreen;
 struct DarkScreaminGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5894,11 +5645,8 @@ struct DarkScreaminGreen;
 - <span id="darkscreamingreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkScreaminGreen`
@@ -5921,7 +5669,7 @@ struct DarkScreaminGreen;
 struct ScreaminGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -5958,11 +5706,8 @@ struct ScreaminGreen;
 - <span id="screamingreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ScreaminGreen`
@@ -5985,7 +5730,7 @@ struct ScreaminGreen;
 struct DarkAquamarine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6022,11 +5767,8 @@ struct DarkAquamarine;
 - <span id="darkaquamarine-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkAquamarine`
@@ -6049,7 +5791,7 @@ struct DarkAquamarine;
 struct Aquamarine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6086,11 +5828,8 @@ struct Aquamarine;
 - <span id="aquamarine-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Aquamarine`
@@ -6113,7 +5852,7 @@ struct Aquamarine;
 struct LightAquamarine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6150,11 +5889,8 @@ struct LightAquamarine;
 - <span id="lightaquamarine-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightAquamarine`
@@ -6177,7 +5913,7 @@ struct LightAquamarine;
 struct Maroon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6214,11 +5950,8 @@ struct Maroon;
 - <span id="maroon-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Maroon`
@@ -6241,7 +5974,7 @@ struct Maroon;
 struct DarkFreshEggplant;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6278,11 +6011,8 @@ struct DarkFreshEggplant;
 - <span id="darkfresheggplant-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkFreshEggplant`
@@ -6305,7 +6035,7 @@ struct DarkFreshEggplant;
 struct LightFreshEggplant;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6342,11 +6072,8 @@ struct LightFreshEggplant;
 - <span id="lightfresheggplant-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightFreshEggplant`
@@ -6369,7 +6096,7 @@ struct LightFreshEggplant;
 struct Purple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6406,11 +6133,8 @@ struct Purple;
 - <span id="purple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Purple`
@@ -6433,7 +6157,7 @@ struct Purple;
 struct ElectricViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6470,11 +6194,8 @@ struct ElectricViolet;
 - <span id="electricviolet-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ElectricViolet`
@@ -6497,7 +6218,7 @@ struct ElectricViolet;
 struct LightElectricViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6534,11 +6255,8 @@ struct LightElectricViolet;
 - <span id="lightelectricviolet-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightElectricViolet`
@@ -6561,7 +6279,7 @@ struct LightElectricViolet;
 struct Brown;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6598,11 +6316,8 @@ struct Brown;
 - <span id="brown-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Brown`
@@ -6625,7 +6340,7 @@ struct Brown;
 struct CopperRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6662,11 +6377,8 @@ struct CopperRose;
 - <span id="copperrose-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CopperRose`
@@ -6689,7 +6401,7 @@ struct CopperRose;
 struct StrikemasterPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6726,11 +6438,8 @@ struct StrikemasterPurple;
 - <span id="strikemasterpurple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for StrikemasterPurple`
@@ -6753,7 +6462,7 @@ struct StrikemasterPurple;
 struct DelugePurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6790,11 +6499,8 @@ struct DelugePurple;
 - <span id="delugepurple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DelugePurple`
@@ -6817,7 +6523,7 @@ struct DelugePurple;
 struct DarkMediumPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6854,11 +6560,8 @@ struct DarkMediumPurple;
 - <span id="darkmediumpurple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkMediumPurple`
@@ -6881,7 +6584,7 @@ struct DarkMediumPurple;
 struct DarkHeliotropePurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6918,11 +6621,8 @@ struct DarkHeliotropePurple;
 - <span id="darkheliotropepurple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkHeliotropePurple`
@@ -6945,7 +6645,7 @@ struct DarkHeliotropePurple;
 struct Olive;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -6982,11 +6682,8 @@ struct Olive;
 - <span id="olive-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Olive`
@@ -7009,7 +6706,7 @@ struct Olive;
 struct ClayCreekOlive;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7046,11 +6743,8 @@ struct ClayCreekOlive;
 - <span id="claycreekolive-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ClayCreekOlive`
@@ -7073,7 +6767,7 @@ struct ClayCreekOlive;
 struct DarkGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7110,11 +6804,8 @@ struct DarkGray;
 - <span id="darkgray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkGray`
@@ -7137,7 +6828,7 @@ struct DarkGray;
 struct WildBlueYonder;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7174,11 +6865,8 @@ struct WildBlueYonder;
 - <span id="wildblueyonder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for WildBlueYonder`
@@ -7201,7 +6889,7 @@ struct WildBlueYonder;
 struct ChetwodeBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7238,11 +6926,8 @@ struct ChetwodeBlue;
 - <span id="chetwodeblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ChetwodeBlue`
@@ -7265,7 +6950,7 @@ struct ChetwodeBlue;
 struct SlateBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7302,11 +6987,8 @@ struct SlateBlue;
 - <span id="slateblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for SlateBlue`
@@ -7329,7 +7011,7 @@ struct SlateBlue;
 struct LightLimeade;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7366,11 +7048,8 @@ struct LightLimeade;
 - <span id="lightlimeade-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightLimeade`
@@ -7393,7 +7072,7 @@ struct LightLimeade;
 struct ChelseaCucumber;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7430,11 +7109,8 @@ struct ChelseaCucumber;
 - <span id="chelseacucumber-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ChelseaCucumber`
@@ -7457,7 +7133,7 @@ struct ChelseaCucumber;
 struct BayLeaf;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7494,11 +7170,8 @@ struct BayLeaf;
 - <span id="bayleaf-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BayLeaf`
@@ -7521,7 +7194,7 @@ struct BayLeaf;
 struct GulfStream;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7558,11 +7231,8 @@ struct GulfStream;
 - <span id="gulfstream-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GulfStream`
@@ -7585,7 +7255,7 @@ struct GulfStream;
 struct PoloBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7622,11 +7292,8 @@ struct PoloBlue;
 - <span id="poloblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PoloBlue`
@@ -7649,7 +7316,7 @@ struct PoloBlue;
 struct LightMalibuBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7686,11 +7353,8 @@ struct LightMalibuBlue;
 - <span id="lightmalibublue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightMalibuBlue`
@@ -7713,7 +7377,7 @@ struct LightMalibuBlue;
 struct Pistachio;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7750,11 +7414,8 @@ struct Pistachio;
 - <span id="pistachio-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Pistachio`
@@ -7777,7 +7438,7 @@ struct Pistachio;
 struct LightPastelGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7814,11 +7475,8 @@ struct LightPastelGreen;
 - <span id="lightpastelgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightPastelGreen`
@@ -7841,7 +7499,7 @@ struct LightPastelGreen;
 struct DarkFeijoaGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7878,11 +7536,8 @@ struct DarkFeijoaGreen;
 - <span id="darkfeijoagreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkFeijoaGreen`
@@ -7905,7 +7560,7 @@ struct DarkFeijoaGreen;
 struct VistaBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -7942,11 +7597,8 @@ struct VistaBlue;
 - <span id="vistablue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for VistaBlue`
@@ -7969,7 +7621,7 @@ struct VistaBlue;
 struct Bermuda;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8006,11 +7658,8 @@ struct Bermuda;
 - <span id="bermuda-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Bermuda`
@@ -8033,7 +7682,7 @@ struct Bermuda;
 struct DarkAnakiwaBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8070,11 +7719,8 @@ struct DarkAnakiwaBlue;
 - <span id="darkanakiwablue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkAnakiwaBlue`
@@ -8097,7 +7743,7 @@ struct DarkAnakiwaBlue;
 struct ChartreuseGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8134,11 +7780,8 @@ struct ChartreuseGreen;
 - <span id="chartreusegreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ChartreuseGreen`
@@ -8161,7 +7804,7 @@ struct ChartreuseGreen;
 struct LightScreaminGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8198,11 +7841,8 @@ struct LightScreaminGreen;
 - <span id="lightscreamingreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightScreaminGreen`
@@ -8225,7 +7865,7 @@ struct LightScreaminGreen;
 struct DarkMintGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8262,11 +7902,8 @@ struct DarkMintGreen;
 - <span id="darkmintgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkMintGreen`
@@ -8289,7 +7926,7 @@ struct DarkMintGreen;
 struct MintGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8326,11 +7963,8 @@ struct MintGreen;
 - <span id="mintgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MintGreen`
@@ -8353,7 +7987,7 @@ struct MintGreen;
 struct LighterAquamarine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8390,11 +8024,8 @@ struct LighterAquamarine;
 - <span id="lighteraquamarine-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LighterAquamarine`
@@ -8417,7 +8048,7 @@ struct LighterAquamarine;
 struct AnakiwaBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8454,11 +8085,8 @@ struct AnakiwaBlue;
 - <span id="anakiwablue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for AnakiwaBlue`
@@ -8481,7 +8109,7 @@ struct AnakiwaBlue;
 struct BrightRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8518,11 +8146,8 @@ struct BrightRed;
 - <span id="brightred-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BrightRed`
@@ -8545,7 +8170,7 @@ struct BrightRed;
 struct DarkFlirt;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8582,11 +8207,8 @@ struct DarkFlirt;
 - <span id="darkflirt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkFlirt`
@@ -8609,7 +8231,7 @@ struct DarkFlirt;
 struct Flirt;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8646,11 +8268,8 @@ struct Flirt;
 - <span id="flirt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Flirt`
@@ -8673,7 +8292,7 @@ struct Flirt;
 struct LightFlirt;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8710,11 +8329,8 @@ struct LightFlirt;
 - <span id="lightflirt-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightFlirt`
@@ -8737,7 +8353,7 @@ struct LightFlirt;
 struct DarkViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8774,11 +8390,8 @@ struct DarkViolet;
 - <span id="darkviolet-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkViolet`
@@ -8801,7 +8414,7 @@ struct DarkViolet;
 struct BrightElectricViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8838,11 +8451,8 @@ struct BrightElectricViolet;
 - <span id="brightelectricviolet-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BrightElectricViolet`
@@ -8865,7 +8475,7 @@ struct BrightElectricViolet;
 struct RoseofSharonOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8902,11 +8512,8 @@ struct RoseofSharonOrange;
 - <span id="roseofsharonorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for RoseofSharonOrange`
@@ -8929,7 +8536,7 @@ struct RoseofSharonOrange;
 struct MatrixPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -8966,11 +8573,8 @@ struct MatrixPink;
 - <span id="matrixpink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MatrixPink`
@@ -8993,7 +8597,7 @@ struct MatrixPink;
 struct TapestryPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9030,11 +8634,8 @@ struct TapestryPink;
 - <span id="tapestrypink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for TapestryPink`
@@ -9057,7 +8658,7 @@ struct TapestryPink;
 struct FuchsiaPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9094,11 +8695,8 @@ struct FuchsiaPink;
 - <span id="fuchsiapink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for FuchsiaPink`
@@ -9121,7 +8719,7 @@ struct FuchsiaPink;
 struct MediumPurple;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9158,11 +8756,8 @@ struct MediumPurple;
 - <span id="mediumpurple-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MediumPurple`
@@ -9185,7 +8780,7 @@ struct MediumPurple;
 struct Heliotrope;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9222,11 +8817,8 @@ struct Heliotrope;
 - <span id="heliotrope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Heliotrope`
@@ -9249,7 +8841,7 @@ struct Heliotrope;
 struct PirateGold;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9286,11 +8878,8 @@ struct PirateGold;
 - <span id="pirategold-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PirateGold`
@@ -9313,7 +8902,7 @@ struct PirateGold;
 struct MuesliOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9350,11 +8939,8 @@ struct MuesliOrange;
 - <span id="muesliorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MuesliOrange`
@@ -9377,7 +8963,7 @@ struct MuesliOrange;
 struct PharlapPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9414,11 +9000,8 @@ struct PharlapPink;
 - <span id="pharlappink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PharlapPink`
@@ -9441,7 +9024,7 @@ struct PharlapPink;
 struct Bouquet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9478,11 +9061,8 @@ struct Bouquet;
 - <span id="bouquet-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Bouquet`
@@ -9505,7 +9085,7 @@ struct Bouquet;
 struct Lavender;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9542,11 +9122,8 @@ struct Lavender;
 - <span id="lavender-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Lavender`
@@ -9569,7 +9146,7 @@ struct Lavender;
 struct LightHeliotrope;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9606,11 +9183,8 @@ struct LightHeliotrope;
 - <span id="lightheliotrope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightHeliotrope`
@@ -9633,7 +9207,7 @@ struct LightHeliotrope;
 struct BuddhaGold;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9670,11 +9244,8 @@ struct BuddhaGold;
 - <span id="buddhagold-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BuddhaGold`
@@ -9697,7 +9268,7 @@ struct BuddhaGold;
 struct OliveGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9734,11 +9305,8 @@ struct OliveGreen;
 - <span id="olivegreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for OliveGreen`
@@ -9761,7 +9329,7 @@ struct OliveGreen;
 struct HillaryOlive;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9798,11 +9366,8 @@ struct HillaryOlive;
 - <span id="hillaryolive-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for HillaryOlive`
@@ -9825,7 +9390,7 @@ struct HillaryOlive;
 struct SilverChalice;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9862,11 +9427,8 @@ struct SilverChalice;
 - <span id="silverchalice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for SilverChalice`
@@ -9889,7 +9451,7 @@ struct SilverChalice;
 struct WistfulLilac;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9926,11 +9488,8 @@ struct WistfulLilac;
 - <span id="wistfullilac-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for WistfulLilac`
@@ -9953,7 +9512,7 @@ struct WistfulLilac;
 struct MelroseLilac;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -9990,11 +9549,8 @@ struct MelroseLilac;
 - <span id="melroselilac-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MelroseLilac`
@@ -10017,7 +9573,7 @@ struct MelroseLilac;
 struct RioGrandeGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10054,11 +9610,8 @@ struct RioGrandeGreen;
 - <span id="riograndegreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for RioGrandeGreen`
@@ -10081,7 +9634,7 @@ struct RioGrandeGreen;
 struct ConiferGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10118,11 +9671,8 @@ struct ConiferGreen;
 - <span id="conifergreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ConiferGreen`
@@ -10145,7 +9695,7 @@ struct ConiferGreen;
 struct Feijoa;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10182,11 +9732,8 @@ struct Feijoa;
 - <span id="feijoa-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Feijoa`
@@ -10209,7 +9756,7 @@ struct Feijoa;
 struct PixieGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10246,11 +9793,8 @@ struct PixieGreen;
 - <span id="pixiegreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PixieGreen`
@@ -10273,7 +9817,7 @@ struct PixieGreen;
 struct JungleMist;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10310,11 +9854,8 @@ struct JungleMist;
 - <span id="junglemist-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for JungleMist`
@@ -10337,7 +9878,7 @@ struct JungleMist;
 struct LightAnakiwaBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10374,11 +9915,8 @@ struct LightAnakiwaBlue;
 - <span id="lightanakiwablue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightAnakiwaBlue`
@@ -10401,7 +9939,7 @@ struct LightAnakiwaBlue;
 struct Lime;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10438,11 +9976,8 @@ struct Lime;
 - <span id="lime-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Lime`
@@ -10465,7 +10000,7 @@ struct Lime;
 struct GreenYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10502,11 +10037,8 @@ struct GreenYellow;
 - <span id="greenyellow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GreenYellow`
@@ -10529,7 +10061,7 @@ struct GreenYellow;
 struct LightMintGreen;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10566,11 +10098,8 @@ struct LightMintGreen;
 - <span id="lightmintgreen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightMintGreen`
@@ -10593,7 +10122,7 @@ struct LightMintGreen;
 struct Celadon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10630,11 +10159,8 @@ struct Celadon;
 - <span id="celadon-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Celadon`
@@ -10657,7 +10183,7 @@ struct Celadon;
 struct AeroBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10694,11 +10220,8 @@ struct AeroBlue;
 - <span id="aeroblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for AeroBlue`
@@ -10721,7 +10244,7 @@ struct AeroBlue;
 struct FrenchPassLightBlue;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10758,11 +10281,8 @@ struct FrenchPassLightBlue;
 - <span id="frenchpasslightblue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for FrenchPassLightBlue`
@@ -10785,7 +10305,7 @@ struct FrenchPassLightBlue;
 struct GuardsmanRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10822,11 +10342,8 @@ struct GuardsmanRed;
 - <span id="guardsmanred-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GuardsmanRed`
@@ -10849,7 +10366,7 @@ struct GuardsmanRed;
 struct RazzmatazzCerise;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10886,11 +10403,8 @@ struct RazzmatazzCerise;
 - <span id="razzmatazzcerise-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for RazzmatazzCerise`
@@ -10913,7 +10427,7 @@ struct RazzmatazzCerise;
 struct MediumVioletRed;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -10950,11 +10464,8 @@ struct MediumVioletRed;
 - <span id="mediumvioletred-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MediumVioletRed`
@@ -10977,7 +10488,7 @@ struct MediumVioletRed;
 struct HollywoodCerise;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11014,11 +10525,8 @@ struct HollywoodCerise;
 - <span id="hollywoodcerise-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for HollywoodCerise`
@@ -11041,7 +10549,7 @@ struct HollywoodCerise;
 struct DarkPurplePizzazz;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11078,11 +10586,8 @@ struct DarkPurplePizzazz;
 - <span id="darkpurplepizzazz-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkPurplePizzazz`
@@ -11105,7 +10610,7 @@ struct DarkPurplePizzazz;
 struct BrighterElectricViolet;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11142,11 +10647,8 @@ struct BrighterElectricViolet;
 - <span id="brighterelectricviolet-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BrighterElectricViolet`
@@ -11169,7 +10671,7 @@ struct BrighterElectricViolet;
 struct TennOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11206,11 +10708,8 @@ struct TennOrange;
 - <span id="tennorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for TennOrange`
@@ -11233,7 +10732,7 @@ struct TennOrange;
 struct RomanOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11270,11 +10769,8 @@ struct RomanOrange;
 - <span id="romanorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for RomanOrange`
@@ -11297,7 +10793,7 @@ struct RomanOrange;
 struct CranberryPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11334,11 +10830,8 @@ struct CranberryPink;
 - <span id="cranberrypink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CranberryPink`
@@ -11361,7 +10854,7 @@ struct CranberryPink;
 struct HopbushPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11398,11 +10891,8 @@ struct HopbushPink;
 - <span id="hopbushpink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for HopbushPink`
@@ -11425,7 +10915,7 @@ struct HopbushPink;
 struct Orchid;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11462,11 +10952,8 @@ struct Orchid;
 - <span id="orchid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Orchid`
@@ -11489,7 +10976,7 @@ struct Orchid;
 struct LighterHeliotrope;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11526,11 +11013,8 @@ struct LighterHeliotrope;
 - <span id="lighterheliotrope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LighterHeliotrope`
@@ -11553,7 +11037,7 @@ struct LighterHeliotrope;
 struct MangoTango;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11590,11 +11074,8 @@ struct MangoTango;
 - <span id="mangotango-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MangoTango`
@@ -11617,7 +11098,7 @@ struct MangoTango;
 struct Copperfield;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11654,11 +11135,8 @@ struct Copperfield;
 - <span id="copperfield-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Copperfield`
@@ -11681,7 +11159,7 @@ struct Copperfield;
 struct SeaPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11718,11 +11196,8 @@ struct SeaPink;
 - <span id="seapink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for SeaPink`
@@ -11745,7 +11220,7 @@ struct SeaPink;
 struct CanCanPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11782,11 +11257,8 @@ struct CanCanPink;
 - <span id="cancanpink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CanCanPink`
@@ -11809,7 +11281,7 @@ struct CanCanPink;
 struct LightOrchid;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11846,11 +11318,8 @@ struct LightOrchid;
 - <span id="lightorchid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightOrchid`
@@ -11873,7 +11342,7 @@ struct LightOrchid;
 struct BrightHeliotrope;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11910,11 +11379,8 @@ struct BrightHeliotrope;
 - <span id="brightheliotrope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BrightHeliotrope`
@@ -11937,7 +11403,7 @@ struct BrightHeliotrope;
 struct DarkCorn;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -11974,11 +11440,8 @@ struct DarkCorn;
 - <span id="darkcorn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkCorn`
@@ -12001,7 +11464,7 @@ struct DarkCorn;
 struct DarkTachaOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12038,11 +11501,8 @@ struct DarkTachaOrange;
 - <span id="darktachaorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkTachaOrange`
@@ -12065,7 +11525,7 @@ struct DarkTachaOrange;
 struct TanBeige;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12102,11 +11562,8 @@ struct TanBeige;
 - <span id="tanbeige-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for TanBeige`
@@ -12129,7 +11586,7 @@ struct TanBeige;
 struct ClamShell;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12166,11 +11623,8 @@ struct ClamShell;
 - <span id="clamshell-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ClamShell`
@@ -12193,7 +11647,7 @@ struct ClamShell;
 struct ThistlePink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12230,11 +11684,8 @@ struct ThistlePink;
 - <span id="thistlepink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ThistlePink`
@@ -12257,7 +11708,7 @@ struct ThistlePink;
 struct Mauve;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12294,11 +11745,8 @@ struct Mauve;
 - <span id="mauve-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Mauve`
@@ -12321,7 +11769,7 @@ struct Mauve;
 struct Corn;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12358,11 +11806,8 @@ struct Corn;
 - <span id="corn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Corn`
@@ -12385,7 +11830,7 @@ struct Corn;
 struct TachaOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12422,11 +11867,8 @@ struct TachaOrange;
 - <span id="tachaorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for TachaOrange`
@@ -12449,7 +11891,7 @@ struct TachaOrange;
 struct DecoOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12486,11 +11928,8 @@ struct DecoOrange;
 - <span id="decoorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DecoOrange`
@@ -12513,7 +11952,7 @@ struct DecoOrange;
 struct PaleGoldenrod;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12550,11 +11989,8 @@ struct PaleGoldenrod;
 - <span id="palegoldenrod-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PaleGoldenrod`
@@ -12577,7 +12013,7 @@ struct PaleGoldenrod;
 struct AltoBeige;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12614,11 +12050,8 @@ struct AltoBeige;
 - <span id="altobeige-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for AltoBeige`
@@ -12641,7 +12074,7 @@ struct AltoBeige;
 struct FogPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12678,11 +12111,8 @@ struct FogPink;
 - <span id="fogpink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for FogPink`
@@ -12705,7 +12135,7 @@ struct FogPink;
 struct ChartreuseYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12742,11 +12172,8 @@ struct ChartreuseYellow;
 - <span id="chartreuseyellow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ChartreuseYellow`
@@ -12769,7 +12196,7 @@ struct ChartreuseYellow;
 struct Canary;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12806,11 +12233,8 @@ struct Canary;
 - <span id="canary-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Canary`
@@ -12833,7 +12257,7 @@ struct Canary;
 struct Honeysuckle;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12870,11 +12294,8 @@ struct Honeysuckle;
 - <span id="honeysuckle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Honeysuckle`
@@ -12897,7 +12318,7 @@ struct Honeysuckle;
 struct ReefPaleYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12934,11 +12355,8 @@ struct ReefPaleYellow;
 - <span id="reefpaleyellow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ReefPaleYellow`
@@ -12961,7 +12379,7 @@ struct ReefPaleYellow;
 struct SnowyMint;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -12998,11 +12416,8 @@ struct SnowyMint;
 - <span id="snowymint-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for SnowyMint`
@@ -13025,7 +12440,7 @@ struct SnowyMint;
 struct OysterBay;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13062,11 +12477,8 @@ struct OysterBay;
 - <span id="oysterbay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for OysterBay`
@@ -13089,7 +12501,7 @@ struct OysterBay;
 struct Red;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13126,11 +12538,8 @@ struct Red;
 - <span id="red-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Red`
@@ -13153,7 +12562,7 @@ struct Red;
 struct DarkRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13190,11 +12599,8 @@ struct DarkRose;
 - <span id="darkrose-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkRose`
@@ -13217,7 +12623,7 @@ struct DarkRose;
 struct Rose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13254,11 +12660,8 @@ struct Rose;
 - <span id="rose-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Rose`
@@ -13281,7 +12684,7 @@ struct Rose;
 struct LightHollywoodCerise;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13318,11 +12721,8 @@ struct LightHollywoodCerise;
 - <span id="lighthollywoodcerise-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightHollywoodCerise`
@@ -13345,7 +12745,7 @@ struct LightHollywoodCerise;
 struct PurplePizzazz;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13382,11 +12782,8 @@ struct PurplePizzazz;
 - <span id="purplepizzazz-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PurplePizzazz`
@@ -13409,7 +12806,7 @@ struct PurplePizzazz;
 struct Fuchsia;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13446,11 +12843,8 @@ struct Fuchsia;
 - <span id="fuchsia-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Fuchsia`
@@ -13473,7 +12867,7 @@ struct Fuchsia;
 struct BlazeOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13510,11 +12904,8 @@ struct BlazeOrange;
 - <span id="blazeorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BlazeOrange`
@@ -13537,7 +12928,7 @@ struct BlazeOrange;
 struct BittersweetOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13574,11 +12965,8 @@ struct BittersweetOrange;
 - <span id="bittersweetorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BittersweetOrange`
@@ -13601,7 +12989,7 @@ struct BittersweetOrange;
 struct WildWatermelon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13638,11 +13026,8 @@ struct WildWatermelon;
 - <span id="wildwatermelon-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for WildWatermelon`
@@ -13665,7 +13050,7 @@ struct WildWatermelon;
 struct DarkHotPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13702,11 +13087,8 @@ struct DarkHotPink;
 - <span id="darkhotpink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkHotPink`
@@ -13729,7 +13111,7 @@ struct DarkHotPink;
 struct HotPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13766,11 +13148,8 @@ struct HotPink;
 - <span id="hotpink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for HotPink`
@@ -13793,7 +13172,7 @@ struct HotPink;
 struct PinkFlamingo;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13830,11 +13209,8 @@ struct PinkFlamingo;
 - <span id="pinkflamingo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PinkFlamingo`
@@ -13857,7 +13233,7 @@ struct PinkFlamingo;
 struct FlushOrange;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13894,11 +13270,8 @@ struct FlushOrange;
 - <span id="flushorange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for FlushOrange`
@@ -13921,7 +13294,7 @@ struct FlushOrange;
 struct Salmon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -13958,11 +13331,8 @@ struct Salmon;
 - <span id="salmon-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Salmon`
@@ -13985,7 +13355,7 @@ struct Salmon;
 struct VividTangerine;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14022,11 +13392,8 @@ struct VividTangerine;
 - <span id="vividtangerine-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for VividTangerine`
@@ -14049,7 +13416,7 @@ struct VividTangerine;
 struct PinkSalmon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14086,11 +13453,8 @@ struct PinkSalmon;
 - <span id="pinksalmon-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PinkSalmon`
@@ -14113,7 +13477,7 @@ struct PinkSalmon;
 struct DarkLavenderRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14150,11 +13514,8 @@ struct DarkLavenderRose;
 - <span id="darklavenderrose-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkLavenderRose`
@@ -14177,7 +13538,7 @@ struct DarkLavenderRose;
 struct BlushPink;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14214,11 +13575,8 @@ struct BlushPink;
 - <span id="blushpink-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BlushPink`
@@ -14241,7 +13599,7 @@ struct BlushPink;
 struct YellowSea;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14278,11 +13636,8 @@ struct YellowSea;
 - <span id="yellowsea-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for YellowSea`
@@ -14305,7 +13660,7 @@ struct YellowSea;
 struct TexasRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14342,11 +13697,8 @@ struct TexasRose;
 - <span id="texasrose-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for TexasRose`
@@ -14369,7 +13721,7 @@ struct TexasRose;
 struct Tacao;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14406,11 +13758,8 @@ struct Tacao;
 - <span id="tacao-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Tacao`
@@ -14433,7 +13782,7 @@ struct Tacao;
 struct Sundown;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14470,11 +13819,8 @@ struct Sundown;
 - <span id="sundown-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Sundown`
@@ -14497,7 +13843,7 @@ struct Sundown;
 struct CottonCandy;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14534,11 +13880,8 @@ struct CottonCandy;
 - <span id="cottoncandy-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CottonCandy`
@@ -14561,7 +13904,7 @@ struct CottonCandy;
 struct LavenderRose;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14598,11 +13941,8 @@ struct LavenderRose;
 - <span id="lavenderrose-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LavenderRose`
@@ -14625,7 +13965,7 @@ struct LavenderRose;
 struct Gold;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14662,11 +14002,8 @@ struct Gold;
 - <span id="gold-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Gold`
@@ -14689,7 +14026,7 @@ struct Gold;
 struct Dandelion;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14726,11 +14063,8 @@ struct Dandelion;
 - <span id="dandelion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Dandelion`
@@ -14753,7 +14087,7 @@ struct Dandelion;
 struct GrandisCaramel;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14790,11 +14124,8 @@ struct GrandisCaramel;
 - <span id="grandiscaramel-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GrandisCaramel`
@@ -14817,7 +14148,7 @@ struct GrandisCaramel;
 struct Caramel;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14854,11 +14185,8 @@ struct Caramel;
 - <span id="caramel-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Caramel`
@@ -14881,7 +14209,7 @@ struct Caramel;
 struct CosmosSalmon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14918,11 +14246,8 @@ struct CosmosSalmon;
 - <span id="cosmossalmon-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CosmosSalmon`
@@ -14945,7 +14270,7 @@ struct CosmosSalmon;
 struct PinkLace;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -14982,11 +14307,8 @@ struct PinkLace;
 - <span id="pinklace-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PinkLace`
@@ -15009,7 +14331,7 @@ struct PinkLace;
 struct Yellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15046,11 +14368,8 @@ struct Yellow;
 - <span id="yellow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Yellow`
@@ -15073,7 +14392,7 @@ struct Yellow;
 struct LaserLemon;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15110,11 +14429,8 @@ struct LaserLemon;
 - <span id="laserlemon-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LaserLemon`
@@ -15137,7 +14453,7 @@ struct LaserLemon;
 struct DollyYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15174,11 +14490,8 @@ struct DollyYellow;
 - <span id="dollyyellow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DollyYellow`
@@ -15201,7 +14514,7 @@ struct DollyYellow;
 struct PortafinoYellow;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15238,11 +14551,8 @@ struct PortafinoYellow;
 - <span id="portafinoyellow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for PortafinoYellow`
@@ -15265,7 +14575,7 @@ struct PortafinoYellow;
 struct Cumulus;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15302,11 +14612,8 @@ struct Cumulus;
 - <span id="cumulus-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Cumulus`
@@ -15329,7 +14636,7 @@ struct Cumulus;
 struct White;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15366,11 +14673,8 @@ struct White;
 - <span id="white-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for White`
@@ -15393,7 +14697,7 @@ struct White;
 struct DarkCodGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15430,11 +14734,8 @@ struct DarkCodGray;
 - <span id="darkcodgray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkCodGray`
@@ -15457,7 +14758,7 @@ struct DarkCodGray;
 struct CodGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15494,11 +14795,8 @@ struct CodGray;
 - <span id="codgray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CodGray`
@@ -15521,7 +14819,7 @@ struct CodGray;
 struct LightCodGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15558,11 +14856,8 @@ struct LightCodGray;
 - <span id="lightcodgray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightCodGray`
@@ -15585,7 +14880,7 @@ struct LightCodGray;
 struct DarkMineShaft;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15622,11 +14917,8 @@ struct DarkMineShaft;
 - <span id="darkmineshaft-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkMineShaft`
@@ -15649,7 +14941,7 @@ struct DarkMineShaft;
 struct MineShaft;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15686,11 +14978,8 @@ struct MineShaft;
 - <span id="mineshaft-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MineShaft`
@@ -15713,7 +15002,7 @@ struct MineShaft;
 struct LightMineShaft;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15750,11 +15039,8 @@ struct LightMineShaft;
 - <span id="lightmineshaft-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightMineShaft`
@@ -15777,7 +15063,7 @@ struct LightMineShaft;
 struct DarkTundora;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15814,11 +15100,8 @@ struct DarkTundora;
 - <span id="darktundora-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkTundora`
@@ -15841,7 +15124,7 @@ struct DarkTundora;
 struct Tundora;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15878,11 +15161,8 @@ struct Tundora;
 - <span id="tundora-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Tundora`
@@ -15905,7 +15185,7 @@ struct Tundora;
 struct ScorpionGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -15942,11 +15222,8 @@ struct ScorpionGray;
 - <span id="scorpiongray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ScorpionGray`
@@ -15969,7 +15246,7 @@ struct ScorpionGray;
 struct DarkDoveGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16006,11 +15283,8 @@ struct DarkDoveGray;
 - <span id="darkdovegray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkDoveGray`
@@ -16033,7 +15307,7 @@ struct DarkDoveGray;
 struct DoveGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16070,11 +15344,8 @@ struct DoveGray;
 - <span id="dovegray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DoveGray`
@@ -16097,7 +15368,7 @@ struct DoveGray;
 struct Boulder;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16134,11 +15405,8 @@ struct Boulder;
 - <span id="boulder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Boulder`
@@ -16161,7 +15429,7 @@ struct Boulder;
 struct Gray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16198,11 +15466,8 @@ struct Gray;
 - <span id="gray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Gray`
@@ -16225,7 +15490,7 @@ struct Gray;
 struct LightGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16262,11 +15527,8 @@ struct LightGray;
 - <span id="lightgray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightGray`
@@ -16289,7 +15551,7 @@ struct LightGray;
 struct DustyGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16326,11 +15588,8 @@ struct DustyGray;
 - <span id="dustygray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DustyGray`
@@ -16353,7 +15612,7 @@ struct DustyGray;
 struct NobelGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16390,11 +15649,8 @@ struct NobelGray;
 - <span id="nobelgray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for NobelGray`
@@ -16417,7 +15673,7 @@ struct NobelGray;
 struct DarkSilverChalice;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16454,11 +15710,8 @@ struct DarkSilverChalice;
 - <span id="darksilverchalice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkSilverChalice`
@@ -16481,7 +15734,7 @@ struct DarkSilverChalice;
 struct LightSilverChalice;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16518,11 +15771,8 @@ struct LightSilverChalice;
 - <span id="lightsilverchalice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for LightSilverChalice`
@@ -16545,7 +15795,7 @@ struct LightSilverChalice;
 struct DarkSilver;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16582,11 +15832,8 @@ struct DarkSilver;
 - <span id="darksilver-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkSilver`
@@ -16609,7 +15856,7 @@ struct DarkSilver;
 struct Silver;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16646,11 +15893,8 @@ struct Silver;
 - <span id="silver-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Silver`
@@ -16673,7 +15917,7 @@ struct Silver;
 struct DarkAlto;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16710,11 +15954,8 @@ struct DarkAlto;
 - <span id="darkalto-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DarkAlto`
@@ -16737,7 +15978,7 @@ struct DarkAlto;
 struct Alto;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16774,11 +16015,8 @@ struct Alto;
 - <span id="alto-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Alto`
@@ -16801,7 +16039,7 @@ struct Alto;
 struct Mercury;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16838,11 +16076,8 @@ struct Mercury;
 - <span id="mercury-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Mercury`
@@ -16865,7 +16100,7 @@ struct Mercury;
 struct GalleryGray;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
 
 #### Trait Implementations
 
@@ -16902,11 +16137,8 @@ struct GalleryGray;
 - <span id="gallerygray-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for GalleryGray`
@@ -16927,5 +16159,5 @@ struct GalleryGray;
 
 ### `xterm_colors!`
 
-*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:1-121`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors/xterm.rs#L1-L121)*
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:1-121`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors/xterm.rs#L1-L121)*
 

@@ -41,7 +41,7 @@ struct TryReserveError {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:19-21`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L19-L21)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:19-21`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L19-L21)*
 
 The error type for `try_reserve` methods.
 
@@ -94,11 +94,8 @@ The error type for `try_reserve` methods.
 - <span id="tryreserveerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TryReserveError`
@@ -141,7 +138,7 @@ struct RawVec<T, A: Allocator> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:116-120`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L116-L120)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:116-120`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L116-L120)*
 
 A low-level utility for more ergonomically allocating, reallocating, and deallocating
 a buffer of memory on the heap without having to worry about all the corner cases
@@ -171,41 +168,25 @@ Note that the excess of a zero-sized types is always infinite, so `capacity()` a
 - <span id="rawvec-new"></span>`const fn new() -> Self`
 
   Creates the biggest possible `RawVec` (on the system heap)
-
   without allocating. If `T` has positive size, then this makes a
-
   `RawVec` with capacity `0`. If `T` is zero-sized, then it makes a
-
   `RawVec` with capacity `usize::MAX`. Useful for implementing
-
   delayed allocation.
 
 - <span id="rawvec-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
   Creates a `RawVec` (on the system heap) with exactly the
-
   capacity and alignment requirements for a `[T; capacity]`. This is
-
   equivalent to calling `RawVec::new` when `capacity` is `0` or `T` is
-
   zero-sized. Note that if `T` is zero-sized this means you will
-
   *not* get a `RawVec` with the requested capacity.
-
   
-
   # Panics
-
   
-
   Panics if the requested capacity exceeds `isize::MAX` bytes.
-
   
-
   # Aborts
-
   
-
   Aborts on OOM.
 
 - <span id="rawvec-with-capacity-zeroed"></span>`fn with_capacity_zeroed(capacity: usize) -> Self`
@@ -243,11 +224,8 @@ Note that the excess of a zero-sized types is always infinite, so `capacity()` a
 - <span id="rawvec-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, A> Send for RawVec<T, A>`
@@ -279,7 +257,7 @@ enum TryReserveErrorKind {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:32-45`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L32-L45)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:32-45`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L32-L45)*
 
 Details of the allocation that caused a `TryReserveError`
 
@@ -333,11 +311,8 @@ Details of the allocation that caused a `TryReserveError`
 - <span id="tryreserveerrorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TryReserveErrorKind`
@@ -375,7 +350,7 @@ enum AllocInit {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:86-91`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L86-L91)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:86-91`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L86-L91)*
 
 #### Variants
 
@@ -412,11 +387,8 @@ enum AllocInit {
 - <span id="allocinit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for AllocInit`
@@ -441,7 +413,7 @@ where
     A: Allocator
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:564-595`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L564-L595)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:564-595`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L564-L595)*
 
 ### `handle_reserve`
 
@@ -449,7 +421,7 @@ where
 fn handle_reserve(result: Result<(), TryReserveError>)
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:610-616`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L610-L616)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:610-616`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L610-L616)*
 
 ### `alloc_guard`
 
@@ -457,7 +429,7 @@ fn handle_reserve(result: Result<(), TryReserveError>)
 fn alloc_guard(alloc_size: usize) -> Result<(), TryReserveError>
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:628-634`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L628-L634)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:628-634`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L628-L634)*
 
 ### `capacity_overflow`
 
@@ -465,5 +437,5 @@ fn alloc_guard(alloc_size: usize) -> Result<(), TryReserveError>
 fn capacity_overflow() -> never
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:640-642`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L640-L642)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:640-642`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L640-L642)*
 

@@ -21,7 +21,7 @@ enum Help {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/help.rs:19-22`](../../../.source_1765633015/miette-derive-7.6.0/src/help.rs#L19-L22)*
+*Defined in [`miette-derive-7.6.0/src/help.rs:19-22`](../../../.source_1765894658/miette-derive-7.6.0/src/help.rs#L19-L22)*
 
 #### Implementations
 
@@ -58,11 +58,8 @@ enum Help {
 - <span id="help-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Help`

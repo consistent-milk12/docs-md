@@ -30,7 +30,7 @@ struct Parser {
 }
 ```
 
-*Defined in [`utf8parse-0.2.2/src/lib.rs:29-32`](../../.source_1765633015/utf8parse-0.2.2/src/lib.rs#L29-L32)*
+*Defined in [`utf8parse-0.2.2/src/lib.rs:29-32`](../../.source_1765894658/utf8parse-0.2.2/src/lib.rs#L29-L32)*
 
 A parser for Utf8 Characters
 
@@ -45,11 +45,8 @@ Repeatedly call `advance` with bytes to emit Utf8 characters
 - <span id="parser-advance"></span>`fn advance<R>(&mut self, receiver: &mut R, byte: u8)`
 
   Advance the parser
-
   
-
   The provider receiver will be called whenever a codepoint is completed or an invalid
-
   sequence is detected.
 
 - <span id="parser-perform-action"></span>`fn perform_action<R>(&mut self, receiver: &mut R, byte: u8, action: Action)` — [`Action`](types/index.md#action)
@@ -97,11 +94,8 @@ Repeatedly call `advance` with bytes to emit Utf8 characters
 - <span id="parser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Parser`
@@ -130,7 +124,7 @@ Repeatedly call `advance` with bytes to emit Utf8 characters
 trait Receiver { ... }
 ```
 
-*Defined in [`utf8parse-0.2.2/src/lib.rs:17-23`](../../.source_1765633015/utf8parse-0.2.2/src/lib.rs#L17-L23)*
+*Defined in [`utf8parse-0.2.2/src/lib.rs:17-23`](../../.source_1765894658/utf8parse-0.2.2/src/lib.rs#L17-L23)*
 
 Handles codepoint and invalid sequence events from the parser.
 
@@ -151,7 +145,7 @@ Handles codepoint and invalid sequence events from the parser.
 const CONTINUATION_MASK: u8 = 63u8;
 ```
 
-*Defined in [`utf8parse-0.2.2/src/lib.rs:35`](../../.source_1765633015/utf8parse-0.2.2/src/lib.rs#L35)*
+*Defined in [`utf8parse-0.2.2/src/lib.rs:35`](../../.source_1765894658/utf8parse-0.2.2/src/lib.rs#L35)*
 
 Continuation bytes are masked with this value.
 

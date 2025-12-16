@@ -24,7 +24,7 @@ struct Style {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../../.source_1765633015/anstyle-1.0.13/src/style.rs#L18-L23)*
+*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../../.source_1765894658/anstyle-1.0.13/src/style.rs#L18-L23)*
 
 ANSI Text styling
 
@@ -46,89 +46,57 @@ println!("{style}{value}{style:#}");
 - <span id="style-new"></span>`const fn new() -> Self`
 
   No effects enabled
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new();
-
   ```
 
 - <span id="style-fg-color"></span>`const fn fg_color(self, fg: Option<crate::Color>) -> Self` — [`Color`](../index.md#color)
 
   Set foreground color
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new().fg_color(Some(anstyle::AnsiColor::Red.into()));
-
   ```
 
 - <span id="style-bg-color"></span>`const fn bg_color(self, bg: Option<crate::Color>) -> Self` — [`Color`](../index.md#color)
 
   Set background color
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new().bg_color(Some(anstyle::AnsiColor::Red.into()));
-
   ```
 
 - <span id="style-underline-color"></span>`const fn underline_color(self, underline: Option<crate::Color>) -> Self` — [`Color`](../index.md#color)
 
   Set underline color
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new().underline_color(Some(anstyle::AnsiColor::Red.into()));
-
   ```
 
 - <span id="style-effects"></span>`const fn effects(self, effects: crate::Effects) -> Self` — [`Effects`](../index.md#effects)
 
   Set text effects
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new().effects(anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE);
-
   ```
 
 - <span id="style-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
   Render the ANSI code
-
   
-
   `Style` also implements `Display` directly, so calling this method is optional.
 
 - <span id="style-fmt-to"></span>`fn fmt_to(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
@@ -140,17 +108,13 @@ println!("{style}{value}{style:#}");
 - <span id="style-render-reset"></span>`fn render_reset(self) -> impl core::fmt::Display + Copy`
 
   Renders the relevant `Reset` code
-
   
-
   Unlike `Reset::render`, this will elide the code if there is nothing to reset.
 
 - <span id="style-write-reset-to"></span>`fn write_reset_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
   Write the relevant `Reset` code
-
   
-
   Unlike `Reset::render`, this will elide the code if there is nothing to reset.
 
 #### Trait Implementations
@@ -216,11 +180,8 @@ println!("{style}{value}{style:#}");
 - <span id="style-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Style`
@@ -277,7 +238,7 @@ println!("{style}{value}{style:#}");
 struct StyleDisplay(Style);
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../../.source_1765633015/anstyle-1.0.13/src/style.rs#L423)*
+*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../../.source_1765894658/anstyle-1.0.13/src/style.rs#L423)*
 
 #### Trait Implementations
 
@@ -326,11 +287,8 @@ struct StyleDisplay(Style);
 - <span id="styledisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StyleDisplay`

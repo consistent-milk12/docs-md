@@ -21,7 +21,7 @@ enum ArgPredicate {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
+*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
 
 Operations to perform on argument values
 
@@ -76,11 +76,8 @@ These do not apply to `ValueSource::DefaultValue`
 - <span id="argpredicate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ArgPredicate`

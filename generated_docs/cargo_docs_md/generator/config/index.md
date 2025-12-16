@@ -113,11 +113,8 @@ Configuration options for markdown rendering.
 - <span id="renderconfig-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for RenderConfig`
@@ -247,11 +244,8 @@ Requires the `source-parsing` feature to have any effect.
 - <span id="sourceconfig-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceConfig`

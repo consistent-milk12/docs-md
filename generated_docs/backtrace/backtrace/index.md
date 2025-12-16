@@ -27,7 +27,7 @@ struct Frame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:76-78`](../../../.source_1765633015/backtrace-0.3.76/src/backtrace/mod.rs#L76-L78)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:76-78`](../../../.source_1765894658/backtrace-0.3.76/src/backtrace/mod.rs#L76-L78)*
 
 A trait representing one frame of a backtrace, yielded to the `trace`
 function of this crate.
@@ -41,47 +41,30 @@ until runtime.
 - <span id="frame-ip"></span>`fn ip(&self) -> *mut c_void`
 
   Returns the current instruction pointer of this frame.
-
   
-
   This is normally the next instruction to execute in the frame, but not
-
   all implementations list this with 100% accuracy (but it's generally
-
   pretty close).
-
   
-
   It is recommended to pass this value to `backtrace::resolve` to turn it
-
   into a symbol name.
 
 - <span id="frame-sp"></span>`fn sp(&self) -> *mut c_void`
 
   Returns the current stack pointer of this frame.
-
   
-
   In the case that a backend cannot recover the stack pointer for this
-
   frame, a null pointer is returned.
 
 - <span id="frame-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
   Returns the starting symbol address of the frame of this function.
-
   
-
   This will attempt to rewind the instruction pointer returned by `ip` to
-
   the start of the function, returning that value. In some cases, however,
-
   backends will just return `ip` from this function.
-
   
-
   The returned value can sometimes be used if `backtrace::resolve` failed
-
   on the `ip` given above.
 
 - <span id="frame-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
@@ -125,11 +108,8 @@ until runtime.
 - <span id="frame-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Frame`
@@ -160,7 +140,7 @@ until runtime.
 fn trace<F: FnMut(&Frame) -> bool>(cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../../.source_1765633015/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../../.source_1765894658/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
 
 Inspects the current call-stack, passing all active frames into the closure
 provided to calculate a stack trace.
@@ -215,7 +195,7 @@ fn main() {
 unsafe fn trace_unsynchronized<F: FnMut(&Frame) -> bool>(cb: F)
 ```
 
-*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../../.source_1765633015/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../../.source_1765894658/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
 
 Same as `trace`, only unsafe as it's unsynchronized.
 

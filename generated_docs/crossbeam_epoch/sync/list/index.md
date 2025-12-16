@@ -29,7 +29,7 @@ struct Entry {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:16-20`](../../../../.source_1765633015/crossbeam-epoch-0.9.18/src/sync/list.rs#L16-L20)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:16-20`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L16-L20)*
 
 An entry in a linked list.
 
@@ -48,17 +48,11 @@ cache-line than thread-local data in terms of performance.
 - <span id="entry-delete"></span>`unsafe fn delete(&self, guard: &Guard)` — [`Guard`](../../guard/index.md#guard)
 
   Marks this entry as deleted, deferring the actual deallocation to a later iteration.
-
   
-
   # Safety
-
   
-
   The entry should be a member of a linked list, and it should not have been deleted.
-
   It should be safe to call `C::finalize` on the entry after the `guard` is dropped, where `C`
-
   is the associated helper for the linked list.
 
 #### Trait Implementations
@@ -96,11 +90,8 @@ cache-line than thread-local data in terms of performance.
 - <span id="entry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Entry`
@@ -138,7 +129,7 @@ struct List<T, C: IsElement<T>> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:96-102`](../../../../.source_1765633015/crossbeam-epoch-0.9.18/src/sync/list.rs#L96-L102)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:96-102`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L96-L102)*
 
 A lock-free, intrusive linked list of type `T`.
 
@@ -161,49 +152,29 @@ A lock-free, intrusive linked list of type `T`.
 - <span id="list-insert"></span>`unsafe fn insert<'g>(self: &'g Self, container: Shared<'g, T>, guard: &'g Guard)` — [`Shared`](../../atomic/index.md#shared), [`Guard`](../../guard/index.md#guard)
 
   Inserts `entry` into the head of the list.
-
   
-
   # Safety
-
   
-
   You should guarantee that:
-
   
-
   - `container` is not null
-
   - `container` is immovable, e.g. inside an `Owned`
-
   - the same `Entry` is not inserted more than once
-
   - the inserted object will be removed before the list is dropped
 
 - <span id="list-iter"></span>`fn iter<'g>(self: &'g Self, guard: &'g Guard) -> Iter<'g, T, C>` — [`Guard`](../../guard/index.md#guard), [`Iter`](#iter)
 
   Returns an iterator over all objects.
-
   
-
   # Caveat
-
   
-
   Every object that is inserted at the moment this function is called and persists at least
-
   until the end of iteration will be returned. Since this iterator traverses a lock-free
-
   linked list that may be concurrently modified, some additional caveats apply:
-
   
-
   1. If a new object is inserted during iteration, it may or may not be returned.
-
   2. If an object is deleted during iteration, it may or may not be returned.
-
   3. The iteration may be aborted when it lost in a race condition. In this case, the winning
-
      thread will continue to iterate over the same list.
 
 #### Trait Implementations
@@ -239,11 +210,8 @@ A lock-free, intrusive linked list of type `T`.
 - <span id="list-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for List<T, C>`
@@ -284,7 +252,7 @@ struct Iter<'g, T, C: IsElement<T>> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:105-121`](../../../../.source_1765633015/crossbeam-epoch-0.9.18/src/sync/list.rs#L105-L121)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:105-121`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L105-L121)*
 
 An iterator used for retrieving values from the list.
 
@@ -336,11 +304,8 @@ An iterator used for retrieving values from the list.
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter<'g, T, C>`
@@ -393,7 +358,7 @@ enum IterError {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:125-129`](../../../../.source_1765633015/crossbeam-epoch-0.9.18/src/sync/list.rs#L125-L129)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:125-129`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L125-L129)*
 
 An error that occurs during iteration over the list.
 
@@ -433,11 +398,8 @@ An error that occurs during iteration over the list.
 - <span id="itererror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for IterError`
@@ -480,7 +442,7 @@ An error that occurs during iteration over the list.
 trait IsElement<T> { ... }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:67-92`](../../../../.source_1765633015/crossbeam-epoch-0.9.18/src/sync/list.rs#L67-L92)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:67-92`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/list.rs#L67-L92)*
 
 Implementing this trait asserts that the type `T` can be used as an element in the intrusive
 linked list defined in this module. `T` has to contain (or otherwise be linked to) an instance
@@ -537,10 +499,26 @@ struct B {
 - `fn element_of(_: &Entry) -> &T`
 
   Given a reference to an element's entry, returns that element.
+  
+  ```ignore
+  let elem = ListElement::new();
+  assert_eq!(elem.entry_of(),
+             unsafe { ListElement::element_of(elem.entry_of()) } );
+  ```
+  
+  # Safety
+  
+  The caller has to guarantee that the `Entry` is called with was retrieved from an instance
+  of the element type (`T`).
 
 - `fn finalize(_: &Entry, _: &Guard)`
 
   The function that is called when an entry is unlinked from list.
+  
+  # Safety
+  
+  The caller has to guarantee that the `Entry` is called with was retrieved from an instance
+  of the element type (`T`).
 
 #### Implementors
 

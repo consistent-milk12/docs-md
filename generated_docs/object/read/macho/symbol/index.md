@@ -50,7 +50,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:23-29`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L23-L29)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:23-29`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L23-L29)*
 
 A table of symbol entries in a Mach-O file.
 
@@ -133,11 +133,8 @@ Returned by `macho::SymtabCommand::symbols`.
 - <span id="symboltable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SymbolTable<'data, Mach, R>`
@@ -171,7 +168,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:184-190`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L184-L190)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:184-190`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L184-L190)*
 
 A symbol table in a [`MachOFile`](../index.md).
 
@@ -214,11 +211,8 @@ A symbol table in a [`MachOFile`](../index.md).
 - <span id="machosymboltable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSymbolTable for MachOSymbolTable<'data, 'file, Mach, R>`
@@ -265,7 +259,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:225-232`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L225-L232)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:225-232`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L225-L232)*
 
 An iterator for the symbols in a [`MachOFile`](../index.md).
 
@@ -304,11 +298,8 @@ An iterator for the symbols in a [`MachOFile`](../index.md).
 - <span id="machosymboliterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOSymbolIterator<'data, 'file, Mach, R>`
@@ -350,7 +341,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:294-302`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L294-L302)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:294-302`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L294-L302)*
 
 A symbol in a [`MachOFile`](../index.md).
 
@@ -407,11 +398,8 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 - <span id="machosymbol-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSymbol for MachOSymbol<'data, 'file, Mach, R>`
@@ -476,7 +464,7 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 trait Nlist: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:457-504`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L457-L504)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:457-504`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L457-L504)*
 
 A trait for generic access to [`macho::Nlist32`](../../../macho/index.md) and [`macho::Nlist64`](../../../macho/index.md).
 
@@ -505,6 +493,8 @@ A trait for generic access to [`macho::Nlist32`](../../../macho/index.md) and [`
 - `fn is_stab(&self) -> bool`
 
   Return true if this is a STAB symbol.
+  
+  This determines the meaning of the `n_type` field.
 
 - `fn is_undefined(&self) -> bool`
 
@@ -517,6 +507,9 @@ A trait for generic access to [`macho::Nlist32`](../../../macho/index.md) and [`
 - `fn library_ordinal(&self, endian: <Self as >::Endian) -> u8`
 
   Return the library ordinal.
+  
+  This is either a 1-based index into the dylib load commands,
+  or a special ordinal.
 
 #### Implementors
 
@@ -531,7 +524,7 @@ A trait for generic access to [`macho::Nlist32`](../../../macho/index.md) and [`
 type MachOSymbolTable32<'data, 'file, Endian, R> = MachOSymbolTable<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:176-177`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L176-L177)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:176-177`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L176-L177)*
 
 A symbol table in a [`MachOFile32`](super::MachOFile32).
 
@@ -541,7 +534,7 @@ A symbol table in a [`MachOFile32`](super::MachOFile32).
 type MachOSymbolTable64<'data, 'file, Endian, R> = MachOSymbolTable<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:179-180`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L179-L180)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:179-180`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L179-L180)*
 
 A symbol table in a [`MachOFile64`](super::MachOFile64).
 
@@ -551,7 +544,7 @@ A symbol table in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbolIterator32<'data, 'file, Endian, R> = MachOSymbolIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:218-219`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L218-L219)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:218-219`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L218-L219)*
 
 An iterator for the symbols in a [`MachOFile32`](super::MachOFile32).
 
@@ -561,7 +554,7 @@ An iterator for the symbols in a [`MachOFile32`](super::MachOFile32).
 type MachOSymbolIterator64<'data, 'file, Endian, R> = MachOSymbolIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:221-222`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L221-L222)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:221-222`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L221-L222)*
 
 An iterator for the symbols in a [`MachOFile64`](super::MachOFile64).
 
@@ -571,7 +564,7 @@ An iterator for the symbols in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbol32<'data, 'file, Endian, R> = MachOSymbol<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:284-285`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L284-L285)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:284-285`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L284-L285)*
 
 A symbol in a [`MachOFile32`](super::MachOFile32).
 
@@ -581,7 +574,7 @@ A symbol in a [`MachOFile32`](super::MachOFile32).
 type MachOSymbol64<'data, 'file, Endian, R> = MachOSymbol<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:287-288`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L287-L288)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:287-288`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L287-L288)*
 
 A symbol in a [`MachOFile64`](super::MachOFile64).
 

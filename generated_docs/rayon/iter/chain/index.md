@@ -23,7 +23,7 @@ struct Chain<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../../.source_1765633015/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../../.source_1765894658/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
 
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
 This struct is created by the `chain()` method on [`ParallelIterator`](../index.md)
@@ -80,11 +80,8 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../index.
 - <span id="chain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Chain<A, B>`
@@ -152,7 +149,7 @@ where
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chain.rs:138-146`](../../../../.source_1765633015/rayon-1.11.0/src/iter/chain.rs#L138-L146)*
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:138-146`](../../../../.source_1765894658/rayon-1.11.0/src/iter/chain.rs#L138-L146)*
 
 #### Implementations
 
@@ -183,11 +180,8 @@ where
 - <span id="chainproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ChainProducer<A, B>`
@@ -242,7 +236,7 @@ struct ChainSeq<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chain.rs:213-215`](../../../../.source_1765633015/rayon-1.11.0/src/iter/chain.rs#L213-L215)*
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:213-215`](../../../../.source_1765894658/rayon-1.11.0/src/iter/chain.rs#L213-L215)*
 
 Wrapper for `Chain` to implement `ExactSizeIterator`
 
@@ -281,11 +275,8 @@ Wrapper for `Chain` to implement `ExactSizeIterator`
 - <span id="chainseq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ChainSeq<A, B>`

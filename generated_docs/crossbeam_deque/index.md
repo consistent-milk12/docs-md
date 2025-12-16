@@ -109,7 +109,7 @@ struct Injector<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../.source_1765633015/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
 
 An injector queue.
 
@@ -149,355 +149,196 @@ assert_eq!(q.steal(), Steal::Empty);
 - <span id="injector-new"></span>`fn new() -> Injector<T>` — [`Injector`](deque/index.md#injector)
 
   Creates a new injector queue.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Injector;
-
   
-
   let q = Injector::<i32>::new();
-
   ```
 
 - <span id="injector-push"></span>`fn push(&self, task: T)`
 
   Pushes a task into the queue.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Injector;
-
   
-
   let w = Injector::new();
-
   w.push(1);
-
   w.push(2);
-
   ```
 
 - <span id="injector-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](deque/index.md#steal)
 
   Steals a task from the queue.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::{Injector, Steal};
-
   
-
   let q = Injector::new();
-
   q.push(1);
-
   q.push(2);
-
   
-
   assert_eq!(q.steal(), Steal::Success(1));
-
   assert_eq!(q.steal(), Steal::Success(2));
-
   assert_eq!(q.steal(), Steal::Empty);
-
   ```
 
 - <span id="injector-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
   Steals a batch of tasks and pushes them into a worker.
-
   
-
   How many tasks exactly will be stolen is not specified. That said, this method will try to
-
   steal around half of the tasks in the queue, but also not more than some constant limit.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::{Injector, Worker};
-
   
-
   let q = Injector::new();
-
   q.push(1);
-
   q.push(2);
-
   q.push(3);
-
   q.push(4);
-
   
-
   let w = Worker::new_fifo();
-
   let _ = q.steal_batch(&w);
-
   assert_eq!(w.pop(), Some(1));
-
   assert_eq!(w.pop(), Some(2));
-
   ```
 
 - <span id="injector-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
   Steals no more than of tasks and pushes them into a worker.
-
   
-
   How many tasks exactly will be stolen is not specified. That said, this method will try to
-
   steal around half of the tasks in the queue, but also not more than some constant limit.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::{Injector, Worker};
-
   
-
   let q = Injector::new();
-
   q.push(1);
-
   q.push(2);
-
   q.push(3);
-
   q.push(4);
-
   q.push(5);
-
   q.push(6);
-
   
-
   let w = Worker::new_fifo();
-
   let _ = q.steal_batch_with_limit(&w, 2);
-
   assert_eq!(w.pop(), Some(1));
-
   assert_eq!(w.pop(), Some(2));
-
   assert_eq!(w.pop(), None);
-
   
-
   q.push(7);
-
   q.push(8);
-
   // Setting a large limit does not guarantee that all elements will be popped. In this case,
-
   // half of the elements are currently popped, but the number of popped elements is considered
-
   // an implementation detail that may be changed in the future.
-
   let _ = q.steal_batch_with_limit(&w, std::usize::MAX);
-
   assert_eq!(w.len(), 3);
-
   ```
 
 - <span id="injector-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
   Steals a batch of tasks, pushes them into a worker, and pops a task from that worker.
-
   
-
   How many tasks exactly will be stolen is not specified. That said, this method will try to
-
   steal around half of the tasks in the queue, but also not more than some constant limit.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::{Injector, Steal, Worker};
-
   
-
   let q = Injector::new();
-
   q.push(1);
-
   q.push(2);
-
   q.push(3);
-
   q.push(4);
-
   
-
   let w = Worker::new_fifo();
-
   assert_eq!(q.steal_batch_and_pop(&w), Steal::Success(1));
-
   assert_eq!(w.pop(), Some(2));
-
   ```
 
 - <span id="injector-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
   Steals no more than `limit` of tasks, pushes them into a worker, and pops a task from that worker.
-
   
-
   How many tasks exactly will be stolen is not specified. That said, this method will try to
-
   steal around half of the tasks in the queue, but also not more than the given limit.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::{Injector, Steal, Worker};
-
   
-
   let q = Injector::new();
-
   q.push(1);
-
   q.push(2);
-
   q.push(3);
-
   q.push(4);
-
   q.push(5);
-
   q.push(6);
-
   
-
   let w = Worker::new_fifo();
-
   assert_eq!(q.steal_batch_with_limit_and_pop(&w, 2), Steal::Success(1));
-
   assert_eq!(w.pop(), Some(2));
-
   assert_eq!(w.pop(), None);
-
   
-
   q.push(7);
-
   // Setting a large limit does not guarantee that all elements will be popped. In this case,
-
   // half of the elements are currently popped, but the number of popped elements is considered
-
   // an implementation detail that may be changed in the future.
-
   assert_eq!(q.steal_batch_with_limit_and_pop(&w, std::usize::MAX), Steal::Success(3));
-
   assert_eq!(w.pop(), Some(4));
-
   assert_eq!(w.pop(), Some(5));
-
   assert_eq!(w.pop(), None);
-
   ```
 
 - <span id="injector-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns `true` if the queue is empty.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Injector;
-
   
-
   let q = Injector::new();
-
   
-
   assert!(q.is_empty());
-
   q.push(1);
-
   assert!(!q.is_empty());
-
   ```
 
 - <span id="injector-len"></span>`fn len(&self) -> usize`
 
   Returns the number of tasks in the queue.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Injector;
-
   
-
   let q = Injector::new();
-
   
-
   assert_eq!(q.len(), 0);
-
   q.push(1);
-
   assert_eq!(q.len(), 1);
-
   q.push(1);
-
   assert_eq!(q.len(), 2);
-
   ```
 
 #### Trait Implementations
@@ -537,11 +378,8 @@ assert_eq!(q.steal(), Steal::Empty);
 - <span id="injector-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Injector<T>`
@@ -583,7 +421,7 @@ struct Stealer<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../.source_1765633015/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
 
 A stealer handle of a worker queue.
 
@@ -621,327 +459,178 @@ assert_eq!(s.steal(), Steal::Empty);
 - <span id="stealer-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns `true` if the queue is empty.
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w = Worker::new_lifo();
-
   let s = w.stealer();
-
   
-
   assert!(s.is_empty());
-
   w.push(1);
-
   assert!(!s.is_empty());
-
   ```
 
 - <span id="stealer-len"></span>`fn len(&self) -> usize`
 
   Returns the number of tasks in the deque.
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w = Worker::new_lifo();
-
   let s = w.stealer();
-
   
-
   assert_eq!(s.len(), 0);
-
   w.push(1);
-
   assert_eq!(s.len(), 1);
-
   w.push(2);
-
   assert_eq!(s.len(), 2);
-
   ```
 
 - <span id="stealer-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](deque/index.md#steal)
 
   Steals a task from the queue.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::{Steal, Worker};
-
   
-
   let w = Worker::new_lifo();
-
   w.push(1);
-
   w.push(2);
-
   
-
   let s = w.stealer();
-
   assert_eq!(s.steal(), Steal::Success(1));
-
   assert_eq!(s.steal(), Steal::Success(2));
-
   ```
 
 - <span id="stealer-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
   Steals a batch of tasks and pushes them into another worker.
-
   
-
   How many tasks exactly will be stolen is not specified. That said, this method will try to
-
   steal around half of the tasks in the queue, but also not more than some constant limit.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w1 = Worker::new_fifo();
-
   w1.push(1);
-
   w1.push(2);
-
   w1.push(3);
-
   w1.push(4);
-
   
-
   let s = w1.stealer();
-
   let w2 = Worker::new_fifo();
-
   
-
   let _ = s.steal_batch(&w2);
-
   assert_eq!(w2.pop(), Some(1));
-
   assert_eq!(w2.pop(), Some(2));
-
   ```
 
 - <span id="stealer-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
   Steals no more than `limit` of tasks and pushes them into another worker.
-
   
-
   How many tasks exactly will be stolen is not specified. That said, this method will try to
-
   steal around half of the tasks in the queue, but also not more than the given limit.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w1 = Worker::new_fifo();
-
   w1.push(1);
-
   w1.push(2);
-
   w1.push(3);
-
   w1.push(4);
-
   w1.push(5);
-
   w1.push(6);
-
   
-
   let s = w1.stealer();
-
   let w2 = Worker::new_fifo();
-
   
-
   let _ = s.steal_batch_with_limit(&w2, 2);
-
   assert_eq!(w2.pop(), Some(1));
-
   assert_eq!(w2.pop(), Some(2));
-
   assert_eq!(w2.pop(), None);
-
   
-
   w1.push(7);
-
   w1.push(8);
-
   // Setting a large limit does not guarantee that all elements will be popped. In this case,
-
   // half of the elements are currently popped, but the number of popped elements is considered
-
   // an implementation detail that may be changed in the future.
-
   let _ = s.steal_batch_with_limit(&w2, std::usize::MAX);
-
   assert_eq!(w2.len(), 3);
-
   ```
 
 - <span id="stealer-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
   Steals a batch of tasks, pushes them into another worker, and pops a task from that worker.
-
   
-
   How many tasks exactly will be stolen is not specified. That said, this method will try to
-
   steal around half of the tasks in the queue, but also not more than some constant limit.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::{Steal, Worker};
-
   
-
   let w1 = Worker::new_fifo();
-
   w1.push(1);
-
   w1.push(2);
-
   w1.push(3);
-
   w1.push(4);
-
   
-
   let s = w1.stealer();
-
   let w2 = Worker::new_fifo();
-
   
-
   assert_eq!(s.steal_batch_and_pop(&w2), Steal::Success(1));
-
   assert_eq!(w2.pop(), Some(2));
-
   ```
 
 - <span id="stealer-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md#worker), [`Steal`](deque/index.md#steal)
 
   Steals no more than `limit` of tasks, pushes them into another worker, and pops a task from
-
   that worker.
-
   
-
   How many tasks exactly will be stolen is not specified. That said, this method will try to
-
   steal around half of the tasks in the queue, but also not more than the given limit.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::{Steal, Worker};
-
   
-
   let w1 = Worker::new_fifo();
-
   w1.push(1);
-
   w1.push(2);
-
   w1.push(3);
-
   w1.push(4);
-
   w1.push(5);
-
   w1.push(6);
-
   
-
   let s = w1.stealer();
-
   let w2 = Worker::new_fifo();
-
   
-
   assert_eq!(s.steal_batch_with_limit_and_pop(&w2, 2), Steal::Success(1));
-
   assert_eq!(w2.pop(), Some(2));
-
   assert_eq!(w2.pop(), None);
-
   
-
   w1.push(7);
-
   w1.push(8);
-
   // Setting a large limit does not guarantee that all elements will be popped. In this case,
-
   // half of the elements are currently popped, but the number of popped elements is considered
-
   // an implementation detail that may be changed in the future.
-
   assert_eq!(s.steal_batch_with_limit_and_pop(&w2, std::usize::MAX), Steal::Success(3));
-
   assert_eq!(w2.pop(), Some(4));
-
   assert_eq!(w2.pop(), Some(5));
-
   assert_eq!(w2.pop(), None);
-
   ```
 
 #### Trait Implementations
@@ -981,11 +670,8 @@ assert_eq!(s.steal(), Steal::Empty);
 - <span id="stealer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Stealer<T>`
@@ -1037,7 +723,7 @@ struct Worker<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../.source_1765633015/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
 
 A worker queue.
 
@@ -1103,75 +789,44 @@ assert_eq!(w.pop(), Some(2));
 - <span id="worker-new-fifo"></span>`fn new_fifo() -> Worker<T>` — [`Worker`](deque/index.md#worker)
 
   Creates a FIFO worker queue.
-
   
-
   Tasks are pushed and popped from opposite ends.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w = Worker::<i32>::new_fifo();
-
   ```
 
 - <span id="worker-new-lifo"></span>`fn new_lifo() -> Worker<T>` — [`Worker`](deque/index.md#worker)
 
   Creates a LIFO worker queue.
-
   
-
   Tasks are pushed and popped from the same end.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w = Worker::<i32>::new_lifo();
-
   ```
 
 - <span id="worker-stealer"></span>`fn stealer(&self) -> Stealer<T>` — [`Stealer`](deque/index.md#stealer)
 
   Creates a stealer for this queue.
-
   
-
   The returned stealer can be shared among threads and cloned.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w = Worker::<i32>::new_lifo();
-
   let s = w.stealer();
-
   ```
 
 - <span id="worker-resize"></span>`unsafe fn resize(&self, new_cap: usize)`
@@ -1181,115 +836,68 @@ assert_eq!(w.pop(), Some(2));
 - <span id="worker-reserve"></span>`fn reserve(&self, reserve_cap: usize)`
 
   Reserves enough capacity so that `reserve_cap` tasks can be pushed without growing the
-
   buffer.
 
 - <span id="worker-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns `true` if the queue is empty.
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w = Worker::new_lifo();
-
   
-
   assert!(w.is_empty());
-
   w.push(1);
-
   assert!(!w.is_empty());
-
   ```
 
 - <span id="worker-len"></span>`fn len(&self) -> usize`
 
   Returns the number of tasks in the deque.
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w = Worker::new_lifo();
-
   
-
   assert_eq!(w.len(), 0);
-
   w.push(1);
-
   assert_eq!(w.len(), 1);
-
   w.push(1);
-
   assert_eq!(w.len(), 2);
-
   ```
 
 - <span id="worker-push"></span>`fn push(&self, task: T)`
 
   Pushes a task into the queue.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w = Worker::new_lifo();
-
   w.push(1);
-
   w.push(2);
-
   ```
 
 - <span id="worker-pop"></span>`fn pop(&self) -> Option<T>`
 
   Pops a task from the queue.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Worker;
-
   
-
   let w = Worker::new_fifo();
-
   w.push(1);
-
   w.push(2);
-
   
-
   assert_eq!(w.pop(), Some(1));
-
   assert_eq!(w.pop(), Some(2));
-
   assert_eq!(w.pop(), None);
-
   ```
 
 #### Trait Implementations
@@ -1321,11 +929,8 @@ assert_eq!(w.pop(), Some(2));
 - <span id="worker-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for Worker<T>`
@@ -1368,7 +973,7 @@ enum Steal<T> {
 }
 ```
 
-*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../.source_1765633015/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../.source_1765894658/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
 
 Possible outcomes of a steal operation.
 
@@ -1408,149 +1013,85 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 - <span id="steal-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns `true` if the queue was empty at the time of stealing.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Steal::{Empty, Retry, Success};
-
   
-
   assert!(!Success(7).is_empty());
-
   assert!(!Retry::<i32>.is_empty());
-
   
-
   assert!(Empty::<i32>.is_empty());
-
   ```
 
 - <span id="steal-is-success"></span>`fn is_success(&self) -> bool`
 
   Returns `true` if at least one task was stolen.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Steal::{Empty, Retry, Success};
-
   
-
   assert!(!Empty::<i32>.is_success());
-
   assert!(!Retry::<i32>.is_success());
-
   
-
   assert!(Success(7).is_success());
-
   ```
 
 - <span id="steal-is-retry"></span>`fn is_retry(&self) -> bool`
 
   Returns `true` if the steal operation needs to be retried.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Steal::{Empty, Retry, Success};
-
   
-
   assert!(!Empty::<i32>.is_retry());
-
   assert!(!Success(7).is_retry());
-
   
-
   assert!(Retry::<i32>.is_retry());
-
   ```
 
 - <span id="steal-success"></span>`fn success(self) -> Option<T>`
 
   Returns the result of the operation, if successful.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Steal::{Empty, Retry, Success};
-
   
-
   assert_eq!(Empty::<i32>.success(), None);
-
   assert_eq!(Retry::<i32>.success(), None);
-
   
-
   assert_eq!(Success(7).success(), Some(7));
-
   ```
 
 - <span id="steal-or-else"></span>`fn or_else<F>(self, f: F) -> Steal<T>` — [`Steal`](deque/index.md#steal)
 
   If no task was stolen, attempts another steal operation.
-
   
-
   Returns this steal result if it is `Success`. Otherwise, closure `f` is invoked and then:
-
   
-
   * If the second steal resulted in `Success`, it is returned.
-
   * If both steals were unsuccessful but any resulted in `Retry`, then `Retry` is returned.
-
   * If both resulted in `None`, then `None` is returned.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_deque::Steal::{Empty, Retry, Success};
-
   
-
   assert_eq!(Success(1).or_else(|| Success(2)), Success(1));
-
   assert_eq!(Retry.or_else(|| Success(2)), Success(2));
-
   
-
   assert_eq!(Retry.or_else(|| Empty), Retry::<i32>);
-
   assert_eq!(Empty.or_else(|| Retry), Retry::<i32>);
-
   
-
   assert_eq!(Empty.or_else(|| Empty), Empty::<i32>);
-
   ```
 
 #### Trait Implementations
@@ -1594,11 +1135,8 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 - <span id="steal-fromiterator-from-iter"></span>`fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](deque/index.md#steal)
 
   Consumes items until a `Success` is found and returns it.
-
   
-
   If no `Success` was found, but there was at least one `Retry`, then returns `Retry`.
-
   Otherwise, `Empty` is returned.
 
 ##### `impl<T, U> Into for Steal<T>`
@@ -1606,11 +1144,8 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 - <span id="steal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for Steal<T>`

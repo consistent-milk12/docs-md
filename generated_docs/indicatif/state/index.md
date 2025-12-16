@@ -58,7 +58,7 @@ struct BarState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:15-21`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L15-L21)*
+*Defined in [`indicatif-0.18.3/src/state.rs:15-21`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L15-L21)*
 
 #### Implementations
 
@@ -67,7 +67,6 @@ struct BarState {
 - <span id="barstate-finish-using-style"></span>`fn finish_using_style(&mut self, now: Instant, finish: ProgressFinish)` — [`ProgressFinish`](#progressfinish)
 
   Finishes the progress bar using the [`ProgressFinish`](#progressfinish) behavior stored
-
   in the [`ProgressStyle`](../style/index.md).
 
 - <span id="barstate-reset"></span>`fn reset(&mut self, now: Instant, mode: Reset)` — [`Reset`](#reset)
@@ -125,11 +124,8 @@ struct BarState {
 - <span id="barstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for BarState`
@@ -159,7 +155,7 @@ struct ProgressState {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L242-L251)*
+*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L242-L251)*
 
 The state of a progress bar at a moment in time.
 
@@ -222,11 +218,8 @@ The state of a progress bar at a moment in time.
 - <span id="progressstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ProgressState`
@@ -253,7 +246,7 @@ struct Estimator {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:421-427`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L421-L427)*
+*Defined in [`indicatif-0.18.3/src/state.rs:421-427`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L421-L427)*
 
 Double-smoothed exponentially weighted estimator
 
@@ -281,7 +274,6 @@ slow asymptotic approach to zero (until the next spike).
 - <span id="estimator-reset"></span>`fn reset(&mut self, now: Instant)`
 
   Reset the state of the estimator. Once reset, estimates will not depend on any data prior
-
   to `now`. This does not reset the stored position of the progress bar.
 
 - <span id="estimator-steps-per-second"></span>`fn steps_per_second(&self, now: Instant) -> f64`
@@ -317,11 +309,8 @@ slow asymptotic approach to zero (until the next spike).
 - <span id="estimator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Estimator`
@@ -347,7 +336,7 @@ struct AtomicPosition {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:532-537`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L532-L537)*
+*Defined in [`indicatif-0.18.3/src/state.rs:532-537`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L532-L537)*
 
 #### Implementations
 
@@ -388,11 +377,8 @@ struct AtomicPosition {
 - <span id="atomicposition-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for AtomicPosition`
@@ -419,7 +405,7 @@ enum Reset {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:234-238`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L234-L238)*
+*Defined in [`indicatif-0.18.3/src/state.rs:234-238`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L234-L238)*
 
 #### Trait Implementations
 
@@ -446,11 +432,8 @@ enum Reset {
 - <span id="reset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Reset`
@@ -478,7 +461,7 @@ enum TabExpandedString {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:353-360`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L353-L360)*
+*Defined in [`indicatif-0.18.3/src/state.rs:353-360`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L353-L360)*
 
 #### Implementations
 
@@ -527,11 +510,8 @@ enum TabExpandedString {
 - <span id="tabexpandedstring-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TabExpandedString`
@@ -572,7 +552,7 @@ enum ProgressFinish {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L615-L637)*
+*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L615-L637)*
 
 Behavior of a progress bar when it is finished
 
@@ -655,11 +635,8 @@ This is invoked when a [`ProgressBar`](../progress_bar/index.md) or [`ProgressBa
 - <span id="progressfinish-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ProgressFinish`
@@ -692,7 +669,7 @@ enum Status {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:679-683`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L679-L683)*
+*Defined in [`indicatif-0.18.3/src/state.rs:679-683`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L679-L683)*
 
 #### Trait Implementations
 
@@ -723,11 +700,8 @@ enum Status {
 - <span id="status-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Status`
@@ -750,7 +724,7 @@ enum Status {
 fn estimator_weight(age: f64) -> f64
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:663-666`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L663-L666)*
+*Defined in [`indicatif-0.18.3/src/state.rs:663-666`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L663-L666)*
 
 Get the appropriate dilution weight for Estimator data given the data's age (in seconds)
 
@@ -783,7 +757,7 @@ samples, a very useful feature.
 fn duration_to_secs(d: std::time::Duration) -> f64
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:668-670`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L668-L670)*
+*Defined in [`indicatif-0.18.3/src/state.rs:668-670`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L668-L670)*
 
 ### `secs_to_duration`
 
@@ -791,7 +765,7 @@ fn duration_to_secs(d: std::time::Duration) -> f64
 fn secs_to_duration(s: f64) -> std::time::Duration
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:672-676`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L672-L676)*
+*Defined in [`indicatif-0.18.3/src/state.rs:672-676`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L672-L676)*
 
 ## Constants
 
@@ -800,19 +774,19 @@ fn secs_to_duration(s: f64) -> std::time::Duration
 const INTERVAL: u64 = 1_000_000u64;
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:603`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L603)*
+*Defined in [`indicatif-0.18.3/src/state.rs:603`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L603)*
 
 ### `MAX_BURST`
 ```rust
 const MAX_BURST: u8 = 10u8;
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:604`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L604)*
+*Defined in [`indicatif-0.18.3/src/state.rs:604`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L604)*
 
 ### `DEFAULT_TAB_WIDTH`
 ```rust
 const DEFAULT_TAB_WIDTH: usize = 8usize;
 ```
 
-*Defined in [`indicatif-0.18.3/src/state.rs:685`](../../../.source_1765633015/indicatif-0.18.3/src/state.rs#L685)*
+*Defined in [`indicatif-0.18.3/src/state.rs:685`](../../../.source_1765894658/indicatif-0.18.3/src/state.rs#L685)*
 

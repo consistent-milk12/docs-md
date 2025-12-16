@@ -23,7 +23,7 @@
 struct Effects(u16);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L9)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L9)*
 
 A set of text effects
 
@@ -64,141 +64,85 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 - <span id="effects-new"></span>`const fn new() -> Self`
 
   No effects enabled
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::new();
-
   ```
 
 - <span id="effects-is-plain"></span>`const fn is_plain(self) -> bool`
 
   Check if no effects are enabled
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::new();
-
   assert!(effects.is_plain());
-
   
-
   let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
-
   assert!(!effects.is_plain());
-
   ```
 
 - <span id="effects-contains"></span>`const fn contains(self, other: Effects) -> bool` — [`Effects`](../index.md#effects)
 
   Returns `true` if all of the effects in `other` are contained within `self`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
-
   assert!(effects.contains(anstyle::Effects::BOLD));
-
   
-
   let effects = anstyle::Effects::new();
-
   assert!(!effects.contains(anstyle::Effects::BOLD));
-
   ```
 
 - <span id="effects-insert"></span>`const fn insert(self, other: Effects) -> Self` — [`Effects`](../index.md#effects)
 
   Inserts the specified effects in-place.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::new().insert(anstyle::Effects::new());
-
   assert!(effects.is_plain());
-
   
-
   let effects = anstyle::Effects::new().insert(anstyle::Effects::BOLD);
-
   assert!(effects.contains(anstyle::Effects::BOLD));
-
   ```
 
 - <span id="effects-remove"></span>`const fn remove(self, other: Effects) -> Self` — [`Effects`](../index.md#effects)
 
   Removes the specified effects in-place.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = (anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE).remove(anstyle::Effects::BOLD);
-
   assert!(!effects.contains(anstyle::Effects::BOLD));
-
   assert!(effects.contains(anstyle::Effects::UNDERLINE));
-
   ```
 
 - <span id="effects-clear"></span>`const fn clear(self) -> Self`
 
   Reset all effects in-place
-
   ```rust
-
   let effects = (anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE).clear();
-
   assert!(!effects.contains(anstyle::Effects::BOLD));
-
   assert!(!effects.contains(anstyle::Effects::UNDERLINE));
-
   ```
 
 - <span id="effects-set"></span>`const fn set(self, other: Self, enable: bool) -> Self`
 
   Enable or disable the specified effects depending on the passed value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::new().set(anstyle::Effects::BOLD, true);
-
   assert!(effects.contains(anstyle::Effects::BOLD));
-
   ```
 
 - <span id="effects-iter"></span>`fn iter(self) -> EffectIter` — [`EffectIter`](../index.md#effectiter)
@@ -274,11 +218,8 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 - <span id="effects-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Effects`
@@ -334,7 +275,7 @@ struct Metadata {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L263-L266)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L263-L266)*
 
 #### Trait Implementations
 
@@ -361,11 +302,8 @@ struct Metadata {
 - <span id="metadata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Metadata`
@@ -386,7 +324,7 @@ struct Metadata {
 struct EffectsDisplay(Effects);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L320)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L320)*
 
 #### Trait Implementations
 
@@ -435,11 +373,8 @@ struct EffectsDisplay(Effects);
 - <span id="effectsdisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EffectsDisplay`
@@ -475,7 +410,7 @@ struct EffectIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L334-L337)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L334-L337)*
 
 Enumerate each enabled value in [`Effects`](../index.md)
 
@@ -518,11 +453,8 @@ Enumerate each enabled value in [`Effects`](../index.md)
 - <span id="effectiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for EffectIter`
@@ -574,7 +506,7 @@ struct EffectIndexIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L358-L361)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L358-L361)*
 
 #### Trait Implementations
 
@@ -615,11 +547,8 @@ struct EffectIndexIter {
 - <span id="effectindexiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for EffectIndexIter`
@@ -669,5 +598,5 @@ struct EffectIndexIter {
 const METADATA: [Metadata; 12];
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L268-L317)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L268-L317)*
 

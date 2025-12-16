@@ -24,7 +24,7 @@ struct Map<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map.rs:14-17`](../../../../.source_1765633015/rayon-1.11.0/src/iter/map.rs#L14-L17)*
+*Defined in [`rayon-1.11.0/src/iter/map.rs:14-17`](../../../../.source_1765894658/rayon-1.11.0/src/iter/map.rs#L14-L17)*
 
 `Map` is an iterator that transforms the elements of an underlying iterator.
 
@@ -82,11 +82,8 @@ This struct is created by the `map()` method on [`ParallelIterator`](../index.md
 - <span id="map-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Map<I, F>`
@@ -150,7 +147,7 @@ struct MapProducer<'f, P, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map.rs:109-112`](../../../../.source_1765633015/rayon-1.11.0/src/iter/map.rs#L109-L112)*
+*Defined in [`rayon-1.11.0/src/iter/map.rs:109-112`](../../../../.source_1765894658/rayon-1.11.0/src/iter/map.rs#L109-L112)*
 
 #### Trait Implementations
 
@@ -177,11 +174,8 @@ struct MapProducer<'f, P, F> {
 - <span id="mapproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MapProducer<'f, P, F>`
@@ -237,7 +231,7 @@ struct MapConsumer<'f, C, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map.rs:163-166`](../../../../.source_1765633015/rayon-1.11.0/src/iter/map.rs#L163-L166)*
+*Defined in [`rayon-1.11.0/src/iter/map.rs:163-166`](../../../../.source_1765894658/rayon-1.11.0/src/iter/map.rs#L163-L166)*
 
 #### Implementations
 
@@ -282,11 +276,8 @@ struct MapConsumer<'f, C, F> {
 - <span id="mapconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MapConsumer<'f, C, F>`
@@ -332,7 +323,7 @@ struct MapFolder<'f, C, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map.rs:220-223`](../../../../.source_1765633015/rayon-1.11.0/src/iter/map.rs#L220-L223)*
+*Defined in [`rayon-1.11.0/src/iter/map.rs:220-223`](../../../../.source_1765894658/rayon-1.11.0/src/iter/map.rs#L220-L223)*
 
 #### Trait Implementations
 
@@ -371,11 +362,8 @@ struct MapFolder<'f, C, F> {
 - <span id="mapfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MapFolder<'f, C, F>`

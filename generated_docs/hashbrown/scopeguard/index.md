@@ -24,7 +24,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/scopeguard.rs:8-14`](../../../.source_1765633015/hashbrown-0.16.1/src/scopeguard.rs#L8-L14)*
+*Defined in [`hashbrown-0.16.1/src/scopeguard.rs:8-14`](../../../.source_1765894658/hashbrown-0.16.1/src/scopeguard.rs#L8-L14)*
 
 #### Implementations
 
@@ -69,11 +69,8 @@ where
 - <span id="scopeguard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Receiver for ScopeGuard<T, F>`
@@ -102,5 +99,5 @@ where
     F: FnMut(&mut T)
 ```
 
-*Defined in [`hashbrown-0.16.1/src/scopeguard.rs:17-22`](../../../.source_1765633015/hashbrown-0.16.1/src/scopeguard.rs#L17-L22)*
+*Defined in [`hashbrown-0.16.1/src/scopeguard.rs:17-22`](../../../.source_1765894658/hashbrown-0.16.1/src/scopeguard.rs#L17-L22)*
 

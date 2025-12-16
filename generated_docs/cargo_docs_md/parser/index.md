@@ -76,77 +76,45 @@ into the `rustdoc_types::Crate` structure.
 - <span id="parser-parse-json"></span>`fn parse_json(json: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
 
   Parse a rustdoc JSON file from disk into a `Crate` structure.
-
   
-
   This is the primary entry point for loading documentation data.
-
   The file should be generated with `cargo doc --output-format json`.
-
   Parse a JSON string into a Crate structure.
-
   
-
   # Errors
-
   Returns an error if it faills to parse the JSON.
 
 - <span id="parser-parse-file"></span>`fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
 
   Parse a JSON file.
-
   
-
   # Errors
-
   Returns error if fails to read the JSON file.
 
 - <span id="parser-parse-json-string"></span>`fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md#error)
 
   Parse a rustdoc JSON string into a `Crate` structure.
-
   
-
   This is an alias for `parse_json` provided for API clarity when the
-
   caller wants to emphasize that they're parsing string content rather
-
   than a file path.
-
   
-
   # Arguments
-
   
-
   * `content` - The raw JSON string to parse
-
   
-
   # Returns
-
   
-
   A parsed `Crate` structure containing all documentation data.
-
   
-
   # Errors
-
   
-
   Returns `Error::JsonParse` if the JSON is invalid or doesn't match
-
   the expected rustdoc JSON schema.
-
   
-
   # Schema Compatibility
-
   
-
   The `rustdoc-types` crate version must match the rustdoc JSON format
-
   version. Mismatches can cause parsing failures or missing fields.
 
 #### Trait Implementations
@@ -176,11 +144,8 @@ into the `rustdoc_types::Crate` structure.
 - <span id="parser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Parser`

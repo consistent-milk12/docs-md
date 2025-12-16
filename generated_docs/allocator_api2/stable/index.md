@@ -58,7 +58,7 @@
 trait SliceExt<T> { ... }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/slice.rs:7-67`](../../../.source_1765633015/allocator-api2-0.2.21/src/stable/slice.rs#L7-L67)*
+*Defined in [`allocator-api2-0.2.21/src/stable/slice.rs:7-67`](../../../.source_1765894658/allocator-api2-0.2.21/src/stable/slice.rs#L7-L67)*
 
 Slice methods that use `Box` and `Vec` from this crate.
 
@@ -67,16 +67,55 @@ Slice methods that use `Box` and `Vec` from this crate.
 - `fn to_vec_in<A: Allocator>(&self, alloc: A) -> Vec<T, A>`
 
   Copies `self` into a new `Vec` with an allocator.
+  
+  # Examples
+  
+  ```rust
+  #![feature(allocator_api)]
+  
+  use std::alloc::System;
+  
+  let s = [10, 40, 30];
+  let x = s.to_vec_in(System);
+  // Here, `s` and `x` can be modified independently.
+  ```
 
 - `fn repeat(&self, n: usize) -> Vec<T, Global>`
 
   Creates a vector by copying a slice `n` times.
+  
+  # Panics
+  
+  This function will panic if the capacity would overflow.
+  
+  # Examples
+  
+  Basic usage:
+  
+  ```rust
+  assert_eq!([1, 2].repeat(3), vec![1, 2, 1, 2, 1, 2]);
+  ```
+  
+  A panic upon overflow:
+  
+  ```should_panic
+  // this will panic at runtime
+  b"0123456789abcdef".repeat(usize::MAX);
+  ```
 
 #### Provided Methods
 
 - `fn to_vec(&self) -> Vec<T, Global>`
 
   Copies `self` into a new `Vec`.
+  
+  # Examples
+  
+  ```rust
+  let s = [10, 40, 30];
+  let x = s.to_vec();
+  // Here, `s` and `x` can be modified independently.
+  ```
 
 #### Implementors
 
@@ -90,7 +129,7 @@ Slice methods that use `Box` and `Vec` from this crate.
 unsafe fn assume(v: bool)
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:71-75`](../../../.source_1765633015/allocator-api2-0.2.21/src/stable/mod.rs#L71-L75)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:71-75`](../../../.source_1765894658/allocator-api2-0.2.21/src/stable/mod.rs#L71-L75)*
 
 ### `addr`
 
@@ -98,7 +137,7 @@ unsafe fn assume(v: bool)
 fn addr<T>(x: *const T) -> usize
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:91-96`](../../../.source_1765633015/allocator-api2-0.2.21/src/stable/mod.rs#L91-L96)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:91-96`](../../../.source_1765894658/allocator-api2-0.2.21/src/stable/mod.rs#L91-L96)*
 
 ### `invalid_mut`
 
@@ -106,5 +145,5 @@ fn addr<T>(x: *const T) -> usize
 fn invalid_mut<T>(addr: usize) -> *mut T
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:100-105`](../../../.source_1765633015/allocator-api2-0.2.21/src/stable/mod.rs#L100-L105)*
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:100-105`](../../../.source_1765894658/allocator-api2-0.2.21/src/stable/mod.rs#L100-L105)*
 

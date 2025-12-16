@@ -21,7 +21,7 @@ Platform-agnostic support types.
 struct Padding<T: Copy>(core::mem::MaybeUninit<T>);
 ```
 
-*Defined in [`libc-0.2.178/src/types.rs:17`](../../../.source_1765633015/libc-0.2.178/src/types.rs#L17)*
+*Defined in [`libc-0.2.178/src/types.rs:17`](../../../.source_1765894658/libc-0.2.178/src/types.rs#L17)*
 
 A transparent wrapper over `MaybeUninit<T>` to represent uninitialized padding
 while providing `Default`.
@@ -69,11 +69,8 @@ while providing `Default`.
 - <span id="padding-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for Padding<T>`
@@ -96,5 +93,5 @@ while providing `Default`.
 type CEnumRepr = crate::c_uint;
 ```
 
-*Defined in [`libc-0.2.178/src/types.rs:59`](../../../.source_1765633015/libc-0.2.178/src/types.rs#L59)*
+*Defined in [`libc-0.2.178/src/types.rs:59`](../../../.source_1765894658/libc-0.2.178/src/types.rs#L59)*
 

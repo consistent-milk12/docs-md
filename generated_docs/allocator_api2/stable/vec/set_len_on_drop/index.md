@@ -21,7 +21,7 @@ struct SetLenOnDrop<'a> {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/vec/set_len_on_drop.rs:6-9`](../../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/vec/set_len_on_drop.rs#L6-L9)*
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/set_len_on_drop.rs:6-9`](../../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/vec/set_len_on_drop.rs#L6-L9)*
 
 #### Implementations
 
@@ -58,11 +58,8 @@ struct SetLenOnDrop<'a> {
 - <span id="setlenondrop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SetLenOnDrop<'a>`

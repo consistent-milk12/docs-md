@@ -23,7 +23,7 @@ struct FoldChunks<I, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../../.source_1765633015/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../../.source_1765894658/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
 
 `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
@@ -82,11 +82,8 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 - <span id="foldchunks-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FoldChunks<I, ID, F>`

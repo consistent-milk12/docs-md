@@ -26,7 +26,7 @@ struct IntoIter<K, V> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/btree_map.rs:14-16`](../../../../.source_1765633015/rayon-1.11.0/src/collections/btree_map.rs#L14-L16)*
+*Defined in [`rayon-1.11.0/src/collections/btree_map.rs:14-16`](../../../../.source_1765894658/rayon-1.11.0/src/collections/btree_map.rs#L14-L16)*
 
 Parallel iterator over a B-Tree map
 
@@ -59,11 +59,8 @@ Parallel iterator over a B-Tree map
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IntoIter<K, V>`
@@ -118,7 +115,7 @@ struct Iter<'a, K, V> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/btree_map.rs:30-32`](../../../../.source_1765633015/rayon-1.11.0/src/collections/btree_map.rs#L30-L32)*
+*Defined in [`rayon-1.11.0/src/collections/btree_map.rs:30-32`](../../../../.source_1765894658/rayon-1.11.0/src/collections/btree_map.rs#L30-L32)*
 
 Parallel iterator over an immutable reference to a B-Tree map
 
@@ -159,11 +156,8 @@ Parallel iterator over an immutable reference to a B-Tree map
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Iter<'a, K, V>`
@@ -226,7 +220,7 @@ struct IterMut<'a, K, V> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/collections/btree_map.rs:54-56`](../../../../.source_1765633015/rayon-1.11.0/src/collections/btree_map.rs#L54-L56)*
+*Defined in [`rayon-1.11.0/src/collections/btree_map.rs:54-56`](../../../../.source_1765894658/rayon-1.11.0/src/collections/btree_map.rs#L54-L56)*
 
 Parallel iterator over a mutable reference to a B-Tree map
 
@@ -259,11 +253,8 @@ Parallel iterator over a mutable reference to a B-Tree map
 - <span id="itermut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IterMut<'a, K, V>`

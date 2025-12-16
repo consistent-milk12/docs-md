@@ -20,7 +20,7 @@ struct BigInt {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/bigint.rs:4-6`](../../../.source_1765633015/syn-2.0.111/src/bigint.rs#L4-L6)*
+*Defined in [`syn-2.0.111/src/bigint.rs:4-6`](../../../.source_1765894658/syn-2.0.111/src/bigint.rs#L4-L6)*
 
 #### Implementations
 
@@ -59,11 +59,8 @@ struct BigInt {
 - <span id="bigint-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl MulAssign for BigInt`

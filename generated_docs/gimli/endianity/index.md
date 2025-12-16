@@ -24,7 +24,7 @@ Types for compile-time and run-time endianity.
 struct LittleEndian;
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:206`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L206)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:206`](../../../.source_1765894658/gimli-0.32.3/src/endianity.rs#L206)*
 
 Little endian byte order.
 
@@ -81,11 +81,8 @@ Little endian byte order.
 - <span id="littleendian-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LittleEndian`
@@ -120,7 +117,7 @@ Little endian byte order.
 struct BigEndian;
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:224`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L224)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:224`](../../../.source_1765894658/gimli-0.32.3/src/endianity.rs#L224)*
 
 Big endian byte order.
 
@@ -177,11 +174,8 @@ Big endian byte order.
 - <span id="bigendian-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for BigEndian`
@@ -221,7 +215,7 @@ enum RunTimeEndian {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:176-181`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L176-L181)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:176-181`](../../../.source_1765894658/gimli-0.32.3/src/endianity.rs#L176-L181)*
 
 Byte order that is selectable at runtime.
 
@@ -288,11 +282,8 @@ Byte order that is selectable at runtime.
 - <span id="runtimeendian-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RunTimeEndian`
@@ -329,7 +320,7 @@ Byte order that is selectable at runtime.
 trait Endianity: Debug + Default + Clone + Copy + PartialEq + Eq { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:7-172`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L7-L172)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:7-172`](../../../.source_1765894658/gimli-0.32.3/src/endianity.rs#L7-L172)*
 
 A trait describing the endianity of some buffer.
 
@@ -348,50 +339,98 @@ A trait describing the endianity of some buffer.
 - `fn read_u16(self, buf: &[u8]) -> u16`
 
   Reads an unsigned 16 bit integer from `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 2`.
 
 - `fn read_u32(self, buf: &[u8]) -> u32`
 
   Reads an unsigned 32 bit integer from `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 4`.
 
 - `fn read_u64(self, buf: &[u8]) -> u64`
 
   Reads an unsigned 64 bit integer from `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 8`.
 
 - `fn read_uint(&mut self, buf: &[u8]) -> u64`
 
   Read an unsigned n-bytes integer u64.
+  
+  # Panics
+  
+  Panics when `buf.len() < 1` or `buf.len() > 8`.
 
 - `fn read_i16(self, buf: &[u8]) -> i16`
 
   Reads a signed 16 bit integer from `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 2`.
 
 - `fn read_i32(self, buf: &[u8]) -> i32`
 
   Reads a signed 32 bit integer from `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 4`.
 
 - `fn read_i64(self, buf: &[u8]) -> i64`
 
   Reads a signed 64 bit integer from `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 8`.
 
 - `fn read_f32(self, buf: &[u8]) -> f32`
 
   Reads a 32 bit floating point number from `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 8`.
 
 - `fn read_f64(self, buf: &[u8]) -> f64`
 
   Reads a 32 bit floating point number from `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 8`.
 
 - `fn write_u16(self, buf: &mut [u8], n: u16)`
 
   Writes an unsigned 16 bit integer `n` to `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 2`.
 
 - `fn write_u32(self, buf: &mut [u8], n: u32)`
 
   Writes an unsigned 32 bit integer `n` to `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 4`.
 
 - `fn write_u64(self, buf: &mut [u8], n: u64)`
 
   Writes an unsigned 64 bit integer `n` to `buf`.
+  
+  # Panics
+  
+  Panics when `buf.len() < 8`.
 
 #### Implementors
 
@@ -407,7 +446,7 @@ A trait describing the endianity of some buffer.
 type NativeEndian = LittleEndian;
 ```
 
-*Defined in [`gimli-0.32.3/src/endianity.rs:242`](../../../.source_1765633015/gimli-0.32.3/src/endianity.rs#L242)*
+*Defined in [`gimli-0.32.3/src/endianity.rs:242`](../../../.source_1765894658/gimli-0.32.3/src/endianity.rs#L242)*
 
 The native endianity for the target platform.
 

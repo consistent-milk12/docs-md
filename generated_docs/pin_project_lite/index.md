@@ -118,7 +118,7 @@ pin-project supports this.
 
 ### `pin_project!`
 
-*Defined in [`pin-project-lite-0.2.16/src/lib.rs:382-389`](../../.source_1765633015/pin-project-lite-0.2.16/src/lib.rs#L382-L389)*
+*Defined in [`pin-project-lite-0.2.16/src/lib.rs:382-389`](../../.source_1765894658/pin-project-lite-0.2.16/src/lib.rs#L382-L389)*
 
 A macro that creates a projection type covering all the fields of struct.
 
@@ -315,11 +315,11 @@ attribute has no effect.
 
 # Pinned Drop
 
-In order to correctly implement pin projections, a type’s [`Drop`](../gimli/index.md) impl must not move out of any
+In order to correctly implement pin projections, a type’s `Drop` impl must not move out of any
 structurally pinned fields. Unfortunately, `Drop::drop` takes `&mut Self`, not `Pin<&mut
 Self>`.
 
-To implement [`Drop`](../gimli/index.md) for type that has pin, add an `impl PinnedDrop` block at the end of the
+To implement `Drop` for type that has pin, add an `impl PinnedDrop` block at the end of the
 [`pin_project`](#pin-project) macro block. PinnedDrop has the following interface:
 
 ```rust
@@ -331,9 +331,9 @@ trait PinnedDrop {
 
 Note that the argument to `PinnedDrop::drop` cannot be named `self`.
 
-`pin_project!` implements the actual [`Drop`](../gimli/index.md) trait via PinnedDrop you implemented. To
+`pin_project!` implements the actual `Drop` trait via PinnedDrop you implemented. To
 explicitly drop a type that implements PinnedDrop, use the [drop] function just like dropping a
-type that directly implements [`Drop`](../gimli/index.md).
+type that directly implements `Drop`.
 
 `PinnedDrop::drop` will never be called more than once, just like `Drop::drop`.
 

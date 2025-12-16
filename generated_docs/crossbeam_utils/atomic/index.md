@@ -35,7 +35,7 @@ struct AtomicCell<T> {
 }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
 
 A thread-safe mutable memory location.
 
@@ -74,191 +74,108 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 - <span id="atomiccell-new"></span>`const fn new(val: T) -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md#atomiccell)
 
   Creates a new atomic cell initialized with `val`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::atomic::AtomicCell;
-
   
-
   let a = AtomicCell::new(7);
-
   ```
 
 - <span id="atomiccell-into-inner"></span>`fn into_inner(self) -> T`
 
   Consumes the atomic and returns the contained value.
-
   
-
   This is safe because passing `self` by value guarantees that no other threads are
-
   concurrently accessing the atomic data.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::atomic::AtomicCell;
-
   
-
   let a = AtomicCell::new(7);
-
   let v = a.into_inner();
-
   
-
   assert_eq!(v, 7);
-
   ```
 
 - <span id="atomiccell-is-lock-free"></span>`const fn is_lock_free() -> bool`
 
   Returns `true` if operations on values of this type are lock-free.
-
   
-
   If the compiler or the platform doesn't support the necessary atomic instructions,
-
   `AtomicCell<T>` will use global locks for every potentially concurrent atomic operation.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::atomic::AtomicCell;
-
   
-
   // This type is internally represented as `AtomicUsize` so we can just use atomic
-
   // operations provided by it.
-
   assert_eq!(AtomicCell::<usize>::is_lock_free(), true);
-
   
-
   // A wrapper struct around `isize`.
-
   struct Foo {
-
       bar: isize,
-
   }
-
   // `AtomicCell<Foo>` will be internally represented as `AtomicIsize`.
-
   assert_eq!(AtomicCell::<Foo>::is_lock_free(), true);
-
   
-
   // Operations on zero-sized types are always lock-free.
-
   assert_eq!(AtomicCell::<()>::is_lock_free(), true);
-
   
-
   // Very large types cannot be represented as any of the standard atomic types, so atomic
-
   // operations on them will have to use global locks for synchronization.
-
   assert_eq!(AtomicCell::<[u8; 1000]>::is_lock_free(), false);
-
   ```
 
 - <span id="atomiccell-store"></span>`fn store(&self, val: T)`
 
   Stores `val` into the atomic cell.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::atomic::AtomicCell;
-
   
-
   let a = AtomicCell::new(7);
-
   
-
   assert_eq!(a.load(), 7);
-
   a.store(8);
-
   assert_eq!(a.load(), 8);
-
   ```
 
 - <span id="atomiccell-swap"></span>`fn swap(&self, val: T) -> T`
 
   Stores `val` into the atomic cell and returns the previous value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::atomic::AtomicCell;
-
   
-
   let a = AtomicCell::new(7);
-
   
-
   assert_eq!(a.load(), 7);
-
   assert_eq!(a.swap(8), 7);
-
   assert_eq!(a.load(), 8);
-
   ```
 
 - <span id="atomiccell-as-ptr"></span>`fn as_ptr(&self) -> *mut T`
 
   Returns a raw pointer to the underlying data in this atomic cell.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use crossbeam_utils::atomic::AtomicCell;
-
   
-
   let a = AtomicCell::new(5);
-
   
-
   let ptr = a.as_ptr();
-
   ```
 
 #### Trait Implementations
@@ -298,11 +215,8 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 - <span id="atomiccell-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> RefUnwindSafe for AtomicCell<T>`
@@ -333,7 +247,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 trait AtomicConsume { ... }
 ```
 
-*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../.source_1765633015/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../.source_1765894658/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
 
 Trait which allows reading from primitive atomic types with "consume" ordering.
 
@@ -346,6 +260,20 @@ Trait which allows reading from primitive atomic types with "consume" ordering.
 - `fn load_consume(&self) -> <Self as >::Val`
 
   Loads a value from the atomic using a "consume" memory ordering.
+  
+  This is similar to the "acquire" ordering, except that an ordering is
+  only guaranteed with operations that "depend on" the result of the load.
+  However consume loads are usually much faster than acquire loads on
+  architectures with a weak memory model since they don't require memory
+  fence instructions.
+  
+  The exact definition of "depend on" is a bit vague, but it works as you
+  would expect in practice since a lot of software, especially the Linux
+  kernel, rely on this behavior.
+  
+  This is currently only implemented on ARM and AArch64, where a fence
+  can be avoided. On other architectures this will fall back to a simple
+  `load(Ordering::Acquire)`.
 
 #### Implementors
 

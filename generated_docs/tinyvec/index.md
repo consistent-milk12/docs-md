@@ -21,7 +21,7 @@ All of this is done with no `unsafe` code within the crate. Technically the
 crate* introduces no new `unsafe` code into your project.
 
 The limitation is that the element type of a vec from this crate must
-support the [`Default`](../gimli/index.md) trait. This means that this crate isn't suitable for
+support the [`Default`](#default) trait. This means that this crate isn't suitable for
 all situations, but a very surprising number of types do support `Default`.
 
 ## Other Features
@@ -118,7 +118,7 @@ struct ArrayVec<A> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:106-109`](../../.source_1765633015/tinyvec-1.10.0/src/arrayvec.rs#L106-L109)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:106-109`](../../.source_1765894658/tinyvec-1.10.0/src/arrayvec.rs#L106-L109)*
 
 An array-backed, vector-like data structure.
 
@@ -178,77 +178,45 @@ assert_eq!(no_ints.len(), 0);
 - <span id="arrayvec-append"></span>`fn append(&mut self, other: &mut Self)`
 
   Move all values from `other` into this vec.
-
   
-
   ## Panics
-
   * If the vec overflows its capacity
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 10] => 1, 2, 3);
-
   let mut av2 = array_vec!([i32; 10] => 4, 5, 6);
-
   av.append(&mut av2);
-
   assert_eq!(av, &[1, 2, 3, 4, 5, 6][..]);
-
   assert_eq!(av2, &[][..]);
-
   ```
 
 - <span id="arrayvec-try-append"></span>`fn try_append<'other>(&mut self, other: &'other mut Self) -> Option<&'other mut Self>`
 
   Move all values from `other` into this vec.
-
   If appending would overflow the capacity, Some(other) is returned.
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 7] => 1, 2, 3);
-
   let mut av2 = array_vec!([i32; 7] => 4, 5, 6);
-
   av.append(&mut av2);
-
   assert_eq!(av, &[1, 2, 3, 4, 5, 6][..]);
-
   assert_eq!(av2, &[][..]);
-
   
-
   let mut av3 = array_vec!([i32; 7] => 7, 8, 9);
-
   assert!(av.try_append(&mut av3).is_some());
-
   assert_eq!(av, &[1, 2, 3, 4, 5, 6][..]);
-
   assert_eq!(av3, &[7, 8, 9][..]);
-
   ```
 
 - <span id="arrayvec-as-mut-ptr"></span>`fn as_mut_ptr(&mut self) -> *mut <A as >::Item` — [`Array`](#array)
 
   A `*mut` pointer to the backing array.
-
   
-
   ## Safety
-
   
-
   This pointer has provenance over the _entire_ backing array.
 
 - <span id="arrayvec-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [<A as >::Item]` — [`Array`](#array)
@@ -258,13 +226,9 @@ assert_eq!(no_ints.len(), 0);
 - <span id="arrayvec-as-ptr"></span>`fn as_ptr(&self) -> *const <A as >::Item` — [`Array`](#array)
 
   A `*const` pointer to the backing array.
-
   
-
   ## Safety
-
   
-
   This pointer has provenance over the _entire_ backing array.
 
 - <span id="arrayvec-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](#array)
@@ -274,11 +238,8 @@ assert_eq!(no_ints.len(), 0);
 - <span id="arrayvec-capacity"></span>`fn capacity(&self) -> usize`
 
   The capacity of the `ArrayVec`.
-
   
-
   This is fixed based on the array type, but can't yet be made a `const fn`
-
   on Stable Rust.
 
 - <span id="arrayvec-clear"></span>`fn clear(&mut self)`
@@ -288,239 +249,134 @@ assert_eq!(no_ints.len(), 0);
 - <span id="arrayvec-drain"></span>`fn drain<R>(&mut self, range: R) -> ArrayVecDrain<'_, <A as >::Item>` — [`ArrayVecDrain`](#arrayvecdrain), [`Array`](#array)
 
   Creates a draining iterator that removes the specified range in the vector
-
   and yields the removed items.
-
   
-
   ## Panics
-
   * If the start is greater than the end
-
   * If the end is past the edge of the vec.
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 4] => 1, 2, 3);
-
   let av2: ArrayVec<[i32; 4]> = av.drain(1..).collect();
-
   assert_eq!(av.as_slice(), &[1][..]);
-
   assert_eq!(av2.as_slice(), &[2, 3][..]);
-
   
-
   av.drain(..);
-
   assert_eq!(av.as_slice(), &[]);
-
   ```
 
 - <span id="arrayvec-into-inner"></span>`fn into_inner(self) -> A`
 
   Returns the inner array of the `ArrayVec`.
-
   
-
   This returns the full array, even if the `ArrayVec` length is currently
-
   less than that.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::{array_vec, ArrayVec};
-
   let mut favorite_numbers = array_vec!([i32; 5] => 87, 48, 33, 9, 26);
-
   assert_eq!(favorite_numbers.clone().into_inner(), [87, 48, 33, 9, 26]);
-
   
-
   favorite_numbers.pop();
-
   assert_eq!(favorite_numbers.into_inner(), [87, 48, 33, 9, 0]);
-
   ```
-
   
-
   A use for this function is to build an array from an iterator by first
-
   collecting it into an `ArrayVec`.
-
   
-
   ```rust
-
   use tinyvec::ArrayVec;
-
   let arr_vec: ArrayVec<[i32; 10]> = (1..=3).cycle().take(10).collect();
-
   let inner = arr_vec.into_inner();
-
   assert_eq!(inner, [1, 2, 3, 1, 2, 3, 1, 2, 3, 1]);
-
   ```
 
 - <span id="arrayvec-extend-from-slice"></span>`fn extend_from_slice(&mut self, sli: &[<A as >::Item])` — [`Array`](#array)
 
   Clone each element of the slice into this `ArrayVec`.
-
   
-
   ## Panics
-
   * If the `ArrayVec` would overflow, this will panic.
 
 - <span id="arrayvec-fill"></span>`fn fill<I: IntoIterator<Item = <A as >::Item>>(&mut self, iter: I) -> <I as >::IntoIter`
 
   Fill the vector until its capacity has been reached.
-
   
-
   Successively fills unused space in the spare slice of the vector with
-
   elements from the iterator. It then returns the remaining iterator
-
   without exhausting it. This also allows appending the head of an
-
   infinite iterator.
-
   
-
   This is an alternative to `Extend::extend` method for cases where the
-
   length of the iterator can not be checked. Since this vector can not
-
   reallocate to increase its capacity, it is unclear what to do with
-
   remaining elements in the iterator and the iterator itself. The
-
   interface also provides no way to communicate this to the caller.
-
   
-
   ## Panics
-
   * If the `next` method of the provided iterator panics.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 4]);
-
   let mut to_inf = av.fill(0..);
-
   assert_eq!(&av[..], [0, 1, 2, 3]);
-
   assert_eq!(to_inf.next(), Some(4));
-
   ```
 
 - <span id="arrayvec-from-array-len"></span>`fn from_array_len(data: A, len: usize) -> Self`
 
   Wraps up an array and uses the given length as the initial length.
-
   
-
   If you want to simply use the full array, use `from` instead.
-
   
-
   ## Panics
-
   
-
   * The length specified must be less than or equal to the capacity of the
-
     array.
 
 - <span id="arrayvec-insert"></span>`fn insert(&mut self, index: usize, item: <A as >::Item)` — [`Array`](#array)
 
   Inserts an item at the position given, moving all following elements +1
-
   index.
-
   
-
   ## Panics
-
   * If `index` > `len`
-
   * If the capacity is exhausted
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 10] => 1, 2, 3);
-
   av.insert(1, 4);
-
   assert_eq!(av.as_slice(), &[1, 4, 2, 3]);
-
   av.insert(4, 5);
-
   assert_eq!(av.as_slice(), &[1, 4, 2, 3, 5]);
-
   ```
 
 - <span id="arrayvec-try-insert"></span>`fn try_insert(&mut self, index: usize, item: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](#array)
 
   Tries to insert an item at the position given, moving all following
-
   elements +1 index.
-
   Returns back the element if the capacity is exhausted,
-
   otherwise returns None.
-
   
-
   ## Panics
-
   * If `index` > `len`
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([&'static str; 4] => "one", "two", "three");
-
   av.insert(1, "four");
-
   assert_eq!(av.as_slice(), &["one", "four", "two", "three"]);
-
   assert_eq!(av.try_insert(4, "five"), Some("five"));
-
   ```
 
 - <span id="arrayvec-is-empty"></span>`fn is_empty(&self) -> bool`
@@ -538,439 +394,248 @@ assert_eq!(no_ints.len(), 0);
 - <span id="arrayvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`Array`](#array)
 
   Remove and return the last element of the vec, if there is one.
-
   
-
   ## Failure
-
   * If the vec is empty you get `None`.
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 10] => 1, 2);
-
   assert_eq!(av.pop(), Some(2));
-
   assert_eq!(av.pop(), Some(1));
-
   assert_eq!(av.pop(), None);
-
   ```
 
 - <span id="arrayvec-push"></span>`fn push(&mut self, val: <A as >::Item)` — [`Array`](#array)
 
   Place an element onto the end of the vec.
-
   
-
   ## Panics
-
   * If the length of the vec would overflow the capacity.
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 2]);
-
   assert_eq!(&av[..], []);
-
   av.push(1);
-
   assert_eq!(&av[..], [1]);
-
   av.push(2);
-
   assert_eq!(&av[..], [1, 2]);
-
   // av.push(3); this would overflow the ArrayVec and panic!
-
   ```
 
 - <span id="arrayvec-try-push"></span>`fn try_push(&mut self, val: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](#array)
 
   Tries to place an element onto the end of the vec.\
-
   Returns back the element if the capacity is exhausted,
-
   otherwise returns None.
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 2]);
-
   assert_eq!(av.as_slice(), []);
-
   assert_eq!(av.try_push(1), None);
-
   assert_eq!(&av[..], [1]);
-
   assert_eq!(av.try_push(2), None);
-
   assert_eq!(&av[..], [1, 2]);
-
   assert_eq!(av.try_push(3), Some(3));
-
   ```
 
 - <span id="arrayvec-remove"></span>`fn remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](#array)
 
   Removes the item at `index`, shifting all others down by one index.
-
   
-
   Returns the removed element.
-
   
-
   ## Panics
-
   
-
   * If the index is out of bounds.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 4] => 1, 2, 3);
-
   assert_eq!(av.remove(1), 2);
-
   assert_eq!(&av[..], [1, 3]);
-
   ```
 
 - <span id="arrayvec-resize"></span>`fn resize(&mut self, new_len: usize, new_val: <A as >::Item)` — [`Array`](#array)
 
   As [`resize_with`](ArrayVec::resize_with)
-
   and it clones the value as the closure.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   
-
   let mut av = array_vec!([&str; 10] => "hello");
-
   av.resize(3, "world");
-
   assert_eq!(&av[..], ["hello", "world", "world"]);
-
   
-
   let mut av = array_vec!([i32; 10] => 1, 2, 3, 4);
-
   av.resize(2, 0);
-
   assert_eq!(&av[..], [1, 2]);
-
   ```
 
 - <span id="arrayvec-resize-with"></span>`fn resize_with<F: FnMut() -> <A as >::Item>(&mut self, new_len: usize, f: F)`
 
   Resize the vec to the new length.
-
   
-
   If it needs to be longer, it's filled with repeated calls to the provided
-
   function. If it needs to be shorter, it's truncated.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   
-
   let mut av = array_vec!([i32; 10] => 1, 2, 3);
-
   av.resize_with(5, Default::default);
-
   assert_eq!(&av[..], [1, 2, 3, 0, 0]);
-
   
-
   let mut av = array_vec!([i32; 10]);
-
   let mut p = 1;
-
   av.resize_with(4, || {
-
     p *= 2;
-
     p
-
   });
-
   assert_eq!(&av[..], [2, 4, 8, 16]);
-
   ```
 
 - <span id="arrayvec-retain"></span>`fn retain<F: FnMut(&<A as >::Item) -> bool>(&mut self, acceptable: F)`
 
   Walk the vec and keep only the elements that pass the predicate given.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   
-
   let mut av = array_vec!([i32; 10] => 1, 1, 2, 3, 3, 4);
-
   av.retain(|&x| x % 2 == 0);
-
   assert_eq!(&av[..], [2, 4]);
-
   ```
 
 - <span id="arrayvec-retain-mut"></span>`fn retain_mut<F>(&mut self, acceptable: F)`
 
   Retains only the elements specified by the predicate, passing a mutable
-
   reference to it.
-
   
-
   In other words, remove all elements e such that f(&mut e) returns false.
-
   This method operates in place, visiting each element exactly once in the
-
   original order, and preserves the order of the retained elements.
-
   
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   
-
   let mut av = array_vec!([i32; 10] => 1, 1, 2, 3, 3, 4);
-
   av.retain_mut(|x| if *x % 2 == 0 { *x *= 2; true } else { false });
-
   assert_eq!(&av[..], [4, 8]);
-
   ```
 
 - <span id="arrayvec-set-len"></span>`fn set_len(&mut self, new_len: usize)`
 
   Forces the length of the vector to `new_len`.
-
   
-
   ## Panics
-
   * If `new_len` is greater than the vec's capacity.
-
   
-
   ## Safety
-
   * This is a fully safe operation! The inactive memory already counts as
-
     "initialized" by Rust's rules.
-
   * Other than "the memory is initialized" there are no other guarantees
-
     regarding what you find in the inactive portion of the vec.
 
 - <span id="arrayvec-split-off"></span>`fn split_off(&mut self, at: usize) -> Self`
 
   Splits the collection at the point given.
-
   
-
   * `[0, at)` stays in this vec
-
   * `[at, len)` ends up in the new vec.
-
   
-
   ## Panics
-
   * if at > len
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 4] => 1, 2, 3);
-
   let av2 = av.split_off(1);
-
   assert_eq!(&av[..], [1]);
-
   assert_eq!(&av2[..], [2, 3]);
-
   ```
 
 - <span id="arrayvec-splice"></span>`fn splice<R, I>(&mut self, range: R, replacement: I) -> ArrayVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`ArrayVecSplice`](#arrayvecsplice)
 
   Creates a splicing iterator that removes the specified range in the
-
   vector, yields the removed items, and replaces them with elements from
-
   the provided iterator.
-
   
-
   `splice` fuses the provided iterator, so elements after the first `None`
-
   are ignored.
-
   
-
   ## Panics
-
   * If the start is greater than the end.
-
   * If the end is past the edge of the vec.
-
   * If the provided iterator panics.
-
   * If the new length would overflow the capacity of the array. Because
-
     `ArrayVecSplice` adds elements to this vec in its destructor when
-
     necessary, this panic would occur when it is dropped.
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([i32; 4] => 1, 2, 3);
-
   let av2: ArrayVec<[i32; 4]> = av.splice(1.., 4..=6).collect();
-
   assert_eq!(av.as_slice(), &[1, 4, 5, 6][..]);
-
   assert_eq!(av2.as_slice(), &[2, 3][..]);
-
   
-
   av.splice(.., None);
-
   assert_eq!(av.as_slice(), &[]);
-
   ```
 
 - <span id="arrayvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](#array)
 
   Remove an element, swapping the end of the vec into its place.
-
   
-
   ## Panics
-
   * If the index is out of bounds.
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut av = array_vec!([&str; 4] => "foo", "bar", "quack", "zap");
-
   
-
   assert_eq!(av.swap_remove(1), "bar");
-
   assert_eq!(&av[..], ["foo", "zap", "quack"]);
-
   
-
   assert_eq!(av.swap_remove(0), "foo");
-
   assert_eq!(&av[..], ["quack", "zap"]);
-
   ```
 
 - <span id="arrayvec-truncate"></span>`fn truncate(&mut self, new_len: usize)`
 
   Reduces the vec's length to the given value.
-
   
-
   If the vec is already shorter than the input, nothing happens.
 
 - <span id="arrayvec-try-from-array-len"></span>`fn try_from_array_len(data: A, len: usize) -> Result<Self, A>`
 
   Wraps an array, using the given length as the starting length.
-
   
-
   If you want to use the whole length of the array, you can just use the
-
   `From` impl.
-
   
-
   ## Failure
-
   
-
   If the given length is greater than the capacity of the array this will
-
   error, and you'll get the array back in the `Err`.
 
 #### Trait Implementations
@@ -1068,11 +733,8 @@ assert_eq!(no_ints.len(), 0);
 - <span id="arrayvec-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A: Array> IntoIterator for ArrayVec<A>`
@@ -1158,7 +820,7 @@ struct ArrayVecSplice<'p, A: Array, I: Iterator<Item = <A as >::Item>> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1264-1269`](../../.source_1765633015/tinyvec-1.10.0/src/arrayvec.rs#L1264-L1269)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1264-1269`](../../.source_1765894658/tinyvec-1.10.0/src/arrayvec.rs#L1264-L1269)*
 
 Splicing iterator for `ArrayVec`
 See [`ArrayVec::splice`](ArrayVec::<A>::splice)
@@ -1202,11 +864,8 @@ See [`ArrayVec::splice`](ArrayVec::<A>::splice)
 - <span id="arrayvecsplice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for ArrayVecSplice<'p, A, I>`
@@ -1243,7 +902,7 @@ See [`ArrayVec::splice`](ArrayVec::<A>::splice)
 struct TryFromSliceError(());
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1425`](../../.source_1765633015/tinyvec-1.10.0/src/arrayvec.rs#L1425)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1425`](../../.source_1765894658/tinyvec-1.10.0/src/arrayvec.rs#L1425)*
 
 The error type returned when a conversion from a slice to an [`ArrayVec`](#arrayvec)
 fails.
@@ -1291,11 +950,8 @@ fails.
 - <span id="tryfromsliceerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for TryFromSliceError`
@@ -1332,7 +988,7 @@ struct ArrayVecIterator<A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1478-1482`](../../.source_1765633015/tinyvec-1.10.0/src/arrayvec.rs#L1478-L1482)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1478-1482`](../../.source_1765894658/tinyvec-1.10.0/src/arrayvec.rs#L1478-L1482)*
 
 Iterator for consuming an `ArrayVec` and returning owned elements.
 
@@ -1383,11 +1039,8 @@ Iterator for consuming an `ArrayVec` and returning owned elements.
 - <span id="arrayveciterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ArrayVecIterator<A>`
@@ -1432,7 +1085,7 @@ struct ArrayVecDrain<'a, T: 'a + Default> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec_drain.rs:11-13`](../../.source_1765633015/tinyvec-1.10.0/src/arrayvec_drain.rs#L11-L13)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec_drain.rs:11-13`](../../.source_1765894658/tinyvec-1.10.0/src/arrayvec_drain.rs#L11-L13)*
 
 Draining iterator for [`ArrayVec`](#arrayvec)
 
@@ -1477,11 +1130,8 @@ See [`ArrayVec::drain`](ArrayVec::drain)
 - <span id="arrayvecdrain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ArrayVecDrain<'a, T>`
@@ -1527,7 +1177,7 @@ struct SliceVec<'s, T> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/slicevec.rs:16-19`](../../.source_1765633015/tinyvec-1.10.0/src/slicevec.rs#L16-L19)*
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:16-19`](../../.source_1765894658/tinyvec-1.10.0/src/slicevec.rs#L16-L19)*
 
 A slice-backed vector-like data structure.
 
@@ -1547,13 +1197,9 @@ working with to make it easier to manipulate.
 - <span id="slicevec-as-mut-ptr"></span>`fn as_mut_ptr(&mut self) -> *mut T`
 
   A `*mut` pointer to the backing slice.
-
   
-
   ## Safety
-
   
-
   This pointer has provenance over the _entire_ backing slice.
 
 - <span id="slicevec-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [T]`
@@ -1563,13 +1209,9 @@ working with to make it easier to manipulate.
 - <span id="slicevec-as-ptr"></span>`fn as_ptr(&self) -> *const T`
 
   A `*const` pointer to the backing slice.
-
   
-
   ## Safety
-
   
-
   This pointer has provenance over the _entire_ backing slice.
 
 - <span id="slicevec-as-slice"></span>`fn as_slice(&self) -> &[T]`
@@ -1579,9 +1221,7 @@ working with to make it easier to manipulate.
 - <span id="slicevec-capacity"></span>`fn capacity(&self) -> usize`
 
   The capacity of the `SliceVec`.
-
   
-
   This the length of the initial backing slice.
 
 - <span id="slicevec-clear"></span>`fn clear(&mut self)`
@@ -1591,41 +1231,23 @@ working with to make it easier to manipulate.
 - <span id="slicevec-drain"></span>`fn drain<'p, R: RangeBounds<usize>>(self: &'p mut Self, range: R) -> SliceVecDrain<'p, 's, T>` — [`SliceVecDrain`](#slicevecdrain)
 
   Creates a draining iterator that removes the specified range in the vector
-
   and yields the removed items.
-
   
-
   ## Panics
-
   * If the start is greater than the end
-
   * If the end is past the edge of the vec.
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut arr = [6, 7, 8];
-
   let mut sv = SliceVec::from(&mut arr);
-
   let drained_values: ArrayVec<[i32; 4]> = sv.drain(1..).collect();
-
   assert_eq!(sv.as_slice(), &[6][..]);
-
   assert_eq!(drained_values.as_slice(), &[7, 8][..]);
-
   
-
   sv.drain(..);
-
   assert_eq!(sv.as_slice(), &[]);
-
   ```
 
 - <span id="slicevec-extend-from-slice"></span>`fn extend_from_slice(&mut self, sli: &[T])`
@@ -1633,109 +1255,61 @@ working with to make it easier to manipulate.
 - <span id="slicevec-fill"></span>`fn fill<I: IntoIterator<Item = T>>(&mut self, iter: I) -> <I as >::IntoIter`
 
   Fill the vector until its capacity has been reached.
-
   
-
   Successively fills unused space in the spare slice of the vector with
-
   elements from the iterator. It then returns the remaining iterator
-
   without exhausting it. This also allows appending the head of an
-
   infinite iterator.
-
   
-
   This is an alternative to `Extend::extend` method for cases where the
-
   length of the iterator can not be checked. Since this vector can not
-
   reallocate to increase its capacity, it is unclear what to do with
-
   remaining elements in the iterator and the iterator itself. The
-
   interface also provides no way to communicate this to the caller.
-
   
-
   ## Panics
-
   * If the `next` method of the provided iterator panics.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   let mut arr = [7, 7, 7, 7];
-
   let mut sv = SliceVec::from_slice_len(&mut arr, 0);
-
   let mut to_inf = sv.fill(0..);
-
   assert_eq!(&sv[..], [0, 1, 2, 3]);
-
   assert_eq!(to_inf.next(), Some(4));
-
   ```
 
 - <span id="slicevec-from-slice-len"></span>`fn from_slice_len(data: &'s mut [T], len: usize) -> Self`
 
   Wraps up a slice and uses the given length as the initial length.
-
   
-
   If you want to simply use the full slice, use `from` instead.
-
   
-
   ## Panics
-
   
-
   * The length specified must be less than or equal to the capacity of the
-
     slice.
 
 - <span id="slicevec-insert"></span>`fn insert(&mut self, index: usize, item: T)`
 
   Inserts an item at the position given, moving all following elements +1
-
   index.
-
   
-
   ## Panics
-
   * If `index` > `len`
-
   * If the capacity is exhausted
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut arr = [1, 2, 3, 0, 0];
-
   let mut sv = SliceVec::from_slice_len(&mut arr, 3);
-
   sv.insert(1, 4);
-
   assert_eq!(sv.as_slice(), &[1, 4, 2, 3]);
-
   sv.insert(4, 5);
-
   assert_eq!(sv.as_slice(), &[1, 4, 2, 3, 5]);
-
   ```
 
 - <span id="slicevec-is-empty"></span>`fn is_empty(&self) -> bool`
@@ -1749,347 +1323,196 @@ working with to make it easier to manipulate.
 - <span id="slicevec-pop"></span>`fn pop(&mut self) -> Option<T>`
 
   Remove and return the last element of the vec, if there is one.
-
   
-
   ## Failure
-
   * If the vec is empty you get `None`.
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut arr = [1, 2];
-
   let mut sv = SliceVec::from(&mut arr);
-
   assert_eq!(sv.pop(), Some(2));
-
   assert_eq!(sv.pop(), Some(1));
-
   assert_eq!(sv.pop(), None);
-
   ```
 
 - <span id="slicevec-push"></span>`fn push(&mut self, val: T)`
 
   Place an element onto the end of the vec.
-
   
-
   ## Panics
-
   * If the length of the vec would overflow the capacity.
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut arr = [0, 0];
-
   let mut sv = SliceVec::from_slice_len(&mut arr, 0);
-
   assert_eq!(&sv[..], []);
-
   sv.push(1);
-
   assert_eq!(&sv[..], [1]);
-
   sv.push(2);
-
   assert_eq!(&sv[..], [1, 2]);
-
   // sv.push(3); this would overflow the ArrayVec and panic!
-
   ```
 
 - <span id="slicevec-remove"></span>`fn remove(&mut self, index: usize) -> T`
 
   Removes the item at `index`, shifting all others down by one index.
-
   
-
   Returns the removed element.
-
   
-
   ## Panics
-
   
-
   * If the index is out of bounds.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   let mut arr = [1, 2, 3];
-
   let mut sv = SliceVec::from(&mut arr);
-
   assert_eq!(sv.remove(1), 2);
-
   assert_eq!(&sv[..], [1, 3]);
-
   ```
 
 - <span id="slicevec-resize"></span>`fn resize(&mut self, new_len: usize, new_val: T)`
 
   As [`resize_with`](SliceVec::resize_with)
-
   and it clones the value as the closure.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   // bigger
-
   let mut arr = ["hello", "", "", "", ""];
-
   let mut sv = SliceVec::from_slice_len(&mut arr, 1);
-
   sv.resize(3, "world");
-
   assert_eq!(&sv[..], ["hello", "world", "world"]);
-
   
-
   // smaller
-
   let mut arr = ['a', 'b', 'c', 'd'];
-
   let mut sv = SliceVec::from(&mut arr);
-
   sv.resize(2, 'z');
-
   assert_eq!(&sv[..], ['a', 'b']);
-
   ```
 
 - <span id="slicevec-resize-with"></span>`fn resize_with<F: FnMut() -> T>(&mut self, new_len: usize, f: F)`
 
   Resize the vec to the new length.
-
   
-
   * If it needs to be longer, it's filled with repeated calls to the
-
     provided function.
-
   * If it needs to be shorter, it's truncated.
-
     * If the type needs to drop the truncated slots are filled with calls to
-
       the provided function.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   let mut arr = [1, 2, 3, 7, 7, 7, 7];
-
   let mut sv = SliceVec::from_slice_len(&mut arr, 3);
-
   sv.resize_with(5, Default::default);
-
   assert_eq!(&sv[..], [1, 2, 3, 0, 0]);
-
   
-
   let mut arr = [0, 0, 0, 0];
-
   let mut sv = SliceVec::from_slice_len(&mut arr, 0);
-
   let mut p = 1;
-
   sv.resize_with(4, || {
-
     p *= 2;
-
     p
-
   });
-
   assert_eq!(&sv[..], [2, 4, 8, 16]);
-
   ```
 
 - <span id="slicevec-retain"></span>`fn retain<F: FnMut(&T) -> bool>(&mut self, acceptable: F)`
 
   Walk the vec and keep only the elements that pass the predicate given.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   
-
   let mut arr = [1, 1, 2, 3, 3, 4];
-
   let mut sv = SliceVec::from(&mut arr);
-
   sv.retain(|&x| x % 2 == 0);
-
   assert_eq!(&sv[..], [2, 4]);
-
   ```
 
 - <span id="slicevec-set-len"></span>`fn set_len(&mut self, new_len: usize)`
 
   Forces the length of the vector to `new_len`.
-
   
-
   ## Panics
-
   * If `new_len` is greater than the vec's capacity.
-
   
-
   ## Safety
-
   * This is a fully safe operation! The inactive memory already counts as
-
     "initialized" by Rust's rules.
-
   * Other than "the memory is initialized" there are no other guarantees
-
     regarding what you find in the inactive portion of the vec.
 
 - <span id="slicevec-split-off"></span>`fn split_off<'a>(self: &'a mut Self, at: usize) -> SliceVec<'s, T>` — [`SliceVec`](#slicevec)
 
   Splits the collection at the point given.
-
   
-
   * `[0, at)` stays in this vec (and this vec is now full).
-
   * `[at, len)` ends up in the new vec (with any spare capacity).
-
   
-
   ## Panics
-
   * if `at` > `self.len()`
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::*;
-
   let mut arr = [1, 2, 3];
-
   let mut sv = SliceVec::from(&mut arr);
-
   let sv2 = sv.split_off(1);
-
   assert_eq!(&sv[..], [1]);
-
   assert_eq!(&sv2[..], [2, 3]);
-
   ```
 
 - <span id="slicevec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> T`
 
   Remove an element, swapping the end of the vec into its place.
-
   
-
   ## Panics
-
   * If the index is out of bounds.
-
   
-
   ## Example
-
   ```rust
-
   use tinyvec::*;
-
   let mut arr = ["foo", "bar", "quack", "zap"];
-
   let mut sv = SliceVec::from(&mut arr);
-
   
-
   assert_eq!(sv.swap_remove(1), "bar");
-
   assert_eq!(&sv[..], ["foo", "zap", "quack"]);
-
   
-
   assert_eq!(sv.swap_remove(0), "foo");
-
   assert_eq!(&sv[..], ["quack", "zap"]);
-
   ```
 
 - <span id="slicevec-truncate"></span>`fn truncate(&mut self, new_len: usize)`
 
   Reduces the vec's length to the given value.
-
   
-
   If the vec is already shorter than the input, nothing happens.
 
 - <span id="slicevec-try-from-slice-len"></span>`fn try_from_slice_len(data: &'s mut [T], len: usize) -> Option<Self>`
 
   Wraps a slice, using the given length as the starting length.
-
   
-
   If you want to use the whole length of the slice, you can just use the
-
   `From` impl.
-
   
-
   ## Failure
-
   
-
   If the given length is greater than the length of the slice you get
-
   `None`.
 
 #### Trait Implementations
@@ -2171,11 +1594,8 @@ working with to make it easier to manipulate.
 - <span id="slicevec-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoIterator for SliceVec<'s, T>`
@@ -2253,7 +1673,7 @@ struct SliceVecDrain<'p, 's, T: Default> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/slicevec.rs:714-719`](../../.source_1765633015/tinyvec-1.10.0/src/slicevec.rs#L714-L719)*
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:714-719`](../../.source_1765894658/tinyvec-1.10.0/src/slicevec.rs#L714-L719)*
 
 Draining iterator for [`SliceVec`](#slicevec)
 
@@ -2290,11 +1710,8 @@ See [`SliceVec::drain`](SliceVec::drain)
 - <span id="slicevecdrain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SliceVecDrain<'p, 's, T>`
@@ -2334,7 +1751,7 @@ struct TinyVecSplice<'p, A: Array, I: Iterator<Item = <A as >::Item>> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1215-1220`](../../.source_1765633015/tinyvec-1.10.0/src/tinyvec.rs#L1215-L1220)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1215-1220`](../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L1215-L1220)*
 
 Splicing iterator for `TinyVec`
 See [`TinyVec::splice`](TinyVec::<A>::splice)
@@ -2378,11 +1795,8 @@ See [`TinyVec::splice`](TinyVec::<A>::splice)
 - <span id="tinyvecsplice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for TinyVecSplice<'p, A, I>`
@@ -2424,7 +1838,7 @@ enum TinyVec<A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:96-101`](../../.source_1765633015/tinyvec-1.10.0/src/tinyvec.rs#L96-L101)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:96-101`](../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L96-L101)*
 
 A vector that starts inline, but can automatically move to the heap.
 
@@ -2461,251 +1875,142 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 - <span id="tinyvec-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
 
   Shrinks the capacity of the vector as much as possible.\
-
   It is inlined if length is less than `A::CAPACITY`.
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 2] => 1, 2, 3);
-
   assert!(tv.is_heap());
-
   let _ = tv.pop();
-
   assert!(tv.is_heap());
-
   tv.shrink_to_fit();
-
   assert!(tv.is_inline());
-
   ```
 
 - <span id="tinyvec-move-to-the-heap"></span>`fn move_to_the_heap(&mut self)`
 
   Moves the content of the TinyVec to the heap, if it's inline.
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 4] => 1, 2, 3);
-
   assert!(tv.is_inline());
-
   tv.move_to_the_heap();
-
   assert!(tv.is_heap());
-
   ```
 
 - <span id="tinyvec-move-to-the-heap-and-reserve"></span>`fn move_to_the_heap_and_reserve(&mut self, n: usize)`
 
   If TinyVec is inline, moves the content of it to the heap.
-
   Also reserves additional space.
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 4] => 1, 2, 3);
-
   assert!(tv.is_inline());
-
   tv.move_to_the_heap_and_reserve(32);
-
   assert!(tv.is_heap());
-
   assert!(tv.capacity() >= 35);
-
   ```
 
 - <span id="tinyvec-reserve"></span>`fn reserve(&mut self, n: usize)`
 
   Reserves additional space.
-
   Moves to the heap if array can't hold `n` more items
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 4] => 1, 2, 3, 4);
-
   assert!(tv.is_inline());
-
   tv.reserve(1);
-
   assert!(tv.is_heap());
-
   assert!(tv.capacity() >= 5);
-
   ```
 
 - <span id="tinyvec-reserve-exact"></span>`fn reserve_exact(&mut self, n: usize)`
 
   Reserves additional space.
-
   Moves to the heap if array can't hold `n` more items
-
   
-
   From [Vec::reserve_exact](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.reserve_exact)
-
   ```text
-
   Note that the allocator may give the collection more space than it requests.
-
   Therefore, capacity can not be relied upon to be precisely minimal.
-
   Prefer `reserve` if future insertions are expected.
-
   ```
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 4] => 1, 2, 3, 4);
-
   assert!(tv.is_inline());
-
   tv.reserve_exact(1);
-
   assert!(tv.is_heap());
-
   assert!(tv.capacity() >= 5);
-
   ```
 
 - <span id="tinyvec-with-capacity"></span>`fn with_capacity(cap: usize) -> Self`
 
   Makes a new TinyVec with _at least_ the given capacity.
-
   
-
   If the requested capacity is less than or equal to the array capacity you
-
   get an inline vec. If it's greater than you get a heap vec.
-
   ```rust
-
   use tinyvec::*;
-
   let t = TinyVec::<[u8; 10]>::with_capacity(5);
-
   assert!(t.is_inline());
-
   assert!(t.capacity() >= 5);
-
   
-
   let t = TinyVec::<[u8; 10]>::with_capacity(20);
-
   assert!(t.is_heap());
-
   assert!(t.capacity() >= 20);
-
   ```
 
 - <span id="tinyvec-into-boxed-slice"></span>`fn into_boxed_slice(self) -> alloc::boxed::Box<[<A as >::Item]>` — [`Array`](#array)
 
   Converts a `TinyVec<[T; N]>` into a `Box<[T]>`.
-
   
-
   - For `TinyVec::Heap(Vec<T>)`, it takes the `Vec<T>` and converts it into
-
     a `Box<[T]>` without heap reallocation.
-
   - For `TinyVec::Inline(inner_data)`, it first converts the `inner_data` to
-
     `Vec<T>`, then into a `Box<[T]>`. Requiring only a single heap
-
     allocation.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use core::mem::size_of_val as mem_size_of;
-
   use tinyvec::TinyVec;
-
   
-
   // Initialize TinyVec with 256 elements (exceeding inline capacity)
-
   let v: TinyVec<[_; 128]> = (0u8..=255).collect();
-
   
-
   assert!(v.is_heap());
-
   assert_eq!(mem_size_of(&v), 136); // mem size of TinyVec<[u8; N]>: N+8
-
   assert_eq!(v.len(), 256);
-
   
-
   let boxed = v.into_boxed_slice();
-
   assert_eq!(mem_size_of(&boxed), 16); // mem size of Box<[u8]>: 16 bytes (fat pointer)
-
   assert_eq!(boxed.len(), 256);
-
   ```
 
 - <span id="tinyvec-into-vec"></span>`fn into_vec(self) -> Vec<<A as >::Item>` — [`Array`](#array)
 
   Converts a `TinyVec<[T; N]>` into a `Vec<T>`.
-
   
-
   `v.into_vec()` is equivalent to `Into::<Vec<_>>::into(v)`.
-
   
-
   - For `TinyVec::Inline(_)`, `.into_vec()` **does not** offer a performance
-
     advantage over `.to_vec()`.
-
   - For `TinyVec::Heap(vec_data)`, `.into_vec()` will take `vec_data`
-
     without heap reallocation.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::TinyVec;
-
   
-
   let v = TinyVec::from([0u8; 8]);
-
   let v2 = v.clone();
-
   
-
   let vec = v.into_vec();
-
   let vec2: Vec<_> = v2.into();
-
   
-
   assert_eq!(vec, vec2);
-
   ```
 
 #### Trait Implementations
@@ -2801,11 +2106,8 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 - <span id="tinyvec-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A: Array> IntoIterator for TinyVec<A>`
@@ -2889,7 +2191,7 @@ enum TinyVecDrain<'p, A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1166-1171`](../../.source_1765633015/tinyvec-1.10.0/src/tinyvec.rs#L1166-L1171)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1166-1171`](../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L1166-L1171)*
 
 Draining iterator for `TinyVecDrain`
 
@@ -2926,11 +2228,8 @@ See [`TinyVecDrain::drain`](TinyVecDrain::<A>::drain)
 - <span id="tinyvecdrain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TinyVecDrain<'p, A>`
@@ -2978,7 +2277,7 @@ enum TinyVecIterator<A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1483-1488`](../../.source_1765633015/tinyvec-1.10.0/src/tinyvec.rs#L1483-L1488)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1483-1488`](../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L1483-L1488)*
 
 Iterator for consuming an `TinyVec` and returning owned elements.
 
@@ -3029,11 +2328,8 @@ Iterator for consuming an `TinyVec` and returning owned elements.
 - <span id="tinyveciterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TinyVecIterator<A>`
@@ -3078,13 +2374,13 @@ Iterator for consuming an `TinyVec` and returning owned elements.
 trait Array { ... }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/array.rs:18-41`](../../.source_1765633015/tinyvec-1.10.0/src/array.rs#L18-L41)*
+*Defined in [`tinyvec-1.10.0/src/array.rs:18-41`](../../.source_1765894658/tinyvec-1.10.0/src/array.rs#L18-L41)*
 
 A trait for types that are an array.
 
 An "array", for our purposes, has the following properties:
 * Owns some number of elements.
-* The element type can be generic, but must implement [`Default`](../gimli/index.md).
+* The element type can be generic, but must implement [`Default`](#default).
 * The capacity is fixed at compile time, based on the implementing type.
 * You can get a shared or mutable slice to the elements.
 
@@ -3111,14 +2407,22 @@ Just a reminder: this trait is 100% safe, which means that `unsafe` code
 - `fn as_slice(&self) -> &[<Self as >::Item]`
 
   Gives a shared slice over the whole thing.
+  
+  A correct implementation will return a slice with a length equal to the
+  `CAPACITY` value.
 
 - `fn as_slice_mut(&mut self) -> &mut [<Self as >::Item]`
 
   Gives a unique slice over the whole thing.
+  
+  A correct implementation will return a slice with a length equal to the
+  `CAPACITY` value.
 
 - `fn default() -> Self`
 
   Create a default-initialized instance of ourself, similar to the
+  [`Default`](#default) trait, but implemented for the same range of sizes as
+  [`Array`](#array).
 
 #### Implementors
 
@@ -3128,7 +2432,7 @@ Just a reminder: this trait is 100% safe, which means that `unsafe` code
 
 ### `array_vec!`
 
-*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:30-50`](../../.source_1765633015/tinyvec-1.10.0/src/arrayvec.rs#L30-L50)*
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:30-50`](../../.source_1765894658/tinyvec-1.10.0/src/arrayvec.rs#L30-L50)*
 
 Helper to make an `ArrayVec`.
 
@@ -3149,7 +2453,7 @@ let some_ints: ArrayVec<[u8; 10]> = array_vec!(5, 6, 7, 8);
 
 ### `tiny_vec!`
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:37-66`](../../.source_1765633015/tinyvec-1.10.0/src/tinyvec.rs#L37-L66)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:37-66`](../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L37-L66)*
 
 Helper to make a `TinyVec`.
 

@@ -18,7 +18,7 @@
 struct ByteSet([bool; 256]);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/prefilter/byteset.rs:7`](../../../../../.source_1765633015/regex-automata-0.4.13/src/util/prefilter/byteset.rs#L7)*
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/byteset.rs:7`](../../../../../.source_1765894658/regex-automata-0.4.13/src/util/prefilter/byteset.rs#L7)*
 
 #### Implementations
 
@@ -61,11 +61,8 @@ struct ByteSet([bool; 256]);
 - <span id="byteset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PrefilterI for ByteSet`

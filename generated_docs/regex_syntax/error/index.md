@@ -26,7 +26,7 @@ struct Formatter<'e, E> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/error.rs:55-65`](../../../.source_1765633015/regex-syntax-0.8.8/src/error.rs#L55-L65)*
+*Defined in [`regex-syntax-0.8.8/src/error.rs:55-65`](../../../.source_1765894658/regex-syntax-0.8.8/src/error.rs#L55-L65)*
 
 A helper type for formatting nice error messages.
 
@@ -86,11 +86,8 @@ markers pointing out the position where an error occurred.
 - <span id="formatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Formatter<'e, E>`
@@ -120,7 +117,7 @@ struct Spans<'p> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/error.rs:134-152`](../../../.source_1765633015/regex-syntax-0.8.8/src/error.rs#L134-L152)*
+*Defined in [`regex-syntax-0.8.8/src/error.rs:134-152`](../../../.source_1765894658/regex-syntax-0.8.8/src/error.rs#L134-L152)*
 
 This type represents an arbitrary number of error spans in a way that makes
 it convenient to notate the regex pattern. ("Notate" means "point out
@@ -171,35 +168,26 @@ number of spans was actually much simpler.
 - <span id="spans-notate"></span>`fn notate(&self) -> String`
 
   Notate the pattern string with carets (`^`) pointing at each span
-
   location. This only applies to spans that occur within a single line.
 
 - <span id="spans-notate-line"></span>`fn notate_line(&self, i: usize) -> Option<String>`
 
   Return notes for the line indexed at `i` (zero-based). If there are no
-
   spans for the given line, then `None` is returned. Otherwise, an
-
   appropriately space padded string with correctly positioned `^` is
-
   returned, accounting for line numbers.
 
 - <span id="spans-left-pad-line-number"></span>`fn left_pad_line_number(&self, n: usize) -> String`
 
   Left pad the given line number with spaces such that it is aligned with
-
   other line numbers.
 
 - <span id="spans-line-number-padding"></span>`fn line_number_padding(&self) -> usize`
 
   Return the line number padding beginning at the start of each line of
-
   the pattern.
-
   
-
   If the pattern is only one line, then this returns a fixed padding
-
   for visual indentation.
 
 #### Trait Implementations
@@ -227,11 +215,8 @@ number of spans was actually much simpler.
 - <span id="spans-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Spans<'p>`
@@ -257,7 +242,7 @@ enum Error {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/error.rs:16-23`](../../../.source_1765633015/regex-syntax-0.8.8/src/error.rs#L16-L23)*
+*Defined in [`regex-syntax-0.8.8/src/error.rs:16-23`](../../../.source_1765894658/regex-syntax-0.8.8/src/error.rs#L16-L23)*
 
 This error type encompasses any error that can be returned by this crate.
 
@@ -321,11 +306,8 @@ new variant is not considered a breaking change.
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Error`
@@ -366,5 +348,5 @@ new variant is not considered a breaking change.
 fn repeat_char(c: char, count: usize) -> alloc::string::String
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/error.rs:268-270`](../../../.source_1765633015/regex-syntax-0.8.8/src/error.rs#L268-L270)*
+*Defined in [`regex-syntax-0.8.8/src/error.rs:268-270`](../../../.source_1765894658/regex-syntax-0.8.8/src/error.rs#L268-L270)*
 

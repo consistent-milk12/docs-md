@@ -77,7 +77,7 @@ struct Map<K, V> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L29-L31)*
+*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L29-L31)*
 
 Represents a JSON key/value type.
 
@@ -98,103 +98,66 @@ Represents a JSON key/value type.
 - <span id="map-get"></span>`fn get<Q>(&self, key: &Q) -> Option<&Value>` — [`Value`](../value/index.md#value)
 
   Returns a reference to the value corresponding to the key.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
 
 - <span id="map-contains-key"></span>`fn contains_key<Q>(&self, key: &Q) -> bool`
 
   Returns true if the map contains a value for the specified key.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
 
 - <span id="map-get-mut"></span>`fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut Value>` — [`Value`](../value/index.md#value)
 
   Returns a mutable reference to the value corresponding to the key.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
 
 - <span id="map-get-key-value"></span>`fn get_key_value<Q>(&self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../value/index.md#value)
 
   Returns the key-value pair matching the given key.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
 
 - <span id="map-insert"></span>`fn insert(&mut self, k: String, v: Value) -> Option<Value>` — [`Value`](../value/index.md#value)
 
   Inserts a key-value pair into the map.
-
   
-
   If the map did not have this key present, `None` is returned.
-
   
-
   If the map did have this key present, the value is updated, and the old
-
   value is returned.
 
 - <span id="map-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<Value>` — [`Value`](../value/index.md#value)
 
   Removes a key from the map, returning the value at the key if the key
-
   was previously in the map.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
-
   
-
   If serde_json's "preserve_order" is enabled, `.remove(key)` is
-
   equivalent to `.swap_remove(key)`, replacing this
-
   entry's position with the last element. If you need to preserve the
-
   relative order of the keys in the map, use
-
   `.shift_remove(key)` instead.
 
 - <span id="map-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(String, Value)>` — [`Value`](../value/index.md#value)
 
   Removes a key from the map, returning the stored key and value if the
-
   key was previously in the map.
-
   
-
   The key may be any borrowed form of the map's key type, but the ordering
-
   on the borrowed form *must* match the ordering on the key type.
-
   
-
   If serde_json's "preserve_order" is enabled, `.remove_entry(key)` is
-
   equivalent to `.swap_remove_entry(key)`,
-
   replacing this entry's position with the last element. If you need to
-
   preserve the relative order of the keys in the map, use
-
   `.shift_remove_entry(key)` instead.
 
 - <span id="map-append"></span>`fn append(&mut self, other: &mut Self)`
@@ -204,7 +167,6 @@ Represents a JSON key/value type.
 - <span id="map-entry"></span>`fn entry<S>(&mut self, key: S) -> Entry<'_>` — [`Entry`](#entry)
 
   Gets the given key's corresponding entry in the map for in-place
-
   manipulation.
 
 - <span id="map-len"></span>`fn len(&self) -> usize`
@@ -242,43 +204,26 @@ Represents a JSON key/value type.
 - <span id="map-retain"></span>`fn retain<F>(&mut self, f: F)`
 
   Retains only the elements specified by the predicate.
-
   
-
   In other words, remove all pairs `(k, v)` such that `f(&k, &mut v)`
-
   returns `false`.
 
 - <span id="map-sort-keys"></span>`fn sort_keys(&mut self)`
 
   Sorts this map's entries in-place using `str`'s usual ordering.
-
   
-
   If serde_json's "preserve_order" feature is not enabled, this method
-
   does no work because all JSON maps are always kept in a sorted state.
-
   
-
   If serde_json's "preserve_order" feature is enabled, this method
-
   destroys the original source order or insertion order of this map in
-
   favor of an alphanumerical order that matches how a BTreeMap with the
-
   same contents would be ordered. This takes **O(n log n + c)** time where
-
   _n_ is the length of the map and _c_ is the capacity.
-
   
-
   Other maps nested within the values of this map are not sorted. If you
-
   need the entire data structure to be sorted at all levels, you must also
-
   call
-
   <code>map.[values_mut]\().for_each([Value::sort_all_objects])</code>.
 
 #### Trait Implementations
@@ -426,11 +371,8 @@ Represents a JSON key/value type.
 - <span id="map-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
@@ -483,7 +425,7 @@ struct VacantEntry<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:631-633`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L631-L633)*
+*Defined in [`serde_json-1.0.145/src/map.rs:631-633`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L631-L633)*
 
 A vacant Entry. It is part of the [`Entry`](#entry) enum.
 
@@ -492,77 +434,43 @@ A vacant Entry. It is part of the [`Entry`](#entry) enum.
 - <span id="vacantentry-key"></span>`fn key(&self) -> &String`
 
   Gets a reference to the key that would be used when inserting a value
-
   through the VacantEntry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::map::Entry;
-
   
-
   let mut map = serde_json::Map::new();
-
   
-
   match map.entry("serde") {
-
       Entry::Vacant(vacant) => {
-
           assert_eq!(vacant.key(), &"serde");
-
       }
-
       Entry::Occupied(_) => unimplemented!(),
-
   }
-
   ```
 
 - <span id="vacantentry-insert"></span>`fn insert(self, value: Value) -> &'a mut Value` — [`Value`](../value/index.md#value)
 
   Sets the value of the entry with the VacantEntry's key, and returns a
-
   mutable reference to it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   use serde_json::map::Entry;
-
   
-
   let mut map = serde_json::Map::new();
-
   
-
   match map.entry("serde") {
-
       Entry::Vacant(vacant) => {
-
           vacant.insert(json!("hoho"));
-
       }
-
       Entry::Occupied(_) => unimplemented!(),
-
   }
-
   ```
 
 #### Trait Implementations
@@ -590,11 +498,8 @@ A vacant Entry. It is part of the [`Entry`](#entry) enum.
 - <span id="vacantentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for VacantEntry<'a>`
@@ -617,7 +522,7 @@ struct OccupiedEntry<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:636-638`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L636-L638)*
+*Defined in [`serde_json-1.0.145/src/map.rs:636-638`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L636-L638)*
 
 An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
@@ -626,321 +531,175 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
 - <span id="occupiedentry-key"></span>`fn key(&self) -> &String`
 
   Gets a reference to the key in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   use serde_json::map::Entry;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.insert("serde".to_owned(), json!(12));
-
   
-
   match map.entry("serde") {
-
       Entry::Occupied(occupied) => {
-
           assert_eq!(occupied.key(), &"serde");
-
       }
-
       Entry::Vacant(_) => unimplemented!(),
-
   }
-
   ```
 
 - <span id="occupiedentry-get"></span>`fn get(&self) -> &Value` — [`Value`](../value/index.md#value)
 
   Gets a reference to the value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   use serde_json::map::Entry;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.insert("serde".to_owned(), json!(12));
-
   
-
   match map.entry("serde") {
-
       Entry::Occupied(occupied) => {
-
           assert_eq!(occupied.get(), 12);
-
       }
-
       Entry::Vacant(_) => unimplemented!(),
-
   }
-
   ```
 
 - <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut Value` — [`Value`](../value/index.md#value)
 
   Gets a mutable reference to the value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   use serde_json::map::Entry;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.insert("serde".to_owned(), json!([1, 2, 3]));
-
   
-
   match map.entry("serde") {
-
       Entry::Occupied(mut occupied) => {
-
           occupied.get_mut().as_array_mut().unwrap().push(json!(4));
-
       }
-
       Entry::Vacant(_) => unimplemented!(),
-
   }
-
   
-
   assert_eq!(map["serde"].as_array().unwrap().len(), 4);
-
   ```
 
 - <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut Value` — [`Value`](../value/index.md#value)
 
   Converts the entry into a mutable reference to its value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   use serde_json::map::Entry;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.insert("serde".to_owned(), json!([1, 2, 3]));
-
   
-
   match map.entry("serde") {
-
       Entry::Occupied(mut occupied) => {
-
           occupied.into_mut().as_array_mut().unwrap().push(json!(4));
-
       }
-
       Entry::Vacant(_) => unimplemented!(),
-
   }
-
   
-
   assert_eq!(map["serde"].as_array().unwrap().len(), 4);
-
   ```
 
 - <span id="occupiedentry-insert"></span>`fn insert(&mut self, value: Value) -> Value` — [`Value`](../value/index.md#value)
 
   Sets the value of the entry with the `OccupiedEntry`'s key, and returns
-
   the entry's old value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   use serde_json::map::Entry;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.insert("serde".to_owned(), json!(12));
-
   
-
   match map.entry("serde") {
-
       Entry::Occupied(mut occupied) => {
-
           assert_eq!(occupied.insert(json!(13)), 12);
-
           assert_eq!(occupied.get(), 13);
-
       }
-
       Entry::Vacant(_) => unimplemented!(),
-
   }
-
   ```
 
 - <span id="occupiedentry-remove"></span>`fn remove(self) -> Value` — [`Value`](../value/index.md#value)
 
   Takes the value of the entry out of the map, and returns it.
-
   
-
   If serde_json's "preserve_order" is enabled, `.remove()` is
-
   equivalent to `.swap_remove()`, replacing this
-
   entry's position with the last element. If you need to preserve the
-
   relative order of the keys in the map, use
-
   `.shift_remove()` instead.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   use serde_json::map::Entry;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.insert("serde".to_owned(), json!(12));
-
   
-
   match map.entry("serde") {
-
       Entry::Occupied(occupied) => {
-
           assert_eq!(occupied.remove(), 12);
-
       }
-
       Entry::Vacant(_) => unimplemented!(),
-
   }
-
   ```
 
 - <span id="occupiedentry-remove-entry"></span>`fn remove_entry(self) -> (String, Value)` — [`Value`](../value/index.md#value)
 
   Removes the entry from the map, returning the stored key and value.
-
   
-
   If serde_json's "preserve_order" is enabled, `.remove_entry()` is
-
   equivalent to `.swap_remove_entry()`,
-
   replacing this entry's position with the last element. If you need to
-
   preserve the relative order of the keys in the map, use
-
   `.shift_remove_entry()` instead.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   use serde_json::map::Entry;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.insert("serde".to_owned(), json!(12));
-
   
-
   match map.entry("serde") {
-
       Entry::Occupied(occupied) => {
-
           let (key, value) = occupied.remove_entry();
-
           assert_eq!(key, "serde");
-
           assert_eq!(value, 12);
-
       }
-
       Entry::Vacant(_) => unimplemented!(),
-
   }
-
   ```
 
 #### Trait Implementations
@@ -968,11 +727,8 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
 - <span id="occupiedentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for OccupiedEntry<'a>`
@@ -995,7 +751,7 @@ struct Iter<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1060-1062`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1060-L1062)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1060-1062`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1060-L1062)*
 
 An iterator over a serde_json::Map's entries.
 
@@ -1046,11 +802,8 @@ An iterator over a serde_json::Map's entries.
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter<'a>`
@@ -1097,7 +850,7 @@ struct IterMut<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1086-1088`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1086-L1088)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1086-1088`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1086-L1088)*
 
 A mutable iterator over a serde_json::Map's entries.
 
@@ -1140,11 +893,8 @@ A mutable iterator over a serde_json::Map's entries.
 - <span id="itermut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterMut<'a>`
@@ -1183,7 +933,7 @@ struct IntoIter {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1112-1114`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1112-L1114)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1112-1114`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1112-L1114)*
 
 An owning iterator over a serde_json::Map's entries.
 
@@ -1226,11 +976,8 @@ An owning iterator over a serde_json::Map's entries.
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter`
@@ -1269,7 +1016,7 @@ struct Keys<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1127-1129`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1127-L1129)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1127-1129`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1127-L1129)*
 
 An iterator over a serde_json::Map's keys.
 
@@ -1320,11 +1067,8 @@ An iterator over a serde_json::Map's keys.
 - <span id="keys-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Keys<'a>`
@@ -1371,7 +1115,7 @@ struct Values<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1142-1144`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1142-L1144)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1142-1144`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1142-L1144)*
 
 An iterator over a serde_json::Map's values.
 
@@ -1422,11 +1166,8 @@ An iterator over a serde_json::Map's values.
 - <span id="values-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Values<'a>`
@@ -1473,7 +1214,7 @@ struct ValuesMut<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1157-1159`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1157-L1159)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1157-1159`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1157-L1159)*
 
 A mutable iterator over a serde_json::Map's values.
 
@@ -1516,11 +1257,8 @@ A mutable iterator over a serde_json::Map's values.
 - <span id="valuesmut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ValuesMut<'a>`
@@ -1559,7 +1297,7 @@ struct IntoValues {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1172-1174`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1172-L1174)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1172-1174`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1172-L1174)*
 
 An owning iterator over a serde_json::Map's values.
 
@@ -1602,11 +1340,8 @@ An owning iterator over a serde_json::Map's values.
 - <span id="intovalues-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoValues`
@@ -1648,7 +1383,7 @@ enum Entry<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:623-628`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L623-L628)*
+*Defined in [`serde_json-1.0.145/src/map.rs:623-628`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L623-L628)*
 
 A view into a single entry in a map, which may either be vacant or occupied.
 This enum is constructed from the `entry` method on [`Map`](#map).
@@ -1669,121 +1404,69 @@ This enum is constructed from the `entry` method on [`Map`](#map).
 - <span id="entry-key"></span>`fn key(&self) -> &String`
 
   Returns a reference to this entry's key.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let mut map = serde_json::Map::new();
-
   assert_eq!(map.entry("serde").key(), &"serde");
-
   ```
 
 - <span id="entry-or-insert"></span>`fn or_insert(self, default: Value) -> &'a mut Value` — [`Value`](../value/index.md#value)
 
   Ensures a value is in the entry by inserting the default if empty, and
-
   returns a mutable reference to the value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.entry("serde").or_insert(json!(12));
-
   
-
   assert_eq!(map["serde"], 12);
-
   ```
 
 - <span id="entry-or-insert-with"></span>`fn or_insert_with<F>(self, default: F) -> &'a mut Value` — [`Value`](../value/index.md#value)
 
   Ensures a value is in the entry by inserting the result of the default
-
   function if empty, and returns a mutable reference to the value in the
-
   entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.entry("serde").or_insert_with(|| json!("hoho"));
-
   
-
   assert_eq!(map["serde"], "hoho".to_owned());
-
   ```
 
 - <span id="entry-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
 
   Provides in-place mutable access to an occupied entry before any
-
   potential inserts into the map.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use serde_json::json;
-
   
-
   let mut map = serde_json::Map::new();
-
   map.entry("serde")
-
       .and_modify(|e| *e = json!("rust"))
-
       .or_insert(json!("cpp"));
-
   
-
   assert_eq!(map["serde"], "cpp");
-
   
-
   map.entry("serde")
-
       .and_modify(|e| *e = json!("rust"))
-
       .or_insert(json!("cpp"));
-
   
-
   assert_eq!(map["serde"], "rust");
-
   ```
 
 #### Trait Implementations
@@ -1811,11 +1494,8 @@ This enum is constructed from the `entry` method on [`Map`](#map).
 - <span id="entry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Entry<'a>`
@@ -1838,7 +1518,7 @@ This enum is constructed from the `entry` method on [`Map`](#map).
 type MapImpl<K, V> = alloc::collections::BTreeMap<K, V>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:34`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L34)*
+*Defined in [`serde_json-1.0.145/src/map.rs:34`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L34)*
 
 ### `VacantEntryImpl<'a>`
 
@@ -1846,7 +1526,7 @@ type MapImpl<K, V> = alloc::collections::BTreeMap<K, V>;
 type VacantEntryImpl<'a> = btree_map::VacantEntry<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:641`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L641)*
+*Defined in [`serde_json-1.0.145/src/map.rs:641`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L641)*
 
 ### `OccupiedEntryImpl<'a>`
 
@@ -1854,7 +1534,7 @@ type VacantEntryImpl<'a> = btree_map::VacantEntry<'a, alloc::string::String, cra
 type OccupiedEntryImpl<'a> = btree_map::OccupiedEntry<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:646`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L646)*
+*Defined in [`serde_json-1.0.145/src/map.rs:646`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L646)*
 
 ### `IterImpl<'a>`
 
@@ -1862,7 +1542,7 @@ type OccupiedEntryImpl<'a> = btree_map::OccupiedEntry<'a, alloc::string::String,
 type IterImpl<'a> = btree_map::Iter<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1065`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1065)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1065`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1065)*
 
 ### `IterMutImpl<'a>`
 
@@ -1870,7 +1550,7 @@ type IterImpl<'a> = btree_map::Iter<'a, alloc::string::String, crate::value::Val
 type IterMutImpl<'a> = btree_map::IterMut<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1091`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1091)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1091`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1091)*
 
 ### `IntoIterImpl`
 
@@ -1878,7 +1558,7 @@ type IterMutImpl<'a> = btree_map::IterMut<'a, alloc::string::String, crate::valu
 type IntoIterImpl = btree_map::IntoIter<alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1117`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1117)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1117`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1117)*
 
 ### `KeysImpl<'a>`
 
@@ -1886,7 +1566,7 @@ type IntoIterImpl = btree_map::IntoIter<alloc::string::String, crate::value::Val
 type KeysImpl<'a> = btree_map::Keys<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1132`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1132)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1132`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1132)*
 
 ### `ValuesImpl<'a>`
 
@@ -1894,7 +1574,7 @@ type KeysImpl<'a> = btree_map::Keys<'a, alloc::string::String, crate::value::Val
 type ValuesImpl<'a> = btree_map::Values<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1147`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1147)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1147`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1147)*
 
 ### `ValuesMutImpl<'a>`
 
@@ -1902,7 +1582,7 @@ type ValuesImpl<'a> = btree_map::Values<'a, alloc::string::String, crate::value:
 type ValuesMutImpl<'a> = btree_map::ValuesMut<'a, alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1162`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1162)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1162`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1162)*
 
 ### `IntoValuesImpl`
 
@@ -1910,11 +1590,11 @@ type ValuesMutImpl<'a> = btree_map::ValuesMut<'a, alloc::string::String, crate::
 type IntoValuesImpl = btree_map::IntoValues<alloc::string::String, crate::value::Value>;
 ```
 
-*Defined in [`serde_json-1.0.145/src/map.rs:1177`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L1177)*
+*Defined in [`serde_json-1.0.145/src/map.rs:1177`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L1177)*
 
 ## Macros
 
 ### `delegate_iterator!`
 
-*Defined in [`serde_json-1.0.145/src/map.rs:569-599`](../../../.source_1765633015/serde_json-1.0.145/src/map.rs#L569-L599)*
+*Defined in [`serde_json-1.0.145/src/map.rs:569-599`](../../../.source_1765894658/serde_json-1.0.145/src/map.rs#L569-L599)*
 

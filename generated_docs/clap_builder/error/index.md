@@ -63,7 +63,7 @@ Error reporting
 struct KindFormatter;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:36`](../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L36)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:36`](../../../.source_1765894658/clap_builder-4.5.53/src/error/format.rs#L36)*
 
 Report [`ErrorKind`](kind/index.md)
 
@@ -105,11 +105,8 @@ overhead for [`RichFormatter`](format/index.md).
 - <span id="kindformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for KindFormatter`
@@ -130,7 +127,7 @@ overhead for [`RichFormatter`](format/index.md).
 struct RichFormatter;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L62)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765894658/clap_builder-4.5.53/src/error/format.rs#L62)*
 
 Richly formatted error context
 
@@ -165,11 +162,8 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 - <span id="richformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RichFormatter`
@@ -190,7 +184,7 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 struct DefaultFormatter;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L62)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765894658/clap_builder-4.5.53/src/error/format.rs#L62)*
 
 Richly formatted error context
 
@@ -225,11 +219,8 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 - <span id="richformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RichFormatter`
@@ -253,7 +244,7 @@ struct Error<F: ErrorFormatter> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:60-63`](../../../.source_1765633015/clap_builder-4.5.53/src/error/mod.rs#L60-L63)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:60-63`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L60-L63)*
 
 Command Line Argument Parser Error
 
@@ -265,15 +256,10 @@ See `Command::error` to create an error.
 - <span id="error-raw"></span>`fn raw(kind: ErrorKind, message: impl Display) -> Self` — [`ErrorKind`](kind/index.md#errorkind)
 
   Create an unformatted error
-
   
-
   This is for you need to pass the error up to
-
   a place that has access to the `Command` at which point you can call `Error::format`.
-
   
-
   Prefer `Command::error` for generating errors.
 
 - <span id="error-format"></span>`fn format(self, cmd: &mut Command) -> Self` — [`Command`](../builder/command/index.md#command)
@@ -283,95 +269,54 @@ See `Command::error` to create an error.
 - <span id="error-new"></span>`fn new(kind: ErrorKind) -> Self` — [`ErrorKind`](kind/index.md#errorkind)
 
   Create an error with a pre-defined message
-
   
-
   See also
-
   - `Error::insert`
-
   - `Error::with_cmd`
-
   
-
   # Example
-
   
-
   ```rust
-
   #[cfg(feature = "error-context")] {
-
   use clap_builder as clap;
-
   use clap::error::ErrorKind;
-
   use clap::error::ContextKind;
-
   use clap::error::ContextValue;
-
   
-
   let cmd = clap::Command::new("prog");
-
   
-
   let mut err = clap::Error::new(ErrorKind::ValueValidation)
-
       .with_cmd(&cmd);
-
   err.insert(ContextKind::InvalidArg, ContextValue::String("--foo".to_owned()));
-
   err.insert(ContextKind::InvalidValue, ContextValue::String("bar".to_owned()));
-
   
-
   err.print();
-
   }
-
   ```
 
 - <span id="error-with-cmd"></span>`fn with_cmd(self, cmd: &Command) -> Self` — [`Command`](../builder/command/index.md#command)
 
   Apply [`Command`](../builder/command/index.md)'s formatting to the error
-
   
-
   Generally, this is used with `Error::new`
 
 - <span id="error-apply"></span>`fn apply<EF: ErrorFormatter>(self) -> Error<EF>` — [`Error`](#error)
 
   Apply an alternative formatter to the error
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   use clap::Arg;
-
   use clap::error::KindFormatter;
-
   let cmd = Command::new("foo")
-
       .arg(Arg::new("input").required(true));
-
   let matches = cmd
-
       .try_get_matches_from(["foo", "input.txt"])
-
       .map_err(|e| e.apply::<KindFormatter>())
-
       .unwrap_or_else(|e| e.exit());
-
   ```
 
 - <span id="error-kind"></span>`fn kind(&self) -> ErrorKind` — [`ErrorKind`](kind/index.md#errorkind)
@@ -389,19 +334,14 @@ See `Command::error` to create an error.
 - <span id="error-insert"></span>`fn insert(&mut self, kind: ContextKind, value: ContextValue) -> Option<ContextValue>` — [`ContextKind`](context/index.md#contextkind), [`ContextValue`](context/index.md#contextvalue)
 
   Insert a piece of context
-
   
-
   If this `ContextKind` is already present, its value is replaced and the old value is returned.
 
 - <span id="error-remove"></span>`fn remove(&mut self, kind: ContextKind) -> Option<ContextValue>` — [`ContextKind`](context/index.md#contextkind), [`ContextValue`](context/index.md#contextvalue)
 
   Remove a piece of context, return the old value if any
-
   
-
   The context is currently implemented in a vector, so `remove` takes
-
   linear time.
 
 - <span id="error-use-stderr"></span>`fn use_stderr(&self) -> bool`
@@ -413,95 +353,56 @@ See `Command::error` to create an error.
 - <span id="error-exit-code"></span>`fn exit_code(&self) -> i32`
 
   Returns the exit code that `.exit` will exit the process with.
-
   
-
   When the error's kind would print to `stderr` this returns `2`,
-
   else it returns `0`.
 
 - <span id="error-exit"></span>`fn exit(&self) -> never`
 
   Prints the error and exits.
-
   
-
   Depending on the error kind, this either prints to `stderr` and exits with a status of `2`
-
   or prints to `stdout` and exits with a status of `0`.
 
 - <span id="error-print"></span>`fn print(&self) -> io::Result<()>`
 
   Prints formatted and colored error to `stdout` or `stderr` according to its error kind
-
   
-
   # Example
-
   ```no_run
-
   use clap_builder as clap;
-
   use clap::Command;
-
   
-
   match Command::new("Command").try_get_matches() {
-
       Ok(matches) => {
-
           // do_something
-
       },
-
       Err(err) => {
-
           err.print().expect("Error writing Error");
-
           // do_something
-
       },
-
   };
-
   ```
 
 - <span id="error-render"></span>`fn render(&self) -> StyledStr` — [`StyledStr`](../builder/styled_str/index.md#styledstr)
 
   Render the error message to a [`StyledStr`](../builder/styled_str/index.md).
-
   
-
   # Example
-
   ```no_run
-
   use clap_builder as clap;
-
   use clap::Command;
-
   
-
   match Command::new("Command").try_get_matches() {
-
       Ok(matches) => {
-
           // do_something
-
       },
-
       Err(err) => {
-
           let err = err.render();
-
           println!("{err}");
-
           // do_something
-
       },
-
   };
-
   ```
 
 - <span id="error-for-app"></span>`fn for_app(kind: ErrorKind, cmd: &Command, styled: StyledStr) -> Self` — [`ErrorKind`](kind/index.md#errorkind), [`Command`](../builder/command/index.md#command), [`StyledStr`](../builder/styled_str/index.md#styledstr)
@@ -603,11 +504,8 @@ See `Command::error` to create an error.
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Error<F>`
@@ -642,7 +540,7 @@ struct ErrorInner {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:66-77`](../../../.source_1765633015/clap_builder-4.5.53/src/error/mod.rs#L66-L77)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:66-77`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L66-L77)*
 
 #### Trait Implementations
 
@@ -673,11 +571,8 @@ struct ErrorInner {
 - <span id="errorinner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ErrorInner`
@@ -698,7 +593,7 @@ struct ErrorInner {
 struct Backtrace;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:927`](../../../.source_1765633015/clap_builder-4.5.53/src/error/mod.rs#L927)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:927`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L927)*
 
 #### Implementations
 
@@ -737,11 +632,8 @@ struct Backtrace;
 - <span id="backtrace-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Backtrace`
@@ -786,7 +678,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/kind.rs:4-330`](../../../.source_1765633015/clap_builder-4.5.53/src/error/kind.rs#L4-L330)*
+*Defined in [`clap_builder-4.5.53/src/error/kind.rs:4-330`](../../../.source_1765894658/clap_builder-4.5.53/src/error/kind.rs#L4-L330)*
 
 Command line argument parser kind of error
 
@@ -1183,11 +1075,8 @@ Command line argument parser kind of error
 - <span id="errorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ErrorKind`
@@ -1244,7 +1133,7 @@ enum ContextKind {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/context.rs:5-40`](../../../.source_1765633015/clap_builder-4.5.53/src/error/context.rs#L5-L40)*
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:5-40`](../../../.source_1765894658/clap_builder-4.5.53/src/error/context.rs#L5-L40)*
 
 Semantics for a piece of error information
 
@@ -1373,11 +1262,8 @@ Semantics for a piece of error information
 - <span id="contextkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ContextKind`
@@ -1424,7 +1310,7 @@ enum ContextValue {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/context.rs:77-92`](../../../.source_1765633015/clap_builder-4.5.53/src/error/context.rs#L77-L92)*
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:77-92`](../../../.source_1765894658/clap_builder-4.5.53/src/error/context.rs#L77-L92)*
 
 A piece of error information
 
@@ -1501,11 +1387,8 @@ A piece of error information
 - <span id="contextvalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ContextValue`
@@ -1547,7 +1430,7 @@ enum Message {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:857-860`](../../../.source_1765633015/clap_builder-4.5.53/src/error/mod.rs#L857-L860)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:857-860`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L857-L860)*
 
 #### Implementations
 
@@ -1592,11 +1475,8 @@ enum Message {
 - <span id="message-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Message`
@@ -1627,7 +1507,7 @@ enum Message {
 trait ErrorFormatter: Sized { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/format.rs:20-23`](../../../.source_1765633015/clap_builder-4.5.53/src/error/format.rs#L20-L23)*
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:20-23`](../../../.source_1765894658/clap_builder-4.5.53/src/error/format.rs#L20-L23)*
 
 Defines how to format an error for displaying to the user
 
@@ -1650,7 +1530,7 @@ Defines how to format an error for displaying to the user
 type Result<T, E> = std::result::Result<T, E>;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/mod.rs:53`](../../../.source_1765633015/clap_builder-4.5.53/src/error/mod.rs#L53)*
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:53`](../../../.source_1765894658/clap_builder-4.5.53/src/error/mod.rs#L53)*
 
 Short hand for [`Result`](#result) type
 

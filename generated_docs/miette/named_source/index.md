@@ -22,10 +22,10 @@ struct NamedSource<S: SourceCode + 'static> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/named_source.rs:7-11`](../../../.source_1765633015/miette-7.6.0/src/named_source.rs#L7-L11)*
+*Defined in [`miette-7.6.0/src/named_source.rs:7-11`](../../../.source_1765894658/miette-7.6.0/src/named_source.rs#L7-L11)*
 
 Utility struct for when you have a regular [`SourceCode`](../index.md) type that doesn't
-implement `name`. For example [`String`](../../cargo_platform/index.md). Or if you want to override the
+implement `name`. For example `String`. Or if you want to override the
 `name` returned by the `SourceCode`.
 
 #### Implementations
@@ -33,7 +33,6 @@ implement `name`. For example [`String`](../../cargo_platform/index.md). Or if y
 - <span id="namedsource-new"></span>`fn new(name: impl AsRef<str>, source: S) -> Self`
 
   Create a new `NamedSource` using a regular [`SourceCode`](../index.md) and giving
-
   its returned [`SpanContents`](../index.md) a name.
 
 - <span id="namedsource-name"></span>`fn name(&self) -> &str`
@@ -43,7 +42,6 @@ implement `name`. For example [`String`](../../cargo_platform/index.md). Or if y
 - <span id="namedsource-inner"></span>`fn inner(&self) -> &S`
 
   Returns a reference the inner [`SourceCode`](../index.md) type for this
-
   `NamedSource`.
 
 - <span id="namedsource-with-language"></span>`fn with_language(self, language: impl Into<String>) -> Self`
@@ -93,11 +91,8 @@ implement `name`. For example [`String`](../../cargo_platform/index.md). Or if y
 - <span id="namedsource-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<S: cmp::Ord + SourceCode + 'static> Ord for NamedSource<S>`

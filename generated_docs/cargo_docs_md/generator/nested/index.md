@@ -67,51 +67,32 @@ output/
 - <span id="nestedgenerator-new"></span>`const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../context/index.md#generatorcontext)
 
   Create a new nested generator.
-
   
-
   # Arguments
-
   
-
   * `ctx` - Shared generator context
-
   * `output_dir` - Directory to write markdown files to
-
   * `progress` - Progress bar for user feedback
 
 - <span id="nestedgenerator-generate"></span>`fn generate(&self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
   Generate all documentation files in nested format.
-
   
-
   Generates `index.md` for the root module in the output directory,
-
   then recursively creates subdirectories for each submodule.
 
 - <span id="nestedgenerator-generate-module"></span>`fn generate_module(&self, item: &Item, parent_dir: &Path, module_path: Vec<String>) -> Result<(), Error>` — [`Error`](../../error/index.md#error)
 
   Generate a single module directory with index.md and child modules.
-
   
-
   Creates a directory for the module and an `index.md` file inside it.
-
   Recursively creates subdirectories for child modules. Now tracks the
-
   full module path for breadcrumb generation.
-
   
-
   # Arguments
-
   
-
   * `item` - The module item to generate
-
   * `parent_dir` - Parent directory to create module directory in
-
   * `module_path` - Accumulated module path segments for breadcrumbs
 
 #### Trait Implementations
@@ -141,11 +122,8 @@ output/
 - <span id="nestedgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for NestedGenerator<'a>`

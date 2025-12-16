@@ -18,7 +18,7 @@
 struct Inner(&'static std::ffi::OsStr);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:292`](../../../../../.source_1765633015/clap_builder-4.5.53/src/builder/os_str.rs#L292)*
+*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:292`](../../../../../.source_1765894658/clap_builder-4.5.53/src/builder/os_str.rs#L292)*
 
 #### Implementations
 
@@ -71,11 +71,8 @@ struct Inner(&'static std::ffi::OsStr);
 - <span id="inner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for inner::Inner`

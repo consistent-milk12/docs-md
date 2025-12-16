@@ -39,7 +39,7 @@ struct DebugCuIndex<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L12-L14)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L12-L14)*
 
 The data in the `.debug_cu_index` section of a `.dwp` file.
 
@@ -50,7 +50,6 @@ This section contains the compilation unit index.
 - <span id="debugcuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugCuIndex` instance from the data in the `.debug_cu_index`
-
   section.
 
 #### Trait Implementations
@@ -96,11 +95,8 @@ This section contains the compilation unit index.
 - <span id="debugcuindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugCuIndex<R>`
@@ -137,7 +133,7 @@ struct DebugTuIndex<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L68-L70)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L68-L70)*
 
 The data in the `.debug_tu_index` section of a `.dwp` file.
 
@@ -148,7 +144,6 @@ This section contains the type unit index.
 - <span id="debugtuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugTuIndex` instance from the data in the `.debug_tu_index`
-
   section.
 
 #### Trait Implementations
@@ -194,11 +189,8 @@ This section contains the type unit index.
 - <span id="debugtuindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugTuIndex<R>`
@@ -243,7 +235,7 @@ struct UnitIndex<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L124-L135)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L124-L135)*
 
 The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
@@ -254,11 +246,8 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 - <span id="unitindex-find"></span>`fn find(&self, id: u64) -> Option<u32>`
 
   Find `id` in the index hash table, and return the row index.
-
   
-
   `id` may be a compilation unit ID if this index is from `.debug_cu_index`,
-
   or a type signature if this index is from `.debug_tu_index`.
 
 - <span id="unitindex-sections"></span>`fn sections(&self, row: u32) -> Result<UnitIndexSectionIterator<'_, R>>` — [`Result`](../../index.md#result), [`UnitIndexSectionIterator`](../index.md#unitindexsectioniterator)
@@ -268,9 +257,7 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 - <span id="unitindex-version"></span>`fn version(&self) -> u16`
 
   Return the version.
-
   
-
   Defaults to 0 for empty sections.
 
 - <span id="unitindex-section-count"></span>`fn section_count(&self) -> u32`
@@ -322,11 +309,8 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 - <span id="unitindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for UnitIndex<R>`
@@ -359,7 +343,7 @@ struct UnitIndexSectionIterator<'index, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L307-L311)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L307-L311)*
 
 An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
@@ -400,11 +384,8 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 - <span id="unitindexsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for UnitIndexSectionIterator<'index, R>`
@@ -451,7 +432,7 @@ struct UnitIndexSection {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L331-L338)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L331-L338)*
 
 Information about a unit's contribution to a section in a `.dwp` file.
 
@@ -510,11 +491,8 @@ Information about a unit's contribution to a section in a `.dwp` file.
 - <span id="unitindexsection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for UnitIndexSection`
@@ -562,7 +540,7 @@ enum IndexSectionId {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L342-L363)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L342-L363)*
 
 Section kinds which are permitted in a `.dwp` index.
 
@@ -659,11 +637,8 @@ Section kinds which are permitted in a `.dwp` index.
 - <span id="indexsectionid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for IndexSectionId`
@@ -699,5 +674,5 @@ Section kinds which are permitted in a `.dwp` index.
 const SECTION_COUNT_MAX: u8 = 8u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../../.source_1765633015/gimli-0.32.3/src/read/index.rs#L120)*
+*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../../.source_1765894658/gimli-0.32.3/src/read/index.rs#L120)*
 

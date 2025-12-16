@@ -29,7 +29,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:17-34`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L17-L34)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:17-34`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L17-L34)*
 
 A builder for constructing a Teddy matcher.
 
@@ -71,57 +71,37 @@ and number of patterns given to the builder.
 - <span id="builder-build"></span>`fn build(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md#patterns), [`Searcher`](#searcher)
 
   Build a matcher for the set of patterns given. If a matcher could not
-
   be built, then `None` is returned.
-
   
-
   Generally, a matcher isn't built if the necessary CPU features aren't
-
   available, an unsupported target or if the searcher is believed to be
-
   slower than standard techniques (i.e., if there are too many literals).
 
 - <span id="builder-only-fat"></span>`fn only_fat(&mut self, yes: Option<bool>) -> &mut Builder` — [`Builder`](#builder)
 
   Require the use of Fat (true) or Slim (false) Teddy. Fat Teddy uses
-
   16 buckets where as Slim Teddy uses 8 buckets. More buckets are useful
-
   for a larger set of literals.
-
   
-
   `None` is the default, which results in an automatic selection based
-
   on the number of literals and available CPU features.
 
 - <span id="builder-only-256bit"></span>`fn only_256bit(&mut self, yes: Option<bool>) -> &mut Builder` — [`Builder`](#builder)
 
   Request the use of 256-bit vectors (true) or 128-bit vectors (false).
-
   Generally, a larger vector size is better since it either permits
-
   matching more patterns or matching more bytes in the haystack at once.
-
   
-
   `None` is the default, which results in an automatic selection based on
-
   the number of literals and available CPU features.
 
 - <span id="builder-heuristic-pattern-limits"></span>`fn heuristic_pattern_limits(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
   Request that heuristic limitations on the number of patterns be
-
   employed. This useful to disable for benchmarking where one wants to
-
   explore how Teddy performs on large number of patterns even if the
-
   heuristics would otherwise refuse construction.
-
   
-
   This is enabled by default.
 
 - <span id="builder-build-imp"></span>`fn build_imp(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md#patterns), [`Searcher`](#searcher)
@@ -167,11 +147,8 @@ and number of patterns given to the builder.
 - <span id="builder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Builder`
@@ -204,7 +181,7 @@ struct Searcher {
 }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:322-337`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L322-L337)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:322-337`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L322-L337)*
 
 A searcher that dispatches to one of several possible Teddy variants.
 
@@ -235,29 +212,21 @@ A searcher that dispatches to one of several possible Teddy variants.
 - <span id="searcher-find"></span>`fn find(&self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../util/search/index.md#match)
 
   Look for the leftmost occurrence of any pattern in this search in the
-
   given haystack starting at the given position.
-
   
-
   # Panics
-
   
-
   This panics when `haystack[at..].len()` is less than the minimum length
-
   for this haystack.
 
 - <span id="searcher-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
   Returns the approximate total amount of heap used by this type, in
-
   units of bytes.
 
 - <span id="searcher-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
   Returns the minimum length, in bytes, that a haystack must be in order
-
   to use it with this searcher.
 
 #### Trait Implementations
@@ -297,11 +266,8 @@ A searcher that dispatches to one of several possible Teddy variants.
 - <span id="searcher-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Searcher`
@@ -332,7 +298,7 @@ A searcher that dispatches to one of several possible Teddy variants.
 trait SearcherT: Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
 ```
 
-*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:416-448`](../../../../../.source_1765633015/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L416-L448)*
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:416-448`](../../../../../.source_1765894658/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L416-L448)*
 
 A trait that provides dynamic dispatch over the different possible Teddy
 variants on the same algorithm.
@@ -365,6 +331,33 @@ requires `alloc`, there's no real reason (AFAIK) to go down this path. (The
 - `fn find(&self, start: *const u8, end: *const u8) -> Option<Match>`
 
   Execute a search on the given haystack (identified by `start` and `end`
+  raw pointers).
+  
+  # Safety
+  
+  Essentially, the `start` and `end` pointers must be valid and point
+  to a haystack one can read. As long as you derive them from, for
+  example, a `&[u8]`, they should automatically satisfy all of the safety
+  obligations:
+  
+  * Both `start` and `end` must be valid for reads.
+  * Both `start` and `end` must point to an initialized value.
+  * Both `start` and `end` must point to the same allocated object and
+  must either be in bounds or at most one byte past the end of the
+  allocated object.
+  * Both `start` and `end` must be _derived from_ a pointer to the same
+  object.
+  * The distance between `start` and `end` must not overflow `isize`.
+  * The distance being in bounds must not rely on "wrapping around" the
+  address space.
+  * It must be the case that `start <= end`.
+  * `end - start` must be greater than the minimum length for this
+  searcher.
+  
+  Also, it is expected that implementations of this trait will tag this
+  method with a `target_feature` attribute. Callers must ensure that
+  they are executing this method in an environment where that attribute
+  is valid.
 
 #### Implementors
 

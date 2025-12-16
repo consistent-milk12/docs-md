@@ -80,7 +80,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:12-23`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L12-L23)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:12-23`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L12-L23)*
 
 A parsed representation of the dyld shared cache.
 
@@ -95,21 +95,15 @@ A parsed representation of the dyld shared cache.
 - <span id="dyldcache-subcache-suffixes"></span>`fn subcache_suffixes(data: R) -> Result<Vec<String>>` — [`Result`](../../../index.md#result)
 
   Return the suffixes of the subcache files given the data of the main cache file.
-
   
-
   Each of these should be appended to the path of the main cache file.
 
 - <span id="dyldcache-parse"></span>`fn parse(data: R, subcache_data: &[R]) -> Result<Self>` — [`Result`](../../../index.md#result)
 
   Parse the raw dyld shared cache data.
-
   
-
   For shared caches from macOS 12 / iOS 15 and above, the subcache files need to be
-
   supplied as well, in the correct order. Use `Self::subcache_suffixes` to obtain
-
   the suffixes for the path of the files.
 
 - <span id="dyldcache-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md#architecture)
@@ -139,7 +133,6 @@ A parsed representation of the dyld shared cache.
 - <span id="dyldcache-data-and-offset-for-address"></span>`fn data_and_offset_for_address(&self, address: u64) -> Option<(R, u64)>`
 
   Find the address in a mapping and return the cache or subcache data it was found in,
-
   together with the translated file offset.
 
 #### Trait Implementations
@@ -171,11 +164,8 @@ A parsed representation of the dyld shared cache.
 - <span id="dyldcache-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCache<'data, E, R>`
@@ -202,7 +192,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:214-221`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L214-L221)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:214-221`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L214-L221)*
 
 The data for one file in the cache.
 
@@ -245,11 +235,8 @@ The data for one file in the cache.
 - <span id="dyldfile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldFile<'data, E, R>`
@@ -276,7 +263,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:256-263`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L256-L263)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:256-263`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L256-L263)*
 
 An iterator over all the images (dylibs) in the dyld shared cache.
 
@@ -309,11 +296,8 @@ An iterator over all the images (dylibs) in the dyld shared cache.
 - <span id="dyldcacheimageiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DyldCacheImageIterator<'data, 'cache, E, R>`
@@ -354,7 +338,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:283-290`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L283-L290)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:283-290`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L283-L290)*
 
 One image (dylib) from inside the dyld shared cache.
 
@@ -371,7 +355,6 @@ One image (dylib) from inside the dyld shared cache.
 - <span id="dyldcacheimage-image-data-and-offset"></span>`fn image_data_and_offset(&self) -> Result<(R, u64)>` — [`Result`](../../../index.md#result)
 
   The subcache data which contains the Mach-O header for this image,
-
   together with the file offset at which this image starts.
 
 - <span id="dyldcacheimage-parse-object"></span>`fn parse_object(&self) -> Result<File<'data, R>>` — [`Result`](../../../index.md#result), [`File`](../../index.md#file)
@@ -407,11 +390,8 @@ One image (dylib) from inside the dyld shared cache.
 - <span id="dyldcacheimage-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheImage<'data, 'cache, E, R>`
@@ -439,7 +419,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:343-351`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L343-L351)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:343-351`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L343-L351)*
 
 An iterator over all the mappings for one subcache in a dyld shared cache.
 
@@ -472,11 +452,8 @@ An iterator over all the mappings for one subcache in a dyld shared cache.
 - <span id="dyldcachemappingiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DyldCacheMappingIterator<'data, E, R>`
@@ -518,7 +495,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:384-392`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L384-L392)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:384-392`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L384-L392)*
 
 Information about a mapping.
 
@@ -591,11 +568,8 @@ Information about a mapping.
 - <span id="dyldcachemapping-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldCacheMapping<'data, E, R>`
@@ -629,7 +603,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:558-564`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L558-L564)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:558-564`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L558-L564)*
 
 An iterator over relocations in a mapping
 
@@ -662,11 +636,8 @@ An iterator over relocations in a mapping
 - <span id="dyldcacherelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DyldCacheRelocationIterator<'data, E, R>`
@@ -719,7 +690,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:605-629`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L605-L629)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:605-629`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L605-L629)*
 
 #### Fields
 
@@ -772,11 +743,8 @@ where
 - <span id="dyldcacherelocationiteratorv2-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheRelocationIteratorV2<'data, E, R>`
@@ -810,7 +778,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:713-730`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L713-L730)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:713-730`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L713-L730)*
 
 #### Fields
 
@@ -855,11 +823,8 @@ where
 - <span id="dyldcacherelocationiteratorv3-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheRelocationIteratorV3<'data, E, R>`
@@ -893,7 +858,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:810-827`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L810-L827)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:810-827`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L810-L827)*
 
 #### Fields
 
@@ -938,11 +903,8 @@ where
 - <span id="dyldcacherelocationiteratorv5-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheRelocationIteratorV5<'data, E, R>`
@@ -967,7 +929,7 @@ struct DyldRelocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:896-906`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L896-L906)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:896-906`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L896-L906)*
 
 A cache mapping relocation.
 
@@ -1017,11 +979,8 @@ A cache mapping relocation.
 - <span id="dyldrelocation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldRelocation`
@@ -1046,7 +1005,7 @@ struct DyldRelocationAuth {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:921-928`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L921-L928)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:921-928`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L921-L928)*
 
 Pointer authentication data.
 
@@ -1095,11 +1054,8 @@ This is used for signing pointers for the arm64e ABI.
 - <span id="dyldrelocationauth-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldRelocationAuth`
@@ -1125,7 +1081,7 @@ enum DyldSubCacheSlice<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:31-36`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L31-L36)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:31-36`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L31-L36)*
 
 A slice of structs describing each subcache.
 
@@ -1181,11 +1137,8 @@ so this is an enum of the two possible slice types.
 - <span id="dyldsubcacheslice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldSubCacheSlice<'data, E>`
@@ -1217,7 +1170,7 @@ enum DyldCacheMappingSlice<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:331-336`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L331-L336)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:331-336`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L331-L336)*
 
 The array of mappings for a single dyld cache file.
 
@@ -1273,11 +1226,8 @@ so this is an enum of the two possible slice types.
 - <span id="dyldcachemappingslice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldCacheMappingSlice<'data, E>`
@@ -1311,7 +1261,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:354-360`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L354-L360)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:354-360`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L354-L360)*
 
 #### Trait Implementations
 
@@ -1342,11 +1292,8 @@ where
 - <span id="dyldcachemappingversioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheMappingVersionIterator<'data, E>`
@@ -1372,7 +1319,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:395-401`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L395-L401)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:395-401`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L395-L401)*
 
 #### Trait Implementations
 
@@ -1409,11 +1356,8 @@ where
 - <span id="dyldcachemappingversion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldCacheMappingVersion<'data, E>`
@@ -1457,7 +1401,7 @@ enum DyldCacheSlideInfo<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:539-554`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L539-L554)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:539-554`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L539-L554)*
 
 The slide info for a dyld cache mapping, including variable length arrays.
 
@@ -1500,11 +1444,8 @@ The slide info for a dyld cache mapping, including variable length arrays.
 - <span id="dyldcacheslideinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldCacheSlideInfo<'data, E>`
@@ -1541,7 +1482,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:585-594`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L585-L594)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:585-594`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L585-L594)*
 
 #### Trait Implementations
 
@@ -1572,11 +1513,8 @@ where
 - <span id="dyldcacherelocationiteratorversion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheRelocationIteratorVersion<'data, E, R>`
@@ -1602,7 +1540,7 @@ enum RelocationStateV2 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:597-602`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L597-L602)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:597-602`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L597-L602)*
 
 #### Trait Implementations
 
@@ -1645,11 +1583,8 @@ enum RelocationStateV2 {
 - <span id="relocationstatev2-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationStateV2`
@@ -1687,7 +1622,7 @@ enum RelocationStateV3 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:707-710`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L707-L710)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:707-710`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L707-L710)*
 
 #### Trait Implementations
 
@@ -1730,11 +1665,8 @@ enum RelocationStateV3 {
 - <span id="relocationstatev3-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationStateV3`
@@ -1772,7 +1704,7 @@ enum RelocationStateV5 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:804-807`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L804-L807)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:804-807`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L804-L807)*
 
 #### Trait Implementations
 
@@ -1815,11 +1747,8 @@ enum RelocationStateV5 {
 - <span id="relocationstatev5-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationStateV5`
@@ -1855,19 +1784,19 @@ enum RelocationStateV5 {
 const MIN_HEADER_SIZE_SUBCACHES_V1: u32 = 456u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:39`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L39)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:39`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L39)*
 
 ### `MIN_HEADER_SIZE_SUBCACHES_V2`
 ```rust
 const MIN_HEADER_SIZE_SUBCACHES_V2: u32 = 464u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:42`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L42)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:42`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L42)*
 
 ### `MIN_HEADER_SIZE_MAPPINGS_V2`
 ```rust
 const MIN_HEADER_SIZE_MAPPINGS_V2: u32 = 320u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:339`](../../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L339)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:339`](../../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L339)*
 

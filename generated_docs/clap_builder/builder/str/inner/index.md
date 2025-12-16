@@ -18,7 +18,7 @@
 struct Inner(&'static str);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/str.rs:277`](../../../../../.source_1765633015/clap_builder-4.5.53/src/builder/str.rs#L277)*
+*Defined in [`clap_builder-4.5.53/src/builder/str.rs:277`](../../../../../.source_1765894658/clap_builder-4.5.53/src/builder/str.rs#L277)*
 
 #### Implementations
 
@@ -71,11 +71,8 @@ struct Inner(&'static str);
 - <span id="inner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for inner::Inner`

@@ -129,7 +129,7 @@ struct ItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:101-116`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L101-L116)*
+*Defined in [`syn-2.0.111/src/item.rs:101-116`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L101-L116)*
 
 A constant item: `const MAX: u16 = 65535`.
 
@@ -180,11 +180,8 @@ A constant item: `const MAX: u16 = 65535`.
 - <span id="itemconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemConst`
@@ -239,7 +236,7 @@ struct ItemEnum {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:118-130`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L118-L130)*
+*Defined in [`syn-2.0.111/src/item.rs:118-130`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L118-L130)*
 
 An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 
@@ -290,11 +287,8 @@ An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 - <span id="itemenum-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemEnum`
@@ -349,7 +343,7 @@ struct ItemExternCrate {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:132-144`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L132-L144)*
+*Defined in [`syn-2.0.111/src/item.rs:132-144`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L132-L144)*
 
 An `extern crate` item: `extern crate serde`.
 
@@ -400,11 +394,8 @@ An `extern crate` item: `extern crate serde`.
 - <span id="itemexterncrate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemExternCrate`
@@ -456,7 +447,7 @@ struct ItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:146-155`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L146-L155)*
+*Defined in [`syn-2.0.111/src/item.rs:146-155`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L146-L155)*
 
 A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 
@@ -507,11 +498,8 @@ A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 - <span id="itemfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemFn`
@@ -564,7 +552,7 @@ struct ItemForeignMod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:157-167`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L157-L167)*
+*Defined in [`syn-2.0.111/src/item.rs:157-167`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L157-L167)*
 
 A block of foreign items: `extern "C" { ... }`.
 
@@ -615,11 +603,8 @@ A block of foreign items: `extern "C" { ... }`.
 - <span id="itemforeignmod-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemForeignMod`
@@ -676,7 +661,7 @@ struct ItemImpl {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:169-186`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L169-L186)*
+*Defined in [`syn-2.0.111/src/item.rs:169-186`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L169-L186)*
 
 An impl block providing trait or associated items: `impl<A> Trait
 for Data<A> { ... }`.
@@ -738,11 +723,8 @@ for Data<A> { ... }`.
 - <span id="itemimpl-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemImpl`
@@ -794,7 +776,7 @@ struct ItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:188-198`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L188-L198)*
+*Defined in [`syn-2.0.111/src/item.rs:188-198`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L188-L198)*
 
 A macro invocation, which includes `macro_rules!` definitions.
 
@@ -851,11 +833,8 @@ A macro invocation, which includes `macro_rules!` definitions.
 - <span id="itemmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemMacro`
@@ -910,7 +889,7 @@ struct ItemMod {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:200-212`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L200-L212)*
+*Defined in [`syn-2.0.111/src/item.rs:200-212`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L200-L212)*
 
 A module or module declaration: `mod m` or `mod m { ... }`.
 
@@ -961,11 +940,8 @@ A module or module declaration: `mod m` or `mod m { ... }`.
 - <span id="itemmod-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemMod`
@@ -1023,7 +999,7 @@ struct ItemStatic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:214-229`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L214-L229)*
+*Defined in [`syn-2.0.111/src/item.rs:214-229`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L214-L229)*
 
 A static item: `static BIKE: Shed = Shed(42)`.
 
@@ -1074,11 +1050,8 @@ A static item: `static BIKE: Shed = Shed(42)`.
 - <span id="itemstatic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemStatic`
@@ -1133,7 +1106,7 @@ struct ItemStruct {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:231-243`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L231-L243)*
+*Defined in [`syn-2.0.111/src/item.rs:231-243`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L231-L243)*
 
 A struct definition: `struct Foo<A> { x: A }`.
 
@@ -1184,11 +1157,8 @@ A struct definition: `struct Foo<A> { x: A }`.
 - <span id="itemstruct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemStruct`
@@ -1248,7 +1218,7 @@ struct ItemTrait {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:245-262`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L245-L262)*
+*Defined in [`syn-2.0.111/src/item.rs:245-262`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L245-L262)*
 
 A trait definition: `pub trait Iterator { ... }`.
 
@@ -1299,11 +1269,8 @@ A trait definition: `pub trait Iterator { ... }`.
 - <span id="itemtrait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemTrait`
@@ -1359,7 +1326,7 @@ struct ItemTraitAlias {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:264-277`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L264-L277)*
+*Defined in [`syn-2.0.111/src/item.rs:264-277`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L264-L277)*
 
 A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 
@@ -1410,11 +1377,8 @@ A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 - <span id="itemtraitalias-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemTraitAlias`
@@ -1470,7 +1434,7 @@ struct ItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:279-292`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L279-L292)*
+*Defined in [`syn-2.0.111/src/item.rs:279-292`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L279-L292)*
 
 A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 
@@ -1521,11 +1485,8 @@ A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 - <span id="itemtype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemType`
@@ -1579,7 +1540,7 @@ struct ItemUnion {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:294-305`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L294-L305)*
+*Defined in [`syn-2.0.111/src/item.rs:294-305`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L294-L305)*
 
 A union definition: `union Foo<A, B> { x: A, y: B }`.
 
@@ -1630,11 +1591,8 @@ A union definition: `union Foo<A, B> { x: A, y: B }`.
 - <span id="itemunion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemUnion`
@@ -1688,7 +1646,7 @@ struct ItemUse {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:307-318`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L307-L318)*
+*Defined in [`syn-2.0.111/src/item.rs:307-318`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L307-L318)*
 
 A use declaration: `use std::collections::HashMap`.
 
@@ -1739,11 +1697,8 @@ A use declaration: `use std::collections::HashMap`.
 - <span id="itemuse-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ItemUse`
@@ -1794,7 +1749,7 @@ struct UsePath {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:451-459`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L451-L459)*
+*Defined in [`syn-2.0.111/src/item.rs:451-459`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L451-L459)*
 
 A path prefix of imports in a `use` item: `std::...`.
 
@@ -1841,11 +1796,8 @@ A path prefix of imports in a `use` item: `std::...`.
 - <span id="usepath-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UsePath`
@@ -1890,7 +1842,7 @@ struct UseName {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:461-467`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L461-L467)*
+*Defined in [`syn-2.0.111/src/item.rs:461-467`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L461-L467)*
 
 An identifier imported by a `use` item: `HashMap`.
 
@@ -1937,11 +1889,8 @@ An identifier imported by a `use` item: `HashMap`.
 - <span id="usename-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UseName`
@@ -1988,7 +1937,7 @@ struct UseRename {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:469-477`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L469-L477)*
+*Defined in [`syn-2.0.111/src/item.rs:469-477`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L469-L477)*
 
 An renamed identifier imported by a `use` item: `HashMap as Map`.
 
@@ -2035,11 +1984,8 @@ An renamed identifier imported by a `use` item: `HashMap as Map`.
 - <span id="userename-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UseRename`
@@ -2084,7 +2030,7 @@ struct UseGlob {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:479-485`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L479-L485)*
+*Defined in [`syn-2.0.111/src/item.rs:479-485`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L479-L485)*
 
 A glob import in a `use` item: `*`.
 
@@ -2131,11 +2077,8 @@ A glob import in a `use` item: `*`.
 - <span id="useglob-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UseGlob`
@@ -2181,7 +2124,7 @@ struct UseGroup {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:487-494`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L487-L494)*
+*Defined in [`syn-2.0.111/src/item.rs:487-494`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L487-L494)*
 
 A braced group of imports in a `use` item: `{A, B, C}`.
 
@@ -2228,11 +2171,8 @@ A braced group of imports in a `use` item: `{A, B, C}`.
 - <span id="usegroup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::UseGroup`
@@ -2280,7 +2220,7 @@ struct ForeignItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:542-551`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L542-L551)*
+*Defined in [`syn-2.0.111/src/item.rs:542-551`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L542-L551)*
 
 A foreign function in an `extern` block.
 
@@ -2331,11 +2271,8 @@ A foreign function in an `extern` block.
 - <span id="foreignitemfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemFn`
@@ -2391,7 +2328,7 @@ struct ForeignItemStatic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:553-566`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L553-L566)*
+*Defined in [`syn-2.0.111/src/item.rs:553-566`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L553-L566)*
 
 A foreign static item in an `extern` block: `static ext: u8`.
 
@@ -2442,11 +2379,8 @@ A foreign static item in an `extern` block: `static ext: u8`.
 - <span id="foreignitemstatic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemStatic`
@@ -2500,7 +2434,7 @@ struct ForeignItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:568-579`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L568-L579)*
+*Defined in [`syn-2.0.111/src/item.rs:568-579`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L568-L579)*
 
 A foreign type in an `extern` block: `type void`.
 
@@ -2551,11 +2485,8 @@ A foreign type in an `extern` block: `type void`.
 - <span id="foreignitemtype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemType`
@@ -2606,7 +2537,7 @@ struct ForeignItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:581-589`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L581-L589)*
+*Defined in [`syn-2.0.111/src/item.rs:581-589`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L581-L589)*
 
 A macro invocation within an extern block.
 
@@ -2657,11 +2588,8 @@ A macro invocation within an extern block.
 - <span id="foreignitemmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItemMacro`
@@ -2717,7 +2645,7 @@ struct TraitItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:637-650`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L637-L650)*
+*Defined in [`syn-2.0.111/src/item.rs:637-650`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L637-L650)*
 
 An associated constant within the definition of a trait.
 
@@ -2768,11 +2696,8 @@ An associated constant within the definition of a trait.
 - <span id="traititemconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemConst`
@@ -2824,7 +2749,7 @@ struct TraitItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:652-661`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L652-L661)*
+*Defined in [`syn-2.0.111/src/item.rs:652-661`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L652-L661)*
 
 An associated function within the definition of a trait.
 
@@ -2875,11 +2800,8 @@ An associated function within the definition of a trait.
 - <span id="traititemfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemFn`
@@ -2935,7 +2857,7 @@ struct TraitItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:663-676`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L663-L676)*
+*Defined in [`syn-2.0.111/src/item.rs:663-676`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L663-L676)*
 
 An associated type within the definition of a trait.
 
@@ -2986,11 +2908,8 @@ An associated type within the definition of a trait.
 - <span id="traititemtype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemType`
@@ -3041,7 +2960,7 @@ struct TraitItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:678-686`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L678-L686)*
+*Defined in [`syn-2.0.111/src/item.rs:678-686`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L678-L686)*
 
 A macro invocation within the definition of a trait.
 
@@ -3092,11 +3011,8 @@ A macro invocation within the definition of a trait.
 - <span id="traititemmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItemMacro`
@@ -3155,7 +3071,7 @@ struct ImplItemConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:734-750`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L734-L750)*
+*Defined in [`syn-2.0.111/src/item.rs:734-750`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L734-L750)*
 
 An associated constant within an impl block.
 
@@ -3206,11 +3122,8 @@ An associated constant within an impl block.
 - <span id="implitemconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemConst`
@@ -3263,7 +3176,7 @@ struct ImplItemFn {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:752-762`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L752-L762)*
+*Defined in [`syn-2.0.111/src/item.rs:752-762`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L752-L762)*
 
 An associated function within an impl block.
 
@@ -3314,11 +3227,8 @@ An associated function within an impl block.
 - <span id="implitemfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemFn`
@@ -3375,7 +3285,7 @@ struct ImplItemType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:764-778`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L764-L778)*
+*Defined in [`syn-2.0.111/src/item.rs:764-778`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L764-L778)*
 
 An associated type within an impl block.
 
@@ -3426,11 +3336,8 @@ An associated type within an impl block.
 - <span id="implitemtype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemType`
@@ -3481,7 +3388,7 @@ struct ImplItemMacro {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:780-788`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L780-L788)*
+*Defined in [`syn-2.0.111/src/item.rs:780-788`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L780-L788)*
 
 A macro invocation within an impl block.
 
@@ -3532,11 +3439,8 @@ A macro invocation within an impl block.
 - <span id="implitemmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItemMacro`
@@ -3595,7 +3499,7 @@ struct Signature {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:790-807`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L790-L807)*
+*Defined in [`syn-2.0.111/src/item.rs:790-807`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L790-L807)*
 
 A function signature in a trait or implementation: `unsafe fn
 initialize(&self)`.
@@ -3649,11 +3553,8 @@ initialize(&self)`.
 - <span id="signature-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::Signature`
@@ -3707,7 +3608,7 @@ struct Receiver {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:832-849`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L832-L849)*
+*Defined in [`syn-2.0.111/src/item.rs:832-849`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L832-L849)*
 
 The `self` argument of an associated method.
 
@@ -3764,11 +3665,8 @@ shorthand case, the type in `ty` is reconstructed as one of `Self`,
 - <span id="receiver-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::Receiver`
@@ -3820,7 +3718,7 @@ struct Variadic {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:857-876`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L857-L876)*
+*Defined in [`syn-2.0.111/src/item.rs:857-876`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L857-L876)*
 
 The variadic argument of a foreign function.
 
@@ -3877,11 +3775,8 @@ extern "C" {
 - <span id="variadic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Variadic`
@@ -3943,7 +3838,7 @@ enum Item {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:20-99`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L20-L99)*
+*Defined in [`syn-2.0.111/src/item.rs:20-99`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L20-L99)*
 
 Things that can appear directly inside of a module or scope.
 
@@ -4067,11 +3962,8 @@ This type is a [syntax tree enum].
 - <span id="item-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::Item`
@@ -4124,7 +4016,7 @@ enum UseTree {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:424-449`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L424-L449)*
+*Defined in [`syn-2.0.111/src/item.rs:424-449`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L424-L449)*
 
 A suffix of an import tree in a `use` item: `Type as Renamed` or `*`.
 
@@ -4198,11 +4090,8 @@ This type is a [syntax tree enum].
 - <span id="usetree-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::UseTree`
@@ -4255,7 +4144,7 @@ enum ForeignItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:496-540`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L496-L540)*
+*Defined in [`syn-2.0.111/src/item.rs:496-540`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L496-L540)*
 
 An item within an `extern` block.
 
@@ -4329,11 +4218,8 @@ This type is a [syntax tree enum].
 - <span id="foreignitem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ForeignItem`
@@ -4386,7 +4272,7 @@ enum TraitItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:591-635`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L591-L635)*
+*Defined in [`syn-2.0.111/src/item.rs:591-635`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L591-L635)*
 
 An item declaration within the definition of a trait.
 
@@ -4460,11 +4346,8 @@ This type is a [syntax tree enum].
 - <span id="traititem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::TraitItem`
@@ -4517,7 +4400,7 @@ enum ImplItem {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:688-732`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L688-L732)*
+*Defined in [`syn-2.0.111/src/item.rs:688-732`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L688-L732)*
 
 An item within an impl block.
 
@@ -4591,11 +4474,8 @@ This type is a [syntax tree enum].
 - <span id="implitem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::ImplItem`
@@ -4645,7 +4525,7 @@ enum FnArg {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:820-830`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L820-L830)*
+*Defined in [`syn-2.0.111/src/item.rs:820-830`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L820-L830)*
 
 An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
@@ -4702,11 +4582,8 @@ An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 - <span id="fnarg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::FnArg`
@@ -4756,7 +4633,7 @@ enum StaticMutability {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:878-886`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L878-L886)*
+*Defined in [`syn-2.0.111/src/item.rs:878-886`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L878-L886)*
 
 The mutability of an `Item::Static` or `ForeignItem::Static`.
 
@@ -4803,11 +4680,8 @@ The mutability of an `Item::Static` or `ForeignItem::Static`.
 - <span id="staticmutability-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::item::StaticMutability`
@@ -4855,7 +4729,7 @@ enum ImplRestriction {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/item.rs:888-903`](../../../.source_1765633015/syn-2.0.111/src/item.rs#L888-L903)*
+*Defined in [`syn-2.0.111/src/item.rs:888-903`](../../../.source_1765894658/syn-2.0.111/src/item.rs#L888-L903)*
 
 Unused, but reserved for RFC 3323 restrictions.
 
@@ -4902,11 +4776,8 @@ Unused, but reserved for RFC 3323 restrictions.
 - <span id="implrestriction-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::ImplRestriction`

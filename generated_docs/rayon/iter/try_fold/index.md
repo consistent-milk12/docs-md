@@ -27,7 +27,7 @@ struct TryFold<I, U, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:26-31`](../../../../.source_1765633015/rayon-1.11.0/src/iter/try_fold.rs#L26-L31)*
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:26-31`](../../../../.source_1765894658/rayon-1.11.0/src/iter/try_fold.rs#L26-L31)*
 
 `TryFold` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `try_fold()` method on [`ParallelIterator`](../index.md)
@@ -74,11 +74,8 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../ind
 - <span id="tryfold-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFold<I, U, ID, F>`
@@ -142,7 +139,7 @@ struct TryFoldConsumer<'c, U, C, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:62-67`](../../../../.source_1765633015/rayon-1.11.0/src/iter/try_fold.rs#L62-L67)*
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:62-67`](../../../../.source_1765894658/rayon-1.11.0/src/iter/try_fold.rs#L62-L67)*
 
 #### Trait Implementations
 
@@ -183,11 +180,8 @@ struct TryFoldConsumer<'c, U, C, ID, F> {
 - <span id="tryfoldconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldConsumer<'c, U, C, ID, F>`
@@ -234,7 +228,7 @@ struct TryFoldFolder<'r, C, U: Try, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:124-128`](../../../../.source_1765633015/rayon-1.11.0/src/iter/try_fold.rs#L124-L128)*
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:124-128`](../../../../.source_1765894658/rayon-1.11.0/src/iter/try_fold.rs#L124-L128)*
 
 #### Trait Implementations
 
@@ -271,11 +265,8 @@ struct TryFoldFolder<'r, C, U: Try, F> {
 - <span id="tryfoldfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldFolder<'r, C, U, F>`
@@ -316,7 +307,7 @@ struct TryFoldWith<I, U: Try, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:180-184`](../../../../.source_1765633015/rayon-1.11.0/src/iter/try_fold.rs#L180-L184)*
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:180-184`](../../../../.source_1765894658/rayon-1.11.0/src/iter/try_fold.rs#L180-L184)*
 
 `TryFoldWith` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `try_fold_with()` method on [`ParallelIterator`](../index.md)
@@ -363,11 +354,8 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 - <span id="tryfoldwith-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldWith<I, U, F>`
@@ -430,7 +418,7 @@ struct TryFoldWithConsumer<'c, C, U: Try, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:220-224`](../../../../.source_1765633015/rayon-1.11.0/src/iter/try_fold.rs#L220-L224)*
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:220-224`](../../../../.source_1765894658/rayon-1.11.0/src/iter/try_fold.rs#L220-L224)*
 
 #### Trait Implementations
 
@@ -471,11 +459,8 @@ struct TryFoldWithConsumer<'c, C, U: Try, F> {
 - <span id="tryfoldwithconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldWithConsumer<'c, C, U, F>`

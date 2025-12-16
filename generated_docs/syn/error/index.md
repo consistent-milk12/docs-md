@@ -41,7 +41,7 @@ struct Error {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L101-L103)*
+*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L101-L103)*
 
 Error returned when a Syn parser cannot parse the input tokens.
 
@@ -127,179 +127,102 @@ mod expand {
 - <span id="error-new"></span>`fn new<T: Display>(span: Span, message: T) -> Self`
 
   Usually the `ParseStream::error` method will be used instead, which
-
   automatically uses the correct span from the current position of the
-
   parse stream.
-
   
-
   Use `Error::new` when the error needs to be triggered on some span other
-
   than where the parse stream is currently positioned.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{Error, Ident, LitStr, Result, Token};
-
   use syn::parse::ParseStream;
-
   
-
   // Parses input that looks like `name = "string"` where the key must be
-
   // the identifier `name` and the value may be any string literal.
-
   // Returns the string literal.
-
   fn parse_name(input: ParseStream) -> Result<LitStr> {
-
       let name_token: Ident = input.parse()?;
-
       if name_token != "name" {
-
           // Trigger an error not on the current position of the stream,
-
           // but on the position of the unexpected identifier.
-
           return Err(Error::new(name_token.span(), "expected `name`"));
-
       }
-
       input.parse::<Token![=]>()?;
-
       let s: LitStr = input.parse()?;
-
       Ok(s)
-
   }
-
   ```
 
 - <span id="error-new-spanned"></span>`fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
 
   Creates an error with the specified message spanning the given syntax
-
   tree node.
-
   
-
   Unlike the `Error::new` constructor, this constructor takes an argument
-
   `tokens` which is a syntax tree node. This allows the resulting `Error`
-
   to attempt to span all tokens inside of `tokens`. While you would
-
   typically be able to use the `Spanned` trait with the above `Error::new`
-
   constructor, implementation limitations today mean that
-
   `Error::new_spanned` may provide a higher-quality error message on
-
   stable Rust.
-
   
-
   When in doubt it's recommended to stick to `Error::new` (or
-
   `ParseStream::error`)!
 
 - <span id="error-span"></span>`fn span(&self) -> Span`
 
   The source location of the error.
-
   
-
   Spans are not thread-safe so this function returns `Span::call_site()`
-
   if called from a different thread than the one on which the `Error` was
-
   originally created.
 
 - <span id="error-to-compile-error"></span>`fn to_compile_error(&self) -> TokenStream`
 
   Render the error as an invocation of `compile_error!`.
-
   
-
   The `parse_macro_input!` macro provides a convenient way to invoke
-
   this method correctly in a procedural macro.
-
   
 
 - <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
   Render the error as an invocation of `compile_error!`.
-
   
-
   # Example
-
   
-
   ```rust
-
   extern crate proc_macro;
-
   
-
   use proc_macro::TokenStream;
-
   use syn::{parse_macro_input, DeriveInput, Error};
-
   
-
   const _: &str = stringify! {
-
   #[proc_macro_derive(MyTrait)]
-
   };
-
   pub fn derive_my_trait(input: TokenStream) -> TokenStream {
-
       let input = parse_macro_input!(input as DeriveInput);
-
       my_trait::expand(input)
-
           .unwrap_or_else(Error::into_compile_error)
-
           .into()
-
   }
-
   
-
   mod my_trait {
-
       use proc_macro2::TokenStream;
-
       use syn::{DeriveInput, Result};
-
   
-
       pub(crate) fn expand(input: DeriveInput) -> Result<TokenStream> {
-
           /* ... */
-
           unimplemented!()
-
       }
-
   }
-
   ```
 
 - <span id="error-combine"></span>`fn combine(&mut self, another: Error)` — [`Error`](#error)
 
   Add another error message to self such that when `to_compile_error()` is
-
   called, both errors will be emitted together.
 
 #### Trait Implementations
@@ -349,11 +272,8 @@ mod expand {
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Error`
@@ -397,7 +317,7 @@ struct ErrorMessage {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:105-113`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L105-L113)*
+*Defined in [`syn-2.0.111/src/error.rs:105-113`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L105-L113)*
 
 #### Implementations
 
@@ -440,11 +360,8 @@ struct ErrorMessage {
 - <span id="errormessage-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ErrorMessage`
@@ -476,7 +393,7 @@ struct SpanRange {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:118-121`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L118-L121)*
+*Defined in [`syn-2.0.111/src/error.rs:118-121`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L118-L121)*
 
 #### Trait Implementations
 
@@ -513,11 +430,8 @@ struct SpanRange {
 - <span id="spanrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SpanRange`
@@ -548,7 +462,7 @@ struct IntoIter {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:423-425`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L423-L425)*
+*Defined in [`syn-2.0.111/src/error.rs:423-425`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L423-L425)*
 
 #### Trait Implementations
 
@@ -575,11 +489,8 @@ struct IntoIter {
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter`
@@ -616,7 +527,7 @@ struct Iter<'a> {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:448-450`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L448-L450)*
+*Defined in [`syn-2.0.111/src/error.rs:448-450`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L448-L450)*
 
 #### Trait Implementations
 
@@ -643,11 +554,8 @@ struct Iter<'a> {
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter<'a>`
@@ -684,7 +592,7 @@ struct Iter<'a> {
 fn new_at<T: Display>(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>, message: T) -> Error
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:328-335`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L328-L335)*
+*Defined in [`syn-2.0.111/src/error.rs:328-335`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L328-L335)*
 
 ### `new2`
 
@@ -692,7 +600,7 @@ fn new_at<T: Display>(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_
 fn new2<T: Display>(start: proc_macro2::Span, end: proc_macro2::Span, message: T) -> Error
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:338-349`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L338-L349)*
+*Defined in [`syn-2.0.111/src/error.rs:338-349`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L338-L349)*
 
 ## Type Aliases
 
@@ -702,7 +610,7 @@ fn new2<T: Display>(start: proc_macro2::Span, end: proc_macro2::Span, message: T
 type Result<T> = std::result::Result<T, Error>;
 ```
 
-*Defined in [`syn-2.0.111/src/error.rs:15`](../../../.source_1765633015/syn-2.0.111/src/error.rs#L15)*
+*Defined in [`syn-2.0.111/src/error.rs:15`](../../../.source_1765894658/syn-2.0.111/src/error.rs#L15)*
 
 The result of a Syn parser.
 

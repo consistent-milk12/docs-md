@@ -19,7 +19,7 @@
 struct LazyStateID(u32);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:169`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/id.rs#L169)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:169`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/id.rs#L169)*
 
 A state identifier specifically tailored for lazy DFAs.
 
@@ -206,41 +206,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="lazystateid-new"></span>`fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](#lazystateid), [`LazyStateIDError`](#lazystateiderror)
 
   Create a new lazy state ID.
-
   
-
   If the given identifier exceeds `LazyStateID::MAX`, then this returns
-
   an error.
 
 - <span id="lazystateid-new-unchecked"></span>`const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
   Create a new lazy state ID without checking whether the given value
-
   exceeds `LazyStateID::MAX`.
-
   
-
   While this is unchecked, providing an incorrect value must never
-
   sacrifice memory safety.
 
 - <span id="lazystateid-as-usize-untagged"></span>`fn as_usize_untagged(&self) -> usize`
 
   Return this lazy state ID as an untagged `usize`.
-
   
-
   If this lazy state ID is tagged, then the usize returned is the state
-
   ID without the tag. If the ID was not tagged, then the usize returned
-
   is equivalent to the state ID.
 
 - <span id="lazystateid-as-usize-unchecked"></span>`const fn as_usize_unchecked(&self) -> usize`
 
   Return this lazy state ID as its raw internal `usize` value, which may
-
   be tagged (and thus greater than LazyStateID::MAX).
 
 - <span id="lazystateid-to-unknown"></span>`const fn to_unknown(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
@@ -252,79 +240,56 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="lazystateid-to-start"></span>`const fn to_start(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
   Return this lazy state ID as a state ID that is tagged as a start
-
   state.
 
 - <span id="lazystateid-to-match"></span>`const fn to_match(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
   Return this lazy state ID as a lazy state ID that is tagged as a match
-
   state.
 
 - <span id="lazystateid-is-tagged"></span>`const fn is_tagged(&self) -> bool`
 
   Return true if and only if this lazy state ID is tagged.
-
   
-
   When a lazy state ID is tagged, then one can conclude that it is one
-
   of a match, start, dead, quit or unknown state.
 
 - <span id="lazystateid-is-unknown"></span>`const fn is_unknown(&self) -> bool`
 
   Return true if and only if this represents a lazy state ID that is
-
   "unknown." That is, the state has not yet been created. When a caller
-
   sees this state ID, it generally means that a state has to be computed
-
   in order to proceed.
 
 - <span id="lazystateid-is-dead"></span>`const fn is_dead(&self) -> bool`
 
   Return true if and only if this represents a dead state. A dead state
-
   is a state that can never transition to any other state except the
-
   dead state. When a dead state is seen, it generally indicates that a
-
   search should stop.
 
 - <span id="lazystateid-is-quit"></span>`const fn is_quit(&self) -> bool`
 
   Return true if and only if this represents a quit state. A quit state
-
   is a state that is representationally equivalent to a dead state,
-
   except it indicates the automaton has reached a point at which it can
-
   no longer determine whether a match exists or not. In general, this
-
   indicates an error during search and the caller must either pass this
-
   error up or use a different search technique.
 
 - <span id="lazystateid-is-start"></span>`const fn is_start(&self) -> bool`
 
   Return true if and only if this lazy state ID has been tagged as a
-
   start state.
-
   
-
   Note that if
-
   [`Config::specialize_start_states`](crate::hybrid::dfa::Config) is
-
   disabled (which is the default), then this will always return false
-
   since start states won't be tagged.
 
 - <span id="lazystateid-is-match"></span>`const fn is_match(&self) -> bool`
 
   Return true if and only if this lazy state ID has been tagged as a
-
   match state.
 
 #### Trait Implementations
@@ -376,11 +341,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="lazystateid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for LazyStateID`
@@ -425,7 +387,7 @@ struct LazyStateIDError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:331-333`](../../../../.source_1765633015/regex-automata-0.4.13/src/hybrid/id.rs#L331-L333)*
+*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:331-333`](../../../../.source_1765894658/regex-automata-0.4.13/src/hybrid/id.rs#L331-L333)*
 
 This error occurs when a lazy state ID could not be constructed.
 
@@ -485,11 +447,8 @@ When the `std` feature is enabled, this implements the `Error` trait.
 - <span id="lazystateiderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LazyStateIDError`

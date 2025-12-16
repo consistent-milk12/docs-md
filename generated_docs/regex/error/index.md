@@ -21,7 +21,7 @@ enum Error {
 }
 ```
 
-*Defined in [`regex-1.12.2/src/error.rs:8-32`](../../../.source_1765633015/regex-1.12.2/src/error.rs#L8-L32)*
+*Defined in [`regex-1.12.2/src/error.rs:8-32`](../../../.source_1765894658/regex-1.12.2/src/error.rs#L8-L32)*
 
 An error that occurred during parsing or compiling a regular expression.
 
@@ -103,11 +103,8 @@ An error that occurred during parsing or compiling a regular expression.
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Error`

@@ -55,7 +55,7 @@ struct Path {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L11-L18)*
+*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L11-L18)*
 
 A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
@@ -64,63 +64,34 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 - <span id="cratepathpath-parse-mod-style"></span>`fn parse_mod_style(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parse a `Path` containing no path arguments on any of its segments.
-
   
-
   # Example
-
   
-
   ```rust
-
   use syn::{Path, Result, Token};
-
   use syn::parse::{Parse, ParseStream};
-
   
-
   // A simplified single `use` statement like:
-
   //
-
   //     use std::collections::HashMap;
-
   //
-
   // Note that generic parameters are not allowed in a `use` statement
-
   // so the following must not be accepted.
-
   //
-
   //     use a::<b>::c;
-
   struct SingleUse {
-
       use_token: Token![use],
-
       path: Path,
-
   }
-
   
-
   impl Parse for SingleUse {
-
       fn parse(input: ParseStream) -> Result<Self> {
-
           Ok(SingleUse {
-
               use_token: input.parse()?,
-
               path: input.call(Path::parse_mod_style)?,
-
           })
-
       }
-
   }
-
   ```
 
 - <span id="cratepathpath-parse-helper"></span>`fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
@@ -172,11 +143,8 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 - <span id="path-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::Path`
@@ -228,7 +196,7 @@ struct PathSegment {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L107-L114)*
+*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L107-L114)*
 
 A segment of a path together with any path arguments on that segment.
 
@@ -279,11 +247,8 @@ A segment of a path together with any path arguments on that segment.
 - <span id="pathsegment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::PathSegment`
@@ -335,7 +300,7 @@ struct AngleBracketedGenericArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L196-L206)*
+*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L196-L206)*
 
 Angle bracketed arguments of a path segment: the `<K, V>` in `HashMap<K,
 V>`.
@@ -345,11 +310,8 @@ V>`.
 - <span id="cratepathanglebracketedgenericarguments-parse-turbofish"></span>`fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
 
   Parse `::<…>` with mandatory leading `::`.
-
   
-
   The ordinary [`Parse`](../parse/index.md) impl for `AngleBracketedGenericArguments`
-
   parses optional leading `::`.
 
 - <span id="cratepathanglebracketedgenericarguments-do-parse"></span>`fn do_parse(colon2_token: Option<token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](../token/index.md#pathsep), [`ParseStream`](../parse/index.md#parsestream), [`Result`](../error/index.md#result)
@@ -397,11 +359,8 @@ V>`.
 - <span id="anglebracketedgenericarguments-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::AngleBracketedGenericArguments`
@@ -453,7 +412,7 @@ struct AssocType {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L208-L218)*
+*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L208-L218)*
 
 A binding (equality constraint) on an associated type: the `Item = u8`
 in `Iterator<Item = u8>`.
@@ -501,11 +460,8 @@ in `Iterator<Item = u8>`.
 - <span id="assoctype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::AssocType`
@@ -553,7 +509,7 @@ struct AssocConst {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L220-L230)*
+*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L220-L230)*
 
 An equality constraint on an associated constant: the `PANIC = false` in
 `Trait<PANIC = false>`.
@@ -601,11 +557,8 @@ An equality constraint on an associated constant: the `PANIC = false` in
 - <span id="assocconst-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::AssocConst`
@@ -653,7 +606,7 @@ struct Constraint {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L232-L241)*
+*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L232-L241)*
 
 An associated type bound: `Iterator<Item: Display>`.
 
@@ -700,11 +653,8 @@ An associated type bound: `Iterator<Item: Display>`.
 - <span id="constraint-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::Constraint`
@@ -751,7 +701,7 @@ struct ParenthesizedGenericArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L243-L254)*
+*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L243-L254)*
 
 Arguments of a function path segment: the `(A, B) -> C` in `Fn(A,B) ->
 C`.
@@ -813,11 +763,8 @@ C`.
 - <span id="parenthesizedgenericarguments-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::ParenthesizedGenericArguments`
@@ -870,7 +817,7 @@ struct QSelf {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L256-L281)*
+*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L256-L281)*
 
 The explicit Self type in a qualified path: the `T` in `<T as
 Display>::fmt`.
@@ -932,11 +879,8 @@ item qualified with this Self type.
 - <span id="qself-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::QSelf`
@@ -981,7 +925,7 @@ enum PathArguments {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L128-L146)*
+*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L128-L146)*
 
 Angle bracketed or parenthesized arguments of a path segment.
 
@@ -1056,11 +1000,8 @@ The `(A, B) -> C` in `Fn(A, B) -> C`.
 - <span id="patharguments-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::PathArguments`
@@ -1110,7 +1051,7 @@ enum GenericArgument {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../../.source_1765633015/syn-2.0.111/src/path.rs#L171-L194)*
+*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../../.source_1765894658/syn-2.0.111/src/path.rs#L171-L194)*
 
 An individual generic argument, like `'a`, `T`, or `Item = T`.
 
@@ -1188,11 +1129,8 @@ An individual generic argument, like `'a`, `T`, or `Item = T`.
 - <span id="genericargument-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::path::GenericArgument`

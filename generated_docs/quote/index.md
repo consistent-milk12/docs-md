@@ -135,7 +135,7 @@ code it is convenient for a human to read and debug.
 trait TokenStreamExt: private::Sealed { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../.source_1765633015/quote-1.0.42/src/ext.rs#L8-L57)*
+*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../.source_1765894658/quote-1.0.42/src/ext.rs#L8-L57)*
 
 TokenStream extension trait with methods for appending tokens.
 
@@ -146,18 +146,42 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
 - `fn append<U>(&mut self, token: U)`
 
   For use by `ToTokens` implementations.
+  
+  Appends the token specified to this list of tokens.
 
 - `fn append_all<I>(&mut self, iter: I)`
 
   For use by `ToTokens` implementations.
+  
+  ```rust
+  use quote::{quote, TokenStreamExt, ToTokens};
+  use proc_macro2::TokenStream;
+  
+  struct X;
+  
+  impl ToTokens for X {
+      fn to_tokens(&self, tokens: &mut TokenStream) {
+          tokens.append_all(&[true, false]);
+      }
+  }
+  
+  let tokens = quote!(#X);
+  assert_eq!(tokens.to_string(), "true false");
+  ```
 
 - `fn append_separated<I, U>(&mut self, iter: I, op: U)`
 
   For use by `ToTokens` implementations.
+  
+  Appends all of the items in the iterator `I`, separated by the tokens
+  `U`.
 
 - `fn append_terminated<I, U>(&mut self, iter: I, term: U)`
 
   For use by `ToTokens` implementations.
+  
+  Appends all tokens in the iterator `I`, appending `U` after each
+  element, including after the last element of the iterator.
 
 #### Implementors
 
@@ -169,11 +193,11 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
 trait IdentFragment { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../.source_1765633015/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
+*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../.source_1765894658/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
 
 Specialized formatting trait used by `format_ident!`.
 
-[`Ident`](../proc_macro2/imp/index.md) arguments formatted using this trait will have their `r#` prefix
+[`Ident`](../proc_macro2/index.md) arguments formatted using this trait will have their `r#` prefix
 stripped, if present.
 
 See `format_ident!` for more information.
@@ -190,6 +214,8 @@ See `format_ident!` for more information.
 - `fn span(&self) -> Option<Span>`
 
   Span associated with this `IdentFragment`.
+  
+  If non-`None`, may be inherited by formatted identifiers.
 
 #### Implementors
 
@@ -214,7 +240,7 @@ See `format_ident!` for more information.
 trait ToTokens { ... }
 ```
 
-*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../.source_1765633015/quote-1.0.42/src/to_tokens.rs#L9-L72)*
+*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../.source_1765894658/quote-1.0.42/src/to_tokens.rs#L9-L72)*
 
 Types that can be interpolated inside a `quote!` invocation.
 
@@ -223,16 +249,61 @@ Types that can be interpolated inside a `quote!` invocation.
 - `fn to_tokens(&self, tokens: &mut TokenStream)`
 
   Write `self` to the given `TokenStream`.
+  
+  The token append methods provided by the [`TokenStreamExt`](ext/index.md) extension
+  trait may be useful for implementing `ToTokens`.
+  
+  # Example
+  
+  Example implementation for a struct representing Rust paths like
+  `std::cmp::PartialEq`:
+  
+  ```rust
+  use proc_macro2::{TokenTree, Spacing, Span, Punct, TokenStream};
+  use quote::{TokenStreamExt, ToTokens};
+  
+  pub struct Path {
+      pub global: bool,
+      pub segments: Vec<PathSegment>,
+  }
+  
+  impl ToTokens for Path {
+      fn to_tokens(&self, tokens: &mut TokenStream) {
+          for (i, segment) in self.segments.iter().enumerate() {
+              if i > 0 || self.global {
+                  // Double colon `::`
+                  tokens.append(Punct::new(':', Spacing::Joint));
+                  tokens.append(Punct::new(':', Spacing::Alone));
+              }
+              segment.to_tokens(tokens);
+          }
+      }
+  }
+  
+  pub struct PathSegment;
+  
+  impl ToTokens for PathSegment {
+      fn to_tokens(&self, tokens: &mut TokenStream) {
+          unimplemented!()
+      }
+  }
+  ```
 
 #### Provided Methods
 
 - `fn to_token_stream(&self) -> TokenStream`
 
   Convert `self` directly into a `TokenStream` object.
+  
+  This method is implicitly implemented using `to_tokens`, and acts as a
+  convenience method for consumers of the `ToTokens` trait.
 
 - `fn into_token_stream(self) -> TokenStream`
 
   Convert `self` directly into a `TokenStream` object.
+  
+  This method is implicitly implemented using `to_tokens`, and acts as a
+  convenience method for consumers of the `ToTokens` trait.
 
 #### Implementors
 
@@ -273,15 +344,15 @@ Types that can be interpolated inside a `quote!` invocation.
 
 ### `__quote!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:128-478`](../../.source_1765633015/quote-1.0.42/src/lib.rs#L128-L478)*
+*Defined in [`quote-1.0.42/src/lib.rs:128-478`](../../.source_1765894658/quote-1.0.42/src/lib.rs#L128-L478)*
 
 ### `__quote_spanned!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:527-625`](../../.source_1765633015/quote-1.0.42/src/lib.rs#L527-L625)*
+*Defined in [`quote-1.0.42/src/lib.rs:527-625`](../../.source_1765894658/quote-1.0.42/src/lib.rs#L527-L625)*
 
 ### `format_ident!`
 
-*Defined in [`quote-1.0.42/src/format.rs:111-125`](../../.source_1765633015/quote-1.0.42/src/format.rs#L111-L125)*
+*Defined in [`quote-1.0.42/src/format.rs:111-125`](../../.source_1765894658/quote-1.0.42/src/format.rs#L111-L125)*
 
 Formatting macro for constructing `Ident`s.
 
@@ -289,7 +360,7 @@ Formatting macro for constructing `Ident`s.
 
 # Syntax
 
-Syntax is copied from the [`format!`](../clap_builder/error/format/index.md) macro, supporting both positional and
+Syntax is copied from the `format!` macro, supporting both positional and
 named arguments.
 
 Only a limited set of formatting traits are supported. The current mapping
@@ -301,7 +372,7 @@ of format types to traits is:
 * `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
 * `{:b}` ⇒ [`Binary`](std::fmt::Binary)
 
-See [`std::fmt`](../anstream/fmt/index.md) for more information.
+See `std::fmt` for more information.
 
 <br>
 
@@ -391,15 +462,15 @@ assert_eq!(upper_hex, "Id_A");
 
 ### `quote!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:483-487`](../../.source_1765633015/quote-1.0.42/src/lib.rs#L483-L487)*
+*Defined in [`quote-1.0.42/src/lib.rs:483-487`](../../.source_1765894658/quote-1.0.42/src/lib.rs#L483-L487)*
 
 The whole point.
 
 Performs variable interpolation against the input and produces it as
-[`proc_macro2::TokenStream`](../proc_macro2/index.md).
+[`proc_macro2::TokenStream`](../proc_macro2/imp/index.md).
 
 Note: for returning tokens to the compiler in a procedural macro, use
-`.into()` on the result to convert to [`proc_macro::TokenStream`](../proc_macro2/index.md).
+`.into()` on the result to convert to `proc_macro::TokenStream`.
 
 <br>
 
@@ -449,7 +520,7 @@ procedural macro ecosystem is largely built around `proc_macro2`, because
 that ensures the libraries are unit testable and accessible in non-macro
 contexts.
 
-There is a [`From`](../thiserror_impl/attr/index.md)-conversion in both directions so returning the output of
+There is a [`From`](#from)-conversion in both directions so returning the output of
 `quote!` from a procedural macro usually looks like `tokens.into()` or
 `proc_macro::TokenStream::from(tokens)`.
 
@@ -734,7 +805,7 @@ quote! {
 
 ### `quote_spanned!`
 
-*Defined in [`quote-1.0.42/src/lib.rs:630-634`](../../.source_1765633015/quote-1.0.42/src/lib.rs#L630-L634)*
+*Defined in [`quote-1.0.42/src/lib.rs:630-634`](../../.source_1765894658/quote-1.0.42/src/lib.rs#L630-L634)*
 
 Same as `quote!`, but applies a given span to all tokens originating within
 the macro invocation.
@@ -786,7 +857,7 @@ invocation are spanned with the given span argument.
 # Example
 
 The following procedural macro code uses `quote_spanned!` to assert that a
-particular Rust type implements the [`Sync`](../miniz_oxide/index.md) trait so that references can be
+particular Rust type implements the [`Sync`](#sync) trait so that references can be
 safely shared between threads.
 
 ```rust

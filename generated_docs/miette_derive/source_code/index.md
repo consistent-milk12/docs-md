@@ -21,7 +21,7 @@ struct SourceCode {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/source_code.rs:11-14`](../../../.source_1765633015/miette-derive-7.6.0/src/source_code.rs#L11-L14)*
+*Defined in [`miette-derive-7.6.0/src/source_code.rs:11-14`](../../../.source_1765894658/miette-derive-7.6.0/src/source_code.rs#L11-L14)*
 
 #### Implementations
 
@@ -58,11 +58,8 @@ struct SourceCode {
 - <span id="sourcecode-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SourceCode`

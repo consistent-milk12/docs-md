@@ -296,7 +296,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 struct Error(&'static str);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:116`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L116)*
+*Defined in [`object-0.37.3/src/read/mod.rs:116`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L116)*
 
 The error type used within the read module.
 
@@ -347,11 +347,8 @@ The error type used within the read module.
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Error`
@@ -390,7 +387,7 @@ The error type used within the read module.
 struct SectionIndex(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:389`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L389)*
+*Defined in [`object-0.37.3/src/read/mod.rs:389`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L389)*
 
 The index used to identify a section in a file.
 
@@ -443,11 +440,8 @@ The index used to identify a section in a file.
 - <span id="sectionindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SectionIndex`
@@ -486,7 +480,7 @@ The index used to identify a section in a file.
 struct SymbolIndex(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:399`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L399)*
+*Defined in [`object-0.37.3/src/read/mod.rs:399`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L399)*
 
 The index used to identify a symbol in a symbol table.
 
@@ -539,11 +533,8 @@ The index used to identify a symbol in a symbol table.
 - <span id="symbolindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SymbolIndex`
@@ -584,7 +575,7 @@ struct SymbolMap<T: SymbolMapEntry> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:451-453`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L451-L453)*
+*Defined in [`object-0.37.3/src/read/mod.rs:451-453`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L451-L453)*
 
 A map from addresses to symbol information.
 
@@ -597,9 +588,7 @@ Returned by `Object::symbol_map`.
 - <span id="symbolmap-new"></span>`fn new(symbols: Vec<T>) -> Self`
 
   Construct a new symbol map.
-
   
-
   This function will sort the symbols by address.
 
 - <span id="symbolmap-get"></span>`fn get(&self, address: u64) -> Option<&T>`
@@ -651,11 +640,8 @@ Returned by `Object::symbol_map`.
 - <span id="symbolmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToOwned for SymbolMap<T>`
@@ -687,7 +673,7 @@ struct SymbolMapName<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:485-488`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L485-L488)*
+*Defined in [`object-0.37.3/src/read/mod.rs:485-488`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L485-L488)*
 
 The type used for entries in a [`SymbolMap`](../index.md) that maps from addresses to names.
 
@@ -750,11 +736,8 @@ The type used for entries in a [`SymbolMap`](../index.md) that maps from address
 - <span id="symbolmapname-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SymbolMapName<'data>`
@@ -796,7 +779,7 @@ struct ObjectMap<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:522-525`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L522-L525)*
+*Defined in [`object-0.37.3/src/read/mod.rs:522-525`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L522-L525)*
 
 A map from addresses to symbol names and object files.
 
@@ -859,11 +842,8 @@ Returned by `Object::object_map`.
 - <span id="objectmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ObjectMap<'data>`
@@ -897,7 +877,7 @@ struct ObjectMapEntry<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:550-555`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L550-L555)*
+*Defined in [`object-0.37.3/src/read/mod.rs:550-555`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L550-L555)*
 
 A symbol in an [`ObjectMap`](../index.md).
 
@@ -910,9 +890,7 @@ A symbol in an [`ObjectMap`](../index.md).
 - <span id="objectmapentry-size"></span>`fn size(&self) -> u64`
 
   Get the symbol size.
-
   
-
   This may be 0 if the size is unknown.
 
 - <span id="objectmapentry-name"></span>`fn name(&self) -> &'data [u8]`
@@ -976,11 +954,8 @@ A symbol in an [`ObjectMap`](../index.md).
 - <span id="objectmapentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ObjectMapEntry<'data>`
@@ -1022,7 +997,7 @@ struct ObjectMapFile<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:600-603`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L600-L603)*
+*Defined in [`object-0.37.3/src/read/mod.rs:600-603`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L600-L603)*
 
 An object file name in an [`ObjectMap`](../index.md).
 
@@ -1083,11 +1058,8 @@ An object file name in an [`ObjectMap`](../index.md).
 - <span id="objectmapfile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ObjectMapFile<'data>`
@@ -1125,7 +1097,7 @@ struct Import<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:628-632`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L628-L632)*
+*Defined in [`object-0.37.3/src/read/mod.rs:628-632`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L628-L632)*
 
 An imported symbol.
 
@@ -1182,11 +1154,8 @@ Returned by `Object::imports`.
 - <span id="import-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Import<'data>`
@@ -1224,7 +1193,7 @@ struct Export<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:652-656`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L652-L656)*
+*Defined in [`object-0.37.3/src/read/mod.rs:652-656`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L652-L656)*
 
 An exported symbol.
 
@@ -1281,11 +1250,8 @@ Returned by `Object::exports`.
 - <span id="export-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Export<'data>`
@@ -1324,7 +1290,7 @@ struct CodeView<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:674-678`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L674-L678)*
+*Defined in [`object-0.37.3/src/read/mod.rs:674-678`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L674-L678)*
 
 PDB information from the debug directory in a PE file.
 
@@ -1383,11 +1349,8 @@ PDB information from the debug directory in a PE file.
 - <span id="codeview-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for CodeView<'data>`
@@ -1430,7 +1393,7 @@ struct Relocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:716-724`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L716-L724)*
+*Defined in [`object-0.37.3/src/read/mod.rs:716-724`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L716-L724)*
 
 A relocation entry.
 
@@ -1449,9 +1412,7 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 - <span id="relocation-size"></span>`fn size(&self) -> u8`
 
   The size in bits of the place of the relocation.
-
   
-
   If 0, then the size is determined by the relocation kind.
 
 - <span id="relocation-target"></span>`fn target(&self) -> RelocationTarget` — [`RelocationTarget`](../index.md#relocationtarget)
@@ -1469,17 +1430,13 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 - <span id="relocation-has-implicit-addend"></span>`fn has_implicit_addend(&self) -> bool`
 
   Returns true if there is an implicit addend stored in the data at the offset
-
   to be relocated.
 
 - <span id="relocation-flags"></span>`fn flags(&self) -> RelocationFlags` — [`RelocationFlags`](../index.md#relocationflags)
 
   Relocation flags that are specific to each file format.
-
   
-
   The values returned by `kind`, `encoding` and `size` are derived
-
   from these flags.
 
 #### Trait Implementations
@@ -1511,11 +1468,8 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 - <span id="relocation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Relocation`
@@ -1536,7 +1490,7 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 struct RelocationMap(alloc::collections::btree_map::BTreeMap<u64, RelocationMapEntry>);
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:790`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L790)*
+*Defined in [`object-0.37.3/src/read/mod.rs:790`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L790)*
 
 A map from section offsets to relocation information.
 
@@ -1551,13 +1505,9 @@ Returned by `ObjectSection::relocation_map`.
 - <span id="relocationmap-new"></span>`fn new<'data, 'file, T>(file: &'file T, section: &<T as >::Section) -> Result<Self>` — [`Object`](#object), [`Result`](../index.md#result)
 
   Construct a new relocation map for a section.
-
   
-
   Fails if any relocation cannot be added to the map.
-
   You can manually use `add` if you need different error handling,
-
   such as to list all errors or to ignore them.
 
 - <span id="relocationmap-add"></span>`fn add<'data: 'file, 'file, T>(&mut self, file: &'file T, offset: u64, relocation: Relocation) -> Result<()>` — [`Relocation`](../index.md#relocation), [`Result`](../index.md#result)
@@ -1601,11 +1551,8 @@ Returned by `ObjectSection::relocation_map`.
 - <span id="relocationmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RelocationMap`
@@ -1629,7 +1576,7 @@ struct RelocationMapEntry {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:871-874`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L871-L874)*
+*Defined in [`object-0.37.3/src/read/mod.rs:871-874`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L871-L874)*
 
 #### Trait Implementations
 
@@ -1676,11 +1623,8 @@ struct RelocationMapEntry {
 - <span id="relocationmapentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationMapEntry`
@@ -1720,7 +1664,7 @@ struct CompressedFileRange {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:898-907`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L898-L907)*
+*Defined in [`object-0.37.3/src/read/mod.rs:898-907`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L898-L907)*
 
 A range in a file that may be compressed.
 
@@ -1799,11 +1743,8 @@ Returned by `ObjectSection::compressed_file_range`.
 - <span id="compressedfilerange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for CompressedFileRange`
@@ -1842,7 +1783,7 @@ struct CompressedData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:947-954`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L947-L954)*
+*Defined in [`object-0.37.3/src/read/mod.rs:947-954`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L947-L954)*
 
 Data that may be compressed.
 
@@ -1871,13 +1812,9 @@ Returned by `ObjectSection::compressed_data`.
 - <span id="compresseddata-decompress"></span>`fn decompress(self) -> Result<Cow<'data, [u8]>>` — [`Result`](../index.md#result)
 
   Return the uncompressed data.
-
   
-
   Returns an error for invalid data or unsupported compression.
-
   This includes if the data is compressed but the `compression` feature
-
   for this crate is disabled.
 
 #### Trait Implementations
@@ -1925,11 +1862,8 @@ Returned by `ObjectSection::compressed_data`.
 - <span id="compresseddata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for CompressedData<'data>`
@@ -1966,7 +1900,7 @@ struct ReadCache<R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../.source_1765633015/object-0.37.3/src/read/read_cache.rs#L31-L33)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L31-L33)*
 
 An implementation of [`ReadRef`](#readref) for data in a stream that implements
 `Read + Seek`.
@@ -1991,7 +1925,6 @@ the file size.
 - <span id="readcache-range"></span>`fn range(&self, offset: u64, size: u64) -> ReadCacheRange<'_, R>` — [`ReadCacheRange`](#readcacherange)
 
   Return an implementation of `ReadRef` that restricts reads
-
   to the given range of the stream.
 
 - <span id="readcache-clear"></span>`fn clear(&mut self)`
@@ -2031,11 +1964,8 @@ the file size.
 - <span id="readcache-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadCacheOps> ReadRef for &'a ReadCache<R>`
@@ -2069,7 +1999,7 @@ struct ReadCacheInternal<R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../.source_1765633015/object-0.37.3/src/read/read_cache.rs#L36-L41)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L36-L41)*
 
 #### Implementations
 
@@ -2110,11 +2040,8 @@ struct ReadCacheInternal<R: ReadCacheOps> {
 - <span id="readcacheinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ReadCacheInternal<R>`
@@ -2139,7 +2066,7 @@ struct ReadCacheRange<'a, R: ReadCacheOps> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../.source_1765633015/object-0.37.3/src/read/read_cache.rs#L172-L176)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L172-L176)*
 
 An implementation of [`ReadRef`](#readref) for a range of data in a stream that
 implements `Read + Seek`.
@@ -2185,11 +2112,8 @@ Shares an underlying [`ReadCache`](#readcache) with a lifetime of `'a`.
 - <span id="readcacherange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadCacheOps> ReadRef for ReadCacheRange<'a, R>`
@@ -2226,7 +2150,7 @@ Shares an underlying [`ReadCache`](#readcache) with a lifetime of `'a`.
 struct Bytes<'data>(&'data [u8]);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../.source_1765633015/object-0.37.3/src/read/util.rs#L16)*
+*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L16)*
 
 A newtype for byte slices.
 
@@ -2248,91 +2172,64 @@ It has these important features:
 - <span id="bytes-skip"></span>`fn skip(&mut self, offset: usize) -> Result<(), ()>`
 
   Skip over the given number of bytes at the start of the byte slice.
-
   
-
   Modifies the byte slice to start after the bytes.
-
   
-
   Returns an error if there are too few bytes.
 
 - <span id="bytes-read-bytes"></span>`fn read_bytes(&mut self, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](#bytes)
 
   Return a reference to the given number of bytes at the start of the byte slice.
-
   
-
   Modifies the byte slice to start after the bytes.
-
   
-
   Returns an error if there are too few bytes.
 
 - <span id="bytes-read-bytes-at"></span>`fn read_bytes_at(self, offset: usize, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](#bytes)
 
   Return a reference to the given number of bytes at the given offset of the byte slice.
-
   
-
   Returns an error if the offset is invalid or there are too few bytes.
 
 - <span id="bytes-read"></span>`fn read<T: Pod>(&mut self) -> Result<&'data T, ()>`
 
   Return a reference to a `Pod` struct at the start of the byte slice.
-
   
-
   Modifies the byte slice to start after the bytes.
-
   
-
   Returns an error if there are too few bytes or the slice is incorrectly aligned.
 
 - <span id="bytes-read-at"></span>`fn read_at<T: Pod>(self, offset: usize) -> Result<&'data T, ()>`
 
   Return a reference to a `Pod` struct at the given offset of the byte slice.
-
   
-
   Returns an error if there are too few bytes or the offset is incorrectly aligned.
 
 - <span id="bytes-read-slice"></span>`fn read_slice<T: Pod>(&mut self, count: usize) -> Result<&'data [T], ()>`
 
   Return a reference to a slice of `Pod` structs at the start of the byte slice.
-
   
-
   Modifies the byte slice to start after the bytes.
-
   
-
   Returns an error if there are too few bytes or the offset is incorrectly aligned.
 
 - <span id="bytes-read-slice-at"></span>`fn read_slice_at<T: Pod>(self, offset: usize, count: usize) -> Result<&'data [T], ()>`
 
   Return a reference to a slice of `Pod` structs at the given offset of the byte slice.
-
   
-
   Returns an error if there are too few bytes or the offset is incorrectly aligned.
 
 - <span id="bytes-read-string"></span>`fn read_string(&mut self) -> Result<&'data [u8], ()>`
 
   Read a null terminated string.
-
   
-
   Does not assume any encoding.
-
   Reads past the null byte, but doesn't return it.
 
 - <span id="bytes-read-string-at"></span>`fn read_string_at(self, offset: usize) -> Result<&'data [u8], ()>`
 
   Read a null terminated string at an offset.
-
   
-
   Does not assume any encoding. Does not return the null byte.
 
 - <span id="bytes-read-uleb128"></span>`fn read_uleb128(&mut self) -> Result<u64, ()>`
@@ -2388,11 +2285,8 @@ It has these important features:
 - <span id="bytes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Bytes<'data>`
@@ -2427,7 +2321,7 @@ It has these important features:
 struct DebugByte(u8);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../.source_1765633015/object-0.37.3/src/read/util.rs#L222)*
+*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L222)*
 
 #### Trait Implementations
 
@@ -2458,11 +2352,8 @@ struct DebugByte(u8);
 - <span id="debugbyte-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugByte`
@@ -2483,7 +2374,7 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../.source_1765633015/object-0.37.3/src/read/util.rs#L230)*
+*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L230)*
 
 #### Trait Implementations
 
@@ -2514,11 +2405,8 @@ struct DebugLen(usize);
 - <span id="debuglen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DebugLen`
@@ -2539,7 +2427,7 @@ struct DebugLen(usize);
 struct ByteString<'data>(&'data [u8]);
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../.source_1765633015/object-0.37.3/src/read/util.rs#L244)*
+*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L244)*
 
 A newtype for byte strings.
 
@@ -2592,11 +2480,8 @@ Provides a `Debug` implementation that interprets the bytes as UTF-8.
 - <span id="bytestring-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ByteString<'data>`
@@ -2638,7 +2523,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../.source_1765633015/object-0.37.3/src/read/util.rs#L274-L282)*
+*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L274-L282)*
 
 A table of zero-terminated strings.
 
@@ -2697,11 +2582,8 @@ This is used by most file formats for strings such as section names and symbol n
 - <span id="stringtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StringTable<'data, R>`
@@ -2732,7 +2614,7 @@ struct SegmentIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L532-L534)*
+*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L532-L534)*
 
 An iterator for the loadable segments in a [`File`](#file).
 
@@ -2765,11 +2647,8 @@ An iterator for the loadable segments in a [`File`](#file).
 - <span id="segmentiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SegmentIterator<'data, 'file, R>`
@@ -2806,7 +2685,7 @@ struct Segment<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L574-L576)*
+*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L574-L576)*
 
 A loadable segment in a [`File`](#file).
 
@@ -2841,11 +2720,8 @@ Most functionality is provided by the [`ObjectSegment`](#objectsegment) trait im
 - <span id="segment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectSegment for Segment<'data, 'file, R>`
@@ -2890,7 +2766,7 @@ struct SectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L665-L667)*
+*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L665-L667)*
 
 An iterator for the sections in a [`File`](#file).
 
@@ -2923,11 +2799,8 @@ An iterator for the sections in a [`File`](#file).
 - <span id="sectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SectionIterator<'data, 'file, R>`
@@ -2964,7 +2837,7 @@ struct Section<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L708-L710)*
+*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L708-L710)*
 
 A section in a [`File`](#file).
 
@@ -2999,11 +2872,8 @@ Most functionality is provided by the [`ObjectSection`](#objectsection) trait im
 - <span id="section-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectSection for Section<'data, 'file, R>`
@@ -3066,7 +2936,7 @@ struct ComdatIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L843-L845)*
+*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L843-L845)*
 
 An iterator for the COMDAT section groups in a [`File`](#file).
 
@@ -3099,11 +2969,8 @@ An iterator for the COMDAT section groups in a [`File`](#file).
 - <span id="comdatiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ComdatIterator<'data, 'file, R>`
@@ -3140,7 +3007,7 @@ struct Comdat<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L885-L887)*
+*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L885-L887)*
 
 A COMDAT section group in a [`File`](#file).
 
@@ -3175,11 +3042,8 @@ Most functionality is provided by the [`ObjectComdat`](#objectcomdat) trait impl
 - <span id="comdat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectComdat for Comdat<'data, 'file, R>`
@@ -3218,7 +3082,7 @@ struct ComdatSectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L959-L961)*
+*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L959-L961)*
 
 An iterator for the sections in a [`Comdat`](#comdat).
 
@@ -3251,11 +3115,8 @@ An iterator for the sections in a [`Comdat`](#comdat).
 - <span id="comdatsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ComdatSectionIterator<'data, 'file, R>`
@@ -3294,7 +3155,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1001-L1006)*
+*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1001-L1006)*
 
 A symbol table in a [`File`](#file).
 
@@ -3329,11 +3190,8 @@ Most functionality is provided by the [`ObjectSymbolTable`](#objectsymboltable) 
 - <span id="symboltable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectSymbolTable for SymbolTable<'data, 'file, R>`
@@ -3370,7 +3228,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1085-L1090)*
+*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1085-L1090)*
 
 An iterator for the symbols in a [`SymbolTable`](#symboltable).
 
@@ -3403,11 +3261,8 @@ An iterator for the symbols in a [`SymbolTable`](#symboltable).
 - <span id="symboliterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SymbolIterator<'data, 'file, R>`
@@ -3446,7 +3301,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1165-L1170)*
+*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1165-L1170)*
 
 An symbol in a [`SymbolTable`](#symboltable).
 
@@ -3481,11 +3336,8 @@ Most functionality is provided by the [`ObjectSymbol`](#objectsymbol) trait impl
 - <span id="symbol-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: ReadRef<'data>> ObjectSymbol for Symbol<'data, 'file, R>`
@@ -3544,7 +3396,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1301-L1306)*
+*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1301-L1306)*
 
 An iterator for the dynamic relocation entries in a [`File`](#file).
 
@@ -3577,11 +3429,8 @@ An iterator for the dynamic relocation entries in a [`File`](#file).
 - <span id="dynamicrelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DynamicRelocationIterator<'data, 'file, R>`
@@ -3618,7 +3467,7 @@ struct SectionRelocationIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1338-L1340)*
+*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1338-L1340)*
 
 An iterator for the relocation entries in a [`Section`](#section).
 
@@ -3651,11 +3500,8 @@ An iterator for the relocation entries in a [`Section`](#section).
 - <span id="sectionrelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SectionRelocationIterator<'data, 'file, R>`
@@ -3690,7 +3536,7 @@ An iterator for the relocation entries in a [`Section`](#section).
 struct NoDynamicRelocationIterator;
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:580`](../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L580)*
+*Defined in [`object-0.37.3/src/read/traits.rs:580`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L580)*
 
 An iterator for files that don't have dynamic relocations.
 
@@ -3723,11 +3569,8 @@ An iterator for files that don't have dynamic relocations.
 - <span id="nodynamicrelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for NoDynamicRelocationIterator`
@@ -3780,7 +3623,7 @@ enum FileKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:198-281`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L198-L281)*
+*Defined in [`object-0.37.3/src/read/mod.rs:198-281`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L198-L281)*
 
 A file format kind.
 
@@ -3933,11 +3776,8 @@ A file format kind.
 - <span id="filekind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for FileKind`
@@ -3978,7 +3818,7 @@ enum ObjectKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:374-385`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L374-L385)*
+*Defined in [`object-0.37.3/src/read/mod.rs:374-385`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L374-L385)*
 
 An object kind.
 
@@ -4051,11 +3891,8 @@ Returned by `Object::kind`.
 - <span id="objectkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ObjectKind`
@@ -4097,7 +3934,7 @@ enum SymbolSection {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:410-423`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L410-L423)*
+*Defined in [`object-0.37.3/src/read/mod.rs:410-423`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L410-L423)*
 
 The section where an [`ObjectSymbol`](#objectsymbol) is defined.
 
@@ -4132,9 +3969,7 @@ The section where an [`ObjectSymbol`](#objectsymbol) is defined.
 - <span id="symbolsection-index"></span>`fn index(self) -> Option<SectionIndex>` — [`SectionIndex`](../index.md#sectionindex)
 
   Returns the section index for the section where the symbol is defined.
-
   
-
   May return `None` if the symbol is not defined in a section.
 
 #### Trait Implementations
@@ -4182,11 +4017,8 @@ The section where an [`ObjectSymbol`](#objectsymbol) is defined.
 - <span id="symbolsection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SymbolSection`
@@ -4225,7 +4057,7 @@ enum RelocationTarget {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:703-710`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L703-L710)*
+*Defined in [`object-0.37.3/src/read/mod.rs:703-710`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L703-L710)*
 
 The target referenced by a [`Relocation`](../index.md).
 
@@ -4288,11 +4120,8 @@ The target referenced by a [`Relocation`](../index.md).
 - <span id="relocationtarget-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationTarget`
@@ -4332,7 +4161,7 @@ enum CompressionFormat {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:879-892`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L879-L892)*
+*Defined in [`object-0.37.3/src/read/mod.rs:879-892`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L879-L892)*
 
 A data compression format.
 
@@ -4403,11 +4232,8 @@ A data compression format.
 - <span id="compressionformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for CompressionFormat`
@@ -4479,7 +4305,7 @@ enum Architecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:5-45`](../../../.source_1765633015/object-0.37.3/src/common.rs#L5-L45)*
+*Defined in [`object-0.37.3/src/common.rs:5-45`](../../../.source_1765894658/object-0.37.3/src/common.rs#L5-L45)*
 
 A CPU architecture.
 
@@ -4488,9 +4314,7 @@ A CPU architecture.
 - <span id="architecture-address-size"></span>`fn address_size(self) -> Option<AddressSize>` — [`AddressSize`](../index.md#addresssize)
 
   The size of an address value for this architecture.
-
   
-
   Returns `None` for unknown architectures.
 
 #### Trait Implementations
@@ -4538,11 +4362,8 @@ A CPU architecture.
 - <span id="architecture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Architecture`
@@ -4580,7 +4401,7 @@ enum SubArchitecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:51-54`](../../../.source_1765633015/object-0.37.3/src/common.rs#L51-L54)*
+*Defined in [`object-0.37.3/src/common.rs:51-54`](../../../.source_1765894658/object-0.37.3/src/common.rs#L51-L54)*
 
 A CPU sub-architecture.
 
@@ -4629,11 +4450,8 @@ A CPU sub-architecture.
 - <span id="subarchitecture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SubArchitecture`
@@ -4673,7 +4491,7 @@ enum AddressSize {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:109-114`](../../../.source_1765633015/object-0.37.3/src/common.rs#L109-L114)*
+*Defined in [`object-0.37.3/src/common.rs:109-114`](../../../.source_1765894658/object-0.37.3/src/common.rs#L109-L114)*
 
 The size of an address value for an architecture.
 
@@ -4730,11 +4548,8 @@ This may differ from the address size supported by the file format (such as for 
 - <span id="addresssize-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AddressSize`
@@ -4776,7 +4591,7 @@ enum BinaryFormat {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:128-135`](../../../.source_1765633015/object-0.37.3/src/common.rs#L128-L135)*
+*Defined in [`object-0.37.3/src/common.rs:128-135`](../../../.source_1765894658/object-0.37.3/src/common.rs#L128-L135)*
 
 A binary file format.
 
@@ -4785,9 +4600,7 @@ A binary file format.
 - <span id="binaryformat-native-object"></span>`fn native_object() -> BinaryFormat` — [`BinaryFormat`](../index.md#binaryformat)
 
   The target's native binary format for relocatable object files.
-
   
-
   Defaults to `Elf` for unknown platforms.
 
 #### Trait Implementations
@@ -4835,11 +4648,8 @@ A binary file format.
 - <span id="binaryformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for BinaryFormat`
@@ -4894,7 +4704,7 @@ enum SectionKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:155-247`](../../../.source_1765633015/object-0.37.3/src/common.rs#L155-L247)*
+*Defined in [`object-0.37.3/src/common.rs:155-247`](../../../.source_1765894658/object-0.37.3/src/common.rs#L155-L247)*
 
 The kind of a section.
 
@@ -5080,11 +4890,8 @@ The kind of a section.
 - <span id="sectionkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SectionKind`
@@ -5127,7 +4934,7 @@ enum ComdatKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:264-291`](../../../.source_1765633015/object-0.37.3/src/common.rs#L264-L291)*
+*Defined in [`object-0.37.3/src/common.rs:264-291`](../../../.source_1765894658/object-0.37.3/src/common.rs#L264-L291)*
 
 The selection kind for a COMDAT section group.
 
@@ -5221,11 +5028,8 @@ sections.
 - <span id="comdatkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ComdatKind`
@@ -5268,7 +5072,7 @@ enum SymbolKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:296-311`](../../../.source_1765633015/object-0.37.3/src/common.rs#L296-L311)*
+*Defined in [`object-0.37.3/src/common.rs:296-311`](../../../.source_1765894658/object-0.37.3/src/common.rs#L296-L311)*
 
 The kind of a symbol.
 
@@ -5347,11 +5151,8 @@ The kind of a symbol.
 - <span id="symbolkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SymbolKind`
@@ -5391,7 +5192,7 @@ enum SymbolScope {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:315-324`](../../../.source_1765633015/object-0.37.3/src/common.rs#L315-L324)*
+*Defined in [`object-0.37.3/src/common.rs:315-324`](../../../.source_1765894658/object-0.37.3/src/common.rs#L315-L324)*
 
 A symbol scope.
 
@@ -5458,11 +5259,8 @@ A symbol scope.
 - <span id="symbolscope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SymbolScope`
@@ -5509,7 +5307,7 @@ enum RelocationKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:343-366`](../../../.source_1765633015/object-0.37.3/src/common.rs#L343-L366)*
+*Defined in [`object-0.37.3/src/common.rs:343-366`](../../../.source_1765894658/object-0.37.3/src/common.rs#L343-L366)*
 
 The operation used to calculate the result of the relocation.
 
@@ -5618,11 +5416,8 @@ these definitions probably don't match any ELF ABI.
 - <span id="relocationkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationKind`
@@ -5671,7 +5466,7 @@ enum RelocationEncoding {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:374-447`](../../../.source_1765633015/object-0.37.3/src/common.rs#L374-L447)*
+*Defined in [`object-0.37.3/src/common.rs:374-447`](../../../.source_1765894658/object-0.37.3/src/common.rs#L374-L447)*
 
 Information about how the result of the relocation operation is encoded in the place.
 
@@ -5815,11 +5610,8 @@ a specific instruction.
 - <span id="relocationencoding-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationEncoding`
@@ -5870,7 +5662,7 @@ enum FileFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:452-479`](../../../.source_1765633015/object-0.37.3/src/common.rs#L452-L479)*
+*Defined in [`object-0.37.3/src/common.rs:452-479`](../../../.source_1765894658/object-0.37.3/src/common.rs#L452-L479)*
 
 File flags that are specific to each file format.
 
@@ -5941,11 +5733,8 @@ File flags that are specific to each file format.
 - <span id="fileflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for FileFlags`
@@ -5993,7 +5782,7 @@ enum SegmentFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:484-506`](../../../.source_1765633015/object-0.37.3/src/common.rs#L484-L506)*
+*Defined in [`object-0.37.3/src/common.rs:484-506`](../../../.source_1765894658/object-0.37.3/src/common.rs#L484-L506)*
 
 Segment flags that are specific to each file format.
 
@@ -6060,11 +5849,8 @@ Segment flags that are specific to each file format.
 - <span id="segmentflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SegmentFlags`
@@ -6113,7 +5899,7 @@ enum SectionFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:511-534`](../../../.source_1765633015/object-0.37.3/src/common.rs#L511-L534)*
+*Defined in [`object-0.37.3/src/common.rs:511-534`](../../../.source_1765894658/object-0.37.3/src/common.rs#L511-L534)*
 
 Section flags that are specific to each file format.
 
@@ -6184,11 +5970,8 @@ Section flags that are specific to each file format.
 - <span id="sectionflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SectionFlags`
@@ -6242,7 +6025,7 @@ enum SymbolFlags<Section, Symbol> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:539-578`](../../../.source_1765633015/object-0.37.3/src/common.rs#L539-L578)*
+*Defined in [`object-0.37.3/src/common.rs:539-578`](../../../.source_1765894658/object-0.37.3/src/common.rs#L539-L578)*
 
 Symbol flags that are specific to each file format.
 
@@ -6313,11 +6096,8 @@ Symbol flags that are specific to each file format.
 - <span id="symbolflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Section: cmp::PartialEq, Symbol: cmp::PartialEq> PartialEq for SymbolFlags<Section, Symbol>`
@@ -6373,7 +6153,7 @@ enum RelocationFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:583-619`](../../../.source_1765633015/object-0.37.3/src/common.rs#L583-L619)*
+*Defined in [`object-0.37.3/src/common.rs:583-619`](../../../.source_1765894658/object-0.37.3/src/common.rs#L583-L619)*
 
 Relocation fields that are specific to each file format and architecture.
 
@@ -6444,11 +6224,8 @@ Relocation fields that are specific to each file format and architecture.
 - <span id="relocationflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationFlags`
@@ -6494,7 +6271,7 @@ enum File<'data, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L213-L236)*
+*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L213-L236)*
 
 An object file that can be any supported file format.
 
@@ -6543,11 +6320,8 @@ Most functionality is provided by the [`Object`](#object) trait implementation.
 - <span id="file-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Object for File<'data, R>`
@@ -6661,7 +6435,7 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L537-L560)*
+*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L537-L560)*
 
 #### Trait Implementations
 
@@ -6692,11 +6466,8 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="segmentiteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SegmentIteratorInternal<'data, 'file, R>`
@@ -6728,7 +6499,7 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L579-L602)*
+*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L579-L602)*
 
 #### Trait Implementations
 
@@ -6759,11 +6530,8 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="segmentinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SegmentInternal<'data, 'file, R>`
@@ -6795,7 +6563,7 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L671-L694)*
+*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L671-L694)*
 
 #### Trait Implementations
 
@@ -6826,11 +6594,8 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="sectioniteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SectionIteratorInternal<'data, 'file, R>`
@@ -6862,7 +6627,7 @@ enum SectionInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L712-L735)*
+*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L712-L735)*
 
 #### Trait Implementations
 
@@ -6889,11 +6654,8 @@ enum SectionInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="sectioninternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SectionInternal<'data, 'file, R>`
@@ -6925,7 +6687,7 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L848-L871)*
+*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L848-L871)*
 
 #### Trait Implementations
 
@@ -6956,11 +6718,8 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="comdatiteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ComdatIteratorInternal<'data, 'file, R>`
@@ -6992,7 +6751,7 @@ enum ComdatInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L889-L912)*
+*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L889-L912)*
 
 #### Trait Implementations
 
@@ -7019,11 +6778,8 @@ enum ComdatInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="comdatinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ComdatInternal<'data, 'file, R>`
@@ -7055,7 +6811,7 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L964-L987)*
+*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L964-L987)*
 
 #### Trait Implementations
 
@@ -7086,11 +6842,8 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="comdatsectioniteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ComdatSectionIteratorInternal<'data, 'file, R>`
@@ -7124,7 +6877,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1009-L1055)*
+*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1009-L1055)*
 
 #### Trait Implementations
 
@@ -7155,11 +6908,8 @@ where
 - <span id="symboltableinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SymbolTableInternal<'data, 'file, R>`
@@ -7193,7 +6943,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1093-L1149)*
+*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1093-L1149)*
 
 #### Trait Implementations
 
@@ -7224,11 +6974,8 @@ where
 - <span id="symboliteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SymbolIteratorInternal<'data, 'file, R>`
@@ -7262,7 +7009,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1172-L1218)*
+*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1172-L1218)*
 
 #### Trait Implementations
 
@@ -7289,11 +7036,8 @@ where
 - <span id="symbolinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SymbolInternal<'data, 'file, R>`
@@ -7320,7 +7064,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1309-L1320)*
+*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1309-L1320)*
 
 #### Trait Implementations
 
@@ -7351,11 +7095,8 @@ where
 - <span id="dynamicrelocationiteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DynamicRelocationIteratorInternal<'data, 'file, R>`
@@ -7387,7 +7128,7 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L1343-L1366)*
+*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L1343-L1366)*
 
 #### Trait Implementations
 
@@ -7418,11 +7159,8 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 - <span id="sectionrelocationiteratorinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SectionRelocationIteratorInternal<'data, 'file, R>`
@@ -7445,7 +7183,7 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 trait ReadError<T> { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:133-135`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L133-L135)*
+*Defined in [`object-0.37.3/src/read/mod.rs:133-135`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L133-L135)*
 
 #### Required Methods
 
@@ -7463,7 +7201,7 @@ trait ReadError<T> { ... }
 trait SymbolMapEntry { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:440-443`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L440-L443)*
+*Defined in [`object-0.37.3/src/read/mod.rs:440-443`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L440-L443)*
 
 An entry in a [`SymbolMap`](../index.md).
 
@@ -7484,7 +7222,7 @@ An entry in a [`SymbolMap`](../index.md).
 trait ReadRef<'a>: Clone + Copy { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_ref.rs:49-124`](../../../.source_1765633015/object-0.37.3/src/read/read_ref.rs#L49-L124)*
+*Defined in [`object-0.37.3/src/read/read_ref.rs:49-124`](../../../.source_1765894658/object-0.37.3/src/read/read_ref.rs#L49-L124)*
 
 A trait for reading references to [`Pod`](../index.md) types from a block of data.
 
@@ -7530,32 +7268,61 @@ the size that was read.
 - `fn read_bytes_at(self, offset: u64, size: u64) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a `u8` slice at the given offset.
+  
+  Returns an error if offset or size are out of bounds.
 
 - `fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a delimited `u8` slice which starts at range.start.
+  
+  Does not include the delimiter.
+  
+  Returns an error if the range is out of bounds or the delimiter is
+  not found in the range.
 
 #### Provided Methods
 
 - `fn read_bytes(self, offset: &mut u64, size: u64) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a `u8` slice at the given offset, and update the offset.
+  
+  Returns an error if offset or size are out of bounds.
 
 - `fn read<T: Pod>(self, offset: &mut u64) -> result::Result<&'a T, ()>`
 
   Get a reference to a `Pod` type at the given offset, and update the offset.
+  
+  Returns an error if offset or size are out of bounds.
+  
+  The default implementation uses `read_bytes`, and returns an error if
+  `read_bytes` does not return bytes with the correct alignment for `T`.
+  Implementors may want to provide their own implementation that ensures
+  the alignment can be satisfied. Alternatively, only use this method with
+  types that do not need alignment (see the `unaligned` feature of this crate).
 
 - `fn read_at<T: Pod>(self, offset: u64) -> result::Result<&'a T, ()>`
 
   Get a reference to a `Pod` type at the given offset.
+  
+  Returns an error if offset or size are out of bounds.
+  
+  Also see the `read` method for information regarding alignment of `T`.
 
 - `fn read_slice<T: Pod>(self, offset: &mut u64, count: usize) -> result::Result<&'a [T], ()>`
 
   Get a reference to a slice of a `Pod` type at the given offset, and update the offset.
+  
+  Returns an error if offset or size are out of bounds.
+  
+  Also see the `read` method for information regarding alignment of `T`.
 
 - `fn read_slice_at<T: Pod>(self, offset: u64, count: usize) -> result::Result<&'a [T], ()>`
 
   Get a reference to a slice of a `Pod` type at the given offset.
+  
+  Returns an error if offset or size are out of bounds.
+  
+  Also see the `read` method for information regarding alignment of `T`.
 
 #### Implementors
 
@@ -7569,7 +7336,7 @@ the size that was read.
 trait ReadCacheOps { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../.source_1765633015/object-0.37.3/src/read/read_cache.rs#L222-L242)*
+*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../.source_1765894658/object-0.37.3/src/read/read_cache.rs#L222-L242)*
 
 Operations required to implement [`ReadCache`](#readcache).
 
@@ -7582,18 +7349,26 @@ A blanket implementation is provided for all types that implement
 - `fn len(&mut self) -> Result<u64, ()>`
 
   Return the length of the stream.
+  
+  Equivalent to `std::io::Seek::seek(SeekFrom::End(0))`.
 
 - `fn seek(&mut self, pos: u64) -> Result<u64, ()>`
 
   Seek to the given position in the stream.
+  
+  Equivalent to `std::io::Seek::seek` with `SeekFrom::Start(pos)`.
 
 - `fn read(&mut self, buf: &mut [u8]) -> Result<usize, ()>`
 
   Read up to `buf.len()` bytes into `buf`.
+  
+  Equivalent to `std::io::Read::read`.
 
 - `fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), ()>`
 
   Read exactly `buf.len()` bytes into `buf`.
+  
+  Equivalent to `std::io::Read::read_exact`.
 
 ### `Object<'data>`
 
@@ -7601,7 +7376,7 @@ A blanket implementation is provided for all types that implement
 trait Object<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:15-335`](../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L15-L335)*
+*Defined in [`object-0.37.3/src/read/traits.rs:15-335`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L15-L335)*
 
 An object file.
 
@@ -7650,6 +7425,11 @@ This is the primary trait for the unified read API.
 - `fn segments(&self) -> <Self as >::SegmentIterator`
 
   Get an iterator for the loadable segments in the file.
+  
+  For ELF, this is program headers with type [`PT_LOAD`](crate::elf::PT_LOAD).
+  For Mach-O, this is load commands with type [`LC_SEGMENT`](crate::macho::LC_SEGMENT)
+  or [`LC_SEGMENT_64`](crate::macho::LC_SEGMENT_64).
+  For PE, this is all sections.
 
 - `fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<<Self as >::Section>`
 
@@ -7658,6 +7438,12 @@ This is the primary trait for the unified read API.
 - `fn section_by_index(&self, index: SectionIndex) -> Result<<Self as >::Section>`
 
   Get the section at the given index.
+  
+  The meaning of the index depends on the object file.
+  
+  For some object files, this requires iterating through all sections.
+  
+  Returns an error if the index is invalid.
 
 - `fn sections(&self) -> <Self as >::SectionIterator`
 
@@ -7674,22 +7460,43 @@ This is the primary trait for the unified read API.
 - `fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>`
 
   Get the debugging symbol at the given index.
+  
+  The meaning of the index depends on the object file.
+  
+  Returns an error if the index is invalid.
 
 - `fn symbols(&self) -> <Self as >::SymbolIterator`
 
   Get an iterator for the debugging symbols in the file.
+  
+  This may skip over symbols that are malformed or unsupported.
+  
+  For Mach-O files, this does not include STAB entries.
 
 - `fn dynamic_symbol_table(&self) -> Option<<Self as >::SymbolTable>`
 
   Get the dynamic linking symbol table, if any.
+  
+  Only ELF has a separate dynamic linking symbol table.
+  Consider using `Self::exports` or `Self::imports` instead.
 
 - `fn dynamic_symbols(&self) -> <Self as >::SymbolIterator`
 
   Get an iterator for the dynamic linking symbols in the file.
+  
+  This may skip over symbols that are malformed or unsupported.
+  
+  Only ELF has dynamic linking symbols.
+  Other file formats will return an empty iterator.
+  Consider using `Self::exports` or `Self::imports` instead.
 
 - `fn dynamic_relocations(&self) -> Option<<Self as >::DynamicRelocationIterator>`
 
   Get the dynamic relocations for this file.
+  
+  Symbol indices in these relocations refer to the dynamic symbol table.
+  
+  Only ELF has dynamic relocations.
 
 - `fn imports(&self) -> Result<Vec<Import<'data>>>`
 
@@ -7698,6 +7505,9 @@ This is the primary trait for the unified read API.
 - `fn exports(&self) -> Result<Vec<Export<'data>>>`
 
   Get the exported symbols that expose both a name and an address.
+  
+  Some file formats may provide other kinds of symbols that can be retrieved using
+  the low level API.
 
 - `fn has_debug_symbols(&self) -> bool`
 
@@ -7706,6 +7516,8 @@ This is the primary trait for the unified read API.
 - `fn relative_address_base(&self) -> u64`
 
   Get the base address used for relative virtual addresses.
+  
+  Currently this is only non-zero for PE.
 
 - `fn entry(&self) -> u64`
 
@@ -7720,6 +7532,10 @@ This is the primary trait for the unified read API.
 - `fn sub_architecture(&self) -> Option<SubArchitecture>`
 
   Get the sub-architecture type of the file if known.
+  
+  A value of `None` has a range of meanings: the file supports all
+  sub-architectures, the file does not explicitly specify a
+  sub-architecture, or the sub-architecture is currently unrecognized.
 
 - `fn endianness(&self) -> Endianness`
 
@@ -7728,6 +7544,21 @@ This is the primary trait for the unified read API.
 - `fn section_by_name(&self, section_name: &str) -> Option<<Self as >::Section>`
 
   Get the section named `section_name`, if such a section exists.
+  
+  If `section_name` starts with a '.' then it is treated as a system
+  section name, and is compared using the conventions specific to the
+  object file format. This includes:
+  - if ".debug_str_offsets" is requested for a Mach-O object file, then
+    the actual section name that is searched for is "__debug_str_offs".
+  - if ".debug_info" is requested for an ELF object file, then
+    ".zdebug_info" may be returned (and similarly for other debug
+    sections). Similarly, if ".debug_info" is requested for a Mach-O
+    object file, then "__zdebug_info" may be returned.
+  
+  For some object files, multiple segments may contain sections with the
+  same name. In this case, the first matching section will be used.
+  
+  This method skips over sections with invalid names.
 
 - `fn symbol_by_name<'file>(self: &'file Self, symbol_name: &str) -> Option<<Self as >::Symbol>`
 
@@ -7740,10 +7571,15 @@ This is the primary trait for the unified read API.
 - `fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>`
 
   Construct a map from addresses to symbol names.
+  
+  The map will only contain defined text and data symbols.
+  The dynamic symbol table will only be used if there are no debugging symbols.
 
 - `fn object_map(&self) -> ObjectMap<'data>`
 
   Construct a map from addresses to symbol names and object file names.
+  
+  This is derived from Mach-O STAB entries.
 
 - `fn mach_uuid(&self) -> Result<Option<[u8; 16]>>`
 
@@ -7780,7 +7616,7 @@ This is the primary trait for the unified read API.
 trait ObjectSegment<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:340-374`](../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L340-L374)*
+*Defined in [`object-0.37.3/src/read/traits.rs:340-374`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L340-L374)*
 
 A loadable segment in an [`Object`](#object).
 
@@ -7807,10 +7643,15 @@ This trait is part of the unified read API.
 - `fn data(&self) -> Result<&'data [u8]>`
 
   Returns a reference to the file contents of the segment.
+  
+  The length of this data may be different from the size of the
+  segment in memory.
 
 - `fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>`
 
   Return the segment data in the given range.
+  
+  Returns `Ok(None)` if the segment does not contain the given range.
 
 - `fn name_bytes(&self) -> Result<Option<&[u8]>>`
 
@@ -7819,6 +7660,8 @@ This trait is part of the unified read API.
 - `fn name(&self) -> Result<Option<&str>>`
 
   Returns the name of the segment.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn flags(&self) -> SegmentFlags`
 
@@ -7839,7 +7682,7 @@ This trait is part of the unified read API.
 trait ObjectSection<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:379-462`](../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L379-L462)*
+*Defined in [`object-0.37.3/src/read/traits.rs:379-462`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L379-L462)*
 
 A section in an [`Object`](#object).
 
@@ -7874,18 +7717,29 @@ This trait is part of the unified read API.
 - `fn data(&self) -> Result<&'data [u8]>`
 
   Returns the raw contents of the section.
+  
+  The length of this data may be different from the size of the
+  section in memory.
+  
+  This does not do any decompression.
 
 - `fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>`
 
   Return the raw contents of the section data in the given range.
+  
+  This does not do any decompression.
+  
+  Returns `Ok(None)` if the section does not contain the given range.
 
 - `fn compressed_file_range(&self) -> Result<CompressedFileRange>`
 
   Returns the potentially compressed file range of the section,
+  along with information about the compression.
 
 - `fn compressed_data(&self) -> Result<CompressedData<'data>>`
 
   Returns the potentially compressed contents of the section,
+  along with information about the compression.
 
 - `fn name_bytes(&self) -> Result<&'data [u8]>`
 
@@ -7894,6 +7748,8 @@ This trait is part of the unified read API.
 - `fn name(&self) -> Result<&'data str>`
 
   Returns the name of the section.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn segment_name_bytes(&self) -> Result<Option<&[u8]>>`
 
@@ -7902,6 +7758,8 @@ This trait is part of the unified read API.
 - `fn segment_name(&self) -> Result<Option<&str>>`
 
   Returns the name of the segment for this section.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn kind(&self) -> SectionKind`
 
@@ -7924,6 +7782,12 @@ This trait is part of the unified read API.
 - `fn uncompressed_data(&self) -> Result<Cow<'data, [u8]>>`
 
   Returns the uncompressed contents of the section.
+  
+  The length of this data may be different from the size of the
+  section in memory.
+  
+  If no compression is detected, then returns the data unchanged.
+  Returns `Err` if decompression fails.
 
 #### Implementors
 
@@ -7940,7 +7804,7 @@ This trait is part of the unified read API.
 trait ObjectComdat<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:467-487`](../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L467-L487)*
+*Defined in [`object-0.37.3/src/read/traits.rs:467-487`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L467-L487)*
 
 A COMDAT section group in an [`Object`](#object).
 
@@ -7967,6 +7831,8 @@ This trait is part of the unified read API.
 - `fn name(&self) -> Result<&'data str>`
 
   Returns the name of the COMDAT section group.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn sections(&self) -> <Self as >::SectionIterator`
 
@@ -7987,7 +7853,7 @@ This trait is part of the unified read API.
 trait ObjectSymbolTable<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:492-510`](../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L492-L510)*
+*Defined in [`object-0.37.3/src/read/traits.rs:492-510`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L492-L510)*
 
 A symbol table in an [`Object`](#object).
 
@@ -8004,10 +7870,16 @@ This trait is part of the unified read API.
 - `fn symbols(&self) -> <Self as >::SymbolIterator`
 
   Get an iterator for the symbols in the table.
+  
+  This may skip over symbols that are malformed or unsupported.
 
 - `fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>`
 
   Get the symbol at the given index.
+  
+  The meaning of the index depends on the object file.
+  
+  Returns an error if the index is invalid.
 
 #### Implementors
 
@@ -8023,7 +7895,7 @@ This trait is part of the unified read API.
 trait ObjectSymbol<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:515-576`](../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L515-L576)*
+*Defined in [`object-0.37.3/src/read/traits.rs:515-576`](../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L515-L576)*
 
 A symbol table entry in an [`Object`](#object).
 
@@ -8042,6 +7914,8 @@ This trait is part of the unified read API.
 - `fn name(&self) -> Result<&'data str>`
 
   The name of the symbol.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn address(&self) -> u64`
 
@@ -8066,10 +7940,15 @@ This trait is part of the unified read API.
 - `fn is_definition(&self) -> bool`
 
   Return true if the symbol is a definition of a function or data object
+  that has a known address.
+  
+  This is primarily used to implement `Object::symbol_map`.
 
 - `fn is_common(&self) -> bool`
 
   Return true if the symbol is common data.
+  
+  Note: does not check for [`SymbolSection::Section`](../index.md) with [`SectionKind::Common`](../index.md).
 
 - `fn is_weak(&self) -> bool`
 
@@ -8082,6 +7961,8 @@ This trait is part of the unified read API.
 - `fn is_global(&self) -> bool`
 
   Return true if the symbol visible outside of the compilation unit.
+  
+  This treats [`SymbolScope::Unknown`](../index.md) as global.
 
 - `fn is_local(&self) -> bool`
 
@@ -8096,6 +7977,8 @@ This trait is part of the unified read API.
 - `fn section_index(&self) -> Option<SectionIndex>`
 
   Returns the section index for the section containing this symbol.
+  
+  May return `None` if the symbol is not defined in a section.
 
 #### Implementors
 
@@ -8113,7 +7996,7 @@ This trait is part of the unified read API.
 fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../.source_1765633015/object-0.37.3/src/read/util.rs#L213-L220)*
+*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L213-L220)*
 
 ### `align`
 
@@ -8121,7 +8004,7 @@ fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 fn align(offset: usize, size: usize) -> usize
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../.source_1765633015/object-0.37.3/src/read/util.rs#L254-L256)*
+*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L254-L256)*
 
 ### `data_range`
 
@@ -8129,7 +8012,7 @@ fn align(offset: usize, size: usize) -> usize
 fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> Option<&[u8]>
 ```
 
-*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../.source_1765633015/object-0.37.3/src/read/util.rs#L259-L268)*
+*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../.source_1765894658/object-0.37.3/src/read/util.rs#L259-L268)*
 
 ## Type Aliases
 
@@ -8139,7 +8022,7 @@ fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> 
 type Result<T> = result::Result<T, Error>;
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:131`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L131)*
+*Defined in [`object-0.37.3/src/read/mod.rs:131`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L131)*
 
 The result type used within the read module.
 
@@ -8149,7 +8032,7 @@ The result type used within the read module.
 type NativeFile<'data, R> = elf::ElfFile64<'data, crate::endian::Endianness, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/mod.rs:171`](../../../.source_1765633015/object-0.37.3/src/read/mod.rs#L171)*
+*Defined in [`object-0.37.3/src/read/mod.rs:171`](../../../.source_1765894658/object-0.37.3/src/read/mod.rs#L171)*
 
 The native executable file for the target platform.
 
@@ -8159,13 +8042,13 @@ The native executable file for the target platform.
 type Result<T> = result::Result<T, ()>;
 ```
 
-*Defined in [`object-0.37.3/src/read/read_ref.rs:9`](../../../.source_1765633015/object-0.37.3/src/read/read_ref.rs#L9)*
+*Defined in [`object-0.37.3/src/read/read_ref.rs:9`](../../../.source_1765894658/object-0.37.3/src/read/read_ref.rs#L9)*
 
 ## Macros
 
 ### `with_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L30-L57)*
+*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L30-L57)*
 
 Evaluate an expression on the contents of a file format enum.
 
@@ -8173,27 +8056,27 @@ This is a hack to avoid virtual calls.
 
 ### `with_inner_mut!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L59-L86)*
+*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L59-L86)*
 
 ### `map_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L89-L116)*
+*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L89-L116)*
 
 Like `with_inner!`, but wraps the result in another enum.
 
 ### `map_inner_option!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L119-L146)*
+*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L119-L146)*
 
 Like `map_inner!`, but the result is a Result or Option.
 
 ### `map_inner_option_mut!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L148-L175)*
+*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L148-L175)*
 
 ### `next_inner!`
 
-*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../.source_1765633015/object-0.37.3/src/read/any.rs#L178-L205)*
+*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../.source_1765894658/object-0.37.3/src/read/any.rs#L178-L205)*
 
 Call `next` for a file format iterator.
 

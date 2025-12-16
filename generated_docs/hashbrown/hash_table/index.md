@@ -56,7 +56,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L48-L53)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L48-L53)*
 
 Low-level hash table with explicit hashing.
 
@@ -99,57 +99,33 @@ doing this because it changes the runtime of hash table operations from
 - <span id="hashtable-new"></span>`const fn new() -> Self`
 
   Creates an empty `HashTable`.
-
   
-
   The hash table is initially created with a capacity of 0, so it will not allocate until it
-
   is first inserted into.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashTable;
-
   let mut table: HashTable<&str> = HashTable::new();
-
   assert_eq!(table.len(), 0);
-
   assert_eq!(table.capacity(), 0);
-
   ```
 
 - <span id="hashtable-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
   Creates an empty `HashTable` with the specified capacity.
-
   
-
   The hash table will be able to hold at least `capacity` elements without
-
   reallocating. If `capacity` is 0, the hash table will not allocate.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashTable;
-
   let mut table: HashTable<&str> = HashTable::with_capacity(10);
-
   assert_eq!(table.len(), 0);
-
   assert!(table.capacity() >= 10);
-
   ```
 
 #### Trait Implementations
@@ -193,11 +169,8 @@ doing this because it changes the runtime of hash table operations from
 - <span id="hashtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
@@ -239,10 +212,10 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:1975-1981`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L1975-L1981)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:1975-1981`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L1975-L1981)*
 
 A view into an occupied entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 
@@ -295,411 +268,218 @@ fn main() {
 - <span id="occupiedentry-remove"></span>`fn remove(self) -> (T, VacantEntry<'a, T, A>)` — [`VacantEntry`](#vacantentry)
 
   Takes the value out of the entry, and returns it along with a
-
   `VacantEntry` that can be used to insert another value with the same
-
   hash as the one that was just removed.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::hash_table::Entry;
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table: HashTable<&str> = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   // The table is empty
-
   assert!(table.is_empty() && table.capacity() == 0);
-
   
-
   table.insert_unique(hasher(&"poneyland"), "poneyland", hasher);
-
   let capacity_before_remove = table.capacity();
-
   
-
   if let Entry::Occupied(o) = table.entry(hasher(&"poneyland"), |&x| x == "poneyland", hasher) {
-
       assert_eq!(o.remove().0, "poneyland");
-
   }
-
   
-
   assert!(table
-
       .find(hasher(&"poneyland"), |&x| x == "poneyland")
-
       .is_none());
-
   // Now table hold none elements but capacity is equal to the old one
-
   assert!(table.len() == 0 && table.capacity() == capacity_before_remove);
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 - <span id="occupiedentry-get"></span>`fn get(&self) -> &T`
 
   Gets a reference to the value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::hash_table::Entry;
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table: HashTable<&str> = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   table.insert_unique(hasher(&"poneyland"), "poneyland", hasher);
-
   
-
   match table.entry(hasher(&"poneyland"), |&x| x == "poneyland", hasher) {
-
       Entry::Vacant(_) => panic!(),
-
       Entry::Occupied(entry) => assert_eq!(entry.get(), &"poneyland"),
-
   }
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 - <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut T`
 
   Gets a mutable reference to the value in the entry.
-
   
-
   If you need a reference to the `OccupiedEntry` which may outlive the
-
   destruction of the `Entry` value, see `into_mut`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::hash_table::Entry;
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table: HashTable<(&str, u32)> = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   table.insert_unique(hasher(&"poneyland"), ("poneyland", 12), |(k, _)| hasher(&k));
-
   
-
   assert_eq!(
-
       table.find(hasher(&"poneyland"), |&(x, _)| x == "poneyland",),
-
       Some(&("poneyland", 12))
-
   );
-
   
-
   if let Entry::Occupied(mut o) = table.entry(
-
       hasher(&"poneyland"),
-
       |&(x, _)| x == "poneyland",
-
       |(k, _)| hasher(&k),
-
   ) {
-
       o.get_mut().1 += 10;
-
       assert_eq!(o.get().1, 22);
-
   
-
       // We can use the same Entry multiple times.
-
       o.get_mut().1 += 2;
-
   }
-
   
-
   assert_eq!(
-
       table.find(hasher(&"poneyland"), |&(x, _)| x == "poneyland",),
-
       Some(&("poneyland", 24))
-
   );
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 - <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut T`
 
   Converts the `OccupiedEntry` into a mutable reference to the value in the entry
-
   with a lifetime bound to the table itself.
-
   
-
   If you need multiple references to the `OccupiedEntry`, see `get_mut`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::hash_table::Entry;
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table: HashTable<(&str, u32)> = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   table.insert_unique(hasher(&"poneyland"), ("poneyland", 12), |(k, _)| hasher(&k));
-
   
-
   assert_eq!(
-
       table.find(hasher(&"poneyland"), |&(x, _)| x == "poneyland",),
-
       Some(&("poneyland", 12))
-
   );
-
   
-
   let value: &mut (&str, u32);
-
   match table.entry(
-
       hasher(&"poneyland"),
-
       |&(x, _)| x == "poneyland",
-
       |(k, _)| hasher(&k),
-
   ) {
-
       Entry::Occupied(entry) => value = entry.into_mut(),
-
       Entry::Vacant(_) => panic!(),
-
   }
-
   value.1 += 10;
-
   
-
   assert_eq!(
-
       table.find(hasher(&"poneyland"), |&(x, _)| x == "poneyland",),
-
       Some(&("poneyland", 22))
-
   );
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 - <span id="occupiedentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](#hashtable)
 
   Converts the `OccupiedEntry` into a mutable reference to the underlying
-
   table.
 
 - <span id="occupiedentry-bucket-index"></span>`fn bucket_index(&self) -> usize`
 
   Returns the bucket index in the table for this entry.
-
   
-
   This can be used to store a borrow-free "reference" to the entry, later using
-
   `HashTable::get_bucket`, `HashTable::get_bucket_mut`, or
-
   `HashTable::get_bucket_entry` to access it again without hash probing.
-
   
-
   The index is only meaningful as long as the table is not resized and no entries are added
-
   or removed. After such changes, it may end up pointing to a different entry or none at all.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   table.insert_unique(hasher(&1), (1, 1), |val| hasher(&val.0));
-
   table.insert_unique(hasher(&2), (2, 2), |val| hasher(&val.0));
-
   table.insert_unique(hasher(&3), (3, 3), |val| hasher(&val.0));
-
   
-
   let index = table
-
       .entry(hasher(&2), |val| val.0 == 2, |val| hasher(&val.0))
-
       .or_insert((2, -2))
-
       .bucket_index();
-
   assert_eq!(table.get_bucket(index), Some(&(2, 2)));
-
   
-
   // Full mutation would invalidate any normal reference
-
   for (_key, value) in &mut table {
-
       *value *= 11;
-
   }
-
   
-
   // The index still reaches the same key with the updated value
-
   assert_eq!(table.get_bucket(index), Some(&(2, 22)));
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 #### Trait Implementations
@@ -731,11 +511,8 @@ fn main() {
 - <span id="occupiedentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, A> Send for OccupiedEntry<'_, T, A>`
@@ -766,10 +543,10 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2286-2293`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2286-L2293)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2286-2293`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2286-L2293)*
 
 A view into a vacant entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 
@@ -811,71 +588,40 @@ fn main() {
 - <span id="vacantentry-insert"></span>`fn insert(self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
 
   Inserts a new element into the table with the hash that was used to
-
   obtain the `VacantEntry`.
-
   
-
   An `OccupiedEntry` is returned for the newly inserted element.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::hash_table::Entry;
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table: HashTable<&str> = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   
-
   if let Entry::Vacant(o) = table.entry(hasher(&"poneyland"), |&x| x == "poneyland", hasher) {
-
       o.insert("poneyland");
-
   }
-
   assert_eq!(
-
       table.find(hasher(&"poneyland"), |&x| x == "poneyland"),
-
       Some(&"poneyland")
-
   );
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 - <span id="vacantentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](#hashtable)
 
   Converts the `VacantEntry` into a mutable reference to the underlying
-
   table.
 
 #### Trait Implementations
@@ -907,11 +653,8 @@ fn main() {
 - <span id="vacantentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for VacantEntry<'a, T, A>`
@@ -936,7 +679,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2398-2403`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2398-L2403)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2398-2403`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2398-L2403)*
 
 Type representing the absence of an entry, as returned by `HashTable::find_entry`
 and `HashTable::get_bucket_entry`.
@@ -984,7 +727,6 @@ fn main() {
 - <span id="absententry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](#hashtable)
 
   Converts the `AbsentEntry` into a mutable reference to the underlying
-
   table.
 
 #### Trait Implementations
@@ -1016,11 +758,8 @@ fn main() {
 - <span id="absententry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for AbsentEntry<'a, T, A>`
@@ -1044,7 +783,7 @@ struct Iter<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2430-2433`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2430-L2433)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2430-2433`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2430-L2433)*
 
 An iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `&'a T`.
@@ -1101,11 +840,8 @@ documentation for more.
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter<'a, T>`
@@ -1155,7 +891,7 @@ struct IterMut<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2503-2506`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2503-L2506)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2503-2506`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2503-L2506)*
 
 A mutable iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `&'a mut T`.
@@ -1204,11 +940,8 @@ documentation for more.
 - <span id="itermut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterMut<'a, T>`
@@ -1250,7 +983,7 @@ struct IterBuckets<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2572-2575`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2572-L2575)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2572-2575`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2572-L2575)*
 
 An iterator producing the `usize` indices of all occupied buckets,
 within the range `0..table.num_buckets()`.
@@ -1308,11 +1041,8 @@ documentation for more.
 - <span id="iterbuckets-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterBuckets<'a, T>`
@@ -1360,7 +1090,7 @@ struct IterHash<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2634-2637`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2634-L2637)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2634-2637`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2634-L2637)*
 
 An iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a T`.
@@ -1413,11 +1143,8 @@ documentation for more.
 - <span id="iterhash-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterHash<'a, T>`
@@ -1465,7 +1192,7 @@ struct IterHashMut<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2700-2703`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2700-L2703)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2700-2703`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2700-L2703)*
 
 A mutable iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a mut T`.
@@ -1510,11 +1237,8 @@ documentation for more.
 - <span id="iterhashmut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterHashMut<'a, T>`
@@ -1554,7 +1278,7 @@ struct IterHashBuckets<'a, T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2756-2759`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2756-L2759)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2756-2759`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2756-L2759)*
 
 An iterator producing the `usize` indices of all buckets which may match a hash.
 
@@ -1604,11 +1328,8 @@ documentation for more.
 - <span id="iterhashbuckets-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterHashBuckets<'a, T>`
@@ -1655,7 +1376,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2808-2813`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2808-L2813)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2808-2813`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2808-L2813)*
 
 An owning iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `T`.
@@ -1706,11 +1427,8 @@ The table cannot be used after calling that method.
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter<T, A>`
@@ -1751,7 +1469,7 @@ struct Drain<'a, T, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2880-2882`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2880-L2882)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2880-2882`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2880-L2882)*
 
 A draining iterator over the items of a `HashTable`.
 
@@ -1795,11 +1513,8 @@ See its documentation for more.
 - <span id="drain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Drain<'a, T, A>`
@@ -1841,7 +1556,7 @@ struct ExtractIf<'a, T, F, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:2928-2931`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L2928-L2931)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:2928-2931`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L2928-L2931)*
 
 A draining iterator over entries of a `HashTable` which don't satisfy the predicate `f`.
 
@@ -1875,11 +1590,8 @@ documentation for more.
 - <span id="extractif-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ExtractIf<'a, T, F, A>`
@@ -1923,7 +1635,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:1676-1736`](../../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L1676-L1736)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:1676-1736`](../../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L1676-L1736)*
 
 A view into a single entry in a table, which may either be vacant or occupied.
 
@@ -2043,287 +1755,152 @@ fn main() {
 - <span id="entry-insert"></span>`fn insert(self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
 
   Sets the value of the entry, replacing any existing value if there is
-
   one, and returns an [`OccupiedEntry`](#occupiedentry).
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table: HashTable<&str> = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   
-
   let entry = table
-
       .entry(hasher(&"horseyland"), |&x| x == "horseyland", hasher)
-
       .insert("horseyland");
-
   
-
   assert_eq!(entry.get(), &"horseyland");
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 - <span id="entry-or-insert"></span>`fn or_insert(self, default: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
 
   Ensures a value is in the entry by inserting if it was vacant.
-
   
-
   Returns an [`OccupiedEntry`](#occupiedentry) pointing to the now-occupied entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table: HashTable<&str> = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   
-
   // nonexistent key
-
   table
-
       .entry(hasher(&"poneyland"), |&x| x == "poneyland", hasher)
-
       .or_insert("poneyland");
-
   assert!(table
-
       .find(hasher(&"poneyland"), |&x| x == "poneyland")
-
       .is_some());
-
   
-
   // existing key
-
   table
-
       .entry(hasher(&"poneyland"), |&x| x == "poneyland", hasher)
-
       .or_insert("poneyland");
-
   assert!(table
-
       .find(hasher(&"poneyland"), |&x| x == "poneyland")
-
       .is_some());
-
   assert_eq!(table.len(), 1);
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 - <span id="entry-or-insert-with"></span>`fn or_insert_with(self, default: impl FnOnce() -> T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
 
   Ensures a value is in the entry by inserting the result of the default function if empty..
-
   
-
   Returns an [`OccupiedEntry`](#occupiedentry) pointing to the now-occupied entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table: HashTable<String> = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   
-
   table
-
       .entry(hasher("poneyland"), |x| x == "poneyland", |val| hasher(val))
-
       .or_insert_with(|| "poneyland".to_string());
-
   
-
   assert!(table
-
       .find(hasher(&"poneyland"), |x| x == "poneyland")
-
       .is_some());
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 - <span id="entry-and-modify"></span>`fn and_modify(self, f: impl FnOnce(&mut T)) -> Self`
 
   Provides in-place mutable access to an occupied entry before any
-
   potential inserts into the table.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(feature = "nightly")]
-
   fn test() {
-
   use hashbrown::{HashTable, DefaultHashBuilder};
-
   use std::hash::BuildHasher;
-
   
-
   let mut table: HashTable<(&str, u32)> = HashTable::new();
-
   let hasher = DefaultHashBuilder::default();
-
   let hasher = |val: &_| hasher.hash_one(val);
-
   
-
   table
-
       .entry(
-
           hasher(&"poneyland"),
-
           |&(x, _)| x == "poneyland",
-
           |(k, _)| hasher(&k),
-
       )
-
       .and_modify(|(_, v)| *v += 1)
-
       .or_insert(("poneyland", 42));
-
   assert_eq!(
-
       table.find(hasher(&"poneyland"), |&(k, _)| k == "poneyland"),
-
       Some(&("poneyland", 42))
-
   );
-
   
-
   table
-
       .entry(
-
           hasher(&"poneyland"),
-
           |&(x, _)| x == "poneyland",
-
           |(k, _)| hasher(&k),
-
       )
-
       .and_modify(|(_, v)| *v += 1)
-
       .or_insert(("poneyland", 42));
-
   assert_eq!(
-
       table.find(hasher(&"poneyland"), |&(k, _)| k == "poneyland"),
-
       Some(&("poneyland", 43))
-
   );
-
   }
-
   fn main() {
-
       #[cfg(feature = "nightly")]
-
       test()
-
   }
-
   ```
 
 #### Trait Implementations
@@ -2355,11 +1932,8 @@ fn main() {
 - <span id="entry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for Entry<'a, T, A>`

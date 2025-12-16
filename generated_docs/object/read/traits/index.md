@@ -24,7 +24,7 @@
 struct NoDynamicRelocationIterator;
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:580`](../../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L580)*
+*Defined in [`object-0.37.3/src/read/traits.rs:580`](../../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L580)*
 
 An iterator for files that don't have dynamic relocations.
 
@@ -57,11 +57,8 @@ An iterator for files that don't have dynamic relocations.
 - <span id="nodynamicrelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for NoDynamicRelocationIterator`
@@ -98,7 +95,7 @@ An iterator for files that don't have dynamic relocations.
 trait Object<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:15-335`](../../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L15-L335)*
+*Defined in [`object-0.37.3/src/read/traits.rs:15-335`](../../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L15-L335)*
 
 An object file.
 
@@ -147,6 +144,11 @@ This is the primary trait for the unified read API.
 - `fn segments(&self) -> <Self as >::SegmentIterator`
 
   Get an iterator for the loadable segments in the file.
+  
+  For ELF, this is program headers with type [`PT_LOAD`](crate::elf::PT_LOAD).
+  For Mach-O, this is load commands with type [`LC_SEGMENT`](crate::macho::LC_SEGMENT)
+  or [`LC_SEGMENT_64`](crate::macho::LC_SEGMENT_64).
+  For PE, this is all sections.
 
 - `fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<<Self as >::Section>`
 
@@ -155,6 +157,12 @@ This is the primary trait for the unified read API.
 - `fn section_by_index(&self, index: SectionIndex) -> Result<<Self as >::Section>`
 
   Get the section at the given index.
+  
+  The meaning of the index depends on the object file.
+  
+  For some object files, this requires iterating through all sections.
+  
+  Returns an error if the index is invalid.
 
 - `fn sections(&self) -> <Self as >::SectionIterator`
 
@@ -171,22 +179,43 @@ This is the primary trait for the unified read API.
 - `fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>`
 
   Get the debugging symbol at the given index.
+  
+  The meaning of the index depends on the object file.
+  
+  Returns an error if the index is invalid.
 
 - `fn symbols(&self) -> <Self as >::SymbolIterator`
 
   Get an iterator for the debugging symbols in the file.
+  
+  This may skip over symbols that are malformed or unsupported.
+  
+  For Mach-O files, this does not include STAB entries.
 
 - `fn dynamic_symbol_table(&self) -> Option<<Self as >::SymbolTable>`
 
   Get the dynamic linking symbol table, if any.
+  
+  Only ELF has a separate dynamic linking symbol table.
+  Consider using `Self::exports` or `Self::imports` instead.
 
 - `fn dynamic_symbols(&self) -> <Self as >::SymbolIterator`
 
   Get an iterator for the dynamic linking symbols in the file.
+  
+  This may skip over symbols that are malformed or unsupported.
+  
+  Only ELF has dynamic linking symbols.
+  Other file formats will return an empty iterator.
+  Consider using `Self::exports` or `Self::imports` instead.
 
 - `fn dynamic_relocations(&self) -> Option<<Self as >::DynamicRelocationIterator>`
 
   Get the dynamic relocations for this file.
+  
+  Symbol indices in these relocations refer to the dynamic symbol table.
+  
+  Only ELF has dynamic relocations.
 
 - `fn imports(&self) -> Result<Vec<Import<'data>>>`
 
@@ -195,6 +224,9 @@ This is the primary trait for the unified read API.
 - `fn exports(&self) -> Result<Vec<Export<'data>>>`
 
   Get the exported symbols that expose both a name and an address.
+  
+  Some file formats may provide other kinds of symbols that can be retrieved using
+  the low level API.
 
 - `fn has_debug_symbols(&self) -> bool`
 
@@ -203,6 +235,8 @@ This is the primary trait for the unified read API.
 - `fn relative_address_base(&self) -> u64`
 
   Get the base address used for relative virtual addresses.
+  
+  Currently this is only non-zero for PE.
 
 - `fn entry(&self) -> u64`
 
@@ -217,6 +251,10 @@ This is the primary trait for the unified read API.
 - `fn sub_architecture(&self) -> Option<SubArchitecture>`
 
   Get the sub-architecture type of the file if known.
+  
+  A value of `None` has a range of meanings: the file supports all
+  sub-architectures, the file does not explicitly specify a
+  sub-architecture, or the sub-architecture is currently unrecognized.
 
 - `fn endianness(&self) -> Endianness`
 
@@ -225,6 +263,21 @@ This is the primary trait for the unified read API.
 - `fn section_by_name(&self, section_name: &str) -> Option<<Self as >::Section>`
 
   Get the section named `section_name`, if such a section exists.
+  
+  If `section_name` starts with a '.' then it is treated as a system
+  section name, and is compared using the conventions specific to the
+  object file format. This includes:
+  - if ".debug_str_offsets" is requested for a Mach-O object file, then
+    the actual section name that is searched for is "__debug_str_offs".
+  - if ".debug_info" is requested for an ELF object file, then
+    ".zdebug_info" may be returned (and similarly for other debug
+    sections). Similarly, if ".debug_info" is requested for a Mach-O
+    object file, then "__zdebug_info" may be returned.
+  
+  For some object files, multiple segments may contain sections with the
+  same name. In this case, the first matching section will be used.
+  
+  This method skips over sections with invalid names.
 
 - `fn symbol_by_name<'file>(self: &'file Self, symbol_name: &str) -> Option<<Self as >::Symbol>`
 
@@ -237,10 +290,15 @@ This is the primary trait for the unified read API.
 - `fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>`
 
   Construct a map from addresses to symbol names.
+  
+  The map will only contain defined text and data symbols.
+  The dynamic symbol table will only be used if there are no debugging symbols.
 
 - `fn object_map(&self) -> ObjectMap<'data>`
 
   Construct a map from addresses to symbol names and object file names.
+  
+  This is derived from Mach-O STAB entries.
 
 - `fn mach_uuid(&self) -> Result<Option<[u8; 16]>>`
 
@@ -277,7 +335,7 @@ This is the primary trait for the unified read API.
 trait ObjectSegment<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:340-374`](../../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L340-L374)*
+*Defined in [`object-0.37.3/src/read/traits.rs:340-374`](../../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L340-L374)*
 
 A loadable segment in an [`Object`](../index.md).
 
@@ -304,10 +362,15 @@ This trait is part of the unified read API.
 - `fn data(&self) -> Result<&'data [u8]>`
 
   Returns a reference to the file contents of the segment.
+  
+  The length of this data may be different from the size of the
+  segment in memory.
 
 - `fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>`
 
   Return the segment data in the given range.
+  
+  Returns `Ok(None)` if the segment does not contain the given range.
 
 - `fn name_bytes(&self) -> Result<Option<&[u8]>>`
 
@@ -316,6 +379,8 @@ This trait is part of the unified read API.
 - `fn name(&self) -> Result<Option<&str>>`
 
   Returns the name of the segment.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn flags(&self) -> SegmentFlags`
 
@@ -336,7 +401,7 @@ This trait is part of the unified read API.
 trait ObjectSection<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:379-462`](../../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L379-L462)*
+*Defined in [`object-0.37.3/src/read/traits.rs:379-462`](../../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L379-L462)*
 
 A section in an [`Object`](../index.md).
 
@@ -371,18 +436,29 @@ This trait is part of the unified read API.
 - `fn data(&self) -> Result<&'data [u8]>`
 
   Returns the raw contents of the section.
+  
+  The length of this data may be different from the size of the
+  section in memory.
+  
+  This does not do any decompression.
 
 - `fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>`
 
   Return the raw contents of the section data in the given range.
+  
+  This does not do any decompression.
+  
+  Returns `Ok(None)` if the section does not contain the given range.
 
 - `fn compressed_file_range(&self) -> Result<CompressedFileRange>`
 
   Returns the potentially compressed file range of the section,
+  along with information about the compression.
 
 - `fn compressed_data(&self) -> Result<CompressedData<'data>>`
 
   Returns the potentially compressed contents of the section,
+  along with information about the compression.
 
 - `fn name_bytes(&self) -> Result<&'data [u8]>`
 
@@ -391,6 +467,8 @@ This trait is part of the unified read API.
 - `fn name(&self) -> Result<&'data str>`
 
   Returns the name of the section.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn segment_name_bytes(&self) -> Result<Option<&[u8]>>`
 
@@ -399,6 +477,8 @@ This trait is part of the unified read API.
 - `fn segment_name(&self) -> Result<Option<&str>>`
 
   Returns the name of the segment for this section.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn kind(&self) -> SectionKind`
 
@@ -421,6 +501,12 @@ This trait is part of the unified read API.
 - `fn uncompressed_data(&self) -> Result<Cow<'data, [u8]>>`
 
   Returns the uncompressed contents of the section.
+  
+  The length of this data may be different from the size of the
+  section in memory.
+  
+  If no compression is detected, then returns the data unchanged.
+  Returns `Err` if decompression fails.
 
 #### Implementors
 
@@ -437,7 +523,7 @@ This trait is part of the unified read API.
 trait ObjectComdat<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:467-487`](../../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L467-L487)*
+*Defined in [`object-0.37.3/src/read/traits.rs:467-487`](../../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L467-L487)*
 
 A COMDAT section group in an [`Object`](../index.md).
 
@@ -464,6 +550,8 @@ This trait is part of the unified read API.
 - `fn name(&self) -> Result<&'data str>`
 
   Returns the name of the COMDAT section group.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn sections(&self) -> <Self as >::SectionIterator`
 
@@ -484,7 +572,7 @@ This trait is part of the unified read API.
 trait ObjectSymbolTable<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:492-510`](../../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L492-L510)*
+*Defined in [`object-0.37.3/src/read/traits.rs:492-510`](../../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L492-L510)*
 
 A symbol table in an [`Object`](../index.md).
 
@@ -501,10 +589,16 @@ This trait is part of the unified read API.
 - `fn symbols(&self) -> <Self as >::SymbolIterator`
 
   Get an iterator for the symbols in the table.
+  
+  This may skip over symbols that are malformed or unsupported.
 
 - `fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>`
 
   Get the symbol at the given index.
+  
+  The meaning of the index depends on the object file.
+  
+  Returns an error if the index is invalid.
 
 #### Implementors
 
@@ -520,7 +614,7 @@ This trait is part of the unified read API.
 trait ObjectSymbol<'data>: read::private::Sealed { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/traits.rs:515-576`](../../../../.source_1765633015/object-0.37.3/src/read/traits.rs#L515-L576)*
+*Defined in [`object-0.37.3/src/read/traits.rs:515-576`](../../../../.source_1765894658/object-0.37.3/src/read/traits.rs#L515-L576)*
 
 A symbol table entry in an [`Object`](../index.md).
 
@@ -539,6 +633,8 @@ This trait is part of the unified read API.
 - `fn name(&self) -> Result<&'data str>`
 
   The name of the symbol.
+  
+  Returns an error if the name is not UTF-8.
 
 - `fn address(&self) -> u64`
 
@@ -563,10 +659,15 @@ This trait is part of the unified read API.
 - `fn is_definition(&self) -> bool`
 
   Return true if the symbol is a definition of a function or data object
+  that has a known address.
+  
+  This is primarily used to implement `Object::symbol_map`.
 
 - `fn is_common(&self) -> bool`
 
   Return true if the symbol is common data.
+  
+  Note: does not check for [`SymbolSection::Section`](../../index.md) with [`SectionKind::Common`](../../index.md).
 
 - `fn is_weak(&self) -> bool`
 
@@ -579,6 +680,8 @@ This trait is part of the unified read API.
 - `fn is_global(&self) -> bool`
 
   Return true if the symbol visible outside of the compilation unit.
+  
+  This treats [`SymbolScope::Unknown`](../../index.md) as global.
 
 - `fn is_local(&self) -> bool`
 
@@ -593,6 +696,8 @@ This trait is part of the unified read API.
 - `fn section_index(&self) -> Option<SectionIndex>`
 
   Returns the section index for the section containing this symbol.
+  
+  May return `None` if the symbol is not defined in a section.
 
 #### Implementors
 

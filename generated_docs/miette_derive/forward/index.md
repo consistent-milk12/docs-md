@@ -22,7 +22,7 @@ enum Forward {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/forward.rs:9-12`](../../../.source_1765633015/miette-derive-7.6.0/src/forward.rs#L9-L12)*
+*Defined in [`miette-derive-7.6.0/src/forward.rs:9-12`](../../../.source_1765894658/miette-derive-7.6.0/src/forward.rs#L9-L12)*
 
 #### Implementations
 
@@ -57,11 +57,8 @@ enum Forward {
 - <span id="forward-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Forward`
@@ -95,7 +92,7 @@ enum WhichFn {
 }
 ```
 
-*Defined in [`miette-derive-7.6.0/src/forward.rs:33-42`](../../../.source_1765633015/miette-derive-7.6.0/src/forward.rs#L33-L42)*
+*Defined in [`miette-derive-7.6.0/src/forward.rs:33-42`](../../../.source_1765894658/miette-derive-7.6.0/src/forward.rs#L33-L42)*
 
 #### Implementations
 
@@ -140,11 +137,8 @@ enum WhichFn {
 - <span id="whichfn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for WhichFn`

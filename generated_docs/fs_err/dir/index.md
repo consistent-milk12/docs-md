@@ -28,7 +28,7 @@ struct ReadDir {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/dir.rs:28-31`](../../../.source_1765633015/fs-err-3.2.0/src/dir.rs#L28-L31)*
+*Defined in [`fs-err-3.2.1/src/dir.rs:28-31`](../../../.source_1765894658/fs-err-3.2.1/src/dir.rs#L28-L31)*
 
 Wrapper around `std::fs::ReadDir` which adds more
 helpful information to all errors.
@@ -66,11 +66,8 @@ This struct is created via `fs_err::read_dir`.
 - <span id="readdir-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ReadDir`
@@ -107,7 +104,7 @@ struct DirEntry {
 }
 ```
 
-*Defined in [`fs-err-3.2.0/src/dir.rs:51-53`](../../../.source_1765633015/fs-err-3.2.0/src/dir.rs#L51-L53)*
+*Defined in [`fs-err-3.2.1/src/dir.rs:51-53`](../../../.source_1765894658/fs-err-3.2.1/src/dir.rs#L51-L53)*
 
 Wrapper around `std::fs::DirEntry` which adds more
 helpful information to all errors.
@@ -118,33 +115,25 @@ helpful information to all errors.
 - <span id="direntry-path"></span>`fn path(&self) -> PathBuf`
 
   Returns the full path to the file that this entry represents.
-
   
-
   Wrapper for [`DirEntry::path`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.path).
 
 - <span id="direntry-metadata"></span>`fn metadata(&self) -> io::Result<fs::Metadata>`
 
   Returns the metadata for the file that this entry points at.
-
   
-
   Wrapper for [`DirEntry::metadata`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.metadata).
 
 - <span id="direntry-file-type"></span>`fn file_type(&self) -> io::Result<fs::FileType>`
 
   Returns the file type for the file that this entry points at.
-
   
-
   Wrapper for [`DirEntry::file_type`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.file_type).
 
 - <span id="direntry-file-name"></span>`fn file_name(&self) -> OsString`
 
   Returns the file name of this directory entry without any leading path component(s).
-
   
-
   Wrapper for [`DirEntry::file_name`](https://doc.rust-lang.org/stable/std/fs/struct.DirEntry.html#method.file_name).
 
 #### Trait Implementations
@@ -180,11 +169,8 @@ helpful information to all errors.
 - <span id="direntry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DirEntry`
@@ -207,7 +193,7 @@ helpful information to all errors.
 fn read_dir<P: Into<std::path::PathBuf>>(path: P) -> io::Result<ReadDir>
 ```
 
-*Defined in [`fs-err-3.2.0/src/dir.rs:11-18`](../../../.source_1765633015/fs-err-3.2.0/src/dir.rs#L11-L18)*
+*Defined in [`fs-err-3.2.1/src/dir.rs:11-18`](../../../.source_1765894658/fs-err-3.2.1/src/dir.rs#L11-L18)*
 
 Returns an iterator over the entries within a directory.
 

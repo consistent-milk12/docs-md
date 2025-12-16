@@ -29,7 +29,7 @@ enum WordSplitter {
 }
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../../.source_1765633015/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../../.source_1765894658/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
 
 The `WordSplitter` enum describes where words can be split.
 
@@ -119,33 +119,19 @@ details.
 - <span id="wordsplitter-split-points"></span>`fn split_points(&self, word: &str) -> Vec<usize>`
 
   Return all possible indices where `word` can be split.
-
   
-
   The indices are in the range `0..word.len()`. They point to
-
   the index _after_ the split point, i.e., after `-` if
-
   splitting on hyphens. This way, `word.split_at(idx)` will
-
   break the word into two well-formed pieces.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use textwrap::WordSplitter;
-
   assert_eq!(WordSplitter::NoHyphenation.split_points("cannot-be-split"), vec![]);
-
   assert_eq!(WordSplitter::HyphenSplitter.split_points("can-be-split"), vec![4, 7]);
-
   assert_eq!(WordSplitter::Custom(|word| vec![word.len()/2]).split_points("middle"), vec![3]);
-
   ```
 
 #### Trait Implementations
@@ -185,11 +171,8 @@ details.
 - <span id="wordsplitter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for WordSplitter`
@@ -226,7 +209,7 @@ where
     I: IntoIterator<Item = crate::core::Word<'a>>
 ```
 
-*Defined in [`textwrap-0.16.2/src/word_splitters.rs:169-206`](../../../.source_1765633015/textwrap-0.16.2/src/word_splitters.rs#L169-L206)*
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:169-206`](../../../.source_1765894658/textwrap-0.16.2/src/word_splitters.rs#L169-L206)*
 
 Split words into smaller words according to the split points given
 by `word_splitter`.

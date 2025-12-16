@@ -21,7 +21,7 @@
 struct DisplayError<M>(M);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:10`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/wrapper.rs#L10)*
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:10`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/wrapper.rs#L10)*
 
 #### Trait Implementations
 
@@ -64,11 +64,8 @@ struct DisplayError<M>(M);
 - <span id="displayerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DisplayError<M>`
@@ -97,7 +94,7 @@ struct DisplayError<M>(M);
 struct MessageError<M>(M);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:34`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/wrapper.rs#L34)*
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:34`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/wrapper.rs#L34)*
 
 #### Trait Implementations
 
@@ -140,11 +137,8 @@ struct MessageError<M>(M);
 - <span id="messageerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MessageError<M>`
@@ -173,7 +167,7 @@ struct MessageError<M>(M);
 struct BoxedError(Box<dyn Diagnostic + Send + Sync>);
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:58`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/wrapper.rs#L58)*
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:58`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/wrapper.rs#L58)*
 
 #### Trait Implementations
 
@@ -238,11 +232,8 @@ struct BoxedError(Box<dyn Diagnostic + Send + Sync>);
 - <span id="boxederror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for BoxedError`
@@ -274,7 +265,7 @@ struct WithSourceCode<E, C> {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:122-125`](../../../../.source_1765633015/miette-7.6.0/src/eyreish/wrapper.rs#L122-L125)*
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:122-125`](../../../../.source_1765894658/miette-7.6.0/src/eyreish/wrapper.rs#L122-L125)*
 
 #### Trait Implementations
 
@@ -335,11 +326,8 @@ struct WithSourceCode<E, C> {
 - <span id="withsourcecode-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for WithSourceCode<E, C>`

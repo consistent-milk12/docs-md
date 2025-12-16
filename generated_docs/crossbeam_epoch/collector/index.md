@@ -21,7 +21,7 @@ struct Collector {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
 
 An epoch-based garbage collector.
 
@@ -80,11 +80,8 @@ An epoch-based garbage collector.
 - <span id="collector-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Collector`
@@ -139,7 +136,7 @@ struct LocalHandle {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../../.source_1765633015/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../../.source_1765894658/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
 
 A handle to a garbage collector.
 
@@ -190,11 +187,8 @@ A handle to a garbage collector.
 - <span id="localhandle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for LocalHandle`

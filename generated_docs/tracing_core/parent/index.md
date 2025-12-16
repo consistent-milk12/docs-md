@@ -22,7 +22,7 @@ enum Parent {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/parent.rs:4-11`](../../../.source_1765633015/tracing-core-0.1.35/src/parent.rs#L4-L11)*
+*Defined in [`tracing-core-0.1.35/src/parent.rs:4-11`](../../../.source_1765894658/tracing-core-0.1.35/src/parent.rs#L4-L11)*
 
 #### Variants
 
@@ -67,11 +67,8 @@ enum Parent {
 - <span id="parent-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Parent`

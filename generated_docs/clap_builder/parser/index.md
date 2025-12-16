@@ -64,7 +64,7 @@ struct IdsRef<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1384-1386`](../../../.source_1765633015/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1384-L1386)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1384-1386`](../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1384-L1386)*
 
 Iterate over `Arg` and `ArgGroup` [`Id`](../util/id/index.md)s via `ArgMatches::ids`.
 
@@ -131,11 +131,8 @@ assert_eq!(
 - <span id="idsref-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IdsRef<'a>`
@@ -183,7 +180,7 @@ struct RawValues<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1569-1573`](../../../.source_1765633015/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1569-L1573)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1569-1573`](../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1569-L1573)*
 
 Iterate over raw argument values via `ArgMatches::get_raw`.
 
@@ -259,11 +256,8 @@ assert_eq!(
 - <span id="rawvalues-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RawValues<'a>`
@@ -311,7 +305,7 @@ struct Values<T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1428-1432`](../../../.source_1765633015/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1428-L1432)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1428-1432`](../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1428-L1432)*
 
 Iterate over multiple values for an argument via `ArgMatches::remove_many`.
 
@@ -381,11 +375,8 @@ assert_eq!(values.next(), None);
 - <span id="values-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Values<T>`
@@ -433,7 +424,7 @@ struct ValuesRef<'a, T> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1496-1500`](../../../.source_1765633015/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1496-L1500)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1496-1500`](../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1496-L1500)*
 
 Iterate over multiple values for an argument via `ArgMatches::get_many`.
 
@@ -504,11 +495,8 @@ assert_eq!(values.next(), None);
 - <span id="valuesref-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ValuesRef<'a, T>`
@@ -558,7 +546,7 @@ struct ArgMatches {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../../.source_1765633015/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
 
 Container for parse results.
 
@@ -612,1365 +600,715 @@ if matches.contains_id("out") {
 - <span id="argmatches-get-one"></span>`fn get_one<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<&T>`
 
   Gets the value of a specific option or positional argument.
-
   
-
   i.e. an argument that `takes an additional value` at runtime.
-
   
-
   Returns an error if the wrong type was used.
-
   
-
   Returns `None` if the option wasn't present.
-
   
-
   <div class="warning">
-
   
-
   *NOTE:* This will always return `Some(value)` if `default_value` has been set.
-
   `ArgMatches::value_source` can be used to check if a value is present at runtime.
-
   
-
   </div>
-
   
-
   # Panic
-
   
-
   If the argument definition and access mismatch.  To handle this case programmatically, see
-
   `ArgMatches::try_get_one`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, value_parser, ArgAction};
-
   let m = Command::new("myapp")
-
       .arg(Arg::new("port")
-
           .value_parser(value_parser!(usize))
-
           .action(ArgAction::Set)
-
           .required(true))
-
       .get_matches_from(vec!["myapp", "2020"]);
-
   
-
   let port: usize = *m
-
       .get_one("port")
-
       .expect("`port`is required");
-
   assert_eq!(port, 2020);
-
   ```
-
   
 
 - <span id="argmatches-get-count"></span>`fn get_count(&self, id: &str) -> u8`
 
   Gets the value of a specific `ArgAction::Count` flag
-
   
-
   # Panic
-
   
-
   If the argument's action is not `ArgAction::Count`
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   use clap::Arg;
-
   let cmd = Command::new("mycmd")
-
       .arg(
-
           Arg::new("flag")
-
               .long("flag")
-
               .action(clap::ArgAction::Count)
-
       );
-
   
-
   let matches = cmd.clone().try_get_matches_from(["mycmd", "--flag", "--flag"]).unwrap();
-
   assert_eq!(
-
       matches.get_count("flag"),
-
       2
-
   );
-
   ```
 
 - <span id="argmatches-get-flag"></span>`fn get_flag(&self, id: &str) -> bool`
 
   Gets the value of a specific `ArgAction::SetTrue` or `ArgAction::SetFalse` flag
-
   
-
   # Panic
-
   
-
   If the argument's action is not `ArgAction::SetTrue` or `ArgAction::SetFalse`
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::Command;
-
   use clap::Arg;
-
   let cmd = Command::new("mycmd")
-
       .arg(
-
           Arg::new("flag")
-
               .long("flag")
-
               .action(clap::ArgAction::SetTrue)
-
       );
-
   
-
   let matches = cmd.clone().try_get_matches_from(["mycmd", "--flag"]).unwrap();
-
   assert!(matches.contains_id("flag"));
-
   assert_eq!(
-
       matches.get_flag("flag"),
-
       true
-
   );
-
   ```
 
 - <span id="argmatches-get-many"></span>`fn get_many<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](matches/arg_matches/index.md#valuesref)
 
   Iterate over values of a specific option or positional argument.
-
   
-
   i.e. an argument that takes multiple values at runtime.
-
   
-
   Returns an error if the wrong type was used.
-
   
-
   Returns `None` if the option wasn't present.
-
   
-
   # Panic
-
   
-
   If the argument definition and access mismatch.  To handle this case programmatically, see
-
   `ArgMatches::try_get_many`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, value_parser, ArgAction};
-
   let m = Command::new("myprog")
-
       .arg(Arg::new("ports")
-
           .action(ArgAction::Append)
-
           .value_parser(value_parser!(usize))
-
           .short('p')
-
           .required(true))
-
       .get_matches_from(vec![
-
           "myprog", "-p", "22", "-p", "80", "-p", "2020"
-
       ]);
-
   let vals: Vec<usize> = m.get_many("ports")
-
       .expect("`port`is required")
-
       .copied()
-
       .collect();
-
   assert_eq!(vals, [22, 80, 2020]);
-
   ```
 
 - <span id="argmatches-get-occurrences"></span>`fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](matches/arg_matches/index.md#occurrencesref)
 
   Iterate over the values passed to each occurrence of an option.
-
   
-
   Each item is itself an iterator containing the arguments passed to a single occurrence
-
   of the option.
-
   
-
   If the option doesn't support multiple occurrences, or there was only a single occurrence,
-
   the iterator will only contain a single item.
-
   
-
   Returns `None` if the option wasn't present.
-
   
-
   # Panics
-
   
-
   If the argument definition and access mismatch (debug builds). To handle this case programmatically, see
-
   `ArgMatches::try_get_occurrences`.
-
   
-
   # Examples
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command,Arg, ArgAction, value_parser};
-
   let m = Command::new("myprog")
-
       .arg(Arg::new("x")
-
           .short('x')
-
           .num_args(2)
-
           .action(ArgAction::Append)
-
           .value_parser(value_parser!(String)))
-
       .get_matches_from(vec![
-
           "myprog", "-x", "a", "b", "-x", "c", "d"]);
-
   let vals: Vec<Vec<&String>> = m.get_occurrences("x").unwrap().map(Iterator::collect).collect();
-
   assert_eq!(vals, [["a", "b"], ["c", "d"]]);
-
   ```
 
 - <span id="argmatches-get-raw"></span>`fn get_raw(&self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](matches/arg_matches/index.md#rawvalues)
 
   Iterate over the original argument values.
-
   
-
   An `OsStr` on Unix-like systems is any series of bytes, regardless of whether or not they
-
   contain valid UTF-8. Since [`String`](../index.md)s in Rust are guaranteed to be valid UTF-8, a valid
-
   filename on a Unix system as an argument value may contain invalid UTF-8.
-
   
-
   Returns `None` if the option wasn't present.
-
   
-
   # Panic
-
   
-
   If the argument definition and access mismatch.  To handle this case programmatically, see
-
   `ArgMatches::try_get_raw`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(unix)] {
-
   use clap_builder as clap;
-
   use clap::{Command, arg, value_parser};
-
   use std::ffi::{OsStr,OsString};
-
   use std::os::unix::ffi::{OsStrExt,OsStringExt};
-
   use std::path::PathBuf;
-
   
-
   let m = Command::new("utf8")
-
       .arg(arg!(<arg> ... "some arg").value_parser(value_parser!(PathBuf)))
-
       .get_matches_from(vec![OsString::from("myprog"),
-
                                   // "Hi"
-
                                   OsString::from_vec(vec![b'H', b'i']),
-
                                   // "{0xe9}!"
-
                                   OsString::from_vec(vec![0xe9, b'!'])]);
-
   
-
   let mut itr = m.get_raw("arg")
-
       .expect("`port`is required")
-
       .into_iter();
-
   assert_eq!(itr.next(), Some(OsStr::new("Hi")));
-
   assert_eq!(itr.next(), Some(OsStr::from_bytes(&[0xe9, b'!'])));
-
   assert_eq!(itr.next(), None);
-
   }
-
   ```
-
   
-
   
 
 - <span id="argmatches-get-raw-occurrences"></span>`fn get_raw_occurrences(&self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](matches/arg_matches/index.md#rawoccurrences)
 
   Iterate over the original values for each occurrence of an option.
-
   
-
   Similar to `ArgMatches::get_occurrences` but returns raw values.
-
   
-
   An `OsStr` on Unix-like systems is any series of bytes, regardless of whether or not they
-
   contain valid UTF-8. Since [`String`](../index.md)s in Rust are guaranteed to be valid UTF-8, a valid
-
   filename on a Unix system as an argument value may contain invalid UTF-8.
-
   
-
   Returns `None` if the option wasn't present.
-
   
-
   # Panic
-
   
-
   If the argument definition and access mismatch.  To handle this case programmatically, see
-
   `ArgMatches::try_get_raw_occurrences`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   #[cfg(unix)] {
-
   use clap_builder as clap;
-
   use clap::{Command, arg, value_parser, ArgAction, Arg};
-
   use std::ffi::{OsStr,OsString};
-
   use std::os::unix::ffi::{OsStrExt,OsStringExt};
-
   use std::path::PathBuf;
-
   
-
   let m = Command::new("myprog")
-
       .arg(Arg::new("x")
-
           .short('x')
-
           .num_args(2)
-
           .action(ArgAction::Append)
-
           .value_parser(value_parser!(PathBuf)))
-
       .get_matches_from(vec![OsString::from("myprog"),
-
                               OsString::from("-x"),
-
                               OsString::from("a"), OsString::from("b"),
-
                               OsString::from("-x"),
-
                               OsString::from("c"),
-
                               // "{0xe9}!"
-
                               OsString::from_vec(vec![0xe9, b'!'])]);
-
   let mut itr = m.get_raw_occurrences("x")
-
       .expect("`-x`is required")
-
       .map(Iterator::collect::<Vec<_>>);
-
   assert_eq!(itr.next(), Some(vec![OsStr::new("a"), OsStr::new("b")]));
-
   assert_eq!(itr.next(), Some(vec![OsStr::new("c"), OsStr::from_bytes(&[0xe9, b'!'])]));
-
   assert_eq!(itr.next(), None);
-
   }
-
   ```
-
   
-
   
 
 - <span id="argmatches-remove-one"></span>`fn remove_one<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<T>`
 
   Returns the value of a specific option or positional argument.
-
   
-
   i.e. an argument that `takes an additional value` at runtime.
-
   
-
   Returns an error if the wrong type was used.  No item will have been removed.
-
   
-
   Returns `None` if the option wasn't present.
-
   
-
   <div class="warning">
-
   
-
   *NOTE:* This will always return `Some(value)` if `default_value` has been set.
-
   `ArgMatches::value_source` can be used to check if a value is present at runtime.
-
   
-
   </div>
-
   
-
   # Panic
-
   
-
   If the argument definition and access mismatch.  To handle this case programmatically, see
-
   `ArgMatches::try_remove_one`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, value_parser, ArgAction};
-
   let mut m = Command::new("myprog")
-
       .arg(Arg::new("file")
-
           .required(true)
-
           .action(ArgAction::Set))
-
       .get_matches_from(vec![
-
           "myprog", "file.txt",
-
       ]);
-
   let vals: String = m.remove_one("file")
-
       .expect("`file`is required");
-
   assert_eq!(vals, "file.txt");
-
   ```
-
   
 
 - <span id="argmatches-remove-many"></span>`fn remove_many<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Values<T>>` — [`Values`](matches/arg_matches/index.md#values)
 
   Return values of a specific option or positional argument.
-
   
-
   i.e. an argument that takes multiple values at runtime.
-
   
-
   Returns an error if the wrong type was used.  No item will have been removed.
-
   
-
   Returns `None` if the option wasn't present.
-
   
-
   # Panic
-
   
-
   If the argument definition and access mismatch.  To handle this case programmatically, see
-
   `ArgMatches::try_remove_many`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, value_parser, ArgAction};
-
   let mut m = Command::new("myprog")
-
       .arg(Arg::new("file")
-
           .action(ArgAction::Append)
-
           .num_args(1..)
-
           .required(true))
-
       .get_matches_from(vec![
-
           "myprog", "file1.txt", "file2.txt", "file3.txt", "file4.txt",
-
       ]);
-
   let vals: Vec<String> = m.remove_many("file")
-
       .expect("`file`is required")
-
       .collect();
-
   assert_eq!(vals, ["file1.txt", "file2.txt", "file3.txt", "file4.txt"]);
-
   ```
 
 - <span id="argmatches-remove-occurrences"></span>`fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](matches/arg_matches/index.md#occurrences)
 
   Return values for each occurrence of an option.
-
   
-
   Each item is itself an iterator containing the arguments passed to a single occurrence of
-
   the option.
-
   
-
   If the option doesn't support multiple occurrences, or there was only a single occurrence,
-
   the iterator will only contain a single item.
-
   
-
   Returns `None` if the option wasn't present.
-
   
-
   # Panic
-
   
-
   If the argument definition and access mismatch.  To handle this case programmatically, see
-
   `ArgMatches::try_remove_occurrences`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, value_parser, ArgAction};
-
   let mut m = Command::new("myprog")
-
       .arg(Arg::new("x")
-
           .short('x')
-
           .num_args(2)
-
           .action(ArgAction::Append)
-
           .value_parser(value_parser!(String)))
-
       .get_matches_from(vec![
-
           "myprog", "-x", "a", "b", "-x", "c", "d"]);
-
   let vals: Vec<Vec<String>> = m.remove_occurrences("x").unwrap().map(Iterator::collect).collect();
-
   assert_eq!(vals, [["a", "b"], ["c", "d"]]);
-
   ```
 
 - <span id="argmatches-contains-id"></span>`fn contains_id(&self, id: &str) -> bool`
 
   Check if values are present for the argument or group id
-
   
-
   <div class="warning">
-
   
-
   *NOTE:* This will always return `true` if `default_value` has been set.
-
   `ArgMatches::value_source` can be used to check if a value is present at runtime.
-
   
-
   </div>
-
   
-
   # Panics
-
   
-
   If `id` is not a valid argument or group name (debug builds).  To handle this case programmatically, see
-
   `ArgMatches::try_contains_id`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("myprog")
-
       .arg(Arg::new("debug")
-
           .short('d')
-
           .action(ArgAction::SetTrue))
-
       .get_matches_from(vec![
-
           "myprog", "-d"
-
       ]);
-
   
-
   assert!(m.contains_id("debug"));
-
   ```
 
 - <span id="argmatches-ids"></span>`fn ids(&self) -> IdsRef<'_>` — [`IdsRef`](matches/arg_matches/index.md#idsref)
 
   Iterate over `Arg` and `ArgGroup` [`Id`](../util/id/index.md)s via `ArgMatches::ids`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, arg, value_parser};
-
   
-
   let m = Command::new("myprog")
-
       .arg(arg!(--color <when>)
-
           .value_parser(["auto", "always", "never"]))
-
       .arg(arg!(--config <path>)
-
           .value_parser(value_parser!(std::path::PathBuf)))
-
       .get_matches_from(["myprog", "--config=config.toml", "--color=auto"]);
-
   assert_eq!(m.ids().len(), 2);
-
   assert_eq!(
-
       m.ids()
-
           .map(|id| id.as_str())
-
           .collect::<Vec<_>>(),
-
       ["config", "color"]
-
   );
-
   ```
 
 - <span id="argmatches-args-present"></span>`fn args_present(&self) -> bool`
 
   Check if any `Arg`s were present on the command line
-
   
-
   See `ArgMatches::subcommand_name()` or `ArgMatches::subcommand()` to check if a
-
   subcommand was present on the command line.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let mut cmd = Command::new("myapp")
-
       .arg(Arg::new("output")
-
           .action(ArgAction::Set));
-
   
-
   let m = cmd
-
       .try_get_matches_from_mut(vec!["myapp", "something"])
-
       .unwrap();
-
   assert!(m.args_present());
-
   
-
   let m = cmd
-
       .try_get_matches_from_mut(vec!["myapp"])
-
       .unwrap();
-
   assert!(! m.args_present());
 
 - <span id="argmatches-value-source"></span>`fn value_source(&self, id: &str) -> Option<ValueSource>` — [`ValueSource`](matches/value_source/index.md#valuesource)
 
   Report where argument value came from
-
   
-
   # Panics
-
   
-
   If `id` is not a valid argument or group id (debug builds).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   use clap::parser::ValueSource;
-
   let m = Command::new("myprog")
-
       .arg(Arg::new("debug")
-
           .short('d')
-
           .action(ArgAction::SetTrue))
-
       .get_matches_from(vec![
-
           "myprog", "-d"
-
       ]);
-
   
-
   assert_eq!(m.value_source("debug"), Some(ValueSource::CommandLine));
-
   ```
 
 - <span id="argmatches-index-of"></span>`fn index_of(&self, id: &str) -> Option<usize>`
 
   The first index of that an argument showed up.
-
   
-
   Indices are similar to argv indices, but are not exactly 1:1.
-
   
-
   For flags (i.e. those arguments which don't have an associated value), indices refer
-
   to occurrence of the switch, such as `-f`, or `--flag`. However, for options the indices
-
   refer to the *values* `-o val` would therefore not represent two distinct indices, only the
-
   index for `val` would be recorded. This is by design.
-
   
-
   Besides the flag/option discrepancy, the primary difference between an argv index and clap
-
   index, is that clap continues counting once all arguments have properly separated, whereas
-
   an argv index does not.
-
   
-
   The examples should clear this up.
-
   
-
   <div class="warning">
-
   
-
   *NOTE:* If an argument is allowed multiple times, this method will only give the *first*
-
   index.  See `ArgMatches::indices_of`.
-
   
-
   </div>
-
   
-
   # Panics
-
   
-
   If `id` is not a valid argument or group id (debug builds).
-
   
-
   # Examples
-
   
-
   The argv indices are listed in the comments below. See how they correspond to the clap
-
   indices. Note that if it's not listed in a clap index, this is because it's not saved in
-
   in an `ArgMatches` struct for querying.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("myapp")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("option")
-
           .short('o')
-
           .action(ArgAction::Set))
-
       .get_matches_from(vec!["myapp", "-f", "-o", "val"]);
-
              // ARGV indices: ^0       ^1    ^2    ^3
-
              // clap indices:          ^1          ^3
-
   
-
   assert_eq!(m.index_of("flag"), Some(1));
-
   assert_eq!(m.index_of("option"), Some(3));
-
   ```
-
   
-
   Now notice, if we use one of the other styles of options:
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("myapp")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("option")
-
           .short('o')
-
           .action(ArgAction::Set))
-
       .get_matches_from(vec!["myapp", "-f", "-o=val"]);
-
              // ARGV indices: ^0       ^1    ^2
-
              // clap indices:          ^1       ^3
-
   
-
   assert_eq!(m.index_of("flag"), Some(1));
-
   assert_eq!(m.index_of("option"), Some(3));
-
   ```
-
   
-
   Things become much more complicated, or clear if we look at a more complex combination of
-
   flags. Let's also throw in the final option style for good measure.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("myapp")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("flag2")
-
           .short('F')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("flag3")
-
           .short('z')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("option")
-
           .short('o')
-
           .action(ArgAction::Set))
-
       .get_matches_from(vec!["myapp", "-fzF", "-oval"]);
-
              // ARGV indices: ^0      ^1       ^2
-
              // clap indices:         ^1,2,3    ^5
-
              //
-
              // clap sees the above as 'myapp -f -z -F -o val'
-
              //                         ^0    ^1 ^2 ^3 ^4 ^5
-
   assert_eq!(m.index_of("flag"), Some(1));
-
   assert_eq!(m.index_of("flag2"), Some(3));
-
   assert_eq!(m.index_of("flag3"), Some(2));
-
   assert_eq!(m.index_of("option"), Some(5));
-
   ```
-
   
-
   One final combination of flags/options to see how they combine:
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("myapp")
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("flag2")
-
           .short('F')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("flag3")
-
           .short('z')
-
           .action(ArgAction::SetTrue))
-
       .arg(Arg::new("option")
-
           .short('o')
-
           .action(ArgAction::Set))
-
       .get_matches_from(vec!["myapp", "-fzFoval"]);
-
              // ARGV indices: ^0       ^1
-
              // clap indices:          ^1,2,3^5
-
              //
-
              // clap sees the above as 'myapp -f -z -F -o val'
-
              //                         ^0    ^1 ^2 ^3 ^4 ^5
-
   assert_eq!(m.index_of("flag"), Some(1));
-
   assert_eq!(m.index_of("flag2"), Some(3));
-
   assert_eq!(m.index_of("flag3"), Some(2));
-
   assert_eq!(m.index_of("option"), Some(5));
-
   ```
-
   
-
   The last part to mention is when values are sent in multiple groups with a [delimiter].
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   let m = Command::new("myapp")
-
       .arg(Arg::new("option")
-
           .short('o')
-
           .value_delimiter(',')
-
           .num_args(1..))
-
       .get_matches_from(vec!["myapp", "-o=val1,val2,val3"]);
-
              // ARGV indices: ^0       ^1
-
              // clap indices:             ^2   ^3   ^4
-
              //
-
              // clap sees the above as 'myapp -o val1 val2 val3'
-
              //                         ^0    ^1 ^2   ^3   ^4
-
   assert_eq!(m.index_of("option"), Some(2));
-
   assert_eq!(m.indices_of("option").unwrap().collect::<Vec<_>>(), &[2, 3, 4]);
-
   ```
 
 - <span id="argmatches-indices-of"></span>`fn indices_of(&self, id: &str) -> Option<Indices<'_>>` — [`Indices`](matches/arg_matches/index.md#indices)
 
   All indices an argument appeared at when parsing.
-
   
-
   Indices are similar to argv indices, but are not exactly 1:1.
-
   
-
   For flags (i.e. those arguments which don't have an associated value), indices refer
-
   to occurrence of the switch, such as `-f`, or `--flag`. However, for options the indices
-
   refer to the *values* `-o val` would therefore not represent two distinct indices, only the
-
   index for `val` would be recorded. This is by design.
-
   
-
   <div class="warning">
-
   
-
   *NOTE:* For more information about how clap indices compared to argv indices, see
-
   `ArgMatches::index_of`
-
   
-
   </div>
-
   
-
   # Panics
-
   
-
   If `id` is not a valid argument or group id (debug builds).
-
   
-
   # Examples
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg};
-
   let m = Command::new("myapp")
-
       .arg(Arg::new("option")
-
           .short('o')
-
           .value_delimiter(','))
-
       .get_matches_from(vec!["myapp", "-o=val1,val2,val3"]);
-
              // ARGV indices: ^0       ^1
-
              // clap indices:             ^2   ^3   ^4
-
              //
-
              // clap sees the above as 'myapp -o val1 val2 val3'
-
              //                         ^0    ^1 ^2   ^3   ^4
-
   assert_eq!(m.indices_of("option").unwrap().collect::<Vec<_>>(), &[2, 3, 4]);
-
   ```
-
   
-
   Another quick example is when flags and options are used together
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("myapp")
-
       .arg(Arg::new("option")
-
           .short('o')
-
           .action(ArgAction::Set)
-
           .action(ArgAction::Append))
-
       .arg(Arg::new("flag")
-
           .short('f')
-
           .action(ArgAction::Count))
-
       .get_matches_from(vec!["myapp", "-o", "val1", "-f", "-o", "val2", "-f"]);
-
              // ARGV indices: ^0       ^1    ^2      ^3    ^4    ^5      ^6
-
              // clap indices:                ^2      ^3          ^5      ^6
-
   
-
   assert_eq!(m.indices_of("option").unwrap().collect::<Vec<_>>(), &[2, 5]);
-
   assert_eq!(m.indices_of("flag").unwrap().collect::<Vec<_>>(), &[6]);
-
   ```
-
   
-
   One final example, which is an odd case; if we *don't* use  value delimiter as we did with
-
   the first example above instead of `val1`, `val2` and `val3` all being distinc values, they
-
   would all be a single value of `val1,val2,val3`, in which case they'd only receive a single
-
   index.
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, ArgAction};
-
   let m = Command::new("myapp")
-
       .arg(Arg::new("option")
-
           .short('o')
-
           .action(ArgAction::Set)
-
           .num_args(1..))
-
       .get_matches_from(vec!["myapp", "-o=val1,val2,val3"]);
-
              // ARGV indices: ^0       ^1
-
              // clap indices:             ^2
-
              //
-
              // clap sees the above as 'myapp -o "val1,val2,val3"'
-
              //                         ^0    ^1  ^2
-
   assert_eq!(m.indices_of("option").unwrap().collect::<Vec<_>>(), &[2]);
-
   ```
 
 #### Trait Implementations
@@ -2016,11 +1354,8 @@ if matches.contains_id("out") {
 - <span id="argmatches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ArgMatches`
@@ -2058,7 +1393,7 @@ struct Indices<'a> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1842-1845`](../../../.source_1765633015/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1842-L1845)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1842-1845`](../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1842-L1845)*
 
 Iterate over indices for where an argument appeared when parsing, via `ArgMatches::indices_of`
 
@@ -2129,11 +1464,8 @@ assert_eq!(indices.next(), None);
 - <span id="indices-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Indices<'a>`
@@ -2184,7 +1516,7 @@ enum ValueSource {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/matches/value_source.rs:4-11`](../../../.source_1765633015/clap_builder-4.5.53/src/parser/matches/value_source.rs#L4-L11)*
+*Defined in [`clap_builder-4.5.53/src/parser/matches/value_source.rs:4-11`](../../../.source_1765894658/clap_builder-4.5.53/src/parser/matches/value_source.rs#L4-L11)*
 
 Origin of the argument's value
 
@@ -2247,11 +1579,8 @@ Origin of the argument's value
 - <span id="valuesource-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for ValueSource`
@@ -2301,7 +1630,7 @@ enum MatchesError {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/parser/error.rs:7-21`](../../../.source_1765633015/clap_builder-4.5.53/src/parser/error.rs#L7-L21)*
+*Defined in [`clap_builder-4.5.53/src/parser/error.rs:7-21`](../../../.source_1765894658/clap_builder-4.5.53/src/parser/error.rs#L7-L21)*
 
 Violation of `ArgMatches` assumptions
 
@@ -2362,11 +1691,8 @@ Violation of `ArgMatches` assumptions
 - <span id="matcheserror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MatchesError`

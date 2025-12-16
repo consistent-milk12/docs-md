@@ -4,9 +4,9 @@
 
 # Module `hint`
 
-Re-export of the [`core::hint`](../../crossbeam_utils/primitive/hint/index.md) module.
+Re-export of the `core::hint` module.
 
-The only difference from the [`core::hint`](../../crossbeam_utils/primitive/hint/index.md) module is that [`spin_loop`](#spin-loop)
+The only difference from the `core::hint` module is that [`spin_loop`](#spin-loop)
 is available in all rust versions that this crate supports.
 
 ```rust
@@ -29,7 +29,7 @@ hint::spin_loop();
 fn spin_loop()
 ```
 
-*Defined in [`portable-atomic-1.11.1/src/lib.rs:530-533`](../../../.source_1765633015/portable-atomic-1.11.1/src/lib.rs#L530-L533)*
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:530-533`](../../../.source_1765894658/portable-atomic-1.11.1/src/lib.rs#L530-L533)*
 
 Emits a machine instruction to signal the processor that it is running in
 a busy-wait spin-loop ("spin lock").

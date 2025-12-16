@@ -25,7 +25,7 @@ struct Finder {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:20-23`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/shiftor.rs#L20-L23)*
+*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:20-23`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/shiftor.rs#L20-L23)*
 
 A forward substring searcher using the Shift-Or algorithm.
 
@@ -36,35 +36,22 @@ A forward substring searcher using the Shift-Or algorithm.
 - <span id="finder-new"></span>`fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
   Create a new Shift-Or forward searcher for the given `needle`.
-
   
-
   The needle may be empty. The empty needle matches at every byte offset.
 
 - <span id="finder-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
   Return the first occurrence of the needle given to `Finder::new` in
-
   the `haystack` given. If no such occurrence exists, then `None` is
-
   returned.
-
   
-
   Unlike most other substring search implementations in this crate, this
-
   finder does not require passing the needle at search time. A match can
-
   be determined without the needle at all since the required information
-
   is already encoded into this finder at construction time.
-
   
-
   The maximum value this can return is `haystack.len()`, which can only
-
   occur when the needle and haystack both have length zero. Otherwise,
-
   for non-empty haystacks, the maximum value is `haystack.len() - 1`.
 
 #### Trait Implementations
@@ -96,11 +83,8 @@ A forward substring searcher using the Shift-Or algorithm.
 - <span id="finder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Finder`
@@ -123,7 +107,7 @@ A forward substring searcher using the Shift-Or algorithm.
 type Mask = u16;
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:16`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/shiftor.rs#L16)*
+*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:16`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/shiftor.rs#L16)*
 
 The type of our mask.
 

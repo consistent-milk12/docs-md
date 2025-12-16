@@ -23,7 +23,7 @@ struct HeapVisitor<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:71-75`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/visitor.rs#L71-L75)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:71-75`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L71-L75)*
 
 HeapVisitor visits every item in an `Hir` recursively using constant stack
 size and a heap size proportional to the size of the `Hir`.
@@ -44,13 +44,11 @@ size and a heap size proportional to the size of the `Hir`.
 - <span id="heapvisitor-induct"></span>`fn induct(&mut self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md#hir), [`Frame`](#frame)
 
   Build a stack frame for the given HIR if one is needed (which occurs if
-
   and only if there are child nodes in the HIR). Otherwise, return None.
 
 - <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
 
   Pops the given frame. If the frame has an additional inductive step,
-
   then return it, otherwise return `None`.
 
 #### Trait Implementations
@@ -78,11 +76,8 @@ size and a heap size proportional to the size of the `Hir`.
 - <span id="heapvisitor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for HeapVisitor<'a>`
@@ -116,7 +111,7 @@ enum Frame<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:79-102`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/visitor.rs#L79-L102)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:79-102`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L79-L102)*
 
 Represents a single stack frame while performing structural induction over
 an `Hir`.
@@ -148,7 +143,6 @@ an `Hir`.
 - <span id="frame-child"></span>`fn child(&self) -> &'a Hir` — [`Hir`](../index.md#hir)
 
   Perform the next inductive step on this frame and return the next
-
   child HIR node to visit.
 
 #### Trait Implementations
@@ -176,11 +170,8 @@ an `Hir`.
 - <span id="frame-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Frame<'a>`
@@ -203,7 +194,7 @@ an `Hir`.
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
 
 A trait for visiting the high-level IR (HIR) in depth first order.
 
@@ -227,6 +218,7 @@ running it using the [`visit`](#visit) function.
 - `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
+  yields the result of visiting the HIR or an error.
 
 #### Provided Methods
 
@@ -237,10 +229,12 @@ running it using the [`visit`](#visit) function.
 - `fn visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` before descending into child `Hir`
+  nodes.
 
 - `fn visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` after descending all of its child
+  `Hir` nodes.
 
 - `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
@@ -262,7 +256,7 @@ running it using the [`visit`](#visit) function.
 fn visit<V: Visitor>(hir: &crate::hir::Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../../.source_1765633015/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../../.source_1765894658/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
 
 Executes an implementation of `Visitor` in constant stack space.
 

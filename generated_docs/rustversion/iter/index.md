@@ -23,7 +23,7 @@ struct IterImpl {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/iter.rs:5-8`](../../../.source_1765633015/rustversion-1.0.22/src/iter.rs#L5-L8)*
+*Defined in [`rustversion-1.0.22/src/iter.rs:5-8`](../../../.source_1765894658/rustversion-1.0.22/src/iter.rs#L5-L8)*
 
 #### Implementations
 
@@ -54,11 +54,8 @@ struct IterImpl {
 - <span id="iterimpl-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IterImpl`
@@ -95,7 +92,7 @@ struct IterImpl {
 fn new(tokens: proc_macro::TokenStream) -> IterImpl
 ```
 
-*Defined in [`rustversion-1.0.22/src/iter.rs:10-15`](../../../.source_1765633015/rustversion-1.0.22/src/iter.rs#L10-L15)*
+*Defined in [`rustversion-1.0.22/src/iter.rs:10-15`](../../../.source_1765894658/rustversion-1.0.22/src/iter.rs#L10-L15)*
 
 ## Type Aliases
 
@@ -105,5 +102,5 @@ fn new(tokens: proc_macro::TokenStream) -> IterImpl
 type Iter<'a> = &'a mut IterImpl;
 ```
 
-*Defined in [`rustversion-1.0.22/src/iter.rs:3`](../../../.source_1765633015/rustversion-1.0.22/src/iter.rs#L3)*
+*Defined in [`rustversion-1.0.22/src/iter.rs:3`](../../../.source_1765894658/rustversion-1.0.22/src/iter.rs#L3)*
 

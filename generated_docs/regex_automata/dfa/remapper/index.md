@@ -28,7 +28,7 @@ struct Remapper {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:68-85`](../../../../.source_1765633015/regex-automata-0.4.13/src/dfa/remapper.rs#L68-L85)*
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:68-85`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/remapper.rs#L68-L85)*
 
 Remapper is an abstraction the manages the remapping of state IDs in a
 finite state machine. This is useful when one wants to shuffle states into
@@ -68,23 +68,18 @@ will almost certainly result in a corrupt machine.
 - <span id="remapper-new"></span>`fn new(r: &impl Remappable) -> Remapper` — [`Remappable`](#remappable), [`Remapper`](#remapper)
 
   Create a new remapper from the given remappable implementation. The
-
   remapper can then be used to swap states. The remappable value given
-
   here must the same one given to `swap` and `remap`.
 
 - <span id="remapper-swap"></span>`fn swap(&mut self, r: &mut impl Remappable, id1: StateID, id2: StateID)` — [`Remappable`](#remappable), [`StateID`](../../util/primitives/index.md#stateid)
 
   Swap two states. Once this is called, callers must follow through to
-
   call `remap`, or else it's possible for the underlying remappable
-
   value to be in a corrupt state.
 
 - <span id="remapper-remap"></span>`fn remap(self, r: &mut impl Remappable)` — [`Remappable`](#remappable)
 
   Complete the remapping process by rewriting all state IDs in the
-
   remappable value according to the swaps performed.
 
 #### Trait Implementations
@@ -116,11 +111,8 @@ will almost certainly result in a corrupt machine.
 - <span id="remapper-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Remapper`
@@ -143,7 +135,7 @@ struct IndexMapper {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:169-174`](../../../../.source_1765633015/regex-automata-0.4.13/src/dfa/remapper.rs#L169-L174)*
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:169-174`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/remapper.rs#L169-L174)*
 
 A simple type for mapping between state indices and state IDs.
 
@@ -208,11 +200,8 @@ indices.
 - <span id="indexmapper-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for IndexMapper`
@@ -235,7 +224,7 @@ indices.
 trait Remappable: core::fmt::Debug { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:28-55`](../../../../.source_1765633015/regex-automata-0.4.13/src/dfa/remapper.rs#L28-L55)*
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:28-55`](../../../../.source_1765894658/regex-automata-0.4.13/src/dfa/remapper.rs#L28-L55)*
 
 Remappable is a tightly coupled abstraction that facilitates remapping
 state identifiers in DFAs.
@@ -270,14 +259,32 @@ DFAs are partitioned.
 - `fn stride2(&self) -> usize`
 
   Return the power-of-2 exponent that yields the stride. The pertinent
+  laws here are, where N=stride2: 2^N=stride and len(alphabet) <= stride.
 
 - `fn swap_states(&mut self, id1: StateID, id2: StateID)`
 
   Swap the states pointed to by the given IDs. The underlying finite
+  state machine should be mutated such that all of the transitions in
+  `id1` are now in the memory region where the transitions for `id2`
+  were, and all of the transitions in `id2` are now in the memory region
+  where the transitions for `id1` were.
+  
+  Essentially, this "moves" `id1` to `id2` and `id2` to `id1`.
+  
+  It is expected that, after calling this, the underlying value will be
+  left in an inconsistent state, since any other transitions pointing to,
+  e.g., `id1` need to be updated to point to `id2`, since that's where
+  `id1` moved to.
+  
+  In order to "fix" the underlying inconsistent state, a `Remapper`
+  should be used to guarantee that `remap` is called at the appropriate
+  time.
 
 - `fn remap(&mut self, map: impl Fn(StateID) -> StateID)`
 
   This must remap every single state ID in the underlying value according
+  to the function given. For example, in a DFA, this should remap every
+  transition and every starting state ID.
 
 #### Implementors
 

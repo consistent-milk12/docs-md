@@ -166,7 +166,7 @@ enum CssColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../../.source_1765633015/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../../.source_1765894658/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
 
 Available CSS colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -222,11 +222,8 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 - <span id="csscolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for CssColors`

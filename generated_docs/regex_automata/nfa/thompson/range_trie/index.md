@@ -53,7 +53,7 @@ struct RangeTrie {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:179-199`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L179-L199)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:179-199`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L179-L199)*
 
 A range trie represents an ordered set of sequences of bytes.
 
@@ -117,25 +117,19 @@ that it is acyclic.
 - <span id="rangetrie-clear"></span>`fn clear(&mut self)`
 
   Clear this range trie such that it is empty. Clearing a range trie
-
   and reusing it can beneficial because this may reuse allocations.
 
 - <span id="rangetrie-iter"></span>`fn iter<E, F: FnMut(&[Utf8Range]) -> Result<(), E>>(&self, f: F) -> Result<(), E>`
 
   Iterate over all of the sequences of byte ranges in this trie, and
-
   call the provided function for each sequence. Iteration occurs in
-
   lexicographic order.
 
 - <span id="rangetrie-insert"></span>`fn insert(&mut self, ranges: &[Utf8Range])`
 
   Inserts a new sequence of ranges into this trie.
-
   
-
   The sequence given must be non-empty and must not have a length
-
   exceeding 4.
 
 - <span id="rangetrie-add-empty"></span>`fn add_empty(&mut self) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
@@ -143,51 +137,32 @@ that it is acyclic.
 - <span id="rangetrie-duplicate"></span>`fn duplicate(&mut self, old_id: StateID) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
 
   Performs a deep clone of the given state and returns the duplicate's
-
   state ID.
-
   
-
   A "deep clone" in this context means that the state given along with
-
   recursively all states that it points to are copied. Once complete,
-
   the given state ID and the returned state ID share nothing.
-
   
-
   This is useful during range trie insertion when a new range overlaps
-
   with an existing range that is bigger than the new one. The part
-
   of the existing range that does *not* overlap with the new one is
-
   duplicated so that adding the new range to the overlap doesn't disturb
-
   the non-overlapping portion.
-
   
-
   There's one exception: if old_id is the final state, then it is not
-
   duplicated and the same final state is returned. This is because all
-
   final states in this trie are equivalent.
 
 - <span id="rangetrie-add-transition"></span>`fn add_transition(&mut self, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md#stateid)
 
   Adds the given transition to the given state.
-
   
-
   Callers must ensure that all previous transitions in this state
-
   are lexicographically smaller than the given range.
 
 - <span id="rangetrie-add-transition-at"></span>`fn add_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md#stateid)
 
   Like `add_transition`, except this inserts the transition just before
-
   the ith transition.
 
 - <span id="rangetrie-set-transition-at"></span>`fn set_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md#stateid)
@@ -239,11 +214,8 @@ that it is acyclic.
 - <span id="rangetrie-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RangeTrie`
@@ -274,7 +246,7 @@ struct State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:203-207`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L203-L207)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:203-207`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L203-L207)*
 
 A single state in this trie.
 
@@ -290,33 +262,19 @@ A single state in this trie.
 - <span id="state-find"></span>`fn find(&self, range: Utf8Range) -> usize`
 
   Find the position at which the given range should be inserted in this
-
   state.
-
   
-
   The position returned is always in the inclusive range
-
   [0, transitions.len()]. If 'transitions.len()' is returned, then the
-
   given range overlaps with no other range in this state *and* is greater
-
   than all of them.
-
   
-
   For all other possible positions, the given range either overlaps
-
   with the transition at that position or is otherwise less than it
-
   with no overlap (and is greater than the previous transition). In the
-
   former case, careful attention must be paid to inserting this range
-
   as a new transition. In the latter case, the range can be inserted as
-
   a new transition at the given position without disrupting any other
-
   transitions.
 
 - <span id="state-clear"></span>`fn clear(&mut self)`
@@ -360,11 +318,8 @@ A single state in this trie.
 - <span id="state-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for State`
@@ -396,7 +351,7 @@ struct Transition {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:213-218`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L213-L218)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:213-218`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L213-L218)*
 
 A transition is a single range of bytes. If a particular byte is in this
 range, then the corresponding machine may transition to the state pointed
@@ -449,11 +404,8 @@ to by `next_id`.
 - <span id="transition-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Transition`
@@ -485,7 +437,7 @@ struct NextDupe {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:609-614`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L609-L614)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:609-614`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L609-L614)*
 
 The next state to process during duplication.
 
@@ -536,11 +488,8 @@ The next state to process during duplication.
 - <span id="nextdupe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for NextDupe`
@@ -572,7 +521,7 @@ struct NextIter {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:619-622`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L619-L622)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:619-622`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L619-L622)*
 
 The next state (and its corresponding transition) that we want to visit
 during iteration in lexicographic order.
@@ -614,11 +563,8 @@ during iteration in lexicographic order.
 - <span id="nextiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for NextIter`
@@ -651,7 +597,7 @@ struct NextInsert {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:628-637`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L628-L637)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:628-637`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L628-L637)*
 
 The next state to process during insertion and any remaining ranges that we
 want to add for a particular sequence of ranges. The first such instance
@@ -678,21 +624,15 @@ is always the root state along with all ranges given.
 - <span id="nextinsert-new"></span>`fn new(state_id: StateID, ranges: &[Utf8Range]) -> NextInsert` — [`StateID`](../../../util/primitives/index.md#stateid), [`NextInsert`](#nextinsert)
 
   Create the next item to visit. The given state ID should correspond
-
   to the state at which the first range in the given slice should be
-
   inserted. The slice given must not be empty and it must be no longer
-
   than 4.
 
 - <span id="nextinsert-push"></span>`fn push(trie: &mut RangeTrie, stack: &mut Vec<NextInsert>, ranges: &[Utf8Range]) -> StateID` — [`RangeTrie`](#rangetrie), [`NextInsert`](#nextinsert), [`StateID`](../../../util/primitives/index.md#stateid)
 
   Push a new empty state to visit along with any remaining ranges that
-
   still need to be inserted. The ID of the new empty state is returned.
-
   
-
   If ranges is empty, then no new state is created and FINAL is returned.
 
 - <span id="nextinsert-state-id"></span>`fn state_id(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md#stateid)
@@ -740,11 +680,8 @@ is always the root state along with all ranges given.
 - <span id="nextinsert-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for NextInsert`
@@ -776,7 +713,7 @@ struct Split {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:771-774`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L771-L774)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:771-774`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L771-L774)*
 
 Split represents a partitioning of two ranges into one or more ranges. This
 is the secret sauce that makes a range trie work, as it's what tells us
@@ -871,15 +808,12 @@ of [a,b] or [x,y] exclusively.
 - <span id="split-new"></span>`fn new(o: Utf8Range, n: Utf8Range) -> Option<Split>` — [`Split`](#split)
 
   Create a partitioning of the given ranges.
-
   
-
   If the given ranges have an empty intersection, then None is returned.
 
 - <span id="split-parts1"></span>`fn parts1(r1: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
 
   Create a new split with a single partition. This only occurs when two
-
   ranges are equivalent.
 
 - <span id="split-parts2"></span>`fn parts2(r1: SplitRange, r2: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
@@ -933,11 +867,8 @@ of [a,b] or [x,y] exclusively.
 - <span id="split-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Split`
@@ -978,7 +909,7 @@ enum SplitRange {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:778-782`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L778-L782)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:778-782`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L778-L782)*
 
 A tagged range indicating how it was derived from a pair of ranges.
 
@@ -1023,11 +954,8 @@ A tagged range indicating how it was derived from a pair of ranges.
 - <span id="splitrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SplitRange`
@@ -1064,7 +992,7 @@ A tagged range indicating how it was derived from a pair of ranges.
 fn intersects(r1: regex_syntax::utf8::Utf8Range, r2: regex_syntax::utf8::Utf8Range) -> bool
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:912-914`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L912-L914)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:912-914`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L912-L914)*
 
 Returns true if and only if the given ranges intersect.
 
@@ -1075,7 +1003,7 @@ Returns true if and only if the given ranges intersect.
 const FINAL: crate::util::primitives::StateID;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:154`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L154)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:154`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L154)*
 
 There is only one final state in this trie. Every sequence of byte ranges
 added shares the same final state.
@@ -1085,7 +1013,7 @@ added shares the same final state.
 const ROOT: crate::util::primitives::StateID;
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:157`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L157)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:157`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L157)*
 
 The root state of the trie.
 

@@ -104,7 +104,7 @@ struct Frame<'ctx, R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/frame.rs:20-27`](../../.source_1765633015/addr2line-0.25.1/src/frame.rs#L20-L27)*
+*Defined in [`addr2line-0.25.1/src/frame.rs:20-27`](../../.source_1765894658/addr2line-0.25.1/src/frame.rs#L20-L27)*
 
 A function frame.
 
@@ -147,11 +147,8 @@ A function frame.
 - <span id="frame-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Frame<'ctx, R>`
@@ -174,7 +171,7 @@ where
     R: gimli::Reader;
 ```
 
-*Defined in [`addr2line-0.25.1/src/frame.rs:30-32`](../../.source_1765633015/addr2line-0.25.1/src/frame.rs#L30-L32)*
+*Defined in [`addr2line-0.25.1/src/frame.rs:30-32`](../../.source_1765894658/addr2line-0.25.1/src/frame.rs#L30-L32)*
 
 An iterator over function frames.
 
@@ -215,11 +212,8 @@ An iterator over function frames.
 - <span id="frameiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for FrameIter<'ctx, R>`
@@ -243,7 +237,7 @@ struct FunctionName<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/frame.rs:163-168`](../../.source_1765633015/addr2line-0.25.1/src/frame.rs#L163-L168)*
+*Defined in [`addr2line-0.25.1/src/frame.rs:163-168`](../../.source_1765894658/addr2line-0.25.1/src/frame.rs#L163-L168)*
 
 A function name.
 
@@ -292,11 +286,8 @@ A function name.
 - <span id="functionname-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for FunctionName<R>`
@@ -321,7 +312,7 @@ struct Location<'a> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../.source_1765633015/addr2line-0.25.1/src/frame.rs#L8-L17)*
+*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../.source_1765894658/addr2line-0.25.1/src/frame.rs#L8-L17)*
 
 A source location.
 
@@ -366,11 +357,8 @@ A source location.
 - <span id="location-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Location<'a>`
@@ -396,7 +384,7 @@ struct SplitDwarfLoad<R> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:7-19`](../../.source_1765633015/addr2line-0.25.1/src/lookup.rs#L7-L19)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:7-19`](../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L7-L19)*
 
 This struct contains the information needed to find split DWARF data
 and to produce a `gimli::Dwarf<R>` for it.
@@ -447,11 +435,8 @@ and to produce a `gimli::Dwarf<R>` for it.
 - <span id="splitdwarfload-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SplitDwarfLoad<R>`
@@ -478,7 +463,7 @@ struct LocationRangeIter<'ctx, R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/unit.rs:539-546`](../../.source_1765633015/addr2line-0.25.1/src/unit.rs#L539-L546)*
+*Defined in [`addr2line-0.25.1/src/unit.rs:539-546`](../../.source_1765894658/addr2line-0.25.1/src/unit.rs#L539-L546)*
 
 Iterator over `Location`s in a range of addresses, returned by `Context::find_location_range`.
 
@@ -511,11 +496,8 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 - <span id="locationrangeiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LocationRangeIter<'ctx, R>`
@@ -554,7 +536,7 @@ struct Context<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lib.rs:95-99`](../../.source_1765633015/addr2line-0.25.1/src/lib.rs#L95-L99)*
+*Defined in [`addr2line-0.25.1/src/lib.rs:95-99`](../../.source_1765894658/addr2line-0.25.1/src/lib.rs#L95-L99)*
 
 The state necessary to perform address to line translation.
 
@@ -566,9 +548,7 @@ when performing lookups for many addresses in the same executable.
 - <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
 
   Construct a new `Context` from DWARF sections.
-
   
-
   This method does not support using a supplementary object file.
 
 - <span id="context-from-dwarf"></span>`fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
@@ -604,11 +584,8 @@ when performing lookups for many addresses in the same executable.
 - <span id="context-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Context<R>`
@@ -634,7 +611,7 @@ struct RangeAttributes<R: gimli::Reader> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lib.rs:363-368`](../../.source_1765633015/addr2line-0.25.1/src/lib.rs#L363-L368)*
+*Defined in [`addr2line-0.25.1/src/lib.rs:363-368`](../../.source_1765894658/addr2line-0.25.1/src/lib.rs#L363-L368)*
 
 #### Implementations
 
@@ -669,11 +646,8 @@ struct RangeAttributes<R: gimli::Reader> {
 - <span id="rangeattributes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RangeAttributes<R>`
@@ -702,7 +676,7 @@ enum LookupResult<L: LookupContinuation> {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:45-55`](../../.source_1765633015/addr2line-0.25.1/src/lookup.rs#L45-L55)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:45-55`](../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L45-L55)*
 
 Operations that consult debug information may require additional files
 to be loaded if split DWARF is being used. This enum returns the result
@@ -744,13 +718,9 @@ This enum is intended to be used in a loop like so:
 - <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md#lookupcontinuation)
 
   Callers that do not handle split DWARF can call `skip_all_loads`
-
   to fast-forward to the end result. This result is produced with
-
   the data that is available and may be less accurate than the
-
   the results that would be produced if the caller did properly
-
   support split DWARF.
 
 - <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](lookup/index.md#lookupresult), [`MappedLookup`](lookup/index.md#mappedlookup)
@@ -782,11 +752,8 @@ This enum is intended to be used in a loop like so:
 - <span id="lookupresult-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for LookupResult<L>`
@@ -811,7 +778,7 @@ enum DebugFile {
 }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lib.rs:85-89`](../../.source_1765633015/addr2line-0.25.1/src/lib.rs#L85-L89)*
+*Defined in [`addr2line-0.25.1/src/lib.rs:85-89`](../../.source_1765894658/addr2line-0.25.1/src/lib.rs#L85-L89)*
 
 #### Trait Implementations
 
@@ -854,11 +821,8 @@ enum DebugFile {
 - <span id="debugfile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for DebugFile`
@@ -895,7 +859,7 @@ enum DebugFile {
 trait LookupContinuation: Sized { ... }
 ```
 
-*Defined in [`addr2line-0.25.1/src/lookup.rs:60-77`](../../.source_1765633015/addr2line-0.25.1/src/lookup.rs#L60-L77)*
+*Defined in [`addr2line-0.25.1/src/lookup.rs:60-77`](../../.source_1765894658/addr2line-0.25.1/src/lookup.rs#L60-L77)*
 
 This trait represents a partially complete operation that can be resumed
 once a load of needed split DWARF data is completed or abandoned by the
@@ -912,6 +876,15 @@ API consumer.
 - `fn resume(self, input: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>`
 
   Resumes the operation with the provided data.
+  
+  After the caller loads the split DWARF data required, call this
+  method to resume the operation. The return value of this method
+  indicates if the computation has completed or if further data is
+  required.
+  
+  If the additional data cannot be located, or the caller does not
+  support split DWARF, `resume(None)` can be used to continue the
+  operation with the data that is available.
 
 #### Implementors
 
@@ -927,7 +900,7 @@ API consumer.
 fn demangle(name: &str, language: gimli::DwLang) -> Option<alloc::string::String>
 ```
 
-*Defined in [`addr2line-0.25.1/src/frame.rs:186-202`](../../.source_1765633015/addr2line-0.25.1/src/frame.rs#L186-L202)*
+*Defined in [`addr2line-0.25.1/src/frame.rs:186-202`](../../.source_1765894658/addr2line-0.25.1/src/frame.rs#L186-L202)*
 
 Demangle a symbol name using the demangling scheme for the given language.
 
@@ -939,7 +912,7 @@ Returns `None` if demangling failed or is not required.
 fn demangle_auto(name: alloc::borrow::Cow<'_, str>, language: Option<gimli::DwLang>) -> alloc::borrow::Cow<'_, str>
 ```
 
-*Defined in [`addr2line-0.25.1/src/frame.rs:213-221`](../../.source_1765633015/addr2line-0.25.1/src/frame.rs#L213-L221)*
+*Defined in [`addr2line-0.25.1/src/frame.rs:213-221`](../../.source_1765894658/addr2line-0.25.1/src/frame.rs#L213-L221)*
 
 Apply 'best effort' demangling of a symbol name.
 
@@ -959,7 +932,7 @@ If demangling fails or is not required, then `name` is returned unchanged.
 type Error = gimli::Error;
 ```
 
-*Defined in [`addr2line-0.25.1/src/lib.rs:81`](../../.source_1765633015/addr2line-0.25.1/src/lib.rs#L81)*
+*Defined in [`addr2line-0.25.1/src/lib.rs:81`](../../.source_1765894658/addr2line-0.25.1/src/lib.rs#L81)*
 
 ### `LazyResult<T>`
 
@@ -967,5 +940,5 @@ type Error = gimli::Error;
 type LazyResult<T> = core::cell::OnceCell<Result<T, gimli::Error>>;
 ```
 
-*Defined in [`addr2line-0.25.1/src/lib.rs:82`](../../.source_1765633015/addr2line-0.25.1/src/lib.rs#L82)*
+*Defined in [`addr2line-0.25.1/src/lib.rs:82`](../../.source_1765894658/addr2line-0.25.1/src/lib.rs#L82)*
 

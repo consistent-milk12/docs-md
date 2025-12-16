@@ -21,7 +21,7 @@ struct Skip<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip.rs:11-14`](../../../../.source_1765633015/rayon-1.11.0/src/iter/skip.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/skip.rs:11-14`](../../../../.source_1765894658/rayon-1.11.0/src/iter/skip.rs#L11-L14)*
 
 `Skip` is an iterator that skips over the first `n` elements.
 This struct is created by the `skip()` method on [`IndexedParallelIterator`](../index.md)
@@ -78,11 +78,8 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 - <span id="skip-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Skip<I>`

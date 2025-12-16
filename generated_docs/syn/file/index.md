@@ -29,7 +29,7 @@ struct File {
 }
 ```
 
-*Defined in [`syn-2.0.111/src/file.rs:4-84`](../../../.source_1765633015/syn-2.0.111/src/file.rs#L4-L84)*
+*Defined in [`syn-2.0.111/src/file.rs:4-84`](../../../.source_1765894658/syn-2.0.111/src/file.rs#L4-L84)*
 
 A complete file of Rust source code.
 
@@ -146,11 +146,8 @@ File {
 - <span id="file-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for crate::file::File`

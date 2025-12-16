@@ -80,7 +80,7 @@ guarantees that slices never have a length that exceeds `isize::MAX`.
 struct NonMaxUsize(core::num::NonZeroUsize);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:56`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L56)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:56`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L56)*
 
 A `usize` that can never be `usize::MAX`.
 
@@ -103,15 +103,12 @@ This type is defined to be `repr(transparent)` for
 - <span id="nonmaxusize-new"></span>`fn new(value: usize) -> Option<NonMaxUsize>` — [`NonMaxUsize`](#nonmaxusize)
 
   Create a new `NonMaxUsize` from the given value.
-
   
-
   This returns `None` only when the given value is equal to `usize::MAX`.
 
 - <span id="nonmaxusize-get"></span>`fn get(self) -> usize`
 
   Return the underlying `usize` value. The returned value is guaranteed
-
   to not equal `usize::MAX`.
 
 #### Trait Implementations
@@ -159,11 +156,8 @@ This type is defined to be `repr(transparent)` for
 - <span id="nonmaxusize-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for NonMaxUsize`
@@ -206,7 +200,7 @@ This type is defined to be `repr(transparent)` for
 struct SmallIndex(u32);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:144`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L144)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:144`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L144)*
 
 A type that represents a "small" index.
 
@@ -279,33 +273,21 @@ in panics or silent logical errors.
 - <span id="smallindex-new"></span>`fn new(index: usize) -> Result<SmallIndex, SmallIndexError>` — [`SmallIndex`](#smallindex), [`SmallIndexError`](#smallindexerror)
 
   Create a new small index.
-
   
-
   If the given index exceeds `SmallIndex::MAX`, then this returns
-
   an error.
 
 - <span id="smallindex-new-unchecked"></span>`const fn new_unchecked(index: usize) -> SmallIndex` — [`SmallIndex`](#smallindex)
 
   Create a new small index without checking whether the given value
-
   exceeds `SmallIndex::MAX`.
-
   
-
   Using this routine with an invalid index value will result in
-
   unspecified behavior, but *not* undefined behavior. In particular, an
-
   invalid index value is likely to cause panics or possibly even silent
-
   logical errors.
-
   
-
   Callers must never rely on a `SmallIndex` to be within a certain range
-
   for memory safety.
 
 - <span id="smallindex-must"></span>`fn must(index: usize) -> SmallIndex` — [`SmallIndex`](#smallindex)
@@ -315,65 +297,49 @@ in panics or silent logical errors.
 - <span id="smallindex-as-usize"></span>`const fn as_usize(&self) -> usize`
 
   Return this small index as a `usize`. This is guaranteed to never
-
   overflow `usize`.
 
 - <span id="smallindex-as-u64"></span>`const fn as_u64(&self) -> u64`
 
   Return this small index as a `u64`. This is guaranteed to never
-
   overflow.
 
 - <span id="smallindex-as-u32"></span>`const fn as_u32(&self) -> u32`
 
   Return the internal `u32` of this small index. This is guaranteed to
-
   never overflow `u32`.
 
 - <span id="smallindex-as-i32"></span>`const fn as_i32(&self) -> i32`
 
   Return the internal `u32` of this small index represented as an `i32`.
-
   This is guaranteed to never overflow an `i32`.
 
 - <span id="smallindex-one-more"></span>`fn one_more(&self) -> usize`
 
   Returns one more than this small index as a usize.
-
   
-
   Since a small index has constraints on its maximum value, adding `1` to
-
   it will always fit in a `usize`, `u32` and a `i32`.
 
 - <span id="smallindex-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<SmallIndex, SmallIndexError>` — [`SmallIndex`](#smallindex), [`SmallIndexError`](#smallindexerror)
 
   Decode this small index from the bytes given using the native endian
-
   byte order for the current target.
-
   
-
   If the decoded integer is not representable as a small index for the
-
   current target, then this returns an error.
 
 - <span id="smallindex-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> SmallIndex` — [`SmallIndex`](#smallindex)
 
   Decode this small index from the bytes given using the native endian
-
   byte order for the current target.
-
   
-
   This is analogous to `SmallIndex::new_unchecked` in that is does not
-
   check whether the decoded integer is representable as a small index.
 
 - <span id="smallindex-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
   Return the underlying small index integer as raw bytes in native endian
-
   format.
 
 #### Trait Implementations
@@ -435,11 +401,8 @@ in panics or silent logical errors.
 - <span id="smallindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for SmallIndex`
@@ -484,7 +447,7 @@ struct SmallIndexError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:376-378`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L376-L378)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:376-378`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L376-L378)*
 
 This error occurs when a small index could not be constructed.
 
@@ -543,11 +506,8 @@ When the `std` feature is enabled, this implements the `Error` trait.
 - <span id="smallindexerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SmallIndexError`
@@ -588,7 +548,7 @@ struct SmallIndexIter {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:402-404`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L402-L404)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:402-404`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L402-L404)*
 
 #### Trait Implementations
 
@@ -627,11 +587,8 @@ struct SmallIndexIter {
 - <span id="smallindexiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SmallIndexIter`
@@ -674,7 +631,7 @@ struct SmallIndexIter {
 struct PatternID(SmallIndex);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L736)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L736)*
 
 The identifier of a regex pattern, represented by a [`SmallIndex`](#smallindex).
 
@@ -705,33 +662,21 @@ re-exported at the crate root due to how common it is.
 - <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
 
   Create a new value that is represented by a "small index."
-
   
-
   If the given index exceeds the maximum allowed value, then this
-
   returns an error.
 
 - <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](#patternid)
 
   Create a new value without checking whether the given argument
-
   exceeds the maximum.
-
   
-
   Using this routine with an invalid value will result in
-
   unspecified behavior, but *not* undefined behavior. In
-
   particular, an invalid ID value is likely to cause panics or
-
   possibly even silent logical errors.
-
   
-
   Callers must never rely on this type to be within a certain
-
   range for memory safety.
 
 - <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](#patternid)
@@ -741,79 +686,58 @@ re-exported at the crate root due to how common it is.
 - <span id="patternid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
   Return the internal value as a `usize`. This is guaranteed to
-
   never overflow `usize`.
 
 - <span id="patternid-as-u64"></span>`const fn as_u64(&self) -> u64`
 
   Return the internal value as a `u64`. This is guaranteed to
-
   never overflow.
 
 - <span id="patternid-as-u32"></span>`const fn as_u32(&self) -> u32`
 
   Return the internal value as a `u32`. This is guaranteed to
-
   never overflow `u32`.
 
 - <span id="patternid-as-i32"></span>`const fn as_i32(&self) -> i32`
 
   Return the internal value as a i32`. This is guaranteed to
-
   never overflow an `i32`.
 
 - <span id="patternid-one-more"></span>`fn one_more(&self) -> usize`
 
   Returns one more than this value as a usize.
-
   
-
   Since values represented by a "small index" have constraints
-
   on their maximum value, adding `1` to it will always fit in a
-
   `usize`, `u32` and a `i32`.
 
 - <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
 
   Decode this value from the bytes given using the native endian
-
   byte order for the current target.
-
   
-
   If the decoded integer is not representable as a small index
-
   for the current target, then this returns an error.
 
 - <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](#patternid)
 
   Decode this value from the bytes given using the native endian
-
   byte order for the current target.
-
   
-
   This is analogous to `new_unchecked` in that is does not check
-
   whether the decoded integer is representable as a small index.
 
 - <span id="patternid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
   Return the underlying integer as raw bytes in native endian
-
   format.
 
 - <span id="patternid-iter"></span>`fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](#patterniditer)
 
   Returns an iterator over all values from 0 up to and not
-
   including the given length.
-
   
-
   If the given length exceeds this type's limit, then this
-
   panics.
 
 #### Trait Implementations
@@ -875,11 +799,8 @@ re-exported at the crate root due to how common it is.
 - <span id="patternid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for PatternID`
@@ -922,7 +843,7 @@ re-exported at the crate root due to how common it is.
 struct StateID(SmallIndex);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:751`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L751)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:751`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L751)*
 
 The identifier of a finite automaton state, represented by a
 [`SmallIndex`](#smallindex).
@@ -949,33 +870,21 @@ a state ID to be a "small index."
 - <span id="stateid-new"></span>`fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](#stateid), [`StateIDError`](#stateiderror)
 
   Create a new value that is represented by a "small index."
-
   
-
   If the given index exceeds the maximum allowed value, then this
-
   returns an error.
 
 - <span id="stateid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> StateID` — [`StateID`](#stateid)
 
   Create a new value without checking whether the given argument
-
   exceeds the maximum.
-
   
-
   Using this routine with an invalid value will result in
-
   unspecified behavior, but *not* undefined behavior. In
-
   particular, an invalid ID value is likely to cause panics or
-
   possibly even silent logical errors.
-
   
-
   Callers must never rely on this type to be within a certain
-
   range for memory safety.
 
 - <span id="stateid-must"></span>`fn must(value: usize) -> StateID` — [`StateID`](#stateid)
@@ -985,79 +894,58 @@ a state ID to be a "small index."
 - <span id="stateid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
   Return the internal value as a `usize`. This is guaranteed to
-
   never overflow `usize`.
 
 - <span id="stateid-as-u64"></span>`const fn as_u64(&self) -> u64`
 
   Return the internal value as a `u64`. This is guaranteed to
-
   never overflow.
 
 - <span id="stateid-as-u32"></span>`const fn as_u32(&self) -> u32`
 
   Return the internal value as a `u32`. This is guaranteed to
-
   never overflow `u32`.
 
 - <span id="stateid-as-i32"></span>`const fn as_i32(&self) -> i32`
 
   Return the internal value as a i32`. This is guaranteed to
-
   never overflow an `i32`.
 
 - <span id="stateid-one-more"></span>`fn one_more(&self) -> usize`
 
   Returns one more than this value as a usize.
-
   
-
   Since values represented by a "small index" have constraints
-
   on their maximum value, adding `1` to it will always fit in a
-
   `usize`, `u32` and a `i32`.
 
 - <span id="stateid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](#stateid), [`StateIDError`](#stateiderror)
 
   Decode this value from the bytes given using the native endian
-
   byte order for the current target.
-
   
-
   If the decoded integer is not representable as a small index
-
   for the current target, then this returns an error.
 
 - <span id="stateid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](#stateid)
 
   Decode this value from the bytes given using the native endian
-
   byte order for the current target.
-
   
-
   This is analogous to `new_unchecked` in that is does not check
-
   whether the decoded integer is representable as a small index.
 
 - <span id="stateid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
   Return the underlying integer as raw bytes in native endian
-
   format.
 
 - <span id="stateid-iter"></span>`fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](#stateiditer)
 
   Returns an iterator over all values from 0 up to and not
-
   including the given length.
-
   
-
   If the given length exceeds this type's limit, then this
-
   panics.
 
 #### Trait Implementations
@@ -1119,11 +1007,8 @@ a state ID to be a "small index."
 - <span id="stateid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for StateID`
@@ -1166,7 +1051,7 @@ a state ID to be a "small index."
 struct PatternIDError(SmallIndexError);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L753)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L753)*
 
 This error occurs when a value could not be constructed.
 
@@ -1227,11 +1112,8 @@ trait.
 - <span id="patterniderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for PatternIDError`
@@ -1270,7 +1152,7 @@ trait.
 struct PatternIDIter(SmallIndexIter);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L753)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L753)*
 
 #### Implementations
 
@@ -1313,11 +1195,8 @@ struct PatternIDIter(SmallIndexIter);
 - <span id="patterniditer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PatternIDIter`
@@ -1363,7 +1242,7 @@ struct WithPatternIDIter<I> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L753)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L753)*
 
 An iterator adapter that is like std::iter::Enumerate, but attaches
 small index values instead. It requires `ExactSizeIterator`. At
@@ -1411,11 +1290,8 @@ iterator is representable in the corresponding small index type.
 - <span id="withpatterniditer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for WithPatternIDIter<I>`
@@ -1458,7 +1334,7 @@ iterator is representable in the corresponding small index type.
 struct StateIDError(SmallIndexError);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L754)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L754)*
 
 This error occurs when a value could not be constructed.
 
@@ -1519,11 +1395,8 @@ trait.
 - <span id="stateiderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for StateIDError`
@@ -1562,7 +1435,7 @@ trait.
 struct StateIDIter(SmallIndexIter);
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L754)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L754)*
 
 #### Implementations
 
@@ -1605,11 +1478,8 @@ struct StateIDIter(SmallIndexIter);
 - <span id="stateiditer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StateIDIter`
@@ -1655,7 +1525,7 @@ struct WithStateIDIter<I> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L754)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L754)*
 
 An iterator adapter that is like std::iter::Enumerate, but attaches
 small index values instead. It requires `ExactSizeIterator`. At
@@ -1703,11 +1573,8 @@ iterator is representable in the corresponding small index type.
 - <span id="withstateiditer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for WithStateIDIter<I>`
@@ -1752,7 +1619,7 @@ iterator is representable in the corresponding small index type.
 trait IteratorIndexExt: Iterator { ... }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:760-774`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L760-L774)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:760-774`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L760-L774)*
 
 A utility trait that defines a couple of adapters for making it convenient
 to access indices as "small index" types. We require ExactSizeIterator so
@@ -1773,5 +1640,5 @@ each element is representable by its small index type.
 
 ### `index_type_impls!`
 
-*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:421-717`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/primitives.rs#L421-L717)*
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:421-717`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/primitives.rs#L421-L717)*
 

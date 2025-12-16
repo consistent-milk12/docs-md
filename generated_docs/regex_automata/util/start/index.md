@@ -25,7 +25,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/start.rs:121-124`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/start.rs#L121-L124)*
+*Defined in [`regex-automata-0.4.13/src/util/start.rs:121-124`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/start.rs#L121-L124)*
 
 The configuration used to determine a DFA's start state for a search.
 
@@ -142,67 +142,44 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
   Create a new default start configuration.
-
   
-
   The default is an unanchored search that starts at the beginning of the
-
   haystack.
 
 - <span id="config-from-input-forward"></span>`fn from_input_forward(input: &Input<'_>) -> Config` — [`Input`](../../index.md#input), [`Config`](#config)
 
   A convenience routine for building a start configuration from an
-
   [`Input`](../../index.md) for a forward search.
-
   
-
   This automatically sets the look-behind byte to the byte immediately
-
   preceding the start of the search. If the start of the search is at
-
   offset `0`, then no look-behind byte is set.
 
 - <span id="config-from-input-reverse"></span>`fn from_input_reverse(input: &Input<'_>) -> Config` — [`Input`](../../index.md#input), [`Config`](#config)
 
   A convenience routine for building a start configuration from an
-
   [`Input`](../../index.md) for a reverse search.
-
   
-
   This automatically sets the look-behind byte to the byte immediately
-
   following the end of the search. If the end of the search is at
-
   offset `haystack.len()`, then no look-behind byte is set.
 
 - <span id="config-look-behind"></span>`fn look_behind(self, byte: Option<u8>) -> Config` — [`Config`](#config)
 
   Set the look-behind byte at the start of a search.
-
   
-
   Unless the search is intended to logically start at the beginning of a
-
   haystack, this should _always_ be set to the byte immediately preceding
-
   the start of the search. If no look-behind byte is set, then the start
-
   configuration will assume it is at the beginning of the haystack. For
-
   example, the anchor `^` will match.
-
   
-
   The default is that no look-behind byte is set.
 
 - <span id="config-anchored"></span>`fn anchored(self, mode: Anchored) -> Config` — [`Anchored`](../../index.md#anchored), [`Config`](#config)
 
   Set the anchored mode of a search.
-
   
-
   The default is an unanchored search.
 
 - <span id="config-get-look-behind"></span>`fn get_look_behind(&self) -> Option<u8>`
@@ -250,11 +227,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="config-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Config`
@@ -285,7 +259,7 @@ struct StartByteMap {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/start.rs:208-210`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/start.rs#L208-L210)*
+*Defined in [`regex-automata-0.4.13/src/util/start.rs:208-210`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/start.rs#L208-L210)*
 
 A map from every possible byte value to its corresponding starting
 configuration.
@@ -307,39 +281,28 @@ result of the epsilon closure that the NFA engines tend to need to do.)
 - <span id="startbytemap-new"></span>`fn new(lookm: &LookMatcher) -> StartByteMap` — [`LookMatcher`](../look/index.md#lookmatcher), [`StartByteMap`](#startbytemap)
 
   Create a new map from byte values to their corresponding starting
-
   configurations. The map is determined, in part, by how look-around
-
   assertions are matched via the matcher given.
 
 - <span id="startbytemap-get"></span>`fn get(&self, byte: u8) -> Start` — [`Start`](#start)
 
   Return the starting configuration for the given look-behind byte.
-
   
-
   If no look-behind exists, callers should use `Start::Text`.
 
 - <span id="startbytemap-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(StartByteMap, usize), DeserializeError>` — [`StartByteMap`](#startbytemap), [`DeserializeError`](../wire/index.md#deserializeerror)
 
   Deserializes a byte class map from the given slice. If the slice is of
-
   insufficient length or otherwise contains an impossible mapping, then
-
   an error is returned. Upon success, the number of bytes read along with
-
   the map are returned. The number of bytes read is always a multiple of
-
   8.
 
 - <span id="startbytemap-write-to"></span>`fn write_to(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md#serializeerror)
 
   Writes this map to the given byte buffer. if the given buffer is too
-
   small, then an error is returned. Upon success, the total number of
-
   bytes written is returned. The number of bytes written is guaranteed to
-
   be a multiple of 8.
 
 - <span id="startbytemap-write-to-len"></span>`fn write_to_len(&self) -> usize`
@@ -383,11 +346,8 @@ result of the epsilon closure that the NFA engines tend to need to do.)
 - <span id="startbytemap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StartByteMap`
@@ -425,7 +385,7 @@ enum Start {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/util/start.rs:344-369`](../../../../.source_1765633015/regex-automata-0.4.13/src/util/start.rs#L344-L369)*
+*Defined in [`regex-automata-0.4.13/src/util/start.rs:344-369`](../../../../.source_1765894658/regex-automata-0.4.13/src/util/start.rs#L344-L369)*
 
 Represents the six possible starting configurations of a DFA search.
 
@@ -490,7 +450,6 @@ and can be found at `crate::util::determinize::set_lookbehind_from_start`.
 - <span id="start-from-usize"></span>`fn from_usize(n: usize) -> Option<Start>` — [`Start`](#start)
 
   Return the starting state corresponding to the given integer. If no
-
   starting state exists for the given integer, then None is returned.
 
 - <span id="start-len"></span>`fn len() -> usize`
@@ -500,13 +459,11 @@ and can be found at `crate::util::determinize::set_lookbehind_from_start`.
 - <span id="start-as-u8"></span>`fn as_u8(&self) -> u8`
 
   Return this starting configuration as `u8` integer. It is guaranteed to
-
   be less than `Start::len()`.
 
 - <span id="start-as-usize"></span>`fn as_usize(&self) -> usize`
 
   Return this starting configuration as a `usize` integer. It is
-
   guaranteed to be less than `Start::len()`.
 
 #### Trait Implementations
@@ -550,11 +507,8 @@ and can be found at `crate::util::determinize::set_lookbehind_from_start`.
 - <span id="start-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Start`

@@ -18,7 +18,7 @@
 struct Id(crate::builder::Str);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../../../.source_1765633015/clap_builder-4.5.53/src/util/id.rs#L11)*
+*Defined in [`clap_builder-4.5.53/src/util/id.rs:11`](../../../../.source_1765894658/clap_builder-4.5.53/src/util/id.rs#L11)*
 
 `Arg` or `ArgGroup` identifier
 
@@ -103,11 +103,8 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 - <span id="id-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for Str`

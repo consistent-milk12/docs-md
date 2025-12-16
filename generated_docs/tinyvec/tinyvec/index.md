@@ -26,7 +26,7 @@ struct TinyVecSplice<'p, A: Array, I: Iterator<Item = <A as >::Item>> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1215-1220`](../../../.source_1765633015/tinyvec-1.10.0/src/tinyvec.rs#L1215-L1220)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1215-1220`](../../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L1215-L1220)*
 
 Splicing iterator for `TinyVec`
 See [`TinyVec::splice`](TinyVec::<A>::splice)
@@ -70,11 +70,8 @@ See [`TinyVec::splice`](TinyVec::<A>::splice)
 - <span id="tinyvecsplice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for TinyVecSplice<'p, A, I>`
@@ -116,7 +113,7 @@ enum TinyVec<A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:96-101`](../../../.source_1765633015/tinyvec-1.10.0/src/tinyvec.rs#L96-L101)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:96-101`](../../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L96-L101)*
 
 A vector that starts inline, but can automatically move to the heap.
 
@@ -153,251 +150,142 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 - <span id="tinyvec-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
 
   Shrinks the capacity of the vector as much as possible.\
-
   It is inlined if length is less than `A::CAPACITY`.
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 2] => 1, 2, 3);
-
   assert!(tv.is_heap());
-
   let _ = tv.pop();
-
   assert!(tv.is_heap());
-
   tv.shrink_to_fit();
-
   assert!(tv.is_inline());
-
   ```
 
 - <span id="tinyvec-move-to-the-heap"></span>`fn move_to_the_heap(&mut self)`
 
   Moves the content of the TinyVec to the heap, if it's inline.
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 4] => 1, 2, 3);
-
   assert!(tv.is_inline());
-
   tv.move_to_the_heap();
-
   assert!(tv.is_heap());
-
   ```
 
 - <span id="tinyvec-move-to-the-heap-and-reserve"></span>`fn move_to_the_heap_and_reserve(&mut self, n: usize)`
 
   If TinyVec is inline, moves the content of it to the heap.
-
   Also reserves additional space.
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 4] => 1, 2, 3);
-
   assert!(tv.is_inline());
-
   tv.move_to_the_heap_and_reserve(32);
-
   assert!(tv.is_heap());
-
   assert!(tv.capacity() >= 35);
-
   ```
 
 - <span id="tinyvec-reserve"></span>`fn reserve(&mut self, n: usize)`
 
   Reserves additional space.
-
   Moves to the heap if array can't hold `n` more items
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 4] => 1, 2, 3, 4);
-
   assert!(tv.is_inline());
-
   tv.reserve(1);
-
   assert!(tv.is_heap());
-
   assert!(tv.capacity() >= 5);
-
   ```
 
 - <span id="tinyvec-reserve-exact"></span>`fn reserve_exact(&mut self, n: usize)`
 
   Reserves additional space.
-
   Moves to the heap if array can't hold `n` more items
-
   
-
   From [Vec::reserve_exact](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.reserve_exact)
-
   ```text
-
   Note that the allocator may give the collection more space than it requests.
-
   Therefore, capacity can not be relied upon to be precisely minimal.
-
   Prefer `reserve` if future insertions are expected.
-
   ```
-
   ```rust
-
   use tinyvec::*;
-
   let mut tv = tiny_vec!([i32; 4] => 1, 2, 3, 4);
-
   assert!(tv.is_inline());
-
   tv.reserve_exact(1);
-
   assert!(tv.is_heap());
-
   assert!(tv.capacity() >= 5);
-
   ```
 
 - <span id="tinyvec-with-capacity"></span>`fn with_capacity(cap: usize) -> Self`
 
   Makes a new TinyVec with _at least_ the given capacity.
-
   
-
   If the requested capacity is less than or equal to the array capacity you
-
   get an inline vec. If it's greater than you get a heap vec.
-
   ```rust
-
   use tinyvec::*;
-
   let t = TinyVec::<[u8; 10]>::with_capacity(5);
-
   assert!(t.is_inline());
-
   assert!(t.capacity() >= 5);
-
   
-
   let t = TinyVec::<[u8; 10]>::with_capacity(20);
-
   assert!(t.is_heap());
-
   assert!(t.capacity() >= 20);
-
   ```
 
 - <span id="tinyvec-into-boxed-slice"></span>`fn into_boxed_slice(self) -> alloc::boxed::Box<[<A as >::Item]>` — [`Array`](../index.md#array)
 
   Converts a `TinyVec<[T; N]>` into a `Box<[T]>`.
-
   
-
   - For `TinyVec::Heap(Vec<T>)`, it takes the `Vec<T>` and converts it into
-
     a `Box<[T]>` without heap reallocation.
-
   - For `TinyVec::Inline(inner_data)`, it first converts the `inner_data` to
-
     `Vec<T>`, then into a `Box<[T]>`. Requiring only a single heap
-
     allocation.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use core::mem::size_of_val as mem_size_of;
-
   use tinyvec::TinyVec;
-
   
-
   // Initialize TinyVec with 256 elements (exceeding inline capacity)
-
   let v: TinyVec<[_; 128]> = (0u8..=255).collect();
-
   
-
   assert!(v.is_heap());
-
   assert_eq!(mem_size_of(&v), 136); // mem size of TinyVec<[u8; N]>: N+8
-
   assert_eq!(v.len(), 256);
-
   
-
   let boxed = v.into_boxed_slice();
-
   assert_eq!(mem_size_of(&boxed), 16); // mem size of Box<[u8]>: 16 bytes (fat pointer)
-
   assert_eq!(boxed.len(), 256);
-
   ```
 
 - <span id="tinyvec-into-vec"></span>`fn into_vec(self) -> Vec<<A as >::Item>` — [`Array`](../index.md#array)
 
   Converts a `TinyVec<[T; N]>` into a `Vec<T>`.
-
   
-
   `v.into_vec()` is equivalent to `Into::<Vec<_>>::into(v)`.
-
   
-
   - For `TinyVec::Inline(_)`, `.into_vec()` **does not** offer a performance
-
     advantage over `.to_vec()`.
-
   - For `TinyVec::Heap(vec_data)`, `.into_vec()` will take `vec_data`
-
     without heap reallocation.
-
   
-
   ## Example
-
   
-
   ```rust
-
   use tinyvec::TinyVec;
-
   
-
   let v = TinyVec::from([0u8; 8]);
-
   let v2 = v.clone();
-
   
-
   let vec = v.into_vec();
-
   let vec2: Vec<_> = v2.into();
-
   
-
   assert_eq!(vec, vec2);
-
   ```
 
 #### Trait Implementations
@@ -493,11 +381,8 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 - <span id="tinyvec-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<A: Array> IntoIterator for TinyVec<A>`
@@ -581,7 +466,7 @@ enum TinyVecDrain<'p, A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1166-1171`](../../../.source_1765633015/tinyvec-1.10.0/src/tinyvec.rs#L1166-L1171)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1166-1171`](../../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L1166-L1171)*
 
 Draining iterator for `TinyVecDrain`
 
@@ -618,11 +503,8 @@ See [`TinyVecDrain::drain`](TinyVecDrain::<A>::drain)
 - <span id="tinyvecdrain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TinyVecDrain<'p, A>`
@@ -670,7 +552,7 @@ enum TinyVecIterator<A: Array> {
 }
 ```
 
-*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1483-1488`](../../../.source_1765633015/tinyvec-1.10.0/src/tinyvec.rs#L1483-L1488)*
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1483-1488`](../../../.source_1765894658/tinyvec-1.10.0/src/tinyvec.rs#L1483-L1488)*
 
 Iterator for consuming an `TinyVec` and returning owned elements.
 
@@ -721,11 +603,8 @@ Iterator for consuming an `TinyVec` and returning owned elements.
 - <span id="tinyveciterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TinyVecIterator<A>`

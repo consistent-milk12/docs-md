@@ -423,7 +423,7 @@ struct ExponentialBlocks<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/blocks.rs:59-61`](../../../.source_1765633015/rayon-1.11.0/src/iter/blocks.rs#L59-L61)*
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:59-61`](../../../.source_1765894658/rayon-1.11.0/src/iter/blocks.rs#L59-L61)*
 
 `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of increasing sizes (exponentially).
@@ -472,11 +472,8 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 - <span id="exponentialblocks-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ExponentialBlocks<I>`
@@ -538,7 +535,7 @@ struct UniformBlocks<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/blocks.rs:101-104`](../../../.source_1765633015/rayon-1.11.0/src/iter/blocks.rs#L101-L104)*
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:101-104`](../../../.source_1765894658/rayon-1.11.0/src/iter/blocks.rs#L101-L104)*
 
 `UniformBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of constant sizes.
@@ -587,11 +584,8 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 - <span id="uniformblocks-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UniformBlocks<I>`
@@ -653,7 +647,7 @@ struct Chain<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
 
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
 This struct is created by the `chain()` method on [`ParallelIterator`](#paralleliterator)
@@ -710,11 +704,8 @@ This struct is created by the `chain()` method on [`ParallelIterator`](#parallel
 - <span id="chain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Chain<A, B>`
@@ -778,7 +769,7 @@ struct Chunks<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/chunks.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/chunks.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/chunks.rs:11-14`](../../../.source_1765894658/rayon-1.11.0/src/iter/chunks.rs#L11-L14)*
 
 `Chunks` is an iterator that groups elements of an underlying iterator.
 
@@ -836,11 +827,8 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#
 - <span id="chunks-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Chunks<I>`
@@ -903,7 +891,7 @@ struct Cloned<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/cloned.rs:13-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/cloned.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:13-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/cloned.rs#L13-L15)*
 
 `Cloned` is an iterator that clones the elements of an underlying iterator.
 
@@ -961,11 +949,8 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 - <span id="cloned-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Cloned<I>`
@@ -1028,7 +1013,7 @@ struct Copied<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/copied.rs:13-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/copied.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/copied.rs:13-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/copied.rs#L13-L15)*
 
 `Copied` is an iterator that copies the elements of an underlying iterator.
 
@@ -1086,11 +1071,8 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 - <span id="copied-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Copied<I>`
@@ -1153,7 +1135,7 @@ struct Empty<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/empty.rs:33-35`](../../../.source_1765633015/rayon-1.11.0/src/iter/empty.rs#L33-L35)*
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:33-35`](../../../.source_1765894658/rayon-1.11.0/src/iter/empty.rs#L33-L35)*
 
 Iterator adaptor for [the `empty()` function].
 
@@ -1203,11 +1185,8 @@ Iterator adaptor for [the `empty()` function].
 - <span id="empty-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Empty<T>`
@@ -1270,7 +1249,7 @@ struct Enumerate<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:12-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/enumerate.rs#L12-L14)*
+*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:12-14`](../../../.source_1765894658/rayon-1.11.0/src/iter/enumerate.rs#L12-L14)*
 
 `Enumerate` is an iterator that returns the current count along with the element.
 This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -1327,11 +1306,8 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 - <span id="enumerate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Enumerate<I>`
@@ -1395,7 +1371,7 @@ struct Filter<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/filter.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/filter.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/filter.rs:12-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/filter.rs#L12-L15)*
 
 `Filter` takes a predicate `filter_op` and filters out elements that match.
 This struct is created by the `filter()` method on [`ParallelIterator`](#paralleliterator)
@@ -1444,11 +1420,8 @@ This struct is created by the `filter()` method on [`ParallelIterator`](#paralle
 - <span id="filter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Filter<I, P>`
@@ -1510,7 +1483,7 @@ struct FilterMap<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/filter_map.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/filter_map.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/filter_map.rs:12-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/filter_map.rs#L12-L15)*
 
 `FilterMap` creates an iterator that uses `filter_op` to both filter and map elements.
 This struct is created by the `filter_map()` method on [`ParallelIterator`](#paralleliterator).
@@ -1559,11 +1532,8 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](#par
 - <span id="filtermap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FilterMap<I, P>`
@@ -1625,7 +1595,7 @@ struct FlatMap<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:12-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/flat_map.rs#L12-L15)*
 
 `FlatMap` maps each element to a parallel iterator, then flattens these iterators together.
 This struct is created by the `flat_map()` method on [`ParallelIterator`](#paralleliterator)
@@ -1674,11 +1644,8 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](#paral
 - <span id="flatmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMap<I, F>`
@@ -1740,7 +1707,7 @@ struct FlatMapIter<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/flat_map_iter.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:12-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/flat_map_iter.rs#L12-L15)*
 
 `FlatMapIter` maps each element to a serial iterator, then flattens these iterators together.
 This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#paralleliterator)
@@ -1789,11 +1756,8 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#
 - <span id="flatmapiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlatMapIter<I, F>`
@@ -1854,7 +1818,7 @@ struct Flatten<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten.rs:10-12`](../../../.source_1765633015/rayon-1.11.0/src/iter/flatten.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/flatten.rs:10-12`](../../../.source_1765894658/rayon-1.11.0/src/iter/flatten.rs#L10-L12)*
 
 `Flatten` turns each element to a parallel iterator, then flattens these iterators
 together. This struct is created by the `flatten()` method on [`ParallelIterator`](#paralleliterator).
@@ -1903,11 +1867,8 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 - <span id="flatten-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Flatten<I>`
@@ -1968,7 +1929,7 @@ struct FlattenIter<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:10-12`](../../../.source_1765633015/rayon-1.11.0/src/iter/flatten_iter.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:10-12`](../../../.source_1765894658/rayon-1.11.0/src/iter/flatten_iter.rs#L10-L12)*
 
 `FlattenIter` turns each element to a serial iterator, then flattens these iterators
 together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](#paralleliterator).
@@ -2017,11 +1978,8 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 - <span id="flatteniter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FlattenIter<I>`
@@ -2084,7 +2042,7 @@ struct Fold<I, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold.rs:22-26`](../../../.source_1765633015/rayon-1.11.0/src/iter/fold.rs#L22-L26)*
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:22-26`](../../../.source_1765894658/rayon-1.11.0/src/iter/fold.rs#L22-L26)*
 
 `Fold` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `fold()` method on [`ParallelIterator`](#paralleliterator)
@@ -2131,11 +2089,8 @@ This struct is created by the `fold()` method on [`ParallelIterator`](#paralleli
 - <span id="fold-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Fold<I, ID, F>`
@@ -2198,7 +2153,7 @@ struct FoldWith<I, U, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold.rs:191-195`](../../../.source_1765633015/rayon-1.11.0/src/iter/fold.rs#L191-L195)*
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:191-195`](../../../.source_1765894658/rayon-1.11.0/src/iter/fold.rs#L191-L195)*
 
 `FoldWith` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `fold_with()` method on [`ParallelIterator`](#paralleliterator)
@@ -2245,11 +2200,8 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](#para
 - <span id="foldwith-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FoldWith<I, U, F>`
@@ -2313,7 +2265,7 @@ struct FoldChunks<I, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../.source_1765633015/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../.source_1765894658/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
 
 `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
@@ -2372,11 +2324,8 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 - <span id="foldchunks-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FoldChunks<I, ID, F>`
@@ -2442,7 +2391,7 @@ struct FoldChunksWith<I, U, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/fold_chunks_with.rs:15-20`](../../../.source_1765633015/rayon-1.11.0/src/iter/fold_chunks_with.rs#L15-L20)*
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks_with.rs:15-20`](../../../.source_1765894658/rayon-1.11.0/src/iter/fold_chunks_with.rs#L15-L20)*
 
 `FoldChunksWith` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
@@ -2501,11 +2450,8 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 - <span id="foldchunkswith-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for FoldChunksWith<I, U, F>`
@@ -2569,7 +2515,7 @@ struct Inspect<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/inspect.rs:15-18`](../../../.source_1765633015/rayon-1.11.0/src/iter/inspect.rs#L15-L18)*
+*Defined in [`rayon-1.11.0/src/iter/inspect.rs:15-18`](../../../.source_1765894658/rayon-1.11.0/src/iter/inspect.rs#L15-L18)*
 
 `Inspect` is an iterator that calls a function with a reference to each
 element before yielding it.
@@ -2628,11 +2574,8 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](#parall
 - <span id="inspect-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Inspect<I, F>`
@@ -2696,7 +2639,7 @@ struct Interleave<I, J> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/interleave.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/interleave.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/interleave.rs:12-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/interleave.rs#L12-L15)*
 
 `Interleave` is an iterator that interleaves elements of iterators
 `i` and `j` in one continuous iterator. This struct is created by
@@ -2754,11 +2697,8 @@ the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterato
 - <span id="interleave-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Interleave<I, J>`
@@ -2821,7 +2761,7 @@ struct InterleaveShortest<I, J> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/interleave_shortest.rs:14-16`](../../../.source_1765633015/rayon-1.11.0/src/iter/interleave_shortest.rs#L14-L16)*
+*Defined in [`rayon-1.11.0/src/iter/interleave_shortest.rs:14-16`](../../../.source_1765894658/rayon-1.11.0/src/iter/interleave_shortest.rs#L14-L16)*
 
 `InterleaveShortest` is an iterator that works similarly to
 `Interleave`, but this version stops returning elements once one
@@ -2882,11 +2822,8 @@ This struct is created by the `interleave_shortest()` method on
 - <span id="interleaveshortest-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for InterleaveShortest<I, J>`
@@ -2952,7 +2889,7 @@ where
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:13-19`](../../../.source_1765633015/rayon-1.11.0/src/iter/intersperse.rs#L13-L19)*
+*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:13-19`](../../../.source_1765894658/rayon-1.11.0/src/iter/intersperse.rs#L13-L19)*
 
 `Intersperse` is an iterator that inserts a particular item between each
 item of the adapted iterator.  This struct is created by the
@@ -3010,11 +2947,8 @@ item of the adapted iterator.  This struct is created by the
 - <span id="intersperse-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Intersperse<I>`
@@ -3078,7 +3012,7 @@ struct MaxLen<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/len.rs:140-143`](../../../.source_1765633015/rayon-1.11.0/src/iter/len.rs#L140-L143)*
+*Defined in [`rayon-1.11.0/src/iter/len.rs:140-143`](../../../.source_1765894658/rayon-1.11.0/src/iter/len.rs#L140-L143)*
 
 `MaxLen` is an iterator that imposes a maximum length on iterator splits.
 This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -3135,11 +3069,8 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 - <span id="maxlen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MaxLen<I>`
@@ -3203,7 +3134,7 @@ struct MinLen<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/len.rs:10-13`](../../../.source_1765633015/rayon-1.11.0/src/iter/len.rs#L10-L13)*
+*Defined in [`rayon-1.11.0/src/iter/len.rs:10-13`](../../../.source_1765894658/rayon-1.11.0/src/iter/len.rs#L10-L13)*
 
 `MinLen` is an iterator that imposes a minimum length on iterator splits.
 This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -3260,11 +3191,8 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 - <span id="minlen-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MinLen<I>`
@@ -3328,7 +3256,7 @@ struct Map<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map.rs:14-17`](../../../.source_1765633015/rayon-1.11.0/src/iter/map.rs#L14-L17)*
+*Defined in [`rayon-1.11.0/src/iter/map.rs:14-17`](../../../.source_1765894658/rayon-1.11.0/src/iter/map.rs#L14-L17)*
 
 `Map` is an iterator that transforms the elements of an underlying iterator.
 
@@ -3386,11 +3314,8 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 - <span id="map-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Map<I, F>`
@@ -3455,7 +3380,7 @@ struct MapInit<I, INIT, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map_with.rs:341-345`](../../../.source_1765633015/rayon-1.11.0/src/iter/map_with.rs#L341-L345)*
+*Defined in [`rayon-1.11.0/src/iter/map_with.rs:341-345`](../../../.source_1765894658/rayon-1.11.0/src/iter/map_with.rs#L341-L345)*
 
 `MapInit` is an iterator that transforms the elements of an underlying iterator.
 
@@ -3513,11 +3438,8 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 - <span id="mapinit-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MapInit<I, INIT, F>`
@@ -3582,7 +3504,7 @@ struct MapWith<I, T, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/map_with.rs:13-17`](../../../.source_1765633015/rayon-1.11.0/src/iter/map_with.rs#L13-L17)*
+*Defined in [`rayon-1.11.0/src/iter/map_with.rs:13-17`](../../../.source_1765894658/rayon-1.11.0/src/iter/map_with.rs#L13-L17)*
 
 `MapWith` is an iterator that transforms the elements of an underlying iterator.
 
@@ -3640,11 +3562,8 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 - <span id="mapwith-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for MapWith<I, T, F>`
@@ -3707,7 +3626,7 @@ struct MultiZip<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/multizip.rs:79-81`](../../../.source_1765633015/rayon-1.11.0/src/iter/multizip.rs#L79-L81)*
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:79-81`](../../../.source_1765894658/rayon-1.11.0/src/iter/multizip.rs#L79-L81)*
 
 `MultiZip` is an iterator that zips up a tuple of parallel iterators to
 produce tuples of their items.
@@ -3829,11 +3748,8 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 - <span id="multizip-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for MultiZip<T>`
@@ -3896,7 +3812,7 @@ struct Once<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/once.rs:32-34`](../../../.source_1765633015/rayon-1.11.0/src/iter/once.rs#L32-L34)*
+*Defined in [`rayon-1.11.0/src/iter/once.rs:32-34`](../../../.source_1765894658/rayon-1.11.0/src/iter/once.rs#L32-L34)*
 
 Iterator adaptor for [the `once()` function].
 
@@ -3946,11 +3862,8 @@ Iterator adaptor for [the `once()` function].
 - <span id="once-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Once<T>`
@@ -4013,7 +3926,7 @@ struct PanicFuse<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:14-16`](../../../.source_1765633015/rayon-1.11.0/src/iter/panic_fuse.rs#L14-L16)*
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:14-16`](../../../.source_1765894658/rayon-1.11.0/src/iter/panic_fuse.rs#L14-L16)*
 
 `PanicFuse` is an adaptor that wraps an iterator with a fuse in case
 of panics, to halt all threads as soon as possible.
@@ -4072,11 +3985,8 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#par
 - <span id="panicfuse-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for PanicFuse<I>`
@@ -4139,7 +4049,7 @@ struct IterBridge<Iter> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:72-74`](../../../.source_1765633015/rayon-1.11.0/src/iter/par_bridge.rs#L72-L74)*
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:72-74`](../../../.source_1765894658/rayon-1.11.0/src/iter/par_bridge.rs#L72-L74)*
 
 `IterBridge` is a parallel iterator that wraps a sequential iterator.
 
@@ -4183,11 +4093,8 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 - <span id="iterbridge-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IterBridge<Iter>`
@@ -4249,7 +4156,7 @@ struct Positions<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/positions.rs:14-17`](../../../.source_1765633015/rayon-1.11.0/src/iter/positions.rs#L14-L17)*
+*Defined in [`rayon-1.11.0/src/iter/positions.rs:14-17`](../../../.source_1765894658/rayon-1.11.0/src/iter/positions.rs#L14-L17)*
 
 `Positions` takes a predicate `predicate` and filters out elements that match,
 yielding their indices.
@@ -4300,11 +4207,8 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 - <span id="positions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Positions<I, P>`
@@ -4365,7 +4269,7 @@ struct Repeat<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:10-12`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L10-L12)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:10-12`](../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L10-L12)*
 
 Iterator adaptor for [the `repeat()` function].
 
@@ -4375,19 +4279,14 @@ Iterator adaptor for [the `repeat()` function].
 - <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](repeat/index.md#repeatn)
 
   Takes only `n` repeats of the element, similar to the general
-
   `take()`.
-
   
-
   The resulting `RepeatN` is an `IndexedParallelIterator`, allowing
-
   more functionality than `Repeat` alone.
 
 - <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](zip/index.md#zip), [`RepeatN`](repeat/index.md#repeatn), [`IntoParallelIterator`](#intoparalleliterator)
 
   Iterates tuples, repeating the element with items from another
-
   iterator, similar to the general `zip()`.
 
 #### Trait Implementations
@@ -4427,11 +4326,8 @@ Iterator adaptor for [the `repeat()` function].
 - <span id="repeat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for Repeat<T>`
@@ -4492,7 +4388,7 @@ struct RepeatN<T> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:111-113`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L111-L113)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:111-113`](../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L111-L113)*
 
 Iterator adaptor for [the `repeat_n()` function].
 
@@ -4542,11 +4438,8 @@ Iterator adaptor for [the `repeat_n()` function].
 - <span id="repeatn-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> IntoEither for RepeatN<T>`
@@ -4609,7 +4502,7 @@ struct Rev<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/rev.rs:11-13`](../../../.source_1765633015/rayon-1.11.0/src/iter/rev.rs#L11-L13)*
+*Defined in [`rayon-1.11.0/src/iter/rev.rs:11-13`](../../../.source_1765894658/rayon-1.11.0/src/iter/rev.rs#L11-L13)*
 
 `Rev` is an iterator that produces elements in reverse order. This struct
 is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -4666,11 +4559,8 @@ is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparallel
 - <span id="rev-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Rev<I>`
@@ -4734,7 +4624,7 @@ struct Skip<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/skip.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/skip.rs:11-14`](../../../.source_1765894658/rayon-1.11.0/src/iter/skip.rs#L11-L14)*
 
 `Skip` is an iterator that skips over the first `n` elements.
 This struct is created by the `skip()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -4791,11 +4681,8 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](#in
 - <span id="skip-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Skip<I>`
@@ -4859,7 +4746,7 @@ struct SkipAny<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip_any.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/skip_any.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/skip_any.rs:11-14`](../../../.source_1765894658/rayon-1.11.0/src/iter/skip_any.rs#L11-L14)*
 
 `SkipAny` is an iterator that skips over `n` elements from anywhere in `I`.
 This struct is created by the `skip_any()` method on [`ParallelIterator`](#paralleliterator)
@@ -4908,11 +4795,8 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](#paral
 - <span id="skipany-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SkipAny<I>`
@@ -4974,7 +4858,7 @@ struct SkipAnyWhile<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:13-16`](../../../.source_1765633015/rayon-1.11.0/src/iter/skip_any_while.rs#L13-L16)*
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:13-16`](../../../.source_1765894658/rayon-1.11.0/src/iter/skip_any_while.rs#L13-L16)*
 
 `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I`
 until the callback returns `false`.
@@ -5024,11 +4908,8 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 - <span id="skipanywhile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SkipAnyWhile<I, P>`
@@ -5090,7 +4971,7 @@ struct Split<D, S> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/splitter.rs:117-120`](../../../.source_1765633015/rayon-1.11.0/src/iter/splitter.rs#L117-L120)*
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:117-120`](../../../.source_1765894658/rayon-1.11.0/src/iter/splitter.rs#L117-L120)*
 
 `Split` is a parallel iterator using arbitrary data and a splitting function.
 This struct is created by the [`split()`](splitter/index.md) function.
@@ -5132,11 +5013,8 @@ This struct is created by the [`split()`](splitter/index.md) function.
 - <span id="split-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Split<D, S>`
@@ -5198,7 +5076,7 @@ struct StepBy<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/step_by.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/step_by.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/step_by.rs:11-14`](../../../.source_1765894658/rayon-1.11.0/src/iter/step_by.rs#L11-L14)*
 
 `StepBy` is an iterator that skips `n` elements between each yield, where `n` is the given step.
 This struct is created by the `step_by()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -5255,11 +5133,8 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 - <span id="stepby-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for StepBy<I>`
@@ -5323,7 +5198,7 @@ struct Take<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../.source_1765633015/rayon-1.11.0/src/iter/take.rs#L10-L13)*
+*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../.source_1765894658/rayon-1.11.0/src/iter/take.rs#L10-L13)*
 
 `Take` is an iterator that iterates over the first `n` elements.
 This struct is created by the `take()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
@@ -5380,11 +5255,8 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](#in
 - <span id="take-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Take<I>`
@@ -5448,7 +5320,7 @@ struct TakeAny<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/take_any.rs:11-14`](../../../.source_1765633015/rayon-1.11.0/src/iter/take_any.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/take_any.rs:11-14`](../../../.source_1765894658/rayon-1.11.0/src/iter/take_any.rs#L11-L14)*
 
 `TakeAny` is an iterator that iterates over `n` elements from anywhere in `I`.
 This struct is created by the `take_any()` method on [`ParallelIterator`](#paralleliterator)
@@ -5497,11 +5369,8 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](#paral
 - <span id="takeany-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TakeAny<I>`
@@ -5563,7 +5432,7 @@ struct TakeAnyWhile<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/take_any_while.rs:13-16`](../../../.source_1765633015/rayon-1.11.0/src/iter/take_any_while.rs#L13-L16)*
+*Defined in [`rayon-1.11.0/src/iter/take_any_while.rs:13-16`](../../../.source_1765894658/rayon-1.11.0/src/iter/take_any_while.rs#L13-L16)*
 
 `TakeAnyWhile` is an iterator that iterates over elements from anywhere in `I`
 until the callback returns `false`.
@@ -5613,11 +5482,8 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 - <span id="takeanywhile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TakeAnyWhile<I, P>`
@@ -5681,7 +5547,7 @@ struct TryFold<I, U, ID, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:26-31`](../../../.source_1765633015/rayon-1.11.0/src/iter/try_fold.rs#L26-L31)*
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:26-31`](../../../.source_1765894658/rayon-1.11.0/src/iter/try_fold.rs#L26-L31)*
 
 `TryFold` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `try_fold()` method on [`ParallelIterator`](#paralleliterator)
@@ -5728,11 +5594,8 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](#paral
 - <span id="tryfold-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFold<I, U, ID, F>`
@@ -5795,7 +5658,7 @@ struct TryFoldWith<I, U: Try, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:180-184`](../../../.source_1765633015/rayon-1.11.0/src/iter/try_fold.rs#L180-L184)*
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:180-184`](../../../.source_1765894658/rayon-1.11.0/src/iter/try_fold.rs#L180-L184)*
 
 `TryFoldWith` is an iterator that applies a function over an iterator producing a single value.
 This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#paralleliterator)
@@ -5842,11 +5705,8 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#
 - <span id="tryfoldwith-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TryFoldWith<I, U, F>`
@@ -5908,7 +5768,7 @@ struct Update<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/update.rs:14-17`](../../../.source_1765633015/rayon-1.11.0/src/iter/update.rs#L14-L17)*
+*Defined in [`rayon-1.11.0/src/iter/update.rs:14-17`](../../../.source_1765894658/rayon-1.11.0/src/iter/update.rs#L14-L17)*
 
 `Update` is an iterator that mutates the elements of an
 underlying iterator before they are yielded.
@@ -5967,11 +5827,8 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 - <span id="update-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Update<I, F>`
@@ -6032,7 +5889,7 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 struct WalkTree<S, B>(WalkTreePostfix<S, B>);
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:459`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L459)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:459`](../../../.source_1765894658/rayon-1.11.0/src/iter/walk_tree.rs#L459)*
 
 ParallelIterator for arbitrary tree-shaped patterns.
 Returned by the [`walk_tree()`](walk_tree/index.md) function.
@@ -6066,11 +5923,8 @@ Returned by the [`walk_tree()`](walk_tree/index.md) function.
 - <span id="walktree-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTree<S, B>`
@@ -6124,7 +5978,7 @@ struct WalkTreePostfix<S, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:302-305`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L302-L305)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:302-305`](../../../.source_1765894658/rayon-1.11.0/src/iter/walk_tree.rs#L302-L305)*
 
 ParallelIterator for arbitrary tree-shaped patterns.
 Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
@@ -6158,11 +6012,8 @@ Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
 - <span id="walktreepostfix-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTreePostfix<S, B>`
@@ -6216,7 +6067,7 @@ struct WalkTreePrefix<S, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:76-79`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L76-L79)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:76-79`](../../../.source_1765894658/rayon-1.11.0/src/iter/walk_tree.rs#L76-L79)*
 
 ParallelIterator for arbitrary tree-shaped patterns.
 Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
@@ -6250,11 +6101,8 @@ Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
 - <span id="walktreeprefix-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WalkTreePrefix<S, B>`
@@ -6307,7 +6155,7 @@ struct WhileSome<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/while_some.rs:13-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/while_some.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/while_some.rs:13-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/while_some.rs#L13-L15)*
 
 `WhileSome` is an iterator that yields the `Some` elements of an iterator,
 halting as soon as any `None` is produced.
@@ -6358,11 +6206,8 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](#par
 - <span id="whilesome-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for WhileSome<I>`
@@ -6424,7 +6269,7 @@ struct Zip<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
 
 `Zip` is an iterator that zips up `a` and `b` into a single iterator
 of pairs. This struct is created by the `zip()` method on
@@ -6482,11 +6327,8 @@ of pairs. This struct is created by the `zip()` method on
 - <span id="zip-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Zip<A, B>`
@@ -6549,7 +6391,7 @@ struct ZipEq<A, B> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/zip_eq.rs:13-15`](../../../.source_1765633015/rayon-1.11.0/src/iter/zip_eq.rs#L13-L15)*
+*Defined in [`rayon-1.11.0/src/iter/zip_eq.rs:13-15`](../../../.source_1765894658/rayon-1.11.0/src/iter/zip_eq.rs#L13-L15)*
 
 An [`IndexedParallelIterator`](#indexedparalleliterator) that iterates over two parallel iterators of equal
 length simultaneously.
@@ -6609,11 +6451,8 @@ see its documentation for more information.
 - <span id="zipeq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ZipEq<A, B>`
@@ -6676,7 +6515,7 @@ see its documentation for more information.
 trait ParallelBridge: Sized { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../.source_1765633015/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../.source_1765894658/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
 
 Conversion trait to convert an `Iterator` to a `ParallelIterator`.
 
@@ -6735,7 +6574,7 @@ assert_eq!(&*output, &["one!", "three!", "two!"]);
 trait IntoParallelIterator { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:219-249`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L219-L249)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:219-249`](../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L219-L249)*
 
 `IntoParallelIterator` implements the conversion to a [`ParallelIterator`](#paralleliterator).
 
@@ -6754,6 +6593,25 @@ library's `std::iter::IntoIterator` trait.
 - `fn into_par_iter(self) -> <Self as >::Iter`
 
   Converts `self` into a parallel iterator.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  println!("counting in parallel:");
+  (0..100).into_par_iter()
+      .for_each(|i| println!("{}", i));
+  ```
+  
+  This conversion is often implicit for arguments to methods like [`zip`](zip/index.md).
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let v: Vec<_> = (0..5).into_par_iter().zip(5..10).collect();
+  assert_eq!(v, [(0, 5), (1, 6), (2, 7), (3, 8), (4, 9)]);
+  ```
 
 #### Implementors
 
@@ -6838,7 +6696,7 @@ library's `std::iter::IntoIterator` trait.
 trait IntoParallelRefIterator<'data> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:261-285`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L261-L285)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:261-285`](../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L261-L285)*
 
 `IntoParallelRefIterator` implements the conversion to a
 [`ParallelIterator`](#paralleliterator), providing shared references to the data.
@@ -6862,6 +6720,20 @@ this trait directly.
 - `fn par_iter(self: &'data Self) -> <Self as >::Iter`
 
   Converts `self` into a parallel iterator.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let v: Vec<_> = (0..100).collect();
+  assert_eq!(v.par_iter().sum::<i32>(), 100 * 99 / 2);
+  
+  // `v.par_iter()` is shorthand for `(&v).into_par_iter()`,
+  // producing the exact same references.
+  assert!(v.par_iter().zip(&v)
+           .all(|(a, b)| std::ptr::eq(a, b)));
+  ```
 
 #### Implementors
 
@@ -6873,7 +6745,7 @@ this trait directly.
 trait IntoParallelRefMutIterator<'data> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:309-329`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L309-L329)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:309-329`](../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L309-L329)*
 
 `IntoParallelRefMutIterator` implements the conversion to a
 [`ParallelIterator`](#paralleliterator), providing mutable references to the data.
@@ -6897,6 +6769,16 @@ this trait directly.
 - `fn par_iter_mut(self: &'data mut Self) -> <Self as >::Iter`
 
   Creates the parallel iterator from `self`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let mut v = vec![0usize; 5];
+  v.par_iter_mut().enumerate().for_each(|(i, x)| *x = i);
+  assert_eq!(v, [0, 1, 2, 3, 4]);
+  ```
 
 #### Implementors
 
@@ -6908,7 +6790,7 @@ this trait directly.
 trait ParallelIterator: Sized + Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:356-2421`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L356-L2421)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:356-2421`](../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L356-L2421)*
 
 Parallel version of the standard iterator trait.
 
@@ -6932,240 +6814,1666 @@ For examples of using parallel iterators, see [the docs on the
 - `fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result`
 
   Internal method used to define the behavior of this parallel
+  iterator. You should not need to call this directly.
+  
+  This method causes the iterator `self` to start producing
+  items and to feed them to the consumer `consumer` one by one.
+  It may split the consumer before doing so to create the
+  opportunity to produce in parallel.
+  
+  See the [README] for more details on the internals of parallel
+  iterators.
 
 #### Provided Methods
 
 - `fn for_each<OP>(self, op: OP)`
 
   Executes `OP` on each item produced by the iterator, in parallel.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  (0..100).into_par_iter().for_each(|x| println!("{:?}", x));
+  ```
 
 - `fn for_each_with<OP, T>(self, init: T, op: OP)`
 
   Executes `OP` on the given `init` value with each item produced by
+  the iterator, in parallel.
+  
+  The `init` value will be cloned only as needed to be paired with
+  the group of items in each rayon job.  It does not require the type
+  to be `Sync`.
+  
+  # Examples
+  
+  ```rust
+  use std::sync::mpsc::channel;
+  use rayon::prelude::*;
+  
+  let (sender, receiver) = channel();
+  
+  (0..5).into_par_iter().for_each_with(sender, |s, x| s.send(x).unwrap());
+  
+  let mut res: Vec<_> = receiver.iter().collect();
+  
+  res.sort();
+  
+  assert_eq!(&res[..], &[0, 1, 2, 3, 4])
+  ```
 
 - `fn for_each_init<OP, INIT, T>(self, init: INIT, op: OP)`
 
   Executes `OP` on a value returned by `init` with each item produced by
+  the iterator, in parallel.
+  
+  The `init` function will be called only as needed for a value to be
+  paired with the group of items in each rayon job.  There is no
+  constraint on that returned type at all!
+  
+  # Examples
+  
+  ```rust
+  use rand::Rng;
+  use rayon::prelude::*;
+  
+  let mut v = vec![0u8; 1_000_000];
+  
+  v.par_chunks_mut(1000)
+      .for_each_init(
+          || rand::rng(),
+          |rng, chunk| rng.fill(chunk),
+      );
+  
+  // There's a remote chance that this will fail...
+  for i in 0u8..=255 {
+      assert!(v.contains(&i));
+  }
+  ```
 
 - `fn try_for_each<OP, R>(self, op: OP) -> R`
 
   Executes a fallible `OP` on each item produced by the iterator, in parallel.
+  
+  If the `OP` returns `Result::Err` or `Option::None`, we will attempt to
+  stop processing the rest of the items in the iterator as soon as
+  possible, and we will return that terminating value.  Otherwise, we will
+  return an empty `Result::Ok(())` or `Option::Some(())`.  If there are
+  multiple errors in parallel, it is not specified which will be returned.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  use std::io::{self, Write};
+  
+  // This will stop iteration early if there's any write error, like
+  // having piped output get closed on the other end.
+  (0..100).into_par_iter()
+      .try_for_each(|x| writeln!(io::stdout(), "{:?}", x))
+      .expect("expected no write errors");
+  ```
 
 - `fn try_for_each_with<OP, T, R>(self, init: T, op: OP) -> R`
 
   Executes a fallible `OP` on the given `init` value with each item
+  produced by the iterator, in parallel.
+  
+  This combines the `init` semantics of `for_each_with()` and the
+  failure semantics of `try_for_each()`.
+  
+  
+  # Examples
+  
+  ```rust
+  use std::sync::mpsc::channel;
+  use rayon::prelude::*;
+  
+  let (sender, receiver) = channel();
+  
+  (0..5).into_par_iter()
+      .try_for_each_with(sender, |s, x| s.send(x))
+      .expect("expected no send errors");
+  
+  let mut res: Vec<_> = receiver.iter().collect();
+  
+  res.sort();
+  
+  assert_eq!(&res[..], &[0, 1, 2, 3, 4])
+  ```
 
 - `fn try_for_each_init<OP, INIT, T, R>(self, init: INIT, op: OP) -> R`
 
   Executes a fallible `OP` on a value returned by `init` with each item
+  produced by the iterator, in parallel.
+  
+  This combines the `init` semantics of `for_each_init()` and the
+  failure semantics of `try_for_each()`.
+  
+  
+  # Examples
+  
+  ```rust
+  use rand::{Rng, TryRngCore};
+  use rayon::prelude::*;
+  
+  let mut v = vec![0u8; 1_000_000];
+  
+  v.par_chunks_mut(1000)
+      .try_for_each_init(
+          || rand::rng(),
+          |rng, chunk| rng.try_fill_bytes(chunk),
+      )
+      .expect("expected no rand errors");
+  
+  // There's a remote chance that this will fail...
+  for i in 0u8..=255 {
+      assert!(v.contains(&i));
+  }
+  ```
 
 - `fn count(self) -> usize`
 
   Counts the number of items in this parallel iterator.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let count = (0..100).into_par_iter().count();
+  
+  assert_eq!(count, 100);
+  ```
 
 - `fn map<F, R>(self, map_op: F) -> Map<Self, F>`
 
   Applies `map_op` to each item of this iterator, producing a new
+  iterator with the results.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let mut par_iter = (0..5).into_par_iter().map(|x| x * 2);
+  
+  let doubles: Vec<_> = par_iter.collect();
+  
+  assert_eq!(&doubles[..], &[0, 2, 4, 6, 8]);
+  ```
 
 - `fn map_with<F, T, R>(self, init: T, map_op: F) -> MapWith<Self, T, F>`
 
   Applies `map_op` to the given `init` value with each item of this
+  iterator, producing a new iterator with the results.
+  
+  The `init` value will be cloned only as needed to be paired with
+  the group of items in each rayon job.  It does not require the type
+  to be `Sync`.
+  
+  # Examples
+  
+  ```rust
+  use std::sync::mpsc::channel;
+  use rayon::prelude::*;
+  
+  let (sender, receiver) = channel();
+  
+  let a: Vec<_> = (0..5)
+                  .into_par_iter()            // iterating over i32
+                  .map_with(sender, |s, x| {
+                      s.send(x).unwrap();     // sending i32 values through the channel
+                      x                       // returning i32
+                  })
+                  .collect();                 // collecting the returned values into a vector
+  
+  let mut b: Vec<_> = receiver.iter()         // iterating over the values in the channel
+                              .collect();     // and collecting them
+  b.sort();
+  
+  assert_eq!(a, b);
+  ```
 
 - `fn map_init<F, INIT, T, R>(self, init: INIT, map_op: F) -> MapInit<Self, INIT, F>`
 
   Applies `map_op` to a value returned by `init` with each item of this
+  iterator, producing a new iterator with the results.
+  
+  The `init` function will be called only as needed for a value to be
+  paired with the group of items in each rayon job.  There is no
+  constraint on that returned type at all!
+  
+  # Examples
+  
+  ```rust
+  use rand::Rng;
+  use rayon::prelude::*;
+  
+  let a: Vec<_> = (1i32..1_000_000)
+      .into_par_iter()
+      .map_init(
+          || rand::rng(),  // get the thread-local RNG
+          |rng, x| if rng.random() { // randomly negate items
+              -x
+          } else {
+              x
+          },
+      ).collect();
+  
+  // There's a remote chance that this will fail...
+  assert!(a.iter().any(|&x| x < 0));
+  assert!(a.iter().any(|&x| x > 0));
+  ```
 
 - `fn cloned<'a, T>(self) -> Cloned<Self>`
 
   Creates an iterator which clones all of its elements.  This may be
+  useful when you have an iterator over `&T`, but you need `T`, and
+  that type implements `Clone`. See also `copied()`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 2, 3];
+  
+  let v_cloned: Vec<_> = a.par_iter().cloned().collect();
+  
+  // cloned is the same as .map(|&x| x), for integers
+  let v_map: Vec<_> = a.par_iter().map(|&x| x).collect();
+  
+  assert_eq!(v_cloned, vec![1, 2, 3]);
+  assert_eq!(v_map, vec![1, 2, 3]);
+  ```
 
 - `fn copied<'a, T>(self) -> Copied<Self>`
 
   Creates an iterator which copies all of its elements.  This may be
+  useful when you have an iterator over `&T`, but you need `T`, and
+  that type implements `Copy`. See also `cloned()`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 2, 3];
+  
+  let v_copied: Vec<_> = a.par_iter().copied().collect();
+  
+  // copied is the same as .map(|&x| x), for integers
+  let v_map: Vec<_> = a.par_iter().map(|&x| x).collect();
+  
+  assert_eq!(v_copied, vec![1, 2, 3]);
+  assert_eq!(v_map, vec![1, 2, 3]);
+  ```
 
 - `fn inspect<OP>(self, inspect_op: OP) -> Inspect<Self, OP>`
 
   Applies `inspect_op` to a reference to each item of this iterator,
+  producing a new iterator passing through the original items.  This is
+  often useful for debugging to see what's happening in iterator stages.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 4, 2, 3];
+  
+  // this iterator sequence is complex.
+  let sum = a.par_iter()
+              .cloned()
+              .filter(|&x| x % 2 == 0)
+              .reduce(|| 0, |sum, i| sum + i);
+  
+  println!("{}", sum);
+  
+  // let's add some inspect() calls to investigate what's happening
+  let sum = a.par_iter()
+              .cloned()
+              .inspect(|x| println!("about to filter: {}", x))
+              .filter(|&x| x % 2 == 0)
+              .inspect(|x| println!("made it through filter: {}", x))
+              .reduce(|| 0, |sum, i| sum + i);
+  
+  println!("{}", sum);
+  ```
 
 - `fn update<F>(self, update_op: F) -> Update<Self, F>`
 
   Mutates each item of this iterator before yielding it.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let par_iter = (0..5).into_par_iter().update(|x| {*x *= 2;});
+  
+  let doubles: Vec<_> = par_iter.collect();
+  
+  assert_eq!(&doubles[..], &[0, 2, 4, 6, 8]);
+  ```
 
 - `fn filter<P>(self, filter_op: P) -> Filter<Self, P>`
 
   Applies `filter_op` to each item of this iterator, producing a new
+  iterator with only the items that gave `true` results.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let mut par_iter = (0..10).into_par_iter().filter(|x| x % 2 == 0);
+  
+  let even_numbers: Vec<_> = par_iter.collect();
+  
+  assert_eq!(&even_numbers[..], &[0, 2, 4, 6, 8]);
+  ```
 
 - `fn filter_map<P, R>(self, filter_op: P) -> FilterMap<Self, P>`
 
   Applies `filter_op` to each item of this iterator to get an `Option`,
+  producing a new iterator with only the items from `Some` results.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let mut par_iter = (0..10).into_par_iter()
+                          .filter_map(|x| {
+                              if x % 2 == 0 { Some(x * 3) }
+                              else { None }
+                          });
+  
+  let even_numbers: Vec<_> = par_iter.collect();
+  
+  assert_eq!(&even_numbers[..], &[0, 6, 12, 18, 24]);
+  ```
 
 - `fn flat_map<F, PI>(self, map_op: F) -> FlatMap<Self, F>`
 
   Applies `map_op` to each item of this iterator to get nested parallel iterators,
+  producing a new parallel iterator that flattens these back into one.
+  
+  See also [`flat_map_iter`](#method.flat_map_iter).
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [[1, 2], [3, 4], [5, 6], [7, 8]];
+  
+  let par_iter = a.par_iter().cloned().flat_map(|a| a.to_vec());
+  
+  let vec: Vec<_> = par_iter.collect();
+  
+  assert_eq!(&vec[..], &[1, 2, 3, 4, 5, 6, 7, 8]);
+  ```
 
 - `fn flat_map_iter<F, SI>(self, map_op: F) -> FlatMapIter<Self, F>`
 
   Applies `map_op` to each item of this iterator to get nested serial iterators,
+  producing a new parallel iterator that flattens these back into one.
+  
+  # `flat_map_iter` versus `flat_map`
+  
+  These two methods are similar but behave slightly differently. With [`flat_map`](flat_map/index.md),
+  each of the nested iterators must be a parallel iterator, and they will be further
+  split up with nested parallelism. With `flat_map_iter`, each nested iterator is a
+  sequential `Iterator`, and we only parallelize _between_ them, while the items
+  produced by each nested iterator are processed sequentially.
+  
+  When choosing between these methods, consider whether nested parallelism suits the
+  potential iterators at hand. If there's little computation involved, or its length
+  is much less than the outer parallel iterator, then it may perform better to avoid
+  the overhead of parallelism, just flattening sequentially with `flat_map_iter`.
+  If there is a lot of computation, potentially outweighing the outer parallel
+  iterator, then the nested parallelism of `flat_map` may be worthwhile.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  use std::cell::RefCell;
+  
+  let a = [[1, 2], [3, 4], [5, 6], [7, 8]];
+  
+  let par_iter = a.par_iter().flat_map_iter(|a| {
+      // The serial iterator doesn't have to be thread-safe, just its items.
+      let cell_iter = RefCell::new(a.iter().cloned());
+      std::iter::from_fn(move || cell_iter.borrow_mut().next())
+  });
+  
+  let vec: Vec<_> = par_iter.collect();
+  
+  assert_eq!(&vec[..], &[1, 2, 3, 4, 5, 6, 7, 8]);
+  ```
 
 - `fn flatten(self) -> Flatten<Self>`
 
   An adaptor that flattens parallel-iterable `Item`s into one large iterator.
+  
+  See also [`flatten_iter`](#method.flatten_iter).
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let x: Vec<Vec<_>> = vec![vec![1, 2], vec![3, 4]];
+  let y: Vec<_> = x.into_par_iter().flatten().collect();
+  
+  assert_eq!(y, vec![1, 2, 3, 4]);
+  ```
 
 - `fn flatten_iter(self) -> FlattenIter<Self>`
 
   An adaptor that flattens serial-iterable `Item`s into one large iterator.
+  
+  See also [`flatten`](#method.flatten) and the analogous comparison of
+  [`flat_map_iter` versus `flat_map`](#flat_map_iter-versus-flat_map).
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let x: Vec<Vec<_>> = vec![vec![1, 2], vec![3, 4]];
+  let iters: Vec<_> = x.into_iter().map(Vec::into_iter).collect();
+  let y: Vec<_> = iters.into_par_iter().flatten_iter().collect();
+  
+  assert_eq!(y, vec![1, 2, 3, 4]);
+  ```
 
 - `fn reduce<OP, ID>(self, identity: ID, op: OP) -> <Self as >::Item`
 
   Reduces the items in the iterator into one item using `op`.
+  The argument `identity` should be a closure that can produce
+  "identity" value which may be inserted into the sequence as
+  needed to create opportunities for parallel execution. So, for
+  example, if you are doing a summation, then `identity()` ought
+  to produce something that represents the zero for your type
+  (but consider just calling `sum()` in that case).
+  
+  # Examples
+  
+  ```rust
+  // Iterate over a sequence of pairs `(x0, y0), ..., (xN, yN)`
+  // and use reduce to compute one pair `(x0 + ... + xN, y0 + ... + yN)`
+  // where the first/second elements are summed separately.
+  use rayon::prelude::*;
+  let sums = [(0, 1), (5, 6), (16, 2), (8, 9)]
+             .par_iter()        // iterating over &(i32, i32)
+             .cloned()          // iterating over (i32, i32)
+             .reduce(|| (0, 0), // the "identity" is 0 in both columns
+                     |a, b| (a.0 + b.0, a.1 + b.1));
+  assert_eq!(sums, (0 + 5 + 16 + 8, 1 + 6 + 2 + 9));
+  ```
+  
+  **Note:** unlike a sequential `fold` operation, the order in
+  which `op` will be applied to reduce the result is not fully
+  specified. So `op` should be [associative] or else the results
+  will be non-deterministic. And of course `identity()` should
+  produce a true identity.
 
 - `fn reduce_with<OP>(self, op: OP) -> Option<<Self as >::Item>`
 
   Reduces the items in the iterator into one item using `op`.
+  If the iterator is empty, `None` is returned; otherwise,
+  `Some` is returned.
+  
+  This version of `reduce` is simple but somewhat less
+  efficient. If possible, it is better to call `reduce()`, which
+  requires an identity element.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let sums = [(0, 1), (5, 6), (16, 2), (8, 9)]
+             .par_iter()        // iterating over &(i32, i32)
+             .cloned()          // iterating over (i32, i32)
+             .reduce_with(|a, b| (a.0 + b.0, a.1 + b.1))
+             .unwrap();
+  assert_eq!(sums, (0 + 5 + 16 + 8, 1 + 6 + 2 + 9));
+  ```
+  
+  **Note:** unlike a sequential `fold` operation, the order in
+  which `op` will be applied to reduce the result is not fully
+  specified. So `op` should be [associative] or else the results
+  will be non-deterministic.
 
 - `fn try_reduce<T, OP, ID>(self, identity: ID, op: OP) -> <Self as >::Item`
 
   Reduces the items in the iterator into one item using a fallible `op`.
+  The `identity` argument is used the same way as in `reduce()`.
+  
+  If a `Result::Err` or `Option::None` item is found, or if `op` reduces
+  to one, we will attempt to stop processing the rest of the items in the
+  iterator as soon as possible, and we will return that terminating value.
+  Otherwise, we will return the final reduced `Result::Ok(T)` or
+  `Option::Some(T)`.  If there are multiple errors in parallel, it is not
+  specified which will be returned.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  // Compute the sum of squares, being careful about overflow.
+  fn sum_squares<I: IntoParallelIterator<Item = i32>>(iter: I) -> Option<i32> {
+      iter.into_par_iter()
+          .map(|i| i.checked_mul(i))            // square each item,
+          .try_reduce(|| 0, i32::checked_add)   // and add them up!
+  }
+  assert_eq!(sum_squares(0..5), Some(0 + 1 + 4 + 9 + 16));
+  
+  // The sum might overflow
+  assert_eq!(sum_squares(0..10_000), None);
+  
+  // Or the squares might overflow before it even reaches `try_reduce`
+  assert_eq!(sum_squares(1_000_000..1_000_001), None);
+  ```
 
 - `fn try_reduce_with<T, OP>(self, op: OP) -> Option<<Self as >::Item>`
 
   Reduces the items in the iterator into one item using a fallible `op`.
+  
+  Like `reduce_with()`, if the iterator is empty, `None` is returned;
+  otherwise, `Some` is returned.  Beyond that, it behaves like
+  `try_reduce()` for handling `Err`/`None`.
+  
+  
+  For instance, with `Option` items, the return value may be:
+  - `None`, the iterator was empty
+  - `Some(None)`, we stopped after encountering `None`.
+  - `Some(Some(x))`, the entire iterator reduced to `x`.
+  
+  With `Result` items, the nesting is more obvious:
+  - `None`, the iterator was empty
+  - `Some(Err(e))`, we stopped after encountering an error `e`.
+  - `Some(Ok(x))`, the entire iterator reduced to `x`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let files = ["/dev/null", "/does/not/exist"];
+  
+  // Find the biggest file
+  files.into_par_iter()
+      .map(|path| std::fs::metadata(path).map(|m| (path, m.len())))
+      .try_reduce_with(|a, b| {
+          Ok(if a.1 >= b.1 { a } else { b })
+      })
+      .expect("Some value, since the iterator is not empty")
+      .expect_err("not found");
+  ```
 
 - `fn fold<T, ID, F>(self, identity: ID, fold_op: F) -> Fold<Self, ID, F>`
 
   Parallel fold is similar to sequential fold except that the
+  sequence of items may be subdivided before it is
+  folded. Consider a list of numbers like `22 3 77 89 46`. If
+  you used sequential fold to add them (`fold(0, |a,b| a+b)`,
+  you would wind up first adding 0 + 22, then 22 + 3, then 25 +
+  77, and so forth. The **parallel fold** works similarly except
+  that it first breaks up your list into sublists, and hence
+  instead of yielding up a single sum at the end, it yields up
+  multiple sums. The number of results is nondeterministic, as
+  is the point where the breaks occur.
+  
+  So if we did the same parallel fold (`fold(0, |a,b| a+b)`) on
+  our example list, we might wind up with a sequence of two numbers,
+  like so:
+  
+  ```notrust
+  22 3 77 89 46
+        |     |
+      102   135
+  ```
+  
+  Or perhaps these three numbers:
+  
+  ```notrust
+  22 3 77 89 46
+        |  |  |
+      102 89 46
+  ```
+  
+  In general, Rayon will attempt to find good breaking points
+  that keep all of your cores busy.
+  
+  ### Fold versus reduce
+  
+  The `fold()` and `reduce()` methods each take an identity element
+  and a combining function, but they operate rather differently.
+  
+  `reduce()` requires that the identity function has the same
+  type as the things you are iterating over, and it fully
+  reduces the list of items into a single item. So, for example,
+  imagine we are iterating over a list of bytes `bytes: [128_u8,
+  64_u8, 64_u8]`. If we used `bytes.reduce(|| 0_u8, |a: u8, b:
+  u8| a + b)`, we would get an overflow. This is because `0`,
+  `a`, and `b` here are all bytes, just like the numbers in the
+  list (I wrote the types explicitly above, but those are the
+  only types you can use). To avoid the overflow, we would need
+  to do something like `bytes.map(|b| b as u32).reduce(|| 0, |a,
+  b| a + b)`, in which case our result would be `256`.
+  
+  In contrast, with `fold()`, the identity function does not
+  have to have the same type as the things you are iterating
+  over, and you potentially get back many results. So, if we
+  continue with the `bytes` example from the previous paragraph,
+  we could do `bytes.fold(|| 0_u32, |a, b| a + (b as u32))` to
+  convert our bytes into `u32`. And of course we might not get
+  back a single sum.
+  
+  There is a more subtle distinction as well, though it's
+  actually implied by the above points. When you use `reduce()`,
+  your reduction function is sometimes called with values that
+  were never part of your original parallel iterator (for
+  example, both the left and right might be a partial sum). With
+  `fold()`, in contrast, the left value in the fold function is
+  always the accumulator, and the right value is always from
+  your original sequence.
+  
+  ### Fold vs Map/Reduce
+  
+  Fold makes sense if you have some operation where it is
+  cheaper to create groups of elements at a time. For example,
+  imagine collecting characters into a string. If you were going
+  to use map/reduce, you might try this:
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let s =
+      ['a', 'b', 'c', 'd', 'e']
+      .par_iter()
+      .map(|c: &char| format!("{}", c))
+      .reduce(|| String::new(),
+              |mut a: String, b: String| { a.push_str(&b); a });
+  
+  assert_eq!(s, "abcde");
+  ```
+  
+  Because reduce produces the same type of element as its input,
+  you have to first map each character into a string, and then
+  you can reduce them. This means we create one string per
+  element in our iterator -- not so great. Using `fold`, we can
+  do this instead:
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let s =
+      ['a', 'b', 'c', 'd', 'e']
+      .par_iter()
+      .fold(|| String::new(),
+              |mut s: String, c: &char| { s.push(*c); s })
+      .reduce(|| String::new(),
+              |mut a: String, b: String| { a.push_str(&b); a });
+  
+  assert_eq!(s, "abcde");
+  ```
+  
+  Now `fold` will process groups of our characters at a time,
+  and we only make one string per group. We should wind up with
+  some small-ish number of strings roughly proportional to the
+  number of CPUs you have (it will ultimately depend on how busy
+  your processors are). Note that we still need to do a reduce
+  afterwards to combine those groups of strings into a single
+  string.
+  
+  You could use a similar trick to save partial results (e.g., a
+  cache) or something similar.
+  
+  ### Combining fold with other operations
+  
+  You can combine `fold` with `reduce` if you want to produce a
+  single value. This is then roughly equivalent to a map/reduce
+  combination in effect:
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let bytes = 0..22_u8;
+  let sum = bytes.into_par_iter()
+                 .fold(|| 0_u32, |a: u32, b: u8| a + (b as u32))
+                 .sum::<u32>();
+  
+  assert_eq!(sum, (0..22).sum()); // compare to sequential
+  ```
 
 - `fn fold_with<F, T>(self, init: T, fold_op: F) -> FoldWith<Self, T, F>`
 
   Applies `fold_op` to the given `init` value with each item of this
+  iterator, finally producing the value for further use.
+  
+  This works essentially like `fold(|| init.clone(), fold_op)`, except
+  it doesn't require the `init` type to be `Sync`, nor any other form
+  of added synchronization.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let bytes = 0..22_u8;
+  let sum = bytes.into_par_iter()
+                 .fold_with(0_u32, |a: u32, b: u8| a + (b as u32))
+                 .sum::<u32>();
+  
+  assert_eq!(sum, (0..22).sum()); // compare to sequential
+  ```
 
 - `fn try_fold<T, R, ID, F>(self, identity: ID, fold_op: F) -> TryFold<Self, R, ID, F>`
 
   Performs a fallible parallel fold.
+  
+  This is a variation of `fold()` for operations which can fail with
+  `Option::None` or `Result::Err`.  The first such failure stops
+  processing the local set of items, without affecting other folds in the
+  iterator's subdivisions.
+  
+  Often, `try_fold()` will be followed by `try_reduce()`
+  for a final reduction and global short-circuiting effect.
+  
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let bytes = 0..22_u8;
+  let sum = bytes.into_par_iter()
+                 .try_fold(|| 0_u32, |a: u32, b: u8| a.checked_add(b as u32))
+                 .try_reduce(|| 0, u32::checked_add);
+  
+  assert_eq!(sum, Some((0..22).sum())); // compare to sequential
+  ```
 
 - `fn try_fold_with<F, T, R>(self, init: T, fold_op: F) -> TryFoldWith<Self, R, F>`
 
   Performs a fallible parallel fold with a cloneable `init` value.
+  
+  This combines the `init` semantics of `fold_with()` and the failure
+  semantics of `try_fold()`.
+  
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let bytes = 0..22_u8;
+  let sum = bytes.into_par_iter()
+                 .try_fold_with(0_u32, |a: u32, b: u8| a.checked_add(b as u32))
+                 .try_reduce(|| 0, u32::checked_add);
+  
+  assert_eq!(sum, Some((0..22).sum())); // compare to sequential
+  ```
 
 - `fn sum<S>(self) -> S`
 
   Sums up the items in the iterator.
+  
+  Note that the order in items will be reduced is not specified,
+  so if the `+` operator is not truly [associative] \(as is the
+  case for floating point numbers), then the results are not
+  fully deterministic.
+  
+  Basically equivalent to `self.reduce(|| 0, |a, b| a + b)`,
+  except that the type of `0` and the `+` operation may vary
+  depending on the type of value being produced.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 5, 7];
+  
+  let sum: i32 = a.par_iter().sum();
+  
+  assert_eq!(sum, 13);
+  ```
 
 - `fn product<P>(self) -> P`
 
   Multiplies all the items in the iterator.
+  
+  Note that the order in items will be reduced is not specified,
+  so if the `*` operator is not truly [associative] \(as is the
+  case for floating point numbers), then the results are not
+  fully deterministic.
+  
+  Basically equivalent to `self.reduce(|| 1, |a, b| a * b)`,
+  except that the type of `1` and the `*` operation may vary
+  depending on the type of value being produced.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  fn factorial(n: u32) -> u32 {
+     (1..n+1).into_par_iter().product()
+  }
+  
+  assert_eq!(factorial(0), 1);
+  assert_eq!(factorial(1), 1);
+  assert_eq!(factorial(5), 120);
+  ```
 
 - `fn min(self) -> Option<<Self as >::Item>`
 
   Computes the minimum of all the items in the iterator. If the
+  iterator is empty, `None` is returned; otherwise, `Some(min)`
+  is returned.
+  
+  Note that the order in which the items will be reduced is not
+  specified, so if the `Ord` impl is not truly associative, then
+  the results are not deterministic.
+  
+  Basically equivalent to `self.reduce_with(|a, b| Ord::min(a, b))`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [45, 74, 32];
+  
+  assert_eq!(a.par_iter().min(), Some(&32));
+  
+  let b: [i32; 0] = [];
+  
+  assert_eq!(b.par_iter().min(), None);
+  ```
 
 - `fn min_by<F>(self, f: F) -> Option<<Self as >::Item>`
 
   Computes the minimum of all the items in the iterator with respect to
+  the given comparison function. If the iterator is empty, `None` is
+  returned; otherwise, `Some(min)` is returned.
+  
+  Note that the order in which the items will be reduced is not
+  specified, so if the comparison function is not associative, then
+  the results are not deterministic.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [-3_i32, 77, 53, 240, -1];
+  
+  assert_eq!(a.par_iter().min_by(|x, y| x.cmp(y)), Some(&-3));
+  ```
 
 - `fn min_by_key<K, F>(self, f: F) -> Option<<Self as >::Item>`
 
   Computes the item that yields the minimum value for the given
+  function. If the iterator is empty, `None` is returned;
+  otherwise, `Some(item)` is returned.
+  
+  Note that the order in which the items will be reduced is not
+  specified, so if the `Ord` impl is not truly associative, then
+  the results are not deterministic.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [-3_i32, 34, 2, 5, -10, -3, -23];
+  
+  assert_eq!(a.par_iter().min_by_key(|x| x.abs()), Some(&2));
+  ```
 
 - `fn max(self) -> Option<<Self as >::Item>`
 
   Computes the maximum of all the items in the iterator. If the
+  iterator is empty, `None` is returned; otherwise, `Some(max)`
+  is returned.
+  
+  Note that the order in which the items will be reduced is not
+  specified, so if the `Ord` impl is not truly associative, then
+  the results are not deterministic.
+  
+  Basically equivalent to `self.reduce_with(|a, b| Ord::max(a, b))`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [45, 74, 32];
+  
+  assert_eq!(a.par_iter().max(), Some(&74));
+  
+  let b: [i32; 0] = [];
+  
+  assert_eq!(b.par_iter().max(), None);
+  ```
 
 - `fn max_by<F>(self, f: F) -> Option<<Self as >::Item>`
 
   Computes the maximum of all the items in the iterator with respect to
+  the given comparison function. If the iterator is empty, `None` is
+  returned; otherwise, `Some(max)` is returned.
+  
+  Note that the order in which the items will be reduced is not
+  specified, so if the comparison function is not associative, then
+  the results are not deterministic.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [-3_i32, 77, 53, 240, -1];
+  
+  assert_eq!(a.par_iter().max_by(|x, y| x.abs().cmp(&y.abs())), Some(&240));
+  ```
 
 - `fn max_by_key<K, F>(self, f: F) -> Option<<Self as >::Item>`
 
   Computes the item that yields the maximum value for the given
+  function. If the iterator is empty, `None` is returned;
+  otherwise, `Some(item)` is returned.
+  
+  Note that the order in which the items will be reduced is not
+  specified, so if the `Ord` impl is not truly associative, then
+  the results are not deterministic.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [-3_i32, 34, 2, 5, -10, -3, -23];
+  
+  assert_eq!(a.par_iter().max_by_key(|x| x.abs()), Some(&34));
+  ```
 
 - `fn chain<C>(self, chain: C) -> Chain<Self, <C as >::Iter>`
 
   Takes two iterators and creates a new iterator over both.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [0, 1, 2];
+  let b = [9, 8, 7];
+  
+  let par_iter = a.par_iter().chain(b.par_iter());
+  
+  let chained: Vec<_> = par_iter.cloned().collect();
+  
+  assert_eq!(&chained[..], &[0, 1, 2, 9, 8, 7]);
+  ```
 
 - `fn find_any<P>(self, predicate: P) -> Option<<Self as >::Item>`
 
   Searches for **some** item in the parallel iterator that
+  matches the given predicate and returns it. This operation
+  is similar to [`find` on sequential iterators][`find`](find/index.md) but
+  the item returned may not be the **first** one in the parallel
+  sequence which matches, since we search the entire sequence in parallel.
+  
+  Once a match is found, we will attempt to stop processing
+  the rest of the items in the iterator as soon as possible
+  (just as `find` stops iterating once a match is found).
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 2, 3, 3];
+  
+  assert_eq!(a.par_iter().find_any(|&&x| x == 3), Some(&3));
+  
+  assert_eq!(a.par_iter().find_any(|&&x| x == 100), None);
+  ```
 
 - `fn find_first<P>(self, predicate: P) -> Option<<Self as >::Item>`
 
   Searches for the sequentially **first** item in the parallel iterator
+  that matches the given predicate and returns it.
+  
+  Once a match is found, all attempts to the right of the match
+  will be stopped, while attempts to the left must continue in case
+  an earlier match is found.
+  
+  For added performance, you might consider using `find_first` in conjunction with
+  `by_exponential_blocks()`.
+  
+  Note that not all parallel iterators have a useful order, much like
+  sequential `HashMap` iteration, so "first" may be nebulous.  If you
+  just want the first match that discovered anywhere in the iterator,
+  `find_any` is a better choice.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 2, 3, 3];
+  
+  assert_eq!(a.par_iter().find_first(|&&x| x == 3), Some(&3));
+  
+  assert_eq!(a.par_iter().find_first(|&&x| x == 100), None);
+  ```
 
 - `fn find_last<P>(self, predicate: P) -> Option<<Self as >::Item>`
 
   Searches for the sequentially **last** item in the parallel iterator
+  that matches the given predicate and returns it.
+  
+  Once a match is found, all attempts to the left of the match
+  will be stopped, while attempts to the right must continue in case
+  a later match is found.
+  
+  Note that not all parallel iterators have a useful order, much like
+  sequential `HashMap` iteration, so "last" may be nebulous.  When the
+  order doesn't actually matter to you, `find_any` is a better choice.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 2, 3, 3];
+  
+  assert_eq!(a.par_iter().find_last(|&&x| x == 3), Some(&3));
+  
+  assert_eq!(a.par_iter().find_last(|&&x| x == 100), None);
+  ```
 
 - `fn find_map_any<P, R>(self, predicate: P) -> Option<R>`
 
   Applies the given predicate to the items in the parallel iterator
+  and returns **any** non-None result of the map operation.
+  
+  Once a non-None value is produced from the map operation, we will
+  attempt to stop processing the rest of the items in the iterator
+  as soon as possible.
+  
+  Note that this method only returns **some** item in the parallel
+  iterator that is not None from the map predicate. The item returned
+  may not be the **first** non-None value produced in the parallel
+  sequence, since the entire sequence is mapped over in parallel.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let c = ["lol", "NaN", "5", "5"];
+  
+  let found_number = c.par_iter().find_map_any(|s| s.parse().ok());
+  
+  assert_eq!(found_number, Some(5));
+  ```
 
 - `fn find_map_first<P, R>(self, predicate: P) -> Option<R>`
 
   Applies the given predicate to the items in the parallel iterator and
+  returns the sequentially **first** non-None result of the map operation.
+  
+  Once a non-None value is produced from the map operation, all attempts
+  to the right of the match will be stopped, while attempts to the left
+  must continue in case an earlier match is found.
+  
+  Note that not all parallel iterators have a useful order, much like
+  sequential `HashMap` iteration, so "first" may be nebulous. If you
+  just want the first non-None value discovered anywhere in the iterator,
+  `find_map_any` is a better choice.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let c = ["lol", "NaN", "2", "5"];
+  
+  let first_number = c.par_iter().find_map_first(|s| s.parse().ok());
+  
+  assert_eq!(first_number, Some(2));
+  ```
 
 - `fn find_map_last<P, R>(self, predicate: P) -> Option<R>`
 
   Applies the given predicate to the items in the parallel iterator and
+  returns the sequentially **last** non-None result of the map operation.
+  
+  Once a non-None value is produced from the map operation, all attempts
+  to the left of the match will be stopped, while attempts to the right
+  must continue in case a later match is found.
+  
+  Note that not all parallel iterators have a useful order, much like
+  sequential `HashMap` iteration, so "first" may be nebulous. If you
+  just want the first non-None value discovered anywhere in the iterator,
+  `find_map_any` is a better choice.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let c = ["lol", "NaN", "2", "5"];
+  
+  let last_number = c.par_iter().find_map_last(|s| s.parse().ok());
+  
+  assert_eq!(last_number, Some(5));
+  ```
 
 - `fn any<P>(self, predicate: P) -> bool`
 
   Searches for **some** item in the parallel iterator that
+  matches the given predicate, and if so returns true.  Once
+  a match is found, we'll attempt to stop process the rest
+  of the items.  Proving that there's no match, returning false,
+  does require visiting every item.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [0, 12, 3, 4, 0, 23, 0];
+  
+  let is_valid = a.par_iter().any(|&x| x > 10);
+  
+  assert!(is_valid);
+  ```
 
 - `fn all<P>(self, predicate: P) -> bool`
 
   Tests that every item in the parallel iterator matches the given
+  predicate, and if so returns true.  If a counter-example is found,
+  we'll attempt to stop processing more items, then return false.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [0, 12, 3, 4, 0, 23, 0];
+  
+  let is_valid = a.par_iter().all(|&x| x > 10);
+  
+  assert!(!is_valid);
+  ```
 
 - `fn while_some<T>(self) -> WhileSome<Self>`
 
   Creates an iterator over the `Some` items of this iterator, halting
+  as soon as any `None` is found.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  use std::sync::atomic::{AtomicUsize, Ordering};
+  
+  let counter = AtomicUsize::new(0);
+  let value = (0_i32..2048)
+      .into_par_iter()
+      .map(|x| {
+               counter.fetch_add(1, Ordering::SeqCst);
+               if x < 1024 { Some(x) } else { None }
+           })
+      .while_some()
+      .max();
+  
+  assert!(value < Some(1024));
+  assert!(counter.load(Ordering::SeqCst) < 2048); // should not have visited every single one
+  ```
 
 - `fn panic_fuse(self) -> PanicFuse<Self>`
 
   Wraps an iterator with a fuse in case of panics, to halt all threads
+  as soon as possible.
+  
+  Panics within parallel iterators are always propagated to the caller,
+  but they don't always halt the rest of the iterator right away, due to
+  the internal semantics of [`join`](../../rayon_core/join/index.md). This adaptor makes a greater effort
+  to stop processing other items sooner, with the cost of additional
+  synchronization overhead, which may also inhibit some optimizations.
+  
+  # Examples
+  
+  If this code didn't use `panic_fuse()`, it would continue processing
+  many more items in other threads (with long sleep delays) before the
+  panic is finally propagated.
+  
+  ```should_panic
+  use rayon::prelude::*;
+  use std::{thread, time};
+  
+  (0..1_000_000)
+      .into_par_iter()
+      .panic_fuse()
+      .for_each(|i| {
+          // simulate some work
+          thread::sleep(time::Duration::from_secs(1));
+          assert!(i > 0); // oops!
+      });
+  ```
 
 - `fn collect<C>(self) -> C`
 
   Creates a fresh collection containing all the elements produced
+  by this parallel iterator.
+  
+  You may prefer `collect_into_vec()` implemented on
+  [`IndexedParallelIterator`](#indexedparalleliterator), if your underlying iterator also implements
+  it. `collect_into_vec()` allocates efficiently with precise knowledge
+  of how many elements the iterator contains, and even allows you to reuse
+  an existing vector's backing store rather than allocating a fresh vector.
+  
+  See also `collect_vec_list()` for collecting into a
+  `LinkedList<Vec<T>>`.
+  
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let sync_vec: Vec<_> = (0..100).into_iter().collect();
+  
+  let async_vec: Vec<_> = (0..100).into_par_iter().collect();
+  
+  assert_eq!(sync_vec, async_vec);
+  ```
+  
+  You can collect a pair of collections like [`unzip`](#method.unzip)
+  for paired items:
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [(0, 1), (1, 2), (2, 3), (3, 4)];
+  let (first, second): (Vec<_>, Vec<_>) = a.into_par_iter().collect();
+  
+  assert_eq!(first, [0, 1, 2, 3]);
+  assert_eq!(second, [1, 2, 3, 4]);
+  ```
+  
+  Or like [`partition_map`](#method.partition_map) for `Either` items:
+  
+  ```rust
+  use rayon::prelude::*;
+  use rayon::iter::Either;
+  
+  let (left, right): (Vec<_>, Vec<_>) = (0..8).into_par_iter().map(|x| {
+      if x % 2 == 0 {
+          Either::Left(x * 4)
+      } else {
+          Either::Right(x * 3)
+      }
+  }).collect();
+  
+  assert_eq!(left, [0, 8, 16, 24]);
+  assert_eq!(right, [3, 9, 15, 21]);
+  ```
+  
+  You can even collect an arbitrarily-nested combination of pairs and `Either`:
+  
+  ```rust
+  use rayon::prelude::*;
+  use rayon::iter::Either;
+  
+  let (first, (left, right)): (Vec<_>, (Vec<_>, Vec<_>))
+      = (0..8).into_par_iter().map(|x| {
+          if x % 2 == 0 {
+              (x, Either::Left(x * 4))
+          } else {
+              (-x, Either::Right(x * 3))
+          }
+      }).collect();
+  
+  assert_eq!(first, [0, -1, 2, -3, 4, -5, 6, -7]);
+  assert_eq!(left, [0, 8, 16, 24]);
+  assert_eq!(right, [3, 9, 15, 21]);
+  ```
+  
+  All of that can _also_ be combined with short-circuiting collection of
+  `Result` or `Option` types:
+  
+  ```rust
+  use rayon::prelude::*;
+  use rayon::iter::Either;
+  
+  let result: Result<(Vec<_>, (Vec<_>, Vec<_>)), _>
+      = (0..8).into_par_iter().map(|x| {
+          if x > 5 {
+              Err(x)
+          } else if x % 2 == 0 {
+              Ok((x, Either::Left(x * 4)))
+          } else {
+              Ok((-x, Either::Right(x * 3)))
+          }
+      }).collect();
+  
+  let error = result.unwrap_err();
+  assert!(error == 6 || error == 7);
+  ```
 
 - `fn unzip<A, B, FromA, FromB>(self) -> (FromA, FromB)`
 
   Unzips the items of a parallel iterator into a pair of arbitrary
+  `ParallelExtend` containers.
+  
+  You may prefer to use `unzip_into_vecs()`, which allocates more
+  efficiently with precise knowledge of how many elements the
+  iterator contains, and even allows you to reuse existing
+  vectors' backing stores rather than allocating fresh vectors.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [(0, 1), (1, 2), (2, 3), (3, 4)];
+  
+  let (left, right): (Vec<_>, Vec<_>) = a.par_iter().cloned().unzip();
+  
+  assert_eq!(left, [0, 1, 2, 3]);
+  assert_eq!(right, [1, 2, 3, 4]);
+  ```
+  
+  Nested pairs can be unzipped too.
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let (values, (squares, cubes)): (Vec<_>, (Vec<_>, Vec<_>)) = (0..4).into_par_iter()
+      .map(|i| (i, (i * i, i * i * i)))
+      .unzip();
+  
+  assert_eq!(values, [0, 1, 2, 3]);
+  assert_eq!(squares, [0, 1, 4, 9]);
+  assert_eq!(cubes, [0, 1, 8, 27]);
+  ```
 
 - `fn partition<A, B, P>(self, predicate: P) -> (A, B)`
 
   Partitions the items of a parallel iterator into a pair of arbitrary
+  `ParallelExtend` containers.  Items for which the `predicate` returns
+  true go into the first container, and the rest go into the second.
+  
+  Note: unlike the standard `Iterator::partition`, this allows distinct
+  collection types for the left and right items.  This is more flexible,
+  but may require new type annotations when converting sequential code
+  that used type inference assuming the two were the same.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let (left, right): (Vec<_>, Vec<_>) = (0..8).into_par_iter().partition(|x| x % 2 == 0);
+  
+  assert_eq!(left, [0, 2, 4, 6]);
+  assert_eq!(right, [1, 3, 5, 7]);
+  ```
 
 - `fn partition_map<A, B, P, L, R>(self, predicate: P) -> (A, B)`
 
   Partitions and maps the items of a parallel iterator into a pair of
+  arbitrary `ParallelExtend` containers.  `Either::Left` items go into
+  the first container, and `Either::Right` items go into the second.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  use rayon::iter::Either;
+  
+  let (left, right): (Vec<_>, Vec<_>) = (0..8).into_par_iter()
+      .partition_map(|x| {
+          if x % 2 == 0 {
+              Either::Left(x * 4)
+          } else {
+              Either::Right(x * 3)
+          }
+      });
+  
+  assert_eq!(left, [0, 8, 16, 24]);
+  assert_eq!(right, [3, 9, 15, 21]);
+  ```
+  
+  Nested `Either` enums can be split as well.
+  
+  ```rust
+  use rayon::prelude::*;
+  use rayon::iter::Either::*;
+  
+  let ((fizzbuzz, fizz), (buzz, other)): ((Vec<_>, Vec<_>), (Vec<_>, Vec<_>)) = (1..20)
+      .into_par_iter()
+      .partition_map(|x| match (x % 3, x % 5) {
+          (0, 0) => Left(Left(x)),
+          (0, _) => Left(Right(x)),
+          (_, 0) => Right(Left(x)),
+          (_, _) => Right(Right(x)),
+      });
+  
+  assert_eq!(fizzbuzz, [15]);
+  assert_eq!(fizz, [3, 6, 9, 12, 18]);
+  assert_eq!(buzz, [5, 10]);
+  assert_eq!(other, [1, 2, 4, 7, 8, 11, 13, 14, 16, 17, 19]);
+  ```
 
 - `fn intersperse(self, element: <Self as >::Item) -> Intersperse<Self>`
 
   Intersperses clones of an element between items of this iterator.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let x = vec![1, 2, 3];
+  let r: Vec<_> = x.into_par_iter().intersperse(-1).collect();
+  
+  assert_eq!(r, vec![1, -1, 2, -1, 3]);
+  ```
 
 - `fn take_any(self, n: usize) -> TakeAny<Self>`
 
   Creates an iterator that yields `n` elements from *anywhere* in the original iterator.
+  
+  This is similar to `IndexedParallelIterator::take` without being
+  constrained to the "first" `n` of the original iterator order. The
+  taken items will still maintain their relative order where that is
+  visible in `collect`, `reduce`, and similar outputs.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let result: Vec<_> = (0..100)
+      .into_par_iter()
+      .filter(|&x| x % 2 == 0)
+      .take_any(5)
+      .collect();
+  
+  assert_eq!(result.len(), 5);
+  assert!(result.windows(2).all(|w| w[0] < w[1]));
+  ```
 
 - `fn skip_any(self, n: usize) -> SkipAny<Self>`
 
   Creates an iterator that skips `n` elements from *anywhere* in the original iterator.
+  
+  This is similar to `IndexedParallelIterator::skip` without being
+  constrained to the "first" `n` of the original iterator order. The
+  remaining items will still maintain their relative order where that is
+  visible in `collect`, `reduce`, and similar outputs.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let result: Vec<_> = (0..100)
+      .into_par_iter()
+      .filter(|&x| x % 2 == 0)
+      .skip_any(5)
+      .collect();
+  
+  assert_eq!(result.len(), 45);
+  assert!(result.windows(2).all(|w| w[0] < w[1]));
+  ```
 
 - `fn take_any_while<P>(self, predicate: P) -> TakeAnyWhile<Self, P>`
 
   Creates an iterator that takes elements from *anywhere* in the original iterator
+  until the given `predicate` returns `false`.
+  
+  The `predicate` may be anything -- e.g. it could be checking a fact about the item, a
+  global condition unrelated to the item itself, or some combination thereof.
+  
+  If parallel calls to the `predicate` race and give different results, then the
+  `true` results will still take those particular items, while respecting the `false`
+  result from elsewhere to skip any further items.
+  
+  This is similar to `Iterator::take_while` without being constrained to the original
+  iterator order. The taken items will still maintain their relative order where that is
+  visible in `collect`, `reduce`, and similar outputs.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let result: Vec<_> = (0..100)
+      .into_par_iter()
+      .take_any_while(|x| *x < 50)
+      .collect();
+  
+  assert!(result.len() <= 50);
+  assert!(result.windows(2).all(|w| w[0] < w[1]));
+  ```
+  
+  ```rust
+  use rayon::prelude::*;
+  use std::sync::atomic::AtomicUsize;
+  use std::sync::atomic::Ordering::Relaxed;
+  
+  // Collect any group of items that sum <= 1000
+  let quota = AtomicUsize::new(1000);
+  let result: Vec<_> = (0_usize..100)
+      .into_par_iter()
+      .take_any_while(|&x| {
+          quota.fetch_update(Relaxed, Relaxed, |q| q.checked_sub(x))
+              .is_ok()
+      })
+      .collect();
+  
+  let sum = result.iter().sum::<usize>();
+  assert!(matches!(sum, 902..=1000));
+  ```
 
 - `fn skip_any_while<P>(self, predicate: P) -> SkipAnyWhile<Self, P>`
 
   Creates an iterator that skips elements from *anywhere* in the original iterator
+  until the given `predicate` returns `false`.
+  
+  The `predicate` may be anything -- e.g. it could be checking a fact about the item, a
+  global condition unrelated to the item itself, or some combination thereof.
+  
+  If parallel calls to the `predicate` race and give different results, then the
+  `true` results will still skip those particular items, while respecting the `false`
+  result from elsewhere to skip any further items.
+  
+  This is similar to `Iterator::skip_while` without being constrained to the original
+  iterator order. The remaining items will still maintain their relative order where that is
+  visible in `collect`, `reduce`, and similar outputs.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let result: Vec<_> = (0..100)
+      .into_par_iter()
+      .skip_any_while(|x| *x < 50)
+      .collect();
+  
+  assert!(result.len() >= 50);
+  assert!(result.windows(2).all(|w| w[0] < w[1]));
+  ```
 
 - `fn collect_vec_list(self) -> LinkedList<Vec<<Self as >::Item>>`
 
   Collects this iterator into a linked list of vectors.
+  
+  This is useful when you need to condense a parallel iterator into a collection,
+  but have no specific requirements for what that collection should be. If you
+  plan to store the collection longer-term, `Vec<T>` is, as always, likely the
+  best default choice, despite the overhead that comes from concatenating each
+  vector. Or, if this is an `IndexedParallelIterator`, you should also prefer to
+  just collect to a `Vec<T>`.
+  
+  Internally, most [`FromParallelIterator`](#fromparalleliterator)/[`ParallelExtend`](#parallelextend) implementations
+  use this strategy; each job collecting their chunk of the iterator to a `Vec<T>`
+  and those chunks getting merged into a `LinkedList`, before then extending the
+  collection with each vector. This is a very efficient way to collect an
+  unindexed parallel iterator, without much intermediate data movement.
+  
+  # Examples
+  
+  ```rust
+  use std::collections::LinkedList;
+  use rayon::prelude::*;
+  
+  let result: LinkedList<Vec<_>> = (0..=100)
+      .into_par_iter()
+      .filter(|x| x % 2 == 0)
+      .flat_map(|x| 0..x)
+      .collect_vec_list();
+  
+  // `par_iter.collect_vec_list().into_iter().flatten()` turns
+  // a parallel iterator into a serial one
+  let total_len = result.into_iter().flatten().count();
+  assert_eq!(total_len, 2550);
+  ```
 
 - `fn opt_len(&self) -> Option<usize>`
 
   Internal method used to define the behavior of this parallel
+  iterator. You should not need to call this directly.
+  
+  Returns the number of items produced by this iterator, if known
+  statically. This can be used by consumers to trigger special fast
+  paths. Therefore, if `Some(_)` is returned, this iterator must only
+  use the (indexed) `Consumer` methods when driving a consumer, such
+  as `split_at()`. Calling `UnindexedConsumer::split_off_left()` or
+  other `UnindexedConsumer` methods -- or returning an inaccurate
+  value -- may result in panics.
+  
+  This method is currently used to optimize `collect` for want
+  of true Rust specialization; it may be removed when
+  specialization is stable.
 
 #### Implementors
 
@@ -7294,7 +8602,7 @@ For examples of using parallel iterators, see [the docs on the
 trait IndexedParallelIterator: ParallelIterator { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:2439-3244`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L2439-L3244)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:2439-3244`](../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L2439-L3244)*
 
 An iterator that supports "random access" to its data, meaning
 that you can split it at arbitrary indices and draw data from
@@ -7307,136 +8615,609 @@ those points.
 - `fn len(&self) -> usize`
 
   Produces an exact count of how many items this iterator will
+  produce, presuming no panic occurs.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let par_iter = (0..100).into_par_iter().zip(vec![0; 10]);
+  assert_eq!(par_iter.len(), 10);
+  
+  let vec: Vec<_> = par_iter.collect();
+  assert_eq!(vec.len(), 10);
+  ```
 
 - `fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result`
 
   Internal method used to define the behavior of this parallel
+  iterator. You should not need to call this directly.
+  
+  This method causes the iterator `self` to start producing
+  items and to feed them to the consumer `consumer` one by one.
+  It may split the consumer before doing so to create the
+  opportunity to produce in parallel. If a split does happen, it
+  will inform the consumer of the index where the split should
+  occur (unlike `ParallelIterator::drive_unindexed()`).
+  
+  See the [README] for more details on the internals of parallel
+  iterators.
 
 - `fn with_producer<CB: ProducerCallback<<Self as >::Item>>(self, callback: CB) -> <CB as >::Output`
 
   Internal method used to define the behavior of this parallel
+  iterator. You should not need to call this directly.
+  
+  This method converts the iterator into a producer P and then
+  invokes `callback.callback()` with P. Note that the type of
+  this producer is not defined as part of the API, since
+  `callback` must be defined generically for all producers. This
+  allows the producer type to contain references; it also means
+  that parallel iterators can adjust that type without causing a
+  breaking change.
+  
+  See the [README] for more details on the internals of parallel
+  iterators.
 
 #### Provided Methods
 
 - `fn by_exponential_blocks(self) -> ExponentialBlocks<Self>`
 
   Divides an iterator into sequential blocks of exponentially-increasing size.
+  
+  Normally, parallel iterators are recursively divided into tasks in parallel.
+  This adaptor changes the default behavior by splitting the iterator into a **sequence**
+  of parallel iterators of increasing sizes.
+  Sizes grow exponentially in order to avoid creating
+  too many blocks. This also allows to balance the current block with all previous ones.
+  
+  This can have many applications but the most notable ones are:
+  - better performance with `find_first()`
+  - more predictable performance with `find_any()`
+    or any interruptible computation
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  assert_eq!((0..10_000).into_par_iter()
+                        .by_exponential_blocks()
+                        .find_first(|&e| e==4_999), Some(4_999))
+  ```
+  
+  In this example, without blocks, rayon will split the initial range into two but all work
+  on the right hand side (from 5,000 onwards) is **useless** since the sequential algorithm
+  never goes there. This means that if two threads are used there will be **no** speedup **at
+  all**.
+  
+  `by_exponential_blocks` on the other hand will start with the leftmost range from 0
+  to `p` (threads number), continue with p to 3p, the 3p to 7p...
+  
+  Each subrange is treated in parallel, while all subranges are treated sequentially.
+  We therefore ensure a logarithmic number of blocks (and overhead) while guaranteeing
+  we stop at the first block containing the searched data.
 
 - `fn by_uniform_blocks(self, block_size: usize) -> UniformBlocks<Self>`
 
   Divides an iterator into sequential blocks of the given size.
+  
+  Normally, parallel iterators are recursively divided into tasks in parallel.
+  This adaptor changes the default behavior by splitting the iterator into a **sequence**
+  of parallel iterators of given `block_size`.
+  The main application is to obtain better
+  memory locality (especially if the reduce operation re-use folded data).
+  
+  **Panics** if `block_size` is 0.
+  
+  # Example
+  ```rust
+  use rayon::prelude::*;
+  // during most reductions v1 and v2 fit the cache
+  let v = (0u32..10_000_000)
+      .into_par_iter()
+      .by_uniform_blocks(1_000_000)
+      .fold(Vec::new, |mut v, e| { v.push(e); v})
+      .reduce(Vec::new, |mut v1, mut v2| { v1.append(&mut v2); v1});
+  assert_eq!(v, (0u32..10_000_000).collect::<Vec<u32>>());
+  ```
 
 - `fn collect_into_vec(self, target: &mut Vec<<Self as >::Item>)`
 
   Collects the results of the iterator into the specified
+  vector. The vector is always cleared before execution
+  begins. If possible, reusing the vector across calls can lead
+  to better performance since it reuses the same backing buffer.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  // any prior data will be cleared
+  let mut vec = vec![-1, -2, -3];
+  
+  (0..5).into_par_iter()
+      .collect_into_vec(&mut vec);
+  
+  assert_eq!(vec, [0, 1, 2, 3, 4]);
+  ```
 
 - `fn unzip_into_vecs<A, B>(self, left: &mut Vec<A>, right: &mut Vec<B>)`
 
   Unzips the results of the iterator into the specified
+  vectors. The vectors are always cleared before execution
+  begins. If possible, reusing the vectors across calls can lead
+  to better performance since they reuse the same backing buffer.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  // any prior data will be cleared
+  let mut left = vec![42; 10];
+  let mut right = vec![-1; 10];
+  
+  (10..15).into_par_iter()
+      .enumerate()
+      .unzip_into_vecs(&mut left, &mut right);
+  
+  assert_eq!(left, [0, 1, 2, 3, 4]);
+  assert_eq!(right, [10, 11, 12, 13, 14]);
+  ```
 
 - `fn zip<Z>(self, zip_op: Z) -> Zip<Self, <Z as >::Iter>`
 
   Iterates over tuples `(A, B)`, where the items `A` are from
+  this iterator and `B` are from the iterator given as argument.
+  Like the `zip` method on ordinary iterators, if the two
+  iterators are of unequal length, you only get the items they
+  have in common.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let result: Vec<_> = (1..4)
+      .into_par_iter()
+      .zip(vec!['a', 'b', 'c'])
+      .collect();
+  
+  assert_eq!(result, [(1, 'a'), (2, 'b'), (3, 'c')]);
+  ```
 
 - `fn zip_eq<Z>(self, zip_op: Z) -> ZipEq<Self, <Z as >::Iter>`
 
   The same as `Zip`, but requires that both iterators have the same length.
+  
+  # Panics
+  Will panic if `self` and `zip_op` are not the same length.
+  
+  ```should_panic
+  use rayon::prelude::*;
+  
+  let one = [1u8];
+  let two = [2u8, 2];
+  let one_iter = one.par_iter();
+  let two_iter = two.par_iter();
+  
+  // this will panic
+  let zipped: Vec<(&u8, &u8)> = one_iter.zip_eq(two_iter).collect();
+  
+  // we should never get here
+  assert_eq!(1, zipped.len());
+  ```
 
 - `fn interleave<I>(self, other: I) -> Interleave<Self, <I as >::Iter>`
 
   Interleaves elements of this iterator and the other given
+  iterator. Alternately yields elements from this iterator and
+  the given iterator, until both are exhausted. If one iterator
+  is exhausted before the other, the last elements are provided
+  from the other.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let (x, y) = (vec![1, 2], vec![3, 4, 5, 6]);
+  let r: Vec<i32> = x.into_par_iter().interleave(y).collect();
+  assert_eq!(r, vec![1, 3, 2, 4, 5, 6]);
+  ```
 
 - `fn interleave_shortest<I>(self, other: I) -> InterleaveShortest<Self, <I as >::Iter>`
 
   Interleaves elements of this iterator and the other given
+  iterator, until one is exhausted.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let (x, y) = (vec![1, 2, 3, 4], vec![5, 6]);
+  let r: Vec<i32> = x.into_par_iter().interleave_shortest(y).collect();
+  assert_eq!(r, vec![1, 5, 2, 6, 3]);
+  ```
 
 - `fn chunks(self, chunk_size: usize) -> Chunks<Self>`
 
   Splits an iterator up into fixed-size chunks.
+  
+  Returns an iterator that returns `Vec`s of the given number of elements.
+  If the number of elements in the iterator is not divisible by `chunk_size`,
+  the last chunk may be shorter than `chunk_size`.
+  
+  See also `par_chunks()` and `par_chunks_mut()` for similar behavior on
+  slices, without having to allocate intermediate `Vec`s for the chunks.
+  
+  
+  **Panics** if `chunk_size` is 0.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let a = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let r: Vec<Vec<i32>> = a.into_par_iter().chunks(3).collect();
+  assert_eq!(r, vec![vec![1,2,3], vec![4,5,6], vec![7,8,9], vec![10]]);
+  ```
 
 - `fn fold_chunks<T, ID, F>(self, chunk_size: usize, identity: ID, fold_op: F) -> FoldChunks<Self, ID, F>`
 
   Splits an iterator into fixed-size chunks, performing a sequential `fold()` on
+  each chunk.
+  
+  Returns an iterator that produces a folded result for each chunk of items
+  produced by this iterator.
+  
+  This works essentially like:
+  
+  ```text
+  iter.chunks(chunk_size)
+      .map(|chunk|
+          chunk.into_iter()
+              .fold(identity, fold_op)
+      )
+  ```
+  
+  except there is no per-chunk allocation overhead.
+  
+  **Panics** if `chunk_size` is 0.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let nums = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let chunk_sums = nums.into_par_iter().fold_chunks(2, || 0, |a, n| a + n).collect::<Vec<_>>();
+  assert_eq!(chunk_sums, vec![3, 7, 11, 15, 19]);
+  ```
 
 - `fn fold_chunks_with<T, F>(self, chunk_size: usize, init: T, fold_op: F) -> FoldChunksWith<Self, T, F>`
 
   Splits an iterator into fixed-size chunks, performing a sequential `fold()` on
+  each chunk.
+  
+  Returns an iterator that produces a folded result for each chunk of items
+  produced by this iterator.
+  
+  This works essentially like `fold_chunks(chunk_size, || init.clone(), fold_op)`,
+  except it doesn't require the `init` type to be `Sync`, nor any other form of
+  added synchronization.
+  
+  **Panics** if `chunk_size` is 0.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  let nums = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let chunk_sums = nums.into_par_iter().fold_chunks_with(2, 0, |a, n| a + n).collect::<Vec<_>>();
+  assert_eq!(chunk_sums, vec![3, 7, 11, 15, 19]);
+  ```
 
 - `fn cmp<I>(self, other: I) -> Ordering`
 
   Lexicographically compares the elements of this `ParallelIterator` with those of
+  another.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  use std::cmp::Ordering::*;
+  
+  let x = vec![1, 2, 3];
+  assert_eq!(x.par_iter().cmp(&vec![1, 3, 0]), Less);
+  assert_eq!(x.par_iter().cmp(&vec![1, 2, 3]), Equal);
+  assert_eq!(x.par_iter().cmp(&vec![1, 2]), Greater);
+  ```
 
 - `fn partial_cmp<I>(self, other: I) -> Option<Ordering>`
 
   Lexicographically compares the elements of this `ParallelIterator` with those of
+  another.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  use std::cmp::Ordering::*;
+  
+  let x = vec![1.0, 2.0, 3.0];
+  assert_eq!(x.par_iter().partial_cmp(&vec![1.0, 3.0, 0.0]), Some(Less));
+  assert_eq!(x.par_iter().partial_cmp(&vec![1.0, 2.0, 3.0]), Some(Equal));
+  assert_eq!(x.par_iter().partial_cmp(&vec![1.0, 2.0]), Some(Greater));
+  assert_eq!(x.par_iter().partial_cmp(&vec![1.0, f64::NAN]), None);
+  ```
 
 - `fn eq<I>(self, other: I) -> bool`
 
   Determines if the elements of this `ParallelIterator`
+  are equal to those of another
 
 - `fn ne<I>(self, other: I) -> bool`
 
   Determines if the elements of this `ParallelIterator`
+  are unequal to those of another
 
 - `fn lt<I>(self, other: I) -> bool`
 
   Determines if the elements of this `ParallelIterator`
+  are lexicographically less than those of another.
 
 - `fn le<I>(self, other: I) -> bool`
 
   Determines if the elements of this `ParallelIterator`
+  are less than or equal to those of another.
 
 - `fn gt<I>(self, other: I) -> bool`
 
   Determines if the elements of this `ParallelIterator`
+  are lexicographically greater than those of another.
 
 - `fn ge<I>(self, other: I) -> bool`
 
   Determines if the elements of this `ParallelIterator`
+  are greater than or equal to those of another.
 
 - `fn enumerate(self) -> Enumerate<Self>`
 
   Yields an index along with each item.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let chars = vec!['a', 'b', 'c'];
+  let result: Vec<_> = chars
+      .into_par_iter()
+      .enumerate()
+      .collect();
+  
+  assert_eq!(result, [(0, 'a'), (1, 'b'), (2, 'c')]);
+  ```
 
 - `fn step_by(self, step: usize) -> StepBy<Self>`
 
    Creates an iterator that steps by the given amount
+  
+   # Examples
+  
+   ```rust
+  use rayon::prelude::*;
+  
+   let range = (3..10);
+   let result: Vec<i32> = range
+      .into_par_iter()
+      .step_by(3)
+      .collect();
+  
+   assert_eq!(result, [3, 6, 9])
+   ```
 
 - `fn skip(self, n: usize) -> Skip<Self>`
 
   Creates an iterator that skips the first `n` elements.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let result: Vec<_> = (0..100)
+      .into_par_iter()
+      .skip(95)
+      .collect();
+  
+  assert_eq!(result, [95, 96, 97, 98, 99]);
+  ```
 
 - `fn take(self, n: usize) -> Take<Self>`
 
   Creates an iterator that yields the first `n` elements.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let result: Vec<_> = (0..100)
+      .into_par_iter()
+      .take(5)
+      .collect();
+  
+  assert_eq!(result, [0, 1, 2, 3, 4]);
+  ```
 
 - `fn position_any<P>(self, predicate: P) -> Option<usize>`
 
   Searches for **some** item in the parallel iterator that
+  matches the given predicate, and returns its index.  Like
+  `ParallelIterator::find_any`, the parallel search will not
+  necessarily find the **first** match, and once a match is
+  found we'll attempt to stop processing any more.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 2, 3, 3];
+  
+  let i = a.par_iter().position_any(|&x| x == 3).expect("found");
+  assert!(i == 2 || i == 3);
+  
+  assert_eq!(a.par_iter().position_any(|&x| x == 100), None);
+  ```
 
 - `fn position_first<P>(self, predicate: P) -> Option<usize>`
 
   Searches for the sequentially **first** item in the parallel iterator
+  that matches the given predicate, and returns its index.
+  
+  Like `ParallelIterator::find_first`, once a match is found,
+  all attempts to the right of the match will be stopped, while
+  attempts to the left must continue in case an earlier match
+  is found.
+  
+  Note that not all parallel iterators have a useful order, much like
+  sequential `HashMap` iteration, so "first" may be nebulous.  If you
+  just want the first match that discovered anywhere in the iterator,
+  `position_any` is a better choice.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 2, 3, 3];
+  
+  assert_eq!(a.par_iter().position_first(|&x| x == 3), Some(2));
+  
+  assert_eq!(a.par_iter().position_first(|&x| x == 100), None);
+  ```
 
 - `fn position_last<P>(self, predicate: P) -> Option<usize>`
 
   Searches for the sequentially **last** item in the parallel iterator
+  that matches the given predicate, and returns its index.
+  
+  Like `ParallelIterator::find_last`, once a match is found,
+  all attempts to the left of the match will be stopped, while
+  attempts to the right must continue in case a later match
+  is found.
+  
+  Note that not all parallel iterators have a useful order, much like
+  sequential `HashMap` iteration, so "last" may be nebulous.  When the
+  order doesn't actually matter to you, `position_any` is a better
+  choice.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let a = [1, 2, 3, 3];
+  
+  assert_eq!(a.par_iter().position_last(|&x| x == 3), Some(3));
+  
+  assert_eq!(a.par_iter().position_last(|&x| x == 100), None);
+  ```
 
 - `fn positions<P>(self, predicate: P) -> Positions<Self, P>`
 
   Searches for items in the parallel iterator that match the given
+  predicate, and returns their indices.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let primes = vec![2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
+  
+  // Find the positions of primes congruent to 1 modulo 6
+  let p1mod6: Vec<_> = primes.par_iter().positions(|&p| p % 6 == 1).collect();
+  assert_eq!(p1mod6, [3, 5, 7]); // primes 7, 13, and 19
+  
+  // Find the positions of primes congruent to 5 modulo 6
+  let p5mod6: Vec<_> = primes.par_iter().positions(|&p| p % 6 == 5).collect();
+  assert_eq!(p5mod6, [2, 4, 6, 8, 9]); // primes 5, 11, 17, 23, and 29
+  ```
 
 - `fn rev(self) -> Rev<Self>`
 
   Produces a new iterator with the elements of this iterator in
+  reverse order.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let result: Vec<_> = (0..5)
+      .into_par_iter()
+      .rev()
+      .collect();
+  
+  assert_eq!(result, [4, 3, 2, 1, 0]);
+  ```
 
 - `fn with_min_len(self, min: usize) -> MinLen<Self>`
 
   Sets the minimum length of iterators desired to process in each
+  rayon job.  Rayon will not split any smaller than this length, but
+  of course an iterator could already be smaller to begin with.
+  
+  Producers like `zip` and `interleave` will use greater of the two
+  minimums.
+  Chained iterators and iterators inside `flat_map` may each use
+  their own minimum length.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let min = (0..1_000_000)
+      .into_par_iter()
+      .with_min_len(1234)
+      .fold(|| 0, |acc, _| acc + 1) // count how many are in this segment
+      .min().unwrap();
+  
+  assert!(min >= 1234);
+  ```
 
 - `fn with_max_len(self, max: usize) -> MaxLen<Self>`
 
   Sets the maximum length of iterators desired to process in each
+  rayon job.  Rayon will try to split at least below this length,
+  unless that would put it below the length from `with_min_len()`.
+  For example, given min=10 and max=15, a length of 16 will not be
+  split any further.
+  
+  Producers like `zip` and `interleave` will use lesser of the two
+  maximums.
+  Chained iterators and iterators inside `flat_map` may each use
+  their own maximum length.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let max = (0..1_000_000)
+      .into_par_iter()
+      .with_max_len(1234)
+      .fold(|| 0, |acc, _| acc + 1) // count how many are in this segment
+      .max().unwrap();
+  
+  assert!(max <= 1234);
+  ```
 
 #### Implementors
 
@@ -7507,7 +9288,7 @@ where
     T: Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:3280-3303`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L3280-L3303)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3280-3303`](../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L3280-L3303)*
 
 `FromParallelIterator` implements the creation of a collection
 from a [`ParallelIterator`](#paralleliterator). By implementing
@@ -7547,6 +9328,19 @@ assert_eq!(bh.mass, 4000);
 - `fn from_par_iter<I>(par_iter: I) -> Self`
 
   Creates an instance of the collection from the parallel iterator `par_iter`.
+  
+  If your collection is not naturally parallel, the easiest (and
+  fastest) way to do this is often to collect `par_iter` into a
+  `LinkedList` (via `collect_vec_list`) or another intermediate
+  data structure and then sequentially extend your collection. However,
+  a more 'native' technique is to use the `par_iter.fold` or
+  `par_iter.fold_with` methods to create the collection.
+  Alternatively, if your collection is 'natively' parallel, you
+  can use `par_iter.for_each` to process each element in turn.
+  
+  
+  
+  
 
 #### Implementors
 
@@ -7579,7 +9373,7 @@ where
     T: Send { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:3333-3353`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L3333-L3353)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3333-3353`](../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L3333-L3353)*
 
 `ParallelExtend` extends an existing collection with items from a [`ParallelIterator`](#paralleliterator).
 
@@ -7615,6 +9409,18 @@ assert_eq!(bh.mass, 4080);
 - `fn par_extend<I>(&mut self, par_iter: I)`
 
   Extends an instance of the collection with the elements drawn
+  from the parallel iterator `par_iter`.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let mut vec = vec![];
+  vec.par_extend(0..5);
+  vec.par_extend((0..5).into_par_iter().map(|i| i * i));
+  assert_eq!(vec, [0, 1, 2, 3, 4, 0, 1, 4, 9, 16]);
+  ```
 
 #### Implementors
 
@@ -7640,7 +9446,7 @@ assert_eq!(bh.mass, 4080);
 trait ParallelDrainFull { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:3360-3394`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L3360-L3394)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3360-3394`](../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L3360-L3394)*
 
 `ParallelDrainFull` creates a parallel iterator that moves all items
 from a collection while retaining the original capacity.
@@ -7659,6 +9465,30 @@ instead, where you can drain fully with `par_drain(..)`.
 - `fn par_drain(self) -> <Self as >::Iter`
 
   Returns a draining parallel iterator over an entire collection.
+  
+  When the iterator is dropped, all items are removed, even if the
+  iterator was not fully consumed. If the iterator is leaked, for example
+  using `std::mem::forget`, it is unspecified how many items are removed.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  use std::collections::{BinaryHeap, HashSet};
+  
+  let squares: HashSet<i32> = (0..10).map(|x| x * x).collect();
+  
+  let mut heap: BinaryHeap<_> = squares.iter().copied().collect();
+  assert_eq!(
+      // heaps are drained in arbitrary order
+      heap.par_drain()
+          .inspect(|x| assert!(squares.contains(x)))
+          .count(),
+      squares.len(),
+  );
+  assert!(heap.is_empty());
+  assert!(heap.capacity() >= squares.len());
+  ```
 
 #### Implementors
 
@@ -7672,7 +9502,7 @@ instead, where you can drain fully with `par_drain(..)`.
 trait ParallelDrainRange<Idx> { ... }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/mod.rs:3400-3467`](../../../.source_1765633015/rayon-1.11.0/src/iter/mod.rs#L3400-L3467)*
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3400-3467`](../../../.source_1765894658/rayon-1.11.0/src/iter/mod.rs#L3400-L3467)*
 
 `ParallelDrainRange` creates a parallel iterator that moves a range of items
 from a collection while retaining the original capacity.
@@ -7690,6 +9520,63 @@ Types which are not indexable may implement [`ParallelDrainFull`](#paralleldrain
 - `fn par_drain<R: RangeBounds<Idx>>(self, range: R) -> <Self as >::Iter`
 
   Returns a draining parallel iterator over a range of the collection.
+  
+  When the iterator is dropped, all items in the range are removed, even
+  if the iterator was not fully consumed. If the iterator is leaked, for
+  example using `std::mem::forget`, it is unspecified how many items are
+  removed.
+  
+  # Examples
+  
+  ```rust
+  use rayon::prelude::*;
+  
+  let squares: Vec<i32> = (0..10).map(|x| x * x).collect();
+  
+  println!("RangeFull");
+  let mut vec = squares.clone();
+  assert!(vec.par_drain(..)
+             .eq(squares.par_iter().copied()));
+  assert!(vec.is_empty());
+  assert!(vec.capacity() >= squares.len());
+  
+  println!("RangeFrom");
+  let mut vec = squares.clone();
+  assert!(vec.par_drain(5..)
+             .eq(squares[5..].par_iter().copied()));
+  assert_eq!(&vec[..], &squares[..5]);
+  assert!(vec.capacity() >= squares.len());
+  
+  println!("RangeTo");
+  let mut vec = squares.clone();
+  assert!(vec.par_drain(..5)
+             .eq(squares[..5].par_iter().copied()));
+  assert_eq!(&vec[..], &squares[5..]);
+  assert!(vec.capacity() >= squares.len());
+  
+  println!("RangeToInclusive");
+  let mut vec = squares.clone();
+  assert!(vec.par_drain(..=5)
+             .eq(squares[..=5].par_iter().copied()));
+  assert_eq!(&vec[..], &squares[6..]);
+  assert!(vec.capacity() >= squares.len());
+  
+  println!("Range");
+  let mut vec = squares.clone();
+  assert!(vec.par_drain(3..7)
+             .eq(squares[3..7].par_iter().copied()));
+  assert_eq!(&vec[..3], &squares[..3]);
+  assert_eq!(&vec[3..], &squares[7..]);
+  assert!(vec.capacity() >= squares.len());
+  
+  println!("RangeInclusive");
+  let mut vec = squares.clone();
+  assert!(vec.par_drain(3..=7)
+             .eq(squares[3..=7].par_iter().copied()));
+  assert_eq!(&vec[..3], &squares[..3]);
+  assert_eq!(&vec[3..], &squares[8..]);
+  assert!(vec.capacity() >= squares.len());
+  ```
 
 #### Implementors
 
@@ -7706,7 +9593,7 @@ Types which are not indexable may implement [`ParallelDrainFull`](#paralleldrain
 fn empty<T: Send>() -> Empty<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/empty.rs:24-28`](../../../.source_1765633015/rayon-1.11.0/src/iter/empty.rs#L24-L28)*
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:24-28`](../../../.source_1765894658/rayon-1.11.0/src/iter/empty.rs#L24-L28)*
 
 Creates a parallel iterator that produces nothing.
 
@@ -7732,7 +9619,7 @@ assert_eq!(pi.count(), 10_000);
 fn once<T: Send>(item: T) -> Once<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/once.rs:24-26`](../../../.source_1765633015/rayon-1.11.0/src/iter/once.rs#L24-L26)*
+*Defined in [`rayon-1.11.0/src/iter/once.rs:24-26`](../../../.source_1765894658/rayon-1.11.0/src/iter/once.rs#L24-L26)*
 
 Creates a parallel iterator that produces an element exactly once.
 
@@ -7761,7 +9648,7 @@ assert_eq!(pi.position_any(|x| x < 0), Some(1234));
 fn repeat<T: Clone + Send>(element: T) -> Repeat<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:30-32`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L30-L32)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:30-32`](../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L30-L32)*
 
 Creates a parallel iterator that endlessly repeats `element` (by
 cloning it). Note that this iterator has "infinite" length, so
@@ -7784,7 +9671,7 @@ assert_eq!(x, vec![(22, 0), (22, 1), (22, 2)]);
 fn repeat_n<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:126-132`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L126-L132)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:126-132`](../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L126-L132)*
 
 Creates a parallel iterator that produces `n` repeats of `element`
 (by cloning it).
@@ -7807,7 +9694,7 @@ where
     S: Fn(D) -> (D, Option<D>) + Sync
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/splitter.rs:106-112`](../../../.source_1765633015/rayon-1.11.0/src/iter/splitter.rs#L106-L112)*
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:106-112`](../../../.source_1765894658/rayon-1.11.0/src/iter/splitter.rs#L106-L112)*
 
 The `split` function takes arbitrary data and a closure that knows how to
 split it, and turns this into a `ParallelIterator`.
@@ -7920,7 +9807,7 @@ where
     I: IntoIterator<Item = S, IntoIter: DoubleEndedIterator>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:497-508`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L497-L508)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:497-508`](../../../.source_1765894658/rayon-1.11.0/src/iter/walk_tree.rs#L497-L508)*
 
 Create a tree like parallel iterator from an initial root node.
 The `children_of` function should take a node and iterate on all of its child nodes.
@@ -7969,7 +9856,7 @@ where
     I: IntoIterator<Item = S>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:444-454`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L444-L454)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:444-454`](../../../.source_1765894658/rayon-1.11.0/src/iter/walk_tree.rs#L444-L454)*
 
 Create a tree like postfix parallel iterator from an initial root node.
 The `children_of` function should take a node and iterate on all of its child nodes.
@@ -8086,7 +9973,7 @@ where
     I: IntoIterator<Item = S, IntoIter: DoubleEndedIterator>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:204-214`](../../../.source_1765633015/rayon-1.11.0/src/iter/walk_tree.rs#L204-L214)*
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:204-214`](../../../.source_1765894658/rayon-1.11.0/src/iter/walk_tree.rs#L204-L214)*
 
 Create a tree-like prefix parallel iterator from an initial root node.
 The `children_of` function should take a node and return an iterator over its child nodes.
@@ -8197,7 +10084,7 @@ assert_eq!(v, vec![10, 3, 14, 18]);
 fn repeatn<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/repeat.rs:139-141`](../../../.source_1765633015/rayon-1.11.0/src/iter/repeat.rs#L139-L141)*
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:139-141`](../../../.source_1765894658/rayon-1.11.0/src/iter/repeat.rs#L139-L141)*
 
 Creates a parallel iterator that produces `n` repeats of `element`
 (by cloning it).

@@ -172,41 +172,25 @@ the current module, with each segment being a clickable link.
 - <span id="breadcrumbgenerator-new"></span>`const fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
 
   Create a new breadcrumb generator.
-
   
-
   # Arguments
-
   
-
   * `module_path` - The module path segments
-
   * `crate_name` - The name of the crate for the root link
 
 - <span id="breadcrumbgenerator-generate"></span>`fn generate(&self) -> String`
 
   Generate breadcrumb navigation markdown.
-
   
-
   Returns empty string for root module.
-
   
-
   # Example Output
-
   
-
   For `module_path = ["error", "types"]` and `crate_name = "docs_md"`:
-
   ```markdown
-
   *[docs_md](../../index.md) / [error](../index.md) / [types](index.md)*
-
   
-
   ---
-
   ```
 
 #### Trait Implementations
@@ -236,11 +220,8 @@ the current module, with each segment being a clickable link.
 - <span id="breadcrumbgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for BreadcrumbGenerator<'a>`
@@ -307,13 +288,9 @@ side effects.
 - <span id="markdowncapture-insert"></span>`fn insert(&mut self, path: String, content: String)`
 
   Add a file to the capture.
-
   
-
   # Arguments
-
   * `path` - Relative path of the file (e.g., "index.md" or "span/index.md")
-
   * `content` - The markdown content for this file
 
 - <span id="markdowncapture-get"></span>`fn get(&self, path: &str) -> Option<&String>`
@@ -335,9 +312,7 @@ side effects.
 - <span id="markdowncapture-to-snapshot-string"></span>`fn to_snapshot_string(&self) -> String`
 
   Convert all captured files to a single string for snapshot testing.
-
   
-
   Files are sorted by path and separated with clear headers.
 
 - <span id="markdowncapture-into-inner"></span>`fn into_inner(self) -> HashMap<String, String>`
@@ -379,11 +354,8 @@ side effects.
 - <span id="markdowncapture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MarkdownCapture`
@@ -513,11 +485,8 @@ Configuration options for markdown rendering.
 - <span id="renderconfig-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for RenderConfig`
@@ -647,11 +616,8 @@ Requires the `source-parsing` feature to have any effect.
 - <span id="sourceconfig-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceConfig`
@@ -767,103 +733,66 @@ This struct is passed to all rendering components and provides:
 - <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../index.md#args), [`RenderConfig`](config/index.md#renderconfig)
 
   Create a new generator context from crate data and CLI arguments.
-
   
-
   Builds the path map, impl map, and link registry needed for generation.
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `args` - CLI arguments containing output path, format, and options
-
   * `config` - Rendering configuration options
 
 - <span id="generatorcontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
   Set the source directory for path transformation.
-
   
-
   This can be called after construction if a `.source_*` directory
-
   is detected or specified via CLI. Only has effect if `source_locations`
-
   is enabled in the config.
 
 - <span id="generatorcontext-build-impl-map"></span>`fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
 
   Build a map from type ID to all impl blocks for that type.
-
   
-
   This enables rendering the "Implementations" and "Trait Implementations"
-
   sections for structs, enums, and other types.
-
   
-
   Uses the `impls` field on Struct/Enum/Union items directly rather than
-
   scanning all items and checking the `for_` field. This provides clearer
-
   semantics and leverages `rustdoc_types` structured data.
 
 - <span id="generatorcontext-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
 
   Generate a sort key for an impl block.
-
   
-
   Inherent impls (no trait) sort before trait impls.
-
   Trait impls are sorted by trait name.
 
 - <span id="generatorcontext-should-include-item"></span>`const fn should_include_item(&self, item: &Item) -> bool`
 
   Check if an item should be included based on visibility settings.
-
   
-
   By default, all items are included. If `--exclude-private`
-
   is set, only public items are included.
-
   
-
   # Visibility Levels
-
   
-
   - `Public` - Always included
-
   - `Crate`, `Restricted`, `Default` - Included by default, excluded with `--exclude-private`
 
 - <span id="generatorcontext-count-modules"></span>`fn count_modules(&self, item: &Item) -> usize`
 
   Count the total number of modules that will be generated.
-
   
-
   Used to initialize the progress bar with the correct total.
-
   Respects the `--exclude-private` flag when counting.
 
 - <span id="generatorcontext-build-path-name-index"></span>`fn build_path_name_index(krate: &'a Crate) -> HashMap<&'a str, Vec<Id>>`
 
   Build an index mapping item names to their IDs for fast lookup.
-
   
-
   This index is built once at context construction time and shared
-
   across all `DocLinkProcessor` instances, eliminating redundant
-
   index building for each item with documentation.
 
 #### Trait Implementations
@@ -893,11 +822,8 @@ This struct is passed to all rendering components and provides:
 - <span id="generatorcontext-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for GeneratorContext<'a>`
@@ -1026,41 +952,29 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-with-index"></span>`fn with_index(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str, path_name_index: &HashMap<&'a str, Vec<Id>>) -> Self` — [`LinkRegistry`](../linker/index.md#linkregistry)
 
   Create a new processor with a pre-built path name index.
-
   
-
   This is the preferred constructor when the index has already been built
-
   (e.g., in `GeneratorContext`), avoiding redundant index construction.
 
 - <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../linker/index.md#linkregistry)
 
   Create a new processor for the given context.
-
   
-
   Builds the path name index internally. Prefer `Self::with_index` when
-
   the index has already been built to avoid redundant computation.
 
 - <span id="doclinkprocessor-process"></span>`fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
   Process a doc string and resolve all intra-doc links.
-
   
-
   Uses the item's `links` map to resolve link text to IDs,
-
   then uses `LinkRegistry` to convert IDs to relative paths.
 
 - <span id="doclinkprocessor-process-links-protected"></span>`fn process_links_protected(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
   Process links while protecting code block contents.
-
   
-
   Uses [`CodeBlockTracker`](doc_links/index.md) to identify which lines are inside code blocks
-
   (and should be left unchanged) vs regular text (which needs link processing).
 
 - <span id="doclinkprocessor-process-line"></span>`fn process_line(&self, line: &str, item_links: &HashMap<String, Id>) -> String`
@@ -1090,29 +1004,19 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-process-html-links-with-context"></span>`fn process_html_links_with_context(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
   Process HTML-style rustdoc links with context awareness.
-
   
-
   Instead of blindly converting all HTML links to local anchors,
-
   this method checks if the item actually exists on the current page.
-
   If not, it tries to resolve to docs.rs or removes the broken link.
-
   
-
   For method links (e.g., `struct.Foo.html#method.bar`), creates a
-
   method anchor like `#foo-bar` for deep linking.
 
 - <span id="doclinkprocessor-resolve-html-link-to-url"></span>`fn resolve_html_link_to_url(&self, item_name: &str, item_kind: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
   Try to resolve an HTML-style link to a proper URL.
-
   
-
   Returns a URL if the item can be resolved (either locally or to docs.rs),
-
   or None if the item cannot be found.
 
 - <span id="doclinkprocessor-kind-matches"></span>`fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool`
@@ -1126,47 +1030,28 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-resolve-with-strategies"></span>`fn resolve_with_strategies<T, F>(&self, link_text: &str, item_links: &HashMap<String, Id>, resolver: F) -> Option<T>`
 
   Generic 3-strategy resolution with per-strategy display names.
-
   
-
   Unifies the resolution logic used by `resolve_to_url` and `resolve_link`.
-
   The resolver closure receives both the `Id` and the appropriate display name
-
   for that strategy:
-
   - Strategy 1 (exact match): uses original `link_text` (preserves qualified paths)
-
   - Strategy 2 & 3 (fuzzy matches): uses `short_name`
-
   
-
   # Type Parameters
-
   
-
   * `T` - The result type (e.g., `String` for URLs or markdown links)
-
   
-
   # Arguments
-
   
-
   * `link_text` - Original link text from documentation
-
   * `item_links` - Pre-resolved links from rustdoc
-
   * `resolver` - Closure that takes `(Id, display_name)` and returns `Option<T>`
 
 - <span id="doclinkprocessor-resolve-to-url"></span>`fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
   Resolve a link reference to a URL.
-
   
-
   Uses the generic 3-strategy resolver. Display name is ignored since
-
   we only need the URL.
 
 - <span id="doclinkprocessor-get-url-for-id"></span>`fn get_url_for_id(&self, id: Id) -> Option<String>`
@@ -1180,21 +1065,15 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-resolve-method-link"></span>`fn resolve_method_link(&self, type_name: &str, method_name: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
   Resolve a method link to a markdown link with method anchor.
-
   
-
   Links to the type's page with a method anchor for deep linking
-
   (e.g., `#hashmap-new` for `HashMap::new`).
 
 - <span id="doclinkprocessor-resolve-link"></span>`fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String`
 
   Try to resolve link text to a markdown link.
-
   
-
   Uses the generic 3-strategy resolver. Falls back to unresolved link format
-
   (backtick-wrapped text in brackets) if resolution fails.
 
 - <span id="doclinkprocessor-create-link-for-id"></span>`fn create_link_for_id(&self, id: Id, display_name: &str) -> Option<String>`
@@ -1232,11 +1111,8 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for DocLinkProcessor<'a>`
@@ -1286,95 +1162,58 @@ Utility functions for document links
 - <span id="doclinkutils-convert-html-links"></span>`fn convert_html_links(docs: &str) -> String`
 
   Convert HTML-style rustdoc links to markdown anchors.
-
   
-
   Transforms links like:
-
   - `(#numberprefix)` -> `(#numberprefix)`
-
   - `(#foo-bar)` -> `(#foo-bar)` (type-method anchor)
-
   
-
   This is useful for multi-crate documentation where the full processor
-
   context may not be available.
 
 - <span id="doclinkutils-strip-duplicate-title"></span>`fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str`
 
   Strip duplicate title from documentation.
-
   
-
   Some crate/module docs start with `# title` which duplicates the generated
-
   `# Crate 'name'` or `# Module 'name'` heading.
-
   
-
   # Arguments
-
   
-
   * `docs` - The documentation string to process
-
   * `item_name` - The name of the crate or module being documented
-
   
-
   # Returns
-
   
-
   The docs with the leading title removed if it matches the item name,
-
   otherwise the original docs unchanged.
 
 - <span id="doclinkutils-strip-reference-definitions"></span>`fn strip_reference_definitions(docs: &str) -> String`
 
   Strip markdown reference definition lines.
-
   
-
   Removes lines like ``Name`: path::to::item` which are no longer needed
-
   after intra-doc links are processed.
 
 - <span id="doclinkutils-unhide-code-lines"></span>`fn unhide_code_lines(docs: &str) -> String`
 
   Unhide rustdoc hidden lines in code blocks and add language identifiers.
-
   
-
   This function performs two transformations on code blocks:
-
   1. Lines starting with `# ` inside code blocks are hidden in rustdoc
-
      but compiled. We remove the prefix to show the full example.
-
   2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
-
      examples are Rust code.
-
   
-
   Uses [`CodeBlockTracker`](doc_links/index.md) to manage fence state.
 
 - <span id="doclinkutils-convert-path-reference-links"></span>`fn convert_path_reference_links(docs: &str) -> String`
 
   Convert path-style reference links to inline code.
-
   
-
   Transforms: ```ProgressTracker```
-
   Into: `` `ProgressTracker` ``
-
   
-
   Without full link resolution context, we can't create valid anchors,
-
   so we preserve the display text as inline code.
 
 - <span id="doclinkutils-replace-with-regex"></span>`fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String`
@@ -1412,11 +1251,8 @@ Utility functions for document links
 - <span id="doclinkutils-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for DocLinkUtils`
@@ -1493,95 +1329,56 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](context/index.md#rendercontext)
 
   Create a new module renderer.
-
   
-
   # Arguments
-
   
-
   * `ctx` - Render context (implements `RenderContext` trait)
-
   * `current_file` - Path of this file (for relative link calculation)
-
   * `is_root` - True if this is the crate root module
 
 - <span id="modulerenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
 
   Process documentation string to resolve intra-doc links.
-
   
-
   Delegates to the render context's `process_docs` method, which handles
-
   both single-crate and multi-crate link resolution.
 
 - <span id="modulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
 
   Generate the complete markdown content for a module.
-
   
-
   # Output Structure
-
   
-
   ```markdown
-
   Crate `name` (or Module `name`)
-
   
-
   [module documentation]
-
   
-
   ## Contents (if items exceed threshold)
-
   - [Structs](#structs)
-
     - [`Parser`](#parser)
-
   
-
   ## Modules
-
   - [submodule](link) - first line of docs
-
   
-
   ## Structs
-
   ### `StructName`
-
   [struct definition and docs]
-
   
-
   ## Enums
-
   ...
-
   ```
 
 - <span id="modulerenderer-categorize-items"></span>`fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](module/index.md#categorizeditems)
 
   Categorize module items by type for organized rendering.
-
   
-
   Items are categorized into groups for structured documentation.
-
   - Modules (for navigation)
-
   - Types (structs, enums, unions, type aliases)
-
   - Traits
-
   - Functions
-
   - Constants and statics
-
   - Macros
 
 - <span id="modulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport(&self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)` — [`CategorizedItems`](module/index.md#categorizeditems)
@@ -1591,71 +1388,40 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md#categorizeditems)
 
   Render all item sections with horizontal rule separators.
-
   
-
   Sections are rendered in this order:
-
   1. Modules (navigation, no separator before)
-
   2. Types (structs, enums, unions, type aliases)
-
   3. Traits
-
   4. Functions
-
   5. Constants
-
   6. Statics
-
   7. Macros
-
   
-
   Horizontal rules (`---`) are added between major sections for
-
   visual separation in the rendered output.
 
 - <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md#categorizeditems)
 
   Render the Types section (structs, enums, unions, type aliases).
-
   
-
   All type definitions are grouped under a single "Types" heading,
-
   with each item type rendered in subsections:
-
   
-
   ```markdown
-
   ## Types
-
   
-
   ### `MyStruct`
-
   [struct definition]
-
   
-
   ### `MyEnum`
-
   [enum definition]
-
   
-
   ### `MyUnion`
-
   [union definition]
-
   
-
   ### `MyAlias`
-
   [type alias definition]
-
   ```
 
 - <span id="modulerenderer-render-statics-section"></span>`fn render_statics_section(&self, md: &mut String, statics: &[&Item])`
@@ -1665,45 +1431,29 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](module/index.md#categorizeditems), [`TocEntry`](toc/index.md#tocentry)
 
   Build TOC entries from categorized items.
-
   
-
   Creates a hierarchical structure for the table of contents:
-
   - Modules section
-
   - Types section (with children: structs, enums, unions, type aliases)
-
   - Traits section
-
   - Functions section
-
   - Constants section
-
   - Statics section
-
   - Macros section
 
 - <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](module/index.md#categorizeditems), [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
 
   Build quick reference entries from categorized items.
-
   
-
   Creates a flat list of entries for the quick reference table,
-
   including all item types with their names, kinds, and summaries.
-
   For re-exports, uses the target item's docs when the re-export lacks its own.
 
 - <span id="modulerenderer-get-item-summary"></span>`fn get_item_summary(&self, item: &Item, item_id: Id) -> String`
 
   Get summary for an item, with fallback for re-exports.
-
   
-
   For re-exports (`ItemEnum::Use`), if the item has no docs, falls back
-
   to the target item's documentation.
 
 - <span id="modulerenderer-render-modules-section"></span>`fn render_modules_section(&self, md: &mut String, modules: &[(&Id, &Item)])`
@@ -1757,11 +1507,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - <span id="modulerenderer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ModuleRenderer<'a>`
@@ -1837,19 +1584,12 @@ anchor link, and first-sentence summary.
 - <span id="quickrefentry-new"></span>`fn new(name: impl Into<String>, kind: &'static str, anchor: impl Into<String>, summary: impl Into<String>) -> Self`
 
   Create a new quick reference entry.
-
   
-
   # Arguments
-
   
-
   * `name` - Display name for the entry
-
   * `kind` - Item kind (struct, enum, fn, etc.)
-
   * `anchor` - Anchor link target (without `#`)
-
   * `summary` - First-sentence summary
 
 #### Trait Implementations
@@ -1891,11 +1631,8 @@ anchor link, and first-sentence summary.
 - <span id="quickrefentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for QuickRefEntry`
@@ -1960,25 +1697,15 @@ kinds, and first-sentence descriptions.
 - <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](quick_ref/index.md#quickrefentry)
 
   Generate a markdown quick reference table from the given entries.
-
   
-
   Returns an empty string if there are no entries.
-
   
-
   # Arguments
-
   
-
   * `entries` - Quick reference entries to include in the table
-
   
-
   # Returns
-
   
-
   A formatted markdown table string.
 
 #### Trait Implementations
@@ -2024,11 +1751,8 @@ kinds, and first-sentence descriptions.
 - <span id="quickrefgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for QuickRefGenerator`
@@ -2108,31 +1832,20 @@ for nested navigation.
 - <span id="tocentry-new"></span>`fn new(title: impl Into<String>, anchor: impl Into<String>) -> Self`
 
   Create a new TOC entry.
-
   
-
   # Arguments
-
   
-
   * `title` - Display title for the entry
-
   * `anchor` - Anchor link target (without `#`)
 
 - <span id="tocentry-with-children"></span>`fn with_children(title: impl Into<String>, anchor: impl Into<String>, children: Vec<Self>) -> Self`
 
   Create a new TOC entry with children.
-
   
-
   # Arguments
-
   
-
   * `title` - Display title for the entry
-
   * `anchor` - Anchor link target (without `#`)
-
   * `children` - Child entries for nested items
 
 - <span id="tocentry-count"></span>`fn count(&self) -> usize`
@@ -2178,11 +1891,8 @@ for nested navigation.
 - <span id="tocentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TocEntry`
@@ -2252,37 +1962,23 @@ modules with unnecessary navigation.
 - <span id="tocgenerator-new"></span>`const fn new(threshold: usize) -> Self`
 
   Create a new TOC generator with the given threshold.
-
   
-
   # Arguments
-
   
-
   * `threshold` - Minimum number of items required to generate a TOC
 
 - <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](toc/index.md#tocentry)
 
   Generate a markdown table of contents from the given entries.
-
   
-
   Returns `None` if the total item count is below the threshold.
-
   
-
   # Arguments
-
   
-
   * `entries` - Top-level TOC entries (typically section headings)
-
   
-
   # Returns
-
   
-
   A formatted markdown string with the TOC, or `None` if below threshold.
 
 - <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](toc/index.md#tocentry)
@@ -2328,11 +2024,8 @@ modules with unnecessary navigation.
 - <span id="tocgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for TocGenerator`
@@ -2419,151 +2112,86 @@ generator.generate()?;
 - <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](../index.md#args), [`RenderConfig`](config/index.md#renderconfig), [`Error`](../error/index.md#error)
 
   Create a new generator for the given crate and arguments.
-
   
-
   This initializes the shared context including:
-
   - Path map (item ID → module path)
-
   - Impl map (type ID → impl blocks)
-
   - Link registry for cross-references
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `args` - CLI arguments containing output path, format, and options
-
   * `config` - Rendering configuration options
-
   
-
   # Errors
-
   
-
   Returns an error if the root item cannot be found in the crate index.
 
 - <span id="generator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../error/index.md#error)
 
   Generate markdown documentation.
-
   
-
   This is the main entry point for documentation generation. It:
-
   
-
   1. Creates the output directory
-
   2. Sets up a progress bar
-
   3. Dispatches to the format-specific generator (flat or nested)
-
   
-
   # Errors
-
   
-
   Returns an error if any file operation fails.
 
 - <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md#error)
 
   Create a progress bar for user feedback.
-
   
-
   # Errors
-
   
-
   Returns an error if the progress bar template is invalid.
 
 - <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md#clioutputformat), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
 
   Generate documentation to memory instead of disk.
-
   
-
   This function mirrors `generate()` but captures all output in a
-
   `MarkdownCapture` struct instead of writing to the filesystem.
-
   Useful for testing and programmatic access to generated docs.
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `format` - Output format (Flat or Nested)
-
   * `include_private` - Whether to include private items
-
   
-
   # Returns
-
   
-
   A `MarkdownCapture` containing all generated markdown files.
-
   
-
   # Errors
-
   
-
   Returns an error if the root item cannot be found in the crate index.
 
 - <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md#clioutputformat), [`RenderConfig`](config/index.md#renderconfig), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
 
   Generate markdown to an in-memory capture with custom configuration.
-
   
-
   This variant allows specifying a custom [`RenderConfig`](config/index.md) for testing
-
   different rendering options like `hide_trivial_derives`.
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `format` - Output format (Flat or Nested)
-
   * `include_private` - Whether to include private items
-
   * `config` - Custom rendering configuration
-
   
-
   # Returns
-
   
-
   A `MarkdownCapture` containing all generated markdown files.
-
   
-
   # Errors
-
   
-
   Returns an error if the root item cannot be found in the crate index.
 
 - <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md#generatorcontext), [`MarkdownCapture`](capture/index.md#markdowncapture), [`Error`](../error/index.md#error)
@@ -2581,41 +2209,23 @@ generator.generate()?;
 - <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md#args), [`Error`](../error/index.md#error)
 
   Convenience method to generate documentation in one call.
-
   
-
   Creates a `Generator` and runs it immediately. For more control
-
   over the generation process, use `new()` and `generate()` separately.
-
   
-
   Uses default `RenderConfig`. For custom configuration, use `new()` directly.
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `args` - CLI arguments containing output path, format, and options
-
   
-
   # Returns
-
   
-
   `Ok(())` on success, or an error if any file operation fails.
-
   
-
   # Errors
-
   
-
   Returns an error if the root item cannot be found or if file operations fail.
 
 #### Trait Implementations
@@ -2645,11 +2255,8 @@ generator.generate()?;
 - <span id="generator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Generator<'a>`
@@ -2817,135 +2424,74 @@ The variants are ordered by their typical importance/frequency of use:
 - <span id="implcategory-from-trait-path"></span>`fn from_trait_path(path: Option<&str>) -> Self`
 
   Categorize a trait implementation by its trait path.
-
   
-
   This method examines the trait path and returns the appropriate category.
-
   It handles both simple trait names (`"Clone"`) and fully-qualified paths
-
   (`"std::clone::Clone"`).
-
   
-
   # Arguments
-
   
-
   * `path` - The trait path, or `None` for inherent implementations
-
   
-
   # Returns
-
   
-
   The [`ImplCategory`](impl_category/index.md) that best matches the trait.
-
   
-
   # Examples
-
   
-
   ```rust,ignore
-
   // Inherent impl (no trait)
-
   assert_eq!(ImplCategory::from_trait_path(None), ImplCategory::Inherent);
-
   
-
   // Simple trait name
-
   assert_eq!(ImplCategory::from_trait_path(Some("Clone")), ImplCategory::Derive);
-
   
-
   // Fully-qualified path
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("std::clone::Clone")),
-
       ImplCategory::Derive
-
   );
-
   
-
   // Operator from std::ops
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("std::ops::Add")),
-
       ImplCategory::Operator
-
   );
-
   
-
   // Unknown trait
-
   assert_eq!(
-
       ImplCategory::from_trait_path(Some("serde::Serialize")),
-
       ImplCategory::Other
-
   );
-
   ```
 
 - <span id="implcategory-display-name"></span>`const fn display_name(&self) -> &'static str`
 
   Get the human-readable display name for this category.
-
   
-
   This name is suitable for use as a section header in documentation.
-
   
-
   # Returns
-
   
-
   A static string with the display name.
-
   
-
   # Examples
-
   
-
   ```rust,ignore
-
   assert_eq!(ImplCategory::Inherent.display_name(), "Implementations");
-
   assert_eq!(ImplCategory::Derive.display_name(), "Derived Traits");
-
   assert_eq!(ImplCategory::Conversion.display_name(), "Conversion");
-
   ```
 
 - <span id="implcategory-sort-order"></span>`const fn sort_order(self) -> u8`
 
   Get the sort order for this category.
-
   
-
   Lower numbers appear first in documentation. This ordering reflects
-
   typical importance and frequency of use.
-
   
-
   # Returns
-
   
-
   A `u8` value representing the sort order (0-8).
 
 #### Trait Implementations
@@ -3003,11 +2549,8 @@ The variants are ordered by their typical importance/frequency of use:
 - <span id="implcategory-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for ImplCategory`
@@ -3017,13 +2560,9 @@ The variants are ordered by their typical importance/frequency of use:
 - <span id="implcategory-ord-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
   Compare categories by their display order.
-
   
-
   Categories are ordered by typical importance/frequency:
-
   `Inherent` < `Derive` < `Conversion` < `Access` < `Iterator`
-
   < `Operator` < `Formatting` < `Io` < `Other`
 
 ##### `impl OwoColorize for ImplCategory`
@@ -3119,6 +2658,9 @@ Provides read-only access to the crate structure, items, and impl blocks.
 - `fn source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
 
   Get source path config for a specific file.
+  
+  Returns `None` if source locations are disabled or no source dir configured.
+  The returned config has the correct depth for the given file path.
 
 #### Implementors
 
@@ -3150,6 +2692,8 @@ Determines which items should be included in the generated documentation.
 - `fn include_blanket_impls(&self) -> bool`
 
   Whether blanket trait implementations should be included.
+  
+  When `false` (default), impls like `From`, `Into`, `Any`, `Borrow` are filtered.
 
 #### Implementors
 
@@ -3173,14 +2717,34 @@ Handles intra-doc link resolution and markdown link generation.
 - `fn link_registry(&self) -> Option<&LinkRegistry>`
 
   Get the link registry for single-crate mode.
+  
+  Returns `None` in multi-crate mode where `UnifiedLinkRegistry` is used instead.
 
 - `fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
   Process documentation string with intra-doc link resolution.
+  
+  Transforms `` [`Type`](../index.md) `` style links in doc comments into proper
+  markdown links. Also strips duplicate titles and reference definitions.
+  
+  # Arguments
+  
+  * `item` - The item whose docs to process (provides docs and links map)
+  * `current_file` - Path of the current file (for relative link calculation)
 
 - `fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
   Create a markdown link to an item.
+  
+  # Arguments
+  
+  * `id` - The item ID to link to
+  * `current_file` - Path of the current file (for relative link calculation)
+  
+  # Returns
+  
+  A markdown link like `[`Name`](path/to/item.md)`, or `None` if the item
+  cannot be linked.
 
 #### Implementors
 

@@ -88,7 +88,7 @@ struct DefaultHashBuilder {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../.source_1765633015/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../.source_1765894658/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
 
 Default hash builder for the `S` type parameter of
 [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
@@ -144,11 +144,8 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 - <span id="defaulthashbuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DefaultHashBuilder`
@@ -179,7 +176,7 @@ struct DefaultHasher {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../.source_1765633015/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../.source_1765894658/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
 
 Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
@@ -246,11 +243,8 @@ Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 - <span id="defaulthasher-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DefaultHasher`
@@ -282,7 +276,7 @@ struct HashMap<K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../.source_1765633015/hashbrown-0.16.1/src/map.rs#L185-L188)*
+*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../.source_1765894658/hashbrown-0.16.1/src/map.rs#L185-L188)*
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
@@ -457,97 +451,53 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 - <span id="hashmap-new"></span>`fn new() -> Self`
 
   Creates an empty `HashMap`.
-
   
-
   The hash map is initially created with a capacity of 0, so it will not allocate until it
-
   is first inserted into.
-
   
-
   # HashDoS resistance
-
   
-
   The `hash_builder` normally use a fixed key by default and that does
-
   not allow the `HashMap` to be protected against attacks such as `HashDoS`.
-
   Users who require HashDoS resistance should explicitly use
-
   `std::collections::hash_map::RandomState`
-
   as the hasher when creating a [`HashMap`](hash_map/index.md), for example with
-
   [`with_hasher`](HashMap::with_hasher) method.
-
   
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   let mut map: HashMap<&str, i32> = HashMap::new();
-
   assert_eq!(map.len(), 0);
-
   assert_eq!(map.capacity(), 0);
-
   ```
 
 - <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
   Creates an empty `HashMap` with the specified capacity.
-
   
-
   The hash map will be able to hold at least `capacity` elements without
-
   reallocating. If `capacity` is 0, the hash map will not allocate.
-
   
-
   # HashDoS resistance
-
   
-
   The `hash_builder` normally use a fixed key by default and that does
-
   not allow the `HashMap` to be protected against attacks such as `HashDoS`.
-
   Users who require HashDoS resistance should explicitly use
-
   `std::collections::hash_map::RandomState`
-
   as the hasher when creating a [`HashMap`](hash_map/index.md), for example with
-
   [`with_capacity_and_hasher`](HashMap::with_capacity_and_hasher) method.
-
   
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   let mut map: HashMap<&str, i32> = HashMap::with_capacity(10);
-
   assert_eq!(map.len(), 0);
-
   assert!(map.capacity() >= 10);
-
   ```
 
 #### Trait Implementations
@@ -583,33 +533,19 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 - <span id="hashmap-default"></span>`fn default() -> Self`
 
   Creates an empty `HashMap<K, V, S, A>`, with the `Default` value for the hasher and allocator.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   use std::collections::hash_map::RandomState;
-
   
-
   // You can specify all types of HashMap, including hasher and allocator.
-
   // Created map is empty and don't allocate memory
-
   let map: HashMap<u32, String> = Default::default();
-
   assert_eq!(map.capacity(), 0);
-
   let map: HashMap<u32, String, RandomState> = HashMap::default();
-
   assert_eq!(map.capacity(), 0);
-
   ```
 
 ##### `impl<K, V, S, A> Eq for HashMap<K, V, S, A>`
@@ -623,73 +559,39 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 - <span id="hashmap-extend"></span>`fn extend<T: IntoIterator<Item = (K, V)>>(&mut self, iter: T)`
 
   Inserts all new key-values from the iterator to existing `HashMap<K, V, S, A>`.
-
   Replace values with existing keys with new values returned from the iterator.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::HashMap;
-
   
-
   let mut map = HashMap::new();
-
   map.insert(1, 100);
-
   
-
   let some_iter = [(1, 1), (2, 2)].into_iter();
-
   map.extend(some_iter);
-
   // Replace values with existing keys with new values returned from the iterator.
-
   // So that the map.get(&1) doesn't return Some(&100).
-
   assert_eq!(map.get(&1), Some(&1));
-
   
-
   let some_vec: Vec<_> = vec![(3, 3), (4, 4)];
-
   map.extend(some_vec);
-
   
-
   let some_arr = [(5, 5), (6, 6)];
-
   map.extend(some_arr);
-
   let old_map_len = map.len();
-
   
-
   // You can also extend from another HashMap
-
   let mut new_map = HashMap::new();
-
   new_map.extend(map);
-
   assert_eq!(new_map.len(), old_map_len);
-
   
-
   let mut vec: Vec<_> = new_map.into_iter().collect();
-
   // The `IntoIter` iterator produces items in arbitrary order, so the
-
   // items must be sorted to test them against a sorted array.
-
   vec.sort_unstable();
-
   assert_eq!(vec, [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)]);
-
   ```
 
 ##### `impl<T> From for HashMap<K, V, S, A>`
@@ -709,35 +611,20 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 - <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
   Returns a reference to the value corresponding to the supplied key.
-
   
-
   # Panics
-
   
-
   Panics if the key is not present in the `HashMap`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   
-
   let map: HashMap<_, _> = [("a", "One"), ("b", "Two")].into();
-
   
-
   assert_eq!(map[&"a"], "One");
-
   assert_eq!(map[&"b"], "Two");
-
   ```
 
 ##### `impl<U> Into for HashMap<K, V, S, A>`
@@ -745,11 +632,8 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 - <span id="hashmap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
@@ -761,43 +645,24 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 - <span id="a-hashmap-intoiterator-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](hash_map/index.md#iter)
 
   Creates an iterator over the entries of a `HashMap` in arbitrary order.
-
   The iterator element type is `(&'a K, &'a V)`.
-
   
-
   Return the same `Iter` struct as by the [`iter`](#iter) method on [`HashMap`](hash_map/index.md).
-
   
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   let map_one: HashMap<_, _> = [(1, "a"), (2, "b"), (3, "c")].into();
-
   let mut map_two = HashMap::new();
-
   
-
   for (key, value) in &map_one {
-
       println!("Key: {}, Value: {}", key, value);
-
       map_two.insert(*key, *value);
-
   }
-
   
-
   assert_eq!(map_one, map_two);
-
   ```
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
@@ -832,7 +697,7 @@ struct HashSet<T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L114-L116)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L114-L116)*
 
 A hash set implemented as a `HashMap` where the value is `()`.
 
@@ -934,91 +799,50 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-new"></span>`fn new() -> Self`
 
   Creates an empty `HashSet`.
-
   
-
   The hash set is initially created with a capacity of 0, so it will not allocate until it
-
   is first inserted into.
-
   
-
   # HashDoS resistance
-
   
-
   The `hash_builder` normally use a fixed key by default and that does
-
   not allow the `HashSet` to be protected against attacks such as `HashDoS`.
-
   Users who require HashDoS resistance should explicitly use
-
   `std::collections::hash_map::RandomState`
-
   as the hasher when creating a [`HashSet`](hash_set/index.md), for example with
-
   [`with_hasher`](HashSet::with_hasher) method.
-
   
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   let set: HashSet<i32> = HashSet::new();
-
   ```
 
 - <span id="hashset-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
   Creates an empty `HashSet` with the specified capacity.
-
   
-
   The hash set will be able to hold at least `capacity` elements without
-
   reallocating. If `capacity` is 0, the hash set will not allocate.
-
   
-
   # HashDoS resistance
-
   
-
   The `hash_builder` normally use a fixed key by default and that does
-
   not allow the `HashSet` to be protected against attacks such as `HashDoS`.
-
   Users who require HashDoS resistance should explicitly use
-
   `std::collections::hash_map::RandomState`
-
   as the hasher when creating a [`HashSet`](hash_set/index.md), for example with
-
   [`with_capacity_and_hasher`](HashSet::with_capacity_and_hasher) method.
-
   
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   let set: HashSet<i32> = HashSet::with_capacity(10);
-
   assert!(set.capacity() >= 10);
-
   ```
 
 #### Trait Implementations
@@ -1034,43 +858,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
   Returns the intersection of `self` and `rhs` as a new `HashSet<T, S>`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![2, 3, 4].into_iter().collect();
-
   
-
   let set = &a & &b;
-
   
-
   let mut i = 0;
-
   let expected = [2, 3];
-
   for x in &set {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
@@ -1078,43 +883,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitandassign-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
 
   Modifies this set to contain the intersection of `self` and `rhs`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![2, 3, 4].into_iter().collect();
-
   
-
   a &= &b;
-
   
-
   let mut i = 0;
-
   let expected = [2, 3];
-
   for x in &a {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
@@ -1124,43 +910,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
   Returns the union of `self` and `rhs` as a new `HashSet<T, S>`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   let set = &a | &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2, 3, 4, 5];
-
   for x in &set {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
@@ -1168,43 +935,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
 
   Modifies this set to contain the union of `self` and `rhs`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   a |= &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2, 3, 4, 5];
-
   for x in &a {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
@@ -1214,43 +962,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
   Returns the symmetric difference of `self` and `rhs` as a new `HashSet<T, S>`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   let set = &a ^ &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2, 4, 5];
-
   for x in &set {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
@@ -1258,43 +987,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitxorassign-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
 
   Modifies this set to contain the symmetric difference of `self` and `rhs`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   a ^= &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2, 4, 5];
-
   for x in &a {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T> Borrow for HashSet<T, S, A>`
@@ -1350,11 +1060,8 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
@@ -1376,43 +1083,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md#hashset)
 
   Returns the difference of `self` and `rhs` as a new `HashSet<T, S>`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   let set = &a - &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2];
-
   for x in &set {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
@@ -1420,43 +1108,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-subassign-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md#hashset)
 
   Modifies this set to contain the difference of `self` and `rhs`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   a -= &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2];
-
   for x in &a {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T> ToOwned for HashSet<T, S, A>`
@@ -1489,7 +1158,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../.source_1765633015/hashbrown-0.16.1/src/table.rs#L48-L53)*
+*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../.source_1765894658/hashbrown-0.16.1/src/table.rs#L48-L53)*
 
 Low-level hash table with explicit hashing.
 
@@ -1532,57 +1201,33 @@ doing this because it changes the runtime of hash table operations from
 - <span id="hashtable-new"></span>`const fn new() -> Self`
 
   Creates an empty `HashTable`.
-
   
-
   The hash table is initially created with a capacity of 0, so it will not allocate until it
-
   is first inserted into.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashTable;
-
   let mut table: HashTable<&str> = HashTable::new();
-
   assert_eq!(table.len(), 0);
-
   assert_eq!(table.capacity(), 0);
-
   ```
 
 - <span id="hashtable-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
   Creates an empty `HashTable` with the specified capacity.
-
   
-
   The hash table will be able to hold at least `capacity` elements without
-
   reallocating. If `capacity` is 0, the hash table will not allocate.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashTable;
-
   let mut table: HashTable<&str> = HashTable::with_capacity(10);
-
   assert_eq!(table.len(), 0);
-
   assert!(table.capacity() >= 10);
-
   ```
 
 #### Trait Implementations
@@ -1626,11 +1271,8 @@ doing this because it changes the runtime of hash table operations from
 - <span id="hashtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
@@ -1674,7 +1316,7 @@ enum TryReserveError {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/lib.rs:180-190`](../../.source_1765633015/hashbrown-0.16.1/src/lib.rs#L180-L190)*
+*Defined in [`hashbrown-0.16.1/src/lib.rs:180-190`](../../.source_1765894658/hashbrown-0.16.1/src/lib.rs#L180-L190)*
 
 The error type for `try_reserve` methods.
 
@@ -1732,11 +1374,8 @@ The error type for `try_reserve` methods.
 - <span id="tryreserveerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TryReserveError`

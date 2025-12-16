@@ -25,7 +25,7 @@ struct NarratableReportHandler {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../../.source_1765894658/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
 
 [`ReportHandler`](../../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -36,13 +36,11 @@ non-graphical environments, such as non-TTY output.
 - <span id="narratablereporthandler-new"></span>`const fn new() -> Self`
 
   Create a new [`NarratableReportHandler`](../index.md). There are no customization
-
   options.
 
 - <span id="narratablereporthandler-with-cause-chain"></span>`const fn with_cause_chain(self) -> Self`
 
   Include the cause chain of the top-level error in the report, if
-
   available.
 
 - <span id="narratablereporthandler-without-cause-chain"></span>`const fn without_cause_chain(self) -> Self`
@@ -98,11 +96,8 @@ non-graphical environments, such as non-TTY output.
 - <span id="narratablereporthandler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for NarratableReportHandler`
@@ -142,7 +137,7 @@ struct Line {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../../.source_1765894658/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
 
 #### Implementations
 
@@ -173,11 +168,8 @@ struct Line {
 - <span id="line-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for Line`
@@ -213,7 +205,7 @@ enum SpanAttach {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../../.source_1765894658/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
 
 #### Trait Implementations
 
@@ -240,11 +232,8 @@ enum SpanAttach {
 - <span id="spanattach-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for SpanAttach`
@@ -269,7 +258,7 @@ enum SpanAttach {
 fn safe_get_column(text: &str, offset: usize, start: bool) -> usize
 ```
 
-*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../../.source_1765633015/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../../.source_1765894658/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
 
 Returns column at offset, and nearest boundary if offset is in the middle of
 the character

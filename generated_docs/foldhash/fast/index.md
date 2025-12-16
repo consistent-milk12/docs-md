@@ -28,7 +28,7 @@ struct FoldHasher<'a> {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/fast.rs:14-19`](../../../.source_1765633015/foldhash-0.2.0/src/fast.rs#L14-L19)*
+*Defined in [`foldhash-0.2.0/src/fast.rs:14-19`](../../../.source_1765894658/foldhash-0.2.0/src/fast.rs#L14-L19)*
 
 A `Hasher` instance implementing foldhash, optimized for speed.
 
@@ -41,7 +41,6 @@ most likely want to use [`RandomState`](#randomstate), [`SeedableRandomState`](#
 - <span id="foldhasher-with-seed"></span>`const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../seed/index.md#sharedseed), [`FoldHasher`](#foldhasher)
 
   Initializes this [`FoldHasher`](#foldhasher) with the given per-hasher seed and
-
   [`SharedSeed`](../seed/index.md).
 
 - <span id="foldhasher-write-num"></span>`fn write_num<T: Into<u128>>(&mut self, x: T)`
@@ -97,11 +96,8 @@ most likely want to use [`RandomState`](#randomstate), [`SeedableRandomState`](#
 - <span id="foldhasher-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for FoldHasher<'a>`
@@ -125,9 +121,9 @@ struct RandomState {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/fast.rs:127-130`](../../../.source_1765633015/foldhash-0.2.0/src/fast.rs#L127-L130)*
+*Defined in [`foldhash-0.2.0/src/fast.rs:127-130`](../../../.source_1765894658/foldhash-0.2.0/src/fast.rs#L127-L130)*
 
-A [`BuildHasher`](../../serde_core/lib/index.md) for [`fast::FoldHasher`](FoldHasher) that is randomly initialized.
+A `BuildHasher` for [`fast::FoldHasher`](FoldHasher) that is randomly initialized.
 
 #### Trait Implementations
 
@@ -176,11 +172,8 @@ A [`BuildHasher`](../../serde_core/lib/index.md) for [`fast::FoldHasher`](FoldHa
 - <span id="randomstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RandomState`
@@ -204,9 +197,9 @@ struct SeedableRandomState {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/fast.rs:157-160`](../../../.source_1765633015/foldhash-0.2.0/src/fast.rs#L157-L160)*
+*Defined in [`foldhash-0.2.0/src/fast.rs:157-160`](../../../.source_1765894658/foldhash-0.2.0/src/fast.rs#L157-L160)*
 
-A [`BuildHasher`](../../serde_core/lib/index.md) for [`fast::FoldHasher`](FoldHasher) that is randomly
+A `BuildHasher` for [`fast::FoldHasher`](FoldHasher) that is randomly
 initialized by default, but can also be initialized with a specific seed.
 
 This can be useful for e.g. testing, but the downside is that this type
@@ -225,7 +218,6 @@ has a size of 16 bytes rather than the 8 bytes [`RandomState`](#randomstate) is.
 - <span id="seedablerandomstate-with-seed"></span>`fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../seed/index.md#sharedseed)
 
   Generates a [`SeedableRandomState`](#seedablerandomstate) with the given per-hasher seed
-
   and [`SharedSeed`](../seed/index.md).
 
 #### Trait Implementations
@@ -275,11 +267,8 @@ has a size of 16 bytes rather than the 8 bytes [`RandomState`](#randomstate) is.
 - <span id="seedablerandomstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for SeedableRandomState`
@@ -302,9 +291,9 @@ struct FixedState {
 }
 ```
 
-*Defined in [`foldhash-0.2.0/src/fast.rs:213-215`](../../../.source_1765633015/foldhash-0.2.0/src/fast.rs#L213-L215)*
+*Defined in [`foldhash-0.2.0/src/fast.rs:213-215`](../../../.source_1765894658/foldhash-0.2.0/src/fast.rs#L213-L215)*
 
-A [`BuildHasher`](../../serde_core/lib/index.md) for [`fast::FoldHasher`](FoldHasher) that always has the same fixed seed.
+A `BuildHasher` for [`fast::FoldHasher`](FoldHasher) that always has the same fixed seed.
 
 Not recommended unless you absolutely need determinism.
 
@@ -361,11 +350,8 @@ Not recommended unless you absolutely need determinism.
 - <span id="fixedstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for FixedState`

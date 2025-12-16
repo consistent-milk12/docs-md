@@ -25,7 +25,7 @@ struct Drain<'a> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/string.rs:25-28`](../../../.source_1765633015/rayon-1.11.0/src/string.rs#L25-L28)*
+*Defined in [`rayon-1.11.0/src/string.rs:25-28`](../../../.source_1765894658/rayon-1.11.0/src/string.rs#L25-L28)*
 
 Draining parallel iterator that moves a range of characters out of a string,
 but keeps the total capacity.
@@ -63,11 +63,8 @@ but keeps the total capacity.
 - <span id="drain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Drain<'a>`

@@ -21,7 +21,7 @@ enum MietteError {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../../.source_1765633015/miette-7.6.0/src/error.rs#L13-L21)*
+*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../../.source_1765894658/miette-7.6.0/src/error.rs#L13-L21)*
 
 Error enum for miette. Used by certain operations in the protocol.
 
@@ -29,7 +29,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../../addr2line/index.md). This is returned when something went
+  Wrapper around `std::io::Error`. This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**
@@ -86,11 +86,8 @@ Error enum for miette. Used by certain operations in the protocol.
 - <span id="mietteerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteError`

@@ -43,7 +43,7 @@ As of now this is mainly intended for use to build a higher-level wrapper.
 struct MinReset;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:21`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/stream.rs#L21)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:21`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/stream.rs#L21)*
 
 Resets state, without performing expensive ops (e.g. zeroing buffer)
 
@@ -74,11 +74,8 @@ Note that not zeroing buffer can lead to security issues when dealing with untru
 - <span id="minreset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ResetPolicy for MinReset`
@@ -103,7 +100,7 @@ Note that not zeroing buffer can lead to security issues when dealing with untru
 struct ZeroReset;
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:35`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/stream.rs#L35)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:35`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/stream.rs#L35)*
 
 Resets state and zero memory, continuing to use the same data format.
 
@@ -132,11 +129,8 @@ Resets state and zero memory, continuing to use the same data format.
 - <span id="zeroreset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ResetPolicy for ZeroReset`
@@ -161,7 +155,7 @@ Resets state and zero memory, continuing to use the same data format.
 struct FullReset(crate::DataFormat);
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:48`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/stream.rs#L48)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:48`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/stream.rs#L48)*
 
 Full reset of the state, including zeroing memory.
 
@@ -192,11 +186,8 @@ Requires to provide new data format.
 - <span id="fullreset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ResetPolicy for FullReset`
@@ -230,7 +221,7 @@ struct InflateState {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:61-83`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/stream.rs#L61-L83)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:61-83`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/stream.rs#L61-L83)*
 
 A struct that compbines a decompressor with extra data for streaming decompression.
 
@@ -267,19 +258,12 @@ A struct that compbines a decompressor with extra data for streaming decompressi
 - <span id="inflatestate-new"></span>`fn new(data_format: DataFormat) -> InflateState` — [`DataFormat`](../../index.md#dataformat), [`InflateState`](#inflatestate)
 
   Create a new state.
-
   
-
   Note that this struct is quite large due to internal buffers, and as such storing it on
-
   the stack is not recommended.
-
   
-
   # Parameters
-
   `data_format`: Determines whether the compressed data is assumed to wrapped with zlib
-
   metadata.
 
 - <span id="inflatestate-decompressor"></span>`fn decompressor(&mut self) -> &mut DecompressorOxide` — [`DecompressorOxide`](../core/index.md#decompressoroxide)
@@ -293,7 +277,6 @@ A struct that compbines a decompressor with extra data for streaming decompressi
 - <span id="inflatestate-reset"></span>`fn reset(&mut self, data_format: DataFormat)` — [`DataFormat`](../../index.md#dataformat)
 
   Reset the decompressor without re-allocating memory, using the given
-
   data format.
 
 - <span id="inflatestate-reset-as"></span>`fn reset_as<T: ResetPolicy>(&mut self, policy: T)`
@@ -337,11 +320,8 @@ A struct that compbines a decompressor with extra data for streaming decompressi
 - <span id="inflatestate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for InflateState`
@@ -364,7 +344,7 @@ A struct that compbines a decompressor with extra data for streaming decompressi
 trait ResetPolicy { ... }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:13-16`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/stream.rs#L13-L16)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:13-16`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/stream.rs#L13-L16)*
 
 Tag that determines reset policy of [InflateState](#inflatestate)
 
@@ -388,7 +368,7 @@ Tag that determines reset policy of [InflateState](#inflatestate)
 fn inflate(state: &mut InflateState, input: &[u8], output: &mut [u8], flush: crate::MZFlush) -> crate::StreamResult
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:186-295`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/stream.rs#L186-L295)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:186-295`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/stream.rs#L186-L295)*
 
 Try to decompress from `input` to `output` with the given [`InflateState`](#inflatestate)
 
@@ -420,7 +400,7 @@ decompression), or when called without [`MZFlush::Finish`](../../index.md) after
 fn inflate_loop(state: &mut InflateState, next_in: &mut &[u8], next_out: &mut &mut [u8], total_in: &mut usize, total_out: &mut usize, decomp_flags: u32, flush: crate::MZFlush) -> crate::MZResult
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:297-370`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/stream.rs#L297-L370)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:297-370`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/stream.rs#L297-L370)*
 
 ### `push_dict_out`
 
@@ -428,5 +408,5 @@ fn inflate_loop(state: &mut InflateState, next_in: &mut &[u8], next_out: &mut &m
 fn push_dict_out(state: &mut InflateState, next_out: &mut &mut [u8]) -> usize
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:372-379`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/stream.rs#L372-L379)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:372-379`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/stream.rs#L372-L379)*
 

@@ -103,7 +103,7 @@ struct DebugFrame<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
 
 `DebugFrame` contains the `.debug_frame` section's frame unwinding
 information required to unwind to and recover registers from older frames on
@@ -125,19 +125,14 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 - <span id="debugframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
 
   Set the size of a target address in bytes.
-
   
-
   This defaults to the native word size.
-
   This is only used if the CIE version is less than 4.
 
 - <span id="debugframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md#vendor)
 
   Set the vendor extensions to use.
-
   
-
   This defaults to `Vendor::Default`.
 
 #### Trait Implementations
@@ -181,11 +176,8 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 - <span id="debugframe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for DebugFrame<R>`
@@ -230,7 +222,7 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 struct EhFrameHdr<R: Reader>(R);
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L109)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L109)*
 
 `EhFrameHdr` contains the information about the `.eh_frame_hdr` section.
 
@@ -284,11 +276,8 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 - <span id="ehframehdr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrameHdr<R>`
@@ -336,7 +325,7 @@ struct ParsedEhFrameHdr<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
 
 `ParsedEhFrameHdr` contains the parsed information from the `.eh_frame_hdr` section.
 
@@ -387,11 +376,8 @@ struct ParsedEhFrameHdr<R: Reader> {
 - <span id="parsedehframehdr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ParsedEhFrameHdr<R>`
@@ -425,7 +411,7 @@ struct EhHdrTableIter<'a, 'bases, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
 
 An iterator for `.eh_frame_hdr` section's binary search table.
 
@@ -473,11 +459,8 @@ The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame
 - <span id="ehhdrtableiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for EhHdrTableIter<'a, 'bases, R>`
@@ -500,7 +483,7 @@ struct EhHdrTable<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
 
 The CFI binary search table that is an optional part of the `.eh_frame_hdr` section.
 
@@ -509,91 +492,56 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
 - <span id="ehhdrtable-iter"></span>`fn iter<'bases>(&self, bases: &'bases BaseAddresses) -> EhHdrTableIter<'_, 'bases, R>` — [`BaseAddresses`](../index.md#baseaddresses), [`EhHdrTableIter`](../index.md#ehhdrtableiter)
 
   Return an iterator that can walk the `.eh_frame_hdr` table.
-
   
-
   Each table entry consists of a tuple containing an `initial_location` and `address`.
-
   The `initial location` represents the first address that the targeted FDE
-
   is able to decode. The `address` is the address of the FDE in the `.eh_frame` section.
-
   The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame::fde_from_offset` to an FDE.
 
 - <span id="ehhdrtable-lookup"></span>`fn lookup(&self, address: u64, bases: &BaseAddresses) -> Result<Pointer>` — [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`Pointer`](../index.md#pointer)
 
   *Probably* returns a pointer to the FDE for the given address.
-
   
-
   This performs a binary search, so if there is no FDE for the given address,
-
   this function **will** return a pointer to any other FDE that's close by.
-
   
-
   To be sure, you **must** call `contains` on the FDE.
 
 - <span id="ehhdrtable-pointer-to-offset"></span>`fn pointer_to_offset(&self, ptr: Pointer) -> Result<EhFrameOffset<<R as >::Offset>>` — [`Pointer`](../index.md#pointer), [`Result`](../../index.md#result), [`EhFrameOffset`](../../index.md#ehframeoffset), [`Reader`](../index.md#reader)
 
   Convert a `Pointer` to a section offset.
-
   
-
   This does not support indirect pointers.
 
 - <span id="ehhdrtable-fde-for-address"></span>`fn fde_for_address<F>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`EhFrame`](../index.md#ehframe), [`BaseAddresses`](../index.md#baseaddresses), [`Result`](../../index.md#result), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
   Returns a parsed FDE for the given address, or `NoUnwindInfoForAddress`
-
   if there are none.
-
   
-
   You must provide a function to get its associated CIE. See
-
   `PartialFrameDescriptionEntry::parse` for more information.
-
   
-
   # Example
-
   
-
   ```rust
-
   use gimli::{BaseAddresses, EhFrame, ParsedEhFrameHdr, EndianSlice, NativeEndian, Error, UnwindSection};
-
   fn foo() -> Result<(), Error> {
-
   let eh_frame: EhFrame<EndianSlice<NativeEndian>> = unreachable!();
-
   let eh_frame_hdr: ParsedEhFrameHdr<EndianSlice<NativeEndian>> = unimplemented!();
-
   let addr = 0;
-
   let bases = unimplemented!();
-
   let table = eh_frame_hdr.table().unwrap();
-
   let fde = table.fde_for_address(&eh_frame, &bases, addr, EhFrame::cie_from_offset)?;
-
   Ok(())
-
   }
-
   ```
 
 - <span id="ehhdrtable-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, F, S>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`EhFrame`](../index.md#ehframe), [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`UnwindTableRow`](../index.md#unwindtablerow)
 
   Returns the frame unwind information for the given address,
-
   or `NoUnwindInfoForAddress` if there are none.
-
   
-
   You must provide a function to get the associated CIE. See
-
   `PartialFrameDescriptionEntry::parse` for more information.
 
 #### Trait Implementations
@@ -633,11 +581,8 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
 - <span id="ehhdrtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EhHdrTable<'a, R>`
@@ -670,7 +615,7 @@ struct EhFrame<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
 
 `EhFrame` contains the frame unwinding information needed during exception
 handling found in the `.eh_frame` section.
@@ -688,17 +633,13 @@ for some discussion on the differences between `.debug_frame` and
 - <span id="ehframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
 
   Set the size of a target address in bytes.
-
   
-
   This defaults to the native word size.
 
 - <span id="ehframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md#vendor)
 
   Set the vendor extensions to use.
-
   
-
   This defaults to `Vendor::Default`.
 
 #### Trait Implementations
@@ -742,11 +683,8 @@ for some discussion on the differences between `.debug_frame` and
 - <span id="ehframe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrame<R>`
@@ -794,7 +732,7 @@ struct BaseAddresses {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers.
 
@@ -890,11 +828,8 @@ let _ = bases;
 - <span id="baseaddresses-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for BaseAddresses`
@@ -933,7 +868,7 @@ struct SectionBaseAddresses {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers
 in a particular section.
@@ -1004,11 +939,8 @@ See `BaseAddresses` for methods that are helpful in setting these addresses.
 - <span id="sectionbaseaddresses-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SectionBaseAddresses`
@@ -1050,7 +982,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
 
 An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame`
 section.
@@ -1135,11 +1067,8 @@ unreachable!()
 - <span id="cfientriesiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for CfiEntriesIter<'bases, Section, R>`
@@ -1173,7 +1102,7 @@ struct Augmentation {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
 
 We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
@@ -1263,11 +1192,8 @@ We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 - <span id="augmentation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Augmentation`
@@ -1304,7 +1230,7 @@ struct AugmentationData {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
 
 Parsed augmentation data for a `FrameDescriptEntry`.
 
@@ -1355,11 +1281,8 @@ Parsed augmentation data for a `FrameDescriptEntry`.
 - <span id="augmentationdata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AugmentationData`
@@ -1408,7 +1331,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
 
 > A Common Information Entry holds information that is shared among many
 > Frame Description Entries. There is at least one CIE in every non-empty
@@ -1516,11 +1439,8 @@ where
 - <span id="commoninformationentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for CommonInformationEntry<R, Offset>`
@@ -1566,7 +1486,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
 
 A partially parsed `FrameDescriptionEntry`.
 
@@ -1579,13 +1499,9 @@ Fully parsing this FDE requires first parsing its CIE.
 - <span id="partialframedescriptionentry-parse"></span>`fn parse<F>(&self, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Result`](../../index.md#result), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
 
   Fully parse this FDE.
-
   
-
   You must provide a function get its associated CIE (either by parsing it
-
   on demand, or looking it up in some table mapping offsets to CIEs that
-
   you've already parsed, etc.)
 
 - <span id="partialframedescriptionentry-offset"></span>`fn offset(&self) -> <R as >::Offset` — [`Reader`](../index.md#reader)
@@ -1599,11 +1515,8 @@ Fully parsing this FDE requires first parsing its CIE.
 - <span id="partialframedescriptionentry-entry-len"></span>`fn entry_len(&self) -> <R as >::Offset` — [`Reader`](../index.md#reader)
 
   > A constant that gives the number of bytes of the header and
-
   > instruction stream for this function, not including the length field
-
   > itself (see Section 7.2.2). The size of the length field plus the value
-
   > of length must be an integral multiple of the address size.
 
 #### Trait Implementations
@@ -1645,11 +1558,8 @@ Fully parsing this FDE requires first parsing its CIE.
 - <span id="partialframedescriptionentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
@@ -1696,7 +1606,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
 
 A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
@@ -1754,15 +1664,10 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 - <span id="framedescriptionentry-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, Section, S>(&self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`Result`](../../index.md#result), [`UnwindTableRow`](../index.md#unwindtablerow)
 
   Find the frame unwind information for the given address.
-
   
-
   If found, the unwind information is returned along with the reset
-
   context in the form `Ok((unwind_info, context))`. If not found,
-
   `Err(gimli::Error::NoUnwindInfoForAddress)` is returned. If parsing or
-
   CFI evaluation fails, the error is returned.
 
 #### Trait Implementations
@@ -1804,11 +1709,8 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 - <span id="framedescriptionentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for FrameDescriptionEntry<R, Offset>`
@@ -1850,12 +1752,12 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
 
 Common context needed when evaluating the call frame unwinding information.
 
 By default, this structure is small and allocates its internal storage
-on the heap using [`Box`](../../../allocator_api2/stable/boxed/index.md) during `UnwindContext::new`.
+on the heap using `Box` during `UnwindContext::new`.
 
 This can be overridden by providing a custom [`UnwindContextStorage`](../index.md) type parameter.
 When using a custom storage with in-line arrays, the [`UnwindContext`](../index.md) type itself
@@ -1935,11 +1837,8 @@ unreachable!()
 - <span id="unwindcontext-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S> PartialEq for UnwindContext<T, S>`
@@ -1987,7 +1886,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
 
 The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 `CallFrameInstruction` program, yielding the each row one at a time.
@@ -2051,7 +1950,6 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 - <span id="unwindtable-new"></span>`fn new<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Result<Self>` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`FrameDescriptionEntry`](../index.md#framedescriptionentry), [`Result`](../../index.md#result)
 
   Construct a new `UnwindTable` for the given
-
   `FrameDescriptionEntry`'s CFI unwinding program.
 
 - <span id="unwindtable-new-for-fde"></span>`fn new_for_fde<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Self` — [`BaseAddresses`](../index.md#baseaddresses), [`UnwindContext`](../index.md#unwindcontext), [`Reader`](../index.md#reader), [`FrameDescriptionEntry`](../index.md#framedescriptionentry)
@@ -2061,13 +1959,9 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 - <span id="unwindtable-next-row"></span>`fn next_row(&mut self) -> Result<Option<&UnwindTableRow<<R as >::Offset, S>>>` — [`Result`](../../index.md#result), [`UnwindTableRow`](../index.md#unwindtablerow), [`Reader`](../index.md#reader)
 
   Evaluate call frame instructions until the next row of the table is
-
   completed, and return it.
-
   
-
   Unfortunately, this cannot be used with `FallibleIterator` because of
-
   the restricted lifetime of the yielded item.
 
 - <span id="unwindtable-into-current-row"></span>`fn into_current_row(self) -> Option<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`UnwindTableRow`](../index.md#unwindtablerow), [`Reader`](../index.md#reader)
@@ -2077,7 +1971,6 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 - <span id="unwindtable-evaluate"></span>`fn evaluate(&mut self, instruction: CallFrameInstruction<<R as >::Offset>) -> Result<bool>` — [`CallFrameInstruction`](../index.md#callframeinstruction), [`Reader`](../index.md#reader), [`Result`](../../index.md#result)
 
   Evaluate one call frame instruction. Return `Ok(true)` if the row is
-
   complete, `Ok(false)` otherwise.
 
 #### Trait Implementations
@@ -2109,11 +2002,8 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 - <span id="unwindtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for UnwindTable<'a, 'ctx, R, S>`
@@ -2139,7 +2029,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
 
 #### Implementations
 
@@ -2198,11 +2088,8 @@ where
 - <span id="registerrulemap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S> PartialEq for RegisterRuleMap<T, S>`
@@ -2237,7 +2124,7 @@ where
     T: ReaderOffset;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
 
 An unordered iterator for register rules.
 
@@ -2278,11 +2165,8 @@ An unordered iterator for register rules.
 - <span id="registerruleiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RegisterRuleIter<'iter, T>`
@@ -2334,7 +2218,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
 
 A row in the virtual unwind table that describes how to find the values of
 the registers in the *previous* frame for a range of PC addresses.
@@ -2350,33 +2234,23 @@ the registers in the *previous* frame for a range of PC addresses.
 - <span id="unwindtablerow-end-address"></span>`fn end_address(&self) -> u64`
 
   Get the end PC address where this row's register rules become
-
   unapplicable.
-
   
-
   In other words, this row describes how to recover the last frame's
-
   registers for all PCs where `row.start_address() <= PC <
-
   row.end_address()`. This row does NOT describe how to recover registers
-
   when `PC == row.end_address()`.
 
 - <span id="unwindtablerow-contains"></span>`fn contains(&self, address: u64) -> bool`
 
   Return `true` if the given `address` is within this row's address range,
-
   `false` otherwise.
 
 - <span id="unwindtablerow-saved-args-size"></span>`fn saved_args_size(&self) -> u64`
 
   Returns the amount of args currently on the stack.
-
   
-
   When unwinding, if the personality function requested a change in IP,
-
   the SP needs to be adjusted by saved_args_size.
 
 - <span id="unwindtablerow-cfa"></span>`fn cfa(&self) -> &CfaRule<T>` — [`CfaRule`](../index.md#cfarule)
@@ -2386,123 +2260,66 @@ the registers in the *previous* frame for a range of PC addresses.
 - <span id="unwindtablerow-register"></span>`fn register(&self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md#register), [`RegisterRule`](../index.md#registerrule)
 
   Get the register recovery rule for the given register number.
-
   
-
   The register number mapping is architecture dependent. For example, in
-
   the x86-64 ABI the register number mapping is defined in Figure 3.36:
-
   
-
   > Figure 3.36: DWARF Register Number Mapping
-
   >
-
   > <table>
-
   >   <tr><th>Register Name</th>                    <th>Number</th>  <th>Abbreviation</th></tr>
-
   >   <tr><td>General Purpose Register RAX</td>     <td>0</td>       <td>%rax</td></tr>
-
   >   <tr><td>General Purpose Register RDX</td>     <td>1</td>       <td>%rdx</td></tr>
-
   >   <tr><td>General Purpose Register RCX</td>     <td>2</td>       <td>%rcx</td></tr>
-
   >   <tr><td>General Purpose Register RBX</td>     <td>3</td>       <td>%rbx</td></tr>
-
   >   <tr><td>General Purpose Register RSI</td>     <td>4</td>       <td>%rsi</td></tr>
-
   >   <tr><td>General Purpose Register RDI</td>     <td>5</td>       <td>%rdi</td></tr>
-
   >   <tr><td>General Purpose Register RBP</td>     <td>6</td>       <td>%rbp</td></tr>
-
   >   <tr><td>Stack Pointer Register RSP</td>       <td>7</td>       <td>%rsp</td></tr>
-
   >   <tr><td>Extended Integer Registers 8-15</td>  <td>8-15</td>    <td>%r8-%r15</td></tr>
-
   >   <tr><td>Return Address RA</td>                <td>16</td>      <td></td></tr>
-
   >   <tr><td>Vector Registers 0–7</td>             <td>17-24</td>   <td>%xmm0–%xmm7</td></tr>
-
   >   <tr><td>Extended Vector Registers 8–15</td>   <td>25-32</td>   <td>%xmm8–%xmm15</td></tr>
-
   >   <tr><td>Floating Point Registers 0–7</td>     <td>33-40</td>   <td>%st0–%st7</td></tr>
-
   >   <tr><td>MMX Registers 0–7</td>                <td>41-48</td>   <td>%mm0–%mm7</td></tr>
-
   >   <tr><td>Flag Register</td>                    <td>49</td>      <td>%rFLAGS</td></tr>
-
   >   <tr><td>Segment Register ES</td>              <td>50</td>      <td>%es</td></tr>
-
   >   <tr><td>Segment Register CS</td>              <td>51</td>      <td>%cs</td></tr>
-
   >   <tr><td>Segment Register SS</td>              <td>52</td>      <td>%ss</td></tr>
-
   >   <tr><td>Segment Register DS</td>              <td>53</td>      <td>%ds</td></tr>
-
   >   <tr><td>Segment Register FS</td>              <td>54</td>      <td>%fs</td></tr>
-
   >   <tr><td>Segment Register GS</td>              <td>55</td>      <td>%gs</td></tr>
-
   >   <tr><td>Reserved</td>                         <td>56-57</td>   <td></td></tr>
-
   >   <tr><td>FS Base address</td>                  <td>58</td>      <td>%fs.base</td></tr>
-
   >   <tr><td>GS Base address</td>                  <td>59</td>      <td>%gs.base</td></tr>
-
   >   <tr><td>Reserved</td>                         <td>60-61</td>   <td></td></tr>
-
   >   <tr><td>Task Register</td>                    <td>62</td>      <td>%tr</td></tr>
-
   >   <tr><td>LDT Register</td>                     <td>63</td>      <td>%ldtr</td></tr>
-
   >   <tr><td>128-bit Media Control and Status</td> <td>64</td>      <td>%mxcsr</td></tr>
-
   >   <tr><td>x87 Control Word</td>                 <td>65</td>      <td>%fcw</td></tr>
-
   >   <tr><td>x87 Status Word</td>                  <td>66</td>      <td>%fsw</td></tr>
-
   >   <tr><td>Upper Vector Registers 16–31</td>     <td>67-82</td>   <td>%xmm16–%xmm31</td></tr>
-
   >   <tr><td>Reserved</td>                         <td>83-117</td>  <td></td></tr>
-
   >   <tr><td>Vector Mask Registers 0–7</td>        <td>118-125</td> <td>%k0–%k7</td></tr>
-
   >   <tr><td>Reserved</td>                         <td>126-129</td> <td></td></tr>
-
   > </table>
 
 - <span id="unwindtablerow-registers"></span>`fn registers(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md#registerruleiter)
 
   Iterate over all defined register `(number, rule)` pairs.
-
   
-
   The rules are not iterated in any guaranteed order. Any register that
-
   does not make an appearance in the iterator implicitly has the rule
-
   `RegisterRule::Undefined`.
-
   
-
   ```rust
-
   use gimli::{EndianSlice, LittleEndian, UnwindTableRow};
-
   fn foo<'input>(unwind_table_row: UnwindTableRow<usize>) {
-
   for &(register, ref rule) in unwind_table_row.registers() {
-
       // ...
-
       drop(register); drop(rule);
-
   }
-
   }
-
   ```
 
 #### Trait Implementations
@@ -2548,11 +2365,8 @@ the registers in the *previous* frame for a range of PC addresses.
 - <span id="unwindtablerow-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S> PartialEq for UnwindTableRow<T, S>`
@@ -2592,7 +2406,7 @@ struct CallFrameInstructionIter<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
 
 A lazy iterator parsing call frame instructions.
 
@@ -2642,11 +2456,8 @@ Can be [used with
 - <span id="callframeinstructioniter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for CallFrameInstructionIter<'a, R>`
@@ -2678,7 +2489,7 @@ struct UnwindExpression<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
 
 The location of a DWARF expression within an unwind section.
 
@@ -2722,11 +2533,8 @@ Ok(())
 - <span id="unwindexpression-get"></span>`fn get<R, S>(&self, section: &S) -> Result<Expression<R>>` — [`Result`](../../index.md#result), [`Expression`](../index.md#expression)
 
   Get the expression from the section.
-
   
-
   The offset and length were previously validated when the
-
   `UnwindExpression` was created, so this should not fail.
 
 #### Trait Implementations
@@ -2770,11 +2578,8 @@ Ok(())
 - <span id="unwindexpression-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for UnwindExpression<T>`
@@ -2814,7 +2619,7 @@ struct PointerEncodingParameters<'a, R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
 
 #### Trait Implementations
 
@@ -2853,11 +2658,8 @@ struct PointerEncodingParameters<'a, R: Reader> {
 - <span id="pointerencodingparameters-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PointerEncodingParameters<'a, R>`
@@ -2894,7 +2696,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
 
 Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
@@ -2949,11 +2751,8 @@ Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 - <span id="cieorfde-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Section, R> PartialEq for CieOrFde<'bases, Section, R>`
@@ -2994,7 +2793,7 @@ enum CfaRule<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
 
 The canonical frame address (CFA) recovery rules.
 
@@ -3055,11 +2854,8 @@ The canonical frame address (CFA) recovery rules.
 - <span id="cfarule-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CfaRule<T>`
@@ -3104,7 +2900,7 @@ enum RegisterRule<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
 
 An entry in the abstract CFI table that describes how to find the value of a
 register.
@@ -3202,11 +2998,8 @@ previous frame."
 - <span id="registerrule-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for RegisterRule<T>`
@@ -3312,7 +3105,7 @@ enum CallFrameInstruction<T: ReaderOffset> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
 
 A parsed call frame instruction.
 
@@ -3597,11 +3390,8 @@ A parsed call frame instruction.
 - <span id="callframeinstruction-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CallFrameInstruction<T>`
@@ -3639,7 +3429,7 @@ enum Pointer {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
 
 A decoded pointer.
 
@@ -3715,11 +3505,8 @@ A decoded pointer.
 - <span id="pointer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Pointer`
@@ -3758,7 +3545,7 @@ where
     T: ReaderOffset { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
 
 An offset into an `UnwindSection`.
 
@@ -3779,7 +3566,7 @@ An offset into an `UnwindSection`.
 trait UnwindSection<R: Reader>: Clone + Debug + _UnwindSectionPrivate<R> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
 
 A section holding unwind information: either `.debug_frame` or
 `.eh_frame`. See [`DebugFrame`](./struct.DebugFrame.html) and
@@ -3794,6 +3581,10 @@ A section holding unwind information: either `.debug_frame` or
 - `fn entries<'bases>(&self, bases: &'bases BaseAddresses) -> CfiEntriesIter<'bases, Self, R>`
 
   Iterate over the `CommonInformationEntry`s and `FrameDescriptionEntry`s
+  in this `.debug_frame` section.
+  
+  Can be [used with
+  `FallibleIterator`](./index.html#using-with-fallibleiterator).
 
 - `fn cie_from_offset(&self, bases: &BaseAddresses, offset: <Self as >::Offset) -> Result<CommonInformationEntry<R>>`
 
@@ -3810,10 +3601,64 @@ A section holding unwind information: either `.debug_frame` or
 - `fn fde_for_address<F>(&self, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
 
   Find the `FrameDescriptionEntry` for the given address.
+  
+  If found, the FDE is returned.  If not found,
+  `Err(gimli::Error::NoUnwindInfoForAddress)` is returned.
+  If parsing fails, the error is returned.
+  
+  You must provide a function to get its associated CIE. See
+  `PartialFrameDescriptionEntry::parse` for more information.
+  
+  Note: this iterates over all FDEs. If available, it is possible
+  to do a binary search with `EhFrameHdr::fde_for_address` instead.
 
 - `fn unwind_info_for_address<'ctx, F, S>(&self, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>`
 
   Find the frame unwind information for the given address.
+  
+  If found, the unwind information is returned.  If not found,
+  `Err(gimli::Error::NoUnwindInfoForAddress)` is returned. If parsing or
+  CFI evaluation fails, the error is returned.
+  
+  ```rust
+  use gimli::{BaseAddresses, EhFrame, EndianSlice, NativeEndian, UnwindContext,
+              UnwindSection};
+  
+  fn foo() -> gimli::Result<()> {
+  let read_eh_frame_section = || unimplemented!();
+  // Get the `.eh_frame` section from the object file. Alternatively,
+  // use `EhFrame` with the `.eh_frame` section of the object file.
+  let eh_frame = EhFrame::new(read_eh_frame_section(), NativeEndian);
+  
+  let get_frame_pc = || unimplemented!();
+  // Get the address of the PC for a frame you'd like to unwind.
+  let address = get_frame_pc();
+  
+  // This context is reusable, which cuts down on heap allocations.
+  let ctx = UnwindContext::new();
+  
+  // Optionally provide base addresses for any relative pointers. If a
+  // base address isn't provided and a pointer is found that is relative to
+  // it, we will return an `Err`.
+  let address_of_text_section_in_memory = unimplemented!();
+  let address_of_got_section_in_memory = unimplemented!();
+  let bases = BaseAddresses::default()
+      .set_text(address_of_text_section_in_memory)
+      .set_got(address_of_got_section_in_memory);
+  
+  let unwind_info = eh_frame.unwind_info_for_address(
+      &bases,
+      &mut ctx,
+      address,
+      EhFrame::cie_from_offset,
+  )?;
+  
+  let do_stuff_with = |_| unimplemented!();
+  do_stuff_with(unwind_info);
+  let _ = ctx;
+  unreachable!()
+  }
+  ```
 
 #### Implementors
 
@@ -3826,12 +3671,12 @@ A section holding unwind information: either `.debug_frame` or
 trait UnwindContextStorage<T: ReaderOffset>: Sized { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
 
 Specification of what storage should be used for [`UnwindContext`](../index.md).
 
 Normally you would only need to use [`StoreOnHeap`](../../index.md), which places the stack
-on the heap using [`Box`](../../../allocator_api2/stable/boxed/index.md). This is the default storage type parameter for [`UnwindContext`](../index.md).
+on the heap using `Box`. This is the default storage type parameter for [`UnwindContext`](../index.md).
 
 You may want to supply your own storage type for one of the following reasons:
 
@@ -3895,7 +3740,7 @@ where
     Section: UnwindSection<R>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
 
 ### `parse_encoded_pointer`
 
@@ -3903,7 +3748,7 @@ where
 fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<Pointer>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
 
 ### `parse_encoded_value`
 
@@ -3911,7 +3756,7 @@ fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &Po
 fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<u64>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
 
 ## Constants
 
@@ -3920,26 +3765,26 @@ fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &Poin
 const MAX_RULES: usize = 192usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1907)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1907)*
 
 ### `MAX_UNWIND_STACK_DEPTH`
 ```rust
 const MAX_UNWIND_STACK_DEPTH: usize = 4usize;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L1909)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L1909)*
 
 ### `CFI_INSTRUCTION_HIGH_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_HIGH_BITS_MASK: u8 = 192u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3257)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3257)*
 
 ### `CFI_INSTRUCTION_LOW_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_LOW_BITS_MASK: u8 = 63u8;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../../.source_1765633015/gimli-0.32.3/src/read/cfi.rs#L3258)*
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../../.source_1765894658/gimli-0.32.3/src/read/cfi.rs#L3258)*
 

@@ -66,7 +66,7 @@
 struct Attributes(u16);
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:157`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L157)*
+*Defined in [`console-0.16.1/src/utils.rs:157`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L157)*
 
 #### Implementations
 
@@ -125,11 +125,8 @@ struct Attributes(u16);
 - <span id="attributes-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Attributes`
@@ -168,7 +165,7 @@ struct Attributes(u16);
 struct BitsIter(u16);
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:198`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L198)*
+*Defined in [`console-0.16.1/src/utils.rs:198`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L198)*
 
 #### Trait Implementations
 
@@ -195,11 +192,8 @@ struct BitsIter(u16);
 - <span id="bitsiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for BitsIter`
@@ -242,7 +236,7 @@ struct Style {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:229-237`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L229-L237)*
+*Defined in [`console-0.16.1/src/utils.rs:229-237`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L229-L237)*
 
 A stored style that can be applied.
 
@@ -255,17 +249,11 @@ A stored style that can be applied.
 - <span id="style-from-dotted-str"></span>`fn from_dotted_str(s: &str) -> Self`
 
   Creates a style from a dotted string.
-
   
-
   Effectively the string is split at each dot and then the
-
   terms in between are applied.  For instance `red.on_blue` will
-
   create a string that is red on blue background. `9.on_12` is
-
   the same, but using 256 color numbers. Unknown terms are
-
   ignored.
 
 - <span id="style-apply-to"></span>`fn apply_to<D>(&self, val: D) -> StyledObject<D>` — [`StyledObject`](#styledobject)
@@ -275,9 +263,7 @@ A stored style that can be applied.
 - <span id="style-force-styling"></span>`const fn force_styling(self, value: bool) -> Self`
 
   Forces styling on or off.
-
   
-
   This overrides the automatic detection.
 
 - <span id="style-for-stderr"></span>`const fn for_stderr(self) -> Self`
@@ -287,9 +273,7 @@ A stored style that can be applied.
 - <span id="style-for-stdout"></span>`const fn for_stdout(self) -> Self`
 
   Specifies that style is applying to something being written on stdout.
-
   
-
   This is the default behaviour.
 
 - <span id="style-fg"></span>`const fn fg(self, color: Color) -> Self` — [`Color`](#color)
@@ -405,11 +389,8 @@ A stored style that can be applied.
 - <span id="style-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Style`
@@ -447,7 +428,7 @@ struct StyledObject<D> {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:515-518`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L515-L518)*
+*Defined in [`console-0.16.1/src/utils.rs:515-518`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L515-L518)*
 
 A formatting wrapper that can be styled for a terminal.
 
@@ -456,9 +437,7 @@ A formatting wrapper that can be styled for a terminal.
 - <span id="styledobject-force-styling"></span>`fn force_styling(self, value: bool) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
   Forces styling on or off.
-
   
-
   This overrides the automatic detection.
 
 - <span id="styledobject-for-stderr"></span>`fn for_stderr(self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
@@ -468,9 +447,7 @@ A formatting wrapper that can be styled for a terminal.
 - <span id="styledobject-for-stdout"></span>`const fn for_stdout(self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
   Specifies that style is applying to something being written on stdout
-
   
-
   This is the default
 
 - <span id="styledobject-fg"></span>`const fn fg(self, color: Color) -> StyledObject<D>` — [`Color`](#color), [`StyledObject`](#styledobject)
@@ -588,11 +565,8 @@ A formatting wrapper that can be styled for a terminal.
 - <span id="styledobject-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<D: fmt::LowerExp> LowerExp for StyledObject<D>`
@@ -649,7 +623,7 @@ A formatting wrapper that can be styled for a terminal.
 struct Emoji<'a, 'b>(&'a str, &'b str);
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:762`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L762)*
+*Defined in [`console-0.16.1/src/utils.rs:762`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L762)*
 
 "Intelligent" emoji formatter.
 
@@ -707,11 +681,8 @@ println!("[4/4] {} Done!", Emoji("✨", ":-)"));
 - <span id="emoji-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Emoji<'a, 'b>`
@@ -756,7 +727,7 @@ enum Color {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:87-97`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L87-L97)*
+*Defined in [`console-0.16.1/src/utils.rs:87-97`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L87-L97)*
 
 A terminal color.
 
@@ -807,11 +778,8 @@ A terminal color.
 - <span id="color-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Color`
@@ -856,7 +824,7 @@ enum Attribute {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:128-140`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L128-L140)*
+*Defined in [`console-0.16.1/src/utils.rs:128-140`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L128-L140)*
 
 A terminal style attribute.
 
@@ -905,11 +873,8 @@ A terminal style attribute.
 - <span id="attribute-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Attribute`
@@ -956,7 +921,7 @@ enum Alignment {
 }
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:221-225`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L221-L225)*
+*Defined in [`console-0.16.1/src/utils.rs:221-225`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L221-L225)*
 
 Defines the alignment for padding operations.
 
@@ -1001,11 +966,8 @@ Defines the alignment for padding operations.
 - <span id="alignment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Alignment`
@@ -1042,7 +1004,7 @@ Defines the alignment for padding operations.
 fn default_colors_enabled(out: &crate::term::Term) -> bool
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:15-19`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L15-L19)*
+*Defined in [`console-0.16.1/src/utils.rs:15-19`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L15-L19)*
 
 ### `colors_enabled`
 
@@ -1050,7 +1012,7 @@ fn default_colors_enabled(out: &crate::term::Term) -> bool
 fn colors_enabled() -> bool
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:34-36`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L34-L36)*
+*Defined in [`console-0.16.1/src/utils.rs:34-36`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L34-L36)*
 
 Returns `true` if colors should be enabled for stdout.
 
@@ -1066,7 +1028,7 @@ This honors the [clicolors spec](http://bixense.com/clicolors/).
 fn set_colors_enabled(val: bool)
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:43-45`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L43-L45)*
+*Defined in [`console-0.16.1/src/utils.rs:43-45`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L43-L45)*
 
 Forces colorization on or off for stdout.
 
@@ -1079,7 +1041,7 @@ This overrides the default for the current process and changes the return value 
 fn colors_enabled_stderr() -> bool
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:55-57`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L55-L57)*
+*Defined in [`console-0.16.1/src/utils.rs:55-57`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L55-L57)*
 
 Returns `true` if colors should be enabled for stderr.
 
@@ -1095,7 +1057,7 @@ This honors the [clicolors spec](http://bixense.com/clicolors/).
 fn set_colors_enabled_stderr(val: bool)
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:64-66`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L64-L66)*
+*Defined in [`console-0.16.1/src/utils.rs:64-66`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L64-L66)*
 
 Forces colorization on or off for stderr.
 
@@ -1108,7 +1070,7 @@ This overrides the default for the current process and changes the return value 
 fn measure_text_width(s: &str) -> usize
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:69-83`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L69-L83)*
+*Defined in [`console-0.16.1/src/utils.rs:69-83`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L69-L83)*
 
 Measure the width of a string in terminal characters.
 
@@ -1118,7 +1080,7 @@ Measure the width of a string in terminal characters.
 fn style<D>(val: D) -> StyledObject<D>
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:509-511`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L509-L511)*
+*Defined in [`console-0.16.1/src/utils.rs:509-511`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L509-L511)*
 
 Wraps an object for formatting for styling.
 
@@ -1143,7 +1105,7 @@ format!("Hello {}", Style::new().cyan().apply_to("World"));
 fn str_width(s: &str) -> usize
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:780-790`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L780-L790)*
+*Defined in [`console-0.16.1/src/utils.rs:780-790`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L780-L790)*
 
 ### `char_width`
 
@@ -1151,7 +1113,7 @@ fn str_width(s: &str) -> usize
 fn char_width(c: char) -> usize
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:793-804`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L793-L804)*
+*Defined in [`console-0.16.1/src/utils.rs:793-804`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L793-L804)*
 
 ### `truncate_str`
 
@@ -1159,7 +1121,7 @@ fn char_width(c: char) -> usize
 fn truncate_str<'a>(s: &'a str, width: usize, tail: &str) -> alloc::borrow::Cow<'a, str>
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:817-884`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L817-L884)*
+*Defined in [`console-0.16.1/src/utils.rs:817-884`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L817-L884)*
 
 Truncates a string to a certain number of characters.
 
@@ -1174,7 +1136,7 @@ the tail string will be appended.
 fn pad_str<'a>(s: &'a str, width: usize, align: Alignment, truncate: Option<&str>) -> alloc::borrow::Cow<'a, str>
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:892-899`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L892-L899)*
+*Defined in [`console-0.16.1/src/utils.rs:892-899`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L892-L899)*
 
 Pads a string to fill a certain number of characters.
 
@@ -1189,7 +1151,7 @@ marker.
 fn pad_str_with<'a>(s: &'a str, width: usize, align: Alignment, truncate: Option<&str>, pad: char) -> alloc::borrow::Cow<'a, str>
 ```
 
-*Defined in [`console-0.16.1/src/utils.rs:906-939`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L906-L939)*
+*Defined in [`console-0.16.1/src/utils.rs:906-939`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L906-L939)*
 
 Pads a string with specific padding to fill a certain number of characters.
 
@@ -1202,5 +1164,5 @@ marker.
 
 ### `impl_fmt!`
 
-*Defined in [`console-0.16.1/src/utils.rs:691-737`](../../../.source_1765633015/console-0.16.1/src/utils.rs#L691-L737)*
+*Defined in [`console-0.16.1/src/utils.rs:691-737`](../../../.source_1765894658/console-0.16.1/src/utils.rs#L691-L737)*
 

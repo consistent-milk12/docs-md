@@ -25,7 +25,7 @@ struct Export<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:42-51`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L42-L51)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:42-51`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/export.rs#L42-L51)*
 
 An export from a PE file.
 
@@ -86,11 +86,8 @@ There are multiple kinds of PE exports (with or without a name, and local or for
 - <span id="export-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Export<'data>`
@@ -126,7 +123,7 @@ struct ExportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:87-94`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L87-L94)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:87-94`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/export.rs#L87-L94)*
 
 A partially parsed PE export table.
 
@@ -149,83 +146,58 @@ Returned by [`DataDirectories::export_table`](super::DataDirectories::export_tab
 - <span id="exporttable-ordinal-base"></span>`fn ordinal_base(&self) -> u32`
 
   Returns the base value of ordinals.
-
   
-
   Adding this to an address index will give an ordinal.
 
 - <span id="exporttable-addresses"></span>`fn addresses(&self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../../index.md#u32bytes), [`LittleEndian`](../../../index.md#littleendian)
 
   Returns the unparsed address table.
-
   
-
   An address table entry may be a local address, or the address of a forwarded export entry.
-
   See `Self::is_forward` and `Self::target_from_address`.
 
 - <span id="exporttable-name-pointers"></span>`fn name_pointers(&self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../../index.md#u32bytes), [`LittleEndian`](../../../index.md#littleendian)
 
   Returns the unparsed name pointer table.
-
   
-
   A name pointer table entry can be used with `Self::name_from_pointer`.
 
 - <span id="exporttable-name-ordinals"></span>`fn name_ordinals(&self) -> &'data [U16Bytes<LE>]` — [`U16Bytes`](../../../index.md#u16bytes), [`LittleEndian`](../../../index.md#littleendian)
 
   Returns the unparsed ordinal table.
-
   
-
   An ordinal table entry is a 0-based index into the address table.
-
   See `Self::address_by_index` and `Self::target_by_index`.
 
 - <span id="exporttable-name-iter"></span>`fn name_iter(&self) -> impl Iterator<Item = (u32, u16)> + 'data`
 
   Returns an iterator for the entries in the name pointer table and ordinal table.
-
   
-
   A name pointer table entry can be used with `Self::name_from_pointer`.
-
   
-
   An ordinal table entry is a 0-based index into the address table.
-
   See `Self::address_by_index` and `Self::target_by_index`.
 
 - <span id="exporttable-address-by-index"></span>`fn address_by_index(&self, index: u32) -> Result<u32>` — [`Result`](../../../index.md#result)
 
   Returns the export address table entry at the given address index.
-
   
-
   This may be a local address, or the address of a forwarded export entry.
-
   See `Self::is_forward` and `Self::target_from_address`.
-
   
-
   `index` is a 0-based index into the export address table.
 
 - <span id="exporttable-address-by-ordinal"></span>`fn address_by_ordinal(&self, ordinal: u32) -> Result<u32>` — [`Result`](../../../index.md#result)
 
   Returns the export address table entry at the given ordinal.
-
   
-
   This may be a local address, or the address of a forwarded export entry.
-
   See `Self::is_forward` and `Self::target_from_address`.
 
 - <span id="exporttable-target-by-index"></span>`fn target_by_index(&self, index: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../../index.md#result), [`ExportTarget`](../index.md#exporttarget)
 
   Returns the target of the export at the given address index.
-
   
-
   `index` is a 0-based index into the export address table.
 
 - <span id="exporttable-target-by-ordinal"></span>`fn target_by_ordinal(&self, ordinal: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../../index.md#result), [`ExportTarget`](../index.md#exporttarget)
@@ -291,11 +263,8 @@ Returned by [`DataDirectories::export_table`](super::DataDirectories::export_tab
 - <span id="exporttable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ExportTable<'data>`
@@ -330,7 +299,7 @@ enum ExportTarget<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:10-21`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L10-L21)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:10-21`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/export.rs#L10-L21)*
 
 Where an export is pointing to.
 
@@ -401,11 +370,8 @@ Where an export is pointing to.
 - <span id="exporttarget-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ExportTarget<'data>`
@@ -436,5 +402,5 @@ Where an export is pointing to.
 fn parse_ordinal(digits: &[u8]) -> Option<u32>
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/export.rs:324-334`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/export.rs#L324-L334)*
+*Defined in [`object-0.37.3/src/read/pe/export.rs:324-334`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/export.rs#L324-L334)*
 

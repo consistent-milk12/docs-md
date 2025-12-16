@@ -68,7 +68,7 @@ struct Searcher {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:33-37`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L33-L37)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:33-37`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L33-L37)*
 
 A "meta" substring searcher.
 
@@ -93,37 +93,25 @@ chosen substring search implementation.
 - <span id="searcher-new"></span>`fn new<R: HeuristicFrequencyRank>(prefilter: PrefilterConfig, ranker: R, needle: &[u8]) -> Searcher` — [`PrefilterConfig`](#prefilterconfig), [`Searcher`](#searcher)
 
   Creates a new "meta" substring searcher that attempts to choose the
-
   best algorithm based on the needle, heuristics and what the current
-
   target supports.
 
 - <span id="searcher-twoway"></span>`fn twoway(needle: &[u8], rabinkarp: rabinkarp::Finder, prestrat: Option<Prefilter>) -> Searcher` — [`Finder`](../../arch/all/rabinkarp/index.md#finder), [`Prefilter`](#prefilter), [`Searcher`](#searcher)
 
   Creates a new searcher that always uses the Two-Way algorithm. This is
-
   typically used when vector algorithms are unavailable or inappropriate.
-
   (For example, when the needle is "too long.")
-
   
-
   If a prefilter is given, then the searcher returned will be accelerated
-
   by the prefilter.
 
 - <span id="searcher-find"></span>`fn find(&self, prestate: &mut PrefilterState, haystack: &[u8], needle: &[u8]) -> Option<usize>` — [`PrefilterState`](#prefilterstate)
 
   Searches the given haystack for the given needle. The needle given
-
   should be the same as the needle that this finder was initialized
-
   with.
-
   
-
   Inlining this can lead to big wins for latency, and #[`inline`](../../../compact_str/repr/inline/index.md) doesn't
-
   seem to be enough in some cases.
 
 #### Trait Implementations
@@ -163,11 +151,8 @@ chosen substring search implementation.
 - <span id="searcher-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Searcher`
@@ -199,7 +184,7 @@ struct TwoWayWithPrefilter {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:262-265`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L262-L265)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:262-265`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L262-L265)*
 
 A two-way substring searcher with a prefilter.
 
@@ -242,11 +227,8 @@ A two-way substring searcher with a prefilter.
 - <span id="twowaywithprefilter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for TwoWayWithPrefilter`
@@ -278,7 +260,7 @@ struct SearcherRev {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:441-444`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L441-L444)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:441-444`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L441-L444)*
 
 A reverse substring searcher.
 
@@ -287,17 +269,13 @@ A reverse substring searcher.
 - <span id="searcherrev-new"></span>`fn new(needle: &[u8]) -> SearcherRev` — [`SearcherRev`](#searcherrev)
 
   Creates a new searcher for finding occurrences of the given needle in
-
   reverse. That is, it reports the last (instead of the first) occurrence
-
   of a needle in a haystack.
 
 - <span id="searcherrev-rfind"></span>`fn rfind(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
   Searches the given haystack for the last occurrence of the given
-
   needle. The needle given should be the same as the needle that this
-
   finder was initialized with.
 
 #### Trait Implementations
@@ -337,11 +315,8 @@ A reverse substring searcher.
 - <span id="searcherrev-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SearcherRev`
@@ -375,7 +350,7 @@ struct Prefilter {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:604-609`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L604-L609)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:604-609`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L604-L609)*
 
 The implementation of a prefilter.
 
@@ -420,7 +395,6 @@ time.)
 - <span id="prefilter-fallback"></span>`fn fallback<R: HeuristicFrequencyRank>(ranker: R, pair: Pair, needle: &[u8]) -> Option<Prefilter>` — [`Pair`](../../arch/all/packedpair/index.md#pair), [`Prefilter`](#prefilter)
 
   Return a "fallback" prefilter, but only if it is believed to be
-
   effective.
 
 - <span id="prefilter-sse2"></span>`fn sse2(finder: sse2::Finder, needle: &[u8]) -> Prefilter` — [`Finder`](../../arch/x86_64/sse2/packedpair/index.md#finder), [`Prefilter`](#prefilter)
@@ -434,37 +408,23 @@ time.)
 - <span id="prefilter-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
   Return a *candidate* position for a match.
-
   
-
   When this returns an offset, it implies that a match could begin at
-
   that offset, but it may not. That is, it is possible for a false
-
   positive to be returned.
-
   
-
   When `None` is returned, then it is guaranteed that there are no
-
   matches for the needle in the given haystack. That is, it is impossible
-
   for a false negative to be returned.
-
   
-
   The purpose of this routine is to look for candidate matching positions
-
   as quickly as possible before running a (likely) slower confirmation
-
   step.
 
 - <span id="prefilter-find-simple"></span>`fn find_simple(&self, haystack: &[u8]) -> Option<usize>`
 
   A "simple" prefilter that just looks for the occurrence of the rarest
-
   byte from the needle. This is generally only used for very small
-
   haystacks.
 
 #### Trait Implementations
@@ -506,11 +466,8 @@ time.)
 - <span id="prefilter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Prefilter`
@@ -542,7 +499,7 @@ struct PrefilterState {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:878-888`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L878-L888)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:878-888`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L878-L888)*
 
 PrefilterState tracks state associated with the effectiveness of a
 prefilter. It is used to track how many bytes, on average, are skipped by
@@ -582,19 +539,16 @@ created from a `Freqy`. e.g., An inert `Freqy` will produce an inert
 - <span id="prefilterstate-update"></span>`fn update(&mut self, skipped: usize)`
 
   Update this state with the number of bytes skipped on the last
-
   invocation of the prefilter.
 
 - <span id="prefilterstate-is-effective"></span>`fn is_effective(&mut self) -> bool`
 
   Return true if and only if this state indicates that a prefilter is
-
   still effective.
 
 - <span id="prefilterstate-is-inert"></span>`fn is_inert(&self) -> bool`
 
   Returns true if the prefilter this state represents should no longer
-
   be used.
 
 - <span id="prefilterstate-skips"></span>`fn skips(&self) -> u32`
@@ -640,11 +594,8 @@ created from a `Freqy`. e.g., An inert `Freqy` will produce an inert
 - <span id="prefilterstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PrefilterState`
@@ -676,7 +627,7 @@ struct Pre<'a> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:960-965`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L960-L965)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:960-965`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L960-L965)*
 
 A combination of prefilter effectiveness state and the prefilter itself.
 
@@ -729,11 +680,8 @@ A combination of prefilter effectiveness state and the prefilter itself.
 - <span id="pre-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Pre<'a>`
@@ -764,7 +712,7 @@ enum SearcherRevKind {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:459-463`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L459-L463)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:459-463`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L459-L463)*
 
 The kind of the reverse searcher.
 
@@ -816,11 +764,8 @@ substring search.
 - <span id="searcherrevkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SearcherRevKind`
@@ -852,7 +797,7 @@ enum PrefilterConfig {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:544-551`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L544-L551)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:544-551`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L544-L551)*
 
 Prefilter controls whether heuristics are used to accelerate searching.
 
@@ -941,11 +886,8 @@ useful.
 - <span id="prefilterconfig-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for PrefilterConfig`
@@ -976,7 +918,7 @@ useful.
 unsafe fn searcher_kind_empty(_searcher: &Searcher, _prestate: &mut PrefilterState, _haystack: &[u8], _needle: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:286-293`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L286-L293)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:286-293`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L286-L293)*
 
 Reads from the `empty` field of `SearcherKind` to handle the case of
 searching for the empty needle. Works on all platforms.
@@ -991,7 +933,7 @@ Callers must ensure that the `searcher.kind.empty` union field is set.
 unsafe fn searcher_kind_one_byte(searcher: &Searcher, _prestate: &mut PrefilterState, haystack: &[u8], _needle: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:301-309`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L301-L309)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:301-309`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L301-L309)*
 
 Reads from the `one_byte` field of `SearcherKind` to handle the case of
 searching for a single byte needle. Works on all platforms.
@@ -1006,7 +948,7 @@ Callers must ensure that the `searcher.kind.one_byte` union field is set.
 unsafe fn searcher_kind_two_way(searcher: &Searcher, _prestate: &mut PrefilterState, haystack: &[u8], needle: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:318-329`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L318-L329)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:318-329`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L318-L329)*
 
 Reads from the `two_way` field of `SearcherKind` to handle the case of
 searching for an arbitrary needle without prefilter acceleration. Works on
@@ -1022,7 +964,7 @@ Callers must ensure that the `searcher.kind.two_way` union field is set.
 unsafe fn searcher_kind_two_way_with_prefilter(searcher: &Searcher, prestate: &mut PrefilterState, haystack: &[u8], needle: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:339-353`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L339-L353)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:339-353`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L339-L353)*
 
 Reads from the `two_way_with_prefilter` field of `SearcherKind` to handle
 the case of searching for an arbitrary needle with prefilter acceleration.
@@ -1039,7 +981,7 @@ field is set.
 unsafe fn searcher_kind_sse2(searcher: &Searcher, _prestate: &mut PrefilterState, haystack: &[u8], needle: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:362-374`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L362-L374)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:362-374`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L362-L374)*
 
 Reads from the `sse2` field of `SearcherKind` to execute the x86_64 SSE2
 vectorized substring search implementation.
@@ -1054,7 +996,7 @@ Callers must ensure that the `searcher.kind.sse2` union field is set.
 unsafe fn searcher_kind_avx2(searcher: &Searcher, _prestate: &mut PrefilterState, haystack: &[u8], needle: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:383-395`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L383-L395)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:383-395`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L383-L395)*
 
 Reads from the `avx2` field of `SearcherKind` to execute the x86_64 AVX2
 vectorized substring search implementation.
@@ -1069,7 +1011,7 @@ Callers must ensure that the `searcher.kind.avx2` union field is set.
 unsafe fn prefilter_kind_fallback(strat: &Prefilter, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:785-790`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L785-L790)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:785-790`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L785-L790)*
 
 Reads from the `fallback` field of `PrefilterKind` to execute the fallback
 prefilter. Works on all platforms.
@@ -1084,7 +1026,7 @@ Callers must ensure that the `strat.kind.fallback` union field is set.
 unsafe fn prefilter_kind_sse2(strat: &Prefilter, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:799-809`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L799-L809)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:799-809`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L799-L809)*
 
 Reads from the `sse2` field of `PrefilterKind` to execute the x86_64 SSE2
 prefilter.
@@ -1099,7 +1041,7 @@ Callers must ensure that the `strat.kind.sse2` union field is set.
 unsafe fn prefilter_kind_avx2(strat: &Prefilter, haystack: &[u8]) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:818-828`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L818-L828)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:818-828`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L818-L828)*
 
 Reads from the `avx2` field of `PrefilterKind` to execute the x86_64 AVX2
 prefilter.
@@ -1114,7 +1056,7 @@ Callers must ensure that the `strat.kind.avx2` union field is set.
 fn do_packed_search(needle: &[u8]) -> bool
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:996-1030`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L996-L1030)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:996-1030`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L996-L1030)*
 
 Returns true if the needle has the right characteristics for a vector
 algorithm to handle the entirety of substring search.
@@ -1137,7 +1079,7 @@ algorithms to own substring search when the needle is of a certain length.
 type SearcherKindFn = fn(&Searcher, &mut PrefilterState, &[u8], &[u8]) -> Option<usize>;
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:273-278`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L273-L278)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:273-278`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L273-L278)*
 
 The type of a substring search function.
 
@@ -1152,7 +1094,7 @@ function is paired with the value populated in `SearcherKind` union.
 type PrefilterKindFn = fn(&Prefilter, &[u8]) -> Option<usize>;
 ```
 
-*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:776-777`](../../../../.source_1765633015/memchr-2.7.6/src/memmem/searcher.rs#L776-L777)*
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:776-777`](../../../../.source_1765894658/memchr-2.7.6/src/memmem/searcher.rs#L776-L777)*
 
 The type of a prefilter function.
 

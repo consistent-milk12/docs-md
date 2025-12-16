@@ -118,7 +118,7 @@ let style = anstyle::Style::new().bold();
 struct Ansi256Color(u8);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:352`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L352)*
+*Defined in [`anstyle-1.0.13/src/color.rs:352`](../../.source_1765894658/anstyle-1.0.13/src/color.rs#L352)*
 
 256 (8-bit) color support
 
@@ -207,11 +207,8 @@ struct Ansi256Color(u8);
 - <span id="ansi256color-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Ansi256Color`
@@ -254,7 +251,7 @@ struct Ansi256Color(u8);
 struct RgbColor(u8, u8, u8);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:476`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L476)*
+*Defined in [`anstyle-1.0.13/src/color.rs:476`](../../.source_1765894658/anstyle-1.0.13/src/color.rs#L476)*
 
 24-bit ANSI RGB color codes
 
@@ -339,11 +336,8 @@ struct RgbColor(u8, u8, u8);
 - <span id="rgbcolor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for RgbColor`
@@ -389,7 +383,7 @@ struct DisplayBuffer {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L571-L574)*
+*Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../.source_1765894658/anstyle-1.0.13/src/color.rs#L571-L574)*
 
 #### Implementations
 
@@ -448,11 +442,8 @@ struct DisplayBuffer {
 - <span id="displaybuffer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DisplayBuffer`
@@ -485,7 +476,7 @@ struct DisplayBuffer {
 struct NullFormatter(&'static str);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:635`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L635)*
+*Defined in [`anstyle-1.0.13/src/color.rs:635`](../../.source_1765894658/anstyle-1.0.13/src/color.rs#L635)*
 
 #### Trait Implementations
 
@@ -534,11 +525,8 @@ struct NullFormatter(&'static str);
 - <span id="nullformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for NullFormatter`
@@ -571,7 +559,7 @@ struct NullFormatter(&'static str);
 struct Effects(u16);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L9)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L9)*
 
 A set of text effects
 
@@ -612,141 +600,85 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 - <span id="effects-new"></span>`const fn new() -> Self`
 
   No effects enabled
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::new();
-
   ```
 
 - <span id="effects-is-plain"></span>`const fn is_plain(self) -> bool`
 
   Check if no effects are enabled
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::new();
-
   assert!(effects.is_plain());
-
   
-
   let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
-
   assert!(!effects.is_plain());
-
   ```
 
 - <span id="effects-contains"></span>`const fn contains(self, other: Effects) -> bool` — [`Effects`](#effects)
 
   Returns `true` if all of the effects in `other` are contained within `self`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
-
   assert!(effects.contains(anstyle::Effects::BOLD));
-
   
-
   let effects = anstyle::Effects::new();
-
   assert!(!effects.contains(anstyle::Effects::BOLD));
-
   ```
 
 - <span id="effects-insert"></span>`const fn insert(self, other: Effects) -> Self` — [`Effects`](#effects)
 
   Inserts the specified effects in-place.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::new().insert(anstyle::Effects::new());
-
   assert!(effects.is_plain());
-
   
-
   let effects = anstyle::Effects::new().insert(anstyle::Effects::BOLD);
-
   assert!(effects.contains(anstyle::Effects::BOLD));
-
   ```
 
 - <span id="effects-remove"></span>`const fn remove(self, other: Effects) -> Self` — [`Effects`](#effects)
 
   Removes the specified effects in-place.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = (anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE).remove(anstyle::Effects::BOLD);
-
   assert!(!effects.contains(anstyle::Effects::BOLD));
-
   assert!(effects.contains(anstyle::Effects::UNDERLINE));
-
   ```
 
 - <span id="effects-clear"></span>`const fn clear(self) -> Self`
 
   Reset all effects in-place
-
   ```rust
-
   let effects = (anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE).clear();
-
   assert!(!effects.contains(anstyle::Effects::BOLD));
-
   assert!(!effects.contains(anstyle::Effects::UNDERLINE));
-
   ```
 
 - <span id="effects-set"></span>`const fn set(self, other: Self, enable: bool) -> Self`
 
   Enable or disable the specified effects depending on the passed value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   let effects = anstyle::Effects::new().set(anstyle::Effects::BOLD, true);
-
   assert!(effects.contains(anstyle::Effects::BOLD));
-
   ```
 
 - <span id="effects-iter"></span>`fn iter(self) -> EffectIter` — [`EffectIter`](#effectiter)
@@ -822,11 +754,8 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 - <span id="effects-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Effects`
@@ -882,7 +811,7 @@ struct Metadata {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L263-L266)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L263-L266)*
 
 #### Trait Implementations
 
@@ -909,11 +838,8 @@ struct Metadata {
 - <span id="metadata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Metadata`
@@ -934,7 +860,7 @@ struct Metadata {
 struct EffectsDisplay(Effects);
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L320)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L320)*
 
 #### Trait Implementations
 
@@ -983,11 +909,8 @@ struct EffectsDisplay(Effects);
 - <span id="effectsdisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for EffectsDisplay`
@@ -1023,7 +946,7 @@ struct EffectIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L334-L337)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L334-L337)*
 
 Enumerate each enabled value in [`Effects`](#effects)
 
@@ -1066,11 +989,8 @@ Enumerate each enabled value in [`Effects`](#effects)
 - <span id="effectiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for EffectIter`
@@ -1122,7 +1042,7 @@ struct EffectIndexIter {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L358-L361)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L358-L361)*
 
 #### Trait Implementations
 
@@ -1163,11 +1083,8 @@ struct EffectIndexIter {
 - <span id="effectindexiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for EffectIndexIter`
@@ -1216,7 +1133,7 @@ struct EffectIndexIter {
 struct Reset;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../.source_1765633015/anstyle-1.0.13/src/reset.rs#L4)*
+*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../.source_1765894658/anstyle-1.0.13/src/reset.rs#L4)*
 
 Reset terminal formatting
 
@@ -1225,9 +1142,7 @@ Reset terminal formatting
 - <span id="reset-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
   Render the ANSI code
-
   
-
   `Reset` also implements `Display` directly, so calling this method is optional.
 
 #### Trait Implementations
@@ -1283,11 +1198,8 @@ Reset terminal formatting
 - <span id="reset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Reset`
@@ -1339,7 +1251,7 @@ struct Style {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../.source_1765633015/anstyle-1.0.13/src/style.rs#L18-L23)*
+*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../.source_1765894658/anstyle-1.0.13/src/style.rs#L18-L23)*
 
 ANSI Text styling
 
@@ -1361,89 +1273,57 @@ println!("{style}{value}{style:#}");
 - <span id="style-new"></span>`const fn new() -> Self`
 
   No effects enabled
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new();
-
   ```
 
 - <span id="style-fg-color"></span>`const fn fg_color(self, fg: Option<crate::Color>) -> Self` — [`Color`](#color)
 
   Set foreground color
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new().fg_color(Some(anstyle::AnsiColor::Red.into()));
-
   ```
 
 - <span id="style-bg-color"></span>`const fn bg_color(self, bg: Option<crate::Color>) -> Self` — [`Color`](#color)
 
   Set background color
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new().bg_color(Some(anstyle::AnsiColor::Red.into()));
-
   ```
 
 - <span id="style-underline-color"></span>`const fn underline_color(self, underline: Option<crate::Color>) -> Self` — [`Color`](#color)
 
   Set underline color
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new().underline_color(Some(anstyle::AnsiColor::Red.into()));
-
   ```
 
 - <span id="style-effects"></span>`const fn effects(self, effects: crate::Effects) -> Self` — [`Effects`](#effects)
 
   Set text effects
-
   
-
   # Examples
-
   
-
   ```rust
-
   let style = anstyle::Style::new().effects(anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE);
-
   ```
 
 - <span id="style-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
   Render the ANSI code
-
   
-
   `Style` also implements `Display` directly, so calling this method is optional.
 
 - <span id="style-fmt-to"></span>`fn fmt_to(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
@@ -1455,17 +1335,13 @@ println!("{style}{value}{style:#}");
 - <span id="style-render-reset"></span>`fn render_reset(self) -> impl core::fmt::Display + Copy`
 
   Renders the relevant `Reset` code
-
   
-
   Unlike `Reset::render`, this will elide the code if there is nothing to reset.
 
 - <span id="style-write-reset-to"></span>`fn write_reset_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
   Write the relevant `Reset` code
-
   
-
   Unlike `Reset::render`, this will elide the code if there is nothing to reset.
 
 #### Trait Implementations
@@ -1531,11 +1407,8 @@ println!("{style}{value}{style:#}");
 - <span id="style-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Style`
@@ -1592,7 +1465,7 @@ println!("{style}{value}{style:#}");
 struct StyleDisplay(Style);
 ```
 
-*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../.source_1765633015/anstyle-1.0.13/src/style.rs#L423)*
+*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../.source_1765894658/anstyle-1.0.13/src/style.rs#L423)*
 
 #### Trait Implementations
 
@@ -1641,11 +1514,8 @@ struct StyleDisplay(Style);
 - <span id="styledisplay-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for StyleDisplay`
@@ -1684,7 +1554,7 @@ enum Color {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L4-L17)*
+*Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../.source_1765894658/anstyle-1.0.13/src/color.rs#L4-L17)*
 
 Any ANSI color code scheme
 
@@ -1779,11 +1649,8 @@ Any ANSI color code scheme
 - <span id="color-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Color`
@@ -1843,7 +1710,7 @@ enum AnsiColor {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L138-L186)*
+*Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../.source_1765894658/anstyle-1.0.13/src/color.rs#L138-L186)*
 
 Available 4-bit ANSI color palette codes
 
@@ -1996,11 +1863,8 @@ The user's terminal defines the meaning of the each palette code.
 - <span id="ansicolor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for AnsiColor`
@@ -2044,19 +1908,19 @@ The user's terminal defines the meaning of the each palette code.
 const DISPLAY_BUFFER_CAPACITY: usize = 19usize;
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:568`](../../.source_1765633015/anstyle-1.0.13/src/color.rs#L568)*
+*Defined in [`anstyle-1.0.13/src/color.rs:568`](../../.source_1765894658/anstyle-1.0.13/src/color.rs#L568)*
 
 ### `METADATA`
 ```rust
 const METADATA: [Metadata; 12];
 ```
 
-*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../.source_1765633015/anstyle-1.0.13/src/effect.rs#L268-L317)*
+*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../.source_1765894658/anstyle-1.0.13/src/effect.rs#L268-L317)*
 
 ### `RESET`
 ```rust
 const RESET: &str;
 ```
 
-*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../.source_1765633015/anstyle-1.0.13/src/reset.rs#L22)*
+*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../.source_1765894658/anstyle-1.0.13/src/reset.rs#L22)*
 

@@ -29,7 +29,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/lookup.rs:32-39`](../../../../.source_1765633015/gimli-0.32.3/src/read/lookup.rs#L32-L39)*
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:32-39`](../../../../.source_1765894658/gimli-0.32.3/src/read/lookup.rs#L32-L39)*
 
 #### Implementations
 
@@ -74,11 +74,8 @@ where
 - <span id="debuglookup-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DebugLookup<R, Parser>`
@@ -113,28 +110,20 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/lookup.rs:72-79`](../../../../.source_1765633015/gimli-0.32.3/src/read/lookup.rs#L72-L79)*
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:72-79`](../../../../.source_1765894658/gimli-0.32.3/src/read/lookup.rs#L72-L79)*
 
 #### Implementations
 
 - <span id="lookupentryiter-next"></span>`fn next(&mut self) -> Result<Option<<Parser as >::Entry>>` — [`Result`](../../index.md#result), [`LookupParser`](#lookupparser)
 
   Advance the iterator and return the next entry.
-
   
-
   Returns the newly parsed entry as `Ok(Some(Parser::Entry))`. Returns
-
   `Ok(None)` when iteration is complete and all entries have already been
-
   parsed and yielded. If an error occurs while parsing the next entry,
-
   then this error is returned as `Err(e)`, and all subsequent calls return
-
   `Ok(None)`.
-
   
-
   Can be [used with `FallibleIterator`](./index.html#using-with-fallibleiterator).
 
 #### Trait Implementations
@@ -174,11 +163,8 @@ where
 - <span id="lookupentryiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LookupEntryIter<R, Parser>`
@@ -213,7 +199,7 @@ struct PubStuffHeader<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/lookup.rs:129-135`](../../../../.source_1765633015/gimli-0.32.3/src/read/lookup.rs#L129-L135)*
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:129-135`](../../../../.source_1765894658/gimli-0.32.3/src/read/lookup.rs#L129-L135)*
 
 #### Trait Implementations
 
@@ -254,11 +240,8 @@ struct PubStuffHeader<T> {
 - <span id="pubstuffheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: cmp::PartialEq> PartialEq for PubStuffHeader<T>`
@@ -298,7 +281,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/lookup.rs:146-153`](../../../../.source_1765633015/gimli-0.32.3/src/read/lookup.rs#L146-L153)*
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:146-153`](../../../../.source_1765894658/gimli-0.32.3/src/read/lookup.rs#L146-L153)*
 
 #### Trait Implementations
 
@@ -337,11 +320,8 @@ where
 - <span id="pubstuffparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Entry> LookupParser for PubStuffParser<R, Entry>`
@@ -353,7 +333,6 @@ where
 - <span id="pubstuffparser-lookupparser-parse-header"></span>`fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>` — [`Result`](../../index.md#result), [`LookupParser`](#lookupparser)
 
   Parse an pubthings set header. Returns a tuple of the
-
   pubthings to be parsed for this set, and the newly created PubThingHeader struct.
 
 - <span id="pubstuffparser-lookupparser-parse-entry"></span>`fn parse_entry(input: &mut R, header: &<Self as >::Header) -> Result<Option<<Self as >::Entry>>` — [`LookupParser`](#lookupparser), [`Result`](../../index.md#result)
@@ -388,7 +367,7 @@ where
 trait LookupParser<R: Reader> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/lookup.rs:15-29`](../../../../.source_1765633015/gimli-0.32.3/src/read/lookup.rs#L15-L29)*
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:15-29`](../../../../.source_1765894658/gimli-0.32.3/src/read/lookup.rs#L15-L29)*
 
 #### Associated Types
 
@@ -401,10 +380,13 @@ trait LookupParser<R: Reader> { ... }
 - `fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>`
 
   Parse a header from `input`. Returns a tuple of `input` sliced to contain just the entries
+  corresponding to this header (without the header itself), and the parsed representation of
+  the header itself.
 
 - `fn parse_entry(input: &mut R, header: &<Self as >::Header) -> Result<Option<<Self as >::Entry>>`
 
   Parse a single entry from `input`. Returns either a parsed representation of the entry
+  or None if `input` is exhausted.
 
 #### Implementors
 
@@ -416,7 +398,7 @@ trait LookupParser<R: Reader> { ... }
 trait PubStuffEntry<R: Reader> { ... }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/lookup.rs:137-143`](../../../../.source_1765633015/gimli-0.32.3/src/read/lookup.rs#L137-L143)*
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:137-143`](../../../../.source_1765894658/gimli-0.32.3/src/read/lookup.rs#L137-L143)*
 
 #### Required Methods
 

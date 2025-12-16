@@ -36,7 +36,7 @@ enum AnsiColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../../.source_1765633015/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../../.source_1765894658/owo-colors-4.2.3/src/colors.rs#L108-L127)*
 
 Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
@@ -92,11 +92,8 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 - <span id="ansicolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for AnsiColors`

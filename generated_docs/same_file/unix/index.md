@@ -23,7 +23,7 @@ struct Handle {
 }
 ```
 
-*Defined in [`same-file-1.0.6/src/unix.rs:9-16`](../../../.source_1765633015/same-file-1.0.6/src/unix.rs#L9-L16)*
+*Defined in [`same-file-1.0.6/src/unix.rs:9-16`](../../../.source_1765894658/same-file-1.0.6/src/unix.rs#L9-L16)*
 
 #### Implementations
 
@@ -86,11 +86,8 @@ struct Handle {
 - <span id="handle-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Handle`

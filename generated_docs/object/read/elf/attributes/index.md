@@ -28,7 +28,7 @@ struct AttributesSection<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
 
 An ELF attributes section.
 
@@ -90,11 +90,8 @@ and [`SectionHeader::gnu_attributes`](super::SectionHeader::gnu_attributes).
 - <span id="attributessection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AttributesSection<'data, Elf>`
@@ -126,7 +123,7 @@ struct AttributesSubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
 
 An iterator for the subsections in an [`AttributesSection`](../index.md).
 
@@ -175,11 +172,8 @@ An iterator for the subsections in an [`AttributesSection`](../index.md).
 - <span id="attributessubsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for AttributesSubsectionIterator<'data, Elf>`
@@ -227,7 +221,7 @@ struct AttributesSubsection<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
 
 A subsection in an [`AttributesSection`](../index.md).
 
@@ -285,11 +279,8 @@ A subsection is identified by a vendor name.  It contains a series of
 - <span id="attributessubsection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AttributesSubsection<'data, Elf>`
@@ -321,7 +312,7 @@ struct AttributesSubsubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
 
 An iterator for the sub-subsections in an [`AttributesSubsection`](../index.md).
 
@@ -370,11 +361,8 @@ An iterator for the sub-subsections in an [`AttributesSubsection`](../index.md).
 - <span id="attributessubsubsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for AttributesSubsubsectionIterator<'data, Elf>`
@@ -422,7 +410,7 @@ struct AttributesSubsubsection<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
 
 A sub-subsection in an [`AttributesSubsection`](../index.md).
 
@@ -446,13 +434,9 @@ followed by a series of attributes.
 - <span id="attributessubsubsection-indices"></span>`fn indices(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](../index.md#attributeindexiterator)
 
   Return the indices.
-
   
-
   This will be section indices if the tag is `Tag_Section`,
-
   or symbol indices if the tag is `Tag_Symbol`,
-
   and otherwise it will be empty.
 
 - <span id="attributessubsubsection-attributes-data"></span>`fn attributes_data(&self) -> &'data [u8]`
@@ -500,11 +484,8 @@ followed by a series of attributes.
 - <span id="attributessubsubsection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AttributesSubsubsection<'data>`
@@ -535,7 +516,7 @@ struct AttributeIndexIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
 
 An iterator over the indices in an [`AttributesSubsubsection`](../index.md).
 
@@ -584,11 +565,8 @@ An iterator over the indices in an [`AttributesSubsubsection`](../index.md).
 - <span id="attributeindexiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for AttributeIndexIterator<'data>`
@@ -633,7 +611,7 @@ struct AttributeReader<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
 
 A parser for the attributes in an [`AttributesSubsubsection`](../index.md).
 
@@ -690,11 +668,8 @@ The parser relies on the caller to know the format of the data for each attribut
 - <span id="attributereader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for AttributeReader<'data>`

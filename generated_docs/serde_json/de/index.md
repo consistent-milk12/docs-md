@@ -72,7 +72,7 @@ struct SliceRead<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/read.rs:164-170`](../../../.source_1765633015/serde_json-1.0.145/src/read.rs#L164-L170)*
+*Defined in [`serde_json-1.0.145/src/read.rs:164-170`](../../../.source_1765894658/serde_json-1.0.145/src/read.rs#L164-L170)*
 
 JSON input source that reads from a slice of bytes.
 
@@ -97,9 +97,7 @@ JSON input source that reads from a slice of bytes.
 - <span id="sliceread-parse-str-bytes"></span>`fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../error/index.md#result), [`Reference`](../read/index.md#reference)
 
   The big optimization here over IoRead is that if the string contains no
-
   backslash escape sequences, the returned &str is a slice of the raw JSON
-
   data so we avoid copying into the scratch space.
 
 #### Trait Implementations
@@ -129,11 +127,8 @@ JSON input source that reads from a slice of bytes.
 - <span id="sliceread-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Read for SliceRead<'a>`
@@ -160,7 +155,7 @@ struct StrRead<'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/read.rs:175-179`](../../../.source_1765633015/serde_json-1.0.145/src/read.rs#L175-L179)*
+*Defined in [`serde_json-1.0.145/src/read.rs:175-179`](../../../.source_1765894658/serde_json-1.0.145/src/read.rs#L175-L179)*
 
 JSON input source that reads from a UTF-8 string.
 
@@ -197,11 +192,8 @@ JSON input source that reads from a UTF-8 string.
 - <span id="strread-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Read for StrRead<'a>`
@@ -231,7 +223,7 @@ where
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/read.rs:149-158`](../../../.source_1765633015/serde_json-1.0.145/src/read.rs#L149-L158)*
+*Defined in [`serde_json-1.0.145/src/read.rs:149-158`](../../../.source_1765894658/serde_json-1.0.145/src/read.rs#L149-L158)*
 
 JSON input source that reads from a std::io input stream.
 
@@ -246,13 +238,9 @@ JSON input source that reads from a std::io input stream.
 - <span id="ioread-new"></span>`fn new(reader: R) -> Self`
 
   Create a JSON input source to read from a std::io input stream.
-
   
-
   When reading from a source against which short reads are not efficient, such
-
   as a `File`, you will want to apply your own buffering because serde_json
-
   will not buffer the input. See `std::io::BufReader`.
 
 #### Trait Implementations
@@ -280,11 +268,8 @@ JSON input source that reads from a std::io input stream.
 - <span id="ioread-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Read for IoRead<R>`
@@ -314,7 +299,7 @@ struct Deserializer<R> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:31-39`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L31-L39)*
+*Defined in [`serde_json-1.0.145/src/de.rs:31-39`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L31-L39)*
 
 A structure that deserializes JSON into Rust values.
 
@@ -323,27 +308,16 @@ A structure that deserializes JSON into Rust values.
 - <span id="deserializer-new"></span>`fn new(read: R) -> Self`
 
   Create a JSON deserializer from one of the possible serde_json input
-
   sources.
-
   
-
   When reading from a source against which short reads are not efficient, such
-
   as a `File`, you will want to apply your own buffering because serde_json
-
   will not buffer the input. See `std::io::BufReader`.
-
   
-
   Typically it is more convenient to use one of these methods instead:
-
   
-
     - Deserializer::from_str
-
     - Deserializer::from_slice
-
     - Deserializer::from_reader
 
 #### Trait Implementations
@@ -401,141 +375,73 @@ A structure that deserializes JSON into Rust values.
 - <span id="mut-deserializer-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../error/index.md#result)
 
   Parses a JSON string as bytes. Note that this function does not check
-
   whether the bytes represent a valid UTF-8 string.
-
   
-
   The relevant part of the JSON specification is Section 8.2 of [RFC
-
   7159]:
-
   
-
   > When all the strings represented in a JSON text are composed entirely
-
   > of Unicode characters (however escaped), then that JSON text is
-
   > interoperable in the sense that all software implementations that
-
   > parse it will agree on the contents of names and of string values in
-
   > objects and arrays.
-
   >
-
   > However, the ABNF in this specification allows member names and string
-
   > values to contain bit sequences that cannot encode Unicode characters;
-
   > for example, "\uDEAD" (a single unpaired UTF-16 surrogate). Instances
-
   > of this have been observed, for example, when a library truncates a
-
   > UTF-16 string without checking whether the truncation split a
-
   > surrogate pair.  The behavior of software that receives JSON texts
-
   > containing such values is unpredictable; for example, implementations
-
   > might return different values for the length of a string value or even
-
   > suffer fatal runtime exceptions.
-
   
-
   The behavior of serde_json is specified to fail on non-UTF-8 strings
-
   when deserializing into Rust UTF-8 string types such as String, and
-
   succeed with the bytes representing the [WTF-8] encoding of code points
-
   when deserializing using this method.
-
   
-
   Escape sequences are processed as usual, and for `\uXXXX` escapes it is
-
   still checked if the hex number represents a valid Unicode code point.
-
   
-
   # Examples
-
   
-
   You can use this to parse JSON strings containing invalid UTF-8 bytes,
-
   or unpaired surrogates.
-
   
-
   ```rust
-
   use serde_bytes::ByteBuf;
-
   
-
   fn look_at_bytes() -> Result<(), serde_json::Error> {
-
       let json_data = b"\"some bytes: \xe5\x00\xe5\"";
-
       let bytes: ByteBuf = serde_json::from_slice(json_data)?;
-
   
-
       assert_eq!(b'\xe5', bytes[12]);
-
       assert_eq!(b'\0', bytes[13]);
-
       assert_eq!(b'\xe5', bytes[14]);
-
   
-
       Ok(())
-
   }
-
   
-
   look_at_bytes().unwrap();
-
   ```
-
   
-
   Backslash escape sequences like `\n` are still interpreted and required
-
   to be valid. `\u` escape sequences are required to represent a valid
-
   Unicode code point or lone surrogate.
-
   
-
   ```rust
-
   use serde_bytes::ByteBuf;
-
   
-
   fn look_at_bytes() -> Result<(), serde_json::Error> {
-
       let json_data = b"\"lone surrogate: \\uD801\"";
-
       let bytes: ByteBuf = serde_json::from_slice(json_data)?;
-
       let expected = b"lone surrogate: \xED\xA0\x81";
-
       assert_eq!(expected, bytes.as_slice());
-
       Ok(())
-
   }
-
   
-
   look_at_bytes();
-
   ```
 
 - <span id="mut-deserializer-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../error/index.md#result)
@@ -565,7 +471,6 @@ A structure that deserializes JSON into Rust values.
 - <span id="mut-deserializer-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, _name: &str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value>` — [`Result`](../error/index.md#result)
 
   Parses an enum as an object like `{"$KEY":$VALUE}`, where $VALUE is either a straight
-
   value, a `[..]`, or a `{..}`.
 
 - <span id="mut-deserializer-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../error/index.md#result)
@@ -583,11 +488,8 @@ A structure that deserializes JSON into Rust values.
 - <span id="deserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Deserializer<R>`
@@ -611,7 +513,7 @@ struct SeqAccess<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1917-1920`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L1917-L1920)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1917-1920`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L1917-L1920)*
 
 #### Implementations
 
@@ -642,11 +544,8 @@ struct SeqAccess<'a, R: 'a> {
 - <span id="seqaccess-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Read<'de> + 'a> SeqAccess for SeqAccess<'a, R>`
@@ -676,7 +575,7 @@ struct MapAccess<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1970-1973`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L1970-L1973)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1970-1973`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L1970-L1973)*
 
 #### Implementations
 
@@ -707,11 +606,8 @@ struct MapAccess<'a, R: 'a> {
 - <span id="mapaccess-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: Read<'de> + 'a> MapAccess for MapAccess<'a, R>`
@@ -742,7 +638,7 @@ struct VariantAccess<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2035-2037`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L2035-L2037)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2035-2037`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L2035-L2037)*
 
 #### Implementations
 
@@ -781,11 +677,8 @@ struct VariantAccess<'a, R: 'a> {
 - <span id="variantaccess-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for VariantAccess<'a, R>`
@@ -820,7 +713,7 @@ struct UnitVariantAccess<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2088-2090`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L2088-L2090)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2088-2090`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L2088-L2090)*
 
 #### Implementations
 
@@ -859,11 +752,8 @@ struct UnitVariantAccess<'a, R: 'a> {
 - <span id="unitvariantaccess-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for UnitVariantAccess<'a, R>`
@@ -898,7 +788,7 @@ struct MapKey<'a, R: 'a> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2151-2153`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L2151-L2153)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2151-2153`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L2151-L2153)*
 
 Only deserialize from this after peeking a '"' byte! Otherwise it may
 deserialize invalid JSON successfully.
@@ -998,11 +888,8 @@ deserialize invalid JSON successfully.
 - <span id="mapkey-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for MapKey<'a, R>`
@@ -1029,7 +916,7 @@ struct StreamDeserializer<'de, R, T> {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2349-2355`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L2349-L2355)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2349-2355`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L2349-L2355)*
 
 Iterator that deserializes a stream into multiple JSON values.
 
@@ -1058,79 +945,44 @@ fn main() {
 - <span id="streamdeserializer-new"></span>`fn new(read: R) -> Self`
 
   Create a JSON stream deserializer from one of the possible serde_json
-
   input sources.
-
   
-
   Typically it is more convenient to use one of these methods instead:
-
   
-
     - Deserializer::from_str(...).into_iter()
-
     - Deserializer::from_slice(...).into_iter()
-
     - Deserializer::from_reader(...).into_iter()
 
 - <span id="streamdeserializer-byte-offset"></span>`fn byte_offset(&self) -> usize`
 
   Returns the number of bytes so far deserialized into a successful `T`.
-
   
-
   If a stream deserializer returns an EOF error, new data can be joined to
-
   `old_data[stream.byte_offset()..]` to try again.
-
   
-
   ```rust
-
   let data = b"[0] [1] [";
-
   
-
   let de = serde_json::Deserializer::from_slice(data);
-
   let mut stream = de.into_iter::<Vec<i32>>();
-
   assert_eq!(0, stream.byte_offset());
-
   
-
   println!("{:?}", stream.next()); // [0]
-
   assert_eq!(3, stream.byte_offset());
-
   
-
   println!("{:?}", stream.next()); // [1]
-
   assert_eq!(7, stream.byte_offset());
-
   
-
   println!("{:?}", stream.next()); // error
-
   assert_eq!(8, stream.byte_offset());
-
   
-
   // If err.is_eof(), can join the remaining data to new data and continue.
-
   let remaining = &data[stream.byte_offset()..];
-
   ```
-
   
-
   *Note:* In the future this method may be changed to return the number of
-
   bytes so far deserialized into a successful T *or* syntactically valid
-
   JSON skipped over due to a type error. See [serde-rs/json#70] for an
-
   example illustrating this.
 
 - <span id="streamdeserializer-peek-end-of-value"></span>`fn peek_end_of_value(&mut self) -> Result<()>` — [`Result`](../error/index.md#result)
@@ -1162,11 +1014,8 @@ fn main() {
 - <span id="streamdeserializer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for StreamDeserializer<'de, R, T>`
@@ -1207,7 +1056,7 @@ enum ParserNumber {
 }
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:109-115`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L109-L115)*
+*Defined in [`serde_json-1.0.145/src/de.rs:109-115`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L109-L115)*
 
 #### Implementations
 
@@ -1240,11 +1089,8 @@ enum ParserNumber {
 - <span id="parsernumber-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ParserNumber`
@@ -1267,7 +1113,7 @@ enum ParserNumber {
 trait Read<'de>: private::Sealed { ... }
 ```
 
-*Defined in [`serde_json-1.0.145/src/read.rs:28-117`](../../../.source_1765633015/serde_json-1.0.145/src/read.rs#L28-L117)*
+*Defined in [`serde_json-1.0.145/src/read.rs:28-117`](../../../.source_1765894658/serde_json-1.0.145/src/read.rs#L28-L117)*
 
 Trait used by the deserializer for iterating over input. This is manually
 "specialized" for iterating over `&[u8]`. Once feature(specialization) is
@@ -1294,7 +1140,7 @@ where
     T: de::Deserialize<'de>
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2495-2506`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L2495-L2506)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2495-2506`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L2495-L2506)*
 
 ### `from_reader`
 
@@ -1305,7 +1151,7 @@ where
     T: de::DeserializeOwned
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2612-2618`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L2612-L2618)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2612-2618`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L2612-L2618)*
 
 Deserialize an instance of type `T` from an I/O stream of JSON.
 
@@ -1416,7 +1262,7 @@ where
     T: de::Deserialize<'a>
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2655-2660`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L2655-L2660)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2655-2660`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L2655-L2660)*
 
 Deserialize an instance of type `T` from bytes of JSON text.
 
@@ -1462,7 +1308,7 @@ where
     T: de::Deserialize<'a>
 ```
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2697-2702`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L2697-L2702)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2697-2702`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L2697-L2702)*
 
 Deserialize an instance of type `T` from a string of JSON text.
 
@@ -1504,21 +1350,21 @@ type.
 
 ### `overflow!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:101-107`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L101-L107)*
+*Defined in [`serde_json-1.0.145/src/de.rs:101-107`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L101-L107)*
 
 ### `deserialize_number!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1339-1352`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L1339-L1352)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1339-1352`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L1339-L1352)*
 
 ### `if_checking_recursion_limit!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1362-1368`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L1362-L1368)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1362-1368`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L1362-L1368)*
 
 ### `check_recursion!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:1370-1385`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L1370-L1385)*
+*Defined in [`serde_json-1.0.145/src/de.rs:1370-1385`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L1370-L1385)*
 
 ### `deserialize_numeric_key!`
 
-*Defined in [`serde_json-1.0.145/src/de.rs:2155-2187`](../../../.source_1765633015/serde_json-1.0.145/src/de.rs#L2155-L2187)*
+*Defined in [`serde_json-1.0.145/src/de.rs:2155-2187`](../../../.source_1765894658/serde_json-1.0.145/src/de.rs#L2155-L2187)*
 

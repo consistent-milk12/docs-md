@@ -19,7 +19,7 @@
 struct TokenTreeHelper<'a>(&'a proc_macro2::TokenTree);
 ```
 
-*Defined in [`syn-2.0.111/src/tt.rs:4`](../../../.source_1765633015/syn-2.0.111/src/tt.rs#L4)*
+*Defined in [`syn-2.0.111/src/tt.rs:4`](../../../.source_1765894658/syn-2.0.111/src/tt.rs#L4)*
 
 #### Trait Implementations
 
@@ -50,11 +50,8 @@ struct TokenTreeHelper<'a>(&'a proc_macro2::TokenTree);
 - <span id="tokentreehelper-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TokenTreeHelper<'a>`
@@ -79,7 +76,7 @@ struct TokenTreeHelper<'a>(&'a proc_macro2::TokenTree);
 struct TokenStreamHelper<'a>(&'a proc_macro2::TokenStream);
 ```
 
-*Defined in [`syn-2.0.111/src/tt.rs:65`](../../../.source_1765633015/syn-2.0.111/src/tt.rs#L65)*
+*Defined in [`syn-2.0.111/src/tt.rs:65`](../../../.source_1765894658/syn-2.0.111/src/tt.rs#L65)*
 
 #### Trait Implementations
 
@@ -110,11 +107,8 @@ struct TokenStreamHelper<'a>(&'a proc_macro2::TokenStream);
 - <span id="tokenstreamhelper-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TokenStreamHelper<'a>`

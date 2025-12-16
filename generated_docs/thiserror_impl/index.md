@@ -53,7 +53,7 @@
 struct private;
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/lib.rs:45`](../../.source_1765633015/thiserror-impl-2.0.17/src/lib.rs#L45)*
+*Defined in [`thiserror-impl-2.0.17/src/lib.rs:45`](../../.source_1765894658/thiserror-impl-2.0.17/src/lib.rs#L45)*
 
 #### Trait Implementations
 
@@ -80,11 +80,8 @@ struct private;
 - <span id="private-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Spanned for private`

@@ -21,7 +21,7 @@ struct Enumerate<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:12-14`](../../../../.source_1765633015/rayon-1.11.0/src/iter/enumerate.rs#L12-L14)*
+*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:12-14`](../../../../.source_1765894658/rayon-1.11.0/src/iter/enumerate.rs#L12-L14)*
 
 `Enumerate` is an iterator that returns the current count along with the element.
 This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](../index.md)
@@ -78,11 +78,8 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 - <span id="enumerate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Enumerate<I>`
@@ -146,7 +143,7 @@ struct EnumerateProducer<P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:82-85`](../../../../.source_1765633015/rayon-1.11.0/src/iter/enumerate.rs#L82-L85)*
+*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:82-85`](../../../../.source_1765894658/rayon-1.11.0/src/iter/enumerate.rs#L82-L85)*
 
 #### Trait Implementations
 
@@ -173,11 +170,8 @@ struct EnumerateProducer<P> {
 - <span id="enumerateproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for EnumerateProducer<P>`

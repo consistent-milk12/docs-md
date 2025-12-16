@@ -24,7 +24,7 @@ struct ResourceDirectory<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:12-14`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L12-L14)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:12-14`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L12-L14)*
 
 The `.rsrc` section of a PE file.
 
@@ -79,11 +79,8 @@ Returned by [`DataDirectories::resource_directory`](super::DataDirectories::reso
 - <span id="resourcedirectory-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ResourceDirectory<'data>`
@@ -115,7 +112,7 @@ struct ResourceDirectoryTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:30-35`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L30-L35)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:30-35`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L30-L35)*
 
 A table of resource entries.
 
@@ -170,11 +167,8 @@ A table of resource entries.
 - <span id="resourcedirectorytable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ResourceDirectoryTable<'data>`
@@ -205,7 +199,7 @@ struct ResourceName {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:143-145`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L143-L145)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:143-145`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L143-L145)*
 
 A resource name.
 
@@ -262,11 +256,8 @@ A resource name.
 - <span id="resourcename-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ResourceName`
@@ -300,7 +291,7 @@ enum ResourceDirectoryEntryData<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:112-117`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L112-L117)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:112-117`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L112-L117)*
 
 Data associated with a resource directory entry.
 
@@ -319,17 +310,13 @@ Data associated with a resource directory entry.
 - <span id="resourcedirectoryentrydata-table"></span>`fn table(self) -> Option<ResourceDirectoryTable<'data>>` — [`ResourceDirectoryTable`](../index.md#resourcedirectorytable)
 
   Converts to an option of table.
-
   
-
   Helper for iterator filtering.
 
 - <span id="resourcedirectoryentrydata-data"></span>`fn data(self) -> Option<&'data pe::ImageResourceDataEntry>` — [`ImageResourceDataEntry`](../../../pe/index.md#imageresourcedataentry)
 
   Converts to an option of data entry.
-
   
-
   Helper for iterator filtering.
 
 #### Trait Implementations
@@ -369,11 +356,8 @@ Data associated with a resource directory entry.
 - <span id="resourcedirectoryentrydata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ResourceDirectoryEntryData<'data>`
@@ -405,7 +389,7 @@ enum ResourceNameOrId {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/resource.rs:183-188`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/resource.rs#L183-L188)*
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:183-188`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/resource.rs#L183-L188)*
 
 A resource name or ID.
 
@@ -426,17 +410,13 @@ Can be either a string or a numeric ID.
 - <span id="resourcenameorid-name"></span>`fn name(self) -> Option<ResourceName>` — [`ResourceName`](../index.md#resourcename)
 
   Converts to an option of name.
-
   
-
   Helper for iterator filtering.
 
 - <span id="resourcenameorid-id"></span>`fn id(self) -> Option<u16>`
 
   Converts to an option of ID.
-
   
-
   Helper for iterator filtering.
 
 #### Trait Implementations
@@ -468,11 +448,8 @@ Can be either a string or a numeric ID.
 - <span id="resourcenameorid-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ResourceNameOrId`

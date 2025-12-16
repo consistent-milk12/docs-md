@@ -19,9 +19,9 @@
 struct AsKebabCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/kebab.rs:40`](../../../.source_1765633015/heck-0.5.0/src/kebab.rs#L40)*
+*Defined in [`heck-0.5.0/src/kebab.rs:40`](../../../.source_1765894658/heck-0.5.0/src/kebab.rs#L40)*
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/index.md).
+This wrapper performs a kebab case conversion in `fmt::Display`.
 
 ## Example:
 
@@ -61,11 +61,8 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 - <span id="askebabcase-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsKebabCase<T>`
@@ -92,7 +89,7 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 trait ToKebabCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/kebab.rs:19-22`](../../../.source_1765633015/heck-0.5.0/src/kebab.rs#L19-L22)*
+*Defined in [`heck-0.5.0/src/kebab.rs:19-22`](../../../.source_1765894658/heck-0.5.0/src/kebab.rs#L19-L22)*
 
 This trait defines a kebab case conversion.
 

@@ -19,7 +19,7 @@
 struct ParseColorError;
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:72`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_colors.rs#L72)*
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:72`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_colors.rs#L72)*
 
 An error for when the color can not be parsed from a string at runtime
 
@@ -52,11 +52,8 @@ An error for when the color can not be parsed from a string at runtime
 - <span id="parsecolorerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for ParseColorError`
@@ -86,7 +83,7 @@ enum DynColors {
 }
 ```
 
-*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:13-18`](../../../.source_1765633015/owo-colors-4.2.3/src/dyn_colors.rs#L13-L18)*
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:13-18`](../../../.source_1765894658/owo-colors-4.2.3/src/dyn_colors.rs#L13-L18)*
 
 An enum describing runtime-configurable colors
 
@@ -150,11 +147,8 @@ allowing for multiple types of colors to be used at runtime.
 - <span id="dyncolors-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for DynColors`

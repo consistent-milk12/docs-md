@@ -21,7 +21,7 @@ struct Take<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../../.source_1765633015/rayon-1.11.0/src/iter/take.rs#L10-L13)*
+*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../../.source_1765894658/rayon-1.11.0/src/iter/take.rs#L10-L13)*
 
 `Take` is an iterator that iterates over the first `n` elements.
 This struct is created by the `take()` method on [`IndexedParallelIterator`](../index.md)
@@ -78,11 +78,8 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 - <span id="take-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Take<I>`

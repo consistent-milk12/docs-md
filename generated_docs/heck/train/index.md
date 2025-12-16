@@ -19,9 +19,9 @@
 struct AsTrainCase<T: AsRef<str>>(T);
 ```
 
-*Defined in [`heck-0.5.0/src/train.rs:41`](../../../.source_1765633015/heck-0.5.0/src/train.rs#L41)*
+*Defined in [`heck-0.5.0/src/train.rs:41`](../../../.source_1765894658/heck-0.5.0/src/train.rs#L41)*
 
-This wrapper performs a train case conversion in [`fmt::Display`](../../miette_derive/index.md).
+This wrapper performs a train case conversion in `fmt::Display`.
 
 ## Example:
 
@@ -61,11 +61,8 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 - <span id="astraincase-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToString for AsTrainCase<T>`
@@ -92,7 +89,7 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 trait ToTrainCase: ToOwned { ... }
 ```
 
-*Defined in [`heck-0.5.0/src/train.rs:20-23`](../../../.source_1765633015/heck-0.5.0/src/train.rs#L20-L23)*
+*Defined in [`heck-0.5.0/src/train.rs:20-23`](../../../.source_1765894658/heck-0.5.0/src/train.rs#L20-L23)*
 
 This trait defines a train case conversion.
 

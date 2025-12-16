@@ -23,7 +23,7 @@
 struct OpenOptions(fs::OpenOptions);
 ```
 
-*Defined in [`fs-err-3.2.0/src/open_options.rs:7`](../../../.source_1765633015/fs-err-3.2.0/src/open_options.rs#L7)*
+*Defined in [`fs-err-3.2.1/src/open_options.rs:7`](../../../.source_1765894658/fs-err-3.2.1/src/open_options.rs#L7)*
 
 Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html)
 
@@ -32,65 +32,49 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 - <span id="openoptions-new"></span>`fn new() -> Self`
 
   Creates a blank new set of options ready for configuration.
-
   
-
   Wrapper for [`std::fs::OpenOptions::new`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.new)
 
 - <span id="openoptions-read"></span>`fn read(&mut self, read: bool) -> &mut Self`
 
   Sets the option for read access.
-
   
-
   Wrapper for [`std::fs::OpenOptions::read`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.read)
 
 - <span id="openoptions-write"></span>`fn write(&mut self, write: bool) -> &mut Self`
 
   Sets the option for write access.
-
   
-
   Wrapper for [`std::fs::OpenOptions::write`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.write)
 
 - <span id="openoptions-append"></span>`fn append(&mut self, append: bool) -> &mut Self`
 
   Sets the option for the append mode.
-
   
-
   Wrapper for [`std::fs::OpenOptions::append`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.append)
 
 - <span id="openoptions-truncate"></span>`fn truncate(&mut self, truncate: bool) -> &mut Self`
 
   Sets the option for truncating a previous file.
-
   
-
   Wrapper for [`std::fs::OpenOptions::truncate`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.truncate)
 
 - <span id="openoptions-create"></span>`fn create(&mut self, create: bool) -> &mut Self`
 
   Sets the option to create a new file, or open it if it already exists.
-
   
-
   Wrapper for [`std::fs::OpenOptions::create`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.create)
 
 - <span id="openoptions-create-new"></span>`fn create_new(&mut self, create_new: bool) -> &mut Self`
 
   Sets the option to create a new file, failing if it already exists.
-
   
-
   Wrapper for [`std::fs::OpenOptions::create_new`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.create_new)
 
 - <span id="openoptions-open"></span>`fn open<P>(&self, path: P) -> io::Result<crate::File>` — [`File`](../index.md#file)
 
   Opens a file at `path` with the options specified by `self`.
-
   
-
   Wrapper for [`std::fs::OpenOptions::open`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html#method.open)
 
 #### Trait Implementations
@@ -130,11 +114,8 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 - <span id="openoptions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OpenOptionsExt for crate::OpenOptions`

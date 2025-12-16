@@ -22,9 +22,9 @@ struct AutoStream<S: RawStream> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../../.source_1765633015/anstream-0.6.21/src/auto.rs#L19-L21)*
+*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../../.source_1765894658/anstream-0.6.21/src/auto.rs#L19-L21)*
 
-[`std::io::Write`](../../fs_err/index.md) that adapts ANSI escape codes to the underlying `Write`s capabilities
+`std::io::Write` that adapts ANSI escape codes to the underlying `Write`s capabilities
 
 This includes
 - Stripping colors for non-terminals
@@ -40,55 +40,30 @@ to get a [`ColorChoice`](../index.md) and then calling `AutoStream::new(stream, 
 - <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](../index.md#colorchoice)
 
   Runtime control over styling behavior
-
   
-
   # Example
-
   
-
   ```rust
-
   #[cfg(feature = "auto")] {
-
   use std::io::IsTerminal as _;
-
   // Like `AutoStream::choice` but without `NO_COLOR`, `CLICOLOR_FORCE`, `CI`
-
   fn choice(raw: &dyn anstream::stream::RawStream) -> anstream::ColorChoice {
-
       let choice = anstream::ColorChoice::global();
-
       if choice == anstream::ColorChoice::Auto {
-
           if raw.is_terminal() && anstyle_query::term_supports_color() {
-
               anstream::ColorChoice::Always
-
           } else {
-
               anstream::ColorChoice::Never
-
           }
-
       } else {
-
           choice
-
       }
-
   }
-
   
-
   let stream = std::io::stdout();
-
   let choice = choice(&stream);
-
   let auto = anstream::AutoStream::new(stream, choice);
-
   }
-
   ```
 
 - <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
@@ -102,7 +77,6 @@ to get a [`ColorChoice`](../index.md) and then calling `AutoStream::new(stream, 
 - <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
 
   Force ANSI escape codes to be passed through as-is, no matter what the inner `Write`
-
   supports.
 
 - <span id="autostream-always-ansi"></span>`fn always_ansi_(raw: S) -> Self`
@@ -132,9 +106,7 @@ to get a [`ColorChoice`](../index.md) and then calling `AutoStream::new(stream, 
 - <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](../index.md#colorchoice)
 
   Prefer `AutoStream::choice`
-
   
-
   This doesn't report what is requested but what is currently active.
 
 #### Trait Implementations
@@ -166,11 +138,8 @@ to get a [`ColorChoice`](../index.md) and then calling `AutoStream::new(stream, 
 - <span id="autostream-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for AutoStream<S>`
@@ -208,7 +177,7 @@ enum StreamInner<S: RawStream> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/auto.rs:24-29`](../../../.source_1765633015/anstream-0.6.21/src/auto.rs#L24-L29)*
+*Defined in [`anstream-0.6.21/src/auto.rs:24-29`](../../../.source_1765894658/anstream-0.6.21/src/auto.rs#L24-L29)*
 
 #### Trait Implementations
 
@@ -239,11 +208,8 @@ enum StreamInner<S: RawStream> {
 - <span id="streaminner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for StreamInner<S>`
@@ -266,5 +232,5 @@ enum StreamInner<S: RawStream> {
 fn choice(raw: &dyn RawStream) -> crate::ColorChoice
 ```
 
-*Defined in [`anstream-0.6.21/src/auto.rs:198-223`](../../../.source_1765633015/anstream-0.6.21/src/auto.rs#L198-L223)*
+*Defined in [`anstream-0.6.21/src/auto.rs:198-223`](../../../.source_1765894658/anstream-0.6.21/src/auto.rs#L198-L223)*
 

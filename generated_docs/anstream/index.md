@@ -99,9 +99,9 @@ struct AutoStream<S: RawStream> {
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../.source_1765633015/anstream-0.6.21/src/auto.rs#L19-L21)*
+*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../.source_1765894658/anstream-0.6.21/src/auto.rs#L19-L21)*
 
-[`std::io::Write`](../fs_err/index.md) that adapts ANSI escape codes to the underlying `Write`s capabilities
+`std::io::Write` that adapts ANSI escape codes to the underlying `Write`s capabilities
 
 This includes
 - Stripping colors for non-terminals
@@ -117,55 +117,30 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 - <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](#colorchoice)
 
   Runtime control over styling behavior
-
   
-
   # Example
-
   
-
   ```rust
-
   #[cfg(feature = "auto")] {
-
   use std::io::IsTerminal as _;
-
   // Like `AutoStream::choice` but without `NO_COLOR`, `CLICOLOR_FORCE`, `CI`
-
   fn choice(raw: &dyn anstream::stream::RawStream) -> anstream::ColorChoice {
-
       let choice = anstream::ColorChoice::global();
-
       if choice == anstream::ColorChoice::Auto {
-
           if raw.is_terminal() && anstyle_query::term_supports_color() {
-
               anstream::ColorChoice::Always
-
           } else {
-
               anstream::ColorChoice::Never
-
           }
-
       } else {
-
           choice
-
       }
-
   }
-
   
-
   let stream = std::io::stdout();
-
   let choice = choice(&stream);
-
   let auto = anstream::AutoStream::new(stream, choice);
-
   }
-
   ```
 
 - <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
@@ -179,7 +154,6 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 - <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
 
   Force ANSI escape codes to be passed through as-is, no matter what the inner `Write`
-
   supports.
 
 - <span id="autostream-always-ansi"></span>`fn always_ansi_(raw: S) -> Self`
@@ -209,9 +183,7 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 - <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
   Prefer `AutoStream::choice`
-
   
-
   This doesn't report what is requested but what is currently active.
 
 #### Trait Implementations
@@ -243,11 +215,8 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 - <span id="autostream-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for AutoStream<S>`
@@ -285,7 +254,7 @@ where
 }
 ```
 
-*Defined in [`anstream-0.6.21/src/strip.rs:7-13`](../../.source_1765633015/anstream-0.6.21/src/strip.rs#L7-L13)*
+*Defined in [`anstream-0.6.21/src/strip.rs:7-13`](../../.source_1765894658/anstream-0.6.21/src/strip.rs#L7-L13)*
 
 Only pass printable data to the inner `Write`
 
@@ -297,11 +266,11 @@ Only pass printable data to the inner `Write`
 
 - <span id="stripstream-into-inner"></span>`fn into_inner(self) -> S`
 
-  Get the wrapped [`std::io::Write`](../fs_err/index.md)
+  Get the wrapped `std::io::Write`
 
 - <span id="stripstream-as-inner"></span>`fn as_inner(&self) -> &S`
 
-  Get the wrapped [`std::io::Write`](../fs_err/index.md)
+  Get the wrapped `std::io::Write`
 
 #### Trait Implementations
 
@@ -332,11 +301,8 @@ Only pass printable data to the inner `Write`
 - <span id="stripstream-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for StripStream<S>`
@@ -371,12 +337,12 @@ Only pass printable data to the inner `Write`
 fn stdout() -> Stdout
 ```
 
-*Defined in [`anstream-0.6.21/src/lib.rs:70-73`](../../.source_1765633015/anstream-0.6.21/src/lib.rs#L70-L73)*
+*Defined in [`anstream-0.6.21/src/lib.rs:70-73`](../../.source_1765894658/anstream-0.6.21/src/lib.rs#L70-L73)*
 
 Create an ANSI escape code compatible stdout
 
 **Note:** Call `AutoStream::lock` in loops to avoid the performance hit of acquiring/releasing
-from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
+from the implicit locking in each `std::io::Write` call
 
 ### `stderr`
 
@@ -384,12 +350,12 @@ from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 fn stderr() -> Stderr
 ```
 
-*Defined in [`anstream-0.6.21/src/lib.rs:80-83`](../../.source_1765633015/anstream-0.6.21/src/lib.rs#L80-L83)*
+*Defined in [`anstream-0.6.21/src/lib.rs:80-83`](../../.source_1765894658/anstream-0.6.21/src/lib.rs#L80-L83)*
 
 Create an ANSI escape code compatible stderr
 
 **Note:** Call `AutoStream::lock` in loops to avoid the performance hit of acquiring/releasing
-from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
+from the implicit locking in each `std::io::Write` call
 
 ## Type Aliases
 
@@ -399,7 +365,7 @@ from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 type Stdout = AutoStream<std::io::Stdout>;
 ```
 
-*Defined in [`anstream-0.6.21/src/lib.rs:61`](../../.source_1765633015/anstream-0.6.21/src/lib.rs#L61)*
+*Defined in [`anstream-0.6.21/src/lib.rs:61`](../../.source_1765894658/anstream-0.6.21/src/lib.rs#L61)*
 
 An adaptive wrapper around the global standard output stream of the current process
 
@@ -409,7 +375,7 @@ An adaptive wrapper around the global standard output stream of the current proc
 type Stderr = AutoStream<std::io::Stderr>;
 ```
 
-*Defined in [`anstream-0.6.21/src/lib.rs:63`](../../.source_1765633015/anstream-0.6.21/src/lib.rs#L63)*
+*Defined in [`anstream-0.6.21/src/lib.rs:63`](../../.source_1765894658/anstream-0.6.21/src/lib.rs#L63)*
 
 An adaptive wrapper around the global standard error stream of the current process
 
@@ -417,11 +383,11 @@ An adaptive wrapper around the global standard error stream of the current proce
 
 ### `print!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:61-79`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L61-L79)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:61-79`](../../.source_1765894658/anstream-0.6.21/src/_macros.rs#L61-L79)*
 
 Prints to `stdout`.
 
-Equivalent to the [`println!`](#println) macro except that a newline is not printed at
+Equivalent to the `println!` macro except that a newline is not printed at
 the end of the message.
 
 Note that stdout is frequently line-buffered by default so it may be
@@ -441,9 +407,9 @@ write!(lock, "hello world").unwrap();
 ```
 
 Use `print!` only for the primary output of your program. Use
-[`eprint!`](#eprint) instead to print error and progress messages.
+`eprint!` instead to print error and progress messages.
 
-**NOTE:** Not all `print!` calls will be captured in tests like [`std::print!`](../backtrace/print/index.md)
+**NOTE:** Not all `print!` calls will be captured in tests like `std::print!`
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -480,15 +446,15 @@ stdout().flush().unwrap();
 
 ### `println!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:130-151`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L130-L151)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:130-151`](../../.source_1765894658/anstream-0.6.21/src/_macros.rs#L130-L151)*
 
 Prints to `stdout`, with a newline.
 
 On all platforms, the newline is the LINE FEED character (`\n`/`U+000A`) alone
 (no additional CARRIAGE RETURN (`\r`/`U+000D`)).
 
-This macro uses the same syntax as [`format!`](../clap_builder/error/format/index.md), but writes to the standard output instead.
-See [`std::fmt`](fmt/index.md) for more information.
+This macro uses the same syntax as `format!`, but writes to the standard output instead.
+See `std::fmt` for more information.
 
 **NOTE:** The `println!` macro will lock the standard output on each call. If you call
 `println!` within a hot loop, this behavior may be the bottleneck of the loop.
@@ -503,9 +469,9 @@ writeln!(lock, "hello world").unwrap();
 ```
 
 Use `println!` only for the primary output of your program. Use
-[`eprintln!`](#eprintln) instead to print error and progress messages.
+`eprintln!` instead to print error and progress messages.
 
-**NOTE:** Not all `println!` calls will be captured in tests like [`std::println!`](#stdprintln)
+**NOTE:** Not all `println!` calls will be captured in tests like `std::println!`
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -532,7 +498,7 @@ println!("format {local_variable} arguments");
 
 ### `eprint!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:184-202`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L184-L202)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:184-202`](../../.source_1765894658/anstream-0.6.21/src/_macros.rs#L184-L202)*
 
 Prints to `stderr`.
 
@@ -543,7 +509,7 @@ example usage.
 Use `eprint!` only for error and progress messages. Use `print!`
 instead for the primary output of your program.
 
-**NOTE:** Not all `eprint!` calls will be captured in tests like [`std::eprint!`](#stdeprint)
+**NOTE:** Not all `eprint!` calls will be captured in tests like `std::eprint!`
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -566,18 +532,18 @@ eprint!("Error: Could not complete task");
 
 ### `eprintln!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:235-256`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L235-L256)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:235-256`](../../.source_1765894658/anstream-0.6.21/src/_macros.rs#L235-L256)*
 
 Prints to `stderr`, with a newline.
 
-Equivalent to the [`println!`](#println) macro, except that output goes to
-`stderr` instead of `stdout`. See [`println!`](#println) for
+Equivalent to the `println!` macro, except that output goes to
+`stderr` instead of `stdout`. See `println!` for
 example usage.
 
 Use `eprintln!` only for error and progress messages. Use `println!`
 instead for the primary output of your program.
 
-**NOTE:** Not all `eprintln!` calls will be captured in tests like [`std::eprintln!`](#stdeprintln)
+**NOTE:** Not all `eprintln!` calls will be captured in tests like `std::eprintln!`
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -600,7 +566,7 @@ eprintln!("Error: Could not complete task");
 
 ### `panic!`
 
-*Defined in [`anstream-0.6.21/src/_macros.rs:334-343`](../../.source_1765633015/anstream-0.6.21/src/_macros.rs#L334-L343)*
+*Defined in [`anstream-0.6.21/src/_macros.rs:334-343`](../../.source_1765894658/anstream-0.6.21/src/_macros.rs#L334-L343)*
 
 Panics the current thread.
 

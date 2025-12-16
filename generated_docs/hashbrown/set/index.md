@@ -51,7 +51,7 @@ struct HashSet<T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L114-L116)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L114-L116)*
 
 A hash set implemented as a `HashMap` where the value is `()`.
 
@@ -153,91 +153,50 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-new"></span>`fn new() -> Self`
 
   Creates an empty `HashSet`.
-
   
-
   The hash set is initially created with a capacity of 0, so it will not allocate until it
-
   is first inserted into.
-
   
-
   # HashDoS resistance
-
   
-
   The `hash_builder` normally use a fixed key by default and that does
-
   not allow the `HashSet` to be protected against attacks such as `HashDoS`.
-
   Users who require HashDoS resistance should explicitly use
-
   `std::collections::hash_map::RandomState`
-
   as the hasher when creating a [`HashSet`](../hash_set/index.md), for example with
-
   [`with_hasher`](HashSet::with_hasher) method.
-
   
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   let set: HashSet<i32> = HashSet::new();
-
   ```
 
 - <span id="hashset-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
   Creates an empty `HashSet` with the specified capacity.
-
   
-
   The hash set will be able to hold at least `capacity` elements without
-
   reallocating. If `capacity` is 0, the hash set will not allocate.
-
   
-
   # HashDoS resistance
-
   
-
   The `hash_builder` normally use a fixed key by default and that does
-
   not allow the `HashSet` to be protected against attacks such as `HashDoS`.
-
   Users who require HashDoS resistance should explicitly use
-
   `std::collections::hash_map::RandomState`
-
   as the hasher when creating a [`HashSet`](../hash_set/index.md), for example with
-
   [`with_capacity_and_hasher`](HashSet::with_capacity_and_hasher) method.
-
   
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   let set: HashSet<i32> = HashSet::with_capacity(10);
-
   assert!(set.capacity() >= 10);
-
   ```
 
 #### Trait Implementations
@@ -253,43 +212,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
   Returns the intersection of `self` and `rhs` as a new `HashSet<T, S>`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![2, 3, 4].into_iter().collect();
-
   
-
   let set = &a & &b;
-
   
-
   let mut i = 0;
-
   let expected = [2, 3];
-
   for x in &set {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
@@ -297,43 +237,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitandassign-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md#hashset)
 
   Modifies this set to contain the intersection of `self` and `rhs`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![2, 3, 4].into_iter().collect();
-
   
-
   a &= &b;
-
   
-
   let mut i = 0;
-
   let expected = [2, 3];
-
   for x in &a {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
@@ -343,43 +264,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
   Returns the union of `self` and `rhs` as a new `HashSet<T, S>`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   let set = &a | &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2, 3, 4, 5];
-
   for x in &set {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
@@ -387,43 +289,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitorassign-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md#hashset)
 
   Modifies this set to contain the union of `self` and `rhs`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   a |= &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2, 3, 4, 5];
-
   for x in &a {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
@@ -433,43 +316,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
   Returns the symmetric difference of `self` and `rhs` as a new `HashSet<T, S>`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   let set = &a ^ &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2, 4, 5];
-
   for x in &set {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
@@ -477,43 +341,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-bitxorassign-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md#hashset)
 
   Modifies this set to contain the symmetric difference of `self` and `rhs`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   a ^= &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2, 4, 5];
-
   for x in &a {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T> Borrow for HashSet<T, S, A>`
@@ -569,11 +414,8 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
@@ -595,43 +437,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](../hash_set/index.md#hashset)
 
   Returns the difference of `self` and `rhs` as a new `HashSet<T, S>`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   let set = &a - &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2];
-
   for x in &set {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
@@ -639,43 +462,24 @@ let viking_names: HashSet<&'static str> =
 - <span id="hashset-subassign-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md#hashset)
 
   Modifies this set to contain the difference of `self` and `rhs`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut a: HashSet<_> = vec![1, 2, 3].into_iter().collect();
-
   let b: HashSet<_> = vec![3, 4, 5].into_iter().collect();
-
   
-
   a -= &b;
-
   
-
   let mut i = 0;
-
   let expected = [1, 2];
-
   for x in &a {
-
       assert!(expected.contains(x));
-
       i += 1;
-
   }
-
   assert_eq!(i, expected.len());
-
   ```
 
 ##### `impl<T> ToOwned for HashSet<T, S, A>`
@@ -706,7 +510,7 @@ struct Iter<'a, K> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1647-1649`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L1647-L1649)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1647-1649`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1647-L1649)*
 
 An iterator over the items of a `HashSet`.
 
@@ -762,11 +566,8 @@ See its documentation for more.
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Iter<'a, K>`
@@ -815,7 +616,7 @@ struct IntoIter<K, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1658-1660`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L1658-L1660)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1658-1660`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1658-L1660)*
 
 An owning iterator over the items of a `HashSet`.
 
@@ -863,11 +664,8 @@ This `struct` is created by the `into_iter` method on [`HashSet`](../hash_set/in
 - <span id="intoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for IntoIter<K, A>`
@@ -908,7 +706,7 @@ struct Drain<'a, K, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1669-1671`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L1669-L1671)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1669-1671`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1669-L1671)*
 
 A draining iterator over the items of a `HashSet`.
 
@@ -952,11 +750,8 @@ See its documentation for more.
 - <span id="drain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Drain<'a, K, A>`
@@ -998,7 +793,7 @@ struct ExtractIf<'a, K, F, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1681-1684`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L1681-L1684)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1681-1684`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1681-L1684)*
 
 A draining iterator over entries of a `HashSet` which don't satisfy the predicate `f`.
 
@@ -1034,11 +829,8 @@ documentation for more.
 - <span id="extractif-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ExtractIf<'a, K, F, A>`
@@ -1078,7 +870,7 @@ struct Intersection<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1693-1698`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L1693-L1698)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1693-1698`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1693-L1698)*
 
 A lazy iterator producing elements in the intersection of `HashSet`s.
 
@@ -1126,11 +918,8 @@ See its documentation for more.
 - <span id="intersection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Intersection<'a, T, S, A>`
@@ -1180,7 +969,7 @@ struct Difference<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1707-1712`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L1707-L1712)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1707-1712`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1707-L1712)*
 
 A lazy iterator producing elements in the difference of `HashSet`s.
 
@@ -1228,11 +1017,8 @@ See its documentation for more.
 - <span id="difference-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Difference<'a, T, S, A>`
@@ -1281,7 +1067,7 @@ struct SymmetricDifference<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1721-1723`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L1721-L1723)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1721-1723`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1721-L1723)*
 
 A lazy iterator producing elements in the symmetric difference of `HashSet`s.
 
@@ -1329,11 +1115,8 @@ This `struct` is created by the `symmetric_difference` method on
 - <span id="symmetricdifference-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for SymmetricDifference<'a, T, S, A>`
@@ -1382,7 +1165,7 @@ struct Union<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:1732-1734`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L1732-L1734)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:1732-1734`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L1732-L1734)*
 
 A lazy iterator producing elements in the union of `HashSet`s.
 
@@ -1430,11 +1213,8 @@ See its documentation for more.
 - <span id="union-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Union<'a, T, S, A>`
@@ -1483,10 +1263,10 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:2301-2303`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L2301-L2303)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:2301-2303`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L2301-L2303)*
 
 A view into an occupied entry in a `HashSet`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_table/index.md) enum.
 
 # Examples
 
@@ -1525,83 +1305,46 @@ assert_eq!(set.len(), 2);
 - <span id="occupiedentry-get"></span>`fn get(&self) -> &T`
 
   Gets a reference to the value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_set::{Entry, HashSet};
-
   
-
   let mut set: HashSet<&str> = HashSet::new();
-
   set.entry("poneyland").or_insert();
-
   
-
   match set.entry("poneyland") {
-
       Entry::Vacant(_) => panic!(),
-
       Entry::Occupied(entry) => assert_eq!(entry.get(), &"poneyland"),
-
   }
-
   ```
 
 - <span id="occupiedentry-remove"></span>`fn remove(self) -> T`
 
   Takes the value out of the entry, and returns it.
-
   Keeps the allocated memory for reuse.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   use hashbrown::hash_set::Entry;
-
   
-
   let mut set: HashSet<&str> = HashSet::new();
-
   // The set is empty
-
   assert!(set.is_empty() && set.capacity() == 0);
-
   
-
   set.entry("poneyland").or_insert();
-
   let capacity_before_remove = set.capacity();
-
   
-
   if let Entry::Occupied(o) = set.entry("poneyland") {
-
       assert_eq!(o.remove(), "poneyland");
-
   }
-
   
-
   assert_eq!(set.contains("poneyland"), false);
-
   // Now set hold none elements but capacity is equal to the old one
-
   assert!(set.len() == 0 && set.capacity() == capacity_before_remove);
-
   ```
 
 #### Trait Implementations
@@ -1633,11 +1376,8 @@ assert_eq!(set.len(), 2);
 - <span id="occupiedentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for OccupiedEntry<'a, T, S, A>`
@@ -1660,10 +1400,10 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:2339-2341`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L2339-L2341)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:2339-2341`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L2339-L2341)*
 
 A view into a vacant entry in a `HashSet`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_table/index.md) enum.
 
 # Examples
 
@@ -1692,87 +1432,50 @@ assert!(set.contains("b") && set.len() == 2);
 - <span id="vacantentry-get"></span>`fn get(&self) -> &T`
 
   Gets a reference to the value that would be used when inserting
-
   through the `VacantEntry`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut set: HashSet<&str> = HashSet::new();
-
   assert_eq!(set.entry("poneyland").get(), &"poneyland");
-
   ```
 
 - <span id="vacantentry-into-value"></span>`fn into_value(self) -> T`
 
   Take ownership of the value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_set::{Entry, HashSet};
-
   
-
   let mut set: HashSet<&str> = HashSet::new();
-
   
-
   match set.entry("poneyland") {
-
       Entry::Occupied(_) => panic!(),
-
       Entry::Vacant(v) => assert_eq!(v.into_value(), "poneyland"),
-
   }
-
   ```
 
 - <span id="vacantentry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md#occupiedentry)
 
   Sets the value of the entry with the `VacantEntry`'s value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   use hashbrown::hash_set::Entry;
-
   
-
   let mut set: HashSet<&str> = HashSet::new();
-
   
-
   if let Entry::Vacant(o) = set.entry("poneyland") {
-
       o.insert();
-
   }
-
   assert!(set.contains("poneyland"));
-
   ```
 
 #### Trait Implementations
@@ -1804,11 +1507,8 @@ assert!(set.contains("b") && set.len() == 2);
 - <span id="vacantentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for VacantEntry<'a, T, S, A>`
@@ -1836,7 +1536,7 @@ where
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:2221-2254`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L2221-L2254)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:2221-2254`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L2221-L2254)*
 
 A view into a single entry in a set, which may either be vacant or occupied.
 
@@ -1912,95 +1612,54 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 - <span id="entry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md#occupiedentry)
 
   Sets the value of the entry, and returns an `OccupiedEntry`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut set: HashSet<&str> = HashSet::new();
-
   let entry = set.entry("horseyland").insert();
-
   
-
   assert_eq!(entry.get(), &"horseyland");
-
   ```
 
 - <span id="entry-or-insert"></span>`fn or_insert(self)`
 
   Ensures a value is in the entry by inserting if it was vacant.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut set: HashSet<&str> = HashSet::new();
-
   
-
   // nonexistent key
-
   set.entry("poneyland").or_insert();
-
   assert!(set.contains("poneyland"));
-
   
-
   // existing key
-
   set.entry("poneyland").or_insert();
-
   assert!(set.contains("poneyland"));
-
   assert_eq!(set.len(), 1);
-
   ```
 
 - <span id="entry-get"></span>`fn get(&self) -> &T`
 
   Returns a reference to this entry's value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashSet;
-
   
-
   let mut set: HashSet<&str> = HashSet::new();
-
   set.entry("poneyland").or_insert();
-
   // existing key
-
   assert_eq!(set.entry("poneyland").get(), &"poneyland");
-
   // nonexistent key
-
   assert_eq!(set.entry("horseland").get(), &"horseland");
-
   ```
 
 #### Trait Implementations
@@ -2032,11 +1691,8 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 - <span id="entry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for Entry<'a, T, S, A>`
@@ -2059,5 +1715,5 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 fn assert_covariance()
 ```
 
-*Defined in [`hashbrown-0.16.1/src/set.rs:2541-2574`](../../../.source_1765633015/hashbrown-0.16.1/src/set.rs#L2541-L2574)*
+*Defined in [`hashbrown-0.16.1/src/set.rs:2541-2574`](../../../.source_1765894658/hashbrown-0.16.1/src/set.rs#L2541-L2574)*
 

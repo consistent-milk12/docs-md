@@ -17,7 +17,7 @@ Global override of color control
 struct AtomicChoice(core::sync::atomic::AtomicUsize);
 ```
 
-*Defined in [`colorchoice-1.0.4/src/lib.rs:49`](../../.source_1765633015/colorchoice-1.0.4/src/lib.rs#L49)*
+*Defined in [`colorchoice-1.0.4/src/lib.rs:49`](../../.source_1765894658/colorchoice-1.0.4/src/lib.rs#L49)*
 
 #### Implementations
 
@@ -64,11 +64,8 @@ struct AtomicChoice(core::sync::atomic::AtomicUsize);
 - <span id="atomicchoice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for AtomicChoice`
@@ -96,7 +93,7 @@ enum ColorChoice {
 }
 ```
 
-*Defined in [`colorchoice-1.0.4/src/lib.rs:14-26`](../../.source_1765633015/colorchoice-1.0.4/src/lib.rs#L14-L26)*
+*Defined in [`colorchoice-1.0.4/src/lib.rs:14-26`](../../.source_1765894658/colorchoice-1.0.4/src/lib.rs#L14-L26)*
 
 Selection for overriding color output
 
@@ -176,11 +173,8 @@ Selection for overriding color output
 - <span id="colorchoice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ColorChoice`

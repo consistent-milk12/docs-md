@@ -24,7 +24,7 @@ struct DebugAranges<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:10-12`](../../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L10-L12)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:10-12`](../../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L10-L12)*
 
 The `DebugAranges` struct represents the DWARF address range information
 found in the `.debug_aranges` section.
@@ -34,33 +34,19 @@ found in the `.debug_aranges` section.
 - <span id="debugaranges-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugAranges` instance from the data in the `.debug_aranges`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_aranges` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugAranges, LittleEndian};
-
   
-
   let buf = [];
-
   let read_debug_aranges_section = || &buf;
-
   let debug_aranges =
-
       DebugAranges::new(read_debug_aranges_section(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -106,11 +92,8 @@ found in the `.debug_aranges` section.
 - <span id="debugaranges-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugAranges<R>`
@@ -148,7 +131,7 @@ struct ArangeHeaderIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:91-94`](../../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L91-L94)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:91-94`](../../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L91-L94)*
 
 An iterator over the headers of a `.debug_aranges` section.
 
@@ -195,11 +178,8 @@ An iterator over the headers of a `.debug_aranges` section.
 - <span id="arangeheaderiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ArangeHeaderIter<R>`
@@ -237,7 +217,7 @@ where
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:131-141`](../../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L131-L141)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:131-141`](../../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L131-L141)*
 
 A header for a set of entries in the `.debug_arange` section.
 
@@ -306,11 +286,8 @@ These entries all belong to a single unit.
 - <span id="arangeheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R, Offset> PartialEq for ArangeHeader<R, Offset>`
@@ -348,7 +325,7 @@ struct ArangeEntryIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:239-242`](../../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L239-L242)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:239-242`](../../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L239-L242)*
 
 An iterator over the aranges from a `.debug_aranges` section.
 
@@ -360,25 +337,17 @@ Can be [used with
 - <span id="arangeentryiter-next"></span>`fn next(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../../index.md#result), [`ArangeEntry`](../index.md#arangeentry)
 
   Advance the iterator and return the next arange.
-
   
-
   Returns the newly parsed arange as `Ok(Some(arange))`. Returns `Ok(None)`
-
   when iteration is complete and all aranges have already been parsed and
-
   yielded. If an error occurs while parsing the next arange, then this error
-
   is returned as `Err(e)`, and all subsequent calls return `Ok(None)`.
 
 - <span id="arangeentryiter-next-raw"></span>`fn next_raw(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../../index.md#result), [`ArangeEntry`](../index.md#arangeentry)
 
   Advance the iterator and return the next arange without validating it.
-
   
-
   The returned entry will have `range.end` set to 0.
-
   This will return tombstone entries as well.
 
 #### Trait Implementations
@@ -418,11 +387,8 @@ Can be [used with
 - <span id="arangeentryiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ArangeEntryIter<R>`
@@ -454,7 +420,7 @@ struct ArangeEntry {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/aranges.rs:318-321`](../../../../.source_1765633015/gimli-0.32.3/src/read/aranges.rs#L318-L321)*
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:318-321`](../../../../.source_1765894658/gimli-0.32.3/src/read/aranges.rs#L318-L321)*
 
 A single parsed arange.
 
@@ -515,11 +481,8 @@ A single parsed arange.
 - <span id="arangeentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for ArangeEntry`

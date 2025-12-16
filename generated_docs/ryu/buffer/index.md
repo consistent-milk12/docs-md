@@ -25,7 +25,7 @@ struct Buffer {
 }
 ```
 
-*Defined in [`ryu-1.0.20/src/buffer/mod.rs:20-22`](../../../.source_1765633015/ryu-1.0.20/src/buffer/mod.rs#L20-L22)*
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:20-22`](../../../.source_1765894658/ryu-1.0.20/src/buffer/mod.rs#L20-L22)*
 
 Safe API for formatting floating point numbers to text.
 
@@ -42,59 +42,36 @@ assert_eq!(printed, "1.234");
 - <span id="buffer-new"></span>`fn new() -> Self`
 
   This is a cheap operation; you don't need to worry about reusing buffers
-
   for efficiency.
 
 - <span id="buffer-format"></span>`fn format<F: Float>(&mut self, f: F) -> &str`
 
   Print a floating point number into this buffer and return a reference to
-
   its string representation within the buffer.
-
   
-
   # Special cases
-
   
-
   This function formats NaN as the string "NaN", positive infinity as
-
   "inf", and negative infinity as "-inf" to match std::fmt.
-
   
-
   If your input is known to be finite, you may get better performance by
-
   calling the `format_finite` method instead of `format` to avoid the
-
   checks for special cases.
 
 - <span id="buffer-format-finite"></span>`fn format_finite<F: Float>(&mut self, f: F) -> &str`
 
   Print a floating point number into this buffer and return a reference to
-
   its string representation within the buffer.
-
   
-
   # Special cases
-
   
-
   This function **does not** check for NaN or infinity. If the input
-
   number is not a finite float, the printed representation will be some
-
   correctly formatted but unspecified numerical value.
-
   
-
   Please check `is_finite` yourself before calling this function, or
-
   check `is_nan` and `is_infinite` and handle those cases yourself.
-
   
-
   
 
 #### Trait Implementations
@@ -136,11 +113,8 @@ assert_eq!(printed, "1.234");
 - <span id="buffer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Buffer`
@@ -163,7 +137,7 @@ assert_eq!(printed, "1.234");
 trait Float: Sealed { ... }
 ```
 
-*Defined in [`ryu-1.0.20/src/buffer/mod.rs:105`](../../../.source_1765633015/ryu-1.0.20/src/buffer/mod.rs#L105)*
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:105`](../../../.source_1765894658/ryu-1.0.20/src/buffer/mod.rs#L105)*
 
 A floating point number, f32 or f64, that can be written into a
 [`ryu::Buffer`][Buffer].
@@ -182,7 +156,7 @@ This trait is sealed and cannot be implemented for types outside of the
 trait Sealed: Copy { ... }
 ```
 
-*Defined in [`ryu-1.0.20/src/buffer/mod.rs:109-113`](../../../.source_1765633015/ryu-1.0.20/src/buffer/mod.rs#L109-L113)*
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:109-113`](../../../.source_1765894658/ryu-1.0.20/src/buffer/mod.rs#L109-L113)*
 
 #### Required Methods
 
@@ -204,19 +178,19 @@ trait Sealed: Copy { ... }
 const NAN: &str;
 ```
 
-*Defined in [`ryu-1.0.20/src/buffer/mod.rs:7`](../../../.source_1765633015/ryu-1.0.20/src/buffer/mod.rs#L7)*
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:7`](../../../.source_1765894658/ryu-1.0.20/src/buffer/mod.rs#L7)*
 
 ### `INFINITY`
 ```rust
 const INFINITY: &str;
 ```
 
-*Defined in [`ryu-1.0.20/src/buffer/mod.rs:8`](../../../.source_1765633015/ryu-1.0.20/src/buffer/mod.rs#L8)*
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:8`](../../../.source_1765894658/ryu-1.0.20/src/buffer/mod.rs#L8)*
 
 ### `NEG_INFINITY`
 ```rust
 const NEG_INFINITY: &str;
 ```
 
-*Defined in [`ryu-1.0.20/src/buffer/mod.rs:9`](../../../.source_1765633015/ryu-1.0.20/src/buffer/mod.rs#L9)*
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:9`](../../../.source_1765894658/ryu-1.0.20/src/buffer/mod.rs#L9)*
 

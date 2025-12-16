@@ -19,7 +19,7 @@
 struct Severity(syn::Ident);
 ```
 
-*Defined in [`miette-derive-7.6.0/src/severity.rs:15`](../../../.source_1765633015/miette-derive-7.6.0/src/severity.rs#L15)*
+*Defined in [`miette-derive-7.6.0/src/severity.rs:15`](../../../.source_1765894658/miette-derive-7.6.0/src/severity.rs#L15)*
 
 #### Implementations
 
@@ -52,11 +52,8 @@ struct Severity(syn::Ident);
 - <span id="severity-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Parse for Severity`
@@ -83,5 +80,5 @@ struct Severity(syn::Ident);
 fn get_severity(input: &str, span: proc_macro2::Span) -> syn::Result<String>
 ```
 
-*Defined in [`miette-derive-7.6.0/src/severity.rs:50-60`](../../../.source_1765633015/miette-derive-7.6.0/src/severity.rs#L50-L60)*
+*Defined in [`miette-derive-7.6.0/src/severity.rs:50-60`](../../../.source_1765894658/miette-derive-7.6.0/src/severity.rs#L50-L60)*
 

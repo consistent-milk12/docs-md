@@ -21,7 +21,7 @@ struct OnceLock<T> {
 }
 ```
 
-*Defined in [`crossbeam-epoch-0.9.18/src/sync/once_lock.rs:9-14`](../../../../.source_1765633015/crossbeam-epoch-0.9.18/src/sync/once_lock.rs#L9-L14)*
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/once_lock.rs:9-14`](../../../../.source_1765894658/crossbeam-epoch-0.9.18/src/sync/once_lock.rs#L9-L14)*
 
 #### Implementations
 
@@ -32,33 +32,19 @@ struct OnceLock<T> {
 - <span id="oncelock-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> &T`
 
   Gets the contents of the cell, initializing it with `f` if the cell
-
   was empty.
-
   
-
   Many threads may call `get_or_init` concurrently with different
-
   initializing functions, but it is guaranteed that only one function
-
   will be executed.
-
   
-
   # Panics
-
   
-
   If `f` panics, the panic is propagated to the caller, and the cell
-
   remains uninitialized.
-
   
-
   It is an error to reentrantly initialize the cell from `f`. The
-
   exact outcome is unspecified. Current implementation deadlocks, but
-
   this may be changed to a panic in the future.
 
 - <span id="oncelock-initialize"></span>`fn initialize<F>(&self, f: F)`
@@ -66,9 +52,7 @@ struct OnceLock<T> {
 - <span id="oncelock-get-unchecked"></span>`unsafe fn get_unchecked(&self) -> &T`
 
   # Safety
-
   
-
   The value must be initialized
 
 #### Trait Implementations
@@ -100,11 +84,8 @@ struct OnceLock<T> {
 - <span id="oncelock-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for OnceLock<T>`

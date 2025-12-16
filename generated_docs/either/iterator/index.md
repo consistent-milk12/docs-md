@@ -21,7 +21,7 @@ struct IterEither<L, R> {
 }
 ```
 
-*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../../.source_1765633015/either-1.15.0/src/iterator.rs#L19-L21)*
+*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../../.source_1765894658/either-1.15.0/src/iterator.rs#L19-L21)*
 
 Iterator that maps left or right iterators to corresponding `Either`-wrapped items.
 
@@ -86,11 +86,8 @@ and `factor_iter_mut` methods.
 - <span id="itereither-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for IterEither<L, R>`
@@ -135,6 +132,14 @@ and `factor_iter_mut` methods.
 
 - <span id="itereither-iterator-position"></span>`fn position<P>(&mut self, predicate: P) -> Option<usize>`
 
+##### `impl ToOwned for IterEither<L, R>`
+
+- <span id="itereither-toowned-type-owned"></span>`type Owned = T`
+
+- <span id="itereither-toowned-to-owned"></span>`fn to_owned(&self) -> T`
+
+- <span id="itereither-toowned-clone-into"></span>`fn clone_into(&self, target: &mut T)`
+
 ##### `impl<U> TryFrom for IterEither<L, R>`
 
 - <span id="itereither-tryfrom-type-error"></span>`type Error = Infallible`
@@ -151,5 +156,5 @@ and `factor_iter_mut` methods.
 
 ### `wrap_either!`
 
-*Defined in [`either-1.15.0/src/iterator.rs:4-11`](../../../.source_1765633015/either-1.15.0/src/iterator.rs#L4-L11)*
+*Defined in [`either-1.15.0/src/iterator.rs:4-11`](../../../.source_1765894658/either-1.15.0/src/iterator.rs#L4-L11)*
 

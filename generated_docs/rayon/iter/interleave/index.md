@@ -23,7 +23,7 @@ struct Interleave<I, J> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/interleave.rs:12-15`](../../../../.source_1765633015/rayon-1.11.0/src/iter/interleave.rs#L12-L15)*
+*Defined in [`rayon-1.11.0/src/iter/interleave.rs:12-15`](../../../../.source_1765894658/rayon-1.11.0/src/iter/interleave.rs#L12-L15)*
 
 `Interleave` is an iterator that interleaves elements of iterators
 `i` and `j` in one continuous iterator. This struct is created by
@@ -81,11 +81,8 @@ the `interleave()` method on [`IndexedParallelIterator`](../index.md)
 - <span id="interleave-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Interleave<I, J>`
@@ -155,7 +152,7 @@ where
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/interleave.rs:133-143`](../../../../.source_1765633015/rayon-1.11.0/src/iter/interleave.rs#L133-L143)*
+*Defined in [`rayon-1.11.0/src/iter/interleave.rs:133-143`](../../../../.source_1765894658/rayon-1.11.0/src/iter/interleave.rs#L133-L143)*
 
 #### Implementations
 
@@ -186,11 +183,8 @@ where
 - <span id="interleaveproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for InterleaveProducer<I, J>`
@@ -224,27 +218,16 @@ where
 - <span id="interleaveproducer-producer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
   We know 0 < index <= self.i_len + self.j_len
-
   
-
   Find a, b satisfying:
-
   
-
    (1) 0 < a <= self.i_len
-
    (2) 0 < b <= self.j_len
-
    (3) a + b == index
-
   
-
   For even splits, set a = b = index/2.
-
   For odd splits, set a = (index/2)+1, b = index/2, if `i`
-
   should yield the next element, otherwise, if `j` should yield
-
   the next element, set a = index/2 and b = (index/2)+1
 
 ##### `impl<U> TryFrom for InterleaveProducer<I, J>`
@@ -269,7 +252,7 @@ struct InterleaveSeq<I, J> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/interleave.rs:243-251`](../../../../.source_1765633015/rayon-1.11.0/src/iter/interleave.rs#L243-L251)*
+*Defined in [`rayon-1.11.0/src/iter/interleave.rs:243-251`](../../../../.source_1765894658/rayon-1.11.0/src/iter/interleave.rs#L243-L251)*
 
 Wrapper for Interleave to implement DoubleEndedIterator and
 ExactSizeIterator.
@@ -317,11 +300,8 @@ This iterator is fused.
 - <span id="interleaveseq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for InterleaveSeq<I, J>`

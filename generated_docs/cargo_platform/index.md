@@ -55,7 +55,7 @@ struct Ident {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/cfg.rs:29-37`](../../.source_1765633015/cargo-platform-0.3.1/src/cfg.rs#L29-L37)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:29-37`](../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L29-L37)*
 
 A identifier
 
@@ -123,11 +123,8 @@ A identifier
 - <span id="ident-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Ident`
@@ -175,7 +172,7 @@ struct ParseError {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/error.rs:4-7`](../../.source_1765633015/cargo-platform-0.3.1/src/error.rs#L4-L7)*
+*Defined in [`cargo-platform-0.3.2/src/error.rs:4-7`](../../.source_1765894658/cargo-platform-0.3.2/src/error.rs#L4-L7)*
 
 #### Implementations
 
@@ -216,11 +213,8 @@ struct ParseError {
 - <span id="parseerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ParseError`
@@ -250,7 +244,7 @@ enum Cfg {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/cfg.rs:20-25`](../../.source_1765633015/cargo-platform-0.3.1/src/cfg.rs#L20-L25)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:20-25`](../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L20-L25)*
 
 A cfg value.
 
@@ -317,11 +311,8 @@ A cfg value.
 - <span id="cfg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Cfg`
@@ -375,7 +366,7 @@ enum CfgExpr {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/cfg.rs:9-16`](../../.source_1765633015/cargo-platform-0.3.1/src/cfg.rs#L9-L16)*
+*Defined in [`cargo-platform-0.3.2/src/cfg.rs:9-16`](../../.source_1765894658/cargo-platform-0.3.2/src/cfg.rs#L9-L16)*
 
 A cfg expression.
 
@@ -440,11 +431,8 @@ A cfg expression.
 - <span id="cfgexpr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for CfgExpr`
@@ -501,7 +489,7 @@ enum ParseErrorKind {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/error.rs:11-21`](../../.source_1765633015/cargo-platform-0.3.1/src/error.rs#L11-L21)*
+*Defined in [`cargo-platform-0.3.2/src/error.rs:11-21`](../../.source_1765894658/cargo-platform-0.3.2/src/error.rs#L11-L21)*
 
 #### Trait Implementations
 
@@ -536,11 +524,8 @@ enum ParseErrorKind {
 - <span id="parseerrorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ParseErrorKind`
@@ -568,7 +553,7 @@ enum Platform {
 }
 ```
 
-*Defined in [`cargo-platform-0.3.1/src/lib.rs:26-31`](../../.source_1765633015/cargo-platform-0.3.1/src/lib.rs#L26-L31)*
+*Defined in [`cargo-platform-0.3.2/src/lib.rs:26-31`](../../.source_1765894658/cargo-platform-0.3.2/src/lib.rs#L26-L31)*
 
 Platform definition.
 
@@ -587,9 +572,7 @@ Platform definition.
 - <span id="platform-matches"></span>`fn matches(&self, name: &str, cfg: &[Cfg]) -> bool` — [`Cfg`](cfg/index.md#cfg)
 
   Returns whether the Platform matches the given target and cfg.
-
   
-
   The named target and cfg values should be obtained from `rustc`.
 
 - <span id="platform-validate-named-platform"></span>`fn validate_named_platform(name: &str) -> Result<(), ParseError>` — [`ParseError`](error/index.md#parseerror)
@@ -657,11 +640,8 @@ Platform definition.
 - <span id="platform-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Platform`

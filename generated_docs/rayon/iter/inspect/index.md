@@ -24,7 +24,7 @@ struct Inspect<I, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/inspect.rs:15-18`](../../../../.source_1765633015/rayon-1.11.0/src/iter/inspect.rs#L15-L18)*
+*Defined in [`rayon-1.11.0/src/iter/inspect.rs:15-18`](../../../../.source_1765894658/rayon-1.11.0/src/iter/inspect.rs#L15-L18)*
 
 `Inspect` is an iterator that calls a function with a reference to each
 element before yielding it.
@@ -83,11 +83,8 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](../inde
 - <span id="inspect-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Inspect<I, F>`
@@ -151,7 +148,7 @@ struct InspectProducer<'f, P, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/inspect.rs:107-110`](../../../../.source_1765633015/rayon-1.11.0/src/iter/inspect.rs#L107-L110)*
+*Defined in [`rayon-1.11.0/src/iter/inspect.rs:107-110`](../../../../.source_1765894658/rayon-1.11.0/src/iter/inspect.rs#L107-L110)*
 
 #### Trait Implementations
 
@@ -178,11 +175,8 @@ struct InspectProducer<'f, P, F> {
 - <span id="inspectproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for InspectProducer<'f, P, F>`
@@ -238,7 +232,7 @@ struct InspectConsumer<'f, C, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/inspect.rs:161-164`](../../../../.source_1765633015/rayon-1.11.0/src/iter/inspect.rs#L161-L164)*
+*Defined in [`rayon-1.11.0/src/iter/inspect.rs:161-164`](../../../../.source_1765894658/rayon-1.11.0/src/iter/inspect.rs#L161-L164)*
 
 #### Implementations
 
@@ -283,11 +277,8 @@ struct InspectConsumer<'f, C, F> {
 - <span id="inspectconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for InspectConsumer<'f, C, F>`
@@ -333,7 +324,7 @@ struct InspectFolder<'f, C, F> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/inspect.rs:216-219`](../../../../.source_1765633015/rayon-1.11.0/src/iter/inspect.rs#L216-L219)*
+*Defined in [`rayon-1.11.0/src/iter/inspect.rs:216-219`](../../../../.source_1765894658/rayon-1.11.0/src/iter/inspect.rs#L216-L219)*
 
 #### Trait Implementations
 
@@ -372,11 +363,8 @@ struct InspectFolder<'f, C, F> {
 - <span id="inspectfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for InspectFolder<'f, C, F>`

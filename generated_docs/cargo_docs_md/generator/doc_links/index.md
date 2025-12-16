@@ -87,29 +87,17 @@ The tracker correctly handles mismatched fences:
 - <span id="codeblocktracker-classify"></span>`fn classify(&mut self, line: &str) -> LineKind` — [`LineKind`](#linekind)
 
   Classify a line and update the tracker's state.
-
   
-
   This method both returns the line's classification AND updates
-
   the tracker's state. Call once per line in order.
-
   
-
   # State Transitions
-
   
-
   ```text
-
   ┌─────────┐  "```" or "~~~"  ┌──────────┐
-
   │ Outside │ ───────────────→ │  Inside  │
-
   │         │ ←─────────────── │          │
-
   └─────────┘  matching fence  └──────────┘
-
   ```
 
 #### Trait Implementations
@@ -139,11 +127,8 @@ The tracker correctly handles mismatched fences:
 - <span id="codeblocktracker-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CodeBlockTracker`
@@ -238,41 +223,29 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-with-index"></span>`fn with_index(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str, path_name_index: &HashMap<&'a str, Vec<Id>>) -> Self` — [`LinkRegistry`](../../linker/index.md#linkregistry)
 
   Create a new processor with a pre-built path name index.
-
   
-
   This is the preferred constructor when the index has already been built
-
   (e.g., in `GeneratorContext`), avoiding redundant index construction.
 
 - <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../linker/index.md#linkregistry)
 
   Create a new processor for the given context.
-
   
-
   Builds the path name index internally. Prefer `Self::with_index` when
-
   the index has already been built to avoid redundant computation.
 
 - <span id="doclinkprocessor-process"></span>`fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
   Process a doc string and resolve all intra-doc links.
-
   
-
   Uses the item's `links` map to resolve link text to IDs,
-
   then uses `LinkRegistry` to convert IDs to relative paths.
 
 - <span id="doclinkprocessor-process-links-protected"></span>`fn process_links_protected(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
   Process links while protecting code block contents.
-
   
-
   Uses [`CodeBlockTracker`](#codeblocktracker) to identify which lines are inside code blocks
-
   (and should be left unchanged) vs regular text (which needs link processing).
 
 - <span id="doclinkprocessor-process-line"></span>`fn process_line(&self, line: &str, item_links: &HashMap<String, Id>) -> String`
@@ -302,29 +275,19 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-process-html-links-with-context"></span>`fn process_html_links_with_context(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
   Process HTML-style rustdoc links with context awareness.
-
   
-
   Instead of blindly converting all HTML links to local anchors,
-
   this method checks if the item actually exists on the current page.
-
   If not, it tries to resolve to docs.rs or removes the broken link.
-
   
-
   For method links (e.g., `struct.Foo.html#method.bar`), creates a
-
   method anchor like `#foo-bar` for deep linking.
 
 - <span id="doclinkprocessor-resolve-html-link-to-url"></span>`fn resolve_html_link_to_url(&self, item_name: &str, item_kind: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
   Try to resolve an HTML-style link to a proper URL.
-
   
-
   Returns a URL if the item can be resolved (either locally or to docs.rs),
-
   or None if the item cannot be found.
 
 - <span id="doclinkprocessor-kind-matches"></span>`fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool`
@@ -338,47 +301,28 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-resolve-with-strategies"></span>`fn resolve_with_strategies<T, F>(&self, link_text: &str, item_links: &HashMap<String, Id>, resolver: F) -> Option<T>`
 
   Generic 3-strategy resolution with per-strategy display names.
-
   
-
   Unifies the resolution logic used by `resolve_to_url` and `resolve_link`.
-
   The resolver closure receives both the `Id` and the appropriate display name
-
   for that strategy:
-
   - Strategy 1 (exact match): uses original `link_text` (preserves qualified paths)
-
   - Strategy 2 & 3 (fuzzy matches): uses `short_name`
-
   
-
   # Type Parameters
-
   
-
   * `T` - The result type (e.g., `String` for URLs or markdown links)
-
   
-
   # Arguments
-
   
-
   * `link_text` - Original link text from documentation
-
   * `item_links` - Pre-resolved links from rustdoc
-
   * `resolver` - Closure that takes `(Id, display_name)` and returns `Option<T>`
 
 - <span id="doclinkprocessor-resolve-to-url"></span>`fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
   Resolve a link reference to a URL.
-
   
-
   Uses the generic 3-strategy resolver. Display name is ignored since
-
   we only need the URL.
 
 - <span id="doclinkprocessor-get-url-for-id"></span>`fn get_url_for_id(&self, id: Id) -> Option<String>`
@@ -392,21 +336,15 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-resolve-method-link"></span>`fn resolve_method_link(&self, type_name: &str, method_name: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
   Resolve a method link to a markdown link with method anchor.
-
   
-
   Links to the type's page with a method anchor for deep linking
-
   (e.g., `#hashmap-new` for `HashMap::new`).
 
 - <span id="doclinkprocessor-resolve-link"></span>`fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String`
 
   Try to resolve link text to a markdown link.
-
   
-
   Uses the generic 3-strategy resolver. Falls back to unresolved link format
-
   (backtick-wrapped text in brackets) if resolution fails.
 
 - <span id="doclinkprocessor-create-link-for-id"></span>`fn create_link_for_id(&self, id: Id, display_name: &str) -> Option<String>`
@@ -444,11 +382,8 @@ Links inside fenced code blocks are not processed.
 - <span id="doclinkprocessor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for DocLinkProcessor<'a>`
@@ -498,95 +433,58 @@ Utility functions for document links
 - <span id="doclinkutils-convert-html-links"></span>`fn convert_html_links(docs: &str) -> String`
 
   Convert HTML-style rustdoc links to markdown anchors.
-
   
-
   Transforms links like:
-
   - `(#numberprefix)` -> `(#numberprefix)`
-
   - `(#foo-bar)` -> `(#foo-bar)` (type-method anchor)
-
   
-
   This is useful for multi-crate documentation where the full processor
-
   context may not be available.
 
 - <span id="doclinkutils-strip-duplicate-title"></span>`fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str`
 
   Strip duplicate title from documentation.
-
   
-
   Some crate/module docs start with `# title` which duplicates the generated
-
   `# Crate 'name'` or `# Module 'name'` heading.
-
   
-
   # Arguments
-
   
-
   * `docs` - The documentation string to process
-
   * `item_name` - The name of the crate or module being documented
-
   
-
   # Returns
-
   
-
   The docs with the leading title removed if it matches the item name,
-
   otherwise the original docs unchanged.
 
 - <span id="doclinkutils-strip-reference-definitions"></span>`fn strip_reference_definitions(docs: &str) -> String`
 
   Strip markdown reference definition lines.
-
   
-
   Removes lines like ``Name`: path::to::item` which are no longer needed
-
   after intra-doc links are processed.
 
 - <span id="doclinkutils-unhide-code-lines"></span>`fn unhide_code_lines(docs: &str) -> String`
 
   Unhide rustdoc hidden lines in code blocks and add language identifiers.
-
   
-
   This function performs two transformations on code blocks:
-
   1. Lines starting with `# ` inside code blocks are hidden in rustdoc
-
      but compiled. We remove the prefix to show the full example.
-
   2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
-
      examples are Rust code.
-
   
-
   Uses [`CodeBlockTracker`](#codeblocktracker) to manage fence state.
 
 - <span id="doclinkutils-convert-path-reference-links"></span>`fn convert_path_reference_links(docs: &str) -> String`
 
   Convert path-style reference links to inline code.
-
   
-
   Transforms: ```ProgressTracker```
-
   Into: `` `ProgressTracker` ``
-
   
-
   Without full link resolution context, we can't create valid anchors,
-
   so we preserve the display text as inline code.
 
 - <span id="doclinkutils-replace-with-regex"></span>`fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String`
@@ -624,11 +522,8 @@ Utility functions for document links
 - <span id="doclinkutils-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for DocLinkUtils`
@@ -764,11 +659,8 @@ Input Line          │ State Before │ Returns             │ State After
 - <span id="linekind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for LineKind`

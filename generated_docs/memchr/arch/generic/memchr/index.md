@@ -43,7 +43,7 @@ struct One<V> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:100-103`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/generic/memchr.rs#L100-L103)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:100-103`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/memchr.rs#L100-L103)*
 
 Finds all occurrences of a single byte in a haystack.
 
@@ -62,151 +62,84 @@ Finds all occurrences of a single byte in a haystack.
 - <span id="one-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Return a pointer to the first occurrence of the needle in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   # Safety
-
   
-
   * It must be the case that `start < end` and that the distance between
-
   them is at least equal to `V::BYTES`. That is, it must always be valid
-
   to do at least an unaligned load of `V` at `start`.
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
 
 - <span id="one-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Return a pointer to the last occurrence of the needle in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   # Safety
-
   
-
   * It must be the case that `start < end` and that the distance between
-
   them is at least equal to `V::BYTES`. That is, it must always be valid
-
   to do at least an unaligned load of `V` at `start`.
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
 
 - <span id="one-count-raw"></span>`unsafe fn count_raw(&self, start: *const u8, end: *const u8) -> usize`
 
   Return a count of all matching bytes in the given haystack.
-
   
-
   # Safety
-
   
-
   * It must be the case that `start < end` and that the distance between
-
   them is at least equal to `V::BYTES`. That is, it must always be valid
-
   to do at least an unaligned load of `V` at `start`.
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
 
 - <span id="one-search-chunk"></span>`unsafe fn search_chunk(&self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md#vector)
 
   Search `V::BYTES` starting at `cur` via an unaligned load.
-
   
-
   `mask_to_offset` should be a function that converts a `movemask` to
-
   an offset such that `cur.add(offset)` corresponds to a pointer to the
-
   match location if one is found. Generally it is expected to use either
-
   `mask_to_first_offset` or `mask_to_last_offset`, depending on whether
-
   one is implementing a forward or reverse search, respectively.
-
   
-
   # Safety
-
   
-
   `cur` must be a valid pointer and it must be valid to do an unaligned
-
   load of size `V::BYTES` at `cur`.
 
 #### Trait Implementations
@@ -248,11 +181,8 @@ Finds all occurrences of a single byte in a haystack.
 - <span id="one-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for One<V>`
@@ -286,7 +216,7 @@ struct Two<V> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:437-442`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/generic/memchr.rs#L437-L442)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:437-442`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/memchr.rs#L437-L442)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -313,115 +243,64 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 - <span id="two-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Return a pointer to the first occurrence of one of the needles in the
-
   given haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   # Safety
-
   
-
   * It must be the case that `start < end` and that the distance between
-
   them is at least equal to `V::BYTES`. That is, it must always be valid
-
   to do at least an unaligned load of `V` at `start`.
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
 
 - <span id="two-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Return a pointer to the last occurrence of the needle in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   # Safety
-
   
-
   * It must be the case that `start < end` and that the distance between
-
   them is at least equal to `V::BYTES`. That is, it must always be valid
-
   to do at least an unaligned load of `V` at `start`.
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
 
 - <span id="two-search-chunk"></span>`unsafe fn search_chunk(&self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md#vector)
 
   Search `V::BYTES` starting at `cur` via an unaligned load.
-
   
-
   `mask_to_offset` should be a function that converts a `movemask` to
-
   an offset such that `cur.add(offset)` corresponds to a pointer to the
-
   match location if one is found. Generally it is expected to use either
-
   `mask_to_first_offset` or `mask_to_last_offset`, depending on whether
-
   one is implementing a forward or reverse search, respectively.
-
   
-
   # Safety
-
   
-
   `cur` must be a valid pointer and it must be valid to do an unaligned
-
   load of size `V::BYTES` at `cur`.
 
 #### Trait Implementations
@@ -463,11 +342,8 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 - <span id="two-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Two<V>`
@@ -503,7 +379,7 @@ struct Three<V> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:695-702`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/generic/memchr.rs#L695-L702)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:695-702`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/memchr.rs#L695-L702)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -534,115 +410,64 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 - <span id="three-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Return a pointer to the first occurrence of one of the needles in the
-
   given haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   # Safety
-
   
-
   * It must be the case that `start < end` and that the distance between
-
   them is at least equal to `V::BYTES`. That is, it must always be valid
-
   to do at least an unaligned load of `V` at `start`.
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
 
 - <span id="three-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
   Return a pointer to the last occurrence of the needle in the given
-
   haystack. If no such occurrence exists, then `None` is returned.
-
   
-
   When a match is found, the pointer returned is guaranteed to be
-
   `>= start` and `< end`.
-
   
-
   # Safety
-
   
-
   * It must be the case that `start < end` and that the distance between
-
   them is at least equal to `V::BYTES`. That is, it must always be valid
-
   to do at least an unaligned load of `V` at `start`.
-
   * Both `start` and `end` must be valid for reads.
-
   * Both `start` and `end` must point to an initialized value.
-
   * Both `start` and `end` must point to the same allocated object and
-
   must either be in bounds or at most one byte past the end of the
-
   allocated object.
-
   * Both `start` and `end` must be _derived from_ a pointer to the same
-
   object.
-
   * The distance between `start` and `end` must not overflow `isize`.
-
   * The distance being in bounds must not rely on "wrapping around" the
-
   address space.
 
 - <span id="three-search-chunk"></span>`unsafe fn search_chunk(&self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md#vector)
 
   Search `V::BYTES` starting at `cur` via an unaligned load.
-
   
-
   `mask_to_offset` should be a function that converts a `movemask` to
-
   an offset such that `cur.add(offset)` corresponds to a pointer to the
-
   match location if one is found. Generally it is expected to use either
-
   `mask_to_first_offset` or `mask_to_last_offset`, depending on whether
-
   one is implementing a forward or reverse search, respectively.
-
   
-
   # Safety
-
   
-
   `cur` must be a valid pointer and it must be valid to do an unaligned
-
   load of size `V::BYTES` at `cur`.
 
 #### Trait Implementations
@@ -684,11 +509,8 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 - <span id="three-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Three<V>`
@@ -722,7 +544,7 @@ struct Iter<'h> {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:999-1012`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/generic/memchr.rs#L999-L1012)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:999-1012`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/memchr.rs#L999-L1012)*
 
 An iterator over all occurrences of a set of bytes in a haystack.
 
@@ -771,17 +593,11 @@ respectively.
 - <span id="iter-next"></span>`unsafe fn next(&mut self, find_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>`
 
   Returns the next occurrence in the forward direction.
-
   
-
   # Safety
-
   
-
   Callers must ensure that if a pointer is returned from the closure
-
   provided, then it must be greater than or equal to the start pointer
-
   and less than the end pointer.
 
 - <span id="iter-count"></span>`fn count(self, count_raw: impl FnMut(*const u8, *const u8) -> usize) -> usize`
@@ -791,17 +607,11 @@ respectively.
 - <span id="iter-next-back"></span>`unsafe fn next_back(&mut self, rfind_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>`
 
   Returns the next occurrence in reverse.
-
   
-
   # Safety
-
   
-
   Callers must ensure that if a pointer is returned from the closure
-
   provided, then it must be greater than or equal to the start pointer
-
   and less than the end pointer.
 
 - <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
@@ -845,11 +655,8 @@ respectively.
 - <span id="iter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Send for Iter<'h>`
@@ -884,7 +691,7 @@ respectively.
 unsafe fn search_slice_with_raw(haystack: &[u8], find_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1125-1136`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/generic/memchr.rs#L1125-L1136)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1125-1136`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/memchr.rs#L1125-L1136)*
 
 Search a slice using a function that operates on raw pointers.
 
@@ -909,7 +716,7 @@ the end pointer.
 unsafe fn fwd_byte_by_byte<F: Fn(u8) -> bool>(start: *const u8, end: *const u8, confirm: F) -> Option<*const u8>
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1148-1162`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/generic/memchr.rs#L1148-L1162)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1148-1162`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/memchr.rs#L1148-L1162)*
 
 Performs a forward byte-at-a-time loop until either `ptr >= end_ptr` or
 until `confirm(*ptr)` returns `true`. If the former occurs, then `None` is
@@ -927,7 +734,7 @@ ptr` and `ptr <= end_ptr`.
 unsafe fn rev_byte_by_byte<F: Fn(u8) -> bool>(start: *const u8, end: *const u8, confirm: F) -> Option<*const u8>
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1174-1189`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/generic/memchr.rs#L1174-L1189)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1174-1189`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/memchr.rs#L1174-L1189)*
 
 Performs a reverse byte-at-a-time loop until either `ptr < start_ptr` or
 until `confirm(*ptr)` returns `true`. If the former occurs, then `None` is
@@ -945,7 +752,7 @@ ptr` and `ptr <= end_ptr`.
 unsafe fn count_byte_by_byte<F: Fn(u8) -> bool>(start: *const u8, end: *const u8, confirm: F) -> usize
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1199-1214`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/generic/memchr.rs#L1199-L1214)*
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1199-1214`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/generic/memchr.rs#L1199-L1214)*
 
 Performs a forward byte-at-a-time loop until `ptr >= end_ptr` and returns
 the number of times `confirm(*ptr)` returns `true`.

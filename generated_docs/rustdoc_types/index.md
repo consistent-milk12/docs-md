@@ -6,7 +6,7 @@ These types are the public API exposed through the `--output-format json` flag. 
 struct is the root of the JSON blob and all other items are contained within.
 
 We expose a `rustc-hash` feature that is disabled by default. This feature switches the
-[`std::collections::HashMap`](../hashbrown/hash_map/index.md) for `rustc_hash::FxHashMap` to improve the performance of said
+`std::collections::HashMap` for `rustc_hash::FxHashMap` to improve the performance of said
 `HashMap` in specific situations.
 
 `cargo-semver-checks` for example, saw a [-3% improvement][1] when benchmarking using the
@@ -154,7 +154,7 @@ struct Crate {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:48-67`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L48-L67)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:48-67`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L48-L67)*
 
 The root of the emitted JSON blob.
 
@@ -243,11 +243,8 @@ tools to find or link to them.
 - <span id="crate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Crate`
@@ -289,7 +286,7 @@ struct Target {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:71-77`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L71-L77)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:71-77`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L71-L77)*
 
 Information about a target
 
@@ -349,11 +346,8 @@ Information about a target
 - <span id="target-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Target`
@@ -397,7 +391,7 @@ struct TargetFeature {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:101-121`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L101-L121)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:101-121`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L101-L121)*
 
 Information about a target feature.
 
@@ -493,11 +487,8 @@ context.
 - <span id="targetfeature-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TargetFeature`
@@ -540,7 +531,7 @@ struct ExternalCrate {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:125-143`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L125-L143)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:125-143`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L125-L143)*
 
 Metadata of a crate, either the same crate on which `rustdoc` was invoked, or its dependency.
 
@@ -616,11 +607,8 @@ Metadata of a crate, either the same crate on which `rustdoc` was invoked, or it
 - <span id="externalcrate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ExternalCrate`
@@ -663,7 +651,7 @@ struct ItemSummary {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:152-166`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L152-L166)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:152-166`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L152-L166)*
 
 Information about an external (not defined in the local crate) [`Item`](#item).
 
@@ -686,7 +674,7 @@ the actual item definition with all the relevant info.
   
   Note that items can appear in multiple paths, and the one chosen is implementation
   defined. Currently, this is the full path to where the item was defined. Eg
-  [`String`](../cargo_platform/index.md) is currently `["alloc", "string", "String"]` and [`HashMap`][`std::collections::HashMap`](../hashbrown/hash_map/index.md)
+  `String` is currently `["alloc", "string", "String"]` and [`HashMap`]`std::collections::HashMap`
   is `["std", "collections", "hash", "map", "HashMap"]`, but this is subject to change.
 
 - **`kind`**: `ItemKind`
@@ -742,11 +730,8 @@ the actual item definition with all the relevant info.
 - <span id="itemsummary-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ItemSummary`
@@ -796,7 +781,7 @@ struct Item {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:173-208`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L173-L208)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:173-208`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L173-L208)*
 
 Anything that can hold documentation - modules, structs, enums, functions, traits, etc.
 
@@ -904,11 +889,8 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 - <span id="item-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Item`
@@ -952,7 +934,7 @@ struct AttributeRepr {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:261-274`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L261-L274)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:261-274`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L261-L274)*
 
 The contents of a `#[repr(...)]` attribute.
 
@@ -1023,11 +1005,8 @@ Used in [`Attribute::Repr`](#attributerepr).
 - <span id="attributerepr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AttributeRepr`
@@ -1070,7 +1049,7 @@ struct Span {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:296-303`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L296-L303)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:296-303`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L296-L303)*
 
 A range of source code.
 
@@ -1137,11 +1116,8 @@ A range of source code.
 - <span id="span-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Span`
@@ -1183,7 +1159,7 @@ struct Deprecation {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:307-312`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L307-L312)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:307-312`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L307-L312)*
 
 Information about the deprecation of an [`Item`](#item).
 
@@ -1246,11 +1222,8 @@ Information about the deprecation of an [`Item`](#item).
 - <span id="deprecation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Deprecation`
@@ -1292,7 +1265,7 @@ struct DynTrait {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:339-350`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L339-L350)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:339-350`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L339-L350)*
 
 Dynamic trait object type (`dyn Trait`).
 
@@ -1361,11 +1334,8 @@ Dynamic trait object type (`dyn Trait`).
 - <span id="dyntrait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for DynTrait`
@@ -1407,7 +1377,7 @@ struct PolyTrait {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:354-364`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L354-L364)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:354-364`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L354-L364)*
 
 A trait and potential HRTBs
 
@@ -1474,11 +1444,8 @@ A trait and potential HRTBs
 - <span id="polytrait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for PolyTrait`
@@ -1521,7 +1488,7 @@ struct Constant {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:431-440`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L431-L440)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:431-440`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L431-L440)*
 
 A constant.
 
@@ -1590,11 +1557,8 @@ A constant.
 - <span id="constant-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Constant`
@@ -1637,7 +1601,7 @@ struct AssocItemConstraint {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:450-457`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L450-L457)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:450-457`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L450-L457)*
 
 Describes a bound applied to an associated type/constant.
 
@@ -1710,11 +1674,8 @@ IntoIterator<Item = u32, IntoIter: Clone>
 - <span id="associtemconstraint-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AssocItemConstraint`
@@ -1753,7 +1714,7 @@ IntoIterator<Item = u32, IntoIter: Clone>
 struct Id(u32);
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:490`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L490)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:490`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L490)*
 
 An opaque identifier for an item.
 
@@ -1818,11 +1779,8 @@ to parse them, or otherwise depend on any implementation details.
 - <span id="id-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Id`
@@ -1873,7 +1831,7 @@ struct Module {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:686-697`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L686-L697)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:686-697`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L686-L697)*
 
 A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
@@ -1944,11 +1902,8 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 - <span id="module-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Module`
@@ -1992,7 +1947,7 @@ struct Union {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:701-714`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L701-L714)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:701-714`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L701-L714)*
 
 A `union`.
 
@@ -2067,11 +2022,8 @@ A `union`.
 - <span id="union-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Union`
@@ -2114,7 +2066,7 @@ struct Struct {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:718-727`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L718-L727)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:718-727`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L718-L727)*
 
 A `struct`.
 
@@ -2183,11 +2135,8 @@ A `struct`.
 - <span id="struct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Struct`
@@ -2231,7 +2180,7 @@ struct Enum {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:768-779`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L768-L779)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:768-779`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L768-L779)*
 
 An `enum`.
 
@@ -2304,11 +2253,8 @@ An `enum`.
 - <span id="enum-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Enum`
@@ -2350,7 +2296,7 @@ struct Variant {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:783-788`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L783-L788)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:783-788`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L783-L788)*
 
 A variant of an enum.
 
@@ -2413,11 +2359,8 @@ A variant of an enum.
 - <span id="variant-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Variant`
@@ -2459,7 +2402,7 @@ struct Discriminant {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:835-849`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L835-L849)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:835-849`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L835-L849)*
 
 The value that distinguishes a variant in an [`Enum`](#enum) from other variants.
 
@@ -2531,11 +2474,8 @@ The value that distinguishes a variant in an [`Enum`](#enum) from other variants
 - <span id="discriminant-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Discriminant`
@@ -2579,7 +2519,7 @@ struct FunctionHeader {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:853-862`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L853-L862)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:853-862`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L853-L862)*
 
 A set of fundamental properties of a function.
 
@@ -2650,11 +2590,8 @@ A set of fundamental properties of a function.
 - <span id="functionheader-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for FunctionHeader`
@@ -2698,7 +2635,7 @@ struct Function {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:900-909`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L900-L909)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:900-909`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L900-L909)*
 
 A function declaration (including methods and other associated functions).
 
@@ -2769,11 +2706,8 @@ A function declaration (including methods and other associated functions).
 - <span id="function-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Function`
@@ -2815,7 +2749,7 @@ struct Generics {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:913-918`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L913-L918)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:913-918`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L913-L918)*
 
 Generic parameters accepted by an item and `where` clauses imposed on it and the parameters.
 
@@ -2878,11 +2812,8 @@ Generic parameters accepted by an item and `where` clauses imposed on it and the
 - <span id="generics-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Generics`
@@ -2924,7 +2855,7 @@ struct GenericParamDef {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:922-932`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L922-L932)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:922-932`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L922-L932)*
 
 One generic parameter accepted by an item.
 
@@ -2992,11 +2923,8 @@ One generic parameter accepted by an item.
 - <span id="genericparamdef-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for GenericParamDef`
@@ -3039,7 +2967,7 @@ struct Path {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1231-1255`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1231-L1255)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1231-1255`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1231-L1255)*
 
 A type that has a simple path to it. This is the kind of type of structs, unions, enums, etc.
 
@@ -3121,11 +3049,8 @@ A type that has a simple path to it. This is the kind of type of structs, unions
 - <span id="path-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Path`
@@ -3168,7 +3093,7 @@ struct FunctionPointer {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1259-1271`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1259-L1271)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1259-1271`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1259-L1271)*
 
 A type that is a function pointer.
 
@@ -3240,11 +3165,8 @@ A type that is a function pointer.
 - <span id="functionpointer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for FunctionPointer`
@@ -3287,7 +3209,7 @@ struct FunctionSignature {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1275-1289`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1275-L1289)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1275-1289`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1275-L1289)*
 
 The signature of a function.
 
@@ -3361,11 +3283,8 @@ The signature of a function.
 - <span id="functionsignature-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for FunctionSignature`
@@ -3412,7 +3331,7 @@ struct Trait {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1293-1311`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1293-L1311)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1293-1311`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1293-L1311)*
 
 A `trait` declaration.
 
@@ -3498,11 +3417,8 @@ A `trait` declaration.
 - <span id="trait-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Trait`
@@ -3544,7 +3460,7 @@ struct TraitAlias {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1317-1322`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1317-L1322)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1317-1322`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1317-L1322)*
 
 A trait alias declaration, e.g. `trait Int = Add + Sub + Mul + Div;`
 
@@ -3609,11 +3525,8 @@ See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
 - <span id="traitalias-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TraitAlias`
@@ -3662,7 +3575,7 @@ struct Impl {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1326-1360`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1326-L1360)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1326-1360`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1326-L1360)*
 
 An `impl` block.
 
@@ -3762,11 +3675,8 @@ An `impl` block.
 - <span id="impl-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Impl`
@@ -3810,7 +3720,7 @@ struct Use {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1365-1378`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1365-L1378)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1365-1378`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1365-L1378)*
 
 A `use` statement.
 
@@ -3885,11 +3795,8 @@ A `use` statement.
 - <span id="use-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Use`
@@ -3931,7 +3838,7 @@ struct ProcMacro {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1382-1401`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1382-L1401)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1382-1401`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1382-L1401)*
 
 A procedural macro.
 
@@ -3947,7 +3854,7 @@ A procedural macro.
   
   Defined only for derive macros.
   
-  E.g. the [`Default`](../gimli/index.md) derive macro defines a `#[default]` helper attribute so that one can
+  E.g. the [`Default`](#default) derive macro defines a `#[default]` helper attribute so that one can
   do:
   
   ```rust
@@ -4008,11 +3915,8 @@ A procedural macro.
 - <span id="procmacro-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ProcMacro`
@@ -4054,7 +3958,7 @@ struct TypeAlias {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1417-1423`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1417-L1423)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1417-1423`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1417-L1423)*
 
 A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
@@ -4117,11 +4021,8 @@ A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 - <span id="typealias-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TypeAlias`
@@ -4165,7 +4066,7 @@ struct Static {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1427-1453`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1427-L1453)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1427-1453`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1427-L1453)*
 
 A `static` declaration.
 
@@ -4251,11 +4152,8 @@ A `static` declaration.
 - <span id="static-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Static`
@@ -4297,7 +4195,7 @@ struct Primitive {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1457-1462`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1457-L1462)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1457-1462`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1457-L1462)*
 
 A primitive type declaration. Declarations of this kind can only come from the core library.
 
@@ -4360,11 +4258,8 @@ A primitive type declaration. Declarations of this kind can only come from the c
 - <span id="primitive-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Primitive`
@@ -4420,7 +4315,7 @@ enum Attribute {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:217-255`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L217-L255)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:217-255`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L217-L255)*
 
 An attribute, e.g. `#[repr(C)]`
 
@@ -4523,11 +4418,8 @@ This doesn't include:
 - <span id="attribute-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Attribute`
@@ -4571,7 +4463,7 @@ enum ReprKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:281-292`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L281-L292)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:281-292`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L281-L292)*
 
 The kind of `#[repr]`.
 
@@ -4642,11 +4534,8 @@ See [AttributeRepr::kind]`.
 - <span id="reprkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ReprKind`
@@ -4693,7 +4582,7 @@ enum Visibility {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:317-335`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L317-L335)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:317-335`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L317-L335)*
 
 Visibility of an [`Item`](#item).
 
@@ -4765,11 +4654,8 @@ Visibility of an [`Item`](#item).
 - <span id="visibility-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Visibility`
@@ -4818,7 +4704,7 @@ enum GenericArgs {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:374-395`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L374-L395)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:374-395`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L374-L395)*
 
 A set of generic arguments provided to a path segment, e.g.
 
@@ -4890,11 +4776,8 @@ std::option::Option<u32>
 - <span id="genericargs-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for GenericArgs`
@@ -4938,7 +4821,7 @@ enum GenericArg {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:402-427`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L402-L427)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:402-427`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L402-L427)*
 
 One argument in a list of generic arguments to a path segment.
 
@@ -5027,11 +4910,8 @@ Part of [`GenericArgs`](#genericargs).
 - <span id="genericarg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for GenericArg`
@@ -5073,7 +4953,7 @@ enum AssocItemConstraintKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:462-475`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L462-L475)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:462-475`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L462-L475)*
 
 The way in which an associate type/constant is bound.
 
@@ -5144,11 +5024,8 @@ The way in which an associate type/constant is bound.
 - <span id="associtemconstraintkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AssocItemConstraintKind`
@@ -5212,7 +5089,7 @@ enum ItemKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:497-565`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L497-L565)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:497-565`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L497-L565)*
 
 The fundamental kind of an item. Unlike [`ItemEnum`](#itemenum), this does not carry any additional info.
 
@@ -5386,11 +5263,8 @@ Part of [`ItemSummary`](#itemsummary).
 - <span id="itemkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ItemKind`
@@ -5464,7 +5338,7 @@ enum ItemEnum {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:572-682`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L572-L682)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:572-682`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L572-L682)*
 
 Specific fields of an item.
 
@@ -5612,11 +5486,8 @@ Part of [`Item`](#item).
 - <span id="itemenum-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ItemEnum`
@@ -5662,7 +5533,7 @@ enum StructKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:732-764`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L732-L764)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:732-764`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L732-L764)*
 
 The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
@@ -5747,11 +5618,8 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 - <span id="structkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for StructKind`
@@ -5797,7 +5665,7 @@ enum VariantKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:793-831`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L793-L831)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:793-831`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L793-L831)*
 
 The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it, i.e. fields.
 
@@ -5889,11 +5757,8 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 - <span id="variantkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for VariantKind`
@@ -5959,7 +5824,7 @@ enum Abi {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:873-896`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L873-L896)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:873-896`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L873-L896)*
 
 The ABI (Application Binary Interface) used by a function.
 
@@ -6061,11 +5926,8 @@ on unwinding for more info.
 - <span id="abi-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Abi`
@@ -6117,7 +5979,7 @@ enum GenericParamDefKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:937-1001`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L937-L1001)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:937-1001`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L937-L1001)*
 
 The kind of a [`GenericParamDef`](#genericparamdef).
 
@@ -6184,11 +6046,8 @@ The kind of a [`GenericParamDef`](#genericparamdef).
 - <span id="genericparamdefkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for GenericParamDefKind`
@@ -6241,7 +6100,7 @@ enum WherePredicate {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1010-1051`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1010-L1051)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1010-1051`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1010-L1051)*
 
 One `where` clause.
 ```rust
@@ -6312,11 +6171,8 @@ fn default<T>() -> T where T: Default { T::default() }
 - <span id="wherepredicate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for WherePredicate`
@@ -6363,7 +6219,7 @@ enum GenericBound {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1056-1081`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1056-L1081)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1056-1081`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1056-L1081)*
 
 Either a trait bound or a lifetime bound.
 
@@ -6434,11 +6290,8 @@ Either a trait bound or a lifetime bound.
 - <span id="genericbound-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for GenericBound`
@@ -6481,7 +6334,7 @@ enum TraitBoundModifier {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1086-1096`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1086-L1096)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1086-1096`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1086-L1096)*
 
 A set of modifiers applied to a trait.
 
@@ -6553,11 +6406,8 @@ A set of modifiers applied to a trait.
 - <span id="traitboundmodifier-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TraitBoundModifier`
@@ -6599,7 +6449,7 @@ enum PreciseCapturingArg {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1101-1112`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1101-L1112)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1101-1112`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1101-L1112)*
 
 One precise capturing argument. See [the rust reference](https://doc.rust-lang.org/reference/types/impl-trait.html#precise-capturing).
 
@@ -6668,11 +6518,8 @@ One precise capturing argument. See [the rust reference](https://doc.rust-lang.o
 - <span id="precisecapturingarg-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for PreciseCapturingArg`
@@ -6714,7 +6561,7 @@ enum Term {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1118-1137`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1118-L1137)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1118-1137`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1118-L1137)*
 
 Either a type or a constant, usually stored as the right-hand side of an equation in places like
 [`AssocItemConstraint`](#associtemconstraint)
@@ -6792,11 +6639,8 @@ Either a type or a constant, usually stored as the right-hand side of an equatio
 - <span id="term-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Term`
@@ -6867,7 +6711,7 @@ enum Type {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1142-1227`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1142-L1227)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1142-1227`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1142-L1227)*
 
 A type.
 
@@ -6981,11 +6825,8 @@ A type.
 - <span id="type-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Type`
@@ -7028,7 +6869,7 @@ enum MacroKind {
 }
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1406-1413`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L1406-L1413)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1406-1413`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L1406-L1413)*
 
 The way a [`ProcMacro`](#procmacro) is declared to be used.
 
@@ -7097,11 +6938,8 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 - <span id="macrokind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MacroKind`
@@ -7141,7 +6979,7 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 const FORMAT_VERSION: u32 = 57u32;
 ```
 
-*Defined in [`rustdoc-types-0.57.0/src/lib.rs:40`](../../.source_1765633015/rustdoc-types-0.57.0/src/lib.rs#L40)*
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:40`](../../.source_1765894658/rustdoc-types-0.57.0/src/lib.rs#L40)*
 
 The version of JSON output that this crate represents.
 

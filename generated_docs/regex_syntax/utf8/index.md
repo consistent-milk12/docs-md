@@ -119,7 +119,7 @@ struct Utf8Range {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:218-223`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L218-L223)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:218-223`](../../../.source_1765894658/regex-syntax-0.8.8/src/utf8.rs#L218-L223)*
 
 A single inclusive range of UTF-8 bytes.
 
@@ -182,11 +182,8 @@ A single inclusive range of UTF-8 bytes.
 - <span id="utf8range-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Utf8Range`
@@ -231,7 +228,7 @@ struct Utf8Sequences {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:297-299`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L297-L299)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:297-299`](../../../.source_1765894658/regex-syntax-0.8.8/src/utf8.rs#L297-L299)*
 
 An iterator over ranges of matching UTF-8 byte sequences.
 
@@ -289,7 +286,6 @@ always possible (for example, in a byte based automaton).
 - <span id="utf8sequences-new"></span>`fn new(start: char, end: char) -> Self`
 
   Create a new iterator over UTF-8 byte ranges for the scalar value range
-
   given.
 
 - <span id="utf8sequences-push"></span>`fn push(&mut self, start: u32, end: u32)`
@@ -325,11 +321,8 @@ always possible (for example, in a byte based automaton).
 - <span id="utf8sequences-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for Utf8Sequences`
@@ -367,16 +360,14 @@ struct ScalarRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:325-328`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L325-L328)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:325-328`](../../../.source_1765894658/regex-syntax-0.8.8/src/utf8.rs#L325-L328)*
 
 #### Implementations
 
 - <span id="scalarrange-split"></span>`fn split(&self) -> Option<(ScalarRange, ScalarRange)>` — [`ScalarRange`](#scalarrange)
 
   split splits this range if it overlaps with a surrogate codepoint.
-
   
-
   Either or both ranges may be invalid.
 
 - <span id="scalarrange-is-valid"></span>`fn is_valid(&self) -> bool`
@@ -386,25 +377,19 @@ struct ScalarRange {
 - <span id="scalarrange-as-ascii"></span>`fn as_ascii(&self) -> Option<Utf8Range>` — [`Utf8Range`](#utf8range)
 
   as_ascii returns this range as a Utf8Range if and only if all scalar
-
   values in this range can be encoded as a single byte.
 
 - <span id="scalarrange-is-ascii"></span>`fn is_ascii(&self) -> bool`
 
   is_ascii returns true if the range is ASCII only (i.e., takes a single
-
   byte to encode any scalar value).
 
 - <span id="scalarrange-encode"></span>`fn encode(&self, start: &mut [u8], end: &mut [u8]) -> usize`
 
   encode writes the UTF-8 encoding of the start and end of this range
-
   to the corresponding destination slices, and returns the number of
-
   bytes written.
-
   
-
   The slices should have room for at least `MAX_UTF8_BYTES`.
 
 #### Trait Implementations
@@ -436,11 +421,8 @@ struct ScalarRange {
 - <span id="scalarrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ScalarRange`
@@ -468,7 +450,7 @@ enum Utf8Sequence {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:97-106`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L97-L106)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:97-106`](../../../.source_1765894658/regex-syntax-0.8.8/src/utf8.rs#L97-L106)*
 
 Utf8Sequence represents a sequence of byte ranges.
 
@@ -501,11 +483,8 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 - <span id="utf8sequence-from-encoded-range"></span>`fn from_encoded_range(start: &[u8], end: &[u8]) -> Self`
 
   Creates a new UTF-8 sequence from the encoded bytes of a scalar value
-
   range.
-
   
-
   This assumes that `start` and `end` have the same length.
 
 - <span id="utf8sequence-as-slice"></span>`fn as_slice(&self) -> &[Utf8Range]` — [`Utf8Range`](#utf8range)
@@ -515,49 +494,31 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 - <span id="utf8sequence-len"></span>`fn len(&self) -> usize`
 
   Returns the number of byte ranges in this sequence.
-
   
-
   The length is guaranteed to be in the closed interval `[1, 4]`.
 
 - <span id="utf8sequence-reverse"></span>`fn reverse(&mut self)`
 
   Reverses the ranges in this sequence.
-
   
-
   For example, if this corresponds to the following sequence:
-
   
-
   ```text
-
   [D0-D3][80-BF]
-
   ```
-
   
-
   Then after reversal, it will be
-
   
-
   ```text
-
   [80-BF][D0-D3]
-
   ```
-
   
-
   This is useful when one is constructing a UTF-8 automaton to match
-
   character classes in reverse.
 
 - <span id="utf8sequence-matches"></span>`fn matches(&self, bytes: &[u8]) -> bool`
 
   Returns true if and only if a prefix of `bytes` matches this sequence
-
   of byte ranges.
 
 #### Trait Implementations
@@ -601,11 +562,8 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 - <span id="utf8sequence-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for &'a Utf8Sequence`
@@ -658,7 +616,7 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 fn max_scalar_value(nbytes: usize) -> u32
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:445-453`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L445-L453)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:445-453`](../../../.source_1765894658/regex-syntax-0.8.8/src/utf8.rs#L445-L453)*
 
 ## Constants
 
@@ -667,5 +625,5 @@ fn max_scalar_value(nbytes: usize) -> u32
 const MAX_UTF8_BYTES: usize = 4usize;
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/utf8.rs:87`](../../../.source_1765633015/regex-syntax-0.8.8/src/utf8.rs#L87)*
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:87`](../../../.source_1765894658/regex-syntax-0.8.8/src/utf8.rs#L87)*
 

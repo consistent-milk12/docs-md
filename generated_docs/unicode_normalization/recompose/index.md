@@ -25,7 +25,7 @@ struct Recompositions<I> {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:27-33`](../../../.source_1765633015/unicode-normalization-0.1.25/src/recompose.rs#L27-L33)*
+*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:27-33`](../../../.source_1765894658/unicode-normalization-0.1.25/src/recompose.rs#L27-L33)*
 
 External iterator for a string recomposition's characters.
 
@@ -34,21 +34,15 @@ External iterator for a string recomposition's characters.
 - <span id="recompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Self`
 
   Create a new recomposition iterator for canonical compositions (NFC)
-
   
-
   Note that this iterator can also be obtained by directly calling [`.nfc()`](crate::UnicodeNormalization::nfc)
-
   on the iterator.
 
 - <span id="recompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Self`
 
   Create a new recomposition iterator for compatability compositions (NFkC)
-
   
-
   Note that this iterator can also be obtained by directly calling [`.nfkc()`](crate::UnicodeNormalization::nfkc)
-
   on the iterator.
 
 #### Trait Implementations
@@ -90,11 +84,8 @@ External iterator for a string recomposition's characters.
 - <span id="recompositions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<I> IntoIterator for Recompositions<I>`
@@ -161,7 +152,7 @@ enum RecompositionState {
 }
 ```
 
-*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:19-23`](../../../.source_1765633015/unicode-normalization-0.1.25/src/recompose.rs#L19-L23)*
+*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:19-23`](../../../.source_1765894658/unicode-normalization-0.1.25/src/recompose.rs#L19-L23)*
 
 #### Trait Implementations
 
@@ -196,11 +187,8 @@ enum RecompositionState {
 - <span id="recompositionstate-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RecompositionState`

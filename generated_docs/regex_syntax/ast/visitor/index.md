@@ -39,7 +39,7 @@ struct HeapVisitor<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:124-132`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L124-L132)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:124-132`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L124-L132)*
 
 HeapVisitor visits every item in an `Ast` recursively using constant stack
 size and a heap size proportional to the size of the `Ast`.
@@ -66,19 +66,14 @@ size and a heap size proportional to the size of the `Ast`.
 - <span id="heapvisitor-induct"></span>`fn induct<V: Visitor>(&mut self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md#ast), [`Frame`](#frame), [`Visitor`](#visitor)
 
   Build a stack frame for the given AST if one is needed (which occurs if
-
   and only if there are child nodes in the AST). Otherwise, return None.
-
   
-
   If this visits a class, then the underlying visitor implementation may
-
   return an error which will be passed on here.
 
 - <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
 
   Pops the given frame. If the frame has an additional inductive step,
-
   then return it, otherwise return `None`.
 
 - <span id="heapvisitor-visit-class"></span>`fn visit_class<V: Visitor>(&mut self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md#classbracketed), [`Visitor`](#visitor)
@@ -94,13 +89,11 @@ size and a heap size proportional to the size of the `Ast`.
 - <span id="heapvisitor-induct-class"></span>`fn induct_class(&self, ast: &ClassInduct<'a>) -> Option<ClassFrame<'a>>` — [`ClassInduct`](#classinduct), [`ClassFrame`](#classframe)
 
   Build a stack frame for the given class node if one is needed (which
-
   occurs if and only if there are child nodes). Otherwise, return None.
 
 - <span id="heapvisitor-pop-class"></span>`fn pop_class(&self, induct: ClassFrame<'a>) -> Option<ClassFrame<'a>>` — [`ClassFrame`](#classframe)
 
   Pops the given frame. If the frame has an additional inductive step,
-
   then return it, otherwise return `None`.
 
 #### Trait Implementations
@@ -128,11 +121,8 @@ size and a heap size proportional to the size of the `Ast`.
 - <span id="heapvisitor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for HeapVisitor<'a>`
@@ -166,7 +156,7 @@ enum Frame<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:136-159`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L136-L159)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:136-159`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L136-L159)*
 
 Represents a single stack frame while performing structural induction over
 an `Ast`.
@@ -198,7 +188,6 @@ an `Ast`.
 - <span id="frame-child"></span>`fn child(&self) -> &'a Ast` — [`Ast`](../index.md#ast)
 
   Perform the next inductive step on this frame and return the next
-
   child AST node to visit.
 
 #### Trait Implementations
@@ -226,11 +215,8 @@ an `Ast`.
 - <span id="frame-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Frame<'a>`
@@ -268,7 +254,7 @@ enum ClassFrame<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:163-184`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L163-L184)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:163-184`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L163-L184)*
 
 Represents a single stack frame while performing structural induction over
 a character class.
@@ -299,7 +285,6 @@ a character class.
 - <span id="classframe-child"></span>`fn child(&self) -> ClassInduct<'a>` — [`ClassInduct`](#classinduct)
 
   Perform the next inductive step on this frame and return the next
-
   child class node to visit.
 
 #### Trait Implementations
@@ -331,11 +316,8 @@ a character class.
 - <span id="classframe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ClassFrame<'a>`
@@ -359,7 +341,7 @@ enum ClassInduct<'a> {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:195-198`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L195-L198)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:195-198`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L195-L198)*
 
 A representation of the inductive step when performing structural induction
 over a character class.
@@ -406,11 +388,8 @@ syntax, which is not possible.)
 - <span id="classinduct-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ClassInduct<'a>`
@@ -433,7 +412,7 @@ syntax, which is not possible.)
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
 
 A trait for visiting an abstract syntax tree (AST) in depth first order.
 
@@ -462,6 +441,7 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 - `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
+  yields the result of visiting the AST or an error.
 
 #### Provided Methods
 
@@ -472,14 +452,17 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 - `fn visit_pre(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Ast` before descending into child `Ast`
+  nodes.
 
 - `fn visit_post(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Ast` after descending all of its child
+  `Ast` nodes.
 
 - `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of an
+  [`Alternation`](ast::Alternation).
 
 - `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
 
@@ -488,22 +471,29 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 - `fn visit_class_set_item_pre(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
 
   This method is called on every [`ClassSetItem`](ast::ClassSetItem)
+  before descending into child nodes.
 
 - `fn visit_class_set_item_post(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
 
   This method is called on every [`ClassSetItem`](ast::ClassSetItem)
+  after descending into child nodes.
 
 - `fn visit_class_set_binary_op_pre(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called on every
+  [`ClassSetBinaryOp`](ast::ClassSetBinaryOp) before descending into
+  child nodes.
 
 - `fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called on every
+  [`ClassSetBinaryOp`](ast::ClassSetBinaryOp) after descending into child
+  nodes.
 
 - `fn visit_class_set_binary_op_in(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called between the left hand and right hand child nodes
+  of a [`ClassSetBinaryOp`](ast::ClassSetBinaryOp).
 
 #### Implementors
 
@@ -519,7 +509,7 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 fn visit<V: Visitor>(ast: &crate::ast::Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
 
 Executes an implementation of `Visitor` in constant stack space.
 

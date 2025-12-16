@@ -23,7 +23,7 @@ struct Version {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/version.rs:6-10`](../../../.source_1765633015/rustversion-1.0.22/src/version.rs#L6-L10)*
+*Defined in [`rustversion-1.0.22/src/version.rs:6-10`](../../../.source_1765894658/rustversion-1.0.22/src/version.rs#L6-L10)*
 
 #### Trait Implementations
 
@@ -64,11 +64,8 @@ struct Version {
 - <span id="version-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for crate::version::Version`
@@ -114,7 +111,7 @@ enum Channel {
 }
 ```
 
-*Defined in [`rustversion-1.0.22/src/version.rs:13-18`](../../../.source_1765633015/rustversion-1.0.22/src/version.rs#L13-L18)*
+*Defined in [`rustversion-1.0.22/src/version.rs:13-18`](../../../.source_1765894658/rustversion-1.0.22/src/version.rs#L13-L18)*
 
 #### Trait Implementations
 
@@ -155,11 +152,8 @@ enum Channel {
 - <span id="channel-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Channel`

@@ -21,7 +21,7 @@ struct Sp<T> {
 }
 ```
 
-*Defined in [`clap_derive-4.5.49/src/utils/spanned.rs:9-12`](../../../../.source_1765633015/clap_derive-4.5.49/src/utils/spanned.rs#L9-L12)*
+*Defined in [`clap_derive-4.5.49/src/utils/spanned.rs:9-12`](../../../../.source_1765894658/clap_derive-4.5.49/src/utils/spanned.rs#L9-L12)*
 
 An entity with a span attached.
 
@@ -86,11 +86,8 @@ An entity with a span attached.
 - <span id="sp-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U, T: PartialEq<U>> PartialEq for Sp<T>`

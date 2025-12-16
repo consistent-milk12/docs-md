@@ -22,7 +22,7 @@ struct Error {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../../.source_1765633015/walkdir-2.5.0/src/error.rs#L28-L31)*
+*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../../.source_1765894658/walkdir-2.5.0/src/error.rs#L28-L31)*
 
 An error produced by recursively walking a directory.
 
@@ -48,169 +48,95 @@ accessing the underlying error data in a structured form.
 - <span id="error-path"></span>`fn path(&self) -> Option<&Path>`
 
   Returns the path associated with this error if one exists.
-
   
-
   For example, if an error occurred while opening a directory handle,
-
   the error will include the path passed to `std::fs::read_dir`.
 
 - <span id="error-loop-ancestor"></span>`fn loop_ancestor(&self) -> Option<&Path>`
 
   Returns the path at which a cycle was detected.
-
   
-
   If no cycle was detected, [`None`](#none) is returned.
-
   
-
   A cycle is detected when a directory entry is equivalent to one of
-
   its ancestors.
-
   
-
   To get the path to the child directory entry in the cycle, use the
-
   [`path`](#path) method.
-
   
 
 - <span id="error-depth"></span>`fn depth(&self) -> usize`
 
   Returns the depth at which this error occurred relative to the root.
-
   
-
   The smallest depth is `0` and always corresponds to the path given to
-
   the `new` function on [`WalkDir`](../index.md). Its direct descendents have depth
-
   `1`, and their descendents have depth `2`, and so on.
-
   
 
 - <span id="error-io-error"></span>`fn io_error(&self) -> Option<&io::Error>`
 
   Inspect the original `io::Error` if there is one.
-
   
-
   [`None`](#none) is returned if the [`Error`](#error) doesn't correspond to an
-
   `io::Error`. This might happen, for example, when the error was
-
   produced because a cycle was found in the directory tree while
-
   following symbolic links.
-
   
-
   This method returns a borrowed value that is bound to the lifetime of the [`Error`](#error). To
-
   obtain an owned value, the `into_io_error` can be used instead.
-
   
-
   > This is the original `io::Error` and is _not_ the same as
-
   > [`impl From<Error> for std::io::Error`][impl] which contains additional context about the
-
   error.
-
   
-
   # Example
-
   
-
   ```rust,no_run
-
   use std::io;
-
   use std::path::Path;
-
   
-
   use walkdir::WalkDir;
-
   
-
   for entry in WalkDir::new("foo") {
-
       match entry {
-
           Ok(entry) => println!("{}", entry.path().display()),
-
           Err(err) => {
-
               let path = err.path().unwrap_or(Path::new("")).display();
-
               println!("failed to access entry {}", path);
-
               if let Some(inner) = err.io_error() {
-
                   match inner.kind() {
-
                       io::ErrorKind::InvalidData => {
-
                           println!(
-
                               "entry contains invalid data: {}",
-
                               inner)
-
                       }
-
                       io::ErrorKind::PermissionDenied => {
-
                           println!(
-
                               "Missing permission to read entry: {}",
-
                               inner)
-
                       }
-
                       _ => {
-
                           println!(
-
                               "Unexpected error occurred: {}",
-
                               inner)
-
                       }
-
                   }
-
               }
-
           }
-
       }
-
   }
-
   ```
-
   
-
   
-
   
-
   
-
   
 
 - <span id="error-into-io-error"></span>`fn into_io_error(self) -> Option<io::Error>`
 
   Similar to `io_error` except consumes self to convert to the original
-
   `io::Error` if one exists.
-
   
 
 - <span id="error-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
@@ -262,11 +188,8 @@ accessing the underlying error data in a structured form.
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Error`
@@ -302,7 +225,7 @@ enum ErrorInner {
 }
 ```
 
-*Defined in [`walkdir-2.5.0/src/error.rs:34-37`](../../../.source_1765633015/walkdir-2.5.0/src/error.rs#L34-L37)*
+*Defined in [`walkdir-2.5.0/src/error.rs:34-37`](../../../.source_1765894658/walkdir-2.5.0/src/error.rs#L34-L37)*
 
 #### Trait Implementations
 
@@ -333,11 +256,8 @@ enum ErrorInner {
 - <span id="errorinner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ErrorInner`

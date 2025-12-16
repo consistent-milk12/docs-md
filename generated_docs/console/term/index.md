@@ -48,7 +48,7 @@ struct ReadWritePair {
 }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:24-29`](../../../.source_1765633015/console-0.16.1/src/term.rs#L24-L29)*
+*Defined in [`console-0.16.1/src/term.rs:24-29`](../../../.source_1765894658/console-0.16.1/src/term.rs#L24-L29)*
 
 #### Trait Implementations
 
@@ -87,11 +87,8 @@ struct ReadWritePair {
 - <span id="readwritepair-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ReadWritePair`
@@ -125,7 +122,7 @@ struct TermInner {
 }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:41-46`](../../../.source_1765633015/console-0.16.1/src/term.rs#L41-L46)*
+*Defined in [`console-0.16.1/src/term.rs:41-46`](../../../.source_1765894658/console-0.16.1/src/term.rs#L41-L46)*
 
 #### Trait Implementations
 
@@ -156,11 +153,8 @@ struct TermInner {
 - <span id="terminner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for TermInner`
@@ -181,7 +175,7 @@ struct TermInner {
 struct TermFeatures<'a>(&'a Term);
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:63`](../../../.source_1765633015/console-0.16.1/src/term.rs#L63)*
+*Defined in [`console-0.16.1/src/term.rs:63`](../../../.source_1765894658/console-0.16.1/src/term.rs#L63)*
 
 Gives access to the terminal features.
 
@@ -194,21 +188,15 @@ Gives access to the terminal features.
 - <span id="termfeatures-colors-supported"></span>`fn colors_supported(&self) -> bool`
 
   Check if colors are supported by this terminal.
-
   
-
   This does not check if colors are enabled.  Currently all terminals
-
   are considered to support colors
 
 - <span id="termfeatures-is-msys-tty"></span>`fn is_msys_tty(&self) -> bool`
 
   Check if this terminal is an msys terminal.
-
   
-
   This is sometimes useful to disable features that are known to not
-
   work on msys terminals or require special handling.
 
 - <span id="termfeatures-wants-emoji"></span>`fn wants_emoji(&self) -> bool`
@@ -256,11 +244,8 @@ Gives access to the terminal features.
 - <span id="termfeatures-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for TermFeatures<'a>`
@@ -293,7 +278,7 @@ struct Term {
 }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:129-133`](../../../.source_1765633015/console-0.16.1/src/term.rs#L129-L133)*
+*Defined in [`console-0.16.1/src/term.rs:129-133`](../../../.source_1765894658/console-0.16.1/src/term.rs#L129-L133)*
 
 Abstraction around a terminal.
 
@@ -343,23 +328,16 @@ clones which means it largely acts as a handle.
 - <span id="term-read-char"></span>`fn read_char(&self) -> io::Result<char>`
 
   Read a single character from the terminal.
-
   
-
   This does not echo the character and blocks until a single character
-
   or complete key chord is entered.  If the terminal is not user attended
-
   the return value will be an error.
 
 - <span id="term-read-key"></span>`fn read_key(&self) -> io::Result<Key>` — [`Key`](../kb/index.md#key)
 
   Read a single key from the terminal.
-
   
-
   This does not echo anything.  If the terminal is not user attended
-
   the return value will always be the unknown key.
 
 - <span id="term-read-key-raw"></span>`fn read_key_raw(&self) -> io::Result<Key>` — [`Key`](../kb/index.md#key)
@@ -367,49 +345,33 @@ clones which means it largely acts as a handle.
 - <span id="term-read-line"></span>`fn read_line(&self) -> io::Result<String>`
 
   Read one line of input.
-
   
-
   This does not include the trailing newline.  If the terminal is not
-
   user attended the return value will always be an empty string.
 
 - <span id="term-read-line-initial-text"></span>`fn read_line_initial_text(&self, initial: &str) -> io::Result<String>`
 
   Read one line of input with initial text.
-
   
-
   This method blocks until no other thread is waiting for this read_line
-
   before reading a line from the terminal.
-
   This does not include the trailing newline.  If the terminal is not
-
   user attended the return value will always be an empty string.
 
 - <span id="term-read-secure-line"></span>`fn read_secure_line(&self) -> io::Result<String>`
 
   Read a line of input securely.
-
   
-
   This is similar to `read_line` but will not echo the output.  This
-
   also switches the terminal into a different mode where not all
-
   characters might be accepted.
 
 - <span id="term-flush"></span>`fn flush(&self) -> io::Result<()>`
 
   Flush internal buffers.
-
   
-
   This forces the contents of the internal buffer to be written to
-
   the terminal.  This is unnecessary for unbuffered terminals which
-
   will automatically flush.
 
 - <span id="term-is-term"></span>`fn is_term(&self) -> bool`
@@ -427,9 +389,7 @@ clones which means it largely acts as a handle.
 - <span id="term-size-checked"></span>`fn size_checked(&self) -> Option<(u16, u16)>`
 
   Return the terminal size in rows and columns.
-
   
-
   If the size cannot be reliably determined `None` is returned.
 
 - <span id="term-move-cursor-to"></span>`fn move_cursor_to(&self, x: usize, y: usize) -> io::Result<()>`
@@ -439,71 +399,52 @@ clones which means it largely acts as a handle.
 - <span id="term-move-cursor-up"></span>`fn move_cursor_up(&self, n: usize) -> io::Result<()>`
 
   Move the cursor up by `n` lines, if possible.
-
   
-
   If there are less than `n` lines above the current cursor position,
-
   the cursor is moved to the top line of the terminal (i.e., as far up as possible).
 
 - <span id="term-move-cursor-down"></span>`fn move_cursor_down(&self, n: usize) -> io::Result<()>`
 
   Move the cursor down by `n` lines, if possible.
-
   
-
   If there are less than `n` lines below the current cursor position,
-
   the cursor is moved to the bottom line of the terminal (i.e., as far down as possible).
 
 - <span id="term-move-cursor-left"></span>`fn move_cursor_left(&self, n: usize) -> io::Result<()>`
 
   Move the cursor `n` characters to the left, if possible.
-
   
-
   If there are fewer than `n` characters to the left of the current cursor position,
-
   the cursor is moved to the beginning of the line (i.e., as far to the left as possible).
 
 - <span id="term-move-cursor-right"></span>`fn move_cursor_right(&self, n: usize) -> io::Result<()>`
 
   Move the cursor `n` characters to the right.
-
   
-
   If there are fewer than `n` characters to the right of the current cursor position,
-
   the cursor is moved to the end of the current line (i.e., as far to the right as possible).
 
 - <span id="term-clear-line"></span>`fn clear_line(&self) -> io::Result<()>`
 
   Clear the current line.
-
   
-
   Position the cursor at the beginning of the current line.
 
 - <span id="term-clear-last-lines"></span>`fn clear_last_lines(&self, n: usize) -> io::Result<()>`
 
   Clear the last `n` lines before the current line.
-
   
-
   Position the cursor at the beginning of the first line that was cleared.
 
 - <span id="term-clear-screen"></span>`fn clear_screen(&self) -> io::Result<()>`
 
   Clear the entire screen.
-
   
-
   Move the cursor to the upper left corner of the screen.
 
 - <span id="term-clear-to-end-of-screen"></span>`fn clear_to_end_of_screen(&self) -> io::Result<()>`
 
   Clear everything from the current cursor position to the end of the screen.
-
   The cursor stays in its position.
 
 - <span id="term-clear-chars"></span>`fn clear_chars(&self, n: usize) -> io::Result<()>`
@@ -567,11 +508,8 @@ clones which means it largely acts as a handle.
 - <span id="term-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Read for Term`
@@ -618,7 +556,7 @@ enum TermTarget {
 }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:33-38`](../../../.source_1765633015/console-0.16.1/src/term.rs#L33-L38)*
+*Defined in [`console-0.16.1/src/term.rs:33-38`](../../../.source_1765894658/console-0.16.1/src/term.rs#L33-L38)*
 
 Where the term is writing.
 
@@ -659,11 +597,8 @@ Where the term is writing.
 - <span id="termtarget-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for TermTarget`
@@ -697,7 +632,7 @@ enum TermFamily {
 }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:50-59`](../../../.source_1765633015/console-0.16.1/src/term.rs#L50-L59)*
+*Defined in [`console-0.16.1/src/term.rs:50-59`](../../../.source_1765894658/console-0.16.1/src/term.rs#L50-L59)*
 
 The family of the terminal.
 
@@ -760,11 +695,8 @@ The family of the terminal.
 - <span id="termfamily-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TermFamily`
@@ -801,7 +733,7 @@ The family of the terminal.
 trait TermWrite: Write + Debug + AsRawFd + Send { ... }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:13`](../../../.source_1765633015/console-0.16.1/src/term.rs#L13)*
+*Defined in [`console-0.16.1/src/term.rs:13`](../../../.source_1765894658/console-0.16.1/src/term.rs#L13)*
 
 #### Implementors
 
@@ -813,7 +745,7 @@ trait TermWrite: Write + Debug + AsRawFd + Send { ... }
 trait TermRead: Read + Debug + AsRawFd + Send { ... }
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:18`](../../../.source_1765633015/console-0.16.1/src/term.rs#L18)*
+*Defined in [`console-0.16.1/src/term.rs:18`](../../../.source_1765894658/console-0.16.1/src/term.rs#L18)*
 
 #### Implementors
 
@@ -827,7 +759,7 @@ trait TermRead: Read + Debug + AsRawFd + Send { ... }
 fn user_attended() -> bool
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:578-580`](../../../.source_1765633015/console-0.16.1/src/term.rs#L578-L580)*
+*Defined in [`console-0.16.1/src/term.rs:578-580`](../../../.source_1765894658/console-0.16.1/src/term.rs#L578-L580)*
 
 A fast way to check if the application has a user attended for stdout.
 
@@ -841,7 +773,7 @@ checking the `is_attended` feature on the stdout terminal.
 fn user_attended_stderr() -> bool
 ```
 
-*Defined in [`console-0.16.1/src/term.rs:588-590`](../../../.source_1765633015/console-0.16.1/src/term.rs#L588-L590)*
+*Defined in [`console-0.16.1/src/term.rs:588-590`](../../../.source_1765894658/console-0.16.1/src/term.rs#L588-L590)*
 
 A fast way to check if the application has a user attended for stderr.
 

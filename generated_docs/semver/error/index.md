@@ -20,7 +20,7 @@
 struct QuotedChar(char);
 ```
 
-*Defined in [`semver-1.0.27/src/error.rs:113`](../../../.source_1765633015/semver-1.0.27/src/error.rs#L113)*
+*Defined in [`semver-1.0.27/src/error.rs:113`](../../../.source_1765894658/semver-1.0.27/src/error.rs#L113)*
 
 #### Trait Implementations
 
@@ -51,11 +51,8 @@ struct QuotedChar(char);
 - <span id="quotedchar-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for QuotedChar`
@@ -95,7 +92,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/error.rs:4-17`](../../../.source_1765633015/semver-1.0.27/src/error.rs#L4-L17)*
+*Defined in [`semver-1.0.27/src/error.rs:4-17`](../../../.source_1765894658/semver-1.0.27/src/error.rs#L4-L17)*
 
 #### Trait Implementations
 
@@ -122,11 +119,8 @@ enum ErrorKind {
 - <span id="errorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ErrorKind`
@@ -153,7 +147,7 @@ enum Position {
 }
 ```
 
-*Defined in [`semver-1.0.27/src/error.rs:20-26`](../../../.source_1765633015/semver-1.0.27/src/error.rs#L20-L26)*
+*Defined in [`semver-1.0.27/src/error.rs:20-26`](../../../.source_1765894658/semver-1.0.27/src/error.rs#L20-L26)*
 
 #### Trait Implementations
 
@@ -196,11 +190,8 @@ enum Position {
 - <span id="position-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Position`

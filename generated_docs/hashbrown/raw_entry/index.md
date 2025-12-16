@@ -24,7 +24,7 @@ struct RawEntryBuilderMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:216-218`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L216-L218)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:216-218`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L216-L218)*
 
 A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
@@ -85,75 +85,42 @@ assert_eq!(map.len(), 6);
 - <span id="rawentrybuildermut-from-key"></span>`fn from_key<Q>(self, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
   Creates a `RawEntryMut` from the given key.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = HashMap::new();
-
   let key = "a";
-
   let entry: RawEntryMut<&str, u32, _> = map.raw_entry_mut().from_key(&key);
-
   entry.insert(key, 100);
-
   assert_eq!(map[&"a"], 100);
-
   ```
 
 - <span id="rawentrybuildermut-from-key-hashed-nocheck"></span>`fn from_key_hashed_nocheck<Q>(self, hash: u64, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
   Creates a `RawEntryMut` from the given key and its hash.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use core::hash::{BuildHasher, Hash};
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   fn compute_hash<K: Hash + ?Sized, S: BuildHasher>(hash_builder: &S, key: &K) -> u64 {
-
       use core::hash::Hasher;
-
       let mut state = hash_builder.build_hasher();
-
       key.hash(&mut state);
-
       state.finish()
-
   }
-
   
-
   let mut map: HashMap<&str, u32> = HashMap::new();
-
   let key = "a";
-
   let hash = compute_hash(map.hasher(), &key);
-
   let entry: RawEntryMut<&str, u32, _> = map.raw_entry_mut().from_key_hashed_nocheck(hash, &key);
-
   entry.insert(key, 100);
-
   assert_eq!(map[&"a"], 100);
-
   ```
 
 #### Trait Implementations
@@ -185,11 +152,8 @@ assert_eq!(map.len(), 6);
 - <span id="rawentrybuildermut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RawEntryBuilderMut<'a, K, V, S, A>`
@@ -214,7 +178,7 @@ struct RawOccupiedEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:395-399`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L395-L399)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:395-399`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L395-L399)*
 
 A view into an occupied entry in a `HashMap`.
 It is part of the [`RawEntryMut`](#rawentrymut) enum.
@@ -280,629 +244,343 @@ assert_eq!(map.len(), 1);
 - <span id="rawoccupiedentrymut-key"></span>`fn key(&self) -> &K`
 
   Gets a reference to the key in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   match map.raw_entry_mut().from_key(&"a") {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => assert_eq!(o.key(), &"a")
-
   }
-
   ```
 
 - <span id="rawoccupiedentrymut-key-mut"></span>`fn key_mut(&mut self) -> &mut K`
 
   Gets a mutable reference to the key in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   use std::rc::Rc;
-
   
-
   let key_one = Rc::new("a");
-
   let key_two = Rc::new("a");
-
   
-
   let mut map: HashMap<Rc<&str>, u32> = HashMap::new();
-
   map.insert(key_one.clone(), 10);
-
   
-
   assert_eq!(map[&key_one], 10);
-
   assert!(Rc::strong_count(&key_one) == 2 && Rc::strong_count(&key_two) == 1);
-
   
-
   match map.raw_entry_mut().from_key(&key_one) {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(mut o) => {
-
           *o.key_mut() = key_two.clone();
-
       }
-
   }
-
   assert_eq!(map[&key_two], 10);
-
   assert!(Rc::strong_count(&key_one) == 1 && Rc::strong_count(&key_two) == 2);
-
   ```
 
 - <span id="rawoccupiedentrymut-into-key"></span>`fn into_key(self) -> &'a mut K`
 
   Converts the entry into a mutable reference to the key in the entry
-
   with a lifetime bound to the map itself.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   use std::rc::Rc;
-
   
-
   let key_one = Rc::new("a");
-
   let key_two = Rc::new("a");
-
   
-
   let mut map: HashMap<Rc<&str>, u32> = HashMap::new();
-
   map.insert(key_one.clone(), 10);
-
   
-
   assert_eq!(map[&key_one], 10);
-
   assert!(Rc::strong_count(&key_one) == 2 && Rc::strong_count(&key_two) == 1);
-
   
-
   let inside_key: &mut Rc<&str>;
-
   
-
   match map.raw_entry_mut().from_key(&key_one) {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => inside_key = o.into_key(),
-
   }
-
   *inside_key = key_two.clone();
-
   
-
   assert_eq!(map[&key_two], 10);
-
   assert!(Rc::strong_count(&key_one) == 1 && Rc::strong_count(&key_two) == 2);
-
   ```
 
 - <span id="rawoccupiedentrymut-get"></span>`fn get(&self) -> &V`
 
   Gets a reference to the value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   match map.raw_entry_mut().from_key(&"a") {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => assert_eq!(o.get(), &100),
-
   }
-
   ```
 
 - <span id="rawoccupiedentrymut-into-mut"></span>`fn into_mut(self) -> &'a mut V`
 
   Converts the `OccupiedEntry` into a mutable reference to the value in the entry
-
   with a lifetime bound to the map itself.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   let value: &mut u32;
-
   
-
   match map.raw_entry_mut().from_key(&"a") {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => value = o.into_mut(),
-
   }
-
   *value += 900;
-
   
-
   assert_eq!(map[&"a"], 1000);
-
   ```
 
 - <span id="rawoccupiedentrymut-get-mut"></span>`fn get_mut(&mut self) -> &mut V`
 
   Gets a mutable reference to the value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   match map.raw_entry_mut().from_key(&"a") {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(mut o) => *o.get_mut() += 900,
-
   }
-
   
-
   assert_eq!(map[&"a"], 1000);
-
   ```
 
 - <span id="rawoccupiedentrymut-get-key-value"></span>`fn get_key_value(&self) -> (&K, &V)`
 
   Gets a reference to the key and value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   match map.raw_entry_mut().from_key(&"a") {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => assert_eq!(o.get_key_value(), (&"a", &100)),
-
   }
-
   ```
 
 - <span id="rawoccupiedentrymut-get-key-value-mut"></span>`fn get_key_value_mut(&mut self) -> (&mut K, &mut V)`
 
   Gets a mutable reference to the key and value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   use std::rc::Rc;
-
   
-
   let key_one = Rc::new("a");
-
   let key_two = Rc::new("a");
-
   
-
   let mut map: HashMap<Rc<&str>, u32> = HashMap::new();
-
   map.insert(key_one.clone(), 10);
-
   
-
   assert_eq!(map[&key_one], 10);
-
   assert!(Rc::strong_count(&key_one) == 2 && Rc::strong_count(&key_two) == 1);
-
   
-
   match map.raw_entry_mut().from_key(&key_one) {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(mut o) => {
-
           let (inside_key, inside_value) = o.get_key_value_mut();
-
           *inside_key = key_two.clone();
-
           *inside_value = 100;
-
       }
-
   }
-
   assert_eq!(map[&key_two], 100);
-
   assert!(Rc::strong_count(&key_one) == 1 && Rc::strong_count(&key_two) == 2);
-
   ```
 
 - <span id="rawoccupiedentrymut-into-key-value"></span>`fn into_key_value(self) -> (&'a mut K, &'a mut V)`
 
   Converts the `OccupiedEntry` into a mutable reference to the key and value in the entry
-
   with a lifetime bound to the map itself.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   use std::rc::Rc;
-
   
-
   let key_one = Rc::new("a");
-
   let key_two = Rc::new("a");
-
   
-
   let mut map: HashMap<Rc<&str>, u32> = HashMap::new();
-
   map.insert(key_one.clone(), 10);
-
   
-
   assert_eq!(map[&key_one], 10);
-
   assert!(Rc::strong_count(&key_one) == 2 && Rc::strong_count(&key_two) == 1);
-
   
-
   let inside_key: &mut Rc<&str>;
-
   let inside_value: &mut u32;
-
   match map.raw_entry_mut().from_key(&key_one) {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => {
-
           let tuple = o.into_key_value();
-
           inside_key = tuple.0;
-
           inside_value = tuple.1;
-
       }
-
   }
-
   *inside_key = key_two.clone();
-
   *inside_value = 100;
-
   assert_eq!(map[&key_two], 100);
-
   assert!(Rc::strong_count(&key_one) == 1 && Rc::strong_count(&key_two) == 2);
-
   ```
 
 - <span id="rawoccupiedentrymut-insert"></span>`fn insert(&mut self, value: V) -> V`
 
   Sets the value of the entry, and returns the entry's old value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   match map.raw_entry_mut().from_key(&"a") {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(mut o) => assert_eq!(o.insert(1000), 100),
-
   }
-
   
-
   assert_eq!(map[&"a"], 1000);
-
   ```
 
 - <span id="rawoccupiedentrymut-insert-key"></span>`fn insert_key(&mut self, key: K) -> K`
 
   Sets the value of the entry, and returns the entry's old value.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   use std::rc::Rc;
-
   
-
   let key_one = Rc::new("a");
-
   let key_two = Rc::new("a");
-
   
-
   let mut map: HashMap<Rc<&str>, u32> = HashMap::new();
-
   map.insert(key_one.clone(), 10);
-
   
-
   assert_eq!(map[&key_one], 10);
-
   assert!(Rc::strong_count(&key_one) == 2 && Rc::strong_count(&key_two) == 1);
-
   
-
   match map.raw_entry_mut().from_key(&key_one) {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(mut o) => {
-
           let old_key = o.insert_key(key_two.clone());
-
           assert!(Rc::ptr_eq(&old_key, &key_one));
-
       }
-
   }
-
   assert_eq!(map[&key_two], 10);
-
   assert!(Rc::strong_count(&key_one) == 1 && Rc::strong_count(&key_two) == 2);
-
   ```
 
 - <span id="rawoccupiedentrymut-remove"></span>`fn remove(self) -> V`
 
   Takes the value out of the entry, and returns it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   match map.raw_entry_mut().from_key(&"a") {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => assert_eq!(o.remove(), 100),
-
   }
-
   assert_eq!(map.get(&"a"), None);
-
   ```
 
 - <span id="rawoccupiedentrymut-remove-entry"></span>`fn remove_entry(self) -> (K, V)`
 
   Take the ownership of the key and value from the map.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   match map.raw_entry_mut().from_key(&"a") {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => assert_eq!(o.remove_entry(), ("a", 100)),
-
   }
-
   assert_eq!(map.get(&"a"), None);
-
   ```
 
 - <span id="rawoccupiedentrymut-replace-entry-with"></span>`fn replace_entry_with<F>(self, f: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
   Provides shared access to the key and owned access to the value of
-
   the entry and allows to replace or remove it based on the
-
   value of the returned option.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   let raw_entry = match map.raw_entry_mut().from_key(&"a") {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => o.replace_entry_with(|k, v| {
-
           assert_eq!(k, &"a");
-
           assert_eq!(v, 100);
-
           Some(v + 900)
-
       }),
-
   };
-
   let raw_entry = match raw_entry {
-
       RawEntryMut::Vacant(_) => panic!(),
-
       RawEntryMut::Occupied(o) => o.replace_entry_with(|k, v| {
-
           assert_eq!(k, &"a");
-
           assert_eq!(v, 1000);
-
           None
-
       }),
-
   };
-
   match raw_entry {
-
       RawEntryMut::Vacant(_) => { },
-
       RawEntryMut::Occupied(_) => panic!(),
-
   };
-
   assert_eq!(map.get(&"a"), None);
-
   ```
 
 #### Trait Implementations
@@ -934,11 +612,8 @@ assert_eq!(map.len(), 1);
 - <span id="rawoccupiedentrymut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<K, V, S, A> Send for RawOccupiedEntryMut<'_, K, V, S, A>`
@@ -966,7 +641,7 @@ struct RawVacantEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:466-469`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L466-L469)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:466-469`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L466-L469)*
 
 A view into a vacant entry in a `HashMap`.
 It is part of the [`RawEntryMut`](#rawentrymut) enum.
@@ -1020,173 +695,93 @@ assert!(map[&"c"] == 30 && map.len() == 3);
 - <span id="rawvacantentrymut-insert"></span>`fn insert(self, key: K, value: V) -> (&'a mut K, &'a mut V)`
 
   Sets the value of the entry with the `VacantEntry`'s key,
-
   and returns a mutable reference to it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   
-
   match map.raw_entry_mut().from_key(&"c") {
-
       RawEntryMut::Occupied(_) => panic!(),
-
       RawEntryMut::Vacant(v) => assert_eq!(v.insert("c", 300), (&mut "c", &mut 300)),
-
   }
-
   
-
   assert_eq!(map[&"c"], 300);
-
   ```
 
 - <span id="rawvacantentrymut-insert-hashed-nocheck"></span>`fn insert_hashed_nocheck(self, hash: u64, key: K, value: V) -> (&'a mut K, &'a mut V)`
 
   Sets the value of the entry with the `VacantEntry`'s key,
-
   and returns a mutable reference to it.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use core::hash::{BuildHasher, Hash};
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   fn compute_hash<K: Hash + ?Sized, S: BuildHasher>(hash_builder: &S, key: &K) -> u64 {
-
       use core::hash::Hasher;
-
       let mut state = hash_builder.build_hasher();
-
       key.hash(&mut state);
-
       state.finish()
-
   }
-
   
-
   let mut map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   let key = "c";
-
   let hash = compute_hash(map.hasher(), &key);
-
   
-
   match map.raw_entry_mut().from_key_hashed_nocheck(hash, &key) {
-
       RawEntryMut::Occupied(_) => panic!(),
-
       RawEntryMut::Vacant(v) => assert_eq!(
-
           v.insert_hashed_nocheck(hash, key, 300),
-
           (&mut "c", &mut 300)
-
       ),
-
   }
-
   
-
   assert_eq!(map[&"c"], 300);
-
   ```
 
 - <span id="rawvacantentrymut-insert-with-hasher"></span>`fn insert_with_hasher<H>(self, hash: u64, key: K, value: V, hasher: H) -> (&'a mut K, &'a mut V)`
 
   Set the value of an entry with a custom hasher function.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use core::hash::{BuildHasher, Hash};
-
   use hashbrown::hash_map::{HashMap, RawEntryMut};
-
   
-
   fn make_hasher<K, S>(hash_builder: &S) -> impl Fn(&K) -> u64 + '_
-
   where
-
       K: Hash + ?Sized,
-
       S: BuildHasher,
-
   {
-
       move |key: &K| {
-
           use core::hash::Hasher;
-
           let mut state = hash_builder.build_hasher();
-
           key.hash(&mut state);
-
           state.finish()
-
       }
-
   }
-
   
-
   let mut map: HashMap<&str, u32> = HashMap::new();
-
   let key = "a";
-
   let hash_builder = map.hasher().clone();
-
   let hash = make_hasher(&hash_builder)(&key);
-
   
-
   match map.raw_entry_mut().from_hash(hash, |q| q == &key) {
-
       RawEntryMut::Occupied(_) => panic!(),
-
       RawEntryMut::Vacant(v) => assert_eq!(
-
           v.insert_with_hasher(hash, key, 100, make_hasher(&hash_builder)),
-
           (&mut "a", &mut 100)
-
       ),
-
   }
-
   map.extend([("b", 200), ("c", 300), ("d", 400), ("e", 500), ("f", 600)]);
-
   assert_eq!(map[&"a"], 100);
-
   ```
 
 - <span id="rawvacantentrymut-insert-entry"></span>`fn insert_entry(self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](#rawoccupiedentrymut)
@@ -1220,11 +815,8 @@ assert!(map[&"c"] == 30 && map.len() == 3);
 - <span id="rawvacantentrymut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RawVacantEntryMut<'a, K, V, S, A>`
@@ -1247,7 +839,7 @@ struct RawEntryBuilder<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:505-507`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L505-L507)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:505-507`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L505-L507)*
 
 A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
@@ -1287,67 +879,38 @@ for k in 0..6 {
 - <span id="rawentrybuilder-from-key"></span>`fn from_key<Q>(self, k: &Q) -> Option<(&'a K, &'a V)>`
 
   Access an immutable entry by key.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   
-
   let map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   let key = "a";
-
   assert_eq!(map.raw_entry().from_key(&key), Some((&"a", &100)));
-
   ```
 
 - <span id="rawentrybuilder-from-key-hashed-nocheck"></span>`fn from_key_hashed_nocheck<Q>(self, hash: u64, k: &Q) -> Option<(&'a K, &'a V)>`
 
   Access an immutable entry by a key and its hash.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use core::hash::{BuildHasher, Hash};
-
   use hashbrown::HashMap;
-
   
-
   fn compute_hash<K: Hash + ?Sized, S: BuildHasher>(hash_builder: &S, key: &K) -> u64 {
-
       use core::hash::Hasher;
-
       let mut state = hash_builder.build_hasher();
-
       key.hash(&mut state);
-
       state.finish()
-
   }
-
   
-
   let map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   let key = "a";
-
   let hash = compute_hash(map.hasher(), &key);
-
   assert_eq!(map.raw_entry().from_key_hashed_nocheck(hash, &key), Some((&"a", &100)));
-
   ```
 
 - <span id="rawentrybuilder-search"></span>`fn search<F>(self, hash: u64, is_match: F) -> Option<(&'a K, &'a V)>`
@@ -1355,43 +918,24 @@ for k in 0..6 {
 - <span id="rawentrybuilder-from-hash"></span>`fn from_hash<F>(self, hash: u64, is_match: F) -> Option<(&'a K, &'a V)>`
 
   Access an immutable entry by hash and matching function.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use core::hash::{BuildHasher, Hash};
-
   use hashbrown::HashMap;
-
   
-
   fn compute_hash<K: Hash + ?Sized, S: BuildHasher>(hash_builder: &S, key: &K) -> u64 {
-
       use core::hash::Hasher;
-
       let mut state = hash_builder.build_hasher();
-
       key.hash(&mut state);
-
       state.finish()
-
   }
-
   
-
   let map: HashMap<&str, u32> = [("a", 100), ("b", 200)].into();
-
   let key = "a";
-
   let hash = compute_hash(map.hasher(), &key);
-
   assert_eq!(map.raw_entry().from_hash(hash, |k| k == &key), Some((&"a", &100)));
-
   ```
 
 #### Trait Implementations
@@ -1423,11 +967,8 @@ for k in 0..6 {
 - <span id="rawentrybuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RawEntryBuilder<'a, K, V, S, A>`
@@ -1453,11 +994,11 @@ enum RawEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:304-333`](../../../.source_1765633015/hashbrown-0.16.1/src/raw_entry.rs#L304-L333)*
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:304-333`](../../../.source_1765894658/hashbrown-0.16.1/src/raw_entry.rs#L304-L333)*
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
-This is a lower-level version of [`Entry`](../hash_set/index.md).
+This is a lower-level version of [`Entry`](../hash_table/index.md).
 
 This `enum` is constructed through the `raw_entry_mut` method on [`HashMap`](../hash_map/index.md),
 then calling one of the methods of that [`RawEntryBuilderMut`](#rawentrybuildermut).
@@ -1577,253 +1118,137 @@ assert_eq!(vec, [('a', 10), ('b', 20), ('c', 30), ('d', 40), ('e', 50), ('f', 60
 - <span id="rawentrymut-insert"></span>`fn insert(self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](#rawoccupiedentrymut)
 
   Sets the value of the entry, and returns a `RawOccupiedEntryMut`.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   
-
   let mut map: HashMap<&str, u32> = HashMap::new();
-
   let entry = map.raw_entry_mut().from_key("horseyland").insert("horseyland", 37);
-
   
-
   assert_eq!(entry.remove_entry(), ("horseyland", 37));
-
   ```
 
 - <span id="rawentrymut-or-insert"></span>`fn or_insert(self, default_key: K, default_val: V) -> (&'a mut K, &'a mut V)`
 
   Ensures a value is in the entry by inserting the default if empty, and returns
-
   mutable references to the key and value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   
-
   let mut map: HashMap<&str, u32> = HashMap::new();
-
   
-
   map.raw_entry_mut().from_key("poneyland").or_insert("poneyland", 3);
-
   assert_eq!(map["poneyland"], 3);
-
   
-
   *map.raw_entry_mut().from_key("poneyland").or_insert("poneyland", 10).1 *= 2;
-
   assert_eq!(map["poneyland"], 6);
-
   ```
 
 - <span id="rawentrymut-or-insert-with"></span>`fn or_insert_with<F>(self, default: F) -> (&'a mut K, &'a mut V)`
 
   Ensures a value is in the entry by inserting the result of the default function if empty,
-
   and returns mutable references to the key and value in the entry.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   
-
   let mut map: HashMap<&str, String> = HashMap::new();
-
   
-
   map.raw_entry_mut().from_key("poneyland").or_insert_with(|| {
-
       ("poneyland", "hoho".to_string())
-
   });
-
   
-
   assert_eq!(map["poneyland"], "hoho".to_string());
-
   ```
 
 - <span id="rawentrymut-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
 
   Provides in-place mutable access to an occupied entry before any
-
   potential inserts into the map.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   
-
   let mut map: HashMap<&str, u32> = HashMap::new();
-
   
-
   map.raw_entry_mut()
-
      .from_key("poneyland")
-
      .and_modify(|_k, v| { *v += 1 })
-
      .or_insert("poneyland", 42);
-
   assert_eq!(map["poneyland"], 42);
-
   
-
   map.raw_entry_mut()
-
      .from_key("poneyland")
-
      .and_modify(|_k, v| { *v += 1 })
-
      .or_insert("poneyland", 0);
-
   assert_eq!(map["poneyland"], 43);
-
   ```
 
 - <span id="rawentrymut-and-replace-entry-with"></span>`fn and_replace_entry_with<F>(self, f: F) -> Self`
 
   Provides shared access to the key and owned access to the value of
-
   an occupied entry and allows to replace or remove it based on the
-
   value of the returned option.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use hashbrown::HashMap;
-
   use hashbrown::hash_map::RawEntryMut;
-
   
-
   let mut map: HashMap<&str, u32> = HashMap::new();
-
   
-
   let entry = map
-
       .raw_entry_mut()
-
       .from_key("poneyland")
-
       .and_replace_entry_with(|_k, _v| panic!());
-
   
-
   match entry {
-
       RawEntryMut::Vacant(_) => {},
-
       RawEntryMut::Occupied(_) => panic!(),
-
   }
-
   
-
   map.insert("poneyland", 42);
-
   
-
   let entry = map
-
       .raw_entry_mut()
-
       .from_key("poneyland")
-
       .and_replace_entry_with(|k, v| {
-
           assert_eq!(k, &"poneyland");
-
           assert_eq!(v, 42);
-
           Some(v + 1)
-
       });
-
   
-
   match entry {
-
       RawEntryMut::Occupied(e) => {
-
           assert_eq!(e.key(), &"poneyland");
-
           assert_eq!(e.get(), &43);
-
       },
-
       RawEntryMut::Vacant(_) => panic!(),
-
   }
-
   
-
   assert_eq!(map["poneyland"], 43);
-
   
-
   let entry = map
-
       .raw_entry_mut()
-
       .from_key("poneyland")
-
       .and_replace_entry_with(|_k, _v| None);
-
   
-
   match entry {
-
       RawEntryMut::Vacant(_) => {},
-
       RawEntryMut::Occupied(_) => panic!(),
-
   }
-
   
-
   assert!(!map.contains_key("poneyland"));
-
   ```
 
 #### Trait Implementations
@@ -1855,11 +1280,8 @@ assert_eq!(vec, [('a', 10), ('b', 20), ('c', 30), ('d', 40), ('e', 50), ('f', 60
 - <span id="rawentrymut-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RawEntryMut<'a, K, V, S, A>`

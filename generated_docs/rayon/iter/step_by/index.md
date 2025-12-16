@@ -22,7 +22,7 @@ struct StepBy<I> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/step_by.rs:11-14`](../../../../.source_1765633015/rayon-1.11.0/src/iter/step_by.rs#L11-L14)*
+*Defined in [`rayon-1.11.0/src/iter/step_by.rs:11-14`](../../../../.source_1765894658/rayon-1.11.0/src/iter/step_by.rs#L11-L14)*
 
 `StepBy` is an iterator that skips `n` elements between each yield, where `n` is the given step.
 This struct is created by the `step_by()` method on [`IndexedParallelIterator`](../index.md)
@@ -79,11 +79,8 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 - <span id="stepby-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for StepBy<I>`
@@ -148,7 +145,7 @@ struct StepByProducer<P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/step_by.rs:93-97`](../../../../.source_1765633015/rayon-1.11.0/src/iter/step_by.rs#L93-L97)*
+*Defined in [`rayon-1.11.0/src/iter/step_by.rs:93-97`](../../../../.source_1765894658/rayon-1.11.0/src/iter/step_by.rs#L93-L97)*
 
 #### Trait Implementations
 
@@ -175,11 +172,8 @@ struct StepByProducer<P> {
 - <span id="stepbyproducer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for StepByProducer<P>`

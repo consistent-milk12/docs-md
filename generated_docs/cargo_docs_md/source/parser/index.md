@@ -55,13 +55,9 @@ Parser for Rust source code using `syn`.
 - <span id="sourceparser-parse-crate"></span>`fn parse_crate(&self) -> Result<CrateSource, Error>` — [`CrateSource`](../types/index.md#cratesource), [`Error`](../../error/index.md#error)
 
   Parse an entire crate starting from its root.
-
   
-
   # Errors
-
   
-
   Returns an error if any source file cannot be parsed.
 
 - <span id="sourceparser-find-entry-point"></span>`fn find_entry_point(&self) -> Result<PathBuf, Error>` — [`Error`](../../error/index.md#error)
@@ -123,17 +119,13 @@ Parser for Rust source code using `syn`.
 - <span id="sourceparser-line-of"></span>`fn line_of<T: Spanned>(item: &T) -> usize`
 
   Extract the starting line number from a spanned item.
-
   
-
   Uses `proc-macro2`'s span-locations feature to get accurate line numbers.
 
 - <span id="sourceparser-extract-doc-comments"></span>`fn extract_doc_comments(attrs: &[Attribute]) -> Vec<String>`
 
   Extract doc comments from attributes.
-
   
-
   Doc comments in Rust are represented as `#[doc = "..."]` attributes.
 
 - <span id="sourceparser-extract-fields"></span>`fn extract_fields(fields: &Fields) -> Vec<FieldInfo>` — [`FieldInfo`](../types/index.md#fieldinfo)
@@ -143,17 +135,11 @@ Parser for Rust source code using `syn`.
 - <span id="sourceparser-parse-file"></span>`fn parse_file(path: &Path) -> Result<File, Error>` — [`Error`](../../error/index.md#error)
 
   Parse a single file without traversing modules.
-
   
-
   Useful for quick parsing of individual files.
-
   
-
   # Errors
-
   
-
   Returns an error if the file cannot be read or parsed.
 
 #### Trait Implementations
@@ -191,11 +177,8 @@ Parser for Rust source code using `syn`.
 - <span id="sourceparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceParser`

@@ -45,7 +45,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
 
 The configuration used for a Thompson NFA compiler.
 
@@ -58,765 +58,397 @@ The configuration used for a Thompson NFA compiler.
 - <span id="config-utf8"></span>`fn utf8(self, yes: bool) -> Config` — [`Config`](#config)
 
   Whether to enable UTF-8 mode during search or not.
-
   
-
   A regex engine is said to be in UTF-8 mode when it guarantees that
-
   all matches returned by it have spans consisting of only valid UTF-8.
-
   That is, it is impossible for a match span to be returned that
-
   contains any invalid UTF-8.
-
   
-
   UTF-8 mode generally consists of two things:
-
   
-
   1. Whether the NFA's states are constructed such that all paths to a
-
   match state that consume at least one byte always correspond to valid
-
   UTF-8.
-
   2. Whether all paths to a match state that do _not_ consume any bytes
-
   should always correspond to valid UTF-8 boundaries.
-
   
-
   (1) is a guarantee made by whoever constructs the NFA.
-
   If you're parsing a regex from its concrete syntax, then
-
   [`syntax::Config::utf8`](crate::util::syntax::Config::utf8) can make
-
   this guarantee for you. It does it by returning an error if the regex
-
   pattern could every report a non-empty match span that contains invalid
-
   UTF-8. So long as `syntax::Config::utf8` mode is enabled and your regex
-
   successfully parses, then you're guaranteed that the corresponding NFA
-
   will only ever report non-empty match spans containing valid UTF-8.
-
   
-
   (2) is a trickier guarantee because it cannot be enforced by the NFA
-
   state graph itself. Consider, for example, the regex `a*`. It matches
-
   the empty strings in `☃` at positions `0`, `1`, `2` and `3`, where
-
   positions `1` and `2` occur within the UTF-8 encoding of a codepoint,
-
   and thus correspond to invalid UTF-8 boundaries. Therefore, this
-
   guarantee must be made at a higher level than the NFA state graph
-
   itself. This crate deals with this case in each regex engine. Namely,
-
   when a zero-width match that splits a codepoint is found and UTF-8
-
   mode enabled, then it is ignored and the engine moves on looking for
-
   the next match.
-
   
-
   Thus, UTF-8 mode is both a promise that the NFA built only reports
-
   non-empty matches that are valid UTF-8, and an *instruction* to regex
-
   engines that empty matches that split codepoints should be banned.
-
   
-
   Because UTF-8 mode is fundamentally about avoiding invalid UTF-8 spans,
-
   it only makes sense to enable this option when you *know* your haystack
-
   is valid UTF-8. (For example, a `&str`.) Enabling UTF-8 mode and
-
   searching a haystack that contains invalid UTF-8 leads to **unspecified
-
   behavior**.
-
   
-
   Therefore, it may make sense to enable `syntax::Config::utf8` while
-
   simultaneously *disabling* this option. That would ensure all non-empty
-
   match spans are valid UTF-8, but that empty match spans may still split
-
   a codepoint or match at other places that aren't valid UTF-8.
-
   
-
   In general, this mode is only relevant if your regex can match the
-
   empty string. Most regexes don't.
-
   
-
   This is enabled by default.
-
   
-
   # Example
-
   
-
   This example shows how UTF-8 mode can impact the match spans that may
-
   be reported in certain cases.
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::{self, pikevm::PikeVM},
-
       Match, Input,
-
   };
-
   
-
   let re = PikeVM::new("")?;
-
   let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
-
   
-
   // UTF-8 mode is enabled by default.
-
   let mut input = Input::new("☃");
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(Some(Match::must(0, 0..0)), caps.get_match());
-
   
-
   // Even though an empty regex matches at 1..1, our next match is
-
   // 3..3 because 1..1 and 2..2 split the snowman codepoint (which is
-
   // three bytes long).
-
   input.set_start(1);
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(Some(Match::must(0, 3..3)), caps.get_match());
-
   
-
   // But if we disable UTF-8, then we'll get matches at 1..1 and 2..2:
-
   let re = PikeVM::builder()
-
       .thompson(thompson::Config::new().utf8(false))
-
       .build("")?;
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(Some(Match::must(0, 1..1)), caps.get_match());
-
   
-
   input.set_start(2);
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(Some(Match::must(0, 2..2)), caps.get_match());
-
   
-
   input.set_start(3);
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(Some(Match::must(0, 3..3)), caps.get_match());
-
   
-
   input.set_start(4);
-
   re.search(&mut cache, &input, &mut caps);
-
   assert_eq!(None, caps.get_match());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="config-reverse"></span>`fn reverse(self, yes: bool) -> Config` — [`Config`](#config)
 
   Reverse the NFA.
-
   
-
   A NFA reversal is performed by reversing all of the concatenated
-
   sub-expressions in the original pattern, recursively. (Look around
-
   operators are also inverted.) The resulting NFA can be used to match
-
   the pattern starting from the end of a string instead of the beginning
-
   of a string.
-
   
-
   Reversing the NFA is useful for building a reverse DFA, which is most
-
   useful for finding the start of a match after its ending position has
-
   been found. NFA execution engines typically do not work on reverse
-
   NFAs. For example, currently, the Pike VM reports the starting location
-
   of matches without a reverse NFA.
-
   
-
   Currently, enabling this setting requires disabling the
-
   [`captures`](Config::captures) setting. If both are enabled, then the
-
   compiler will return an error. It is expected that this limitation will
-
   be lifted in the future.
-
   
-
   This is disabled by default.
-
   
-
   # Example
-
   
-
   This example shows how to build a DFA from a reverse NFA, and then use
-
   the DFA to search backwards.
-
   
-
   ```rust
-
   use regex_automata::{
-
       dfa::{self, Automaton},
-
       nfa::thompson::{NFA, WhichCaptures},
-
       HalfMatch, Input,
-
   };
-
   
-
   let dfa = dfa::dense::Builder::new()
-
       .thompson(NFA::config()
-
           .which_captures(WhichCaptures::None)
-
           .reverse(true)
-
       )
-
       .build("baz[0-9]+")?;
-
   let expected = Some(HalfMatch::must(0, 3));
-
   assert_eq!(
-
       expected,
-
       dfa.try_search_rev(&Input::new("foobaz12345bar"))?,
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="config-nfa-size-limit"></span>`fn nfa_size_limit(self, bytes: Option<usize>) -> Config` — [`Config`](#config)
 
   Sets an approximate size limit on the total heap used by the NFA being
-
   compiled.
-
   
-
   This permits imposing constraints on the size of a compiled NFA. This
-
   may be useful in contexts where the regex pattern is untrusted and one
-
   wants to avoid using too much memory.
-
   
-
   This size limit does not apply to auxiliary heap used during
-
   compilation that is not part of the built NFA.
-
   
-
   Note that this size limit is applied during compilation in order for
-
   the limit to prevent too much heap from being used. However, the
-
   implementation may use an intermediate NFA representation that is
-
   otherwise slightly bigger than the final public form. Since the size
-
   limit may be applied to an intermediate representation, there is not
-
   necessarily a precise correspondence between the configured size limit
-
   and the heap usage of the final NFA.
-
   
-
   There is no size limit by default.
-
   
-
   # Example
-
   
-
   This example demonstrates how Unicode mode can greatly increase the
-
   size of the NFA.
-
   
-
   ```rust
-
   if cfg!(miri) { return Ok(()); } // miri takes too long
-
   use regex_automata::nfa::thompson::NFA;
-
   
-
   // 300KB isn't enough!
-
   NFA::compiler()
-
       .configure(NFA::config().nfa_size_limit(Some(300_000)))
-
       .build(r"\w{20}")
-
       .unwrap_err();
-
   
-
   // ... but 500KB probably is.
-
   let nfa = NFA::compiler()
-
       .configure(NFA::config().nfa_size_limit(Some(500_000)))
-
       .build(r"\w{20}")?;
-
   
-
   assert_eq!(nfa.pattern_len(), 1);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="config-shrink"></span>`fn shrink(self, yes: bool) -> Config` — [`Config`](#config)
 
   Apply best effort heuristics to shrink the NFA at the expense of more
-
   time/memory.
-
   
-
   Generally speaking, if one is using an NFA to compile a DFA, then the
-
   extra time used to shrink the NFA will be more than made up for during
-
   DFA construction (potentially by a lot). In other words, enabling this
-
   can substantially decrease the overall amount of time it takes to build
-
   a DFA.
-
   
-
   A reason to keep this disabled is if you want to compile an NFA and
-
   start using it as quickly as possible without needing to build a DFA,
-
   and you don't mind using a bit of extra memory for the NFA. e.g., for
-
   an NFA simulation or for a lazy DFA.
-
   
-
   NFA shrinking is currently most useful when compiling a reverse
-
   NFA with large Unicode character classes. In particular, it trades
-
   additional CPU time during NFA compilation in favor of generating fewer
-
   NFA states.
-
   
-
   This is disabled by default because it can increase compile times
-
   quite a bit if you aren't building a full DFA.
-
   
-
   # Example
-
   
-
   This example shows that NFA shrinking can lead to substantial space
-
   savings in some cases. Notice that, as noted above, we build a reverse
-
   DFA and use a pattern with a large Unicode character class.
-
   
-
   ```rust
-
   if cfg!(miri) { return Ok(()); } // miri takes too long
-
   use regex_automata::nfa::thompson::{NFA, WhichCaptures};
-
   
-
   // Currently we have to disable captures when enabling reverse NFA.
-
   let config = NFA::config()
-
       .which_captures(WhichCaptures::None)
-
       .reverse(true);
-
   let not_shrunk = NFA::compiler()
-
       .configure(config.clone().shrink(false))
-
       .build(r"\w")?;
-
   let shrunk = NFA::compiler()
-
       .configure(config.clone().shrink(true))
-
       .build(r"\w")?;
-
   
-
   // While a specific shrink factor is not guaranteed, the savings can be
-
   // considerable in some cases.
-
   assert!(shrunk.states().len() * 2 < not_shrunk.states().len());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="config-captures"></span>`fn captures(self, yes: bool) -> Config` — [`Config`](#config)
 
   Whether to include 'Capture' states in the NFA.
-
   
-
   Currently, enabling this setting requires disabling the
-
   [`reverse`](Config::reverse) setting. If both are enabled, then the
-
   compiler will return an error. It is expected that this limitation will
-
   be lifted in the future.
-
   
-
   This is enabled by default.
-
   
-
   # Example
-
   
-
   This example demonstrates that some regex engines, like the Pike VM,
-
   require capturing states to be present in the NFA to report match
-
   offsets.
-
   
-
   (Note that since this method is deprecated, the example below uses
-
   `Config::which_captures` to disable capture states.)
-
   
-
   ```rust
-
   use regex_automata::nfa::thompson::{
-
       pikevm::PikeVM,
-
       NFA,
-
       WhichCaptures,
-
   };
-
   
-
   let re = PikeVM::builder()
-
       .thompson(NFA::config().which_captures(WhichCaptures::None))
-
       .build(r"[a-z]+")?;
-
   let mut cache = re.create_cache();
-
   
-
   assert!(re.is_match(&mut cache, "abc"));
-
   assert_eq!(None, re.find(&mut cache, "abc"));
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](#whichcaptures), [`Config`](#config)
 
   Configures what kinds of capture groups are compiled into
-
   [`State::Capture`](crate::nfa::thompson::State::Capture) states in a
-
   Thompson NFA.
-
   
-
   Currently, using any option except for [`WhichCaptures::None`](../../../index.md) requires
-
   disabling the [`reverse`](Config::reverse) setting. If both are
-
   enabled, then the compiler will return an error. It is expected that
-
   this limitation will be lifted in the future.
-
   
-
   This is set to [`WhichCaptures::All`](../../../index.md) by default. Callers may wish to
-
   use [`WhichCaptures::Implicit`](../../../index.md) in cases where one wants avoid the
-
   overhead of capture states for explicit groups. Usually this occurs
-
   when one wants to use the `PikeVM` only for determining the overall
-
   match. Otherwise, the `PikeVM` could use much more memory than is
-
   necessary.
-
   
-
   # Example
-
   
-
   This example demonstrates that some regex engines, like the Pike VM,
-
   require capturing states to be present in the NFA to report match
-
   offsets.
-
   
-
   ```rust
-
   use regex_automata::nfa::thompson::{
-
       pikevm::PikeVM,
-
       NFA,
-
       WhichCaptures,
-
   };
-
   
-
   let re = PikeVM::builder()
-
       .thompson(NFA::config().which_captures(WhichCaptures::None))
-
       .build(r"[a-z]+")?;
-
   let mut cache = re.create_cache();
-
   
-
   assert!(re.is_match(&mut cache, "abc"));
-
   assert_eq!(None, re.find(&mut cache, "abc"));
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
-
   
-
   The same applies to the bounded backtracker:
-
   
-
   ```rust
-
   use regex_automata::nfa::thompson::{
-
       backtrack::BoundedBacktracker,
-
       NFA,
-
       WhichCaptures,
-
   };
-
   
-
   let re = BoundedBacktracker::builder()
-
       .thompson(NFA::config().which_captures(WhichCaptures::None))
-
       .build(r"[a-z]+")?;
-
   let mut cache = re.create_cache();
-
   
-
   assert!(re.try_is_match(&mut cache, "abc")?);
-
   assert_eq!(None, re.try_find(&mut cache, "abc")?);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="config-look-matcher"></span>`fn look_matcher(self, m: LookMatcher) -> Config` — [`LookMatcher`](../../../util/look/index.md#lookmatcher), [`Config`](#config)
 
   Sets the look-around matcher that should be used with this NFA.
-
   
-
   A look-around matcher determines how to match look-around assertions.
-
   In particular, some assertions are configurable. For example, the
-
   `(?m:^)` and `(?m:$)` assertions can have their line terminator changed
-
   from the default of `\n` to any other byte.
-
   
-
   # Example
-
   
-
   This shows how to change the line terminator for multi-line assertions.
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::{self, pikevm::PikeVM},
-
       util::look::LookMatcher,
-
       Match, Input,
-
   };
-
   
-
   let mut lookm = LookMatcher::new();
-
   lookm.set_line_terminator(b'\x00');
-
   
-
   let re = PikeVM::builder()
-
       .thompson(thompson::Config::new().look_matcher(lookm))
-
       .build(r"(?m)^[a-z]+$")?;
-
   let mut cache = re.create_cache();
-
   
-
   // Multi-line assertions now use NUL as a terminator.
-
   assert_eq!(
-
       Some(Match::must(0, 1..4)),
-
       re.find(&mut cache, b"\x00abc\x00"),
-
   );
-
   // ... and \n is no longer recognized as a terminator.
-
   assert_eq!(
-
       None,
-
       re.find(&mut cache, b"\nabc\n"),
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="config-get-utf8"></span>`fn get_utf8(&self) -> bool`
@@ -830,7 +462,6 @@ The configuration used for a Thompson NFA compiler.
 - <span id="config-get-nfa-size-limit"></span>`fn get_nfa_size_limit(&self) -> Option<usize>`
 
   Return the configured NFA size limit, if it exists, in the number of
-
   bytes of heap used.
 
 - <span id="config-get-shrink"></span>`fn get_shrink(&self) -> bool`
@@ -852,21 +483,15 @@ The configuration used for a Thompson NFA compiler.
 - <span id="config-get-unanchored-prefix"></span>`fn get_unanchored_prefix(&self) -> bool`
 
   Return whether NFA compilation is configured to include an unanchored
-
   prefix.
-
   
-
   This is always false when not in test mode.
 
 - <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
   Overwrite the default configuration such that the options in `o` are
-
   always used. If an option in `o` is not set, then the corresponding
-
   option in `self` is used. If it's not set in `self` either, then it
-
   remains not set.
 
 #### Trait Implementations
@@ -910,11 +535,8 @@ The configuration used for a Thompson NFA compiler.
 - <span id="config-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Config`
@@ -950,7 +572,7 @@ struct Compiler {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
 
 A builder for compiling an NFA from a regex's high-level intermediate
 representation (HIR).
@@ -1063,329 +685,177 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="compiler-build"></span>`fn build(&self, pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md#nfa), [`BuildError`](../error/index.md#builderror)
 
   Compile the given regular expression pattern into an NFA.
-
   
-
   If there was a problem parsing the regex, then that error is returned.
-
   
-
   Otherwise, if there was a problem building the NFA, then an error is
-
   returned. The only error that can occur is if the compiled regex would
-
   exceed the size limits configured on this builder, or if any part of
-
   the NFA would exceed the integer representations used. (For example,
-
   too many states might plausibly occur on a 16-bit target.)
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
-
   
-
   let config = NFA::config().nfa_size_limit(Some(1_000));
-
   let nfa = NFA::compiler().configure(config).build(r"(?-u)\w")?;
-
   
-
   let re = PikeVM::new_from_nfa(nfa)?;
-
   let mut cache = re.create_cache();
-
   let mut caps = re.create_captures();
-
   let expected = Some(Match::must(0, 3..4));
-
   re.captures(&mut cache, "!@#A#@!", &mut caps);
-
   assert_eq!(expected, caps.get_match());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="compiler-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md#nfa), [`BuildError`](../error/index.md#builderror)
 
   Compile the given regular expression patterns into a single NFA.
-
   
-
   When matches are returned, the pattern ID corresponds to the index of
-
   the pattern in the slice given.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
-
   
-
   let config = NFA::config().nfa_size_limit(Some(1_000));
-
   let nfa = NFA::compiler().configure(config).build_many(&[
-
       r"(?-u)\s",
-
       r"(?-u)\w",
-
   ])?;
-
   
-
   let re = PikeVM::new_from_nfa(nfa)?;
-
   let mut cache = re.create_cache();
-
   let mut caps = re.create_captures();
-
   let expected = Some(Match::must(1, 1..2));
-
   re.captures(&mut cache, "!A! !A!", &mut caps);
-
   assert_eq!(expected, caps.get_match());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="compiler-build-from-hir"></span>`fn build_from_hir(&self, expr: &Hir) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md#nfa), [`BuildError`](../error/index.md#builderror)
 
   Compile the given high level intermediate representation of a regular
-
   expression into an NFA.
-
   
-
   If there was a problem building the NFA, then an error is returned. The
-
   only error that can occur is if the compiled regex would exceed the
-
   size limits configured on this builder, or if any part of the NFA would
-
   exceed the integer representations used. (For example, too many states
-
   might plausibly occur on a 16-bit target.)
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
-
   use regex_syntax::hir::{Hir, Class, ClassBytes, ClassBytesRange};
-
   
-
   let hir = Hir::class(Class::Bytes(ClassBytes::new(vec![
-
       ClassBytesRange::new(b'0', b'9'),
-
       ClassBytesRange::new(b'A', b'Z'),
-
       ClassBytesRange::new(b'_', b'_'),
-
       ClassBytesRange::new(b'a', b'z'),
-
   ])));
-
   
-
   let config = NFA::config().nfa_size_limit(Some(1_000));
-
   let nfa = NFA::compiler().configure(config).build_from_hir(&hir)?;
-
   
-
   let re = PikeVM::new_from_nfa(nfa)?;
-
   let mut cache = re.create_cache();
-
   let mut caps = re.create_captures();
-
   let expected = Some(Match::must(0, 3..4));
-
   re.captures(&mut cache, "!@#A#@!", &mut caps);
-
   assert_eq!(expected, caps.get_match());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="compiler-build-many-from-hir"></span>`fn build_many_from_hir<H: Borrow<Hir>>(&self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md#nfa), [`BuildError`](../error/index.md#builderror)
 
   Compile the given high level intermediate representations of regular
-
   expressions into a single NFA.
-
   
-
   When matches are returned, the pattern ID corresponds to the index of
-
   the pattern in the slice given.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
-
   use regex_syntax::hir::{Hir, Class, ClassBytes, ClassBytesRange};
-
   
-
   let hirs = &[
-
       Hir::class(Class::Bytes(ClassBytes::new(vec![
-
           ClassBytesRange::new(b'\t', b'\r'),
-
           ClassBytesRange::new(b' ', b' '),
-
       ]))),
-
       Hir::class(Class::Bytes(ClassBytes::new(vec![
-
           ClassBytesRange::new(b'0', b'9'),
-
           ClassBytesRange::new(b'A', b'Z'),
-
           ClassBytesRange::new(b'_', b'_'),
-
           ClassBytesRange::new(b'a', b'z'),
-
       ]))),
-
   ];
-
   
-
   let config = NFA::config().nfa_size_limit(Some(1_000));
-
   let nfa = NFA::compiler().configure(config).build_many_from_hir(hirs)?;
-
   
-
   let re = PikeVM::new_from_nfa(nfa)?;
-
   let mut cache = re.create_cache();
-
   let mut caps = re.create_captures();
-
   let expected = Some(Match::must(1, 1..2));
-
   re.captures(&mut cache, "!A! !A!", &mut caps);
-
   assert_eq!(expected, caps.get_match());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="compiler-configure"></span>`fn configure(&mut self, config: Config) -> &mut Compiler` — [`Config`](#config), [`Compiler`](#compiler)
 
   Apply the given NFA configuration options to this builder.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::nfa::thompson::NFA;
-
   
-
   let config = NFA::config().nfa_size_limit(Some(1_000));
-
   let nfa = NFA::compiler().configure(config).build(r"(?-u)\w")?;
-
   assert_eq!(nfa.pattern_len(), 1);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="compiler-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Compiler` — [`Config`](../../../util/syntax/index.md#config), [`Compiler`](#compiler)
 
   Set the syntax configuration for this builder using
-
   [`syntax::Config`](crate::util::syntax::Config).
-
   
-
   This permits setting things like case insensitivity, Unicode and multi
-
   line mode.
-
   
-
   This syntax configuration only applies when an NFA is built directly
-
   from a pattern string. If an NFA is built from an HIR, then all syntax
-
   settings are ignored.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{nfa::thompson::NFA, util::syntax};
-
   
-
   let syntax_config = syntax::Config::new().unicode(false);
-
   let nfa = NFA::compiler().syntax(syntax_config).build(r"\w")?;
-
   // If Unicode were enabled, the number of states would be much bigger.
-
   assert!(nfa.states().len() < 15);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 #### Trait Implementations
@@ -1425,11 +895,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="compiler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Compiler`
@@ -1461,7 +928,7 @@ struct ThompsonRef {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1722-1725`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1722-L1725)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1722-1725`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1722-L1725)*
 
 A value that represents the result of compiling a sub-expression of a
 regex's HIR. Specifically, this represents a sub-graph of the NFA that
@@ -1506,11 +973,8 @@ has an initial state at `start` and a final state at `end`.
 - <span id="thompsonref-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ThompsonRef`
@@ -1543,7 +1007,7 @@ struct Utf8Compiler<'a> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1748-1752`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1748-L1752)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1748-1752`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1748-L1752)*
 
 A UTF-8 compiler based on Daciuk's algorithm for compiling minimal DFAs
 from a lexicographically sorted sequence of strings in linear time.
@@ -1617,11 +1081,8 @@ There is also another implementation of this in the `fst` crate.
 - <span id="utf8compiler-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Utf8Compiler<'a>`
@@ -1645,7 +1106,7 @@ struct Utf8State {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1755-1758`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1755-L1758)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1755-1758`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1755-L1758)*
 
 #### Implementations
 
@@ -1690,11 +1151,8 @@ struct Utf8State {
 - <span id="utf8state-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Utf8State`
@@ -1726,7 +1184,7 @@ struct Utf8Node {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1761-1764`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1761-L1764)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1761-1764`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1761-L1764)*
 
 #### Implementations
 
@@ -1769,11 +1227,8 @@ struct Utf8Node {
 - <span id="utf8node-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Utf8Node`
@@ -1805,7 +1260,7 @@ struct Utf8LastTransition {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1767-1770`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1767-L1770)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1767-1770`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1767-L1770)*
 
 #### Trait Implementations
 
@@ -1844,11 +1299,8 @@ struct Utf8LastTransition {
 - <span id="utf8lasttransition-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Utf8LastTransition`
@@ -1883,7 +1335,7 @@ enum WhichCaptures {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
 
 A configuration indicating which kinds of
 [`State::Capture`](crate::nfa::thompson::State::Capture) states to include.
@@ -1947,15 +1399,12 @@ The default configuration is [`WhichCaptures::All`](../../../index.md).
 - <span id="whichcaptures-is-none"></span>`fn is_none(&self) -> bool`
 
   Returns true if this configuration indicates that no capture states
-
   should be produced in an NFA.
 
 - <span id="whichcaptures-is-any"></span>`fn is_any(&self) -> bool`
 
   Returns true if this configuration indicates that some capture states
-
   should be added to an NFA. Note that this might only include capture
-
   states for implicit capture groups.
 
 #### Trait Implementations
@@ -2001,11 +1450,8 @@ The default configuration is [`WhichCaptures::All`](../../../index.md).
 - <span id="whichcaptures-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for WhichCaptures`

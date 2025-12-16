@@ -50,7 +50,7 @@ struct Metadata<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
 
 Metadata describing a [`span`](../span/index.md) or [`event`](../event/index.md).
 
@@ -144,7 +144,6 @@ of `Metadata`'s other fields is checked in debug builds.
 - <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](../field/index.md#fieldset), [`Kind`](#kind)
 
   Construct new metadata for a span or event, with a name, target, level, field
-
   names, and optional source code location.
 
 - <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](../field/index.md#fieldset)
@@ -162,37 +161,29 @@ of `Metadata`'s other fields is checked in debug builds.
 - <span id="metadata-target"></span>`fn target(&self) -> &'a str`
 
   Returns a string describing the part of the system where the span or
-
   event that this metadata describes occurred.
-
   
-
   Typically, this is the module path, but alternate targets may be set
-
   when spans or events are constructed.
 
 - <span id="metadata-module-path"></span>`fn module_path(&self) -> Option<&'a str>`
 
   Returns the path to the Rust module where the span occurred, or
-
   `None` if the module path is unknown.
 
 - <span id="metadata-file"></span>`fn file(&self) -> Option<&'a str>`
 
   Returns the name of the source code file where the span
-
   occurred, or `None` if the file is unknown
 
 - <span id="metadata-line"></span>`fn line(&self) -> Option<u32>`
 
   Returns the line number in the source code file where the span
-
   occurred, or `None` if the line number is unknown.
 
 - <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md#identifier)
 
   Returns an opaque `Identifier` that uniquely identifies the callsite
-
   this `Metadata` originated from.
 
 - <span id="metadata-is-event"></span>`fn is_event(&self) -> bool`
@@ -234,11 +225,8 @@ of `Metadata`'s other fields is checked in debug builds.
 - <span id="metadata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Metadata<'_>`
@@ -263,7 +251,7 @@ of `Metadata`'s other fields is checked in debug builds.
 struct Kind(u8);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L90)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L90)*
 
 Indicates whether the callsite is a span or event.
 
@@ -296,11 +284,8 @@ Indicates whether the callsite is a span or event.
 - <span id="kind-hint"></span>`const fn hint(self) -> Self`
 
   Sets that this `Kind` is a [hint](Self::HINT).
-
   
-
   This can be called on [`SPAN`](Self::SPAN) and [`EVENT`](Self::EVENT)
-
   kinds to construct a hint callsite that also counts as a span or event.
 
 #### Trait Implementations
@@ -342,11 +327,8 @@ Indicates whether the callsite is a span or event.
 - <span id="kind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Kind`
@@ -381,7 +363,7 @@ Indicates whether the callsite is a span or event.
 struct Level(LevelInner);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L221)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L221)*
 
 Describes the level of verbosity of a span or event.
 
@@ -526,9 +508,7 @@ recorded in.
 - <span id="level-as-str"></span>`fn as_str(&self) -> &'static str`
 
   Returns the string representation of the `Level`.
-
   
-
   This returns the same string as the `fmt::Display` implementation.
 
 #### Trait Implementations
@@ -586,11 +566,8 @@ recorded in.
 - <span id="level-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Level`
@@ -645,7 +622,7 @@ recorded in.
 struct LevelFilter(Option<Level>);
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L239)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L239)*
 
 A filter comparable to a verbosity [`Level`](#level).
 
@@ -678,13 +655,11 @@ and `LevelFilter`s interact.
 - <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](#level)
 
   Returns a `LevelFilter` that enables spans and events with verbosity up
-
   to and including `level`.
 
 - <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](#level)
 
   Returns the most verbose [`Level`](#level) that this filter accepts, or `None`
-
   if it is `OFF`.
 
 - <span id="levelfilter-const-error-usize"></span>`const ERROR_USIZE: usize`
@@ -702,31 +677,18 @@ and `LevelFilter`s interact.
 - <span id="levelfilter-current"></span>`fn current() -> Self`
 
   Returns a `LevelFilter` that matches the most verbose [`Level`](#level) that any
-
   currently active [`Subscriber`](../subscriber/index.md) will enable.
-
   
-
   User code should treat this as a *hint*. If a given span or event has a
-
   level *higher* than the returned `LevelFilter`, it will not be enabled.
-
   However, if the level is less than or equal to this value, the span or
-
   event is *not* guaranteed to be enabled; the subscriber will still
-
   filter each callsite individually.
-
   
-
   Therefore, comparing a given span or event's level to the returned
-
   `LevelFilter` **can** be used for determining if something is
-
   *disabled*, but **should not** be used for determining if something is
-
   *enabled*.
-
   
 
 - <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](#levelfilter)
@@ -786,11 +748,8 @@ and `LevelFilter`s interact.
 - <span id="levelfilter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for LevelFilter`
@@ -845,7 +804,7 @@ and `LevelFilter`s interact.
 struct ParseLevelFilterError(());
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:243`](../../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L243)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:243`](../../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L243)*
 
 Indicates that a string could not be parsed to a valid level.
 
@@ -892,11 +851,8 @@ Indicates that a string could not be parsed to a valid level.
 - <span id="parselevelfiltererror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ParseLevelFilterError`
@@ -931,7 +887,7 @@ struct ParseLevelError {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:805-807`](../../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L805-L807)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:805-807`](../../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L805-L807)*
 
 Returned if parsing a `Level` fails.
 
@@ -970,11 +926,8 @@ Returned if parsing a `Level` fails.
 - <span id="parselevelerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for ParseLevelError`
@@ -1007,7 +960,7 @@ enum LevelInner {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:579-600`](../../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L579-L600)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:579-600`](../../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L579-L600)*
 
 #### Variants
 
@@ -1086,11 +1039,8 @@ enum LevelInner {
 - <span id="levelinner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LevelInner`
@@ -1127,5 +1077,5 @@ enum LevelInner {
 fn filter_as_usize(x: &Option<Level>) -> usize
 ```
 
-*Defined in [`tracing-core-0.1.35/src/metadata.rs:972-977`](../../../.source_1765633015/tracing-core-0.1.35/src/metadata.rs#L972-L977)*
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:972-977`](../../../.source_1765894658/tracing-core-0.1.35/src/metadata.rs#L972-L977)*
 

@@ -41,7 +41,7 @@ struct ImportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:15-19`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L15-L19)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:15-19`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L15-L19)*
 
 Information for parsing a PE import table.
 
@@ -52,21 +52,13 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 - <span id="importtable-new"></span>`fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
 
   Create a new import table parser.
-
   
-
   The import descriptors start at `import_address`.
-
   The size declared in the `IMAGE_DIRECTORY_ENTRY_IMPORT` data directory is
-
   ignored by the Windows loader, and so descriptors will be parsed until a null entry.
-
   
-
   `section_data` should be from the section containing `import_address`, and
-
   `section_address` should be the address of that section. Pointers within the
-
   descriptors and thunks may point to anywhere within the section data.
 
 - <span id="importtable-descriptors"></span>`fn descriptors(&self) -> Result<ImportDescriptorIterator<'data>>` — [`Result`](../../../index.md#result), [`ImportDescriptorIterator`](../index.md#importdescriptoriterator)
@@ -76,19 +68,14 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 - <span id="importtable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
   Return a library name given its address.
-
   
-
   This address may be from `pe::ImageImportDescriptor::name`.
 
 - <span id="importtable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../../index.md#result), [`ImportThunkList`](../index.md#importthunklist)
 
   Return a list of thunks given its address.
-
   
-
   This address may be from `pe::ImageImportDescriptor::original_first_thunk`
-
   or `pe::ImageImportDescriptor::first_thunk`.
 
 - <span id="importtable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](../index.md#imagentheaders), [`Result`](../../../index.md#result), [`Import`](../index.md#import)
@@ -98,13 +85,9 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 - <span id="importtable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../../index.md#result)
 
   Return the hint and name at the given address.
-
   
-
   This address may be from [`pe::ImageThunkData32`](../../../pe/index.md) or [`pe::ImageThunkData64`](../../../pe/index.md).
-
   
-
   The hint is an index into the export name pointer table in the target library.
 
 #### Trait Implementations
@@ -144,11 +127,8 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 - <span id="importtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ImportTable<'data>`
@@ -180,7 +160,7 @@ struct ImportDescriptorIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:102-105`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L102-L105)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:102-105`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L102-L105)*
 
 A fallible iterator for the descriptors in the import data directory.
 
@@ -189,9 +169,7 @@ A fallible iterator for the descriptors in the import data directory.
 - <span id="importdescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageImportDescriptor>>` — [`Result`](../../../index.md#result), [`ImageImportDescriptor`](../../../pe/index.md#imageimportdescriptor)
 
   Return the next descriptor.
-
   
-
   Returns `Ok(None)` when a null descriptor is found.
 
 #### Trait Implementations
@@ -231,11 +209,8 @@ A fallible iterator for the descriptors in the import data directory.
 - <span id="importdescriptoriterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ImportDescriptorIterator<'data>`
@@ -280,7 +255,7 @@ struct ImportThunkList<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:148-150`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L148-L150)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:148-150`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L148-L150)*
 
 A list of import thunks.
 
@@ -295,9 +270,7 @@ These may be in the import lookup table, or the import address table.
 - <span id="importthunklist-next"></span>`fn next<Pe: ImageNtHeaders>(&mut self) -> Result<Option<<Pe as >::ImageThunkData>>` — [`Result`](../../../index.md#result), [`ImageNtHeaders`](../index.md#imagentheaders)
 
   Return the first thunk in the list, and update `self` to point after it.
-
   
-
   Returns `Ok(None)` when a null thunk is found.
 
 #### Trait Implementations
@@ -337,11 +310,8 @@ These may be in the import lookup table, or the import address table.
 - <span id="importthunklist-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ImportThunkList<'data>`
@@ -374,7 +344,7 @@ struct DelayLoadImportTable<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:250-254`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L250-L254)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:250-254`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L250-L254)*
 
 Information for parsing a PE delay-load import table.
 
@@ -386,21 +356,13 @@ Returned by
 - <span id="delayloadimporttable-new"></span>`fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
 
   Create a new delay load import table parser.
-
   
-
   The import descriptors start at `import_address`.
-
   This table works in the same way the import table does: descriptors will be
-
   parsed until a null entry.
-
   
-
   `section_data` should be from the section containing `import_address`, and
-
   `section_address` should be the address of that section. Pointers within the
-
   descriptors and thunks may point to anywhere within the section data.
 
 - <span id="delayloadimporttable-descriptors"></span>`fn descriptors(&self) -> Result<DelayLoadDescriptorIterator<'data>>` — [`Result`](../../../index.md#result), [`DelayLoadDescriptorIterator`](../index.md#delayloaddescriptoriterator)
@@ -410,27 +372,18 @@ Returned by
 - <span id="delayloadimporttable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../../index.md#result)
 
   Return a library name given its address.
-
   
-
   This address may be from `pe::ImageDelayloadDescriptor::dll_name_rva`.
 
 - <span id="delayloadimporttable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../../index.md#result), [`ImportThunkList`](../index.md#importthunklist)
 
   Return a list of thunks given its address.
-
   
-
   This address may be from the INT, i.e. from
-
   `pe::ImageDelayloadDescriptor::import_name_table_rva`.
-
   
-
   Please note that others RVA values from [`pe::ImageDelayloadDescriptor`](../../../pe/index.md) are used
-
   by the delay loader at runtime to store values, and thus do not point inside the same
-
   section as the INT. Calling this function on those addresses will fail.
 
 - <span id="delayloadimporttable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](../index.md#imagentheaders), [`Result`](../../../index.md#result), [`Import`](../index.md#import)
@@ -440,13 +393,9 @@ Returned by
 - <span id="delayloadimporttable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../../index.md#result)
 
   Return the hint and name at the given address.
-
   
-
   This address may be from [`pe::ImageThunkData32`](../../../pe/index.md) or [`pe::ImageThunkData64`](../../../pe/index.md).
-
   
-
   The hint is an index into the export name pointer table in the target library.
 
 #### Trait Implementations
@@ -486,11 +435,8 @@ Returned by
 - <span id="delayloadimporttable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DelayLoadImportTable<'data>`
@@ -522,7 +468,7 @@ struct DelayLoadDescriptorIterator<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:341-344`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L341-L344)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:341-344`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L341-L344)*
 
 A fallible iterator for the descriptors in the delay-load data directory.
 
@@ -531,9 +477,7 @@ A fallible iterator for the descriptors in the delay-load data directory.
 - <span id="delayloaddescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageDelayloadDescriptor>>` — [`Result`](../../../index.md#result), [`ImageDelayloadDescriptor`](../../../pe/index.md#imagedelayloaddescriptor)
 
   Return the next descriptor.
-
   
-
   Returns `Ok(None)` when a null descriptor is found.
 
 #### Trait Implementations
@@ -573,11 +517,8 @@ A fallible iterator for the descriptors in the delay-load data directory.
 - <span id="delayloaddescriptoriterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DelayLoadDescriptorIterator<'data>`
@@ -625,7 +566,7 @@ enum Import<'data> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:180-187`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L180-L187)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:180-187`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L180-L187)*
 
 A parsed import thunk.
 
@@ -680,11 +621,8 @@ A parsed import thunk.
 - <span id="import-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Import<'data>`
@@ -715,7 +653,7 @@ A parsed import thunk.
 trait ImageThunkData: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/import.rs:191-207`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/import.rs#L191-L207)*
+*Defined in [`object-0.37.3/src/read/pe/import.rs:191-207`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/import.rs#L191-L207)*
 
 A trait for generic access to [`pe::ImageThunkData32`](../../../pe/index.md) and [`pe::ImageThunkData64`](../../../pe/index.md).
 
@@ -732,10 +670,14 @@ A trait for generic access to [`pe::ImageThunkData32`](../../../pe/index.md) and
 - `fn ordinal(self) -> u16`
 
   Return the ordinal portion of the thunk.
+  
+  Does not check the ordinal flag.
 
 - `fn address(self) -> u32`
 
   Return the RVA portion of the thunk.
+  
+  Does not check the ordinal flag.
 
 #### Implementors
 

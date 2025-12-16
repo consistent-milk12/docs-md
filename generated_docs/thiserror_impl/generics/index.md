@@ -22,7 +22,7 @@ struct ParamsInScope<'a> {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/generics.rs:8-10`](../../../.source_1765633015/thiserror-impl-2.0.17/src/generics.rs#L8-L10)*
+*Defined in [`thiserror-impl-2.0.17/src/generics.rs:8-10`](../../../.source_1765894658/thiserror-impl-2.0.17/src/generics.rs#L8-L10)*
 
 #### Implementations
 
@@ -55,11 +55,8 @@ struct ParamsInScope<'a> {
 - <span id="paramsinscope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ParamsInScope<'a>`
@@ -83,7 +80,7 @@ struct InferredBounds {
 }
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/generics.rs:48-51`](../../../.source_1765633015/thiserror-impl-2.0.17/src/generics.rs#L48-L51)*
+*Defined in [`thiserror-impl-2.0.17/src/generics.rs:48-51`](../../../.source_1765894658/thiserror-impl-2.0.17/src/generics.rs#L48-L51)*
 
 #### Implementations
 
@@ -118,11 +115,8 @@ struct InferredBounds {
 - <span id="inferredbounds-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for InferredBounds`
@@ -145,5 +139,5 @@ struct InferredBounds {
 fn crawl(in_scope: &ParamsInScope<'_>, ty: &syn::Type, found: &mut bool)
 ```
 
-*Defined in [`thiserror-impl-2.0.17/src/generics.rs:26-46`](../../../.source_1765633015/thiserror-impl-2.0.17/src/generics.rs#L26-L46)*
+*Defined in [`thiserror-impl-2.0.17/src/generics.rs:26-46`](../../../.source_1765894658/thiserror-impl-2.0.17/src/generics.rs#L26-L46)*
 

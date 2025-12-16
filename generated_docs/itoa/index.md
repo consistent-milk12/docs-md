@@ -8,7 +8,7 @@
 
 This crate provides a fast conversion of integer primitives to decimal
 strings. The implementation comes straight from [libcore] but avoids the
-performance penalty of going through [`core::fmt::Formatter`](../regex_syntax/error/index.md).
+performance penalty of going through `core::fmt::Formatter`.
 
 See also [`ryu`](#ryu) for printing floating point primitives.
 
@@ -71,7 +71,7 @@ struct Buffer {
 }
 ```
 
-*Defined in [`itoa-1.0.15/src/lib.rs:63-65`](../../.source_1765633015/itoa-1.0.15/src/lib.rs#L63-L65)*
+*Defined in [`itoa-1.0.15/src/lib.rs:63-65`](../../.source_1765894658/itoa-1.0.15/src/lib.rs#L63-L65)*
 
 A correctly sized stack allocation for the formatted integer to be written
 into.
@@ -89,13 +89,11 @@ assert_eq!(printed, "1234");
 - <span id="buffer-new"></span>`fn new() -> Buffer` — [`Buffer`](#buffer)
 
   This is a cheap operation; you don't need to worry about reusing buffers
-
   for efficiency.
 
 - <span id="buffer-format"></span>`fn format<I: Integer>(&mut self, i: I) -> &str`
 
   Print an integer into this buffer and return a reference to its string
-
   representation within the buffer.
 
 #### Trait Implementations
@@ -137,11 +135,8 @@ assert_eq!(printed, "1234");
 - <span id="buffer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Buffer`
@@ -164,7 +159,7 @@ assert_eq!(printed, "1234");
 trait Integer: private::Sealed { ... }
 ```
 
-*Defined in [`itoa-1.0.15/src/lib.rs:112-116`](../../.source_1765633015/itoa-1.0.15/src/lib.rs#L112-L116)*
+*Defined in [`itoa-1.0.15/src/lib.rs:112-116`](../../.source_1765894658/itoa-1.0.15/src/lib.rs#L112-L116)*
 
 An integer that can be written into an [`itoa::Buffer`][Buffer].
 
@@ -196,19 +191,19 @@ This trait is sealed and cannot be implemented for types outside of itoa.
 const DEC_DIGITS_LUT: [u8; 200];
 ```
 
-*Defined in [`itoa-1.0.15/src/lib.rs:128-133`](../../.source_1765633015/itoa-1.0.15/src/lib.rs#L128-L133)*
+*Defined in [`itoa-1.0.15/src/lib.rs:128-133`](../../.source_1765894658/itoa-1.0.15/src/lib.rs#L128-L133)*
 
 ## Macros
 
 ### `impl_Integer!`
 
-*Defined in [`itoa-1.0.15/src/lib.rs:137-212`](../../.source_1765633015/itoa-1.0.15/src/lib.rs#L137-L212)*
+*Defined in [`itoa-1.0.15/src/lib.rs:137-212`](../../.source_1765894658/itoa-1.0.15/src/lib.rs#L137-L212)*
 
 ### `impl_Integer_size!`
 
-*Defined in [`itoa-1.0.15/src/lib.rs:223-241`](../../.source_1765633015/itoa-1.0.15/src/lib.rs#L223-L241)*
+*Defined in [`itoa-1.0.15/src/lib.rs:223-241`](../../.source_1765894658/itoa-1.0.15/src/lib.rs#L223-L241)*
 
 ### `impl_Integer128!`
 
-*Defined in [`itoa-1.0.15/src/lib.rs:250-326`](../../.source_1765633015/itoa-1.0.15/src/lib.rs#L250-L326)*
+*Defined in [`itoa-1.0.15/src/lib.rs:250-326`](../../.source_1765894658/itoa-1.0.15/src/lib.rs#L250-L326)*
 

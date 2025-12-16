@@ -88,7 +88,7 @@ enum Architecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:5-45`](../../../.source_1765633015/object-0.37.3/src/common.rs#L5-L45)*
+*Defined in [`object-0.37.3/src/common.rs:5-45`](../../../.source_1765894658/object-0.37.3/src/common.rs#L5-L45)*
 
 A CPU architecture.
 
@@ -97,9 +97,7 @@ A CPU architecture.
 - <span id="architecture-address-size"></span>`fn address_size(self) -> Option<AddressSize>` — [`AddressSize`](../index.md#addresssize)
 
   The size of an address value for this architecture.
-
   
-
   Returns `None` for unknown architectures.
 
 #### Trait Implementations
@@ -147,11 +145,8 @@ A CPU architecture.
 - <span id="architecture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Architecture`
@@ -189,7 +184,7 @@ enum SubArchitecture {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:51-54`](../../../.source_1765633015/object-0.37.3/src/common.rs#L51-L54)*
+*Defined in [`object-0.37.3/src/common.rs:51-54`](../../../.source_1765894658/object-0.37.3/src/common.rs#L51-L54)*
 
 A CPU sub-architecture.
 
@@ -238,11 +233,8 @@ A CPU sub-architecture.
 - <span id="subarchitecture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SubArchitecture`
@@ -282,7 +274,7 @@ enum AddressSize {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:109-114`](../../../.source_1765633015/object-0.37.3/src/common.rs#L109-L114)*
+*Defined in [`object-0.37.3/src/common.rs:109-114`](../../../.source_1765894658/object-0.37.3/src/common.rs#L109-L114)*
 
 The size of an address value for an architecture.
 
@@ -339,11 +331,8 @@ This may differ from the address size supported by the file format (such as for 
 - <span id="addresssize-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AddressSize`
@@ -385,7 +374,7 @@ enum BinaryFormat {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:128-135`](../../../.source_1765633015/object-0.37.3/src/common.rs#L128-L135)*
+*Defined in [`object-0.37.3/src/common.rs:128-135`](../../../.source_1765894658/object-0.37.3/src/common.rs#L128-L135)*
 
 A binary file format.
 
@@ -394,9 +383,7 @@ A binary file format.
 - <span id="binaryformat-native-object"></span>`fn native_object() -> BinaryFormat` — [`BinaryFormat`](../index.md#binaryformat)
 
   The target's native binary format for relocatable object files.
-
   
-
   Defaults to `Elf` for unknown platforms.
 
 #### Trait Implementations
@@ -444,11 +431,8 @@ A binary file format.
 - <span id="binaryformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for BinaryFormat`
@@ -503,7 +487,7 @@ enum SectionKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:155-247`](../../../.source_1765633015/object-0.37.3/src/common.rs#L155-L247)*
+*Defined in [`object-0.37.3/src/common.rs:155-247`](../../../.source_1765894658/object-0.37.3/src/common.rs#L155-L247)*
 
 The kind of a section.
 
@@ -689,11 +673,8 @@ The kind of a section.
 - <span id="sectionkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SectionKind`
@@ -736,7 +717,7 @@ enum ComdatKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:264-291`](../../../.source_1765633015/object-0.37.3/src/common.rs#L264-L291)*
+*Defined in [`object-0.37.3/src/common.rs:264-291`](../../../.source_1765894658/object-0.37.3/src/common.rs#L264-L291)*
 
 The selection kind for a COMDAT section group.
 
@@ -830,11 +811,8 @@ sections.
 - <span id="comdatkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ComdatKind`
@@ -877,7 +855,7 @@ enum SymbolKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:296-311`](../../../.source_1765633015/object-0.37.3/src/common.rs#L296-L311)*
+*Defined in [`object-0.37.3/src/common.rs:296-311`](../../../.source_1765894658/object-0.37.3/src/common.rs#L296-L311)*
 
 The kind of a symbol.
 
@@ -956,11 +934,8 @@ The kind of a symbol.
 - <span id="symbolkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SymbolKind`
@@ -1000,7 +975,7 @@ enum SymbolScope {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:315-324`](../../../.source_1765633015/object-0.37.3/src/common.rs#L315-L324)*
+*Defined in [`object-0.37.3/src/common.rs:315-324`](../../../.source_1765894658/object-0.37.3/src/common.rs#L315-L324)*
 
 A symbol scope.
 
@@ -1067,11 +1042,8 @@ A symbol scope.
 - <span id="symbolscope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SymbolScope`
@@ -1118,7 +1090,7 @@ enum RelocationKind {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:343-366`](../../../.source_1765633015/object-0.37.3/src/common.rs#L343-L366)*
+*Defined in [`object-0.37.3/src/common.rs:343-366`](../../../.source_1765894658/object-0.37.3/src/common.rs#L343-L366)*
 
 The operation used to calculate the result of the relocation.
 
@@ -1227,11 +1199,8 @@ these definitions probably don't match any ELF ABI.
 - <span id="relocationkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationKind`
@@ -1280,7 +1249,7 @@ enum RelocationEncoding {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:374-447`](../../../.source_1765633015/object-0.37.3/src/common.rs#L374-L447)*
+*Defined in [`object-0.37.3/src/common.rs:374-447`](../../../.source_1765894658/object-0.37.3/src/common.rs#L374-L447)*
 
 Information about how the result of the relocation operation is encoded in the place.
 
@@ -1424,11 +1393,8 @@ a specific instruction.
 - <span id="relocationencoding-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationEncoding`
@@ -1479,7 +1445,7 @@ enum FileFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:452-479`](../../../.source_1765633015/object-0.37.3/src/common.rs#L452-L479)*
+*Defined in [`object-0.37.3/src/common.rs:452-479`](../../../.source_1765894658/object-0.37.3/src/common.rs#L452-L479)*
 
 File flags that are specific to each file format.
 
@@ -1550,11 +1516,8 @@ File flags that are specific to each file format.
 - <span id="fileflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for FileFlags`
@@ -1602,7 +1565,7 @@ enum SegmentFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:484-506`](../../../.source_1765633015/object-0.37.3/src/common.rs#L484-L506)*
+*Defined in [`object-0.37.3/src/common.rs:484-506`](../../../.source_1765894658/object-0.37.3/src/common.rs#L484-L506)*
 
 Segment flags that are specific to each file format.
 
@@ -1669,11 +1632,8 @@ Segment flags that are specific to each file format.
 - <span id="segmentflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SegmentFlags`
@@ -1722,7 +1682,7 @@ enum SectionFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:511-534`](../../../.source_1765633015/object-0.37.3/src/common.rs#L511-L534)*
+*Defined in [`object-0.37.3/src/common.rs:511-534`](../../../.source_1765894658/object-0.37.3/src/common.rs#L511-L534)*
 
 Section flags that are specific to each file format.
 
@@ -1793,11 +1753,8 @@ Section flags that are specific to each file format.
 - <span id="sectionflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SectionFlags`
@@ -1851,7 +1808,7 @@ enum SymbolFlags<Section, Symbol> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:539-578`](../../../.source_1765633015/object-0.37.3/src/common.rs#L539-L578)*
+*Defined in [`object-0.37.3/src/common.rs:539-578`](../../../.source_1765894658/object-0.37.3/src/common.rs#L539-L578)*
 
 Symbol flags that are specific to each file format.
 
@@ -1922,11 +1879,8 @@ Symbol flags that are specific to each file format.
 - <span id="symbolflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Section: cmp::PartialEq, Symbol: cmp::PartialEq> PartialEq for SymbolFlags<Section, Symbol>`
@@ -1982,7 +1936,7 @@ enum RelocationFlags {
 }
 ```
 
-*Defined in [`object-0.37.3/src/common.rs:583-619`](../../../.source_1765633015/object-0.37.3/src/common.rs#L583-L619)*
+*Defined in [`object-0.37.3/src/common.rs:583-619`](../../../.source_1765894658/object-0.37.3/src/common.rs#L583-L619)*
 
 Relocation fields that are specific to each file format and architecture.
 
@@ -2053,11 +2007,8 @@ Relocation fields that are specific to each file format and architecture.
 - <span id="relocationflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationFlags`

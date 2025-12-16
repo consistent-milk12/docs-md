@@ -68,7 +68,7 @@
 struct ValueParser(ValueParserInner);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
 
 Parse/validate argument values
 
@@ -129,269 +129,145 @@ assert_eq!(port, 3001);
 - <span id="valueparser-new"></span>`fn new<P>(other: P) -> Self`
 
   Custom parser for argument values
-
   
-
   Pre-existing [`TypedValueParser`](#typedvalueparser) implementations include:
-
   - `Fn(&str) -> Result<T, E>`
-
   - [`EnumValueParser`](#enumvalueparser) and  [`PossibleValuesParser`](#possiblevaluesparser) for static enumerated values
-
   - [`BoolishValueParser`](#boolishvalueparser) and [`FalseyValueParser`](#falseyvalueparser) for alternative `bool` implementations
-
   - [`RangedI64ValueParser`](#rangedi64valueparser) and [`RangedU64ValueParser`](#rangedu64valueparser)
-
   - [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   type EnvVar = (String, Option<String>);
-
   fn parse_env_var(env: &str) -> Result<EnvVar, std::io::Error> {
-
       if let Some((var, value)) = env.split_once('=') {
-
           Ok((var.to_owned(), Some(value.to_owned())))
-
       } else {
-
           Ok((env.to_owned(), None))
-
       }
-
   }
-
   
-
   let mut cmd = clap::Command::new("raw")
-
       .arg(
-
           clap::Arg::new("env")
-
               .value_parser(clap::builder::ValueParser::new(parse_env_var))
-
               .required(true)
-
       );
-
   
-
   let m = cmd.try_get_matches_from_mut(["cmd", "key=value"]).unwrap();
-
   let port: &EnvVar = m.get_one("env")
-
       .expect("required");
-
   assert_eq!(*port, ("key".into(), Some("value".into())));
-
   ```
 
 - <span id="valueparser-bool"></span>`const fn bool() -> Self`
 
   `bool` parser for argument values
-
   
-
   See also:
-
   - [`BoolishValueParser`](#boolishvalueparser) for different human readable bool representations
-
   - [`FalseyValueParser`](#falseyvalueparser) for assuming non-false is true
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   let mut cmd = clap::Command::new("raw")
-
       .arg(
-
           clap::Arg::new("download")
-
               .value_parser(clap::value_parser!(bool))
-
               .required(true)
-
       );
-
   
-
   let m = cmd.try_get_matches_from_mut(["cmd", "true"]).unwrap();
-
   let port: bool = *m.get_one("download")
-
       .expect("required");
-
   assert_eq!(port, true);
-
   
-
   assert!(cmd.try_get_matches_from_mut(["cmd", "forever"]).is_err());
-
   ```
 
 - <span id="valueparser-string"></span>`const fn string() -> Self`
 
-  [`String`](../../../cargo_platform/index.md) parser for argument values
-
+  [`String`](../../index.md) parser for argument values
   
-
   See also:
-
   - [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   let mut cmd = clap::Command::new("raw")
-
       .arg(
-
           clap::Arg::new("port")
-
               .value_parser(clap::value_parser!(String))
-
               .required(true)
-
       );
-
   
-
   let m = cmd.try_get_matches_from_mut(["cmd", "80"]).unwrap();
-
   let port: &String = m.get_one("port")
-
       .expect("required");
-
   assert_eq!(port, "80");
-
   ```
 
 - <span id="valueparser-os-string"></span>`const fn os_string() -> Self`
 
   `OsString` parser for argument values
-
   
-
   # Example
-
   
-
   ```rust
-
   #[cfg(unix)] {
-
   use clap_builder as clap;
-
   use clap::{Command, Arg, builder::ValueParser};
-
   use std::ffi::OsString;
-
   use std::os::unix::ffi::{OsStrExt,OsStringExt};
-
   let r = Command::new("myprog")
-
       .arg(
-
           Arg::new("arg")
-
           .required(true)
-
           .value_parser(ValueParser::os_string())
-
       )
-
       .try_get_matches_from(vec![
-
           OsString::from("myprog"),
-
           OsString::from_vec(vec![0xe9])
-
       ]);
-
   
-
   assert!(r.is_ok());
-
   let m = r.unwrap();
-
   let arg: &OsString = m.get_one("arg")
-
       .expect("required");
-
   assert_eq!(arg.as_bytes(), &[0xe9]);
-
   }
-
   ```
 
 - <span id="valueparser-path-buf"></span>`const fn path_buf() -> Self`
 
   `PathBuf` parser for argument values
-
   
-
   # Example
-
   
-
   ```rust
-
   use clap_builder as clap;
-
   use std::path::PathBuf;
-
   use std::path::Path;
-
   let mut cmd = clap::Command::new("raw")
-
       .arg(
-
           clap::Arg::new("output")
-
               .value_parser(clap::value_parser!(PathBuf))
-
               .required(true)
-
       );
-
   
-
   let m = cmd.try_get_matches_from_mut(["cmd", "hello.txt"]).unwrap();
-
   let port: &PathBuf = m.get_one("output")
-
       .expect("required");
-
   assert_eq!(port, Path::new("hello.txt"));
-
   
-
   assert!(cmd.try_get_matches_from_mut(["cmd", ""]).is_err());
-
   ```
 
 #### Trait Implementations
@@ -431,11 +307,8 @@ assert_eq!(port, 3001);
 - <span id="valueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for ValueParser`
@@ -469,7 +342,7 @@ struct StringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
 
 Implementation for `ValueParser::string`
 
@@ -524,11 +397,8 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 - <span id="stringvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for StringValueParser`
@@ -570,7 +440,7 @@ struct OsStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
 
 Implementation for `ValueParser::os_string`
 
@@ -625,11 +495,8 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 - <span id="osstringvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for OsStringValueParser`
@@ -671,7 +538,7 @@ struct PathBufValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
 
 Implementation for `ValueParser::path_buf`
 
@@ -726,11 +593,8 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 - <span id="pathbufvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for PathBufValueParser`
@@ -771,7 +635,7 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 struct EnumValueParser<E: crate::ValueEnum + Clone + Send + Sync + 'static>(std::marker::PhantomData<E>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
 
 Parse an `ValueEnum` value.
 
@@ -859,11 +723,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), Colo
 - <span id="enumvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for EnumValueParser<E>`
@@ -904,7 +765,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), Colo
 struct PossibleValuesParser(Vec<super::PossibleValue>);
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
 
 Verify the value is from an enumerated set of `PossibleValue`.
 
@@ -989,11 +850,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), "nev
 - <span id="possiblevaluesparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for PossibleValuesParser`
@@ -1039,7 +897,7 @@ struct RangedI64ValueParser<T: TryFrom<i64> + Clone + Send + Sync> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
 
 Parse number that fall within a range of values
 
@@ -1143,11 +1001,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 - <span id="rangedi64valueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for RangedI64ValueParser<T>`
@@ -1189,7 +1044,7 @@ struct RangedU64ValueParser<T: TryFrom<u64>> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
 
 Parse number that fall within a range of values
 
@@ -1285,11 +1140,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 - <span id="rangedu64valueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for RangedU64ValueParser<T>`
@@ -1329,7 +1181,7 @@ struct BoolValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
 
 Implementation for `ValueParser::bool`
 
@@ -1386,11 +1238,8 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 - <span id="boolvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for BoolValueParser`
@@ -1432,7 +1281,7 @@ struct FalseyValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
 
 Parse false-like string values, everything else is `true`
 
@@ -1526,11 +1375,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 - <span id="falseyvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for FalseyValueParser`
@@ -1572,7 +1418,7 @@ struct BoolishValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
 
 Parse bool-like string values
 
@@ -1670,11 +1516,8 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 - <span id="boolishvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for BoolishValueParser`
@@ -1716,7 +1559,7 @@ struct NonEmptyStringValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
 
 Parse non-empty string values
 
@@ -1802,11 +1645,8 @@ assert!(value_parser.parse_ref(&cmd, arg, OsStr::new("")).is_err());
 - <span id="nonemptystringvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for NonEmptyStringValueParser`
@@ -1848,7 +1688,7 @@ struct MapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -1895,11 +1735,8 @@ See `TypedValueParser::map`
 - <span id="mapvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for MapValueParser<P, F>`
@@ -1945,7 +1782,7 @@ struct TryMapValueParser<P, F> {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -1992,11 +1829,8 @@ See `TypedValueParser::try_map`
 - <span id="trymapvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for TryMapValueParser<P, F>`
@@ -2040,7 +1874,7 @@ struct UnknownArgumentValueParser {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
 
 When encountered, report `ErrorKind::UnknownArgument`
 
@@ -2127,11 +1961,8 @@ assert_eq!(err.kind(), clap::error::ErrorKind::UnknownArgument);
 - <span id="unknownargumentvalueparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for UnknownArgumentValueParser`
@@ -2180,7 +2011,7 @@ enum ValueParserInner {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:65-75`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L65-L75)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:65-75`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L65-L75)*
 
 #### Trait Implementations
 
@@ -2207,11 +2038,8 @@ enum ValueParserInner {
 - <span id="valueparserinner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for ValueParserInner`
@@ -2234,7 +2062,7 @@ enum ValueParserInner {
 trait AnyValueParser: Send + Sync + 'static { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:591-617`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L591-L617)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:591-617`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L591-L617)*
 
 A type-erased wrapper for [`TypedValueParser`](#typedvalueparser).
 
@@ -2264,7 +2092,7 @@ A type-erased wrapper for [`TypedValueParser`](#typedvalueparser).
 trait TypedValueParser: Clone + Send + Sync + 'static { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
 
 Parse/validate argument values
 
@@ -2327,32 +2155,120 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 - `fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
+  
+  When `arg` is `None`, an external subcommand value is being parsed.
 
 #### Provided Methods
 
 - `fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
+  
+  When `arg` is `None`, an external subcommand value is being parsed.
 
 - `fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
+  
+  When `arg` is `None`, an external subcommand value is being parsed.
 
 - `fn parse_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
+  
+  When `arg` is `None`, an external subcommand value is being parsed.
 
 - `fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
 
   Reflect on enumerated value properties
+  
+  Error checking should not be done with this; it is mostly targeted at user-facing
+  applications like errors and completion.
 
 - `fn map<T, F>(self, func: F) -> MapValueParser<Self, F>`
 
   Adapt a `TypedValueParser` from one value to another
+  
+  # Example
+  
+  ```rust
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
+  use clap::builder::TypedValueParser as _;
+  use clap::builder::BoolishValueParser;
+  let cmd = Command::new("mycmd")
+      .arg(
+          Arg::new("flag")
+              .long("flag")
+              .action(clap::ArgAction::SetTrue)
+              .value_parser(
+                  BoolishValueParser::new()
+                  .map(|b| -> usize {
+                      if b { 10 } else { 5 }
+                  })
+              )
+      );
+  
+  let matches = cmd.clone().try_get_matches_from(["mycmd", "--flag"]).unwrap();
+  assert!(matches.contains_id("flag"));
+  assert_eq!(
+      matches.get_one::<usize>("flag").copied(),
+      Some(10)
+  );
+  
+  let matches = cmd.try_get_matches_from(["mycmd"]).unwrap();
+  assert!(matches.contains_id("flag"));
+  assert_eq!(
+      matches.get_one::<usize>("flag").copied(),
+      Some(5)
+  );
+  ```
 
 - `fn try_map<T, E, F>(self, func: F) -> TryMapValueParser<Self, F>`
 
   Adapt a `TypedValueParser` from one value to another
+  
+  # Example
+  
+  ```rust
+  use clap_builder as clap;
+  use std::ffi::OsString;
+  use std::ffi::OsStr;
+  use std::path::PathBuf;
+  use std::path::Path;
+  use clap::Command;
+  use clap::Arg;
+  use clap::builder::TypedValueParser as _;
+  use clap::builder::OsStringValueParser;
+  let cmd = Command::new("mycmd")
+      .arg(
+          Arg::new("flag")
+              .long("flag")
+              .value_parser(
+                  OsStringValueParser::new()
+                  .try_map(verify_ext)
+              )
+      );
+  
+  fn verify_ext(os: OsString) -> Result<PathBuf, &'static str> {
+      let path = PathBuf::from(os);
+      if path.extension() != Some(OsStr::new("rs")) {
+          return Err("only Rust files are supported");
+      }
+      Ok(path)
+  }
+  
+  let error = cmd.clone().try_get_matches_from(["mycmd", "--flag", "foo.txt"]).unwrap_err();
+  error.print();
+  
+  let matches = cmd.try_get_matches_from(["mycmd", "--flag", "foo.rs"]).unwrap();
+  assert!(matches.contains_id("flag"));
+  assert_eq!(
+      matches.get_one::<PathBuf>("flag").map(|s| s.as_path()),
+      Some(Path::new("foo.rs"))
+  );
+  ```
 
 #### Implementors
 
@@ -2378,7 +2294,7 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 trait ValueParserFactory { ... }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
 
 Register a type with [`value_parser!`][crate::value_parser!]
 

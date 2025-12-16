@@ -54,7 +54,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:23-30`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L23-L30)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:23-30`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L23-L30)*
 
 An iterator for the loadable sections in a [`PeFile`](../index.md).
 
@@ -87,11 +87,8 @@ An iterator for the loadable sections in a [`PeFile`](../index.md).
 - <span id="pesegmentiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeSegmentIterator<'data, 'file, Pe, R>`
@@ -132,7 +129,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:58-65`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L58-L65)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:58-65`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L58-L65)*
 
 A loadable section in a [`PeFile`](../index.md).
 
@@ -177,11 +174,8 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 - <span id="pesegment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Pe, R> ObjectSegment for PeSegment<'data, 'file, Pe, R>`
@@ -230,7 +224,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:162-169`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L162-L169)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:162-169`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L162-L169)*
 
 An iterator for the sections in a [`PeFile`](../index.md).
 
@@ -263,11 +257,8 @@ An iterator for the sections in a [`PeFile`](../index.md).
 - <span id="pesectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeSectionIterator<'data, 'file, Pe, R>`
@@ -309,7 +300,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:198-206`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L198-L206)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:198-206`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L198-L206)*
 
 A section in a [`PeFile`](../index.md).
 
@@ -354,11 +345,8 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 - <span id="pesection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Pe, R> ObjectSection for PeSection<'data, 'file, Pe, R>`
@@ -419,7 +407,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 struct PeRelocationIterator<'data, 'file, R>(core::marker::PhantomData<(&'data (), &'file (), R)>);
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:466-468`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L466-L468)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:466-468`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L466-L468)*
 
 An iterator for the relocations in an [`PeSection`](../index.md).
 
@@ -454,11 +442,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="perelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for PeRelocationIterator<'data, 'file, R>`
@@ -495,7 +480,7 @@ This is a stub that doesn't implement any functionality.
 type PeSegmentIterator32<'data, 'file, R> = PeSegmentIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:15-16`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:15-16`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L15-L16)*
 
 An iterator for the loadable sections in a [`PeFile32`](super::PeFile32).
 
@@ -505,7 +490,7 @@ An iterator for the loadable sections in a [`PeFile32`](super::PeFile32).
 type PeSegmentIterator64<'data, 'file, R> = PeSegmentIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:18-19`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L18-L19)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:18-19`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L18-L19)*
 
 An iterator for the loadable sections in a [`PeFile64`](super::PeFile64).
 
@@ -515,7 +500,7 @@ An iterator for the loadable sections in a [`PeFile64`](super::PeFile64).
 type PeSegment32<'data, 'file, R> = PeSegment<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:48-49`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L48-L49)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:48-49`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L48-L49)*
 
 A loadable section in a [`PeFile32`](super::PeFile32).
 
@@ -525,7 +510,7 @@ A loadable section in a [`PeFile32`](super::PeFile32).
 type PeSegment64<'data, 'file, R> = PeSegment<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:51-52`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L51-L52)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:51-52`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L51-L52)*
 
 A loadable section in a [`PeFile64`](super::PeFile64).
 
@@ -535,7 +520,7 @@ A loadable section in a [`PeFile64`](super::PeFile64).
 type PeSectionIterator32<'data, 'file, R> = PeSectionIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:154-155`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L154-L155)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:154-155`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L154-L155)*
 
 An iterator for the sections in a [`PeFile32`](super::PeFile32).
 
@@ -545,7 +530,7 @@ An iterator for the sections in a [`PeFile32`](super::PeFile32).
 type PeSectionIterator64<'data, 'file, R> = PeSectionIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:157-158`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L157-L158)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:157-158`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L157-L158)*
 
 An iterator for the sections in a [`PeFile64`](super::PeFile64).
 
@@ -555,7 +540,7 @@ An iterator for the sections in a [`PeFile64`](super::PeFile64).
 type PeSection32<'data, 'file, R> = PeSection<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:188-189`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L188-L189)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:188-189`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L188-L189)*
 
 A section in a [`PeFile32`](super::PeFile32).
 
@@ -565,7 +550,7 @@ A section in a [`PeFile32`](super::PeFile32).
 type PeSection64<'data, 'file, R> = PeSection<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/pe/section.rs:191-192`](../../../../../.source_1765633015/object-0.37.3/src/read/pe/section.rs#L191-L192)*
+*Defined in [`object-0.37.3/src/read/pe/section.rs:191-192`](../../../../../.source_1765894658/object-0.37.3/src/read/pe/section.rs#L191-L192)*
 
 A section in a [`PeFile64`](super::PeFile64).
 

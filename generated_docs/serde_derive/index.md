@@ -64,7 +64,7 @@ Please refer to [https://serde.rs/derive.html] for how to set this up.
 struct private;
 ```
 
-*Defined in [`serde_derive-1.0.228/src/lib.rs:96`](../../.source_1765633015/serde_derive-1.0.228/src/lib.rs#L96)*
+*Defined in [`serde_derive-1.0.228/src/lib.rs:96`](../../.source_1765894658/serde_derive-1.0.228/src/lib.rs#L96)*
 
 #### Implementations
 
@@ -95,11 +95,8 @@ struct private;
 - <span id="private-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Spanned for private`

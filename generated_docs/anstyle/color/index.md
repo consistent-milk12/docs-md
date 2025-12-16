@@ -37,7 +37,7 @@
 struct Ansi256Color(u8);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:352`](../../../.source_1765633015/anstyle-1.0.13/src/color.rs#L352)*
+*Defined in [`anstyle-1.0.13/src/color.rs:352`](../../../.source_1765894658/anstyle-1.0.13/src/color.rs#L352)*
 
 256 (8-bit) color support
 
@@ -126,11 +126,8 @@ struct Ansi256Color(u8);
 - <span id="ansi256color-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Ansi256Color`
@@ -173,7 +170,7 @@ struct Ansi256Color(u8);
 struct RgbColor(u8, u8, u8);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:476`](../../../.source_1765633015/anstyle-1.0.13/src/color.rs#L476)*
+*Defined in [`anstyle-1.0.13/src/color.rs:476`](../../../.source_1765894658/anstyle-1.0.13/src/color.rs#L476)*
 
 24-bit ANSI RGB color codes
 
@@ -258,11 +255,8 @@ struct RgbColor(u8, u8, u8);
 - <span id="rgbcolor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for RgbColor`
@@ -308,7 +302,7 @@ struct DisplayBuffer {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../../.source_1765633015/anstyle-1.0.13/src/color.rs#L571-L574)*
+*Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../../.source_1765894658/anstyle-1.0.13/src/color.rs#L571-L574)*
 
 #### Implementations
 
@@ -367,11 +361,8 @@ struct DisplayBuffer {
 - <span id="displaybuffer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DisplayBuffer`
@@ -404,7 +395,7 @@ struct DisplayBuffer {
 struct NullFormatter(&'static str);
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:635`](../../../.source_1765633015/anstyle-1.0.13/src/color.rs#L635)*
+*Defined in [`anstyle-1.0.13/src/color.rs:635`](../../../.source_1765894658/anstyle-1.0.13/src/color.rs#L635)*
 
 #### Trait Implementations
 
@@ -453,11 +444,8 @@ struct NullFormatter(&'static str);
 - <span id="nullformatter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for NullFormatter`
@@ -496,7 +484,7 @@ enum Color {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../../.source_1765633015/anstyle-1.0.13/src/color.rs#L4-L17)*
+*Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../../.source_1765894658/anstyle-1.0.13/src/color.rs#L4-L17)*
 
 Any ANSI color code scheme
 
@@ -591,11 +579,8 @@ Any ANSI color code scheme
 - <span id="color-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Color`
@@ -655,7 +640,7 @@ enum AnsiColor {
 }
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../../.source_1765633015/anstyle-1.0.13/src/color.rs#L138-L186)*
+*Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../../.source_1765894658/anstyle-1.0.13/src/color.rs#L138-L186)*
 
 Available 4-bit ANSI color palette codes
 
@@ -808,11 +793,8 @@ The user's terminal defines the meaning of the each palette code.
 - <span id="ansicolor-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for AnsiColor`
@@ -856,5 +838,5 @@ The user's terminal defines the meaning of the each palette code.
 const DISPLAY_BUFFER_CAPACITY: usize = 19usize;
 ```
 
-*Defined in [`anstyle-1.0.13/src/color.rs:568`](../../../.source_1765633015/anstyle-1.0.13/src/color.rs#L568)*
+*Defined in [`anstyle-1.0.13/src/color.rs:568`](../../../.source_1765894658/anstyle-1.0.13/src/color.rs#L568)*
 

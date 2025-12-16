@@ -28,7 +28,7 @@ enum Error {
 }
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/errors.rs:25-52`](../../../.source_1765633015/cargo_metadata-0.23.1/src/errors.rs#L25-L52)*
+*Defined in [`cargo_metadata-0.23.1/src/errors.rs:25-52`](../../../.source_1765894658/cargo_metadata-0.23.1/src/errors.rs#L25-L52)*
 
 Error returned when executing/parsing `cargo metadata` fails.
 
@@ -112,11 +112,8 @@ of, a failed call of `cargo_metadata` you can do one of multiple thinks:
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for Error`
@@ -143,7 +140,7 @@ of, a failed call of `cargo_metadata` you can do one of multiple thinks:
 type Result<T, E> = ::std::result::Result<T, E>;
 ```
 
-*Defined in [`cargo_metadata-0.23.1/src/errors.rs:4`](../../../.source_1765633015/cargo_metadata-0.23.1/src/errors.rs#L4)*
+*Defined in [`cargo_metadata-0.23.1/src/errors.rs:4`](../../../.source_1765894658/cargo_metadata-0.23.1/src/errors.rs#L4)*
 
 Custom result type for `cargo_metadata::Error`
 

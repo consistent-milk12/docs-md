@@ -56,45 +56,25 @@ assert_eq!(PathUtils::short_name("Clone"), "Clone");
 - <span id="pathutils-short-name"></span>`fn short_name(path: &str) -> &str`
 
   Extract the short name (last segment) from a qualified Rust path.
-
   
-
   Rust paths use `::` as a separator. This function returns the final
-
   segment, which is typically the item's simple name without module prefix.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use cargo_docs_md::utils::PathUtils;
-
   
-
   assert_eq!(PathUtils::short_name("std::vec::Vec"), "Vec");
-
   assert_eq!(PathUtils::short_name("std::collections::HashMap"), "HashMap");
-
   assert_eq!(PathUtils::short_name("Clone"), "Clone");
-
   assert_eq!(PathUtils::short_name(""), "");
-
   ```
-
   
-
   # Edge Cases
-
   
-
   - Empty string returns empty string
-
   - Path ending with `::` returns empty string (e.g., `"foo::"` -> `""`)
-
   - Single segment returns itself (e.g., `"Vec"` -> `"Vec"`)
 
 #### Trait Implementations
@@ -124,11 +104,8 @@ assert_eq!(PathUtils::short_name("Clone"), "Clone");
 - <span id="pathutils-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for PathUtils`

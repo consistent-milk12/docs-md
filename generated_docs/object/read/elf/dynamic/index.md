@@ -18,7 +18,7 @@
 trait Dyn: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../../.source_1765633015/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
+*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../../.source_1765894658/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
 
 A trait for generic access to [`elf::Dyn32`](../../../elf/index.md) and [`elf::Dyn64`](../../../elf/index.md).
 
@@ -51,6 +51,8 @@ A trait for generic access to [`elf::Dyn32`](../../../elf/index.md) and [`elf::D
 - `fn string<'data>(&self, endian: <Self as >::Endian, strings: StringTable<'data>) -> Result<&'data [u8]>`
 
   Use the value to get a string in a string table.
+  
+  Does not check for an appropriate tag.
 
 - `fn is_address(&self, endian: <Self as >::Endian) -> bool`
 

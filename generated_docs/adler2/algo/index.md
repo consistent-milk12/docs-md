@@ -18,7 +18,7 @@
 struct U32X4([u32; 4]);
 ```
 
-*Defined in [`adler2-2.0.1/src/algo.rs:112`](../../../.source_1765633015/adler2-2.0.1/src/algo.rs#L112)*
+*Defined in [`adler2-2.0.1/src/algo.rs:112`](../../../.source_1765894658/adler2-2.0.1/src/algo.rs#L112)*
 
 #### Implementations
 
@@ -63,11 +63,8 @@ struct U32X4([u32; 4]);
 - <span id="u32x4-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl MulAssign for U32X4`

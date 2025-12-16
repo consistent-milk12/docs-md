@@ -129,7 +129,7 @@ struct Error {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:24-32`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L24-L32)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:24-32`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L24-L32)*
 
 An error that occurred while parsing a regular expression into an abstract
 syntax tree.
@@ -163,9 +163,7 @@ translating an AST to the high-level intermediate representation (`HIR`).
 - <span id="error-pattern"></span>`fn pattern(&self) -> &str`
 
   The original pattern string in which this error occurred.
-
   
-
   Every span reported by this error is reported in terms of this string.
 
 - <span id="error-span"></span>`fn span(&self) -> &Span` — [`Span`](#span)
@@ -175,13 +173,9 @@ translating an AST to the high-level intermediate representation (`HIR`).
 - <span id="error-auxiliary-span"></span>`fn auxiliary_span(&self) -> Option<&Span>` — [`Span`](#span)
 
   Return an auxiliary span. This span exists only for some errors that
-
   benefit from being able to point to two locations in the original
-
   regular expression. For example, "duplicate" errors will have the
-
   main error position set to the duplicate occurrence while its
-
   auxiliary span will be set to the initial occurrence.
 
 #### Trait Implementations
@@ -229,11 +223,8 @@ translating an AST to the high-level intermediate representation (`HIR`).
 - <span id="error-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Error`
@@ -275,7 +266,7 @@ struct Span {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:319-324`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L319-L324)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:319-324`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L319-L324)*
 
 Span represents the position information of a single AST item.
 
@@ -305,13 +296,11 @@ original regular expression that was parsed.
 - <span id="span-with-start"></span>`fn with_start(self, pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
   Create a new span by replacing the starting the position with the one
-
   given.
 
 - <span id="span-with-end"></span>`fn with_end(self, pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
   Create a new span by replacing the ending the position with the one
-
   given.
 
 - <span id="span-is-one-line"></span>`fn is_one_line(&self) -> bool`
@@ -321,7 +310,6 @@ original regular expression that was parsed.
 - <span id="span-is-empty"></span>`fn is_empty(&self) -> bool`
 
   Returns true if and only if this span is empty. That is, it points to
-
   a single position in the concrete syntax of a regular expression.
 
 #### Trait Implementations
@@ -365,11 +353,8 @@ original regular expression that was parsed.
 - <span id="span-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Span`
@@ -416,7 +401,7 @@ struct Position {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:350-358`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L350-L358)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:350-358`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L350-L358)*
 
 A single position in a regular expression.
 
@@ -443,19 +428,12 @@ number and column number.
 - <span id="position-new"></span>`fn new(offset: usize, line: usize, column: usize) -> Position` — [`Position`](#position)
 
   Create a new position with the given information.
-
   
-
   `offset` is the absolute offset of the position, starting at `0` from
-
   the beginning of the regular expression pattern string.
-
   
-
   `line` is the line number, starting at `1`.
-
   
-
   `column` is the approximate column number, starting at `1`.
 
 #### Trait Implementations
@@ -499,11 +477,8 @@ number and column number.
 - <span id="position-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Position`
@@ -549,7 +524,7 @@ struct WithComments {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:439-444`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L439-L444)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:439-444`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L439-L444)*
 
 An abstract syntax tree for a singular expression along with comments
 found.
@@ -607,11 +582,8 @@ regular expression.
 - <span id="withcomments-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for WithComments`
@@ -649,7 +621,7 @@ struct Comment {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:452-458`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L452-L458)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:452-458`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L452-L458)*
 
 A comment from a regular expression with an associated span.
 
@@ -706,11 +678,8 @@ enabled.
 - <span id="comment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Comment`
@@ -748,7 +717,7 @@ struct Alternation {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:623-628`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L623-L628)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:623-628`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L623-L628)*
 
 An alternation of regular expressions.
 
@@ -767,13 +736,9 @@ An alternation of regular expressions.
 - <span id="alternation-into-ast"></span>`fn into_ast(self) -> Ast` — [`Ast`](#ast)
 
   Return this alternation as an AST.
-
   
-
   If this alternation contains zero ASTs, then `Ast::empty` is returned.
-
   If this alternation contains exactly 1 AST, then the corresponding AST
-
   is returned. Otherwise, `Ast::alternation` is returned.
 
 #### Trait Implementations
@@ -815,11 +780,8 @@ An alternation of regular expressions.
 - <span id="alternation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Alternation`
@@ -857,7 +819,7 @@ struct Concat {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:648-653`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L648-L653)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:648-653`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L648-L653)*
 
 A concatenation of regular expressions.
 
@@ -876,13 +838,9 @@ A concatenation of regular expressions.
 - <span id="concat-into-ast"></span>`fn into_ast(self) -> Ast` — [`Ast`](#ast)
 
   Return this concatenation as an AST.
-
   
-
   If this alternation contains zero ASTs, then `Ast::empty` is returned.
-
   If this alternation contains exactly 1 AST, then the corresponding AST
-
   is returned. Otherwise, `Ast::concat` is returned.
 
 #### Trait Implementations
@@ -924,11 +882,8 @@ A concatenation of regular expressions.
 - <span id="concat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Concat`
@@ -967,7 +922,7 @@ struct Literal {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:677-684`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L677-L684)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:677-684`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L677-L684)*
 
 A single literal expression.
 
@@ -994,7 +949,6 @@ e.g., `\x61`.
 - <span id="literal-byte"></span>`fn byte(&self) -> Option<u8>`
 
   If this literal was written as a `\x` hex escape, then this returns
-
   the corresponding byte value. Otherwise, this returns `None`.
 
 #### Trait Implementations
@@ -1036,11 +990,8 @@ e.g., `\x61`.
 - <span id="literal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Literal`
@@ -1079,7 +1030,7 @@ struct ClassPerl {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:785-793`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L785-L793)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:785-793`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L785-L793)*
 
 A Perl character class.
 
@@ -1137,11 +1088,8 @@ A Perl character class.
 - <span id="classperl-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassPerl`
@@ -1180,7 +1128,7 @@ struct ClassAscii {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:810-818`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L810-L818)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:810-818`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L810-L818)*
 
 An ASCII character class.
 
@@ -1238,11 +1186,8 @@ An ASCII character class.
 - <span id="classascii-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassAscii`
@@ -1281,7 +1226,7 @@ struct ClassUnicode {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:887-902`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L887-L902)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:887-902`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L887-L902)*
 
 A Unicode character class.
 
@@ -1312,11 +1257,8 @@ A Unicode character class.
 - <span id="classunicode-is-negated"></span>`fn is_negated(&self) -> bool`
 
   Returns true if this class has been negated.
-
   
-
   Note that this takes the Unicode op into account, if it's present.
-
   e.g., `is_negated` for `\P{scx!=Katakana}` will return `false`.
 
 #### Trait Implementations
@@ -1358,11 +1300,8 @@ A Unicode character class.
 - <span id="classunicode-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassUnicode`
@@ -1401,7 +1340,7 @@ struct ClassBracketed {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1112-1121`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1112-L1121)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1112-1121`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1112-L1121)*
 
 A bracketed character class, e.g., `[a-z0-9]`.
 
@@ -1460,11 +1399,8 @@ A bracketed character class, e.g., `[a-z0-9]`.
 - <span id="classbracketed-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassBracketed`
@@ -1503,7 +1439,7 @@ struct ClassSetRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1209-1216`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1209-L1216)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1209-1216`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1209-L1216)*
 
 A single character class range in a set.
 
@@ -1526,11 +1462,8 @@ A single character class range in a set.
 - <span id="classsetrange-is-valid"></span>`fn is_valid(&self) -> bool`
 
   Returns true if and only if this character class range is valid.
-
   
-
   The only case where a range is invalid is if its start is greater than
-
   its end.
 
 #### Trait Implementations
@@ -1572,11 +1505,8 @@ A single character class range in a set.
 - <span id="classsetrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassSetRange`
@@ -1614,7 +1544,7 @@ struct ClassSetUnion {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1231-1237`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1231-L1237)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1231-1237`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1231-L1237)*
 
 A union of items inside a character class set.
 
@@ -1634,37 +1564,23 @@ A union of items inside a character class set.
 - <span id="classsetunion-push"></span>`fn push(&mut self, item: ClassSetItem)` — [`ClassSetItem`](#classsetitem)
 
   Push a new item in this union.
-
   
-
   The ending position of this union's span is updated to the ending
-
   position of the span of the item given. If the union is empty, then
-
   the starting position of this union is set to the starting position
-
   of this item.
-
   
-
   In other words, if you only use this method to add items to a union
-
   and you set the spans on each item correctly, then you should never
-
   need to adjust the span of the union directly.
 
 - <span id="classsetunion-into-item"></span>`fn into_item(self) -> ClassSetItem` — [`ClassSetItem`](#classsetitem)
 
   Return this union as a character class set item.
-
   
-
   If this union contains zero items, then an empty union is
-
   returned. If this concatenation contains exactly 1 item, then the
-
   corresponding item is returned. Otherwise, ClassSetItem::Union is
-
   returned.
 
 #### Trait Implementations
@@ -1706,11 +1622,8 @@ A union of items inside a character class set.
 - <span id="classsetunion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassSetUnion`
@@ -1750,7 +1663,7 @@ struct ClassSetBinaryOp {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1276-1285`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1276-L1285)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1276-1285`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1276-L1285)*
 
 A Unicode character class set operation.
 
@@ -1811,11 +1724,8 @@ A Unicode character class set operation.
 - <span id="classsetbinaryop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassSetBinaryOp`
@@ -1853,7 +1763,7 @@ struct Assertion {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1308-1313`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1308-L1313)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1308-1313`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1308-L1313)*
 
 A single zero-width assertion.
 
@@ -1906,11 +1816,8 @@ A single zero-width assertion.
 - <span id="assertion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Assertion`
@@ -1950,7 +1857,7 @@ struct Repetition {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1348-1357`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1348-L1357)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1348-1357`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1348-L1357)*
 
 A repetition operation applied to a regular expression.
 
@@ -2011,11 +1918,8 @@ A repetition operation applied to a regular expression.
 - <span id="repetition-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Repetition`
@@ -2053,7 +1957,7 @@ struct RepetitionOp {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1362-1368`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1362-L1368)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1362-1368`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1362-L1368)*
 
 The repetition operator itself.
 
@@ -2107,11 +2011,8 @@ The repetition operator itself.
 - <span id="repetitionop-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RepetitionOp`
@@ -2150,7 +2051,7 @@ struct Group {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1417-1424`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1417-L1424)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1417-1424`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1417-L1424)*
 
 A grouped regular expression.
 
@@ -2178,7 +2079,6 @@ contains a sub-expression, e.g., `(a)`, `(?P<name>a)`, `(?:a)` and
 - <span id="group-flags"></span>`fn flags(&self) -> Option<&Flags>` — [`Flags`](#flags)
 
   If this group is non-capturing, then this returns the (possibly empty)
-
   set of flags. Otherwise, `None` is returned.
 
 - <span id="group-is-capturing"></span>`fn is_capturing(&self) -> bool`
@@ -2188,9 +2088,7 @@ contains a sub-expression, e.g., `(a)`, `(?P<name>a)`, `(?:a)` and
 - <span id="group-capture-index"></span>`fn capture_index(&self) -> Option<u32>`
 
   Returns the capture index of this group, if this is a capturing group.
-
   
-
   This returns a capture index precisely when `is_capturing` is `true`.
 
 #### Trait Implementations
@@ -2232,11 +2130,8 @@ contains a sub-expression, e.g., `(a)`, `(?P<name>a)`, `(?:a)` and
 - <span id="group-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Group`
@@ -2275,7 +2170,7 @@ struct CaptureName {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1478-1485`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1478-L1485)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1478-1485`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1478-L1485)*
 
 A capture name.
 
@@ -2335,11 +2230,8 @@ This corresponds to the name itself between the angle brackets in, e.g.,
 - <span id="capturename-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for CaptureName`
@@ -2377,7 +2269,7 @@ struct SetFlags {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1519-1524`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1519-L1524)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1519-1524`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1519-L1524)*
 
 A group of flags that is not applied to a particular regular expression.
 
@@ -2430,11 +2322,8 @@ A group of flags that is not applied to a particular regular expression.
 - <span id="setflags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SetFlags`
@@ -2472,7 +2361,7 @@ struct Flags {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1531-1537`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1531-L1537)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1531-1537`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1531-L1537)*
 
 A group of flags.
 
@@ -2494,33 +2383,21 @@ This corresponds only to the sequence of flags themselves, e.g., `is-u`.
 - <span id="flags-add-item"></span>`fn add_item(&mut self, item: FlagsItem) -> Option<usize>` — [`FlagsItem`](#flagsitem)
 
   Add the given item to this sequence of flags.
-
   
-
   If the item was added successfully, then `None` is returned. If the
-
   given item is a duplicate, then `Some(i)` is returned, where
-
   `items[i].kind == item.kind`.
 
 - <span id="flags-flag-state"></span>`fn flag_state(&self, flag: Flag) -> Option<bool>` — [`Flag`](#flag)
 
   Returns the state of the given flag in this set.
-
   
-
   If the given flag is in the set but is negated, then `Some(false)` is
-
   returned.
-
   
-
   If the given flag is in the set and is not negated, then `Some(true)`
-
   is returned.
-
   
-
   Otherwise, `None` is returned.
 
 #### Trait Implementations
@@ -2562,11 +2439,8 @@ This corresponds only to the sequence of flags themselves, e.g., `is-u`.
 - <span id="flags-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Flags`
@@ -2604,7 +2478,7 @@ struct FlagsItem {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1584-1589`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1584-L1589)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1584-1589`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1584-L1589)*
 
 A single item in a group of flags.
 
@@ -2657,11 +2531,8 @@ A single item in a group of flags.
 - <span id="flagsitem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for FlagsItem`
@@ -2739,7 +2610,7 @@ enum ErrorKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:75-190`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L75-L190)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:75-190`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L75-L190)*
 
 The type of an error that occurred while building an AST.
 
@@ -2961,11 +2832,8 @@ new variant is not considered a breaking change.
 - <span id="errorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ErrorKind`
@@ -3017,7 +2885,7 @@ enum Ast {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:469-496`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L469-L496)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:469-496`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L469-L496)*
 
 An abstract syntax tree for a single regular expression.
 
@@ -3140,7 +3008,6 @@ heap space proportional to the size of the `Ast`.
 - <span id="ast-has-subexprs"></span>`fn has_subexprs(&self) -> bool`
 
   Returns true if and only if this AST has any (including possibly empty)
-
   subexpressions.
 
 #### Trait Implementations
@@ -3190,11 +3057,8 @@ heap space proportional to the size of the `Ast`.
 - <span id="ast-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Ast`
@@ -3241,7 +3105,7 @@ enum LiteralKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:702-724`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L702-L724)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:702-724`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L702-L724)*
 
 The kind of a single literal expression.
 
@@ -3321,11 +3185,8 @@ The kind of a single literal expression.
 - <span id="literalkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LiteralKind`
@@ -3368,7 +3229,7 @@ enum SpecialLiteralKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:732-748`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L732-L748)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:732-748`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L732-L748)*
 
 The type of a special literal.
 
@@ -3445,11 +3306,8 @@ parser, e.g., `\f` or `\n`.
 - <span id="specialliteralkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for SpecialLiteralKind`
@@ -3488,7 +3346,7 @@ enum HexLiteralKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:757-767`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L757-L767)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:757-767`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L757-L767)*
 
 The type of a Unicode hex literal.
 
@@ -3518,9 +3376,7 @@ follow.
 - <span id="hexliteralkind-digits"></span>`fn digits(&self) -> u32`
 
   The number of digits that must be used with this literal form when
-
   used without brackets. When used with brackets, there is no
-
   restriction on the number of digits.
 
 #### Trait Implementations
@@ -3562,11 +3418,8 @@ follow.
 - <span id="hexliteralkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for HexLiteralKind`
@@ -3605,7 +3458,7 @@ enum ClassPerlKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:798-805`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L798-L805)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:798-805`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L798-L805)*
 
 The available Perl character classes.
 
@@ -3662,11 +3515,8 @@ The available Perl character classes.
 - <span id="classperlkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassPerlKind`
@@ -3716,7 +3566,7 @@ enum ClassAsciiKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:823-852`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L823-L852)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:823-852`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L823-L852)*
 
 The available ASCII character classes.
 
@@ -3783,17 +3633,11 @@ The available ASCII character classes.
 - <span id="classasciikind-from-name"></span>`fn from_name(name: &str) -> Option<ClassAsciiKind>` — [`ClassAsciiKind`](#classasciikind)
 
   Return the corresponding ClassAsciiKind variant for the given name.
-
   
-
   The name given should correspond to the lowercase version of the
-
   variant name. e.g., `cntrl` is the name for `ClassAsciiKind::Cntrl`.
-
   
-
   If no variant with the corresponding name exists, then `None` is
-
   returned.
 
 #### Trait Implementations
@@ -3835,11 +3679,8 @@ The available ASCII character classes.
 - <span id="classasciikind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassAsciiKind`
@@ -3882,7 +3723,7 @@ enum ClassUnicodeKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:922-937`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L922-L937)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:922-937`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L922-L937)*
 
 The available forms of Unicode character classes.
 
@@ -3940,11 +3781,8 @@ The available forms of Unicode character classes.
 - <span id="classunicodekind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassUnicodeKind`
@@ -3983,7 +3821,7 @@ enum ClassUnicodeOpKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1089-1097`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1089-L1097)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1089-1097`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1089-L1097)*
 
 The type of op used in a Unicode character class.
 
@@ -4047,11 +3885,8 @@ The type of op used in a Unicode character class.
 - <span id="classunicodeopkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassUnicodeOpKind`
@@ -4089,7 +3924,7 @@ enum ClassSet {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1131-1137`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1131-L1137)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1131-1137`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1131-L1137)*
 
 A character class set.
 
@@ -4166,11 +4001,8 @@ operations.
 - <span id="classset-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassSet`
@@ -4214,7 +4046,7 @@ enum ClassSetItem {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1165-1188`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1165-L1188)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1165-1188`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1165-L1188)*
 
 A single component of a character class set.
 
@@ -4303,11 +4135,8 @@ A single component of a character class set.
 - <span id="classsetitem-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassSetItem`
@@ -4346,7 +4175,7 @@ enum ClassSetBinaryOpKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1294-1303`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1294-L1303)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1294-1303`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1294-L1303)*
 
 The type of a Unicode character class set operation.
 
@@ -4411,11 +4240,8 @@ to the union operation.
 - <span id="classsetbinaryopkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ClassSetBinaryOpKind`
@@ -4463,7 +4289,7 @@ enum AssertionKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1318-1343`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1318-L1343)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1318-1343`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1318-L1343)*
 
 An assertion kind.
 
@@ -4556,11 +4382,8 @@ An assertion kind.
 - <span id="assertionkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for AssertionKind`
@@ -4600,7 +4423,7 @@ enum RepetitionKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1373-1382`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1373-L1382)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1373-1382`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1373-L1382)*
 
 The kind of a repetition operator.
 
@@ -4661,11 +4484,8 @@ The kind of a repetition operator.
 - <span id="repetitionkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RepetitionKind`
@@ -4704,7 +4524,7 @@ enum RepetitionRange {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1387-1394`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1387-L1394)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1387-1394`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1387-L1394)*
 
 A range repetition operator.
 
@@ -4727,11 +4547,8 @@ A range repetition operator.
 - <span id="repetitionrange-is-valid"></span>`fn is_valid(&self) -> bool`
 
   Returns true if and only if this repetition range is valid.
-
   
-
   The only case where a repetition range is invalid is if it is bounded
-
   and its start is greater than its end.
 
 #### Trait Implementations
@@ -4773,11 +4590,8 @@ A range repetition operator.
 - <span id="repetitionrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RepetitionRange`
@@ -4819,7 +4633,7 @@ enum GroupKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1459-1471`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1459-L1471)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1459-1471`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1459-L1471)*
 
 The kind of a group.
 
@@ -4876,11 +4690,8 @@ The kind of a group.
 - <span id="groupkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for GroupKind`
@@ -4918,7 +4729,7 @@ enum FlagsItemKind {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1594-1600`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1594-L1600)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1594-1600`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1594-L1600)*
 
 The kind of an item in a group of flags.
 
@@ -4978,11 +4789,8 @@ The kind of an item in a group of flags.
 - <span id="flagsitemkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for FlagsItemKind`
@@ -5025,7 +4833,7 @@ enum Flag {
 }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1615-1630`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/mod.rs#L1615-L1630)*
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1615-1630`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/mod.rs#L1615-L1630)*
 
 A single flag.
 
@@ -5100,11 +4908,8 @@ A single flag.
 - <span id="flag-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Flag`
@@ -5141,7 +4946,7 @@ A single flag.
 trait Visitor { ... }
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
 
 A trait for visiting an abstract syntax tree (AST) in depth first order.
 
@@ -5170,6 +4975,7 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 - `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
+  yields the result of visiting the AST or an error.
 
 #### Provided Methods
 
@@ -5180,14 +4986,17 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 - `fn visit_pre(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Ast` before descending into child `Ast`
+  nodes.
 
 - `fn visit_post(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Ast` after descending all of its child
+  `Ast` nodes.
 
 - `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of an
+  [`Alternation`](ast::Alternation).
 
 - `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
 
@@ -5196,22 +5005,29 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 - `fn visit_class_set_item_pre(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
 
   This method is called on every [`ClassSetItem`](ast::ClassSetItem)
+  before descending into child nodes.
 
 - `fn visit_class_set_item_post(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
 
   This method is called on every [`ClassSetItem`](ast::ClassSetItem)
+  after descending into child nodes.
 
 - `fn visit_class_set_binary_op_pre(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called on every
+  [`ClassSetBinaryOp`](ast::ClassSetBinaryOp) before descending into
+  child nodes.
 
 - `fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called on every
+  [`ClassSetBinaryOp`](ast::ClassSetBinaryOp) after descending into child
+  nodes.
 
 - `fn visit_class_set_binary_op_in(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called between the left hand and right hand child nodes
+  of a [`ClassSetBinaryOp`](ast::ClassSetBinaryOp).
 
 #### Implementors
 
@@ -5227,7 +5043,7 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 fn visit<V: Visitor>(ast: &crate::ast::Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
-*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../.source_1765633015/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../.source_1765894658/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
 
 Executes an implementation of `Visitor` in constant stack space.
 

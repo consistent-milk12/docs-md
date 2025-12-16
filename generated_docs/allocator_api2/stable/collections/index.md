@@ -21,7 +21,7 @@ struct TryReserveError {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:19-21`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L19-L21)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:19-21`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L19-L21)*
 
 The error type for `try_reserve` methods.
 
@@ -74,11 +74,8 @@ The error type for `try_reserve` methods.
 - <span id="tryreserveerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TryReserveError`
@@ -124,7 +121,7 @@ enum TryReserveErrorKind {
 }
 ```
 
-*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:32-45`](../../../../.source_1765633015/allocator-api2-0.2.21/src/stable/raw_vec.rs#L32-L45)*
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:32-45`](../../../../.source_1765894658/allocator-api2-0.2.21/src/stable/raw_vec.rs#L32-L45)*
 
 Details of the allocation that caused a `TryReserveError`
 
@@ -178,11 +175,8 @@ Details of the allocation that caused a `TryReserveError`
 - <span id="tryreserveerrorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for TryReserveErrorKind`

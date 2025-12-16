@@ -56,7 +56,7 @@ struct Config {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:50-53`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L50-L53)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:50-53`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L50-L53)*
 
 The configuration used for building a bounded backtracker.
 
@@ -72,215 +72,112 @@ typically used with `Builder::configure`.
 - <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md#prefilter), [`Config`](#config)
 
   Set a prefilter to be used whenever a start state is entered.
-
   
-
   A [`Prefilter`](../../../util/prefilter/index.md) in this context is meant to accelerate searches by
-
   looking for literal prefixes that every match for the corresponding
-
   pattern (or patterns) must start with. Once a prefilter produces a
-
   match, the underlying search routine continues on to try and confirm
-
   the match.
-
   
-
   Be warned that setting a prefilter does not guarantee that the search
-
   will be faster. While it's usually a good bet, if the prefilter
-
   produces a lot of false positive candidates (i.e., positions matched
-
   by the prefilter but not by the regex), then the overall result can
-
   be slower than if you had just executed the regex engine without any
-
   prefilters.
-
   
-
   By default no prefilter is set.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::backtrack::BoundedBacktracker,
-
       util::prefilter::Prefilter,
-
       Input, Match, MatchKind,
-
   };
-
   
-
   let pre = Prefilter::new(MatchKind::LeftmostFirst, &["foo", "bar"]);
-
   let re = BoundedBacktracker::builder()
-
       .configure(BoundedBacktracker::config().prefilter(pre))
-
       .build(r"(foo|bar)[a-z]+")?;
-
   let mut cache = re.create_cache();
-
   let input = Input::new("foo1 barfox bar");
-
   assert_eq!(
-
       Some(Match::must(0, 5..11)),
-
       re.try_find(&mut cache, input)?,
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
-
   
-
   Be warned though that an incorrect prefilter can lead to incorrect
-
   results!
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::backtrack::BoundedBacktracker,
-
       util::prefilter::Prefilter,
-
       Input, HalfMatch, MatchKind,
-
   };
-
   
-
   let pre = Prefilter::new(MatchKind::LeftmostFirst, &["foo", "car"]);
-
   let re = BoundedBacktracker::builder()
-
       .configure(BoundedBacktracker::config().prefilter(pre))
-
       .build(r"(foo|bar)[a-z]+")?;
-
   let mut cache = re.create_cache();
-
   let input = Input::new("foo1 barfox bar");
-
   // No match reported even though there clearly is one!
-
   assert_eq!(None, re.try_find(&mut cache, input)?);
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="config-visited-capacity"></span>`fn visited_capacity(self, capacity: usize) -> Config` — [`Config`](#config)
 
   Set the visited capacity used to bound backtracking.
-
   
-
   The visited capacity represents the amount of heap memory (in bytes) to
-
   allocate toward tracking which parts of the backtracking search have
-
   been done before. The heap memory needed for any particular search is
-
   proportional to `haystack.len() * nfa.states().len()`, which an be
-
   quite large. Therefore, the bounded backtracker is typically only able
-
   to run on shorter haystacks.
-
   
-
   For a given regex, increasing the visited capacity means that the
-
   maximum haystack length that can be searched is increased. The
-
   `BoundedBacktracker::max_haystack_len` method returns that maximum.
-
   
-
   The default capacity is a reasonable but empirically chosen size.
-
   
-
   # Example
-
   
-
   As with other regex engines, Unicode is what tends to make the bounded
-
   backtracker less useful by making the maximum haystack length quite
-
   small. If necessary, increasing the visited capacity using this routine
-
   will increase the maximum haystack length at the cost of using more
-
   memory.
-
   
-
   Note though that the specific maximum values here are not an API
-
   guarantee. The default visited capacity is subject to change and not
-
   covered by semver.
-
   
-
   ```rust
-
   if cfg!(miri) { return Ok(()); } // miri takes too long
-
   use regex_automata::nfa::thompson::backtrack::BoundedBacktracker;
-
   
-
   // Unicode inflates the size of the underlying NFA quite a bit, and
-
   // thus means that the backtracker can only handle smaller haystacks,
-
   // assuming that the visited capacity remains unchanged.
-
   let re = BoundedBacktracker::new(r"\w+")?;
-
   assert!(re.max_haystack_len() <= 7_000);
-
   // But we can increase the visited capacity to handle bigger haystacks!
-
   let re = BoundedBacktracker::builder()
-
       .configure(BoundedBacktracker::config().visited_capacity(1<<20))
-
       .build(r"\w+")?;
-
   assert!(re.max_haystack_len() >= 25_000);
-
   assert!(re.max_haystack_len() <= 28_000);
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md#prefilter)
@@ -290,21 +187,15 @@ typically used with `Builder::configure`.
 - <span id="config-get-visited-capacity"></span>`fn get_visited_capacity(&self) -> usize`
 
   Returns the configured visited capacity.
-
   
-
   Note that the actual capacity used may be slightly bigger than the
-
   configured capacity.
 
 - <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
   Overwrite the default configuration such that the options in `o` are
-
   always used. If an option in `o` is not set, then the corresponding
-
   option in `self` is used. If it's not set in `self` either, then it
-
   remains not set.
 
 #### Trait Implementations
@@ -348,11 +239,8 @@ typically used with `Builder::configure`.
 - <span id="config-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Config`
@@ -384,7 +272,7 @@ struct Builder {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:256-260`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L256-L260)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:256-260`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L256-L260)*
 
 A builder for a bounded backtracker.
 
@@ -449,11 +337,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md#builderror)
 
   Build a `BoundedBacktracker` from the given pattern.
-
   
-
   If there was a problem parsing or compiling the pattern, then an error
-
   is returned.
 
 - <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md#builderror)
@@ -463,55 +348,36 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../nfa/index.md#nfa), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md#builderror)
 
   Build a `BoundedBacktracker` directly from its NFA.
-
   
-
   Note that when using this method, any configuration that applies to the
-
   construction of the NFA itself will of course be ignored, since the NFA
-
   given here is already built.
 
 - <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
   Apply the given `BoundedBacktracker` configuration options to this
-
   builder.
 
 - <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md#config), [`Builder`](#builder)
 
   Set the syntax configuration for this builder using
-
   [`syntax::Config`](crate::util::syntax::Config).
-
   
-
   This permits setting things like case insensitivity, Unicode and multi
-
   line mode.
-
   
-
   These settings only apply when constructing a `BoundedBacktracker`
-
   directly from a pattern.
 
 - <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../compiler/index.md#config), [`Builder`](#builder)
 
   Set the Thompson NFA configuration for this builder using
-
   [`nfa::thompson::Config`](crate::nfa::thompson::Config).
-
   
-
   This permits setting things like if additional time should be spent
-
   shrinking the size of the NFA.
-
   
-
   These settings only apply when constructing a `BoundedBacktracker`
-
   directly from a pattern.
 
 #### Trait Implementations
@@ -551,11 +417,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="builder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Builder`
@@ -587,7 +450,7 @@ struct BoundedBacktracker {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:427-430`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L427-L430)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:427-430`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L427-L430)*
 
 A backtracking regex engine that bounds its execution to avoid exponential
 blow-up.
@@ -675,571 +538,308 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="boundedbacktracker-new"></span>`fn new(pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md#builderror)
 
   Parse the given regular expression using the default configuration and
-
   return the corresponding `BoundedBacktracker`.
-
   
-
   If you want a non-default configuration, then use the [`Builder`](#builder) to
-
   set your own configuration.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::backtrack::BoundedBacktracker,
-
       Match,
-
   };
-
   
-
   let re = BoundedBacktracker::new("foo[0-9]+bar")?;
-
   let mut cache = re.create_cache();
-
   assert_eq!(
-
       Some(Ok(Match::must(0, 3..14))),
-
       re.try_find_iter(&mut cache, "zzzfoo12345barzzz").next(),
-
   );
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="boundedbacktracker-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md#builderror)
 
   Like `new`, but parses multiple patterns into a single "multi regex."
-
   This similarly uses the default regex configuration.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::backtrack::BoundedBacktracker,
-
       Match,
-
   };
-
   
-
   let re = BoundedBacktracker::new_many(&["[a-z]+", "[0-9]+"])?;
-
   let mut cache = re.create_cache();
-
   
-
   let mut it = re.try_find_iter(&mut cache, "abc 1 foo 4567 0 quux");
-
   assert_eq!(Some(Ok(Match::must(0, 0..3))), it.next());
-
   assert_eq!(Some(Ok(Match::must(1, 4..5))), it.next());
-
   assert_eq!(Some(Ok(Match::must(0, 6..9))), it.next());
-
   assert_eq!(Some(Ok(Match::must(1, 10..14))), it.next());
-
   assert_eq!(Some(Ok(Match::must(1, 15..16))), it.next());
-
   assert_eq!(Some(Ok(Match::must(0, 17..21))), it.next());
-
   assert_eq!(None, it.next());
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="boundedbacktracker-new-from-nfa"></span>`fn new_from_nfa(nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../nfa/index.md#nfa), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md#builderror)
 
   # Example
-
   
-
   This shows how to hand assemble a regular expression via its HIR,
-
   compile an NFA from it and build a BoundedBacktracker from the NFA.
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::{NFA, backtrack::BoundedBacktracker},
-
       Match,
-
   };
-
   use regex_syntax::hir::{Hir, Class, ClassBytes, ClassBytesRange};
-
   
-
   let hir = Hir::class(Class::Bytes(ClassBytes::new(vec![
-
       ClassBytesRange::new(b'0', b'9'),
-
       ClassBytesRange::new(b'A', b'Z'),
-
       ClassBytesRange::new(b'_', b'_'),
-
       ClassBytesRange::new(b'a', b'z'),
-
   ])));
-
   
-
   let config = NFA::config().nfa_size_limit(Some(1_000));
-
   let nfa = NFA::compiler().configure(config).build_from_hir(&hir)?;
-
   
-
   let re = BoundedBacktracker::new_from_nfa(nfa)?;
-
   let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
-
   let expected = Some(Match::must(0, 3..4));
-
   re.try_captures(&mut cache, "!@#A#@!", &mut caps)?;
-
   assert_eq!(expected, caps.get_match());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="boundedbacktracker-always-match"></span>`fn always_match() -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md#builderror)
 
   Create a new `BoundedBacktracker` that matches every input.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::backtrack::BoundedBacktracker,
-
       Match,
-
   };
-
   
-
   let re = BoundedBacktracker::always_match()?;
-
   let mut cache = re.create_cache();
-
   
-
   let expected = Some(Ok(Match::must(0, 0..0)));
-
   assert_eq!(expected, re.try_find_iter(&mut cache, "").next());
-
   assert_eq!(expected, re.try_find_iter(&mut cache, "foo").next());
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="boundedbacktracker-never-match"></span>`fn never_match() -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md#builderror)
 
   Create a new `BoundedBacktracker` that never matches any input.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::nfa::thompson::backtrack::BoundedBacktracker;
-
   
-
   let re = BoundedBacktracker::never_match()?;
-
   let mut cache = re.create_cache();
-
   
-
   assert_eq!(None, re.try_find_iter(&mut cache, "").next());
-
   assert_eq!(None, re.try_find_iter(&mut cache, "foo").next());
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="boundedbacktracker-config"></span>`fn config() -> Config` — [`Config`](#config)
 
   Return a default configuration for a `BoundedBacktracker`.
-
   
-
   This is a convenience routine to avoid needing to import the `Config`
-
   type when customizing the construction of a `BoundedBacktracker`.
-
   
-
   # Example
-
   
-
   This example shows how to disable UTF-8 mode. When UTF-8 mode is
-
   disabled, zero-width matches that split a codepoint are allowed.
-
   Otherwise they are never reported.
-
   
-
   In the code below, notice that `""` is permitted to match positions
-
   that split the encoding of a codepoint.
-
   
-
   ```rust
-
   use regex_automata::{
-
       nfa::thompson::{self, backtrack::BoundedBacktracker},
-
       Match,
-
   };
-
   
-
   let re = BoundedBacktracker::builder()
-
       .thompson(thompson::Config::new().utf8(false))
-
       .build(r"")?;
-
   let mut cache = re.create_cache();
-
   
-
   let haystack = "a☃z";
-
   let mut it = re.try_find_iter(&mut cache, haystack);
-
   assert_eq!(Some(Ok(Match::must(0, 0..0))), it.next());
-
   assert_eq!(Some(Ok(Match::must(0, 1..1))), it.next());
-
   assert_eq!(Some(Ok(Match::must(0, 2..2))), it.next());
-
   assert_eq!(Some(Ok(Match::must(0, 3..3))), it.next());
-
   assert_eq!(Some(Ok(Match::must(0, 4..4))), it.next());
-
   assert_eq!(Some(Ok(Match::must(0, 5..5))), it.next());
-
   assert_eq!(None, it.next());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="boundedbacktracker-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
   Return a builder for configuring the construction of a
-
   `BoundedBacktracker`.
-
   
-
   This is a convenience routine to avoid needing to import the
-
   [`Builder`](#builder) type in common cases.
-
   
-
   # Example
-
   
-
   This example shows how to use the builder to disable UTF-8 mode
-
   everywhere.
-
   
-
   ```rust
-
   if cfg!(miri) { return Ok(()); } // miri takes too long
-
   use regex_automata::{
-
       nfa::thompson::{self, backtrack::BoundedBacktracker},
-
       util::syntax,
-
       Match,
-
   };
-
   
-
   let re = BoundedBacktracker::builder()
-
       .syntax(syntax::Config::new().utf8(false))
-
       .thompson(thompson::Config::new().utf8(false))
-
       .build(r"foo(?-u:[^b])ar.*")?;
-
   let (mut cache, mut caps) = (re.create_cache(), re.create_captures());
-
   
-
   let haystack = b"\xFEfoo\xFFarzz\xE2\x98\xFF\n";
-
   let expected = Some(Match::must(0, 1..9));
-
   re.try_captures(&mut cache, haystack, &mut caps)?;
-
   assert_eq!(expected, caps.get_match());
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="boundedbacktracker-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
 
   Create a new cache for this regex.
-
   
-
   The cache returned should only be used for searches for this
-
   regex. If you want to reuse the cache for another regex, then you
-
   must call `Cache::reset` with that regex (or, equivalently,
-
   `BoundedBacktracker::reset_cache`).
 
 - <span id="boundedbacktracker-create-captures"></span>`fn create_captures(&self) -> Captures` — [`Captures`](../../../util/captures/index.md#captures)
 
   Create a new empty set of capturing groups that is guaranteed to be
-
   valid for the search APIs on this `BoundedBacktracker`.
-
   
-
   A `Captures` value created for a specific `BoundedBacktracker` cannot
-
   be used with any other `BoundedBacktracker`.
-
   
-
   This is a convenience function for `Captures::all`. See the
-
   [`Captures`](../../../util/captures/index.md) documentation for an explanation of its alternative
-
   constructors that permit the `BoundedBacktracker` to do less work
-
   during a search, and thus might make it faster.
 
 - <span id="boundedbacktracker-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](#cache)
 
   Reset the given cache such that it can be used for searching with the
-
   this `BoundedBacktracker` (and only this `BoundedBacktracker`).
-
   
-
   A cache reset permits reusing memory already allocated in this cache
-
   with a different `BoundedBacktracker`.
-
   
-
   # Example
-
   
-
   This shows how to re-purpose a cache for use with a different
-
   `BoundedBacktracker`.
-
   
-
   ```rust
-
   if cfg!(miri) { return Ok(()); } // miri takes too long
-
   use regex_automata::{
-
       nfa::thompson::backtrack::BoundedBacktracker,
-
       Match,
-
   };
-
   
-
   let re1 = BoundedBacktracker::new(r"\w")?;
-
   let re2 = BoundedBacktracker::new(r"\W")?;
-
   
-
   let mut cache = re1.create_cache();
-
   assert_eq!(
-
       Some(Ok(Match::must(0, 0..2))),
-
       re1.try_find_iter(&mut cache, "Δ").next(),
-
   );
-
   
-
   // Using 'cache' with re2 is not allowed. It may result in panics or
-
   // incorrect results. In order to re-purpose the cache, we must reset
-
   // it with the BoundedBacktracker we'd like to use it with.
-
   //
-
   // Similarly, after this reset, using the cache with 're1' is also not
-
   // allowed.
-
   cache.reset(&re2);
-
   assert_eq!(
-
       Some(Ok(Match::must(0, 0..3))),
-
       re2.try_find_iter(&mut cache, "☃").next(),
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="boundedbacktracker-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
   Returns the total number of patterns compiled into this
-
   `BoundedBacktracker`.
-
   
-
   In the case of a `BoundedBacktracker` that contains no patterns, this
-
   returns `0`.
-
   
-
   # Example
-
   
-
   This example shows the pattern length for a `BoundedBacktracker` that
-
   never matches:
-
   
-
   ```rust
-
   use regex_automata::nfa::thompson::backtrack::BoundedBacktracker;
-
   
-
   let re = BoundedBacktracker::never_match()?;
-
   assert_eq!(re.pattern_len(), 0);
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
-
   
-
   And another example for a `BoundedBacktracker` that matches at every
-
   position:
-
   
-
   ```rust
-
   use regex_automata::nfa::thompson::backtrack::BoundedBacktracker;
-
   
-
   let re = BoundedBacktracker::always_match()?;
-
   assert_eq!(re.pattern_len(), 1);
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
-
   
-
   And finally, a `BoundedBacktracker` that was constructed from multiple
-
   patterns:
-
   
-
   ```rust
-
   use regex_automata::nfa::thompson::backtrack::BoundedBacktracker;
-
   
-
   let re = BoundedBacktracker::new_many(&["[0-9]+", "[a-z]+", "[A-Z]+"])?;
-
   assert_eq!(re.pattern_len(), 3);
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="boundedbacktracker-get-config"></span>`fn get_config(&self) -> &Config` — [`Config`](#config)
@@ -1253,97 +853,51 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="boundedbacktracker-max-haystack-len"></span>`fn max_haystack_len(&self) -> usize`
 
   Returns the maximum haystack length supported by this backtracker.
-
   
-
   This routine is a function of both `Config::visited_capacity` and the
-
   internal size of the backtracker's NFA.
-
   
-
   # Example
-
   
-
   This example shows how the maximum haystack length can vary depending
-
   on the size of the regex itself. Note though that the specific maximum
-
   values here are not an API guarantee. The default visited capacity is
-
   subject to change and not covered by semver.
-
   
-
   ```rust
-
   if cfg!(miri) { return Ok(()); } // miri takes too long
-
   use regex_automata::{
-
       nfa::thompson::backtrack::BoundedBacktracker,
-
       Match, MatchError,
-
   };
-
   
-
   // If you're only using ASCII, you get a big budget.
-
   let re = BoundedBacktracker::new(r"(?-u)\w+")?;
-
   let mut cache = re.create_cache();
-
   assert_eq!(re.max_haystack_len(), 299_592);
-
   // Things work up to the max.
-
   let mut haystack = "a".repeat(299_592);
-
   let expected = Some(Ok(Match::must(0, 0..299_592)));
-
   assert_eq!(expected, re.try_find_iter(&mut cache, &haystack).next());
-
   // But you'll get an error if you provide a haystack that's too big.
-
   // Notice that we use the 'try_find_iter' routine instead, which
-
   // yields Result<Match, MatchError> instead of Match.
-
   haystack.push('a');
-
   let expected = Some(Err(MatchError::haystack_too_long(299_593)));
-
   assert_eq!(expected, re.try_find_iter(&mut cache, &haystack).next());
-
   
-
   // Unicode inflates the size of the underlying NFA quite a bit, and
-
   // thus means that the backtracker can only handle smaller haystacks,
-
   // assuming that the visited capacity remains unchanged.
-
   let re = BoundedBacktracker::new(r"\w+")?;
-
   assert!(re.max_haystack_len() <= 7_000);
-
   // But we can increase the visited capacity to handle bigger haystacks!
-
   let re = BoundedBacktracker::builder()
-
       .configure(BoundedBacktracker::config().visited_capacity(1<<20))
-
       .build(r"\w+")?;
-
   assert!(re.max_haystack_len() >= 25_000);
-
   assert!(re.max_haystack_len() <= 28_000);
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 #### Trait Implementations
@@ -1383,11 +937,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - <span id="boundedbacktracker-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BoundedBacktracker`
@@ -1421,7 +972,7 @@ struct TryFindMatches<'r, 'c, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1572-1577`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1572-L1577)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1572-1577`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1572-L1577)*
 
 An iterator over all non-overlapping matches for a fallible search.
 
@@ -1466,11 +1017,8 @@ method.
 - <span id="tryfindmatches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TryFindMatches<'r, 'c, 'h>`
@@ -1510,7 +1058,7 @@ struct TryCapturesMatches<'r, 'c, 'h> {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1610-1615`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1610-L1615)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1610-1615`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1610-L1615)*
 
 An iterator over all non-overlapping leftmost matches, with their capturing
 groups, for a fallible search.
@@ -1556,11 +1104,8 @@ This iterator can be created with the
 - <span id="trycapturesmatches-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for TryCapturesMatches<'r, 'c, 'h>`
@@ -1598,7 +1143,7 @@ struct Cache {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1653-1664`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1653-L1664)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1653-1664`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1653-L1664)*
 
 A cache represents mutable state that a [`BoundedBacktracker`](#boundedbacktracker) requires
 during a search.
@@ -1635,137 +1180,77 @@ one).
 - <span id="cache-new"></span>`fn new(re: &BoundedBacktracker) -> Cache` — [`BoundedBacktracker`](#boundedbacktracker), [`Cache`](#cache)
 
   Create a new [`BoundedBacktracker`](#boundedbacktracker) cache.
-
   
-
   A potentially more convenient routine to create a cache is
-
   `BoundedBacktracker::create_cache`, as it does not require also
-
   importing the `Cache` type.
-
   
-
   If you want to reuse the returned `Cache` with some other
-
   `BoundedBacktracker`, then you must call `Cache::reset` with the
-
   desired `BoundedBacktracker`.
 
 - <span id="cache-reset"></span>`fn reset(&mut self, re: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
 
   Reset this cache such that it can be used for searching with different
-
   [`BoundedBacktracker`](#boundedbacktracker).
-
   
-
   A cache reset permits reusing memory already allocated in this cache
-
   with a different `BoundedBacktracker`.
-
   
-
   # Example
-
   
-
   This shows how to re-purpose a cache for use with a different
-
   `BoundedBacktracker`.
-
   
-
   ```rust
-
   if cfg!(miri) { return Ok(()); } // miri takes too long
-
   use regex_automata::{
-
       nfa::thompson::backtrack::BoundedBacktracker,
-
       Match,
-
   };
-
   
-
   let re1 = BoundedBacktracker::new(r"\w")?;
-
   let re2 = BoundedBacktracker::new(r"\W")?;
-
   
-
   let mut cache = re1.create_cache();
-
   assert_eq!(
-
       Some(Ok(Match::must(0, 0..2))),
-
       re1.try_find_iter(&mut cache, "Δ").next(),
-
   );
-
   
-
   // Using 'cache' with re2 is not allowed. It may result in panics or
-
   // incorrect results. In order to re-purpose the cache, we must reset
-
   // it with the BoundedBacktracker we'd like to use it with.
-
   //
-
   // Similarly, after this reset, using the cache with 're1' is also not
-
   // allowed.
-
   cache.reset(&re2);
-
   assert_eq!(
-
       Some(Ok(Match::must(0, 0..3))),
-
       re2.try_find_iter(&mut cache, "☃").next(),
-
   );
-
   
-
   Ok::<(), Box<dyn std::error::Error>>(())
-
   ```
 
 - <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
   Returns the heap memory usage, in bytes, of this cache.
-
   
-
   This does **not** include the stack size used up by this cache. To
-
   compute that, use `std::mem::size_of::<Cache>()`.
 
 - <span id="cache-setup-search"></span>`fn setup_search(&mut self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](#boundedbacktracker), [`Input`](../../../index.md#input), [`MatchError`](../../../index.md#matcherror)
 
   Clears this cache. This should be called at the start of every search
-
   to ensure we start with a clean slate.
-
   
-
   This also sets the length of the capturing groups used in the current
-
   search. This permits an optimization where by 'SlotTable::for_state'
-
   only returns the number of slots equivalent to the number of slots
-
   given in the 'Captures' value. This may be less than the total number
-
   of possible slots, e.g., when one only wants to track overall match
-
   offsets. This in turn permits less copying of capturing group spans
-
   in the BoundedBacktracker.
 
 #### Trait Implementations
@@ -1805,11 +1290,8 @@ one).
 - <span id="cache-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Cache`
@@ -1841,7 +1323,7 @@ struct Visited {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1779-1801`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1779-L1801)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1779-1801`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1779-L1801)*
 
 A bitset that keeps track of whether a particular (StateID, offset) has
 been considered during backtracking. If it has already been visited, then
@@ -1881,19 +1363,14 @@ backtracking skips it. This is what gives backtracking its "bound."
 - <span id="visited-new"></span>`fn new(re: &BoundedBacktracker) -> Visited` — [`BoundedBacktracker`](#boundedbacktracker), [`Visited`](#visited)
 
   Create a new visited set for the given backtracker.
-
   
-
   The set is ready to use, but must be setup at the beginning of each
-
   search by calling `setup_search`.
 
 - <span id="visited-insert"></span>`fn insert(&mut self, sid: StateID, at: usize) -> bool` — [`StateID`](../../../util/primitives/index.md#stateid)
 
   Insert the given (StateID, offset) pair into this set. If it already
-
   exists, then this is a no-op and it returns false. Otherwise this
-
   returns true.
 
 - <span id="visited-reset"></span>`fn reset(&mut self, _: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
@@ -1903,11 +1380,8 @@ backtracking skips it. This is what gives backtracking its "bound."
 - <span id="visited-setup-search"></span>`fn setup_search(&mut self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](#boundedbacktracker), [`Input`](../../../index.md#input), [`MatchError`](../../../index.md#matcherror)
 
   Setup this visited set to work for a search using the given NFA
-
   and input configuration. The NFA must be the same NFA used by the
-
   BoundedBacktracker given to Visited::reset. Failing to call this might
-
   result in panics or silently incorrect search behavior.
 
 - <span id="visited-memory-usage"></span>`fn memory_usage(&self) -> usize`
@@ -1951,11 +1425,8 @@ backtracking skips it. This is what gives backtracking its "bound."
 - <span id="visited-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Visited`
@@ -1995,7 +1466,7 @@ enum Frame {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1761-1773`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1761-L1773)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1761-1773`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1761-L1773)*
 
 Represents a stack frame on the heap while doing backtracking.
 
@@ -2057,11 +1528,8 @@ backtracking branch turns out to not lead to a match.
 - <span id="frame-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Frame`
@@ -2092,7 +1560,7 @@ backtracking branch turns out to not lead to a match.
 fn min_visited_capacity(nfa: &crate::nfa::thompson::NFA, input: &crate::util::search::Input<'_>) -> usize
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:41-43`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L41-L43)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:41-43`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L41-L43)*
 
 Returns the minimum visited capacity for the given haystack.
 
@@ -2116,7 +1584,7 @@ the size the given NFA and haystack.
 fn div_ceil(lhs: usize, rhs: usize) -> usize
 ```
 
-*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1881-1887`](../../../../../.source_1765633015/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1881-L1887)*
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1881-1887`](../../../../../.source_1765894658/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1881-L1887)*
 
 Integer division, but rounds up instead of down.
 

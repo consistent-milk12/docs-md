@@ -142,151 +142,86 @@ generator.generate()?;
 - <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](#args), [`RenderConfig`](generator/config/index.md#renderconfig), [`Error`](error/index.md#error)
 
   Create a new generator for the given crate and arguments.
-
   
-
   This initializes the shared context including:
-
   - Path map (item ID → module path)
-
   - Impl map (type ID → impl blocks)
-
   - Link registry for cross-references
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `args` - CLI arguments containing output path, format, and options
-
   * `config` - Rendering configuration options
-
   
-
   # Errors
-
   
-
   Returns an error if the root item cannot be found in the crate index.
 
 - <span id="generator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](error/index.md#error)
 
   Generate markdown documentation.
-
   
-
   This is the main entry point for documentation generation. It:
-
   
-
   1. Creates the output directory
-
   2. Sets up a progress bar
-
   3. Dispatches to the format-specific generator (flat or nested)
-
   
-
   # Errors
-
   
-
   Returns an error if any file operation fails.
 
 - <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md#error)
 
   Create a progress bar for user feedback.
-
   
-
   # Errors
-
   
-
   Returns an error if the progress bar template is invalid.
 
 - <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](generator/capture/index.md#markdowncapture), [`Error`](error/index.md#error)
 
   Generate documentation to memory instead of disk.
-
   
-
   This function mirrors `generate()` but captures all output in a
-
   `MarkdownCapture` struct instead of writing to the filesystem.
-
   Useful for testing and programmatic access to generated docs.
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `format` - Output format (Flat or Nested)
-
   * `include_private` - Whether to include private items
-
   
-
   # Returns
-
   
-
   A `MarkdownCapture` containing all generated markdown files.
-
   
-
   # Errors
-
   
-
   Returns an error if the root item cannot be found in the crate index.
 
 - <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`RenderConfig`](generator/config/index.md#renderconfig), [`MarkdownCapture`](generator/capture/index.md#markdowncapture), [`Error`](error/index.md#error)
 
   Generate markdown to an in-memory capture with custom configuration.
-
   
-
   This variant allows specifying a custom [`RenderConfig`](generator/config/index.md) for testing
-
   different rendering options like `hide_trivial_derives`.
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `format` - Output format (Flat or Nested)
-
   * `include_private` - Whether to include private items
-
   * `config` - Custom rendering configuration
-
   
-
   # Returns
-
   
-
   A `MarkdownCapture` containing all generated markdown files.
-
   
-
   # Errors
-
   
-
   Returns an error if the root item cannot be found in the crate index.
 
 - <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md#generatorcontext), [`MarkdownCapture`](generator/capture/index.md#markdowncapture), [`Error`](error/index.md#error)
@@ -304,41 +239,23 @@ generator.generate()?;
 - <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](#args), [`Error`](error/index.md#error)
 
   Convenience method to generate documentation in one call.
-
   
-
   Creates a `Generator` and runs it immediately. For more control
-
   over the generation process, use `new()` and `generate()` separately.
-
   
-
   Uses default `RenderConfig`. For custom configuration, use `new()` directly.
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc JSON crate
-
   * `args` - CLI arguments containing output path, format, and options
-
   
-
   # Returns
-
   
-
   `Ok(())` on success, or an error if any file operation fails.
-
   
-
   # Errors
-
   
-
   Returns an error if the root item cannot be found or if file operations fail.
 
 #### Trait Implementations
@@ -368,11 +285,8 @@ generator.generate()?;
 - <span id="generator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Generator<'a>`
@@ -439,13 +353,9 @@ side effects.
 - <span id="markdowncapture-insert"></span>`fn insert(&mut self, path: String, content: String)`
 
   Add a file to the capture.
-
   
-
   # Arguments
-
   * `path` - Relative path of the file (e.g., "index.md" or "span/index.md")
-
   * `content` - The markdown content for this file
 
 - <span id="markdowncapture-get"></span>`fn get(&self, path: &str) -> Option<&String>`
@@ -467,9 +377,7 @@ side effects.
 - <span id="markdowncapture-to-snapshot-string"></span>`fn to_snapshot_string(&self) -> String`
 
   Convert all captured files to a single string for snapshot testing.
-
   
-
   Files are sorted by path and separated with clear headers.
 
 - <span id="markdowncapture-into-inner"></span>`fn into_inner(self) -> HashMap<String, String>`
@@ -511,11 +419,8 @@ side effects.
 - <span id="markdowncapture-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MarkdownCapture`
@@ -645,11 +550,8 @@ Configuration options for markdown rendering.
 - <span id="renderconfig-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for RenderConfig`
@@ -779,11 +681,8 @@ Requires the `source-parsing` feature to have any effect.
 - <span id="sourceconfig-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SourceConfig`
@@ -841,197 +740,107 @@ Utilify functions to handle anchors
 - <span id="anchorutils-assoc-item-anchor"></span>`fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) -> String` — [`AssocItemKind`](linker/index.md#associtemkind)
 
   Generate a compound anchor for an associated item on a type.
-
   
-
   This creates a unique anchor that combines the type name, item kind, and item name,
-
   enabling deep linking to specific items. The format is `typename-itemname` for methods
-
   (backward compatible), and `typename-kind-itemname` for constants and types to avoid
-
   collisions.
-
   
-
   # Arguments
-
   
-
   * `type_name` - The name of the type (struct, enum, trait, etc.)
-
   * `item_name` - The name of the method or associated item
-
   * `kind` - The kind of associated item (method, const, or type)
-
   
-
   # Examples
-
   
-
   ```ignore
-
   assert_eq!(assoc_item_anchor("Parser", "parse", AssocItemKind::Method), "parser-parse");
-
   assert_eq!(assoc_item_anchor("HashMap", "new", AssocItemKind::Method), "hashmap-new");
-
   assert_eq!(assoc_item_anchor("Vec", "Item", AssocItemKind::Type), "vec-type-item");
-
   assert_eq!(assoc_item_anchor("Vec", "ALIGN", AssocItemKind::Const), "vec-const-align");
-
   ```
 
 - <span id="anchorutils-method-anchor"></span>`fn method_anchor(type_name: &str, method_name: &str) -> String`
 
   Generate a compound anchor for a method on a type.
-
   
-
   This creates a unique anchor that combines the type name and method name,
-
   enabling deep linking to specific methods. The format is `typename-methodname`,
-
   where both parts are slugified.
-
   
-
   # Arguments
-
   
-
   * `type_name` - The name of the type (struct, enum, trait, etc.)
-
   * `method_name` - The name of the method or associated item
-
   
-
   # Examples
-
   
-
   ```ignore
-
   assert_eq!(method_anchor("Parser", "parse"), "parser-parse");
-
   assert_eq!(method_anchor("HashMap", "new"), "hashmap-new");
-
   assert_eq!(method_anchor("Vec<T>", "push"), "vec-push");
-
   ```
 
 - <span id="anchorutils-impl-item-anchor"></span>`fn impl_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind, impl_ctx: ImplContext<'_>) -> String` — [`AssocItemKind`](linker/index.md#associtemkind), [`ImplContext`](linker/index.md#implcontext)
 
   Generate an anchor for an associated item in an impl block, with trait disambiguation.
-
   
-
   This extends `assoc_item_anchor` to handle trait impls, where multiple traits
-
   may define the same associated type (e.g., `Output` in both `Add` and `Sub`).
-
   
-
   # Disambiguation Strategy
-
   
-
   - **Associated types/consts**: Always include trait name (high collision risk)
-
   - **Methods**: Only include trait name when it differs from the method name
-
     - Avoids redundant `Clone::clone` → `type-clone-clone`
-
     - Keeps `Debug::fmt` → `type-debug-fmt` for disambiguation from `Display::fmt`
-
   
-
   # Arguments
-
   
-
   * `type_name` - The name of the implementing type
-
   * `item_name` - The name of the associated item
-
   * `kind` - The kind of associated item
-
   * `impl_ctx` - Whether this is an inherent or trait impl
-
   
-
   # Anchor Formats
-
   
-
   | Context | Kind | Format | Example |
-
   |---------|------|--------|---------|
-
   | Inherent | Method | `type-method` | `vec-push` |
-
   | Inherent | Type | `type-type-item` | `vec-type-item` |
-
   | Inherent | Const | `type-const-item` | `vec-const-align` |
-
   | Trait(Clone) | Method | `type-method` | `vec-clone` (trait=method) |
-
   | Trait(Debug) | Method | `type-trait-method` | `vec-debug-fmt` (trait≠method) |
-
   | Trait(Add) | Type | `type-trait-type-item` | `vec-add-type-output` |
-
   | Trait(Add) | Const | `type-trait-const-item` | `vec-add-const-max` |
 
 - <span id="anchorutils-slugify-anchor"></span>`fn slugify_anchor(name: &str) -> String`
 
   Convert a name to a GitHub-style markdown anchor slug.
-
   
-
   This normalizes item names to match the anchor IDs generated by markdown
-
   renderers (GitHub, mdBook, etc.) when they process headings.
-
   
-
   # Rules Applied
-
   
-
   1. Apply Unicode NFC normalization (canonical composition)
-
   2. Convert to lowercase (full Unicode, not just ASCII)
-
   3. Remove backticks (markdown code formatting)
-
   4. Remove generics (`<T>`, `<K, V>`) by stripping `<...>` content
-
   5. Replace spaces and underscores with hyphens
-
   6. Remove non-alphanumeric characters (except hyphens)
-
   7. Collapse consecutive hyphens
-
   8. Trim leading/trailing hyphens
-
   
-
   # Examples
-
   
-
   ```ignore
-
   assert_eq!(slugify_anchor("HashMap"), "hashmap");
-
   assert_eq!(slugify_anchor("HashMap<K, V>"), "hashmap");
-
   assert_eq!(slugify_anchor("my_function"), "my-function");
-
   assert_eq!(slugify_anchor("Into<T>"), "into");
-
   assert_eq!(slugify_anchor("Größe"), "größe");
-
   ```
 
 - <span id="anchorutils-slugify-anchor-ascii"></span>`fn slugify_anchor_ascii(name: &str) -> String`
@@ -1045,37 +854,21 @@ Utilify functions to handle anchors
 - <span id="anchorutils-item-has-anchor"></span>`const fn item_has_anchor(kind: ItemKind) -> bool`
 
   Check if an item kind generates a heading anchor in markdown.
-
   
-
   Only certain item types get `### \`Name\` headings in the generated output.
-
   Other items (methods, fields, variants) are rendered as bullet points
-
   without heading anchors.
-
   
-
   # Items with anchors
-
   
-
   - Struct, Enum, Trait, Function, Constant, `TypeAlias`, Macro, Module
-
   
-
   # Items without anchors
-
   
-
   - Methods (in impl blocks)
-
   - Struct fields
-
   - Enum variants
-
   - Associated types/constants
-
   - Trait methods
 
 #### Trait Implementations
@@ -1105,11 +898,8 @@ Utilify functions to handle anchors
 - <span id="anchorutils-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for AnchorUtils`
@@ -1182,79 +972,44 @@ create links between items.
 - <span id="linkregistry-build"></span>`fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
 
   Build a link registry by traversing all items in the crate.
-
   
-
   This function walks the module tree starting from the root and records
-
   the file path where each item will be documented. The paths depend on
-
   the output format (flat vs nested).
-
   
-
   # Arguments
-
   
-
   * `krate` - The parsed rustdoc crate containing all items
-
   * `flat_format` - If true, use flat paths (`mod.md`); if false, use nested (`mod/index.md`)
-
   * `include_private` - If true, include non-public items; if false, only public items
-
   
-
   # Returns
-
   
-
   A populated `LinkRegistry` ready for link creation.
-
   
-
   # Algorithm
-
   
-
   1. Start at the crate root module
-
   2. For each top-level module: register it and recursively process children
-
   3. For structs/enums/traits at root level: register them to `index.md`
-
   4. Other items (functions, constants) are registered within their module's file
-
   5. Items are filtered by visibility unless `include_private` is true
 
 - <span id="linkregistry-register-module-items"></span>`fn register_module_items(&mut self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
 
   Recursively register all items within a module.
-
   
-
   This is called for each module in the crate to populate the registry
-
   with all items that can be linked to.
-
   
-
   # Arguments
-
   
-
   * `krate` - The full crate for looking up item details
-
   * `module_id` - ID of the module being registered
-
   * `module_item` - The module's Item data
-
   * `path` - File path where this module's docs will be written
-
   * `module_prefix` - Prefix for building child paths (e.g., "parent" or "`parent__child`")
-
   * `flat_format` - Whether to use flat naming convention
-
   * `include_private` - Whether to include non-public items
 
 - <span id="linkregistry-register-glob-items"></span>`fn register_glob_items(&mut self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
@@ -1264,153 +1019,85 @@ create links between items.
 - <span id="linkregistry-get-path"></span>`fn get_path(&self, id: Id) -> Option<&String>`
 
   Get the file path where an item is documented.
-
   
-
   # Arguments
-
   
-
   * `id` - The item's unique ID from rustdoc JSON
-
   
-
   # Returns
-
   
-
   The relative file path (e.g., `"span.md"` or `"span/index.md"`),
-
   or `None` if the item isn't registered.
 
 - <span id="linkregistry-get-name"></span>`fn get_name(&self, id: Id) -> Option<&String>`
 
   Get the display name for an item.
-
   
-
   # Arguments
-
   
-
   * `id` - The item's unique ID from rustdoc JSON
-
   
-
   # Returns
-
   
-
   The item's name for display in links (e.g., `"Span"`),
-
   or `None` if the item isn't registered.
 
 - <span id="linkregistry-create-link"></span>`fn create_link(&self, id: Id, from_path: &str) -> Option<String>`
 
   Create a markdown link to an item from a given source file.
-
   
-
   This is the main method used during markdown generation to create
-
   clickable links between documented items.
-
   
-
   # Arguments
-
   
-
   * `id` - The target item's ID
-
   * `from_path` - The source file creating the link (e.g., `"index.md"`)
-
   
-
   # Returns
-
   
-
   A formatted markdown link like `[``ItemName``](path/to/file.md)`,
-
   or `None` if the target item isn't registered.
-
   
-
   # Link Types
-
   
-
   - **Same file**: Returns an anchor link (`#itemname`)
-
   - **Different file**: Returns a relative path (`../other/file.md`)
-
   
-
   # Example
-
   
-
   ```ignore
-
   // From index.md linking to span.md
-
   registry.create_link(&span_id, "index.md")
-
   // Returns: Some("[`Span`](span.md)")
-
   
-
   // From span/index.md linking to index.md
-
   registry.create_link(&root_id, "span/index.md")
-
   // Returns: Some("[`crate`](../index.md)")
-
   ```
 
 - <span id="linkregistry-compute-relative-path"></span>`fn compute_relative_path(from: &str, to: &str) -> String`
 
   Compute the relative path from one file to another.
-
   
-
   This function calculates the relative path needed to navigate from
-
   one markdown file to another within the generated documentation.
-
   Uses `pathdiff` for robust cross-platform path calculation.
-
   
-
   # Arguments
-
   
-
   * `from` - The source file path (e.g., `"span/index.md"`)
-
   * `to` - The target file path (e.g., `"field/index.md"`)
-
   
-
   # Returns
-
   
-
   A relative path string (e.g., `"../field/index.md"`)
-
   
-
   # Examples
-
   
-
   - Same directory: `"index.md"` → `"span.md"` = `"span.md"`
-
   - Into subdirectory: `"index.md"` → `"span/index.md"` = `"span/index.md"`
-
   - Up to parent: `"span/index.md"` → `"index.md"` = `"../index.md"`
-
   - Sibling directory: `"span/index.md"` → `"field/index.md"` = `"../field/index.md"`
 
 #### Trait Implementations
@@ -1448,11 +1135,8 @@ create links between items.
 - <span id="linkregistry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for LinkRegistry`
@@ -1533,11 +1217,8 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-insert"></span>`fn insert(&mut self, name: String, krate: Crate) -> Option<Crate>`
 
   Insert a crate into the collection.
-
   
-
   If a crate with the same name already exists, it is replaced
-
   and `Some(old_crate)` is returned.
 
 - <span id="cratecollection-get"></span>`fn get(&self, name: &str) -> Option<&Crate>`
@@ -1547,11 +1228,8 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-get-with-name"></span>`fn get_with_name(&self, name: &str) -> Option<(&str, &Crate)>`
 
   Get a crate by name, returning the stored key as well.
-
   
-
   This is useful when you need a reference to the crate name that
-
   has the same lifetime as the collection.
 
 - <span id="cratecollection-contains"></span>`fn contains(&self, name: &str) -> bool`
@@ -1561,15 +1239,10 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-iter"></span>`fn iter(&self) -> impl Iterator<Item = (&String, &Crate)>`
 
   Iterate over crates in alphabetical order.
-
   
-
   Returns tuples of `(&crate_name, &Crate)` sorted alphabetically
-
   by crate name for deterministic output.
-
   
-
   Sorting is done on-demand since collection size is small (10-50 crates).
 
 - <span id="cratecollection-len"></span>`fn len(&self) -> usize`
@@ -1583,11 +1256,8 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-names"></span>`fn names(&self) -> Vec<&String>`
 
   Get crate names in alphabetical order.
-
   
-
   Returns a sorted `Vec` of crate names for deterministic processing.
-
   Sorting is done on-demand since collection size is small.
 
 #### Trait Implementations
@@ -1625,11 +1295,8 @@ for (name, krate) in collection.iter() {
 - <span id="cratecollection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CrateCollection`
@@ -1722,51 +1389,34 @@ generation across crates.
 - <span id="multicratecontext-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](multi_crate/collection/index.md#cratecollection), [`Args`](#args), [`RenderConfig`](generator/config/index.md#renderconfig)
 
   Create a new multi-crate context.
-
   
-
   Builds the unified link registry and pre-computes cross-crate impls.
-
   
-
   # Arguments
-
   
-
   * `crates` - Collection of parsed crates
-
   * `args` - CLI arguments
-
   * `config` - Rendering configuration options
 
 - <span id="multicratecontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
   Set the source directory for path transformation.
-
   
-
   This can be called after construction if a `.source_*` directory
-
   is detected or specified via CLI. Only has effect if `source_locations`
-
   is enabled in the config.
 
 - <span id="multicratecontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](generator/render_shared/index.md#sourcepathconfig)
 
   Get source path config for a specific file.
-
   
-
   Returns `None` if source locations are disabled or no source dir configured.
 
 - <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](multi_crate/collection/index.md#cratecollection)
 
   Build the cross-crate impl map for all crates.
-
   
-
   Scans all crates once and groups impl blocks by their target crate
-
   and type name. This avoids O(n*m) scanning per view creation.
 
 - <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](multi_crate/collection/index.md#cratecollection)
@@ -1784,55 +1434,34 @@ generation across crates.
 - <span id="multicratecontext-single-crate-view"></span>`fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate/context/index.md#singlecrateview)
 
   Create a single-crate view for rendering one crate.
-
   
-
   This bridges multi-crate mode to existing single-crate rendering
-
   code by providing a compatible interface that uses the unified
-
   registry for cross-crate link resolution.
 
 - <span id="multicratecontext-find-item"></span>`fn find_item(&self, id: &Id) -> Option<(&str, &Item)>`
 
   Find an item across all crates by ID.
-
   
-
   Searches through all crates in the collection to find an item with
-
   the given ID. This is useful for resolving re-exports that point to
-
   items in external crates.
-
   
-
   # Returns
-
   
-
   A tuple of `(crate_name, item)` if found, or `None` if the item
-
   doesn't exist in any crate.
 
 - <span id="multicratecontext-get-cross-crate-impls"></span>`fn get_cross_crate_impls(&self, target_crate: &str) -> Option<&HashMap<String, Vec<&'a Impl>>>`
 
   Get pre-computed cross-crate impl blocks for a target crate.
-
   
-
   Returns a map from type name to impl blocks from other crates.
-
   This data is pre-computed during context construction for efficiency.
-
   
-
   # Returns
-
   
-
   Reference to the type-name -> impl-blocks map, or `None` if the
-
   crate is not in the collection.
 
 - <span id="multicratecontext-get-impl-target-path"></span>`fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
@@ -1866,11 +1495,8 @@ generation across crates.
 - <span id="multicratecontext-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MultiCrateContext<'a>`
@@ -1951,49 +1577,31 @@ output/
 - <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](multi_crate/collection/index.md#cratecollection), [`Args`](#args), [`RenderConfig`](generator/config/index.md#renderconfig)
 
   Create a new multi-crate generator.
-
   
-
   # Arguments
-
   
-
   * `crates` - Collection of parsed crates
-
   * `args` - CLI arguments
-
   * `config` - Rendering configuration options
 
 - <span id="multicrategenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](error/index.md#error)
 
   Generate documentation for all crates.
-
   
-
   Creates the output directory structure, generates docs for each crate
-
   in parallel using rayon, and optionally generates SUMMARY.md for
-
   mdBook compatibility.
-
   
-
   # Errors
-
   
-
   Returns an error if any file operation fails.
 
 - <span id="multicrategenerator-collect-rendered-items"></span>`fn collect_rendered_items(&self) -> HashMap<String, HashSet<Id>>`
 
   Collect the IDs of all items that would be rendered.
-
   
-
   This walks the module tree for each crate using the same visibility
-
   rules as rendering, collecting the IDs of items that will have
-
   documentation generated for them.
 
 - <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/context/index.md#singlecrateview)
@@ -2015,13 +1623,9 @@ output/
 - <span id="multicrategenerator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md#error)
 
   Create a progress bar.
-
   
-
   # Errors
-
   
-
   Returns an error if the progress bar template is invalid.
 
 #### Trait Implementations
@@ -2051,11 +1655,8 @@ output/
 - <span id="multicrategenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MultiCrateGenerator<'a>`
@@ -2115,51 +1716,30 @@ println!("Found {} crates", crates.len());
 - <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](multi_crate/collection/index.md#cratecollection), [`Error`](error/index.md#error)
 
   Parse all rustdoc JSON files in a directory.
-
   
-
   Scans the top level of the directory for `*.json` files and
-
   attempts to parse each one as rustdoc JSON. Files that aren't
-
   valid rustdoc JSON (e.g., search indices) are silently skipped.
-
   
-
   # Arguments
-
   
-
   * `dir` - Path to directory containing JSON files
-
   
-
   # Returns
-
   
-
   A `CrateCollection` containing all successfully parsed crates.
-
   
-
   # Errors
-
   
-
   - [`Error::InvalidDirectory`](#errorinvaliddirectory) if the path is invalid
-
   - [`Error::NoJsonFiles`](#errornojsonfiles) if no valid JSON files found
-
   - [`Error::DuplicateCrate`](#errorduplicatecrate) if multiple files define the same crate
-
   - [`Error::NoCrateName`](#errornocratename) if a JSON file has no root module
 
 - <span id="multicrateparser-extract-crate-name"></span>`fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error/index.md#error)
 
   Extract the crate name from a parsed Crate.
-
   
-
   The crate name is stored in the root item's `name` field.
 
 #### Trait Implementations
@@ -2189,11 +1769,8 @@ println!("Found {} crates", crates.len());
 - <span id="multicrateparser-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for MultiCrateParser`
@@ -2279,11 +1856,8 @@ Serialized to `search_index.json` for client-side consumption.
 - <span id="searchindex-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SearchIndex`
@@ -2373,81 +1947,51 @@ generator.write(Path::new("generated_docs/"))?;
 - <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md#cratecollection)
 
   Create a new search index generator.
-
   
-
   # Arguments
-
   
-
   * `crates` - Collection of parsed crates to index
-
   * `include_private` - Whether to include non-public items
-
   * `rendered_items` - Map of crate name to set of rendered item IDs
 
 - <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](multi_crate/search/index.md#searchindex)
 
   Generate the complete search index.
-
   
-
   Traverses all crates and collects searchable items including:
-
   - Modules
-
   - Structs
-
   - Enums
-
   - Traits
-
   - Functions
-
   - Type aliases
-
   - Constants
-
   - Macros
-
   
-
   Items are sorted alphabetically by name for consistent output.
 
 - <span id="searchindexgenerator-write"></span>`fn write(&self, output_dir: &Path) -> std::io::Result<()>`
 
   Write the search index to `search_index.json` in the output directory.
-
   
-
   # Arguments
-
   
-
   * `output_dir` - Directory where `search_index.json` will be written
-
   
-
   # Errors
-
   
-
   Returns an error if the file cannot be written.
 
 - <span id="searchindexgenerator-index-crate"></span>`fn index_crate(&self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](multi_crate/search/index.md#searchentry)
 
   Index all items in a single crate.
-
   
-
   Only indexes items that were actually rendered (present in `rendered_items`).
 
 - <span id="searchindexgenerator-build-path-map"></span>`fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
 
   Build a map from item ID to its module path.
-
   
-
   This allows us to reconstruct the full path for each item.
 
 - <span id="searchindexgenerator-compute-file-path"></span>`fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
@@ -2481,11 +2025,8 @@ generator.write(Path::new("generated_docs/"))?;
 - <span id="searchindexgenerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for SearchIndexGenerator<'a>`
@@ -2595,23 +2136,14 @@ This avoids allocating a `String` for the crate name on every lookup.
 - <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md#cratecollection)
 
   Build a unified registry from a collection of crates.
-
   
-
   # Arguments
-
   
-
   * `crates` - Collection of parsed crates
-
   * `primary_crate` - Optional primary crate for disambiguation
-
   
-
   # Returns
-
   
-
   A populated registry ready for link resolution.
 
 - <span id="unifiedlinkregistry-register-crate"></span>`fn register_crate(&mut self, crate_name: &str, krate: &Crate)`
@@ -2621,15 +2153,10 @@ This avoids allocating a `String` for the crate name on every lookup.
 - <span id="unifiedlinkregistry-register-from-paths"></span>`fn register_from_paths(&mut self, crate_name: &str, krate: &Crate)`
 
   Register items using the `paths` field from rustdoc JSON.
-
   
-
   The `paths` field contains canonical paths for all items, including
-
   those in private modules that are re-exported publicly. Since we only
-
   generate docs for public modules, items in private modules are
-
   documented at their public re-export location (typically root).
 
 - <span id="unifiedlinkregistry-item-enum-to-kind"></span>`const fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
@@ -2647,175 +2174,108 @@ This avoids allocating a `String` for the crate name on every lookup.
 - <span id="unifiedlinkregistry-get-path"></span>`fn get_path(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
   Get the file path for an item in a specific crate.
-
   
-
   Uses raw entry API for zero-allocation lookup.
 
 - <span id="unifiedlinkregistry-get-name"></span>`fn get_name(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
   Get the display name for an item.
-
   
-
   Uses raw entry API for zero-allocation lookup.
 
 - <span id="unifiedlinkregistry-get-re-export-source"></span>`fn get_re_export_source(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
   Get the original source path for an external re-export.
-
   
-
   Returns `Some("crate::path::Item")` if this item is a re-export
-
   from another crate, `None` otherwise.
 
 - <span id="unifiedlinkregistry-resolve-reexport"></span>`fn resolve_reexport(&self, crate_name: &str, id: Id) -> Option<(compact_str::CompactString, Id)>`
 
   Resolve through re-export chain to find the canonical item.
-
   
-
   If the item is an external re-export, follows the source path
-
   to find the original crate and ID. Returns the original if found,
-
   otherwise returns `None`.
-
   
-
   # Arguments
-
   
-
   * `crate_name` - The crate where the re-export appears
-
   * `id` - The ID of the re-export Use item
-
   
-
   # Returns
-
   
-
   `Some((original_crate, original_id))` if the re-export chain can be resolved,
-
   `None` if there's no re-export source or the original can't be found.
 
 - <span id="unifiedlinkregistry-resolve-name"></span>`fn resolve_name(&self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
 
   Resolve an item name to its crate and ID.
-
   
-
   Uses disambiguation priority:
-
   1. Current crate (modules preferred over macros)
-
   2. Primary crate (if set, modules preferred)
-
   3. First module match, then first non-module match
 
 - <span id="unifiedlinkregistry-resolve-path"></span>`fn resolve_path(&self, path: &str) -> Option<(compact_str::CompactString, Id)>`
 
   Resolve a full path like `regex_automata::Regex` to its crate and ID.
-
   
-
   This is used for resolving external re-exports where `use_item.id` is `None`
-
   but the source path is available.
-
   
-
   # Arguments
-
   
-
   * `path` - Full path like `regex_automata::Regex` or `tracing_core::span::Span`
-
   
-
   # Returns
-
   
-
   The (`crate_name`, `item_id`) if found in the registry.
 
 - <span id="unifiedlinkregistry-create-link"></span>`fn create_link(&self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
 
   Create a markdown link from one file to another across crates.
-
   
-
   # Arguments
-
   
-
   * `from_crate` - The crate where the link appears
-
   * `from_path` - The file path where the link appears
-
   * `to_crate` - The target crate
-
   * `to_id` - The target item's ID
-
   
-
   # Returns
-
   
-
   A formatted markdown link like `[`Name`](relative/path.md)`,
-
   or `None` if the target item isn't registered.
 
 - <span id="unifiedlinkregistry-compute-cross-crate-path"></span>`fn compute_cross_crate_path(from: &str, to: &str) -> String`
 
   Compute relative path between files potentially in different crates.
-
   
-
   # Examples
-
   
-
   - `tracing/span/index.md` to `tracing_core/subscriber/index.md`
-
     = `../../tracing_core/subscriber/index.md`
-
   - `tracing/index.md` to `tracing/span/index.md`
-
     = `span/index.md`
 
 - <span id="unifiedlinkregistry-get-anchor"></span>`fn get_anchor(&self, crate_name: &str, id: Id) -> Option<String>`
 
   Get an anchor string for an item within its page.
-
   
-
   # Arguments
-
   
-
   * `crate_name` - The crate containing the item
-
   * `id` - The item's ID
-
   
-
   # Returns
-
   
-
   An anchor like `#span` or `#enter` for linking to specific items.
 
 - <span id="unifiedlinkregistry-contains"></span>`fn contains(&self, crate_name: &str, id: Id) -> bool`
 
   Check if an item exists in the registry.
-
   
-
   Uses raw entry API for zero-allocation lookup.
 
 - <span id="unifiedlinkregistry-len"></span>`fn len(&self) -> usize`
@@ -2861,11 +2321,8 @@ This avoids allocating a `String` for the crate name on every lookup.
 - <span id="unifiedlinkregistry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for UnifiedLinkRegistry`
@@ -2978,11 +2435,8 @@ Top-level CLI for docs-md.
 - <span id="cli-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Cli`
@@ -3182,11 +2636,8 @@ Arguments for the `docs` subcommand (build + generate).
 - <span id="docsargs-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for DocsArgs`
@@ -3335,11 +2786,8 @@ Arguments for the `collect-sources` subcommand.
 - <span id="collectsourcesargs-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CollectSourcesArgs`
@@ -3580,11 +3028,8 @@ The tool accepts input from two mutually exclusive sources:
 - <span id="generateargs-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for GenerateArgs`
@@ -3699,11 +3144,8 @@ Controls how module files are organized in the output directory.
 - <span id="outputformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for OutputFormat`
@@ -3820,11 +3262,8 @@ This wrapper handles that by making `docs-md` a subcommand that contains the rea
 - <span id="cargo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Cargo`
@@ -3943,11 +3382,8 @@ Available subcommands
 - <span id="command-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Command`
@@ -4058,11 +3494,8 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 - <span id="clioutputformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for CliOutputFormat`
@@ -4119,7 +3552,7 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 fn iter_zip(a: Vec<i64>, b: Vec<i64>) -> i64
 ```
 
-*Defined in `src/lib.rs:416-423`*
+*Defined in `src/lib.rs:417-424`*
 
 Test function: iterator zip (no bounds checks in loop).
 
@@ -4129,7 +3562,7 @@ Test function: iterator zip (no bounds checks in loop).
 fn index_loop(a: Vec<i64>, b: Vec<i64>) -> i64
 ```
 
-*Defined in `src/lib.rs:427-434`*
+*Defined in `src/lib.rs:429-436`*
 
 Test function: index loop with assert (bounds check elided).
 
@@ -4139,7 +3572,7 @@ Test function: index loop with assert (bounds check elided).
 fn index_loop_no_assert(a: Vec<i64>, b: Vec<i64>) -> i64
 ```
 
-*Defined in `src/lib.rs:438-444`*
+*Defined in `src/lib.rs:441-447`*
 
 Test function: index loop without assert (bounds check present).
 

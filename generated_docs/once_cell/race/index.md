@@ -49,7 +49,7 @@ struct OnceNonZeroUsize {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:43-45`](../../../.source_1765633015/once_cell-1.21.3/src/race.rs#L43-L45)*
+*Defined in [`once_cell-1.21.3/src/race.rs:43-45`](../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L43-L45)*
 
 A thread-safe cell which can be written to only once.
 
@@ -66,57 +66,37 @@ A thread-safe cell which can be written to only once.
 - <span id="oncenonzerousize-get-unchecked"></span>`unsafe fn get_unchecked(&self) -> NonZeroUsize`
 
   Get the reference to the underlying value, without checking if the cell
-
   is initialized.
-
   
-
   # Safety
-
   
-
   Caller must ensure that the cell is in initialized state, and that
-
   the contents are acquired by (synchronized to) this thread.
 
 - <span id="oncenonzerousize-set"></span>`fn set(&self, value: NonZeroUsize) -> Result<(), ()>`
 
   Sets the contents of this cell to `value`.
-
   
-
   Returns `Ok(())` if the cell was empty and `Err(())` if it was
-
   full.
 
 - <span id="oncenonzerousize-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> NonZeroUsize`
 
   Gets the contents of the cell, initializing it with `f` if the cell was
-
   empty.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="oncenonzerousize-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<NonZeroUsize, E>`
 
   Gets the contents of the cell, initializing it with `f` if
-
   the cell was empty. If the cell was empty and `f` failed, an
-
   error is returned.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="oncenonzerousize-init"></span>`fn init<E>(&self, f: impl FnOnce() -> Result<NonZeroUsize, E>) -> Result<NonZeroUsize, E>`
@@ -156,11 +136,8 @@ A thread-safe cell which can be written to only once.
 - <span id="oncenonzerousize-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for OnceNonZeroUsize`
@@ -183,7 +160,7 @@ struct OnceBool {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:167-169`](../../../.source_1765633015/once_cell-1.21.3/src/race.rs#L167-L169)*
+*Defined in [`once_cell-1.21.3/src/race.rs:167-169`](../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L167-L169)*
 
 A thread-safe cell which can be written to only once.
 
@@ -200,41 +177,27 @@ A thread-safe cell which can be written to only once.
 - <span id="oncebool-set"></span>`fn set(&self, value: bool) -> Result<(), ()>`
 
   Sets the contents of this cell to `value`.
-
   
-
   Returns `Ok(())` if the cell was empty and `Err(())` if it was
-
   full.
 
 - <span id="oncebool-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> bool`
 
   Gets the contents of the cell, initializing it with `f` if the cell was
-
   empty.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="oncebool-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<bool, E>`
 
   Gets the contents of the cell, initializing it with `f` if
-
   the cell was empty. If the cell was empty and `f` failed, an
-
   error is returned.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="oncebool-from-usize"></span>`fn from_usize(value: NonZeroUsize) -> bool`
@@ -274,11 +237,8 @@ A thread-safe cell which can be written to only once.
 - <span id="oncebool-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for OnceBool`
@@ -302,7 +262,7 @@ struct OnceRef<'a, T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:232-235`](../../../.source_1765633015/once_cell-1.21.3/src/race.rs#L232-L235)*
+*Defined in [`once_cell-1.21.3/src/race.rs:232-235`](../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L232-L235)*
 
 A thread-safe cell which can be written to only once.
 
@@ -319,41 +279,27 @@ A thread-safe cell which can be written to only once.
 - <span id="onceref-set"></span>`fn set(&self, value: &'a T) -> Result<(), ()>`
 
   Sets the contents of this cell to `value`.
-
   
-
   Returns `Ok(())` if the cell was empty and `Err(value)` if it was
-
   full.
 
 - <span id="onceref-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> &'a T`
 
   Gets the contents of the cell, initializing it with `f` if the cell was
-
   empty.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="onceref-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<&'a T, E>`
 
   Gets the contents of the cell, initializing it with `f` if
-
   the cell was empty. If the cell was empty and `f` failed, an
-
   error is returned.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="onceref-init"></span>`fn init<E>(&self, f: impl FnOnce() -> Result<&'a T, E>) -> Result<&'a T, E>`
@@ -363,33 +309,19 @@ A thread-safe cell which can be written to only once.
 - <span id="onceref-dummy"></span>`fn _dummy()`
 
   ```compile_fail
-
   use once_cell::race::OnceRef;
-
   
-
   let mut l = OnceRef::new();
-
   
-
   {
-
       let y = 2;
-
       let mut r = OnceRef::new();
-
       r.set(&y).unwrap();
-
       core::mem::swap(&mut l, &mut r);
-
   }
-
   
-
   // l now contains a dangling reference to y
-
   eprintln!("uaf: {}", l.get().unwrap());
-
   ```
 
 #### Trait Implementations
@@ -425,11 +357,8 @@ A thread-safe cell which can be written to only once.
 - <span id="onceref-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: Sync> Sync for OnceRef<'a, T>`
@@ -455,7 +384,7 @@ struct OnceBox<T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/race.rs:361-364`](../../../.source_1765633015/once_cell-1.21.3/src/race.rs#L361-L364)*
+*Defined in [`once_cell-1.21.3/src/race.rs:361-364`](../../../.source_1765894658/once_cell-1.21.3/src/race.rs#L361-L364)*
 
 A thread-safe cell which can be written to only once.
 
@@ -476,41 +405,27 @@ A thread-safe cell which can be written to only once.
 - <span id="oncebox-set"></span>`fn set(&self, value: Box<T>) -> Result<(), Box<T>>`
 
   Sets the contents of this cell to `value`.
-
   
-
   Returns `Ok(())` if the cell was empty and `Err(value)` if it was
-
   full.
 
 - <span id="oncebox-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> &T`
 
   Gets the contents of the cell, initializing it with `f` if the cell was
-
   empty.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="oncebox-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<&T, E>`
 
   Gets the contents of the cell, initializing it with `f` if
-
   the cell was empty. If the cell was empty and `f` failed, an
-
   error is returned.
-
   
-
   If several threads concurrently run `get_or_init`, more than one `f` can
-
   be called. However, all threads will return the same value, produced by
-
   some `f`.
 
 - <span id="oncebox-init"></span>`fn init<E>(&self, f: impl FnOnce() -> Result<Box<T>, E>) -> Result<&T, E>`
@@ -560,11 +475,8 @@ A thread-safe cell which can be written to only once.
 - <span id="oncebox-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: Sync + Send> Sync for OnceBox<T>`

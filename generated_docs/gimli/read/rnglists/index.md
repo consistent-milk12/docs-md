@@ -45,7 +45,7 @@ struct DebugRanges<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:14-16`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L14-L16)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:14-16`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L14-L16)*
 
 The raw contents of the `.debug_ranges` section.
 
@@ -54,31 +54,18 @@ The raw contents of the `.debug_ranges` section.
 - <span id="debugranges-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugRanges` instance from the data in the `.debug_ranges`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_ranges` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugRanges, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_ranges_section_somehow = || &buf;
-
   let debug_ranges = DebugRanges::new(read_debug_ranges_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -124,11 +111,8 @@ The raw contents of the `.debug_ranges` section.
 - <span id="debugranges-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugRanges<R>`
@@ -165,7 +149,7 @@ struct DebugRngLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:74-76`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L74-L76)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:74-76`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L74-L76)*
 
 The `DebugRngLists` struct represents the contents of the
 `.debug_rnglists` section.
@@ -175,33 +159,19 @@ The `DebugRngLists` struct represents the contents of the
 - <span id="debugrnglists-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugRngLists` instance from the data in the
-
   `.debug_rnglists` section.
-
   
-
   It is the caller's responsibility to read the `.debug_rnglists`
-
   section and present it as a `&[u8]` slice. That means using some ELF
-
   loader on Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugRngLists, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_rnglists_section_somehow = || &buf;
-
   let debug_rnglists =
-
       DebugRngLists::new(read_debug_rnglists_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -247,11 +217,8 @@ The `DebugRngLists` struct represents the contents of the
 - <span id="debugrnglists-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugRngLists<R>`
@@ -289,7 +256,7 @@ struct RangeLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:158-161`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L158-L161)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:158-161`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L158-L161)*
 
 The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
@@ -298,7 +265,6 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 - <span id="rangelists-new"></span>`fn new(debug_ranges: DebugRanges<R>, debug_rnglists: DebugRngLists<R>) -> RangeLists<R>` — [`DebugRanges`](../index.md#debugranges), [`DebugRngLists`](../index.md#debugrnglists), [`RangeLists`](../index.md#rangelists)
 
   Construct a new `RangeLists` instance from the data in the `.debug_ranges` and
-
   `.debug_rnglists` sections.
 
 - <span id="rangelists-debug-ranges"></span>`fn debug_ranges(&self) -> &DebugRanges<R>` — [`DebugRanges`](../index.md#debugranges)
@@ -308,9 +274,7 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 - <span id="rangelists-set-debug-ranges"></span>`fn set_debug_ranges(&mut self, debug_ranges: DebugRanges<R>)` — [`DebugRanges`](../index.md#debugranges)
 
   Replace the `.debug_ranges` section.
-
   
-
   This is useful for `.dwo` files when using the GNU split-dwarf extension to DWARF 4.
 
 - <span id="rangelists-debug-rnglists"></span>`fn debug_rnglists(&self) -> &DebugRngLists<R>` — [`DebugRngLists`](../index.md#debugrnglists)
@@ -360,11 +324,8 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 - <span id="rangelists-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RangeLists<R>`
@@ -397,7 +358,7 @@ struct RawRngListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:306-310`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L306-L310)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:306-310`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L306-L310)*
 
 A raw iterator over an address range list.
 
@@ -443,11 +404,8 @@ such as handling base addresses.
 - <span id="rawrnglistiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RawRngListIter<R>`
@@ -473,7 +431,7 @@ struct RngListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:473-478`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L473-L478)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:473-478`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L473-L478)*
 
 An iterator over an address range list.
 
@@ -522,11 +480,8 @@ and already adjusted for the base address.
 - <span id="rnglistiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RngListIter<R>`
@@ -550,7 +505,7 @@ struct RawRange {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:598-604`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L598-L604)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:598-604`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L598-L604)*
 
 A raw address range from the `.debug_ranges` section.
 
@@ -573,11 +528,8 @@ A raw address range from the `.debug_ranges` section.
 - <span id="rawrange-is-base-address"></span>`fn is_base_address(&self, address_size: u8) -> bool`
 
   Check if this is a base address selection entry.
-
   
-
   A base address selection entry changes the base address that subsequent
-
   range entries are relative to.
 
 - <span id="rawrange-parse"></span>`fn parse<R: Reader>(input: &mut R, address_size: u8) -> Result<RawRange>` — [`Result`](../../index.md#result), [`RawRange`](#rawrange)
@@ -629,11 +581,8 @@ A raw address range from the `.debug_ranges` section.
 - <span id="rawrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RawRange`
@@ -671,7 +620,7 @@ struct Range {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:634-640`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L634-L640)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:634-640`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L634-L640)*
 
 An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges` sections.
 
@@ -736,11 +685,8 @@ An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges
 - <span id="range-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Ord for Range`
@@ -788,7 +734,7 @@ enum RangeListsFormat {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:294-299`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L294-L299)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:294-299`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L294-L299)*
 
 #### Variants
 
@@ -841,11 +787,8 @@ enum RangeListsFormat {
 - <span id="rangelistsformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RangeListsFormat`
@@ -911,7 +854,7 @@ enum RawRngListEntry<T> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:314-367`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L314-L367)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:314-367`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L314-L367)*
 
 A raw entry in .debug_rnglists
 
@@ -992,11 +935,8 @@ A raw entry in .debug_rnglists
 - <span id="rawrnglistentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> ToOwned for RawRngListEntry<T>`
@@ -1027,5 +967,5 @@ A raw entry in .debug_rnglists
 type RngListsHeader = crate::read::lists::ListsHeader;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/rnglists.rs:133`](../../../../.source_1765633015/gimli-0.32.3/src/read/rnglists.rs#L133)*
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:133`](../../../../.source_1765894658/gimli-0.32.3/src/read/rnglists.rs#L133)*
 

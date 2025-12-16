@@ -25,7 +25,7 @@ struct Backtrace {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L29-L32)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L29-L32)*
 
 Representation of an owned and self-contained backtrace.
 
@@ -45,103 +45,56 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtrace-new"></span>`fn new() -> Backtrace` — [`Backtrace`](#backtrace)
 
   Captures a backtrace at the callsite of this function, returning an
-
   owned representation.
-
   
-
   This function is useful for representing a backtrace as an object in
-
   Rust. This returned value can be sent across threads and printed
-
   elsewhere, and the purpose of this value is to be entirely self
-
   contained.
-
   
-
   Note that on some platforms acquiring a full backtrace and resolving it
-
   can be extremely expensive. If the cost is too much for your application
-
   it's recommended to instead use `Backtrace::new_unresolved()` which
-
   avoids the symbol resolution step (which typically takes the longest)
-
   and allows deferring that to a later date.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use backtrace::Backtrace;
-
   
-
   let current_backtrace = Backtrace::new();
-
   ```
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtrace-new-unresolved"></span>`fn new_unresolved() -> Backtrace` — [`Backtrace`](#backtrace)
 
   Similar to `new` except that this does not resolve any symbols, this
-
   simply captures the backtrace as a list of addresses.
-
   
-
   At a later time the `resolve` function can be called to resolve this
-
   backtrace's symbols into readable names. This function exists because
-
   the resolution process can sometimes take a significant amount of time
-
   whereas any one backtrace may only be rarely printed.
-
   
-
   # Examples
-
   
-
   ```rust
-
   use backtrace::Backtrace;
-
   
-
   let mut current_backtrace = Backtrace::new_unresolved();
-
   println!("{current_backtrace:?}"); // no symbol names
-
   current_backtrace.resolve();
-
   println!("{current_backtrace:?}"); // symbol names now present
-
   ```
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtrace-create"></span>`fn create(ip: usize) -> Backtrace` — [`Backtrace`](#backtrace)
@@ -149,45 +102,27 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtrace-frames"></span>`fn frames(&self) -> &[BacktraceFrame]` — [`BacktraceFrame`](#backtraceframe)
 
   Returns the frames from when this backtrace was captured.
-
   
-
   The first entry of this slice is likely the function `Backtrace::new`,
-
   and the last frame is likely something about how this thread or the main
-
   function started.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtrace-resolve"></span>`fn resolve(&mut self)`
 
   If this backtrace was created from `new_unresolved` then this function
-
   will resolve all addresses in the backtrace to their symbolic names.
-
   
-
   If this backtrace has been previously resolved or was created through
-
   `new`, this function does nothing.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
@@ -231,11 +166,8 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtrace-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Backtrace`
@@ -264,7 +196,7 @@ enabled, and the `std` feature is enabled by default.
 struct TracePtr(*mut core::ffi::c_void);
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:35`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L35)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:35`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L35)*
 
 #### Implementations
 
@@ -305,11 +237,8 @@ struct TracePtr(*mut core::ffi::c_void);
 - <span id="traceptr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Send for TracePtr`
@@ -345,7 +274,7 @@ struct BacktraceFrame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L144-L147)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L144-L147)*
 
 Captured version of a frame in a backtrace.
 
@@ -362,91 +291,56 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtraceframe-ip"></span>`fn ip(&self) -> *mut c_void`
 
   Same as `Frame::ip`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
   Same as `Frame::symbol_address`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
   Same as `Frame::module_base_address`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-symbols"></span>`fn symbols(&self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](#backtracesymbol)
 
   Returns the list of symbols that this frame corresponds to.
-
   
-
   Normally there is only one symbol per frame, but sometimes if a number
-
   of functions are inlined into one frame then multiple symbols will be
-
   returned. The first symbol listed is the "innermost function", whereas
-
   the last symbol is the outermost (last caller).
-
   
-
   Note that if this frame came from an unresolved backtrace then this will
-
   return an empty list.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-resolve"></span>`fn resolve(&mut self)`
 
   Resolve all addresses in this frame to their symbolic names.
-
   
-
   If this frame has been previously resolved, this function does nothing.
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
@@ -486,11 +380,8 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtraceframe-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BacktraceFrame`
@@ -525,7 +416,7 @@ struct BacktraceSymbol {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L222-L228)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L222-L228)*
 
 Captured version of a symbol in a backtrace.
 
@@ -542,71 +433,46 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtracesymbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../symbolize/index.md#symbolname)
 
   Same as `Symbol::name`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
   Same as `Symbol::addr`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
   Same as `Symbol::filename`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
   Same as `Symbol::lineno`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 - <span id="backtracesymbol-colno"></span>`fn colno(&self) -> Option<u32>`
 
   Same as `Symbol::colno`
-
   
-
   # Required features
-
   
-
   This function requires the `std` feature of the `backtrace` crate to be
-
   enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
@@ -646,11 +512,8 @@ enabled, and the `std` feature is enabled by default.
 - <span id="backtracesymbol-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BacktraceSymbol`
@@ -683,7 +546,7 @@ enum Frame {
 }
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:150-158`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L150-L158)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:150-158`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L150-L158)*
 
 #### Implementations
 
@@ -730,11 +593,8 @@ enum Frame {
 - <span id="frame-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Frame`
@@ -765,5 +625,5 @@ enum Frame {
 fn _assert_send_sync()
 ```
 
-*Defined in [`backtrace-0.3.76/src/capture.rs:129-132`](../../../.source_1765633015/backtrace-0.3.76/src/capture.rs#L129-L132)*
+*Defined in [`backtrace-0.3.76/src/capture.rs:129-132`](../../../.source_1765894658/backtrace-0.3.76/src/capture.rs#L129-L132)*
 

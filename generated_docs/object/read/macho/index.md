@@ -257,7 +257,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:12-23`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L12-L23)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:12-23`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L12-L23)*
 
 A parsed representation of the dyld shared cache.
 
@@ -272,21 +272,15 @@ A parsed representation of the dyld shared cache.
 - <span id="dyldcache-subcache-suffixes"></span>`fn subcache_suffixes(data: R) -> Result<Vec<String>>` — [`Result`](../../index.md#result)
 
   Return the suffixes of the subcache files given the data of the main cache file.
-
   
-
   Each of these should be appended to the path of the main cache file.
 
 - <span id="dyldcache-parse"></span>`fn parse(data: R, subcache_data: &[R]) -> Result<Self>` — [`Result`](../../index.md#result)
 
   Parse the raw dyld shared cache data.
-
   
-
   For shared caches from macOS 12 / iOS 15 and above, the subcache files need to be
-
   supplied as well, in the correct order. Use `Self::subcache_suffixes` to obtain
-
   the suffixes for the path of the files.
 
 - <span id="dyldcache-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md#architecture)
@@ -316,7 +310,6 @@ A parsed representation of the dyld shared cache.
 - <span id="dyldcache-data-and-offset-for-address"></span>`fn data_and_offset_for_address(&self, address: u64) -> Option<(R, u64)>`
 
   Find the address in a mapping and return the cache or subcache data it was found in,
-
   together with the translated file offset.
 
 #### Trait Implementations
@@ -348,11 +341,8 @@ A parsed representation of the dyld shared cache.
 - <span id="dyldcache-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCache<'data, E, R>`
@@ -379,7 +369,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:214-221`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L214-L221)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:214-221`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L214-L221)*
 
 The data for one file in the cache.
 
@@ -422,11 +412,8 @@ The data for one file in the cache.
 - <span id="dyldfile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldFile<'data, E, R>`
@@ -453,7 +440,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:256-263`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L256-L263)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:256-263`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L256-L263)*
 
 An iterator over all the images (dylibs) in the dyld shared cache.
 
@@ -486,11 +473,8 @@ An iterator over all the images (dylibs) in the dyld shared cache.
 - <span id="dyldcacheimageiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DyldCacheImageIterator<'data, 'cache, E, R>`
@@ -531,7 +515,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:283-290`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L283-L290)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:283-290`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L283-L290)*
 
 One image (dylib) from inside the dyld shared cache.
 
@@ -548,7 +532,6 @@ One image (dylib) from inside the dyld shared cache.
 - <span id="dyldcacheimage-image-data-and-offset"></span>`fn image_data_and_offset(&self) -> Result<(R, u64)>` — [`Result`](../../index.md#result)
 
   The subcache data which contains the Mach-O header for this image,
-
   together with the file offset at which this image starts.
 
 - <span id="dyldcacheimage-parse-object"></span>`fn parse_object(&self) -> Result<File<'data, R>>` — [`Result`](../../index.md#result), [`File`](../index.md#file)
@@ -584,11 +567,8 @@ One image (dylib) from inside the dyld shared cache.
 - <span id="dyldcacheimage-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheImage<'data, 'cache, E, R>`
@@ -616,7 +596,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:343-351`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L343-L351)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:343-351`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L343-L351)*
 
 An iterator over all the mappings for one subcache in a dyld shared cache.
 
@@ -649,11 +629,8 @@ An iterator over all the mappings for one subcache in a dyld shared cache.
 - <span id="dyldcachemappingiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DyldCacheMappingIterator<'data, E, R>`
@@ -695,7 +672,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:384-392`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L384-L392)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:384-392`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L384-L392)*
 
 Information about a mapping.
 
@@ -768,11 +745,8 @@ Information about a mapping.
 - <span id="dyldcachemapping-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldCacheMapping<'data, E, R>`
@@ -806,7 +780,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:558-564`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L558-L564)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:558-564`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L558-L564)*
 
 An iterator over relocations in a mapping
 
@@ -839,11 +813,8 @@ An iterator over relocations in a mapping
 - <span id="dyldcacherelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for DyldCacheRelocationIterator<'data, E, R>`
@@ -896,7 +867,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:605-629`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L605-L629)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:605-629`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L605-L629)*
 
 #### Fields
 
@@ -949,11 +920,8 @@ where
 - <span id="dyldcacherelocationiteratorv2-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheRelocationIteratorV2<'data, E, R>`
@@ -987,7 +955,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:713-730`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L713-L730)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:713-730`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L713-L730)*
 
 #### Fields
 
@@ -1032,11 +1000,8 @@ where
 - <span id="dyldcacherelocationiteratorv3-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheRelocationIteratorV3<'data, E, R>`
@@ -1070,7 +1035,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:810-827`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L810-L827)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:810-827`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L810-L827)*
 
 #### Fields
 
@@ -1115,11 +1080,8 @@ where
 - <span id="dyldcacherelocationiteratorv5-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheRelocationIteratorV5<'data, E, R>`
@@ -1144,7 +1106,7 @@ struct DyldRelocation {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:896-906`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L896-L906)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:896-906`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L896-L906)*
 
 A cache mapping relocation.
 
@@ -1194,11 +1156,8 @@ A cache mapping relocation.
 - <span id="dyldrelocation-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldRelocation`
@@ -1223,7 +1182,7 @@ struct DyldRelocationAuth {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:921-928`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L921-L928)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:921-928`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L921-L928)*
 
 Pointer authentication data.
 
@@ -1272,11 +1231,8 @@ This is used for signing pointers for the arm64e ABI.
 - <span id="dyldrelocationauth-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldRelocationAuth`
@@ -1300,7 +1256,7 @@ struct MachOFatFile<'data, Fat: FatArch> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:25-28`](../../../../.source_1765633015/object-0.37.3/src/read/macho/fat.rs#L25-L28)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:25-28`](../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L25-L28)*
 
 A Mach-O universal binary.
 
@@ -1358,11 +1314,8 @@ to [`crate::FileKind::MachOFat32`](../../index.md) or [`crate::FileKind::MachOFa
 - <span id="machofatfile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MachOFatFile<'data, Fat>`
@@ -1402,7 +1355,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:37-49`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L37-L49)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:37-49`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L37-L49)*
 
 A partially parsed Mach-O file.
 
@@ -1417,7 +1370,6 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 - <span id="machofile-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: Endian>(image: &DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](#dyldcacheimage), [`Result`](../../index.md#result)
 
   Parse the Mach-O file for the given image from the dyld shared cache.
-
   This will read different sections from different subcaches, if necessary.
 
 - <span id="machofile-section-internal"></span>`fn section_internal(&self, index: SectionIndex) -> Result<&MachOSectionInternal<'data, Mach, R>>` — [`SectionIndex`](../../index.md#sectionindex), [`Result`](../../index.md#result), [`MachOSectionInternal`](section/index.md#machosectioninternal)
@@ -1447,9 +1399,7 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 - <span id="machofile-macho-symbol-table"></span>`fn macho_symbol_table(&self) -> &SymbolTable<'data, Mach, R>` — [`SymbolTable`](#symboltable)
 
   Get the Mach-O symbol table.
-
   
-
   Returns an empty symbol table if the file has no symbol table.
 
 - <span id="machofile-build-version"></span>`fn build_version(&self) -> Result<Option<&'data macho::BuildVersionCommand<<Mach as >::Endian>>>` — [`Result`](../../index.md#result), [`BuildVersionCommand`](../../macho/index.md#buildversioncommand), [`MachHeader`](#machheader)
@@ -1485,11 +1435,8 @@ Most of the functionality of this type is provided by the [`Object`](../index.md
 - <span id="machofile-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> Object for MachOFile<'data, Mach, R>`
@@ -1587,7 +1534,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:527-534`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L527-L534)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:527-534`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L527-L534)*
 
 An iterator for the COMDAT section groups in a [`MachOFile`](#machofile).
 
@@ -1622,11 +1569,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="machocomdatiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOComdatIterator<'data, 'file, Mach, R>`
@@ -1666,7 +1610,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:561-568`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L561-L568)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:561-568`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L561-L568)*
 
 A COMDAT section group in a [`MachOFile`](#machofile).
 
@@ -1701,11 +1645,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="machocomdat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectComdat for MachOComdat<'data, 'file, Mach, R>`
@@ -1747,7 +1688,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:621-628`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L621-L628)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:621-628`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L621-L628)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile`](#machofile).
 
@@ -1782,11 +1723,8 @@ This is a stub that doesn't implement any functionality.
 - <span id="machocomdatsectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
@@ -1825,7 +1763,7 @@ struct LoadCommandIterator<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../.source_1765633015/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../.source_1765894658/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
 
 An iterator for the load commands from a [`MachHeader`](#machheader).
 
@@ -1882,11 +1820,8 @@ An iterator for the load commands from a [`MachHeader`](#machheader).
 - <span id="loadcommanditerator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for LoadCommandIterator<'data, E>`
@@ -1933,7 +1868,7 @@ struct LoadCommandData<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../.source_1765633015/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../.source_1765894658/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
 
 The data for a [`macho::LoadCommand`](../../macho/index.md).
 
@@ -1942,9 +1877,7 @@ The data for a [`macho::LoadCommand`](../../macho/index.md).
 - <span id="loadcommanddata-cmd"></span>`fn cmd(&self) -> u32`
 
   Return the `cmd` field of the [`macho::LoadCommand`](../../macho/index.md).
-
   
-
   This is one of the `LC_` constants.
 
 - <span id="loadcommanddata-cmdsize"></span>`fn cmdsize(&self) -> u32`
@@ -1962,11 +1895,8 @@ The data for a [`macho::LoadCommand`](../../macho/index.md).
 - <span id="loadcommanddata-string"></span>`fn string(&self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../macho/index.md#lcstr), [`Result`](../../index.md#result)
 
   Parse a load command string value.
-
   
-
   Strings used by load commands are specified by offsets that are
-
   relative to the load command header.
 
 - <span id="loadcommanddata-variant"></span>`fn variant(&self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../index.md#result), [`LoadCommandVariant`](#loadcommandvariant)
@@ -1976,9 +1906,7 @@ The data for a [`macho::LoadCommand`](../../macho/index.md).
 - <span id="loadcommanddata-segment-32"></span>`fn segment_32(self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../index.md#result), [`SegmentCommand32`](../../macho/index.md#segmentcommand32)
 
   Try to parse this command as a [`macho::SegmentCommand32`](../../macho/index.md).
-
   
-
   Returns the segment command and the data containing the sections.
 
 - <span id="loadcommanddata-symtab"></span>`fn symtab(self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../index.md#result), [`SymtabCommand`](../../macho/index.md#symtabcommand)
@@ -2052,11 +1980,8 @@ The data for a [`macho::LoadCommand`](../../macho/index.md).
 - <span id="loadcommanddata-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LoadCommandData<'data, E>`
@@ -2091,7 +2016,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:20-27`](../../../../.source_1765633015/object-0.37.3/src/read/macho/segment.rs#L20-L27)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:20-27`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L20-L27)*
 
 An iterator for the segments in a [`MachOFile`](#machofile).
 
@@ -2124,11 +2049,8 @@ An iterator for the segments in a [`MachOFile`](#machofile).
 - <span id="machosegmentiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOSegmentIterator<'data, 'file, Mach, R>`
@@ -2169,7 +2091,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:55-62`](../../../../.source_1765633015/object-0.37.3/src/read/macho/segment.rs#L55-L62)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:55-62`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L55-L62)*
 
 A segment in a [`MachOFile`](#machofile).
 
@@ -2216,11 +2138,8 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 - <span id="machosegment-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSegment for MachOSegment<'data, 'file, Mach, R>`
@@ -2266,7 +2185,7 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:161-168`](../../../../.source_1765633015/object-0.37.3/src/read/macho/segment.rs#L161-L168)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:161-168`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L161-L168)*
 
 #### Fields
 
@@ -2316,11 +2235,8 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 - <span id="machosegmentinternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MachOSegmentInternal<'data, Mach, R>`
@@ -2355,7 +2271,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:22-29`](../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L22-L29)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:22-29`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L22-L29)*
 
 An iterator for the sections in a [`MachOFile`](#machofile).
 
@@ -2388,11 +2304,8 @@ An iterator for the sections in a [`MachOFile`](#machofile).
 - <span id="machosectioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOSectionIterator<'data, 'file, Mach, R>`
@@ -2433,7 +2346,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:68-75`](../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L68-L75)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:68-75`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L68-L75)*
 
 A section in a [`MachOFile`](#machofile).
 
@@ -2486,11 +2399,8 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 - <span id="machosection-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSection for MachOSection<'data, 'file, Mach, R>`
@@ -2556,7 +2466,7 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:241-250`](../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L241-L250)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:241-250`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L241-L250)*
 
 #### Fields
 
@@ -2610,11 +2520,8 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 - <span id="machosectioninternal-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for MachOSectionInternal<'data, Mach, R>`
@@ -2648,7 +2555,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:23-29`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L23-L29)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:23-29`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L23-L29)*
 
 A table of symbol entries in a Mach-O file.
 
@@ -2731,11 +2638,8 @@ Returned by `macho::SymtabCommand::symbols`.
 - <span id="symboltable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for SymbolTable<'data, Mach, R>`
@@ -2769,7 +2673,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:184-190`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L184-L190)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:184-190`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L184-L190)*
 
 A symbol table in a [`MachOFile`](#machofile).
 
@@ -2812,11 +2716,8 @@ A symbol table in a [`MachOFile`](#machofile).
 - <span id="machosymboltable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSymbolTable for MachOSymbolTable<'data, 'file, Mach, R>`
@@ -2863,7 +2764,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:225-232`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L225-L232)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:225-232`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L225-L232)*
 
 An iterator for the symbols in a [`MachOFile`](#machofile).
 
@@ -2902,11 +2803,8 @@ An iterator for the symbols in a [`MachOFile`](#machofile).
 - <span id="machosymboliterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachOSymbolIterator<'data, 'file, Mach, R>`
@@ -2948,7 +2846,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:294-302`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L294-L302)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:294-302`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L294-L302)*
 
 A symbol in a [`MachOFile`](#machofile).
 
@@ -3005,11 +2903,8 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 - <span id="machosymbol-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<Mach, R> ObjectSymbol for MachOSymbol<'data, 'file, Mach, R>`
@@ -3078,7 +2973,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/relocation.rs:20-27`](../../../../.source_1765633015/object-0.37.3/src/read/macho/relocation.rs#L20-L27)*
+*Defined in [`object-0.37.3/src/read/macho/relocation.rs:20-27`](../../../../.source_1765894658/object-0.37.3/src/read/macho/relocation.rs#L20-L27)*
 
 An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 
@@ -3111,11 +3006,8 @@ An iterator for the relocations in a [`MachOSection`](super::MachOSection).
 - <span id="machorelocationiterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for MachORelocationIterator<'data, 'file, Mach, R>`
@@ -3155,7 +3047,7 @@ enum DyldSubCacheSlice<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:31-36`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L31-L36)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:31-36`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L31-L36)*
 
 A slice of structs describing each subcache.
 
@@ -3211,11 +3103,8 @@ so this is an enum of the two possible slice types.
 - <span id="dyldsubcacheslice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldSubCacheSlice<'data, E>`
@@ -3247,7 +3136,7 @@ enum DyldCacheMappingSlice<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:331-336`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L331-L336)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:331-336`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L331-L336)*
 
 The array of mappings for a single dyld cache file.
 
@@ -3303,11 +3192,8 @@ so this is an enum of the two possible slice types.
 - <span id="dyldcachemappingslice-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldCacheMappingSlice<'data, E>`
@@ -3341,7 +3227,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:354-360`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L354-L360)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:354-360`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L354-L360)*
 
 #### Trait Implementations
 
@@ -3372,11 +3258,8 @@ where
 - <span id="dyldcachemappingversioniterator-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheMappingVersionIterator<'data, E>`
@@ -3402,7 +3285,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:395-401`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L395-L401)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:395-401`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L395-L401)*
 
 #### Trait Implementations
 
@@ -3439,11 +3322,8 @@ where
 - <span id="dyldcachemappingversion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldCacheMappingVersion<'data, E>`
@@ -3487,7 +3367,7 @@ enum DyldCacheSlideInfo<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:539-554`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L539-L554)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:539-554`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L539-L554)*
 
 The slide info for a dyld cache mapping, including variable length arrays.
 
@@ -3530,11 +3410,8 @@ The slide info for a dyld cache mapping, including variable length arrays.
 - <span id="dyldcacheslideinfo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for DyldCacheSlideInfo<'data, E>`
@@ -3571,7 +3448,7 @@ where
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:585-594`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L585-L594)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:585-594`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L585-L594)*
 
 #### Trait Implementations
 
@@ -3602,11 +3479,8 @@ where
 - <span id="dyldcacherelocationiteratorversion-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DyldCacheRelocationIteratorVersion<'data, E, R>`
@@ -3632,7 +3506,7 @@ enum RelocationStateV2 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:597-602`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L597-L602)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:597-602`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L597-L602)*
 
 #### Trait Implementations
 
@@ -3675,11 +3549,8 @@ enum RelocationStateV2 {
 - <span id="relocationstatev2-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationStateV2`
@@ -3717,7 +3588,7 @@ enum RelocationStateV3 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:707-710`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L707-L710)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:707-710`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L707-L710)*
 
 #### Trait Implementations
 
@@ -3760,11 +3631,8 @@ enum RelocationStateV3 {
 - <span id="relocationstatev3-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationStateV3`
@@ -3802,7 +3670,7 @@ enum RelocationStateV5 {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:804-807`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L804-L807)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:804-807`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L804-L807)*
 
 #### Trait Implementations
 
@@ -3845,11 +3713,8 @@ enum RelocationStateV5 {
 - <span id="relocationstatev5-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for RelocationStateV5`
@@ -3918,7 +3783,7 @@ enum LoadCommandVariant<'data, E: Endian> {
 }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../.source_1765633015/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../.source_1765894658/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
 
 A [`macho::LoadCommand`](../../macho/index.md) that has been interpreted according to its `cmd` field.
 
@@ -4099,11 +3964,8 @@ A [`macho::LoadCommand`](../../macho/index.md) that has been interpreted accordi
 - <span id="loadcommandvariant-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LoadCommandVariant<'data, E>`
@@ -4134,7 +3996,7 @@ A [`macho::LoadCommand`](../../macho/index.md) that has been interpreted accordi
 trait FatArch: Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:59-90`](../../../../.source_1765633015/object-0.37.3/src/read/macho/fat.rs#L59-L90)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:59-90`](../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L59-L90)*
 
 A trait for generic access to [`macho::FatArch32`](../../macho/index.md) and [`macho::FatArch64`](../../macho/index.md).
 
@@ -4177,7 +4039,7 @@ A trait for generic access to [`macho::FatArch32`](../../macho/index.md) and [`m
 trait MachHeader: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:644-723`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L644-L723)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:644-723`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L644-L723)*
 
 A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and [`macho::MachHeader64`](../../macho/index.md).
 
@@ -4198,6 +4060,8 @@ A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and 
 - `fn is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
+  
+  This is a property of the type, not a value in the header data.
 
 - `fn is_big_endian(&self) -> bool`
 
@@ -4226,6 +4090,8 @@ A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and 
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<&'data Self>`
 
   Read the file header.
+  
+  Also checks that the magic field in the file header is a supported format.
 
 - `fn is_supported(&self) -> bool`
 
@@ -4248,7 +4114,7 @@ A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and 
 trait Segment: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:172-229`](../../../../.source_1765633015/object-0.37.3/src/read/macho/segment.rs#L172-L229)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:172-229`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L172-L229)*
 
 A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) and [`macho::SegmentCommand64`](../../macho/index.md).
 
@@ -4299,10 +4165,14 @@ A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) 
 - `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
 
   Get the segment data from the file data.
+  
+  Returns `Err` for invalid values.
 
 - `fn sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, section_data: R) -> Result<&'data [<Self as >::Section]>`
 
   Get the array of sections from the data following the segment command.
+  
+  Returns `Err` for invalid values.
 
 #### Implementors
 
@@ -4315,7 +4185,7 @@ A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) 
 trait Section: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:285-354`](../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L285-L354)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:285-354`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L285-L354)*
 
 A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`macho::Section64`](../../macho/index.md).
 
@@ -4358,14 +4228,21 @@ A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`m
 - `fn file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
+  
+  Returns `None` for sections that have no data in the file.
 
 - `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
 
   Return the section data.
+  
+  Returns `Ok(&[])` if the section has no data.
+  Returns `Err` for invalid values.
 
 - `fn relocations<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [macho::Relocation<<Self as >::Endian>]>`
 
   Return the relocation array.
+  
+  Returns `Err` for invalid values.
 
 #### Implementors
 
@@ -4378,7 +4255,7 @@ A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`m
 trait Nlist: Debug + Pod { ... }
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:457-504`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L457-L504)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:457-504`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L457-L504)*
 
 A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`macho::Nlist64`](../../macho/index.md).
 
@@ -4407,6 +4284,8 @@ A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`mac
 - `fn is_stab(&self) -> bool`
 
   Return true if this is a STAB symbol.
+  
+  This determines the meaning of the `n_type` field.
 
 - `fn is_undefined(&self) -> bool`
 
@@ -4419,6 +4298,9 @@ A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`mac
 - `fn library_ordinal(&self, endian: <Self as >::Endian) -> u8`
 
   Return the library ordinal.
+  
+  This is either a 1-based index into the dylib load commands,
+  or a special ordinal.
 
 #### Implementors
 
@@ -4433,7 +4315,7 @@ A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`mac
 type MachOFatFile32<'data> = MachOFatFile<'data, macho::FatArch32>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:12`](../../../../.source_1765633015/object-0.37.3/src/read/macho/fat.rs#L12)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:12`](../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L12)*
 
 A 32-bit Mach-O universal binary.
 
@@ -4446,7 +4328,7 @@ to [`crate::FileKind::MachOFat32`](../../index.md).
 type MachOFatFile64<'data> = MachOFatFile<'data, macho::FatArch64>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/fat.rs:18`](../../../../.source_1765633015/object-0.37.3/src/read/macho/fat.rs#L18)*
+*Defined in [`object-0.37.3/src/read/macho/fat.rs:18`](../../../../.source_1765894658/object-0.37.3/src/read/macho/fat.rs#L18)*
 
 A 64-bit Mach-O universal binary.
 
@@ -4459,7 +4341,7 @@ to [`crate::FileKind::MachOFat64`](../../index.md).
 type MachOFile32<'data, Endian, R> = MachOFile<'data, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:24-25`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L24-L25)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:24-25`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L24-L25)*
 
 A 32-bit Mach-O object file.
 
@@ -4472,7 +4354,7 @@ to [`crate::FileKind::MachO32`](../../index.md).
 type MachOFile64<'data, Endian, R> = MachOFile<'data, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:30-31`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L30-L31)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:30-31`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L30-L31)*
 
 A 64-bit Mach-O object file.
 
@@ -4485,7 +4367,7 @@ to [`crate::FileKind::MachO64`](../../index.md).
 type MachOComdatIterator32<'data, 'file, Endian, R> = MachOComdatIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:517-518`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L517-L518)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:517-518`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L517-L518)*
 
 An iterator for the COMDAT section groups in a [`MachOFile64`](#machofile64).
 
@@ -4495,7 +4377,7 @@ An iterator for the COMDAT section groups in a [`MachOFile64`](#machofile64).
 type MachOComdatIterator64<'data, 'file, Endian, R> = MachOComdatIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:520-521`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L520-L521)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:520-521`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L520-L521)*
 
 An iterator for the COMDAT section groups in a [`MachOFile64`](#machofile64).
 
@@ -4505,7 +4387,7 @@ An iterator for the COMDAT section groups in a [`MachOFile64`](#machofile64).
 type MachOComdat32<'data, 'file, Endian, R> = MachOComdat<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:550-551`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L550-L551)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:550-551`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L550-L551)*
 
 A COMDAT section group in a [`MachOFile32`](#machofile32).
 
@@ -4515,7 +4397,7 @@ A COMDAT section group in a [`MachOFile32`](#machofile32).
 type MachOComdat64<'data, 'file, Endian, R> = MachOComdat<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:554-555`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L554-L555)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:554-555`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L554-L555)*
 
 A COMDAT section group in a [`MachOFile64`](#machofile64).
 
@@ -4525,7 +4407,7 @@ A COMDAT section group in a [`MachOFile64`](#machofile64).
 type MachOComdatSectionIterator32<'data, 'file, Endian, R> = MachOComdatSectionIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:611-612`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L611-L612)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:611-612`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L611-L612)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile32`](#machofile32).
 
@@ -4535,7 +4417,7 @@ An iterator for the sections in a COMDAT section group in a [`MachOFile32`](#mac
 type MachOComdatSectionIterator64<'data, 'file, Endian, R> = MachOComdatSectionIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/file.rs:614-615`](../../../../.source_1765633015/object-0.37.3/src/read/macho/file.rs#L614-L615)*
+*Defined in [`object-0.37.3/src/read/macho/file.rs:614-615`](../../../../.source_1765894658/object-0.37.3/src/read/macho/file.rs#L614-L615)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile64`](#machofile64).
 
@@ -4545,7 +4427,7 @@ An iterator for the sections in a COMDAT section group in a [`MachOFile64`](#mac
 type MachOSegmentIterator32<'data, 'file, Endian, R> = MachOSegmentIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:12-13`](../../../../.source_1765633015/object-0.37.3/src/read/macho/segment.rs#L12-L13)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:12-13`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L12-L13)*
 
 An iterator for the segments in a [`MachOFile32`](super::MachOFile32).
 
@@ -4555,7 +4437,7 @@ An iterator for the segments in a [`MachOFile32`](super::MachOFile32).
 type MachOSegmentIterator64<'data, 'file, Endian, R> = MachOSegmentIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:15-16`](../../../../.source_1765633015/object-0.37.3/src/read/macho/segment.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:15-16`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L15-L16)*
 
 An iterator for the segments in a [`MachOFile64`](super::MachOFile64).
 
@@ -4565,7 +4447,7 @@ An iterator for the segments in a [`MachOFile64`](super::MachOFile64).
 type MachOSegment32<'data, 'file, Endian, R> = MachOSegment<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:45-46`](../../../../.source_1765633015/object-0.37.3/src/read/macho/segment.rs#L45-L46)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:45-46`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L45-L46)*
 
 A segment in a [`MachOFile32`](super::MachOFile32).
 
@@ -4575,7 +4457,7 @@ A segment in a [`MachOFile32`](super::MachOFile32).
 type MachOSegment64<'data, 'file, Endian, R> = MachOSegment<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/segment.rs:48-49`](../../../../.source_1765633015/object-0.37.3/src/read/macho/segment.rs#L48-L49)*
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:48-49`](../../../../.source_1765894658/object-0.37.3/src/read/macho/segment.rs#L48-L49)*
 
 A segment in a [`MachOFile64`](super::MachOFile64).
 
@@ -4585,7 +4467,7 @@ A segment in a [`MachOFile64`](super::MachOFile64).
 type MachOSectionIterator32<'data, 'file, Endian, R> = MachOSectionIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:15-16`](../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L15-L16)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:15-16`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L15-L16)*
 
 An iterator for the sections in a [`MachOFile32`](super::MachOFile32).
 
@@ -4595,7 +4477,7 @@ An iterator for the sections in a [`MachOFile32`](super::MachOFile32).
 type MachOSectionIterator64<'data, 'file, Endian, R> = MachOSectionIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:18-19`](../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L18-L19)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:18-19`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L18-L19)*
 
 An iterator for the sections in a [`MachOFile64`](super::MachOFile64).
 
@@ -4605,7 +4487,7 @@ An iterator for the sections in a [`MachOFile64`](super::MachOFile64).
 type MachOSection32<'data, 'file, Endian, R> = MachOSection<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:58-59`](../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L58-L59)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:58-59`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L58-L59)*
 
 A section in a [`MachOFile32`](super::MachOFile32).
 
@@ -4615,7 +4497,7 @@ A section in a [`MachOFile32`](super::MachOFile32).
 type MachOSection64<'data, 'file, Endian, R> = MachOSection<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/section.rs:61-62`](../../../../.source_1765633015/object-0.37.3/src/read/macho/section.rs#L61-L62)*
+*Defined in [`object-0.37.3/src/read/macho/section.rs:61-62`](../../../../.source_1765894658/object-0.37.3/src/read/macho/section.rs#L61-L62)*
 
 A section in a [`MachOFile64`](super::MachOFile64).
 
@@ -4625,7 +4507,7 @@ A section in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbolTable32<'data, 'file, Endian, R> = MachOSymbolTable<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:176-177`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L176-L177)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:176-177`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L176-L177)*
 
 A symbol table in a [`MachOFile32`](super::MachOFile32).
 
@@ -4635,7 +4517,7 @@ A symbol table in a [`MachOFile32`](super::MachOFile32).
 type MachOSymbolTable64<'data, 'file, Endian, R> = MachOSymbolTable<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:179-180`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L179-L180)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:179-180`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L179-L180)*
 
 A symbol table in a [`MachOFile64`](super::MachOFile64).
 
@@ -4645,7 +4527,7 @@ A symbol table in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbolIterator32<'data, 'file, Endian, R> = MachOSymbolIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:218-219`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L218-L219)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:218-219`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L218-L219)*
 
 An iterator for the symbols in a [`MachOFile32`](super::MachOFile32).
 
@@ -4655,7 +4537,7 @@ An iterator for the symbols in a [`MachOFile32`](super::MachOFile32).
 type MachOSymbolIterator64<'data, 'file, Endian, R> = MachOSymbolIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:221-222`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L221-L222)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:221-222`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L221-L222)*
 
 An iterator for the symbols in a [`MachOFile64`](super::MachOFile64).
 
@@ -4665,7 +4547,7 @@ An iterator for the symbols in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbol32<'data, 'file, Endian, R> = MachOSymbol<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:284-285`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L284-L285)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:284-285`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L284-L285)*
 
 A symbol in a [`MachOFile32`](super::MachOFile32).
 
@@ -4675,7 +4557,7 @@ A symbol in a [`MachOFile32`](super::MachOFile32).
 type MachOSymbol64<'data, 'file, Endian, R> = MachOSymbol<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/symbol.rs:287-288`](../../../../.source_1765633015/object-0.37.3/src/read/macho/symbol.rs#L287-L288)*
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:287-288`](../../../../.source_1765894658/object-0.37.3/src/read/macho/symbol.rs#L287-L288)*
 
 A symbol in a [`MachOFile64`](super::MachOFile64).
 
@@ -4685,7 +4567,7 @@ A symbol in a [`MachOFile64`](super::MachOFile64).
 type MachORelocationIterator32<'data, 'file, Endian, R> = MachORelocationIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/relocation.rs:13-14`](../../../../.source_1765633015/object-0.37.3/src/read/macho/relocation.rs#L13-L14)*
+*Defined in [`object-0.37.3/src/read/macho/relocation.rs:13-14`](../../../../.source_1765894658/object-0.37.3/src/read/macho/relocation.rs#L13-L14)*
 
 An iterator for the relocations in a [`MachOSection32`](super::MachOSection32).
 
@@ -4695,7 +4577,7 @@ An iterator for the relocations in a [`MachOSection32`](super::MachOSection32).
 type MachORelocationIterator64<'data, 'file, Endian, R> = MachORelocationIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/relocation.rs:16-17`](../../../../.source_1765633015/object-0.37.3/src/read/macho/relocation.rs#L16-L17)*
+*Defined in [`object-0.37.3/src/read/macho/relocation.rs:16-17`](../../../../.source_1765894658/object-0.37.3/src/read/macho/relocation.rs#L16-L17)*
 
 An iterator for the relocations in a [`MachOSection64`](super::MachOSection64).
 
@@ -4706,19 +4588,19 @@ An iterator for the relocations in a [`MachOSection64`](super::MachOSection64).
 const MIN_HEADER_SIZE_SUBCACHES_V1: u32 = 456u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:39`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L39)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:39`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L39)*
 
 ### `MIN_HEADER_SIZE_SUBCACHES_V2`
 ```rust
 const MIN_HEADER_SIZE_SUBCACHES_V2: u32 = 464u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:42`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L42)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:42`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L42)*
 
 ### `MIN_HEADER_SIZE_MAPPINGS_V2`
 ```rust
 const MIN_HEADER_SIZE_MAPPINGS_V2: u32 = 320u32;
 ```
 
-*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:339`](../../../../.source_1765633015/object-0.37.3/src/read/macho/dyld_cache.rs#L339)*
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:339`](../../../../.source_1765894658/object-0.37.3/src/read/macho/dyld_cache.rs#L339)*
 

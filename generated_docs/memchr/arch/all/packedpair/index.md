@@ -41,7 +41,7 @@ struct Finder {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:35-39`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L35-L39)*
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:35-39`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L35-L39)*
 
 An architecture independent "packed pair" finder.
 
@@ -64,39 +64,28 @@ architecture independent routines are unavailable.
 - <span id="finder-new"></span>`fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
   Create a new prefilter that reports possible locations where the given
-
   needle matches.
 
 - <span id="finder-with-pair"></span>`fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](#pair), [`Finder`](#finder)
 
   Create a new prefilter using the pair given.
-
   
-
   If the prefilter could not be constructed, then `None` is returned.
-
   
-
   This constructor permits callers to control precisely which pair of
-
   bytes is used as a predicate.
 
 - <span id="finder-find-prefilter"></span>`fn find_prefilter(&self, haystack: &[u8]) -> Option<usize>`
 
   Run this finder on the given haystack as a prefilter.
-
   
-
   If a candidate match is found, then an offset where the needle *could*
-
   begin in the haystack is returned.
 
 - <span id="finder-pair"></span>`fn pair(&self) -> &Pair` — [`Pair`](#pair)
 
   Returns the pair of offsets (into the needle) used to check as a
-
   predicate before confirming whether a needle exists at a particular
-
   position.
 
 #### Trait Implementations
@@ -138,11 +127,8 @@ architecture independent routines are unavailable.
 - <span id="finder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Finder`
@@ -174,7 +160,7 @@ struct Pair {
 }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:135-138`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L135-L138)*
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:135-138`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L135-L138)*
 
 A pair of byte offsets into a needle to use as a predicate.
 
@@ -204,67 +190,40 @@ needles with length at least 2.
 - <span id="pair-new"></span>`fn new(needle: &[u8]) -> Option<Pair>` — [`Pair`](#pair)
 
   Create a new pair of offsets from the given needle.
-
   
-
   If a pair could not be created (for example, if the needle is too
-
   short), then `None` is returned.
-
   
-
   This chooses the pair in the needle that is believed to be as
-
   predictive of an overall match of the needle as possible.
 
 - <span id="pair-with-ranker"></span>`fn with_ranker<R: HeuristicFrequencyRank>(needle: &[u8], ranker: R) -> Option<Pair>` — [`Pair`](#pair)
 
   Create a new pair of offsets from the given needle and ranker.
-
   
-
   This permits the caller to choose a background frequency distribution
-
   with which bytes are selected. The idea is to select a pair of bytes
-
   that is believed to strongly predict a match in the haystack. This
-
   usually means selecting bytes that occur rarely in a haystack.
-
   
-
   If a pair could not be created (for example, if the needle is too
-
   short), then `None` is returned.
 
 - <span id="pair-with-indices"></span>`fn with_indices(needle: &[u8], index1: u8, index2: u8) -> Option<Pair>` — [`Pair`](#pair)
 
   Create a new pair using the offsets given for the needle given.
-
   
-
   This bypasses any sort of heuristic process for choosing the offsets
-
   and permits the caller to choose the offsets themselves.
-
   
-
   Indices are limited to valid `u8` values so that a `Pair` uses less
-
   memory. It is not possible to create a `Pair` with offsets bigger than
-
   `u8::MAX`. It's likely that such a thing is not needed, but if it is,
-
   it's suggested to build your own bespoke algorithm because you're
-
   likely working on a very niche case. (File an issue if this suggestion
-
   does not make sense to you.)
-
   
-
   If a pair could not be created (for example, if the needle is too
-
   short), then `None` is returned.
 
 - <span id="pair-index1"></span>`fn index1(&self) -> u8`
@@ -314,11 +273,8 @@ needles with length at least 2.
 - <span id="pair-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Pair`
@@ -347,7 +303,7 @@ needles with length at least 2.
 struct DefaultFrequencyRank;
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:321`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L321)*
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:321`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L321)*
 
 The default byte frequency heuristic that is good for most haystacks.
 
@@ -380,11 +336,8 @@ The default byte frequency heuristic that is good for most haystacks.
 - <span id="defaultfrequencyrank-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for DefaultFrequencyRank`
@@ -407,7 +360,7 @@ The default byte frequency heuristic that is good for most haystacks.
 trait HeuristicFrequencyRank { ... }
 ```
 
-*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:309-318`](../../../../../.source_1765633015/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L309-L318)*
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:309-318`](../../../../../.source_1765894658/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L309-L318)*
 
 This trait allows the user to customize the heuristic used to determine the
 relative frequency of a given byte in the dataset being searched.
@@ -475,6 +428,12 @@ assert!(finder.find(b"\x00\x00\x00\xdd\xdd").is_some());
 - `fn rank(&self, byte: u8) -> u8`
 
   Return the heuristic frequency rank of the given byte. A lower rank
+  means the byte is believed to occur less frequently in the haystack.
+  
+  Some uses of this heuristic may treat arbitrary absolute rank values as
+  significant. For example, an implementation detail in this crate may
+  determine that heuristic prefilters are inappropriate if every byte in
+  the needle has a "high" rank.
 
 #### Implementors
 

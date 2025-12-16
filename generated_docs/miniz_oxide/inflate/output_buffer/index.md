@@ -22,7 +22,7 @@ struct OutputBuffer<'a> {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:6-9`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L6-L9)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:6-9`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L6-L9)*
 
 A wrapper for the output slice used when decompressing.
 
@@ -41,17 +41,13 @@ performance on 32-bit systems.
 - <span id="outputbuffer-write-byte"></span>`fn write_byte(&mut self, byte: u8)`
 
   Write a byte to the current position and increment
-
   
-
   Assumes that there is space.
 
 - <span id="outputbuffer-write-slice"></span>`fn write_slice(&mut self, data: &[u8])`
 
   Write a slice to the current position and increment
-
   
-
   Assumes that there is space.
 
 - <span id="outputbuffer-bytes-left"></span>`const fn bytes_left(&self) -> usize`
@@ -85,11 +81,8 @@ performance on 32-bit systems.
 - <span id="outputbuffer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for OutputBuffer<'a>`
@@ -112,7 +105,7 @@ struct InputWrapper<'a> {
 }
 ```
 
-*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:68-70`](../../../../.source_1765633015/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L68-L70)*
+*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:68-70`](../../../../.source_1765894658/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L68-L70)*
 
 A wrapper for the output slice used when decompressing.
 
@@ -169,11 +162,8 @@ performance on 32-bit systems.
 - <span id="inputwrapper-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for InputWrapper<'a>`

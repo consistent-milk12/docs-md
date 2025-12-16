@@ -266,14 +266,20 @@ impl<'a> ItemRenderer<'a> {
             // Categorize trait items
             let items = CategorizedTraitItems::categorize_trait_items(&t.items, krate);
 
+            let full_method_docs = self.ctx.render_config().full_method_docs;
+
             // Associated Types
             if !items.associated_types.is_empty() {
                 _ = writeln!(md, "#### Associated Types\n");
 
                 for type_item in &items.associated_types {
-                    TraitRenderer::render_trait_item(md, type_item, &self.type_renderer, |m| {
-                        self.process_docs(m)
-                    });
+                    TraitRenderer::render_trait_item(
+                        md,
+                        type_item,
+                        &self.type_renderer,
+                        |m| self.process_docs(m),
+                        full_method_docs,
+                    );
                 }
             }
 
@@ -282,9 +288,13 @@ impl<'a> ItemRenderer<'a> {
                 _ = writeln!(md, "#### Associated Constants\n");
 
                 for const_item in &items.associated_consts {
-                    TraitRenderer::render_trait_item(md, const_item, &self.type_renderer, |m| {
-                        self.process_docs(m)
-                    });
+                    TraitRenderer::render_trait_item(
+                        md,
+                        const_item,
+                        &self.type_renderer,
+                        |m| self.process_docs(m),
+                        full_method_docs,
+                    );
                 }
             }
 
@@ -298,6 +308,7 @@ impl<'a> ItemRenderer<'a> {
                         required_method,
                         &self.type_renderer,
                         |m| self.process_docs(m),
+                        full_method_docs,
                     );
                 }
             }
@@ -312,6 +323,7 @@ impl<'a> ItemRenderer<'a> {
                         provided_method,
                         &self.type_renderer,
                         |m| self.process_docs(m),
+                        full_method_docs,
                     );
                 }
             }

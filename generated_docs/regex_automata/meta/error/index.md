@@ -24,7 +24,7 @@ struct BuildError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
 
 An error that occurs when construction of a `Regex` fails.
 
@@ -53,51 +53,32 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 - <span id="builderror-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md#patternid)
 
   If it is known which pattern ID caused this build error to occur, then
-
   this method returns it.
-
   
-
   Some errors are not associated with a particular pattern. However, any
-
   errors that occur as part of parsing a pattern are guaranteed to be
-
   associated with a pattern ID.
-
   
-
   # Example
-
   
-
   ```rust
-
   use regex_automata::{meta::Regex, PatternID};
-
   
-
   let err = Regex::new_many(&["a", "b", r"\p{Foo}", "c"]).unwrap_err();
-
   assert_eq!(Some(PatternID::must(2)), err.pattern());
-
   ```
 
 - <span id="builderror-size-limit"></span>`fn size_limit(&self) -> Option<usize>`
 
   If this error occurred because the regex exceeded the configured size
-
   limit before being built, then this returns the configured size limit.
-
   
-
   The limit returned is what was configured, and corresponds to the
-
   maximum amount of heap usage in bytes.
 
 - <span id="builderror-syntax-error"></span>`fn syntax_error(&self) -> Option<&regex_syntax::Error>`
 
   If this error corresponds to a syntax error, then a reference to it is
-
   returned by this method.
 
 - <span id="builderror-ast"></span>`fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../../util/primitives/index.md#patternid), [`BuildError`](#builderror)
@@ -151,11 +132,8 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 - <span id="builderror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BuildError`
@@ -188,7 +166,7 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 struct RetryQuadraticError(());
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:164`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/error.rs#L164)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:164`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/error.rs#L164)*
 
 An error that occurs when potential quadratic behavior has been detected
 when applying either the "reverse suffix" or "reverse inner" optimizations.
@@ -235,11 +213,8 @@ and use a normal forward search.
 - <span id="retryquadraticerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for RetryQuadraticError`
@@ -266,7 +241,7 @@ struct RetryFailError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:200-202`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/error.rs#L200-L202)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:200-202`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/error.rs#L200-L202)*
 
 An error that occurs when a regex engine "gives up" for some reason before
 finishing a search. Usually this occurs because of heuristic Unicode word
@@ -320,11 +295,8 @@ regex engine internals guarantee that errors like `HaystackTooLong` and
 - <span id="retryfailerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for RetryFailError`
@@ -357,7 +329,7 @@ enum BuildErrorKind {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:32-35`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/error.rs#L32-L35)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:32-35`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/error.rs#L32-L35)*
 
 #### Trait Implementations
 
@@ -396,11 +368,8 @@ enum BuildErrorKind {
 - <span id="builderrorkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for BuildErrorKind`
@@ -432,7 +401,7 @@ enum RetryError {
 }
 ```
 
-*Defined in [`regex-automata-0.4.13/src/meta/error.rs:135-138`](../../../../.source_1765633015/regex-automata-0.4.13/src/meta/error.rs#L135-L138)*
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:135-138`](../../../../.source_1765894658/regex-automata-0.4.13/src/meta/error.rs#L135-L138)*
 
 An error that occurs when a search should be retried.
 
@@ -487,11 +456,8 @@ API.
 - <span id="retryerror-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToString for RetryError`

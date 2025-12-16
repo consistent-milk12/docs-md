@@ -21,7 +21,7 @@ struct Dispatchers {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:524-526`](../../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L524-L526)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:524-526`](../../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L524-L526)*
 
 #### Implementations
 
@@ -56,11 +56,8 @@ struct Dispatchers {
 - <span id="dispatchers-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Dispatchers`
@@ -87,7 +84,7 @@ enum Rebuilder<'a> {
 }
 ```
 
-*Defined in [`tracing-core-0.1.35/src/callsite.rs:531-535`](../../../../.source_1765633015/tracing-core-0.1.35/src/callsite.rs#L531-L535)*
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:531-535`](../../../../.source_1765894658/tracing-core-0.1.35/src/callsite.rs#L531-L535)*
 
 #### Implementations
 
@@ -118,11 +115,8 @@ enum Rebuilder<'a> {
 - <span id="rebuilder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Rebuilder<'a>`

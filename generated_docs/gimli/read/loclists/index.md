@@ -46,7 +46,7 @@ struct DebugLoc<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:14-16`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L14-L16)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:14-16`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L14-L16)*
 
 The raw contents of the `.debug_loc` section.
 
@@ -55,31 +55,18 @@ The raw contents of the `.debug_loc` section.
 - <span id="debugloc-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugLoc` instance from the data in the `.debug_loc`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_loc` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugLoc, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_loc_section_somehow = || &buf;
-
   let debug_loc = DebugLoc::new(read_debug_loc_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -125,11 +112,8 @@ The raw contents of the `.debug_loc` section.
 - <span id="debugloc-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugLoc<R>`
@@ -166,7 +150,7 @@ struct DebugLocLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:74-76`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L74-L76)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:74-76`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L74-L76)*
 
 The `DebugLocLists` struct represents the DWARF data
 found in the `.debug_loclists` section.
@@ -176,31 +160,18 @@ found in the `.debug_loclists` section.
 - <span id="debugloclists-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
   Construct a new `DebugLocLists` instance from the data in the `.debug_loclists`
-
   section.
-
   
-
   It is the caller's responsibility to read the `.debug_loclists` section and
-
   present it as a `&[u8]` slice. That means using some ELF loader on
-
   Linux, a Mach-O loader on macOS, etc.
-
   
-
   ```rust
-
   use gimli::{DebugLocLists, LittleEndian};
-
   
-
   let buf = [0x00, 0x01, 0x02, 0x03];
-
   let read_debug_loclists_section_somehow = || &buf;
-
   let debug_loclists = DebugLocLists::new(read_debug_loclists_section_somehow(), LittleEndian);
-
   ```
 
 #### Trait Implementations
@@ -246,11 +217,8 @@ found in the `.debug_loclists` section.
 - <span id="debugloclists-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R> Section for DebugLocLists<R>`
@@ -288,7 +256,7 @@ struct LocationLists<R> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:156-159`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L156-L159)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:156-159`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L156-L159)*
 
 The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
@@ -297,7 +265,6 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 - <span id="locationlists-new"></span>`fn new(debug_loc: DebugLoc<R>, debug_loclists: DebugLocLists<R>) -> LocationLists<R>` — [`DebugLoc`](../index.md#debugloc), [`DebugLocLists`](../index.md#debugloclists), [`LocationLists`](../index.md#locationlists)
 
   Construct a new `LocationLists` instance from the data in the `.debug_loc` and
-
   `.debug_loclists` sections.
 
 #### Trait Implementations
@@ -343,11 +310,8 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 - <span id="locationlists-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for LocationLists<R>`
@@ -380,7 +344,7 @@ struct RawLocListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:329-333`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L329-L333)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:329-333`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L329-L333)*
 
 A raw iterator over a location list.
 
@@ -426,11 +390,8 @@ such as handling base addresses.
 - <span id="rawloclistiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RawLocListIter<R>`
@@ -456,7 +417,7 @@ struct LocListIter<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:536-541`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L536-L541)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:536-541`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L536-L541)*
 
 An iterator over a location list.
 
@@ -505,11 +466,8 @@ and already adjusted for the base address.
 - <span id="loclistiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for LocListIter<R>`
@@ -533,7 +491,7 @@ struct LocationListEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:679-685`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L679-L685)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:679-685`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L679-L685)*
 
 A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 
@@ -592,11 +550,8 @@ A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 - <span id="locationlistentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<R: cmp::PartialEq + Reader> PartialEq for LocationListEntry<R>`
@@ -636,7 +591,7 @@ enum LocListsFormat {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:316-322`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L316-L322)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:316-322`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L316-L322)*
 
 #### Variants
 
@@ -690,11 +645,8 @@ enum LocListsFormat {
 - <span id="loclistsformat-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for LocListsFormat`
@@ -769,7 +721,7 @@ enum RawLocListEntry<R: Reader> {
 }
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:337-407`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L337-L407)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:337-407`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L337-L407)*
 
 A raw entry in .debug_loclists.
 
@@ -854,11 +806,8 @@ A raw entry in .debug_loclists.
 - <span id="rawloclistentry-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for RawLocListEntry<R>`
@@ -889,7 +838,7 @@ A raw entry in .debug_loclists.
 fn parse_data<R: Reader>(input: &mut R, encoding: crate::common::Encoding) -> crate::read::Result<crate::read::Expression<R>>
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:409-418`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L409-L418)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:409-418`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L409-L418)*
 
 ## Type Aliases
 
@@ -899,5 +848,5 @@ fn parse_data<R: Reader>(input: &mut R, encoding: crate::common::Encoding) -> cr
 type LocListsHeader = crate::read::lists::ListsHeader;
 ```
 
-*Defined in [`gimli-0.32.3/src/read/loclists.rs:131`](../../../../.source_1765633015/gimli-0.32.3/src/read/loclists.rs#L131)*
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:131`](../../../../.source_1765894658/gimli-0.32.3/src/read/loclists.rs#L131)*
 

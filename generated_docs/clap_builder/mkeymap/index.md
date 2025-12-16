@@ -24,7 +24,7 @@ struct Key {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:9-12`](../../../.source_1765633015/clap_builder-4.5.53/src/mkeymap.rs#L9-L12)*
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:9-12`](../../../.source_1765894658/clap_builder-4.5.53/src/mkeymap.rs#L9-L12)*
 
 #### Trait Implementations
 
@@ -65,11 +65,8 @@ struct Key {
 - <span id="key-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for Key`
@@ -107,7 +104,7 @@ struct MKeyMap {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:15-22`](../../../.source_1765633015/clap_builder-4.5.53/src/mkeymap.rs#L15-L22)*
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:15-22`](../../../.source_1765894658/clap_builder-4.5.53/src/mkeymap.rs#L15-L22)*
 
 #### Fields
 
@@ -124,9 +121,7 @@ struct MKeyMap {
 - <span id="mkeymap-contains"></span>`fn contains<K>(&self, key: K) -> bool`
 
   If any arg has corresponding key in this map, we can search the key with
-
   `u64` (for positional argument), `char` (for short flag), `&str` and `OsString`
-
   (for long flag)
 
 - <span id="mkeymap-push"></span>`fn push(&mut self, new_arg: Arg)` — [`Arg`](../builder/arg/index.md#arg)
@@ -136,9 +131,7 @@ struct MKeyMap {
 - <span id="mkeymap-get"></span>`fn get<K: ?Sized>(&self, key: &K) -> Option<&Arg>` — [`Arg`](../builder/arg/index.md#arg)
 
   Find the arg have corresponding key in this map, we can search the key
-
   with `u64` (for positional argument), `char` (for short flag), `&str` and
-
   `OsString` (for long flag)
 
 - <span id="mkeymap-keys"></span>`fn keys(&self) -> impl Iterator<Item = &KeyType>` — [`KeyType`](#keytype)
@@ -160,13 +153,11 @@ struct MKeyMap {
 - <span id="mkeymap-build"></span>`fn _build(&mut self)`
 
   We need a lazy build here since some we may change args after creating
-
   the map, you can checkout who uses `args_mut`.
 
 - <span id="mkeymap-remove-by-name"></span>`fn remove_by_name(&mut self, name: &str) -> Option<Arg>` — [`Arg`](../builder/arg/index.md#arg)
 
   Remove an arg in the graph by Id, usually used by `mut_arg`. Return
-
   `Some(arg)` if removed.
 
 #### Trait Implementations
@@ -218,11 +209,8 @@ struct MKeyMap {
 - <span id="mkeymap-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for MKeyMap`
@@ -263,7 +251,7 @@ enum KeyType {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:25-29`](../../../.source_1765633015/clap_builder-4.5.53/src/mkeymap.rs#L25-L29)*
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:25-29`](../../../.source_1765894658/clap_builder-4.5.53/src/mkeymap.rs#L25-L29)*
 
 #### Implementations
 
@@ -318,11 +306,8 @@ enum KeyType {
 - <span id="keytype-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for KeyType`
@@ -359,7 +344,7 @@ enum KeyType {
 fn append_keys(keys: &mut Vec<Key>, arg: &crate::Arg, index: usize)
 ```
 
-*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:165-188`](../../../.source_1765633015/clap_builder-4.5.53/src/mkeymap.rs#L165-L188)*
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:165-188`](../../../.source_1765894658/clap_builder-4.5.53/src/mkeymap.rs#L165-L188)*
 
 Generate key types for an specific Arg.
 

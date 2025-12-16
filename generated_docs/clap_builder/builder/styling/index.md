@@ -30,7 +30,7 @@ struct Styles {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
+*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
 
 Terminal styling definitions
 
@@ -90,17 +90,13 @@ let styles = Styles::styled()
 - <span id="styles-context"></span>`const fn context(self, style: Style) -> Self`
 
   Highlight all specified contexts, e.g. `[default: false]`
-
   
-
   To specialize the style of the value within the context, see `Styles::context_value`
 
 - <span id="styles-context-value"></span>`const fn context_value(self, style: Style) -> Self`
 
   Highlight values within all of the context, e.g. the `false` in `[default: false]`
-
   
-
   If not explicitly set, falls back to `context`'s style.
 
 #### Trait Implementations
@@ -146,11 +142,8 @@ let styles = Styles::styled()
 - <span id="styles-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Styles`

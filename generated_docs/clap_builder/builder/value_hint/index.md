@@ -32,7 +32,7 @@ enum ValueHint {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
+*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
 
 Provide shell with hint on how to complete an argument.
 
@@ -178,11 +178,8 @@ Overview of which hints are supported by which shell:
 - <span id="valuehint-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for Option<crate::builder::ValueHint>`

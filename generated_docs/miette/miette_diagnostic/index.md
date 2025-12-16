@@ -25,7 +25,7 @@ struct MietteDiagnostic {
 }
 ```
 
-*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../../.source_1765633015/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
+*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../../.source_1765894658/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
 
 Diagnostic that can be created at runtime.
 
@@ -67,259 +67,148 @@ Diagnostic that can be created at runtime.
 - <span id="miettediagnostic-new"></span>`fn new(message: impl Into<String>) -> Self`
 
   Create a new dynamic diagnostic with the given message.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic, Severity};
-
   
-
   let diag = MietteDiagnostic::new("Oops, something went wrong!");
-
   assert_eq!(diag.to_string(), "Oops, something went wrong!");
-
   assert_eq!(diag.message, "Oops, something went wrong!");
-
   ```
 
 - <span id="miettediagnostic-with-code"></span>`fn with_code(self, code: impl Into<String>) -> Self`
 
   Return new diagnostic with the given code.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic};
-
   
-
   let diag = MietteDiagnostic::new("Oops, something went wrong!").with_code("foo::bar::baz");
-
   assert_eq!(diag.message, "Oops, something went wrong!");
-
   assert_eq!(diag.code, Some("foo::bar::baz".to_string()));
-
   ```
 
 - <span id="miettediagnostic-with-severity"></span>`fn with_severity(self, severity: Severity) -> Self` — [`Severity`](../index.md#severity)
 
   Return new diagnostic with the given severity.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic, Severity};
-
   
-
   let diag = MietteDiagnostic::new("I warn you to stop!").with_severity(Severity::Warning);
-
   assert_eq!(diag.message, "I warn you to stop!");
-
   assert_eq!(diag.severity, Some(Severity::Warning));
-
   ```
 
 - <span id="miettediagnostic-with-help"></span>`fn with_help(self, help: impl Into<String>) -> Self`
 
   Return new diagnostic with the given help message.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic};
-
   
-
   let diag = MietteDiagnostic::new("PC is not working").with_help("Try to reboot it again");
-
   assert_eq!(diag.message, "PC is not working");
-
   assert_eq!(diag.help, Some("Try to reboot it again".to_string()));
-
   ```
 
 - <span id="miettediagnostic-with-url"></span>`fn with_url(self, url: impl Into<String>) -> Self`
 
   Return new diagnostic with the given URL.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, MietteDiagnostic};
-
   
-
   let diag = MietteDiagnostic::new("PC is not working")
-
       .with_url("https://letmegooglethat.com/?q=Why+my+pc+doesn%27t+work");
-
   assert_eq!(diag.message, "PC is not working");
-
   assert_eq!(
-
       diag.url,
-
       Some("https://letmegooglethat.com/?q=Why+my+pc+doesn%27t+work".to_string())
-
   );
-
   ```
 
 - <span id="miettediagnostic-with-label"></span>`fn with_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md#labeledspan)
 
   Return new diagnostic with the given label.
-
   
-
   Discards previous labels
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
-
   
-
   let source = "cpp is the best language";
-
   
-
   let label = LabeledSpan::at(0..3, "This should be Rust");
-
   let diag = MietteDiagnostic::new("Wrong best language").with_label(label.clone());
-
   assert_eq!(diag.message, "Wrong best language");
-
   assert_eq!(diag.labels, Some(vec![label]));
-
   ```
 
 - <span id="miettediagnostic-with-labels"></span>`fn with_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md#labeledspan)
 
   Return new diagnostic with the given labels.
-
   
-
   Discards previous labels
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
-
   
-
   let source = "helo wrld";
-
   
-
   let labels = vec![
-
       LabeledSpan::at_offset(3, "add 'l'"),
-
       LabeledSpan::at_offset(6, "add 'r'"),
-
   ];
-
   let diag = MietteDiagnostic::new("Typos in 'hello world'").with_labels(labels.clone());
-
   assert_eq!(diag.message, "Typos in 'hello world'");
-
   assert_eq!(diag.labels, Some(labels));
-
   ```
 
 - <span id="miettediagnostic-and-label"></span>`fn and_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md#labeledspan)
 
   Return new diagnostic with new label added to the existing ones.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
-
   
-
   let source = "helo wrld";
-
   
-
   let label1 = LabeledSpan::at_offset(3, "add 'l'");
-
   let label2 = LabeledSpan::at_offset(6, "add 'r'");
-
   let diag = MietteDiagnostic::new("Typos in 'hello world'")
-
       .and_label(label1.clone())
-
       .and_label(label2.clone());
-
   assert_eq!(diag.message, "Typos in 'hello world'");
-
   assert_eq!(diag.labels, Some(vec![label1, label2]));
-
   ```
 
 - <span id="miettediagnostic-and-labels"></span>`fn and_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md#labeledspan)
 
   Return new diagnostic with new labels added to the existing ones.
-
   
-
   # Examples
-
   ```rust
-
   use miette::{Diagnostic, LabeledSpan, MietteDiagnostic};
-
   
-
   let source = "helo wrld";
-
   
-
   let label1 = LabeledSpan::at_offset(3, "add 'l'");
-
   let label2 = LabeledSpan::at_offset(6, "add 'r'");
-
   let label3 = LabeledSpan::at_offset(9, "add '!'");
-
   let diag = MietteDiagnostic::new("Typos in 'hello world!'")
-
       .and_label(label1.clone())
-
       .and_labels([label2.clone(), label3.clone()]);
-
   assert_eq!(diag.message, "Typos in 'hello world!'");
-
   assert_eq!(diag.labels, Some(vec![label1, label2, label3]));
-
   ```
 
 #### Trait Implementations
@@ -383,11 +272,8 @@ Diagnostic that can be created at runtime.
 - <span id="miettediagnostic-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl OwoColorize for MietteDiagnostic`

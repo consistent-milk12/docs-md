@@ -80,7 +80,7 @@ struct ProbeSeq {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:76-79`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L76-L79)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:76-79`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L76-L79)*
 
 Probe sequence based on triangular numbers, which is guaranteed (since our
 table size is a power of two) to visit every group of elements exactly once.
@@ -129,11 +129,8 @@ Proof that the probe will visit every group in the table:
 - <span id="probeseq-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for ProbeSeq`
@@ -165,7 +162,7 @@ struct TableLayout {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:198-201`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L198-L201)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:198-201`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L198-L201)*
 
 Helper which allows the max calculation for `ctrl_align` to be statically computed for each `T`
 while keeping the rest of `calculate_layout_for` independent of `T`
@@ -211,11 +208,8 @@ while keeping the rest of `calculate_layout_for` independent of `T`
 - <span id="tablelayout-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for TableLayout`
@@ -246,7 +240,7 @@ struct Bucket<T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:245-251`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L245-L251)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:245-251`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L245-L251)*
 
 A reference to a hash table bucket containing a `T`.
 
@@ -259,201 +253,107 @@ that `erase` works properly.
 - <span id="bucket-from-base-index"></span>`unsafe fn from_base_index(base: NonNull<T>, index: usize) -> Self`
 
   Creates a [`Bucket`](#bucket) that contain pointer to the data.
-
   The pointer calculation is performed by calculating the
-
   offset from given `base` pointer (convenience for
-
   `base.as_ptr().sub(index)`).
-
   
-
   `index` is in units of `T`; e.g., an `index` of 3 represents a pointer
-
   offset of `3 * size_of::<T>()` bytes.
-
   
-
   If the `T` is a ZST, then we instead track the index of the element
-
   in the table so that `erase` works properly (return
-
   `NonNull::new_unchecked((index + 1) as *mut T)`)
-
   
-
   # Safety
-
   
-
   If `mem::size_of::<T>() != 0`, then the safety rules are directly derived
-
   from the safety rules for `<*mut T>::sub` method of `*mut T` and the safety
-
   rules of `NonNull::new_unchecked` function.
-
   
-
   Thus, in order to uphold the safety contracts for the `<*mut T>::sub` method
-
   and `NonNull::new_unchecked` function, as well as for the correct
-
   logic of the work of this crate, the following rules are necessary and
-
   sufficient:
-
   
-
   * the `base` pointer must not be `dangling` and must points to the
-
     end of the first `value element` from the `data part` of the table, i.e.
-
     must be the pointer that returned by `RawTable::data_end` or by
-
     `RawTableInner::data_end<T>`;
-
   
-
   * `index` must not be greater than `RawTableInner.bucket_mask`, i.e.
-
     `index <= RawTableInner.bucket_mask` or, in other words, `(index + 1)`
-
     must be no greater than the number returned by the function
-
     `RawTable::buckets` or `RawTableInner::buckets`.
-
   
-
   If `mem::size_of::<T>() == 0`, then the only requirement is that the
-
   `index` must not be greater than `RawTableInner.bucket_mask`, i.e.
-
   `index <= RawTableInner.bucket_mask` or, in other words, `(index + 1)`
-
   must be no greater than the number returned by the function
-
   `RawTable::buckets` or `RawTableInner::buckets`.
-
   
-
   
-
   
-
   
-
   
-
   
 
 - <span id="bucket-to-base-index"></span>`unsafe fn to_base_index(&self, base: NonNull<T>) -> usize`
 
   Calculates the index of a [`Bucket`](#bucket) as distance between two pointers
-
   (convenience for `base.as_ptr().offset_from(self.ptr.as_ptr()) as usize`).
-
   The returned value is in units of T: the distance in bytes divided by
-
-  [`core::mem::size_of::<T>()`](../../rustix/backend/conv/index.md).
-
+  `core::mem::size_of::<T>()`.
   
-
   If the `T` is a ZST, then we return the index of the element in
-
   the table so that `erase` works properly (return `self.ptr.as_ptr() as usize - 1`).
-
   
-
   This function is the inverse of `from_base_index`.
-
   
-
   # Safety
-
   
-
   If `mem::size_of::<T>() != 0`, then the safety rules are directly derived
-
   from the safety rules for `<*const T>::offset_from` method of `*const T`.
-
   
-
   Thus, in order to uphold the safety contracts for `<*const T>::offset_from`
-
   method, as well as for the correct logic of the work of this crate, the
-
   following rules are necessary and sufficient:
-
   
-
   * `base` contained pointer must not be `dangling` and must point to the
-
     end of the first `element` from the `data part` of the table, i.e.
-
     must be a pointer that returns by `RawTable::data_end` or by
-
     `RawTableInner::data_end<T>`;
-
   
-
   * `self` also must not contain dangling pointer;
-
   
-
   * both `self` and `base` must be created from the same [`RawTable`](#rawtable)
-
     (or [`RawTableInner`](#rawtableinner)).
-
   
-
   If `mem::size_of::<T>() == 0`, this function is always safe.
-
   
-
   
-
   
-
   
-
   
-
   
 
 - <span id="bucket-as-ptr"></span>`fn as_ptr(&self) -> *mut T`
 
   Acquires the underlying raw pointer `*mut T` to `data`.
-
   
-
   # Note
-
   
-
-  If `T` is not [`Copy`](../../fs_err/index.md), do not use `*mut T` methods that can cause calling the
-
+  If `T` is not [`Copy`](#copy), do not use `*mut T` methods that can cause calling the
   destructor of `T` (for example the `<*mut T>::drop_in_place` method), because
-
   for properly dropping the data we also need to clear `data` control bytes. If we
-
   drop data, but do not clear `data control byte` it leads to double drop when
-
   [`RawTable`](#rawtable) goes out of scope.
-
   
-
   If you modify an already initialized `value`, so `Hash` and `Eq` on the new
-
   `T` value and its borrowed form *must* match those for the old `T` value, as the map
-
   will not re-evaluate where the new value should go, meaning the value may become
-
   "lost" if their location does not reflect their state.
-
   
-
   
-
   
 
 - <span id="bucket-as-non-null"></span>`fn as_non_null(&self) -> NonNull<T>`
@@ -463,205 +363,115 @@ that `erase` works properly.
 - <span id="bucket-next-n"></span>`unsafe fn next_n(&self, offset: usize) -> Self`
 
   Create a new [`Bucket`](#bucket) that is offset from the `self` by the given
-
   `offset`. The pointer calculation is performed by calculating the
-
   offset from `self` pointer (convenience for `self.ptr.as_ptr().sub(offset)`).
-
   This function is used for iterators.
-
   
-
   `offset` is in units of `T`; e.g., a `offset` of 3 represents a pointer
-
   offset of `3 * size_of::<T>()` bytes.
-
   
-
   # Safety
-
   
-
   If `mem::size_of::<T>() != 0`, then the safety rules are directly derived
-
   from the safety rules for `<*mut T>::sub` method of `*mut T` and safety
-
   rules of `NonNull::new_unchecked` function.
-
   
-
   Thus, in order to uphold the safety contracts for `<*mut T>::sub` method
-
   and `NonNull::new_unchecked` function, as well as for the correct
-
   logic of the work of this crate, the following rules are necessary and
-
   sufficient:
-
   
-
   * `self` contained pointer must not be `dangling`;
-
   
-
   * `self.to_base_index() + offset` must not be greater than `RawTableInner.bucket_mask`,
-
     i.e. `(self.to_base_index() + offset) <= RawTableInner.bucket_mask` or, in other
-
     words, `self.to_base_index() + offset + 1` must be no greater than the number returned
-
     by the function `RawTable::buckets` or `RawTableInner::buckets`.
-
   
-
   If `mem::size_of::<T>() == 0`, then the only requirement is that the
-
   `self.to_base_index() + offset` must not be greater than `RawTableInner.bucket_mask`,
-
   i.e. `(self.to_base_index() + offset) <= RawTableInner.bucket_mask` or, in other words,
-
   `self.to_base_index() + offset + 1` must be no greater than the number returned by the
-
   function `RawTable::buckets` or `RawTableInner::buckets`.
-
   
-
   
-
   
-
   
 
 - <span id="bucket-drop"></span>`unsafe fn drop(&self)`
 
   Executes the destructor (if any) of the pointed-to `data`.
-
   
-
   # Safety
-
   
-
   See `ptr::drop_in_place` for safety concerns.
-
   
-
   You should use `RawTable::erase` instead of this function,
-
   or be careful with calling this function directly, because for
-
   properly dropping the data we need also clear `data` control bytes.
-
   If we drop data, but do not erase `data control byte` it leads to
-
   double drop when [`RawTable`](#rawtable) goes out of scope.
-
   
-
   
 
 - <span id="bucket-read"></span>`unsafe fn read(&self) -> T`
 
   Reads the `value` from `self` without moving it. This leaves the
-
   memory in `self` unchanged.
-
   
-
   # Safety
-
   
-
   See `ptr::read` for safety concerns.
-
   
-
   You should use `RawTable::remove` instead of this function,
-
   or be careful with calling this function directly, because compiler
-
   calls its destructor when the read `value` goes out of scope. It
-
   can cause double dropping when [`RawTable`](#rawtable) goes out of scope,
-
   because of not erased `data control byte`.
-
   
-
   
 
 - <span id="bucket-write"></span>`unsafe fn write(&self, val: T)`
 
   Overwrites a memory location with the given `value` without reading
-
   or dropping the old value (like `ptr::write` function).
-
   
-
   # Safety
-
   
-
   See `ptr::write` for safety concerns.
-
   
-
   # Note
-
   
-
   `Hash` and `Eq` on the new `T` value and its borrowed form *must* match
-
   those for the old `T` value, as the map will not re-evaluate where the new
-
   value should go, meaning the value may become "lost" if their location
-
   does not reflect their state.
-
   
-
   
 
 - <span id="bucket-as-ref"></span>`unsafe fn as_ref<'a>(&self) -> &'a T`
 
   Returns a shared immutable reference to the `value`.
-
   
-
   # Safety
-
   
-
   See `NonNull::as_ref` for safety concerns.
 
 - <span id="bucket-as-mut"></span>`unsafe fn as_mut<'a>(&self) -> &'a mut T`
 
   Returns a unique mutable reference to the `value`.
-
   
-
   # Safety
-
   
-
   See `NonNull::as_mut` for safety concerns.
-
   
-
   # Note
-
   
-
   `Hash` and `Eq` on the new `T` value and its borrowed form *must* match
-
   those for the old `T` value, as the map will not re-evaluate where the new
-
   value should go, meaning the value may become "lost" if their location
-
   does not reflect their state.
-
   
-
   
 
 #### Trait Implementations
@@ -697,11 +507,8 @@ that `erase` works properly.
 - <span id="bucket-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Send for Bucket<T>`
@@ -736,7 +543,7 @@ struct RawTable<T, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:600-605`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L600-L605)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:600-605`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L600-L605)*
 
 A raw hash table with an unsafe API.
 
@@ -745,19 +552,14 @@ A raw hash table with an unsafe API.
 - <span id="rawtable-new"></span>`const fn new() -> Self`
 
   Creates a new empty hash table without allocating any memory.
-
   
-
   In effect this returns a table with exactly 1 bucket. However we can
-
   leave the data pointer dangling since that bucket is never written to
-
   due to our load factor forcing us to always have at least 1 free bucket.
 
 - <span id="rawtable-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
   Allocates a new hash table with at least enough capacity for inserting
-
   the given number of elements without reallocating.
 
 #### Trait Implementations
@@ -803,11 +605,8 @@ A raw hash table with an unsafe API.
 - <span id="rawtable-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, A: Allocator> IntoIterator for RawTable<T, A>`
@@ -857,7 +656,7 @@ struct RawTableInner {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:609-623`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L609-L623)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:609-623`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L609-L623)*
 
 Non-generic part of `RawTable` which allows functions to be instantiated only once regardless
 of how many different key-value types are used.
@@ -869,13 +668,9 @@ of how many different key-value types are used.
 - <span id="rawtableinner-new"></span>`const fn new() -> Self`
 
   Creates a new empty hash table without allocating any memory.
-
   
-
   In effect this returns a table with exactly 1 bucket. However we can
-
   leave the data pointer dangling since that bucket is never accessed
-
   due to our load factor forcing us to always have at least 1 free bucket.
 
 #### Trait Implementations
@@ -903,11 +698,8 @@ of how many different key-value types are used.
 - <span id="rawtableinner-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for RawTableInner`
@@ -933,7 +725,7 @@ struct RawIterRange<T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3540-3554`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L3540-L3554)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3540-3554`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L3540-L3554)*
 
 Iterator over a sub-range of a table. Unlike `RawIter` this iterator does
 not track an item count.
@@ -943,107 +735,60 @@ not track an item count.
 - <span id="rawiterrange-new"></span>`unsafe fn new(ctrl: *const u8, data: Bucket<T>, len: usize) -> Self` — [`Bucket`](#bucket)
 
   Returns a `RawIterRange` covering a subset of a table.
-
   
-
   # Safety
-
   
-
   If any of the following conditions are violated, the result is
-
   `undefined behavior`:
-
   
-
   * `ctrl` must be [`valid`](../../thiserror_impl/valid/index.md) for reads, i.e. table outlives the `RawIterRange`;
-
   
-
   * `ctrl` must be properly aligned to the group size (`Group::WIDTH`);
-
   
-
   * `ctrl` must point to the array of properly initialized control bytes;
-
   
-
   * `data` must be the [`Bucket`](#bucket) at the `ctrl` index in the table;
-
   
-
   * the value of `len` must be less than or equal to the number of table buckets,
-
     and the returned value of `ctrl.as_ptr().add(len).offset_from(ctrl.as_ptr())`
-
     must be positive.
-
   
-
   * The `ctrl.add(len)` pointer must be either in bounds or one
-
     byte past the end of the same [allocated table].
-
   
-
   * The `len` must be a power of two.
-
   
 
 - <span id="rawiterrange-next-impl"></span>`unsafe fn next_impl<const DO_CHECK_PTR_RANGE: bool>(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
   # Safety
-
   If `DO_CHECK_PTR_RANGE` is false, caller must ensure that we never try to iterate
-
   after yielding all elements.
 
 - <span id="rawiterrange-fold-impl"></span>`unsafe fn fold_impl<F, B>(self, n: usize, acc: B, f: F) -> B`
 
   Folds every element into an accumulator by applying an operation,
-
   returning the final result.
-
   
-
   `fold_impl()` takes three arguments: the number of items remaining in
-
   the iterator, an initial value, and a closure with two arguments: an
-
   'accumulator', and an element. The closure returns the value that the
-
   accumulator should have for the next iteration.
-
   
-
   The initial value is the value the accumulator will have on the first call.
-
   
-
   After applying this closure to every element of the iterator, `fold_impl()`
-
   returns the accumulator.
-
   
-
   # Safety
-
   
-
   If any of the following conditions are violated, the result is
-
   `Undefined Behavior`:
-
   
-
   * The [`RawTableInner`](#rawtableinner) / [`RawTable`](#rawtable) must be alive and not moved,
-
     i.e. table outlives the `RawIterRange`;
-
   
-
   * The provided `n` value must match the actual number of items
-
     in the table.
 
 #### Trait Implementations
@@ -1081,11 +826,8 @@ not track an item count.
 - <span id="rawiterrange-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RawIterRange<T>`
@@ -1137,7 +879,7 @@ struct RawIter<T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3812-3815`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L3812-L3815)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3812-3815`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L3812-L3815)*
 
 Iterator which returns a raw pointer to every full bucket in the table.
 
@@ -1197,11 +939,8 @@ must observe several rules when using it:
 - <span id="rawiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RawIter<T>`
@@ -1253,7 +992,7 @@ struct FullBucketsIndices {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3897-3912`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L3897-L3912)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3897-3912`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L3897-L3912)*
 
 Iterator which returns an index of every full bucket in the table.
 
@@ -1273,25 +1012,15 @@ must observe several rules when using it:
 - <span id="fullbucketsindices-next-impl"></span>`unsafe fn next_impl(&mut self) -> Option<usize>`
 
   Advances the iterator and returns the next value.
-
   
-
   # Safety
-
   
-
   If any of the following conditions are violated, the result is
-
   `Undefined Behavior`:
-
   
-
   * The [`RawTableInner`](#rawtableinner) / [`RawTable`](#rawtable) must be alive and not moved,
-
     i.e. table outlives the `FullBucketsIndices`;
-
   
-
   * It never tries to iterate after getting all elements.
 
 #### Trait Implementations
@@ -1335,11 +1064,8 @@ must observe several rules when using it:
 - <span id="fullbucketsindices-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for FullBucketsIndices`
@@ -1357,9 +1083,7 @@ must observe several rules when using it:
 - <span id="fullbucketsindices-iterator-next"></span>`fn next(&mut self) -> Option<usize>`
 
   Advances the iterator and returns the next value. It is up to
-
   the caller to ensure that the `RawTable` outlives the `FullBucketsIndices`,
-
   because we cannot make the `next` method unsafe.
 
 - <span id="fullbucketsindices-iterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
@@ -1394,7 +1118,7 @@ struct RawIntoIter<T, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4013-4017`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L4013-L4017)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4013-4017`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L4013-L4017)*
 
 Iterator which consumes a table and returns elements.
 
@@ -1439,11 +1163,8 @@ Iterator which consumes a table and returns elements.
 - <span id="rawintoiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RawIntoIter<T, A>`
@@ -1489,7 +1210,7 @@ struct RawDrain<'a, T, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4097-4109`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L4097-L4109)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4097-4109`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L4097-L4109)*
 
 Iterator which consumes elements without freeing the table storage.
 
@@ -1530,11 +1251,8 @@ Iterator which consumes elements without freeing the table storage.
 - <span id="rawdrain-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RawDrain<'a, T, A>`
@@ -1578,7 +1296,7 @@ struct RawIterHash<T> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4186-4189`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L4186-L4189)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4186-4189`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L4186-L4189)*
 
 Iterator over occupied buckets that could match a given hash.
 
@@ -1638,11 +1356,8 @@ must observe several rules when using it:
 - <span id="rawiterhash-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RawIterHash<T>`
@@ -1692,7 +1407,7 @@ struct RawIterHashIndices {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4192-4209`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L4192-L4209)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4192-4209`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L4192-L4209)*
 
 #### Implementations
 
@@ -1735,11 +1450,8 @@ struct RawIterHashIndices {
 - <span id="rawiterhashindices-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for RawIterHashIndices`
@@ -1785,7 +1497,7 @@ struct RawExtractIf<'a, T, A: Allocator> {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4315-4318`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L4315-L4318)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4315-4318`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L4315-L4318)*
 
 #### Implementations
 
@@ -1816,11 +1528,8 @@ struct RawExtractIf<'a, T, A: Allocator> {
 - <span id="rawextractif-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T, U> TryFrom for RawExtractIf<'a, T, A>`
@@ -1846,7 +1555,7 @@ enum Fallibility {
 }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:26-29`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L26-L29)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:26-29`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L26-L29)*
 
 Whether memory allocation errors should return an error or abort.
 
@@ -1895,11 +1604,8 @@ Whether memory allocation errors should return an error or abort.
 - <span id="fallibility-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl ToOwned for Fallibility`
@@ -1930,7 +1636,7 @@ Whether memory allocation errors should return an error or abort.
 trait SizedTypeProperties: Sized { ... }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:51-54`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L51-L54)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:51-54`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L51-L54)*
 
 #### Associated Constants
 
@@ -1948,7 +1654,7 @@ trait SizedTypeProperties: Sized { ... }
 trait RawTableClone { ... }
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3411-3413`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L3411-L3413)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3411-3413`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L3411-L3413)*
 
 Specialization of `clone_from` for `Copy` types
 
@@ -1968,7 +1674,7 @@ Specialization of `clone_from` for `Copy` types
 unsafe fn offset_from<T>(to: *const T, from: *const T) -> usize
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:20-22`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L20-L22)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:20-22`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L20-L22)*
 
 ### `h1`
 
@@ -1976,7 +1682,7 @@ unsafe fn offset_from<T>(to: *const T, from: *const T) -> usize
 fn h1(hash: u64) -> usize
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:61-64`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L61-L64)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:61-64`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L61-L64)*
 
 Primary hash function, used to select the initial bucket to probe from.
 
@@ -1986,7 +1692,7 @@ Primary hash function, used to select the initial bucket to probe from.
 fn capacity_to_buckets(cap: usize, table_layout: TableLayout) -> Option<usize>
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:105-166`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L105-L166)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:105-166`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L105-L166)*
 
 Returns the number of buckets needed to hold the given number of items,
 taking the maximum load factor into account.
@@ -2001,7 +1707,7 @@ This ensures that `buckets * table_layout.size >= table_layout.ctrl_align`.
 fn ensure_bucket_bytes_at_least_ctrl_align(table_layout: TableLayout, buckets: usize)
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:174-179`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L174-L179)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:174-179`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L174-L179)*
 
 ### `bucket_mask_to_capacity`
 
@@ -2009,7 +1715,7 @@ fn ensure_bucket_bytes_at_least_ctrl_align(table_layout: TableLayout, buckets: u
 fn bucket_mask_to_capacity(bucket_mask: usize) -> usize
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:184-193`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L184-L193)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:184-193`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L184-L193)*
 
 Returns the maximum effective capacity for the given bucket mask, taking
 the maximum load factor into account.
@@ -2020,7 +1726,7 @@ the maximum load factor into account.
 fn prev_pow2(z: usize) -> usize
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:1545-1548`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L1545-L1548)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:1545-1548`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L1545-L1548)*
 
 Find the previous power of 2. If it's already a power of 2, it's unchanged.
 Passing zero is undefined behavior.
@@ -2031,7 +1737,7 @@ Passing zero is undefined behavior.
 fn maximum_buckets_in(allocation_size: usize, table_layout: TableLayout, group_width: usize) -> usize
 ```
 
-*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:1555-1580`](../../../.source_1765633015/hashbrown-0.16.1/src/raw/mod.rs#L1555-L1580)*
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:1555-1580`](../../../.source_1765894658/hashbrown-0.16.1/src/raw/mod.rs#L1555-L1580)*
 
 Finds the largest number of buckets that can fit in `allocation_size`
 provided the given TableLayout.

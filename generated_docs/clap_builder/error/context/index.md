@@ -37,7 +37,7 @@ enum ContextKind {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/context.rs:5-40`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/context.rs#L5-L40)*
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:5-40`](../../../../.source_1765894658/clap_builder-4.5.53/src/error/context.rs#L5-L40)*
 
 Semantics for a piece of error information
 
@@ -166,11 +166,8 @@ Semantics for a piece of error information
 - <span id="contextkind-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ContextKind`
@@ -217,7 +214,7 @@ enum ContextValue {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/error/context.rs:77-92`](../../../../.source_1765633015/clap_builder-4.5.53/src/error/context.rs#L77-L92)*
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:77-92`](../../../../.source_1765894658/clap_builder-4.5.53/src/error/context.rs#L77-L92)*
 
 A piece of error information
 
@@ -294,11 +291,8 @@ A piece of error information
 - <span id="contextvalue-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl PartialEq for ContextValue`

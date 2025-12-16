@@ -29,7 +29,7 @@ enum ArgAction {
 }
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
 
 Behavior of arguments when they are encountered while parsing
 
@@ -400,11 +400,8 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 - <span id="argaction-takes-values"></span>`fn takes_values(&self) -> bool`
 
   Returns whether this action accepts values on the command-line
-
   
-
   `default_values` and `env` may still be
-
   processed.
 
 - <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](../range/index.md#valuerange)
@@ -456,11 +453,8 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 - <span id="argaction-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoResettable for Option<crate::builder::ArgAction>`
@@ -495,5 +489,5 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 type CountType = u8;
 ```
 
-*Defined in [`clap_builder-4.5.53/src/builder/action.rs:461`](../../../../.source_1765633015/clap_builder-4.5.53/src/builder/action.rs#L461)*
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:461`](../../../../.source_1765894658/clap_builder-4.5.53/src/builder/action.rs#L461)*
 

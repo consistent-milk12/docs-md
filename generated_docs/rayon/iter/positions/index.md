@@ -23,7 +23,7 @@ struct Positions<I, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/positions.rs:14-17`](../../../../.source_1765633015/rayon-1.11.0/src/iter/positions.rs#L14-L17)*
+*Defined in [`rayon-1.11.0/src/iter/positions.rs:14-17`](../../../../.source_1765894658/rayon-1.11.0/src/iter/positions.rs#L14-L17)*
 
 `Positions` takes a predicate `predicate` and filters out elements that match,
 yielding their indices.
@@ -74,11 +74,8 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 - <span id="positions-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for Positions<I, P>`
@@ -141,7 +138,7 @@ struct PositionsConsumer<'p, C, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/positions.rs:53-57`](../../../../.source_1765633015/rayon-1.11.0/src/iter/positions.rs#L53-L57)*
+*Defined in [`rayon-1.11.0/src/iter/positions.rs:53-57`](../../../../.source_1765894658/rayon-1.11.0/src/iter/positions.rs#L53-L57)*
 
 #### Implementations
 
@@ -186,11 +183,8 @@ struct PositionsConsumer<'p, C, P> {
 - <span id="positionsconsumer-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for PositionsConsumer<'p, C, P>`
@@ -231,7 +225,7 @@ struct PositionsFolder<'p, F, P> {
 }
 ```
 
-*Defined in [`rayon-1.11.0/src/iter/positions.rs:100-104`](../../../../.source_1765633015/rayon-1.11.0/src/iter/positions.rs#L100-L104)*
+*Defined in [`rayon-1.11.0/src/iter/positions.rs:100-104`](../../../../.source_1765894658/rayon-1.11.0/src/iter/positions.rs#L100-L104)*
 
 #### Trait Implementations
 
@@ -268,11 +262,8 @@ struct PositionsFolder<'p, F, P> {
 - <span id="positionsfolder-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoEither for PositionsFolder<'p, F, P>`

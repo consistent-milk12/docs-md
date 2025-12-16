@@ -50,7 +50,7 @@ struct Scope<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 See [`scope()`](#scope) for more information.
@@ -62,113 +62,61 @@ See [`scope()`](#scope) for more information.
 - <span id="scope-spawn"></span>`fn spawn<BODY>(&self, body: BODY)`
 
   Spawns a job into the fork-join scope `self`. This job will
-
   execute sometime before the fork-join scope completes.  The
-
   job is specified as a closure, and this closure receives its
-
   own reference to the scope `self` as argument. This can be
-
   used to inject new jobs into `self`.
-
   
-
   # Returns
-
   
-
   Nothing. The spawned closures cannot pass back values to the
-
   caller directly, though they can write to local variables on
-
   the stack (if those variables outlive the scope) or
-
   communicate through shared channels.
-
   
-
   (The intention is to eventually integrate with Rust futures to
-
   support spawns of functions that compute a value.)
-
   
-
   # Examples
-
   
-
   ```rust
-
   use rayon_core as rayon;
-
   let mut value_a = None;
-
   let mut value_b = None;
-
   let mut value_c = None;
-
   rayon::scope(|s| {
-
       s.spawn(|s1| {
-
             // ^ this is the same scope as `s`; this handle `s1`
-
             //   is intended for use by the spawned task,
-
             //   since scope handles cannot cross thread boundaries.
-
   
-
           value_a = Some(22);
-
   
-
           // the scope `s` will not end until all these tasks are done
-
           s1.spawn(|_| {
-
               value_b = Some(44);
-
           });
-
       });
-
   
-
       s.spawn(|_| {
-
           value_c = Some(66);
-
       });
-
   });
-
   assert_eq!(value_a, Some(22));
-
   assert_eq!(value_b, Some(44));
-
   assert_eq!(value_c, Some(66));
-
   ```
-
   
-
   # See also
-
   
-
   The [`scope` function] has more extensive documentation about
-
   task spawning.
 
 - <span id="scope-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
   Spawns a job into every thread of the fork-join scope `self`. This job will
-
   execute on each thread sometime before the fork-join scope completes.  The
-
   job is specified as a closure, and this closure receives its own reference
-
   to the scope `self` as argument, as well as a `BroadcastContext`.
 
 #### Trait Implementations
@@ -200,11 +148,8 @@ See [`scope()`](#scope) for more information.
 - <span id="scope-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for Scope<'scope>`
@@ -242,7 +187,7 @@ struct ScopeFifo<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
@@ -255,35 +200,22 @@ See [`scope_fifo()`](#scope-fifo) for more information.
 - <span id="scopefifo-spawn-fifo"></span>`fn spawn_fifo<BODY>(&self, body: BODY)`
 
   Spawns a job into the fork-join scope `self`. This job will
-
   execute sometime before the fork-join scope completes.  The
-
   job is specified as a closure, and this closure receives its
-
   own reference to the scope `self` as argument. This can be
-
   used to inject new jobs into `self`.
-
   
-
   # See also
-
   
-
   This method is akin to `Scope::spawn()`, but with a FIFO
-
   priority.  The [`scope_fifo` function] has more details about
-
   this distinction.
 
 - <span id="scopefifo-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
   Spawns a job into every thread of the fork-join scope `self`. This job will
-
   execute on each thread sometime before the fork-join scope completes.  The
-
   job is specified as a closure, and this closure receives its own reference
-
   to the scope `self` as argument, as well as a `BroadcastContext`.
 
 #### Trait Implementations
@@ -315,11 +247,8 @@ See [`scope_fifo()`](#scope-fifo) for more information.
 - <span id="scopefifo-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ScopeFifo<'scope>`
@@ -359,7 +288,7 @@ struct ScopeBase<'scope> {
 }
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:36-54`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L36-L54)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:36-54`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L36-L54)*
 
 #### Fields
 
@@ -397,21 +326,17 @@ struct ScopeBase<'scope> {
 - <span id="scopebase-complete"></span>`fn complete<FUNC, R>(&self, owner: Option<&WorkerThread>, func: FUNC) -> R` — [`WorkerThread`](../registry/index.md#workerthread)
 
   Executes `func` as a job, either aborting or executing as
-
   appropriate.
 
 - <span id="scopebase-execute-job"></span>`unsafe fn execute_job<FUNC>(this: *const Self, func: FUNC)`
 
   Executes `func` as a job, either aborting or executing as
-
   appropriate.
 
 - <span id="scopebase-execute-job-closure"></span>`unsafe fn execute_job_closure<FUNC, R>(this: *const Self, func: FUNC) -> Option<R>`
 
   Executes `func` as a job in scope. Adjusts the "job completed"
-
   counters and also catches any panic and stores it into
-
   `scope`.
 
 - <span id="scopebase-job-panicked"></span>`fn job_panicked(&self, err: Box<dyn Any + Send>)`
@@ -443,11 +368,8 @@ struct ScopeBase<'scope> {
 - <span id="scopebase-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl Pointable for ScopeBase<'scope>`
@@ -482,7 +404,7 @@ struct ScopeBase<'scope> {
 struct ScopePtr<T>(*const T);
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:760`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L760)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:760`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L760)*
 
 Used to capture a scope `&Self` pointer in jobs, without faking a lifetime.
 
@@ -518,11 +440,8 @@ scope jobs that are guaranteed to execute before the scope ends.
 - <span id="scopeptr-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T> Pointable for ScopePtr<T>`
@@ -566,7 +485,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
 
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
@@ -799,7 +718,7 @@ where
     R: Send
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
 
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
@@ -886,7 +805,7 @@ where
     OP: FnOnce(&Scope<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
 
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
@@ -918,7 +837,7 @@ where
     OP: FnOnce(&Scope<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:405-412`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L405-L412)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:405-412`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L405-L412)*
 
 ### `get_in_place_thread_registry`
 
@@ -926,7 +845,7 @@ where
 fn get_in_place_thread_registry(registry: Option<&std::sync::Arc<crate::registry::Registry>>) -> (Option<&crate::registry::WorkerThread>, Option<&std::sync::Arc<crate::registry::Registry>>)
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:414-426`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L414-L426)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:414-426`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L414-L426)*
 
 ### `in_place_scope_fifo`
 
@@ -936,7 +855,7 @@ where
     OP: FnOnce(&ScopeFifo<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
 
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
@@ -968,5 +887,5 @@ where
     OP: FnOnce(&ScopeFifo<'scope>) -> R
 ```
 
-*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:456-463`](../../../.source_1765633015/rayon-core-1.13.0/src/scope/mod.rs#L456-L463)*
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:456-463`](../../../.source_1765894658/rayon-core-1.13.0/src/scope/mod.rs#L456-L463)*
 

@@ -55,7 +55,7 @@ struct OnceCell<T> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:14-25`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L14-L25)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:14-25`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L14-L25)*
 
 #### Implementations
 
@@ -70,9 +70,7 @@ struct OnceCell<T> {
 - <span id="oncecell-initialize"></span>`fn initialize<F, E>(&self, f: F) -> Result<(), E>`
 
   Safety: synchronizes with store to value via SeqCst read from state,
-
   writes value only once because we never get to INCOMPLETE state after a
-
   successful write.
 
 - <span id="oncecell-wait"></span>`fn wait(&self)`
@@ -80,29 +78,21 @@ struct OnceCell<T> {
 - <span id="oncecell-get-unchecked"></span>`unsafe fn get_unchecked(&self) -> &T`
 
   Get the reference to the underlying value, without checking if the cell
-
   is initialized.
-
   
-
   # Safety
-
   
-
   Caller must ensure that the cell is in initialized state, and that
-
   the contents are acquired by (synchronized to) this thread.
 
 - <span id="oncecell-get-mut"></span>`fn get_mut(&mut self) -> Option<&mut T>`
 
   Gets the mutable reference to the underlying value.
-
   Returns `None` if the cell is empty.
 
 - <span id="oncecell-into-inner"></span>`fn into_inner(self) -> Option<T>`
 
   Consumes this `OnceCell`, returning the wrapped value.
-
   Returns `None` if the cell was empty.
 
 #### Trait Implementations
@@ -134,11 +124,8 @@ struct OnceCell<T> {
 - <span id="oncecell-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<T: RefUnwindSafe + UnwindSafe> RefUnwindSafe for OnceCell<T>`
@@ -171,7 +158,7 @@ struct Waiter {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:138-142`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L138-L142)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:138-142`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L138-L142)*
 
 Representation of a node in the linked list of waiters in the RUNNING state.
 A waiters is stored on the stack of the waiting threads.
@@ -201,11 +188,8 @@ A waiters is stored on the stack of the waiting threads.
 - <span id="waiter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Waiter`
@@ -229,7 +213,7 @@ struct Guard<'a> {
 }
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:145-148`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L145-L148)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:145-148`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L145-L148)*
 
 Drains and notifies the queue of waiters on drop.
 
@@ -262,11 +246,8 @@ Drains and notifies the queue of waiters on drop.
 - <span id="guard-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl<U> TryFrom for Guard<'a>`
@@ -289,7 +270,7 @@ Drains and notifies the queue of waiters on drop.
 fn initialize_or_wait(queue: &std::sync::atomic::AtomicPtr<Waiter>, init: Option<&mut dyn FnMut() -> bool>)
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:177-208`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L177-L208)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:177-208`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L177-L208)*
 
 ### `wait`
 
@@ -297,7 +278,7 @@ fn initialize_or_wait(queue: &std::sync::atomic::AtomicPtr<Waiter>, init: Option
 fn wait(queue: &std::sync::atomic::AtomicPtr<Waiter>, curr_queue: *mut Waiter)
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:210-239`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L210-L239)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:210-239`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L210-L239)*
 
 ## Constants
 
@@ -306,40 +287,40 @@ fn wait(queue: &std::sync::atomic::AtomicPtr<Waiter>, curr_queue: *mut Waiter)
 const INCOMPLETE: usize = 0usize;
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:125`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L125)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:125`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L125)*
 
 ### `RUNNING`
 ```rust
 const RUNNING: usize = 1usize;
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:126`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L126)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:126`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L126)*
 
 ### `COMPLETE`
 ```rust
 const COMPLETE: usize = 2usize;
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:127`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L127)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:127`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L127)*
 
 ### `INCOMPLETE_PTR`
 ```rust
 const INCOMPLETE_PTR: *mut Waiter = {0x0 as *mut imp::Waiter};
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:128`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L128)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:128`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L128)*
 
 ### `COMPLETE_PTR`
 ```rust
 const COMPLETE_PTR: *mut Waiter = {0x2 as *mut imp::Waiter};
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:129`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L129)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:129`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L129)*
 
 ### `STATE_MASK`
 ```rust
 const STATE_MASK: usize = 3usize;
 ```
 
-*Defined in [`once_cell-1.21.3/src/imp_std.rs:133`](../../../.source_1765633015/once_cell-1.21.3/src/imp_std.rs#L133)*
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:133`](../../../.source_1765894658/once_cell-1.21.3/src/imp_std.rs#L133)*
 

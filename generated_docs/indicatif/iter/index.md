@@ -22,7 +22,7 @@ struct ProgressBarIter<T> {
 }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../../.source_1765633015/indicatif-0.18.3/src/iter.rs#L62-L65)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../../.source_1765894658/indicatif-0.18.3/src/iter.rs#L62-L65)*
 
 Wraps an iterator to display its progress.
 
@@ -31,49 +31,37 @@ Wraps an iterator to display its progress.
 - <span id="progressbariter-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../style/index.md#progressstyle)
 
   Builder-like function for setting underlying progress bar's style.
-
   
-
   See `ProgressBar::with_style()`.
 
 - <span id="progressbariter-with-prefix"></span>`fn with_prefix(self, prefix: impl Into<Cow<'static, str>>) -> Self`
 
   Builder-like function for setting underlying progress bar's prefix.
-
   
-
   See `ProgressBar::with_prefix()`.
 
 - <span id="progressbariter-with-message"></span>`fn with_message(self, message: impl Into<Cow<'static, str>>) -> Self`
 
   Builder-like function for setting underlying progress bar's message.
-
   
-
   See `ProgressBar::with_message()`.
 
 - <span id="progressbariter-with-position"></span>`fn with_position(self, position: u64) -> Self`
 
   Builder-like function for setting underlying progress bar's position.
-
   
-
   See `ProgressBar::with_position()`.
 
 - <span id="progressbariter-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
   Builder-like function for setting underlying progress bar's elapsed time.
-
   
-
   See `ProgressBar::with_elapsed()`.
 
 - <span id="progressbariter-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../state/index.md#progressfinish)
 
   Builder-like function for setting underlying progress bar's finish behavior.
-
   
-
   See `ProgressBar::with_finish()`.
 
 #### Trait Implementations
@@ -121,11 +109,8 @@ Wraps an iterator to display its progress.
 - <span id="progressbariter-into"></span>`fn into(self) -> U`
 
   Calls `U::from(self)`.
-
   
-
   That is, this conversion is whatever the implementation of
-
   <code>[From]&lt;T&gt; for U</code> chooses to do.
 
 ##### `impl IntoIterator for ProgressBarIter<T>`
@@ -192,7 +177,7 @@ where
     Self: Sized + Iterator { ... }
 ```
 
-*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../../.source_1765633015/indicatif-0.18.3/src/iter.rs#L18-L58)*
+*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../../.source_1765894658/indicatif-0.18.3/src/iter.rs#L18-L58)*
 
 Wraps an iterator to display its progress.
 
@@ -207,6 +192,9 @@ Wraps an iterator to display its progress.
 - `fn try_progress(self) -> Option<ProgressBarIter<Self>>`
 
   Wrap an iterator with default styling. Uses `Iterator::size_hint()` to get length.
+  Returns `Some(..)` only if `size_hint.1` is `Some`. If you want to create a progress bar
+  even if `size_hint.1` returns [`None`](#none) use [`progress_count()`](ProgressIterator::progress_count)
+  or [`progress_with()`](ProgressIterator::progress_with) instead.
 
 - `fn progress(self) -> ProgressBarIter<Self>`
 
