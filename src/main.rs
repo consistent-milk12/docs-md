@@ -89,6 +89,11 @@ fn run_docs_command(args: DocsArgs) -> Result<()> {
     // Check for nightly toolchain
     check_nightly_toolchain()?;
 
+    // Get workspace root using cargo_metadata for absolute path resolution.
+    // This ensures we find target/doc even when run from unusual paths or with
+    // environment variables in the path (e.g., $PROJECT).
+    let target_doc_dir = get_target_doc_dir(&args.cargo_args)?;
+
     // Optionally run cargo clean
     if args.clean {
         eprintln!("Running cargo clean...");
@@ -133,12 +138,12 @@ fn run_docs_command(args: DocsArgs) -> Result<()> {
         ));
     }
 
-    eprintln!("Rustdoc JSON generated in target/doc/");
+    eprintln!("Rustdoc JSON generated in {}", target_doc_dir.display());
 
     // Now generate markdown from target/doc/
     let generate_args = GenerateArgs {
         path: None,
-        dir: Some(PathBuf::from("target/doc")),
+        dir: Some(target_doc_dir),
         no_mdbook: args.no_mdbook,
         no_search_index: args.no_search_index,
         primary_crate,
@@ -262,7 +267,64 @@ fn check_nightly_toolchain() -> Result<()> {
     Ok(())
 }
 
-/// Try to detect the crate name using cargo_metadata.
+/// Get the absolute path to target/doc directory.
+///
+/// Uses `cargo_metadata` to resolve the workspace root, ensuring correct path
+/// resolution even when the current directory contains environment variables
+/// or symlinks that might not resolve correctly with relative paths.
+///
+/// # Arguments
+///
+/// * `cargo_args` - Extra cargo arguments that may contain `--manifest-path`
+///
+/// # Errors
+///
+/// Returns an error if cargo metadata cannot be loaded.
+#[cfg(feature = "source-parsing")]
+fn get_target_doc_dir(cargo_args: &[String]) -> Result<PathBuf> {
+    use cargo_metadata::MetadataCommand;
+
+    let mut cmd = MetadataCommand::new();
+    cmd.no_deps();
+
+    // Check if --manifest-path was provided in cargo_args
+    let mut args_iter = cargo_args.iter();
+    while let Some(arg) = args_iter.next() {
+        if arg == "--manifest-path" {
+            if let Some(path) = args_iter.next() {
+                cmd.manifest_path(path);
+                break;
+            }
+        } else if let Some(path) = arg.strip_prefix("--manifest-path=") {
+            cmd.manifest_path(path);
+            break;
+        }
+    }
+
+    let metadata = cmd.exec().map_err(|e| {
+        miette!(
+            "Failed to get cargo metadata: {e}\n\n\
+             This is needed to determine the correct target/doc path."
+        )
+    })?;
+
+    // Use target_directory from metadata (respects CARGO_TARGET_DIR, .cargo/config, etc.)
+    let target_doc = metadata.target_directory.join("doc");
+
+    Ok(target_doc.into_std_path_buf())
+}
+
+/// Fallback for when source-parsing feature is disabled.
+///
+/// Uses relative path since we don't have cargo_metadata available.
+#[cfg(not(feature = "source-parsing"))]
+fn get_target_doc_dir(_cargo_args: &[String]) -> Result<PathBuf> {
+    // Without cargo_metadata, we fall back to relative path.
+    // This should work for most cases but may fail with unusual setups.
+    Ok(PathBuf::from("target/doc"))
+}
+
+/// Try to detect the crate name using `cargo_metadata`.
 ///
 /// This is the preferred method as it correctly handles:
 /// - Workspaces with inherited package metadata
